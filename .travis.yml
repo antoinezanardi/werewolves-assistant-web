@@ -9,7 +9,7 @@ install:
 addons:
     ssh_known_hosts: vps514431.ovh.net
 before_install:
-  openssl aes-256-cbc -K $encrypted_e4b94ab10d0b_key -iv $encrypted_e4b94ab10d0b_iv -in deploy/deploy_key.enc -out deploy/deploy_key -d
+  openssl aes-256-cbc -K $encrypted_e4b94ab10d0b_key -iv $encrypted_e4b94ab10d0b_iv -in deploy/deploy-key.enc -out deploy/deploy-key -d
 deploy:
     - provider: script
       skip_cleanup: true
