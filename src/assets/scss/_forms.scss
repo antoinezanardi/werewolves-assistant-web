@@ -1,0 +1,18 @@
+input::placeholder {
+    font-style: italic !important;
+}
+
+.input-group-prepend {
+    &.is-valid {
+        .input-group-text {
+            border-color: $success-color;
+            color: $success-color;
+        }
+    }
+    &.is-invalid {
+        .input-group-text {
+            border-color: $danger-color;
+            color: $danger-color;
+        }
+    }
+}

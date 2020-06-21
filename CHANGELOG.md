@@ -16,6 +16,7 @@
 * `node-sass` installed with version `4.14.1`.
 * `popper.js` installed with version `1.16.1`.
 * `sass-loader` installed with version `8.0.2`.
+* `vee-validate` installed with version `3.3.5`.
 * `vue-i18n` installed with version `8.18.2`.
 * `vue-toasted` installed with version `1.1.28`.
 

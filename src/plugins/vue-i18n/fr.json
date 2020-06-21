@@ -9,9 +9,21 @@
         "loggedIn": "Connecté",
         "loggedOut": "Déconnecté"
     },
+    "AccountModal": {
+        "logIn": "Se connecter",
+        "register": "S'inscrire",
+        "close": "Fermer",
+        "email": "E-mail",
+        "password": "Mot de passe",
+        "required": "Requis"
+    },
     "Error": {
         "unauthorized": "Vous ne pouvez pas accéder à cette page",
         "badRequest": "Mauvaise requête serveur",
         "unknownError": "Erreur inconnue"
+    },
+    "VeeValidate": {
+        "required": "Ce champ est requis",
+        "email": "L'email est invalide"
     }
 }

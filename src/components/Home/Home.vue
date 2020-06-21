@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="row mt-4 justify-content-center">
-            <div class="col-3">
+            <div class="col-lg-3 col-sm-12">
                 <button class="btn btn-block btn-primary text-uppercase font-weight-bold home-btn">
                     <i class="fa fa-play-circle mr-2"/>
                     <span v-html="$t('Home.play')"/>

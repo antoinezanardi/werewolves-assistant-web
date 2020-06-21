@@ -2,6 +2,7 @@ import "./APIs";
 import "./bootstrap";
 import "./error";
 import Router from "./router";
+import "./vee-validate";
 import i18n from "./vue-i18n";
 import "./vue-toasted";
 
