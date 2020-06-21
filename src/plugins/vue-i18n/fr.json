@@ -6,9 +6,12 @@
         "statistics": "Statistiques"
     },
     "Login": {
-        "loggedIn": "Connecté"
+        "loggedIn": "Connecté",
+        "loggedOut": "Déconnecté"
     },
     "Error": {
-        "unauthorized": "Vous ne pouvez pas accéder à cette page"
+        "unauthorized": "Vous ne pouvez pas accéder à cette page",
+        "badRequest": "Mauvaise requête serveur",
+        "unknownError": "Erreur inconnue"
     }
 }

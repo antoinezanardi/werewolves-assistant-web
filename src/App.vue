@@ -1,9 +1,7 @@
 <template>
     <div id="app">
         <transition mode="out-in" name="fade">
-            <div v-if="loading" id="loading" key="loading">
-                loading...
-            </div>
+            <SpinningLoader v-if="loading" key="loading"/>
             <router-view v-else key="werewolves-assistant" class="fade-in"/>
         </transition>
     </div>
@@ -11,15 +9,17 @@
 
 <script>
 import { mapActions } from "vuex";
+import SpinningLoader from "./components/SpinningLoader/SpinningLoader";
 
 export default {
     name: "App",
+    components: { SpinningLoader },
     data() {
         return {
             loading: true,
         };
     },
-    async created() {
+    async mounted() {
         await this.checkTokenAndLogin();
         this.loading = false;
     },
@@ -35,7 +35,7 @@ export default {
                 if (this.$route.name !== "login") {
                     await this.logOutUser();
                 }
-                this.$displayError(err);
+                this.$error.display(err);
             }
         },
     },

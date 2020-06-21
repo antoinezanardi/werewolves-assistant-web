@@ -44,7 +44,7 @@ const actions = {
     },
     async logout({ commit }, { toasted = true }) {
         localStorage.removeItem("token");
-        Vue.prototype.$atlasAPI.setToken(null);
+        Vue.prototype.$werewolvesAssistantAPI.setToken(null);
         if (toasted) {
             Vue.prototype.$toasted.success(i18n.t("Login.loggedOut"), { icon: "lock" });
         }
