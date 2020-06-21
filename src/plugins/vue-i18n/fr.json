@@ -1,0 +1,14 @@
+{
+    "Home": {
+        "werewolvesAssistant": "Assistant Loups Garous",
+        "play": "Jouer",
+        "logInOrSignUp": "Se connecter ou s'inscrire",
+        "statistics": "Statistiques"
+    },
+    "Login": {
+        "loggedIn": "Connecté"
+    },
+    "Error": {
+        "unauthorized": "Vous ne pouvez pas accéder à cette page"
+    }
+}

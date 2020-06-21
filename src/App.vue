@@ -1,32 +1,43 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div id="app">
+        <transition mode="out-in" name="fade">
+            <div v-if="loading" id="loading" key="loading">
+                loading...
+            </div>
+            <router-view v-else key="werewolves-assistant" class="fade-in"/>
+        </transition>
     </div>
-    <router-view/>
-  </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import { mapActions } from "vuex";
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+export default {
+    name: "App",
+    data() {
+        return {
+            loading: true,
+        };
+    },
+    async created() {
+        await this.checkTokenAndLogin();
+        this.loading = false;
+    },
+    methods: {
+        ...mapActions("user", {
+            checkUserTokenAndLogin: "checkTokenAndLogin",
+            logOutUser: "logout",
+        }),
+        async checkTokenAndLogin() {
+            try {
+                await this.checkUserTokenAndLogin();
+            } catch (err) {
+                if (this.$route.name !== "login") {
+                    await this.logOutUser();
+                }
+                this.$displayError(err);
+            }
+        },
+    },
+};
+</script>
