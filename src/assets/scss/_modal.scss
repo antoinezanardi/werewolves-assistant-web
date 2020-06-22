@@ -1,0 +1,10 @@
+.modal-content {
+    border-color: $dark-color;
+    background-color: $bg-color;
+    .modal-header {
+        border-bottom-color: $dark-color;
+    }
+    .modal-footer {
+        border-top-color: $dark-color;
+    }
+}
