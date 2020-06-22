@@ -8,7 +8,8 @@ const Error = {
 
         Vue.prototype.$error.display = error => {
             if (isAPIError(error)) {
-                Vue.prototype.$toasted.error(i18n.t("Error.badRequest"), { icon: "times" });
+                const { response } = error;
+                Vue.prototype.$toasted.error(i18n.t(`Error.${response.data.type}`), { icon: "times" });
             } else {
                 Vue.prototype.$toasted.error(i18n.t("Error.unknownError"), { icon: "times" });
                 throw error;

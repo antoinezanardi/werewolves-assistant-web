@@ -1,9 +1,11 @@
 <template>
     <span id="btn-container" v-tooltip="tooltipOptions">
-        <button ref="button" :class="[ classes, { disabled: loading || disabled } ]" @click="click"
+        <button ref="submitButton" :class="[ classes, { disabled: loading || disabled } ]" @click="click"
                 :disabled="loading || disabled" type="submit">
-            <span v-html="text" v-if="!loading"></span>
-            <HalfCircleSpinner :size="20" v-else :animation-duration="1000"/>
+            <transition mode="out-in" name="fade">
+                <span v-if="!loading" key="text" v-html="text"/>
+                <HalfCircleSpinner v-else key="loading" :size="24" :animation-duration="1000"/>
+            </transition>
         </button>
     </span>
 </template>
@@ -12,14 +14,8 @@
 import HalfCircleSpinner from "epic-spinners/src/components/lib/HalfCircleSpinner";
 
 export default {
-    name: "SubmitBtn",
-    components: {HalfCircleSpinner},
-    data() {
-        return {
-            width: "",
-            mounted: false,
-        };
-    },
+    name: "SubmitButton",
+    components: { HalfCircleSpinner },
     props: {
         classes: {
             type: String,
@@ -46,20 +42,17 @@ export default {
             default: null,
         },
     },
-    mounted() {
-        this.mounted = true;
-    },
-    methods: {
-        click(e) {
-            this.$emit("click", e);
-        },
-    },
     computed: {
         tooltipOptions() {
             return {
                 container: "body",
                 content: this.disabled ? this.disabledTooltipText : this.tooltipText,
             };
+        },
+    },
+    methods: {
+        click(e) {
+            this.$emit("click", e);
         },
     },
 };

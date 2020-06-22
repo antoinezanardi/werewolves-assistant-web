@@ -35,10 +35,11 @@ const actions = {
         return getters.isLogged;
     },
     async login({ commit }, { email, password }) {
-        const { loginData } = await Vue.prototype.$werewolvesAssistantAPI.login({ email, password });
+        const { data: loginData } = await Vue.prototype.$werewolvesAssistantAPI.login({ email, password });
         localStorage.setItem("token", loginData.token);
         Vue.prototype.$werewolvesAssistantAPI.setToken(loginData.token);
-        const { userData } = await Vue.prototype.$werewolvesAssistantAPI.getUser();
+        const decoded = JWT.decode(loginData.token);
+        const { data: userData } = await Vue.prototype.$werewolvesAssistantAPI.getUser(decoded.userId);
         commit("setUser", new User({ ...userData, logged: true }));
         Vue.prototype.$toasted.success(i18n.t("Login.loggedIn"), { icon: "check" });
     },
@@ -48,17 +49,20 @@ const actions = {
         if (toasted) {
             Vue.prototype.$toasted.success(i18n.t("Login.loggedOut"), { icon: "lock" });
         }
-        await router.push("/auth/login");
         commit("setUser", new User({ logged: false }));
+        if (router.currentRoute.name !== "Home") {
+            await router.push("/");
+        }
     },
-    async checkTokenAndLogin({ commit, dispatch }) {
+    async checkTokenAndLogin({ commit }) {
         const token = localStorage.getItem("token");
         if (token) {
             const decoded = JWT.decode(token);
             const now = Math.round(new Date().getTime() / 1000);
             if (decoded && decoded.exp && now < decoded.exp) {
                 Vue.prototype.$werewolvesAssistantAPI.setToken(token);
-                return await dispatch("getUser");
+                const { data } = await Vue.prototype.$werewolvesAssistantAPI.getUser(decoded.userId);
+                return commit("setUser", { ...data, logged: true });
             }
         }
         commit("setLogged", false);

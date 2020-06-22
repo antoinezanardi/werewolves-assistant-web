@@ -40,10 +40,7 @@ const WerewolvesAssistantAPI = {
             return decoded;
         };
 
-        Vue.prototype.$werewolvesAssistantAPI.getUser = user => {
-            const decoded = Vue.prototype.$werewolvesAssistantAPI.decodeToken();
-            return axios.JWT.get(`/users/${decoded.userId}`, user);
-        };
+        Vue.prototype.$werewolvesAssistantAPI.getUser = userId => axios.basic.get(`/users/${userId}`);
     },
 };
 

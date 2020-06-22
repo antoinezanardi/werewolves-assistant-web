@@ -2,6 +2,18 @@ input::placeholder {
     font-style: italic !important;
 }
 
+.btn {
+    transition: all 0.25s linear;
+}
+
+.form-control {
+    transition: background-color 0.25s linear;
+    &:disabled, &[readonly] {
+        background-color: #D6D3D3 !important;
+        opacity: 1;
+    }
+}
+
 .input-group-prepend {
     &.is-valid {
         .input-group-text {
