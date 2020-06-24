@@ -1,6 +1,6 @@
 # 📈 LIST OF CHANGES FOR WEREWOLVES ASSISTANT WEB
 
-## 0.1.0 (2020-06-23)
+## 0.1.0 (2020-06-??)
 
 ### 🚀 New features
 
@@ -17,17 +17,21 @@
 * `jsonwebtoken` installed with version `8.5.1`.
 * `node-sass` installed with version `4.14.1`.
 * `popper.js` installed with version `1.16.1`.
+* `query-string` installed with version `6.13.1`.
 * `sass-loader` installed with version `8.0.2`.
+* `sweetalert2` installed with version `9.15.2`.
 * `v-tooltip` installed with version `3.3.5`.
 * `vee-validate` installed with version `3.3.5`.
 * `vue-i18n` installed with version `8.18.2`.
 * `vue-toasted` installed with version `1.1.28`.
-* `@vue/cli-plugin-e2e-cypress` updated to version `4.4.5`.
-* `@vue/cli-plugin-eslint` updated to version `4.4.5`.
-* `@vue/cli-plugin-router` updated to version `4.4.5`.
-* `@vue/cli-plugin-unit-mocha` updated to version `4.4.5`.
-* `@vue/cli-plugin-vuex` updated to version `4.4.5`.
-* `@vue/cli-service` updated to version `4.4.5`.
+* `@vue/cli-plugin-e2e-cypress` updated to version `4.4.6`.
+* `@vue/cli-plugin-eslint` updated to version `4.4.6`.
+* `@vue/cli-plugin-router` updated to version `4.4.6`.
+* `@vue/cli-plugin-unit-mocha` updated to version `4.4.6`.
+* `@vue/cli-plugin-vuex` updated to version `4.4.6`.
+* `@vue/cli-service` updated to version `4.4.6`.
+* `@vue/eslint-config-airbnb` updated to version `5.1.0`.
+* `eslint` updated to version `7.3.1`.
 
 ---
 

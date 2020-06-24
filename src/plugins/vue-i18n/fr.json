@@ -1,4 +1,7 @@
 {
+    "NavBar": {
+        "werewolvesAssistant": "Assistant Loups Garous"
+    },
     "Home": {
         "werewolvesAssistant": "Assistant Loups Garous",
         "play": "Jouer",
@@ -27,6 +30,20 @@
         "password": "Mot de passe",
         "confirmPassword": "Confirmer le mot de passe",
         "required": "Requis"
+    },
+    "GameLobby": {
+        "loading": "Recherche d'une partie en cours",
+        "gameComposition": "Composition de la partie",
+        "add": "Ajouter",
+        "playerName": "Nom du joueur",
+        "playerNameAlreadyTaken": "Ce nom de joueur est déjà pris",
+        "launchParty": "Lancer la partie"
+    },
+    "GameLobbyAlreadyHavePlayingGame": {
+        "youAlreadyHavePlayingGame": "Vous avez déjà une partie en cours"
+    },
+    "PlayerCard": {
+        "pickRole": "Choisir un role"
     },
     "Error": {
         "unauthorized": "Vous ne pouvez pas accéder à cette page",

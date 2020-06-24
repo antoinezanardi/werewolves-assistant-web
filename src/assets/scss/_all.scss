@@ -1,8 +1,12 @@
+html {
+    height: 100%;
+}
+
 body {
     background-color: $bg-color;
     color: whitesmoke;
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    padding: 25px;
+    height: 100%;
 }
