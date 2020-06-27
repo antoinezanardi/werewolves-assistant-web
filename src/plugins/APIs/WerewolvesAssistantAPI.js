@@ -1,6 +1,6 @@
 import Axios from "axios";
 import JWT from "jsonwebtoken";
-import { stringify } from "query-string";
+import { stringify } from "qs";
 import Config from "../../../config";
 
 const WerewolvesAssistantAPI = {
@@ -35,6 +35,8 @@ const WerewolvesAssistantAPI = {
         Vue.prototype.$werewolvesAssistantAPI.getUser = userId => axios.get(`/users/${userId}`);
 
         Vue.prototype.$werewolvesAssistantAPI.getGames = queryStrings => axios.get(`/games?${stringify(queryStrings)}`);
+
+        Vue.prototype.$werewolvesAssistantAPI.getGameRepartition = queryStrings => axios.get(`/games/repartition?${stringify(queryStrings)}`);
     },
 };
 

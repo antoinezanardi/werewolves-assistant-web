@@ -20,7 +20,7 @@
         "jsonwebtoken": "^8.5.1",
         "node-sass": "^4.14.1",
         "popper.js": "^1.16.1",
-        "query-string": "^6.13.1",
+        "qs": "^6.9.4",
         "sass-loader": "^8.0.2",
         "sweetalert2": "^9.15.2",
         "v-tooltip": "^2.0.3",

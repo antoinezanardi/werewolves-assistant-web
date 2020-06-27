@@ -34,16 +34,33 @@
     "GameLobby": {
         "loading": "Recherche d'une partie en cours",
         "gameComposition": "Composition de la partie",
+        "playerCount": "Aucun joueur | {count} joueur | {count} joueurs",
+        "villagersCount": "Aucun villageois | {count} villageois | {count} villageois",
+        "werewolvesCount": "Aucun loup garou | {count} loup garou | {count} loups garous",
         "add": "Ajouter",
         "playerName": "Nom du joueur",
         "playerNameAlreadyTaken": "Ce nom de joueur est déjà pris",
-        "launchParty": "Lancer la partie"
+        "launchParty": "Lancer la partie",
+        "getRandomRepartition": "Répartition aléatoire",
+        "fourPlayerRequiredToGetRandomRepartition": "4 joueurs minimum sont requis pour répartir aléatoirement les rôles",
+        "addPlayerWithName": "Ajoutez chaque joueur en insérant leur nom ci-dessus"
     },
     "GameLobbyAlreadyHavePlayingGame": {
         "youAlreadyHavePlayingGame": "Vous avez déjà une partie en cours"
     },
     "PlayerCard": {
-        "pickRole": "Choisir un role"
+        "pickRole": "Choisir un role",
+        "unsetRole": "Retirer le role",
+        "unsetPlayer": "Retirer le joueur"
+    },
+    "Role": {
+        "villager": "Villaegois",
+        "werewolf": "Loup-Garou",
+        "seer": "Voyante",
+        "witch": "Sorcière",
+        "hunter": "Chasseur",
+        "guard": "Salvateur",
+        "raven": "Corbeau"
     },
     "Error": {
         "unauthorized": "Vous ne pouvez pas accéder à cette page",

@@ -1,10 +1,18 @@
 # 🐺 Werewolves Assistant Web
 
-[![Build Status](https://travis-ci.org/antoinezanardi/werewolves-assistant-web.svg?branch=master)](https://travis-ci.org/antoinezanardi/werewolves-assistant-web)
+[![GitHub release](https://img.shields.io/github/release/antoinezanardi/werewolves-assistant-web.svg)](https://GitHub.com/antoinezanardi/werewolves-assistant-web/releases/)
 [![GitHub license](https://img.shields.io/github/license/antoinezanardi/werewolves-assistant-web.svg)](https://github.com/antoinezanardi/https://img.shields.io/github/license/werewolves-assistant-web.svg/blob/master/LICENSE)
+[![Build Status](https://travis-ci.org/antoinezanardi/werewolves-assistant-web.svg?branch=master)](https://travis-ci.org/antoinezanardi/werewolves-assistant-web)
+[![Known Vulnerabilities](https://snyk.io/test/github/antoinezanardi/werewolves-assistant-web/badge.svg?targetFile=package.json)](https://snyk.io/test/github/antoinezanardi/werewolves-assistant-web?targetFile=package.json)
+[![Contributions are welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/antoinezanardi/werewolves-assistant-web/issues)
+
+[![Open Source Love svg3](https://badges.frapsoft.com/os/v3/open-source.svg?v=103)](https://github.com/antoinezanardi/werewolves-assistant-web/)
+
+[![ForTheBadge built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)](https://GitHub.com/antoinezanardi/)
+[![ForTheBadge uses-js](http://ForTheBadge.com/images/badges/uses-js.svg)](https://GitHub.com/antoinezanardi/werewolves-assistant-web)
 
 ## 🐺 Description
-Werewolves Assistant Web is a Vue web app using the [Werewolves Assistant API](https://github.com/antoinezanardi/werewolves-assistant-api).
+Werewolves Assistant Web is a Vue web app using the [Werewolves Assistant API](https://github.com/antoinezanardi/werewolves-assistant-web).
 Thanks to this app, be the game master of the Werewolves game is so easy ! Try it out now with live demos below.
 
 ## 🌻 Live demos
