@@ -53,7 +53,7 @@
                         <transition-group v-else tag="div" name="player-item" id="players"
                                           class="row justify-content-center align-items-center h-100 p-2">
                             <PlayerCard v-for="player in players" :key="player.name" :player="player"
-                                        class="player-item col-lg-2 col-xs-4"
+                                        class="player-item col-lg-2 col-xs-4" @rolePicked="rolePicked"
                                         @unsetRole="unsetRole" @unsetPlayer="unsetPlayer"/>
                         </transition-group>
                     </transition>
@@ -104,7 +104,7 @@ export default {
                 createGame: false,
                 getGameRepartition: false,
             },
-            players: [],
+            players: [new Player({ name: "lol" })],
             playerName: "",
         };
     },
@@ -134,7 +134,8 @@ export default {
             return !!this.werewolfPlayers.length;
         },
         canCreateGame() {
-            return this.areThereEnoughPlayers && this.areThereEnoughVillagers && this.areThereEnoughWerewolves;
+            return this.areThereEnoughPlayers && this.areThereEnoughVillagers &&
+                this.areThereEnoughWerewolves && this.allPlayersHaveRole;
         },
         playerNameInputPlaceholder() {
             return this.isMaxPlayerReached ? this.$t("GameLobby.maxPlayerReached") : this.$t("GameLobby.playerName");
@@ -147,9 +148,14 @@ export default {
                 return this.$t("GameLobby.missingOneWerewolfToStart");
             } else if (!this.areThereEnoughVillagers) {
                 return this.$t("GameLobby.missingOneVillagerToStart");
+            } else if (!this.allPlayersHaveRole) {
+                return this.$t("GameLobby.allPlayerDontHaveARole");
             } else {
                 return "";
             }
+        },
+        allPlayersHaveRole() {
+            return !this.players.filter(player => player.role.current === undefined).length;
         },
     },
     async created() {
@@ -195,6 +201,15 @@ export default {
                 this.$error.display(e);
             } finally {
                 this.loading.getGameRepartition = false;
+            }
+        },
+        rolePicked({ name: playerName, role }) {
+            for (const player of this.players) {
+                if (playerName === player.name) {
+                    player.role.current = role.name;
+                    player.role.group = role.group;
+                    break;
+                }
             }
         },
         unsetPlayer(playerName) {

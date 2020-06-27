@@ -24,6 +24,7 @@
 * `sweetalert2` installed with version `9.15.2`.
 * `v-tooltip` installed with version `3.3.5`.
 * `vee-validate` installed with version `3.3.5`.
+* `vue-flip` installed with version `1.0.2`.
 * `vue-i18n` installed with version `8.18.2`.
 * `vue-toasted` installed with version `1.1.28`.
 * `@vue/cli-plugin-e2e-cypress` updated to version `4.4.6`.
