@@ -34,16 +34,23 @@
     "GameLobby": {
         "loading": "Recherche d'une partie en cours",
         "gameComposition": "Composition de la partie",
-        "playerCount": "Aucun joueur | {count} joueur | {count} joueurs",
-        "villagersCount": "Aucun villageois | {count} villageois | {count} villageois",
-        "werewolvesCount": "Aucun loup garou | {count} loup garou | {count} loups garous",
         "add": "Ajouter",
+        "maxPlayerReached": "Maximum de joueurs atteint",
         "playerName": "Nom du joueur",
         "playerNameAlreadyTaken": "Ce nom de joueur est déjà pris",
         "launchParty": "Lancer la partie",
         "getRandomRepartition": "Répartition aléatoire",
         "fourPlayerRequiredToGetRandomRepartition": "4 joueurs minimum sont requis pour répartir aléatoirement les rôles",
-        "addPlayerWithName": "Ajoutez chaque joueur en insérant leur nom ci-dessus"
+        "addPlayerWithName": "Ajoutez chaque joueur en insérant leur nom ci-dessus",
+        "missingPlayersToStart": "Il manque {missingCount} joueur pour commencer la partie | Il manque un seul joueur pour commencer la partie | Il manque {missingCount} joueurs pour commencer la partie",
+        "missingOneWerewolfToStart": "Il manque un loup garou pour commencer la partie",
+        "missingOneVillagerToStart": "Il manque un villageois pour commencer"
+    },
+    "GameLobbyComposition": {
+        "playerCount": "Aucun joueur | {count} joueur | {count} joueurs",
+        "villagersCount": "Aucun villageois | {count} villageois | {count} villageois",
+        "werewolvesCount": "Aucun loup garou | {count} loup garou | {count} loups garous",
+        "minToStart": "Minimum {min} pour commencer"
     },
     "GameLobbyAlreadyHavePlayingGame": {
         "youAlreadyHavePlayingGame": "Vous avez déjà une partie en cours"
@@ -54,7 +61,7 @@
         "unsetPlayer": "Retirer le joueur"
     },
     "Role": {
-        "villager": "Villaegois",
+        "villager": "Villageois",
         "werewolf": "Loup-Garou",
         "seer": "Voyante",
         "witch": "Sorcière",

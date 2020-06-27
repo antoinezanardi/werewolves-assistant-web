@@ -7,7 +7,7 @@
         </div>
         <div class="player-card-name text-center" v-html="player.name"/>
         <div class="player-card-role text-center text-muted d-flex align-items-center">
-            <i v-if="player.role.current" v-tooltip="$t('PlayerCard.unsetRole')" @click="player.role.current = undefined"
+            <i v-if="player.role.current" v-tooltip="$t('PlayerCard.unsetRole')" @click="unsetRole"
                class="fa fa-times-circle mr-1 unset-role-button"/>
             <span v-html="playerRole"/>
         </div>
@@ -49,6 +49,9 @@ export default {
     methods: {
         unsetPlayer() {
             this.$emit("unsetPlayer", this.player.name);
+        },
+        unsetRole() {
+            this.$emit("unsetRole", this.player.name);
         },
     },
 };

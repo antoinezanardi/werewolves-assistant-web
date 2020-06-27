@@ -21,8 +21,9 @@
                     <div class="col-lg-4">
                         <form @submit.prevent="addPlayer">
                             <div class="input-group">
-                                <input type="text" class="form-control" :placeholder="$t('GameLobby.playerName')"
-                                       v-model="playerName" :class="{ 'is-invalid': isPlayerNameTaken }"/>
+                                <input type="text" class="form-control" :placeholder="playerNameInputPlaceholder"
+                                       v-model="playerName" :disabled="isMaxPlayerReached"
+                                       :class="{ 'is-invalid': isPlayerNameTaken }"/>
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" :disabled="!canAddPlayer">
                                         <i class='fa fa-plus mr-1'/>
@@ -36,17 +37,7 @@
                         </form>
                     </div>
                 </div>
-                <div id="composition" class="row">
-                    <div class="col text-center">
-                        <span v-html="$tc('GameLobby.villagersCount', villagerPlayers.length, { count: villagerPlayers.length })"/>
-                    </div>
-                    <div class="col text-center font-weight-bold">
-                        <span v-html="$tc('GameLobby.playerCount', players.length, { count: players.length })"/>
-                    </div>
-                    <div class="col text-center">
-                        <span v-html="$tc('GameLobby.werewolvesCount', werewolfPlayers.length, { count: werewolfPlayers.length })"/>
-                    </div>
-                </div>
+                <GameLobbyComposition :players="players"/>
                 <div class="flex-grow-1">
                     <transition mode="out-in" name="fade">
                         <div v-if="!players.length" class="h-100 row justify-content-center align-items-center">
@@ -62,7 +53,8 @@
                         <transition-group v-else tag="div" name="player-item" id="players"
                                           class="row justify-content-center align-items-center h-100 p-2">
                             <PlayerCard v-for="player in players" :key="player.name" :player="player"
-                                        class="player-item col-lg-2 col-xs-4" @unsetPlayer="unsetPlayer"/>
+                                        class="player-item col-lg-2 col-xs-4"
+                                        @unsetRole="unsetRole" @unsetPlayer="unsetPlayer"/>
                         </transition-group>
                     </transition>
                 </div>
@@ -71,15 +63,18 @@
                 </div>
                 <div id="game-lobby-footer" class="row justify-content-between align-items-center">
                     <div class="col-lg-3">
-                        <SubmitButton classes="btn btn-dark btn-block text-uppercase font-weight-bold" @click.native="getGameRepartition()"
-                                      :disabled-tooltip-text="!loading.createGame && $t('GameLobby.fourPlayerRequiredToGetRandomRepartition')"
-                                      :text="`<i class='fas fa-random mr-2'></i>${$t('GameLobby.getRandomRepartition')}`"
-                                      :loading="loading.getGameRepartition" :disabled="loading.createGame || !areThereEnoughPlayers"/>
+                        <form @submit.prevent="getGameRepartition">
+                            <SubmitButton classes="btn btn-dark btn-block text-uppercase font-weight-bold"
+                                          :disabled-tooltip-text="$t('GameLobby.fourPlayerRequiredToGetRandomRepartition')"
+                                          :text="`<i class='fas fa-random mr-2'></i>${$t('GameLobby.getRandomRepartition')}`"
+                                          :loading="loading.getGameRepartition" :disabled="loading.createGame || !areThereEnoughPlayers"/>
+                        </form>
                     </div>
                     <div class="col-lg-3">
                         <SubmitButton classes="btn btn-primary btn-lg btn-block text-uppercase font-weight-bold"
                                       :text="`<i class='fa fa-play-circle mr-2'></i>${$t('GameLobby.launchParty')}`"
-                                      :loading="loading.createGame" :disabled="loading.getGameRepartition"/>
+                                      :disabled-tooltip-text="!loading.createGame && createGameButtonDisabledText"
+                                      :loading="loading.createGame" :disabled="loading.getGameRepartition || !canCreateGame"/>
                     </div>
                     <div class="col-lg-3"/>
                 </div>
@@ -96,10 +91,11 @@ import Player from "../../classes/Player";
 import PlayerCard from "../shared/Game/PlayerCard";
 import GameLobbyAlreadyHavePlayingGame from "./GameLobbyAlreadyHavePlayingGame";
 import SubmitButton from "../shared/Forms/SubmitButton";
+import GameLobbyComposition from "./GameLobbyComposition";
 
 export default {
     name: "GameLobby",
-    components: { SubmitButton, GameLobbyAlreadyHavePlayingGame, PlayerCard, Loading },
+    components: { GameLobbyComposition, SubmitButton, GameLobbyAlreadyHavePlayingGame, PlayerCard, Loading },
     data() {
         return {
             waitingGame: new Game(),
@@ -119,11 +115,14 @@ export default {
         villagerPlayers() {
             return this.players.filter(player => player.role.group === "villagers");
         },
+        isMaxPlayerReached() {
+            return this.players.length === 20;
+        },
         isPlayerNameTaken() {
             return this.players.find(({ name }) => name === this.playerName.trim());
         },
         canAddPlayer() {
-            return !this.isPlayerNameTaken && this.players.length < 20;
+            return !this.isPlayerNameTaken && !this.isMaxPlayerReached;
         },
         areThereEnoughPlayers() {
             return this.players.length >= 4;
@@ -133,6 +132,24 @@ export default {
         },
         areThereEnoughWerewolves() {
             return !!this.werewolfPlayers.length;
+        },
+        canCreateGame() {
+            return this.areThereEnoughPlayers && this.areThereEnoughVillagers && this.areThereEnoughWerewolves;
+        },
+        playerNameInputPlaceholder() {
+            return this.isMaxPlayerReached ? this.$t("GameLobby.maxPlayerReached") : this.$t("GameLobby.playerName");
+        },
+        createGameButtonDisabledText() {
+            if (!this.areThereEnoughPlayers) {
+                const missingCount = 4 - this.players.length;
+                return this.$tc("GameLobby.missingPlayersToStart", missingCount, { missingCount });
+            } else if (!this.areThereEnoughWerewolves) {
+                return this.$t("GameLobby.missingOneWerewolfToStart");
+            } else if (!this.areThereEnoughVillagers) {
+                return this.$t("GameLobby.missingOneVillagerToStart");
+            } else {
+                return "";
+            }
         },
     },
     async created() {
@@ -169,9 +186,10 @@ export default {
                 this.loading.getGameRepartition = true;
                 const players = this.players.map(({ name }) => ({ name }));
                 const { data } = await this.$werewolvesAssistantAPI.getGameRepartition({ players });
-                for (const { name, role } of data) {
+                for (const { name, role, group } of data.players) {
                     const player = this.players.find(player => player.name === name);
                     player.role.current = role;
+                    player.role.group = group;
                 }
             } catch (e) {
                 this.$error.display(e);
@@ -183,6 +201,15 @@ export default {
             const idx = this.players.findIndex(({ name }) => name === playerName);
             if (idx !== -1) {
                 this.players.splice(idx, 1);
+            }
+        },
+        unsetRole(playerName) {
+            for (const player of this.players) {
+                if (playerName === player.name) {
+                    player.role.current = undefined;
+                    player.role.group = undefined;
+                    break;
+                }
             }
         },
     },
