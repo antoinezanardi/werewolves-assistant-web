@@ -185,6 +185,11 @@ export default {
         rolePicked({ name: playerName, role }) {
             for (const player of this.game.players) {
                 if (playerName === player.name) {
+                    if (role.maxInGame <= this.game.players.filter(({ role: playerRole }) => playerRole.current === role.name).length) {
+                        const sameRolePlayer = this.game.players.find(({ role: playerRole }) => playerRole.current === role.name);
+                        sameRolePlayer.role.current = player.role.current;
+                        sameRolePlayer.role.group = player.role.group;
+                    }
                     player.role.current = role.name;
                     player.role.group = role.group;
                     break;

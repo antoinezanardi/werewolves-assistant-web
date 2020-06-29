@@ -2,9 +2,9 @@
     <div id="role-picker" class="container-fluid">
         <div class="row role-thumbnail-row">
             <div class="col d-flex role-thumbnail justify-content-center align-items-center flex-wrap">
-                <div class="role-img-container" v-for="role in roles" :key="role.name"
-                     @click="$emit('rolePicked', role)" @mouseover="hoverOn = role.name"
-                     @mouseleave="hoverOn = undefined">
+                <div class="role-img-container" v-for="role in availableRoles" :key="role.name"
+                     @click="pickRole(role)" @mouseover="hoverOn = role.name"
+                     @mouseleave="hoverOn = undefined" :class="{ selected: player.role.current === role.name }">
                     <img class="img-fluid" :src="getThumbnail(role.name)" alt="Role thumbnail">
                 </div>
             </div>
@@ -18,6 +18,8 @@
 </template>
 
 <script>
+
+import Swal from "sweetalert2";
 import { mapGetters } from "vuex";
 import back from "../../../assets/img/roles/back.png";
 import guard from "../../../assets/img/roles/guard.png";
@@ -55,10 +57,37 @@ export default {
         roleText() {
             return this.hoverOn ? this.$t(`Role.${this.hoverOn}`) : `<i class="fa fa-chevron-up animated mr-2"></i>${this.$t("RolePicker.chooseRole")}`;
         },
+        availableRoles() {
+            return this.roles.filter(({ name }) => name !== this.player.role.current);
+        },
     },
     methods: {
-        getThumbnail(role) {
-            return this.IMGs[role];
+        getThumbnail(roleName) {
+            return this.IMGs[roleName];
+        },
+        confirmPickRole(role) {
+            return Swal.fire({
+                title: this.$t("RolePicker.maxInGameReached"),
+                text: this.$t("RolePicker.doYouWantToSetItAnyway"),
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: this.$t("RolePicker.confirm"),
+                cancelButtonText: this.$t("RolePicker.cancel"),
+                footer: role.maxInGame === 1 ? this.$t("RolePicker.roleWillBeSwitchedWithOtherPlayer", { roleName: this.roleText }) : this.$t("RolePicker.roleWillBeSwitchedWithAnotherPlayer", { roleName: this.roleText }),
+            });
+        },
+        async pickRole(role) {
+            if (this.player.role.current === role.name) {
+                return;
+            }
+            if (role.maxInGame <= this.game.players.filter(player => player.role.current === role.name).length) {
+                const { value } = await this.confirmPickRole(role);
+                if (value) {
+                    this.$emit("rolePicked", role);
+                }
+            } else {
+                this.$emit("rolePicked", role);
+            }
         },
     },
 };

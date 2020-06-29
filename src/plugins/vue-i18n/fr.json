@@ -54,7 +54,13 @@
         "minToStart": "Minimum {min} pour commencer"
     },
     "RolePicker": {
-        "chooseRole": "Choisir un role"
+        "chooseRole": "Choisir un role",
+        "maxInGameReached": "Ce role a été distribué trop de fois",
+        "doYouWantToSetItAnyway": "Voulez-vous donner ce role au joueur quand même ?",
+        "confirm": "Confirmer",
+        "cancel": "Annuler",
+        "roleWillBeSwitchedWithOtherPlayer": "Les roles seront échangés avec le joueur {roleName}",
+        "roleWillBeSwitchedWithAnotherPlayer": "Les roles seront échangés avec un des joueurs {roleName}"
     },
     "GameLobbyAlreadyHavePlayingGame": {
         "youAlreadyHavePlayingGame": "Vous avez déjà une partie en cours"
