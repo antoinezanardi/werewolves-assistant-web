@@ -34,12 +34,13 @@ const actions = {
         }
         return getters.isLogged;
     },
-    async login({ commit }, { email, password }) {
+    async login({ commit, dispatch }, { email, password }) {
         const { data: loginData } = await Vue.prototype.$werewolvesAssistantAPI.login({ email, password });
         localStorage.setItem("token", loginData.token);
         Vue.prototype.$werewolvesAssistantAPI.setToken(loginData.token);
         const decoded = JWT.decode(loginData.token);
         const { data: userData } = await Vue.prototype.$werewolvesAssistantAPI.getUser(decoded.userId);
+        await dispatch("role/getAndSetRoles", {}, { root: true });
         commit("setUser", new User({ ...userData, logged: true }));
         Vue.prototype.$toasted.success(i18n.t("Login.loggedIn"), { icon: "check" });
     },
@@ -54,7 +55,7 @@ const actions = {
             await router.push("/");
         }
     },
-    async checkTokenAndLogin({ commit }) {
+    async checkTokenAndLogin({ commit, dispatch }) {
         const token = localStorage.getItem("token");
         if (token) {
             const decoded = JWT.decode(token);
@@ -62,6 +63,7 @@ const actions = {
             if (decoded && decoded.exp && now < decoded.exp) {
                 Vue.prototype.$werewolvesAssistantAPI.setToken(token);
                 const { data } = await Vue.prototype.$werewolvesAssistantAPI.getUser(decoded.userId);
+                await dispatch("role/getAndSetRoles", {}, { root: true });
                 return commit("setUser", { ...data, logged: true });
             }
         }

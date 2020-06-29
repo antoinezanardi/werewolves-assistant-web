@@ -22,7 +22,7 @@
                         <form @submit.prevent="addPlayer">
                             <div class="input-group">
                                 <input type="text" class="form-control" :placeholder="playerNameInputPlaceholder"
-                                       v-model="playerName" :disabled="isMaxPlayerReached"
+                                       v-model="playerName" :disabled="game.isMaxPlayerReached"
                                        :class="{ 'is-invalid': isPlayerNameTaken }"/>
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" :disabled="!canAddPlayer">
@@ -37,10 +37,10 @@
                         </form>
                     </div>
                 </div>
-                <GameLobbyComposition :players="players"/>
+                <GameLobbyComposition :game="game"/>
                 <div class="flex-grow-1">
                     <transition mode="out-in" name="fade">
-                        <div v-if="!players.length" class="h-100 row justify-content-center align-items-center">
+                        <div v-if="!game.players.length" class="h-100 row justify-content-center align-items-center">
                             <div class="row">
                                 <div class="col-12">
                                     <h3 class="text-muted font-italic">
@@ -52,7 +52,7 @@
                         </div>
                         <transition-group v-else tag="div" name="player-item" id="players"
                                           class="row justify-content-center align-items-center h-100 p-2">
-                            <PlayerCard v-for="player in players" :key="player.name" :player="player"
+                            <PlayerCard v-for="player in game.players" :key="player.name" :game="game" :player="player"
                                         class="player-item col-lg-2 col-xs-4" @rolePicked="rolePicked"
                                         @unsetRole="unsetRole" @unsetPlayer="unsetPlayer"/>
                         </transition-group>
@@ -67,7 +67,7 @@
                             <SubmitButton classes="btn btn-dark btn-block text-uppercase font-weight-bold"
                                           :disabled-tooltip-text="$t('GameLobby.fourPlayerRequiredToGetRandomRepartition')"
                                           :text="`<i class='fas fa-random mr-2'></i>${$t('GameLobby.getRandomRepartition')}`"
-                                          :loading="loading.getGameRepartition" :disabled="loading.createGame || !areThereEnoughPlayers"/>
+                                          :loading="loading.getGameRepartition" :disabled="loading.createGame || !game.areThereEnoughPlayers"/>
                         </form>
                     </div>
                     <div class="col-lg-3">
@@ -104,58 +104,37 @@ export default {
                 createGame: false,
                 getGameRepartition: false,
             },
-            players: [new Player({ name: "lol" })],
+            game: new Game(),
             playerName: "",
         };
     },
     computed: {
-        werewolfPlayers() {
-            return this.players.filter(player => player.role.group === "werewolves");
-        },
-        villagerPlayers() {
-            return this.players.filter(player => player.role.group === "villagers");
-        },
-        isMaxPlayerReached() {
-            return this.players.length === 20;
-        },
         isPlayerNameTaken() {
-            return this.players.find(({ name }) => name === this.playerName.trim());
+            return this.game.players.find(({ name }) => name === this.playerName.trim());
         },
         canAddPlayer() {
-            return !this.isPlayerNameTaken && !this.isMaxPlayerReached;
-        },
-        areThereEnoughPlayers() {
-            return this.players.length >= 4;
-        },
-        areThereEnoughVillagers() {
-            return !!this.villagerPlayers.length;
-        },
-        areThereEnoughWerewolves() {
-            return !!this.werewolfPlayers.length;
+            return !this.isPlayerNameTaken && !this.game.isMaxPlayerReached;
         },
         canCreateGame() {
-            return this.areThereEnoughPlayers && this.areThereEnoughVillagers &&
-                this.areThereEnoughWerewolves && this.allPlayersHaveRole;
+            return this.game.areThereEnoughPlayers && this.game.areThereEnoughVillagers &&
+                this.game.areThereEnoughWerewolves && this.game.allPlayersHaveRole;
         },
         playerNameInputPlaceholder() {
-            return this.isMaxPlayerReached ? this.$t("GameLobby.maxPlayerReached") : this.$t("GameLobby.playerName");
+            return this.game.isMaxPlayerReached ? this.$t("GameLobby.maxPlayerReached") : this.$t("GameLobby.playerName");
         },
         createGameButtonDisabledText() {
-            if (!this.areThereEnoughPlayers) {
-                const missingCount = 4 - this.players.length;
+            if (!this.game.areThereEnoughPlayers) {
+                const missingCount = 4 - this.game.players.length;
                 return this.$tc("GameLobby.missingPlayersToStart", missingCount, { missingCount });
-            } else if (!this.areThereEnoughWerewolves) {
+            } else if (!this.game.areThereEnoughWerewolves) {
                 return this.$t("GameLobby.missingOneWerewolfToStart");
-            } else if (!this.areThereEnoughVillagers) {
+            } else if (!this.game.areThereEnoughVillagers) {
                 return this.$t("GameLobby.missingOneVillagerToStart");
-            } else if (!this.allPlayersHaveRole) {
+            } else if (!this.game.allPlayersHaveRole) {
                 return this.$t("GameLobby.allPlayerDontHaveARole");
             } else {
                 return "";
             }
-        },
-        allPlayersHaveRole() {
-            return !this.players.filter(player => player.role.current === undefined).length;
         },
     },
     async created() {
@@ -180,20 +159,20 @@ export default {
             if (!playerName || !this.canAddPlayer) {
                 return this.playerName = "";
             } else {
-                this.players.push(new Player({ name: playerName }));
+                this.game.players.push(new Player({ name: playerName }));
                 this.playerName = "";
             }
         },
         async getGameRepartition() {
             try {
-                if (!this.areThereEnoughPlayers) {
+                if (!this.game.areThereEnoughPlayers) {
                     return;
                 }
                 this.loading.getGameRepartition = true;
-                const players = this.players.map(({ name }) => ({ name }));
+                const players = this.game.players.map(({ name }) => ({ name }));
                 const { data } = await this.$werewolvesAssistantAPI.getGameRepartition({ players });
                 for (const { name, role, group } of data.players) {
-                    const player = this.players.find(player => player.name === name);
+                    const player = this.game.players.find(player => player.name === name);
                     player.role.current = role;
                     player.role.group = group;
                 }
@@ -204,7 +183,7 @@ export default {
             }
         },
         rolePicked({ name: playerName, role }) {
-            for (const player of this.players) {
+            for (const player of this.game.players) {
                 if (playerName === player.name) {
                     player.role.current = role.name;
                     player.role.group = role.group;
@@ -213,13 +192,13 @@ export default {
             }
         },
         unsetPlayer(playerName) {
-            const idx = this.players.findIndex(({ name }) => name === playerName);
+            const idx = this.game.players.findIndex(({ name }) => name === playerName);
             if (idx !== -1) {
-                this.players.splice(idx, 1);
+                this.game.players.splice(idx, 1);
             }
         },
         unsetRole(playerName) {
-            for (const player of this.players) {
+            for (const player of this.game.players) {
                 if (playerName === player.name) {
                     player.role.current = undefined;
                     player.role.group = undefined;

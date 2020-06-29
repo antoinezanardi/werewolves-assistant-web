@@ -7,13 +7,13 @@
                     <template v-slot:front>
                         <v-popover ref="frontPopover" placement="left">
                             <img class="img-fluid" :src="playerFrontThumbnail" alt="Role thumbnail">
-                            <RolePicker slot="popover" @rolePicked="rolePicked"/>
+                            <RolePicker :player="player" :game="game" slot="popover" @rolePicked="rolePicked"/>
                         </v-popover>
                     </template>
                     <template v-slot:back>
                         <v-popover ref="backPopover" placement="left">
                             <img class="img-fluid" :src="playerBackThumbnail" alt="Role thumbnail">
-                            <RolePicker slot="popover" @rolePicked="rolePicked"/>
+                            <RolePicker :player="player" :game="game" slot="popover" @rolePicked="rolePicked"/>
                         </v-popover>
                     </template>
                 </VueFlip>
@@ -38,11 +38,16 @@ import villager from "../../../assets/img/roles/villager.png";
 import werewolf from "../../../assets/img/roles/werewolf.png";
 import witch from "../../../assets/img/roles/witch.png";
 import RolePicker from "./RolePicker";
+import Game from "../../../classes/Game";
 
 export default {
     name: "PlayerCard",
     components: { RolePicker },
     props: {
+        game: {
+            type: Game,
+            required: true,
+        },
         player: {
             type: Player,
             required: true,

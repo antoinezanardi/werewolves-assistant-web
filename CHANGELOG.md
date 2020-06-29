@@ -23,7 +23,7 @@
 * `sass-loader` installed with version `8.0.2`.
 * `sweetalert2` installed with version `9.15.2`.
 * `v-tooltip` installed with version `3.3.5`.
-* `vee-validate` installed with version `3.3.5`.
+* `vee-validate` installed with version `3.3.6`.
 * `vue-flip` installed with version `1.0.2`.
 * `vue-i18n` installed with version `8.18.2`.
 * `vue-toasted` installed with version `1.1.28`.
@@ -35,6 +35,8 @@
 * `@vue/cli-service` updated to version `4.4.6`.
 * `@vue/eslint-config-airbnb` updated to version `5.1.0`.
 * `eslint` updated to version `7.3.1`.
+* `eslint-plugin-import` updated to version `2.22.0`.
+* `vuex` updated to version `3.5.1`.
 
 ---
 

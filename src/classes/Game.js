@@ -21,6 +21,34 @@ class Game {
         this.createdAt = getProp(game, "createdAt");
         this.updatedAt = getProp(game, "updatedAt");
     }
+
+    get werewolfPlayers() {
+        return this.players.filter(player => player.role.group === "werewolves");
+    }
+
+    get villagerPlayers() {
+        return this.players.filter(player => player.role.group === "villagers");
+    }
+
+    get isMaxPlayerReached() {
+        return this.players.length === 20;
+    }
+
+    get areThereEnoughPlayers() {
+        return this.players.length >= 4;
+    }
+
+    get areThereEnoughVillagers() {
+        return !!this.villagerPlayers.length;
+    }
+
+    get areThereEnoughWerewolves() {
+        return !!this.werewolfPlayers.length;
+    }
+
+    get allPlayersHaveRole() {
+        return !this.players.filter(player => player.role.current === undefined).length;
+    }
 }
 
 export default Game;

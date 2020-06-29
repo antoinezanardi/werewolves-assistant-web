@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import back from "../../../assets/img/roles/back.png";
 import guard from "../../../assets/img/roles/guard.png";
 import hunter from "../../../assets/img/roles/hunter.png";
@@ -26,25 +27,31 @@ import seer from "../../../assets/img/roles/seer.png";
 import villager from "../../../assets/img/roles/villager.png";
 import werewolf from "../../../assets/img/roles/werewolf.png";
 import witch from "../../../assets/img/roles/witch.png";
+import Player from "../../../classes/Player";
+import Game from "../../../classes/Game";
 
 export default {
     name: "RolePicker",
+    props: {
+        player: {
+            type: Player,
+            required: true,
+        },
+        game: {
+            type: Game,
+            required: true,
+        },
+    },
     data() {
         return {
-            roles: [
-                { name: "villager", group: "villagers", maxInGame: 99 },
-                { name: "werewolf", group: "werewolves", maxInGame: 99 },
-                { name: "hunter", group: "villagers", maxInGame: 1 },
-                { name: "seer", group: "villagers", maxInGame: 1 },
-                { name: "witch", group: "villagers", maxInGame: 1 },
-                { name: "guard", group: "villagers", maxInGame: 1 },
-                { name: "raven", group: "villagers", maxInGame: 1 },
-            ],
             hoverOn: undefined,
             IMGs: { back, guard, hunter, raven, seer, villager, werewolf, witch },
         };
     },
     computed: {
+        ...mapGetters("role", {
+            roles: "roles",
+        }),
         roleText() {
             return this.hoverOn ? this.$t(`Role.${this.hoverOn}`) : `<i class="fa fa-chevron-up animated mr-2"></i>${this.$t("RolePicker.chooseRole")}`;
         },
@@ -77,7 +84,7 @@ export default {
         cursor: pointer;
 
         &:hover {
-            border-color: #cacaca;
+            border-color: #CACACA;
         }
     }
 </style>
