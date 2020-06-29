@@ -71,10 +71,12 @@
                         </form>
                     </div>
                     <div class="col-lg-3">
-                        <SubmitButton classes="btn btn-primary btn-lg btn-block text-uppercase font-weight-bold"
-                                      :text="`<i class='fa fa-play-circle mr-2'></i>${$t('GameLobby.launchParty')}`"
-                                      :disabled-tooltip-text="!loading.createGame && createGameButtonDisabledText"
-                                      :loading="loading.createGame" :disabled="loading.getGameRepartition || !canCreateGame"/>
+                        <form @submit.prevent="createGame">
+                            <SubmitButton classes="btn btn-primary btn-lg btn-block text-uppercase font-weight-bold"
+                                          :text="`<i class='fa fa-play-circle mr-2'></i>${$t('GameLobby.launchParty')}`"
+                                          :disabled-tooltip-text="createGameButtonDisabledText" :loading="loading.createGame"
+                                          :disabled="loading.getGameRepartition || !canCreateGame"/>
+                        </form>
                     </div>
                     <div class="col-lg-3"/>
                 </div>
@@ -140,8 +142,9 @@ export default {
     async created() {
         try {
             await this.checkUserAuthentication();
-            const { data } = await this.$werewolvesAssistantAPI.getGames();
+            const { data } = await this.$werewolvesAssistantAPI.getGames({ status: "playing" });
             if (data.length) {
+                console.log(data[0]);
                 this.waitingGame = new Game(data[0]);
             }
         } catch (err) {
@@ -209,6 +212,19 @@ export default {
                     player.role.group = undefined;
                     break;
                 }
+            }
+        },
+        async createGame() {
+            try {
+                this.loading.createGame = true;
+                const players = this.game.players.map(({ name, role }) => ({ name, role: role.current }));
+                const { data } = await this.$werewolvesAssistantAPI.createGame({ players });
+                this.$toasted.success(this.$t("GameLobby.gameCreated"), { icon: "gamepad" });
+                await this.$router.push(`/game/${data._id}`);
+            } catch (e) {
+                this.$error.display(e);
+            } finally {
+                this.loading.createGame = false;
             }
         },
     },

@@ -4,6 +4,7 @@
 
 ### 🚀 New features
 
+* Game lobby page with game composition, random repartition and role picker. 
 * Home page with play, log in, log out and stats buttons (placeholders for play and stats buttons).
 * Authentication logic with account modal. Two tabs with log in and register panel.
 * MIT License added.

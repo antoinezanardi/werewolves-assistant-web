@@ -1,1 +1,1 @@
-exports.inGameSection = routeName => routeName === "Game";
+exports.inGameSection = routeName => routeName === "GameLobby";
