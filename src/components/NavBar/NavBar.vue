@@ -43,6 +43,10 @@ export default {
 </script>
 
 <style scoped>
+    #nav-bar {
+        height: 60px;
+    }
+
     #wolf-emoji {
         height: 30px;
     }

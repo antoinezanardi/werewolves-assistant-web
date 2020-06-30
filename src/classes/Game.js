@@ -26,8 +26,16 @@ class Game {
         return this.players.filter(player => player.role.group === "werewolves");
     }
 
+    get aliveWerewolfPlayers() {
+        return this.players.filter(player => player.isAlive && player.role.group === "werewolves");
+    }
+
     get villagerPlayers() {
         return this.players.filter(player => player.role.group === "villagers");
+    }
+
+    get aliveVillagerPlayers() {
+        return this.players.filter(player => player.isAlive && player.role.group === "villagers");
     }
 
     get isMaxPlayerReached() {

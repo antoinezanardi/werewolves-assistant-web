@@ -10,3 +10,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
     height: 100%;
 }
+
+.page-with-navbar {
+    height: calc(100% - 60px);
+}

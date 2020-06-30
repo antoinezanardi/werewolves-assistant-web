@@ -36,9 +36,13 @@ const WerewolvesAssistantAPI = {
 
         Vue.prototype.$werewolvesAssistantAPI.getGames = queryStrings => axios.get(`/games?${stringify(queryStrings)}`);
 
+        Vue.prototype.$werewolvesAssistantAPI.getGame = gameId => axios.get(`/games/${gameId}`);
+
         Vue.prototype.$werewolvesAssistantAPI.getGameRepartition = queryStrings => axios.get(`/games/repartition?${stringify(queryStrings)}`);
 
         Vue.prototype.$werewolvesAssistantAPI.createGame = data => axios.post("/games", data);
+
+        Vue.prototype.$werewolvesAssistantAPI.patchGame = (gameId, data) => axios.patch(`/games/${gameId}`, data);
 
         Vue.prototype.$werewolvesAssistantAPI.getRoles = () => axios.get(`/roles`);
     },

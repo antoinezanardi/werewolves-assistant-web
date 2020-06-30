@@ -69,12 +69,37 @@
         "roleWillBeSwitchedWithAnotherPlayer": "Les roles seront échangés avec un des joueurs {roleName}"
     },
     "GameLobbyAlreadyHavePlayingGame": {
-        "youAlreadyHavePlayingGame": "Vous avez déjà une partie en cours"
+        "youAlreadyHavePlayingGame": "Vous avez déjà une partie en cours",
+        "players": "{playersCount} joueurs",
+        "day": "Jour",
+        "night": "Nuit",
+        "resumeGame": "Reprendre la partie",
+        "cancelGame": "Annuler la partie",
+        "areYouSureYouWantToCancel": "Êtes-vous sûr de vouloir annuler cette partie?",
+        "yourProgressWillBeLost": "La progression sera définitivement perdue",
+        "dontCancel": "NE PAS ANNULER",
+        "gameCanceled": "Partie annulée"
     },
     "PlayerCard": {
         "pickRole": "Choisir un role",
         "unsetRole": "Retirer le role",
         "unsetPlayer": "Retirer le joueur"
+    },
+    "Game": {
+        "loadingGame": "Chargement de la partie",
+        "villagers": "Villageois",
+        "wolves": "Loups garous",
+        "alive": "en vie"
+    },
+    "GamePlayerAttribute": {
+        "attributes": {
+            "sheriff": "Ce joueur est maire",
+            "eaten": "Ce joueur est la cible des loups garous",
+            "drankLifePotion": "Ce joueur a bu la potion de vie",
+            "drankDeathPotion": "Ce joueur a bu la potion de mort",
+            "protected": "Ce joueur est protégé",
+            "ravenMarked": "Ce joueur est marqué par le corbeau"
+        }
     },
     "Role": {
         "villager": "Villageois",

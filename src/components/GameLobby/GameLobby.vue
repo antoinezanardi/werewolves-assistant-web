@@ -1,11 +1,11 @@
 <template>
-    <div id="game-lobby" class="container-fluid">
+    <div id="game-lobby" class="container-fluid page-with-navbar">
         <transition mode="out-in" name="fade">
             <div v-if="loading.searchForPlayingGame" key="loading" class="h-100 d-flex justify-content-center align-items-center">
                 <Loading :text="$t('GameLobby.loading')"/>
             </div>
             <div v-else-if="waitingGame._id" key="existing-game" class="h-100 d-flex justify-content-center align-items-center">
-                <GameLobbyAlreadyHavePlayingGame/>
+                <GameLobbyAlreadyHavePlayingGame :game="waitingGame" @cancelGame="cancelGame"/>
             </div>
             <div key="game-composition" class="p-2 d-flex flex-column h-100" v-else>
                 <div id="title" class="row justify-content-center">
@@ -144,7 +144,6 @@ export default {
             await this.checkUserAuthentication();
             const { data } = await this.$werewolvesAssistantAPI.getGames({ status: "playing" });
             if (data.length) {
-                console.log(data[0]);
                 this.waitingGame = new Game(data[0]);
             }
         } catch (err) {
@@ -226,6 +225,9 @@ export default {
             } finally {
                 this.loading.createGame = false;
             }
+        },
+        cancelGame() {
+            this.waitingGame = new Game();
         },
     },
 };
