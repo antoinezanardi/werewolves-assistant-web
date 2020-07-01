@@ -57,6 +57,10 @@ class Game {
     get allPlayersHaveRole() {
         return !this.players.filter(player => player.role.current === undefined).length;
     }
+
+    get firstWaiting() {
+        return this.waiting[0];
+    }
 }
 
 export default Game;

@@ -87,11 +87,18 @@
     },
     "Game": {
         "loadingGame": "Chargement de la partie",
-        "villagers": "Villageois",
-        "wolves": "Loups garous",
-        "alive": "en vie"
+        "wolves": "Loups garous"
     },
-    "GamePlayerAttribute": {
+    "GameContentHeader": {
+        "day": "Jour",
+        "night": "Nuit",
+        "waiting": {
+            "all": {
+                "elect-sheriff": "Élection du maire"
+            }
+        }
+    },
+    "PlayerAttribute": {
         "attributes": {
             "sheriff": "Ce joueur est maire",
             "eaten": "Ce joueur est la cible des loups garous",
@@ -100,6 +107,14 @@
             "protected": "Ce joueur est protégé",
             "ravenMarked": "Ce joueur est marqué par le corbeau"
         }
+    },
+    "GameVillagersSide": {
+        "villagers": "Villageois",
+        "alive": "en vie"
+    },
+    "GameWerewolvesSide": {
+        "werewolves": "Loups Garous",
+        "alive": "en vie"
     },
     "Role": {
         "villager": "Villageois",

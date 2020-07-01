@@ -3,15 +3,15 @@
 </template>
 
 <script>
-import sheriffSVG from "../../assets/svg/attributes/sheriff.svg";
-import eatenSVG from "../../assets/svg/attributes/eaten.svg";
-import drankLifePotionSVG from "../../assets/svg/attributes/drank-life-potion.svg";
-import drankDeathPotionSVG from "../../assets/svg/attributes/drank-death-potion.svg";
-import protectedSVG from "../../assets/svg/attributes/protected.svg";
-import ravenMarkedSVG from "../../assets/svg/attributes/raven-marked.svg";
+import sheriffSVG from "../../../../assets/svg/attributes/sheriff.svg";
+import eatenSVG from "../../../../assets/svg/attributes/eaten.svg";
+import drankLifePotionSVG from "../../../../assets/svg/attributes/drank-life-potion.svg";
+import drankDeathPotionSVG from "../../../../assets/svg/attributes/drank-death-potion.svg";
+import protectedSVG from "../../../../assets/svg/attributes/protected.svg";
+import ravenMarkedSVG from "../../../../assets/svg/attributes/raven-marked.svg";
 
 export default {
-    name: "GamePlayerAttribute",
+    name: "PlayerAttribute",
     props: {
         attribute: {
             type: String,
@@ -27,27 +27,27 @@ export default {
         return {
             attributes: {
                 "sheriff": {
-                    name: this.$t("GamePlayerAttribute.attributes.sheriff"),
+                    name: this.$t("PlayerAttribute.attributes.sheriff"),
                     SVG: sheriffSVG,
                 },
                 "eaten": {
-                    name: this.$t("GamePlayerAttribute.attributes.eaten"),
+                    name: this.$t("PlayerAttribute.attributes.eaten"),
                     SVG: eatenSVG,
                 },
                 "drank-life-potion": {
-                    name: this.$t("GamePlayerAttribute.attributes.drankLifePotion"),
+                    name: this.$t("PlayerAttribute.attributes.drankLifePotion"),
                     SVG: drankLifePotionSVG,
                 },
                 "drank-death-potion": {
-                    name: this.$t("GamePlayerAttribute.attributes.drankDeathPotion"),
+                    name: this.$t("PlayerAttribute.attributes.drankDeathPotion"),
                     SVG: drankDeathPotionSVG,
                 },
                 "protected": {
-                    name: this.$t("GamePlayerAttribute.attributes.protected"),
+                    name: this.$t("PlayerAttribute.attributes.protected"),
                     SVG: protectedSVG,
                 },
                 "raven-marked": {
-                    name: this.$t("GamePlayerAttribute.attributes.ravenMarked"),
+                    name: this.$t("PlayerAttribute.attributes.ravenMarked"),
                     SVG: ravenMarkedSVG,
                 },
             },
