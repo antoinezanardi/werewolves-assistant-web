@@ -94,7 +94,16 @@
         "night": "Nuit",
         "waiting": {
             "all": {
-                "elect-sheriff": "Élection du maire"
+                "eat": "Au tour des loups garous",
+                "use-potion": "Au tour de la sorcière",
+                "look": "Au tour de la voyante",
+                "protect": "Au tour du salvateur",
+                "shoot": "Au tour du chasseur",
+                "mark": "Au tour du corbeau",
+                "elect-sheriff": "Élection du maire",
+                "vote": "C'est l'heure du vote",
+                "delegate": "Passation de pouvoir du maire",
+                "settle-votes": "Départage des votes"
             }
         }
     },
