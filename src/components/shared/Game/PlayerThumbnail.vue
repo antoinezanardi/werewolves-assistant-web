@@ -2,16 +2,16 @@
     <div class="player-card-thumbnail">
         <i v-if="!game._id" v-tooltip="$t('PlayerThumbnail.unsetPlayer')" @click="unsetPlayer"
            class="fa fa-times-circle unset-player-button"/>
-        <VueFlip height="100%" width="100%" v-model="flipped">
+        <VueFlip v-tooltip="game._id && $t(`Role.${player.role.current}`)" height="100%" width="100%" v-model="flipped">
             <template v-slot:front>
                 <v-popover :disabled="!!game._id" ref="frontPopover" :show="!game._id" placement="left">
-                    <img class="img-fluid" :src="playerFrontThumbnail" alt="Role thumbnail">
+                    <RoleImage :role="thumbnail.front"/>
                     <RolePicker :player="player" :game="game" slot="popover" @rolePicked="rolePicked"/>
                 </v-popover>
             </template>
             <template v-slot:back>
                 <v-popover :disabled="!!game._id" ref="backPopover" placement="left">
-                    <img class="img-fluid" :src="playerBackThumbnail" alt="Role thumbnail">
+                    <RoleImage :role="thumbnail.back"/>
                     <RolePicker :player="player" :game="game" slot="popover" @rolePicked="rolePicked"/>
                 </v-popover>
             </template>
@@ -22,19 +22,12 @@
 <script>
 import Game from "../../../classes/Game";
 import Player from "../../../classes/Player";
-import back from "../../../assets/img/roles/back.png";
-import guard from "../../../assets/img/roles/guard.png";
-import hunter from "../../../assets/img/roles/hunter.png";
-import raven from "../../../assets/img/roles/raven.png";
-import seer from "../../../assets/img/roles/seer.png";
-import villager from "../../../assets/img/roles/villager.png";
-import werewolf from "../../../assets/img/roles/werewolf.png";
-import witch from "../../../assets/img/roles/witch.png";
 import RolePicker from "./RolePicker";
+import RoleImage from "./RoleImage";
 
 export default {
     name: "PlayerThumbnail",
-    components: { RolePicker },
+    components: { RoleImage, RolePicker },
     props: {
         game: {
             type: Game,
@@ -47,21 +40,12 @@ export default {
     },
     data() {
         return {
-            IMGs: { back, guard, hunter, raven, seer, villager, werewolf, witch },
             flipped: false,
             thumbnail: {
                 front: undefined,
                 back: undefined,
             },
         };
-    },
-    computed: {
-        playerFrontThumbnail() {
-            return this.thumbnail.front ? this.IMGs[this.thumbnail.front] : this.IMGs.back;
-        },
-        playerBackThumbnail() {
-            return this.thumbnail.back ? this.IMGs[this.thumbnail.back] : this.IMGs.back;
-        },
     },
     created() {
         if (this.player.role.current) {

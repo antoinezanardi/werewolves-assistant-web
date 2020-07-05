@@ -22,6 +22,10 @@ class Game {
         this.updatedAt = getProp(game, "updatedAt");
     }
 
+    get alivePlayers() {
+        return this.players.filter(player => player.isAlive);
+    }
+
     get werewolfPlayers() {
         return this.players.filter(player => player.role.group === "werewolves");
     }
@@ -60,6 +64,11 @@ class Game {
 
     get firstWaiting() {
         return this.waiting[0];
+    }
+
+    get isVotePlay() {
+        const waiting = this.firstWaiting;
+        return waiting.to === "elect-sheriff" || waiting.to === "vote";
     }
 }
 

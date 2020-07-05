@@ -1,5 +1,5 @@
 <template>
-    <div id="game" class="container-fluid page-with-navbar">
+    <div id="game" class="container-fluid page-with-navbar pb-2">
         <transition name="fade" mode="out-in">
             <div v-if="loading.getGame" key="loading" class="h-100 d-flex justify-content-center align-items-center">
                 <Loading :text="$t('Game.loadingGame')"/>

@@ -21,12 +21,14 @@
 * `node-sass` installed with version `4.14.1`.
 * `popper.js` installed with version `1.16.1`.
 * `qs` installed with version `6.9.4`.
-* `sass-loader` installed with version `8.0.2`.
+* `sass-loader` installed with version `9.0.1`.
 * `sweetalert2` installed with version `9.15.2`.
 * `v-tooltip` installed with version `3.3.5`.
-* `vee-validate` installed with version `3.3.6`.
+* `vee-validate` installed with version `3.3.7`.
 * `vue-flip` installed with version `1.0.2`.
 * `vue-i18n` installed with version `8.18.2`.
+* `vue-roller` installed with version `1.9.0`.
+* `vue-select` installed with version `3.10.5`.
 * `vue-toasted` installed with version `1.1.28`.
 * `@vue/cli-plugin-e2e-cypress` updated to version `4.4.6`.
 * `@vue/cli-plugin-eslint` updated to version `4.4.6`.
@@ -35,7 +37,7 @@
 * `@vue/cli-plugin-vuex` updated to version `4.4.6`.
 * `@vue/cli-service` updated to version `4.4.6`.
 * `@vue/eslint-config-airbnb` updated to version `5.1.0`.
-* `eslint` updated to version `7.3.1`.
+* `eslint` updated to version `7.4.0`.
 * `eslint-plugin-import` updated to version `2.22.0`.
 * `vuex` updated to version `3.5.1`.
 

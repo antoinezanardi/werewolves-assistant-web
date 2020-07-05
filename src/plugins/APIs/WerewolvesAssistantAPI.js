@@ -44,6 +44,8 @@ const WerewolvesAssistantAPI = {
 
         Vue.prototype.$werewolvesAssistantAPI.patchGame = (gameId, data) => axios.patch(`/games/${gameId}`, data);
 
+        Vue.prototype.$werewolvesAssistantAPI.makeAPlay = (gameId, play) => axios.post(`/games/${gameId}/play`, play);
+
         Vue.prototype.$werewolvesAssistantAPI.getRoles = () => axios.get(`/roles`);
     },
 };

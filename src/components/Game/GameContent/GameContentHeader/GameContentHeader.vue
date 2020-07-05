@@ -9,7 +9,7 @@
             <div class="col-8">
                 <h1 class="mb-0 d-flex justify-content-center align-items-center pb-0">
                     <img id="game-waiting-icon" :src="gameWaitingIcon" class="img-fluid mr-3" alt="Game Waiting Icon"/>
-                    <span v-html="gameWaitingText"/>
+                    <span class="text-center" v-html="gameWaitingText"/>
                 </h1>
             </div>
             <div class="col-2 text-right">

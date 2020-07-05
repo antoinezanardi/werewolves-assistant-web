@@ -67,7 +67,8 @@
                             <SubmitButton classes="btn btn-dark btn-block text-uppercase font-weight-bold"
                                           :disabled-tooltip-text="$t('GameLobby.fourPlayerRequiredToGetRandomRepartition')"
                                           :text="`<i class='fas fa-random mr-2'></i>${$t('GameLobby.getRandomRepartition')}`"
-                                          :loading="loading.getGameRepartition" :disabled="loading.createGame || !game.areThereEnoughPlayers"/>
+                                          :loading="loading.getGameRepartition"
+                                          :disabled="loading.createGame || !game.areThereEnoughPlayers"/>
                         </form>
                     </div>
                     <div class="col-lg-3">

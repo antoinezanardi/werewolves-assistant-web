@@ -82,8 +82,7 @@
     },
     "PlayerCard": {
         "pickRole": "Choisir un role",
-        "unsetRole": "Retirer le role",
-        "unsetPlayer": "Retirer le joueur"
+        "unsetRole": "Retirer le role"
     },
     "Game": {
         "loadingGame": "Chargement de la partie",
@@ -107,6 +106,11 @@
             }
         }
     },
+    "GameContentFooter": {
+        "next": "Suivant",
+        "playersHaveVoted": "{votesCount}/{playersCount} joueurs ont voté",
+        "minOnePlayerHasToVote": "Minimum 1 joueur doit voter"
+    },
     "PlayerAttribute": {
         "attributes": {
             "sheriff": "Ce joueur est maire",
@@ -116,6 +120,13 @@
             "protected": "Ce joueur est protégé",
             "ravenMarked": "Ce joueur est marqué par le corbeau"
         }
+    },
+    "PlayerThumbnail": {
+        "unsetPlayer": "Retirer le joueur"
+    },
+    "PlayerVote": {
+        "voteFor": "Vote pour",
+        "none": "Personne"
     },
     "GameVillagersSide": {
         "villagers": "Villageois",
@@ -146,5 +157,8 @@
         "email": "L'email renseigné est invalide",
         "min": "Ce champ doit faire au minimum {length} caractères",
         "confirm_password": "Les mots de passe de correspondent pas"
+    },
+    "VSelect": {
+        "noOption": "Aucun choix correspondant à la recherche"
     }
 }

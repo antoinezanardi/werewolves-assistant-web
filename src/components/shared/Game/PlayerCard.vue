@@ -1,8 +1,8 @@
 <template>
     <div class="player-card d-flex flex-column align-items-center">
-        <PlayerThumbnail :game="game" :player="player" @rolePicked="rolePicked" @unsetRole="unsetRole"/>
+        <PlayerThumbnail :game="game" :player="player" @rolePicked="rolePicked" @unsetPlayer="unsetPlayer"/>
         <div class="player-card-name text-center" v-html="player.name"/>
-        <div class="player-card-role text-center text-muted d-flex align-items-center">
+        <div v-if="!game._id" class="player-card-role text-center text-muted d-flex align-items-center">
             <i v-if="player.role.current" v-tooltip="$t('PlayerCard.unsetRole')" @click="unsetRole"
                class="fa fa-times-circle mr-1 unset-role-button"/>
             <span v-html="playerRole"/>
@@ -40,8 +40,8 @@ export default {
         unsetRole() {
             this.$emit("unsetRole", this.player.name);
         },
-        rolePicked(role) {
-            this.$emit("rolePicked", { name: this.player.name, role });
+        rolePicked(payload) {
+            this.$emit("rolePicked", payload);
         },
     },
 };
