@@ -12,7 +12,7 @@
                 <hr class="bg-dark"/>
             </div>
         </div>
-        <div class="row">
+        <div id="villagers-list" class="row ml-0">
             <div v-for="player in game.villagerPlayers" :key="player.name" class="player-strip villager-player-strip">
                 <div class="text-center text-truncate mt-1" v-html="player.name"/>
                 <hr class="bg-dark mt-1 mb-2"/>

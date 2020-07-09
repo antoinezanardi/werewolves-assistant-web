@@ -70,6 +70,28 @@ class Game {
         const waiting = this.firstWaiting;
         return waiting.to === "elect-sheriff" || waiting.to === "vote";
     }
+
+    get isOneTargetPlay() {
+        const waiting = this.firstWaiting;
+        return waiting.to === "look" || waiting.to === "eat" || waiting.to === "protect" ||
+            waiting.to === "shoot" || waiting.to === "settle-votes" || waiting.to === "delegate";
+    }
+
+    get seerPlayer() {
+        return this.players.find(player => player.role.current === "seer");
+    }
+
+    get witchPlayer() {
+        return this.players.find(player => player.role.current === "witch");
+    }
+
+    get guardPlayer() {
+        return this.players.find(player => player.role.current === "guard");
+    }
+
+    get ravenPlayer() {
+        return this.players.find(player => player.role.current === "raven");
+    }
 }
 
 export default Game;

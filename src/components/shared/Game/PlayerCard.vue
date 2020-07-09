@@ -1,7 +1,10 @@
 <template>
-    <div class="player-card d-flex flex-column align-items-center">
-        <PlayerThumbnail :game="game" :player="player" @rolePicked="rolePicked" @unsetPlayer="unsetPlayer"/>
-        <div class="player-card-name text-center" v-html="player.name"/>
+    <div class="player-card d-flex flex-column align-items-center"
+         :class="{ 'player-card-selectable': selectable, 'player-card-selected': selected }">
+        <PlayerThumbnail :game="game" :player="player" :size="size" :class="{ 'player-card-thumbnail-selected': selected }"
+                         @rolePicked="rolePicked" @unsetPlayer="unsetPlayer" @click.native="togglePlayerSelected"/>
+        <div class="player-card-name text-center" :class="{ 'player-card-name-lg': size === 'lg' }"
+             v-html="player.name" @click="togglePlayerSelected"/>
         <div v-if="!game._id" class="player-card-role text-center text-muted d-flex align-items-center">
             <i v-if="player.role.current" v-tooltip="$t('PlayerCard.unsetRole')" @click="unsetRole"
                class="fa fa-times-circle mr-1 unset-role-button"/>
@@ -27,6 +30,19 @@ export default {
             type: Player,
             required: true,
         },
+        size: {
+            type: String,
+            default: "md",
+        },
+        selectable: {
+            type: Boolean,
+            default: false,
+        },
+    },
+    data() {
+        return {
+            selected: false,
+        };
     },
     computed: {
         playerRole() {
@@ -43,6 +59,18 @@ export default {
         rolePicked(payload) {
             this.$emit("rolePicked", payload);
         },
+        togglePlayerSelected() {
+            if (this.selectable) {
+                this.selected = !this.selected;
+                this.$emit("playerSelected", { player: this.player, selected: this.selected });
+            }
+        },
+        unselectPlayer() {
+            if (this.selectable) {
+                this.selected = false;
+                this.$emit("playerSelected", { player: this.player, selected: false });
+            }
+        },
     },
 };
 </script>
@@ -50,6 +78,18 @@ export default {
 <style lang="scss" scoped>
     .player-card {
         padding: 5px;
+
+        &.player-card-selectable {
+            .player-card-name {
+                cursor: pointer;
+            }
+        }
+
+        &.player-card-selected {
+            .player-card-name {
+                font-weight: 700;
+            }
+        }
     }
 
     .player-card-name {
@@ -57,6 +97,11 @@ export default {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+
+        &.player-card-name-lg {
+            font-size: 2rem;
+            font-weight: 500;
+        }
     }
 
     .unset-role-button {

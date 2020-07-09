@@ -9,7 +9,7 @@ class Player {
             current: getProp(player, "role.current"),
             group: getProp(player, "role.group"),
         };
-        this.attributes = getProp(player, "attributes", [], player => player.attributes.map(attribute => attribute));
+        this.attributes = getProp(player, "attributes", [], attributes => attributes.map(attribute => attribute));
         this.isAlive = getProp(player, "isAlive");
         this.murdered = {
             by: getProp(player, "murdered.by"),

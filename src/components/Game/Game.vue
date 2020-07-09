@@ -6,7 +6,7 @@
             </div>
             <div v-else key="game" class="pt-2 row mr-0 h-100">
                 <GameVillagersSide :game="game" class="col-2 h-100"/>
-                <GameContent :game="game" class="col-8 h-100"/>
+                <GameContent :game="game" class="col-8 h-100" @updateGame="updateGame"/>
                 <GameWolvesSide :game="game" class="col-2 h-100"/>
             </div>
         </transition>
@@ -44,6 +44,9 @@ export default {
             } finally {
                 this.loading.getGame = false;
             }
+        },
+        updateGame(game) {
+            this.game = new Game(game);
         },
     },
 };

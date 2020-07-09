@@ -93,14 +93,28 @@
         "night": "Nuit",
         "waiting": {
             "all": {
-                "eat": "Au tour des loups garous",
-                "use-potion": "Au tour de la sorcière",
-                "look": "Au tour de la voyante",
-                "protect": "Au tour du salvateur",
-                "shoot": "Au tour du chasseur",
-                "mark": "Au tour du corbeau",
                 "elect-sheriff": "Élection du maire",
-                "vote": "C'est l'heure du vote",
+                "vote": "C'est l'heure du vote"
+            },
+            "seer": {
+                "look": "Au tour de la voyante"
+            },
+            "werewolves": {
+                "eat": "Au tour des loups garous"
+            },
+            "witch": {
+                "use-potion": "Au tour de la sorcière"
+            },
+            "guard": {
+                "protect": "Au tour du salvateur"
+            },
+            "raven": {
+                "mark": "Au tour du corbeau"
+            },
+            "hunter": {
+                "shoot": "Au tour du chasseur"
+            },
+            "sheriff": {
                 "delegate": "Passation de pouvoir du maire",
                 "settle-votes": "Départage des votes"
             }
@@ -109,7 +123,9 @@
     "GameContentFooter": {
         "next": "Suivant",
         "playersHaveVoted": "{votesCount}/{playersCount} joueurs ont voté",
-        "minOnePlayerHasToVote": "Minimum 1 joueur doit voter"
+        "playersTargeted": "{targetsCount}/{min} joueur visé",
+        "minOnePlayerHasToVote": "Minimum 1 joueur doit voter",
+        "minOnePlayerHasToBeTargeted": "Minimum 1 joueur doit être visé"
     },
     "PlayerAttribute": {
         "attributes": {
@@ -135,6 +151,21 @@
     "GameWerewolvesSide": {
         "werewolves": "Loups Garous",
         "alive": "en vie"
+    },
+    "LookPlayField": {
+        "wantsToLook": "souhaite voir le role de"
+    },
+    "EatPlayField": {
+        "willEat": "vont manger"
+    },
+    "ProtectPlayField": {
+        "wantsToProtect": "souhaite protéger",
+        "wantsToSelfProtect": "souhaite se protéger"
+    },
+    "MarkPlayField": {
+        "wantsToMark": "souhaite marquer",
+        "wantsToSelfMark": "souhaite s'auto-marquer",
+        "skip": "ne souhaite marquer personne"
     },
     "Role": {
         "villager": "Villageois",

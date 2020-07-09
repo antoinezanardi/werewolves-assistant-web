@@ -1,5 +1,5 @@
 <template>
-    <div class="player-card-thumbnail">
+    <div class="player-card-thumbnail" :class="{ 'player-card-thumbnail-lg': size === 'lg' }">
         <i v-if="!game._id" v-tooltip="$t('PlayerThumbnail.unsetPlayer')" @click="unsetPlayer"
            class="fa fa-times-circle unset-player-button"/>
         <VueFlip v-tooltip="game._id && $t(`Role.${player.role.current}`)" height="100%" width="100%" v-model="flipped">
@@ -36,6 +36,10 @@ export default {
         player: {
             type: Player,
             required: true,
+        },
+        size: {
+            type: String,
+            default: "md",
         },
     },
     data() {
@@ -93,6 +97,17 @@ export default {
 
         &:hover {
             border-color: #D4D4D4;
+        }
+
+        &.player-card-thumbnail-lg {
+            width: 100px;
+            height: 100px;
+        }
+
+        &.player-card-thumbnail-selected {
+            border-color: white;
+            width: 70px;
+            height: 70px;
         }
     }
 
