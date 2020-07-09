@@ -92,6 +92,10 @@ class Game {
     get ravenPlayer() {
         return this.players.find(player => player.role.current === "raven");
     }
+
+    get mayorPlayer() {
+        return this.players.find(({ attributes }) => attributes.find(({ attribute }) => attribute === "sheriff"));
+    }
 }
 
 export default Game;

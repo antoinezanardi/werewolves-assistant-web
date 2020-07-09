@@ -167,6 +167,9 @@
         "wantsToSelfMark": "souhaite s'auto-marquer",
         "skip": "ne souhaite marquer personne"
     },
+    "SettleVotesPlayField": {
+        "chooseToHang": "souhaite pendre"
+    },
     "Role": {
         "villager": "Villageois",
         "werewolf": "Loup-Garou",
