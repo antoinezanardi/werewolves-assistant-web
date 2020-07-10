@@ -13,17 +13,23 @@
             </div>
         </div>
         <div id="villagers-list" class="row ml-0">
-            <div v-for="player in game.villagerPlayers" :key="player.name" class="player-strip villager-player-strip">
-                <div class="text-center text-truncate mt-1" v-html="player.name"/>
-                <hr class="bg-dark mt-1 mb-2"/>
-                <div class="d-flex">
-                    <div class="d-flex flex-wrap align-items-center flex-grow-1 p-1">
-                        <PlayerAttribute v-for="({ attribute, source }) in player.attributes" :key="attribute"
-                                             :attribute="attribute" :source="source"/>
+            <transition-group name="flip-list" class="w-100">
+                <div v-for="player in sortedVillagers" :key="player.name" class="player-strip villager-player-strip">
+                    <div class="text-center text-truncate mt-1">
+                        <i v-if="player.isAlive === false" v-tooltip="$t('GameVillagersSide.thisPlayerIsDead')"
+                           class="fa fa-skull-crossbones mr-2"/>
+                        <span v-html="player.name"/>
                     </div>
-                    <PlayerThumbnail :game="game" :player="player" class="mr-1"/>
+                    <hr class="bg-dark mt-1 mb-2"/>
+                    <div class="d-flex">
+                        <div class="d-flex flex-wrap align-items-center flex-grow-1 p-1">
+                            <PlayerAttribute v-for="({ attribute, source }) in player.attributes" :key="attribute"
+                                                 :attribute="attribute" :source="source"/>
+                        </div>
+                        <PlayerThumbnail :game="game" :player="player" class="mr-1"/>
+                    </div>
                 </div>
-            </div>
+            </transition-group>
         </div>
     </div>
 </template>
@@ -44,6 +50,10 @@ export default {
     computed: {
         villagersAliveText() {
             return `${this.game.aliveVillagerPlayers.length} / ${this.game.villagerPlayers.length} ${this.$t("GameVillagersSide.alive")}`;
+        },
+        sortedVillagers() {
+            const villagerPlayers = [...this.game.villagerPlayers];
+            return [...villagerPlayers.sort(player => player.isAlive ? -1 : 1)];
         },
     },
 };
@@ -67,5 +77,9 @@ export default {
             border-left: unset;
             background-image: linear-gradient(to right, #3c3c3c, #646464);
         }
+    }
+
+    .flip-list-move {
+        transition: transform 1s;
     }
 </style>

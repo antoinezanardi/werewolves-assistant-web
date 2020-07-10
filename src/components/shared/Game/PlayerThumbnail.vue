@@ -1,5 +1,5 @@
 <template>
-    <div class="player-card-thumbnail" :class="{ 'player-card-thumbnail-lg': size === 'lg' }">
+    <div class="player-card-thumbnail" :class="{ 'player-card-thumbnail-lg': size === 'lg', 'dead-player-card': player.isAlive === false }">
         <i v-if="!game._id" v-tooltip="$t('PlayerThumbnail.unsetPlayer')" @click="unsetPlayer"
            class="fa fa-times-circle unset-player-button"/>
         <VueFlip v-tooltip="game._id && $t(`Role.${player.role.current}`)" height="100%" width="100%" v-model="flipped">
@@ -108,6 +108,12 @@ export default {
             border-color: white;
             width: 70px;
             height: 70px;
+        }
+
+        &.dead-player-card {
+            img {
+                filter: grayscale(1);
+            }
         }
     }
 

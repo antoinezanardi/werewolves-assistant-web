@@ -245,6 +245,10 @@ export default {
         position: absolute !important;
     }
 
+    .flip-list-move {
+        transition: transform 1s;
+    }
+
     #player-name-input-error {
         height: 25px;
     }

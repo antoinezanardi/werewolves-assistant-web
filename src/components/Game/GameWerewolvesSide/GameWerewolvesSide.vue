@@ -13,8 +13,12 @@
             </div>
         </div>
         <div class="row justify-content-end">
-            <div v-for="player in game.werewolfPlayers" :key="player.name" class="player-strip werewolf-player-strip">
-                <div class="text-center text-truncate mt-1" v-html="player.name"/>
+            <div v-for="player in sortedWerewolves" :key="player.name" class="player-strip werewolf-player-strip">
+                <div class="text-center text-truncate mt-1">
+                    <i v-if="player.isAlive === false" v-tooltip="$t('GameWerewolvesSide.thisPlayerIsDead')"
+                       class="fa fa-skull-crossbones mr-2"/>
+                    <span v-html="player.name"/>
+                </div>
                 <hr class="bg-dark mt-1 mb-2"/>
                 <div class="d-flex">
                     <PlayerThumbnail :game="game" :player="player" class="ml-1"/>
@@ -45,6 +49,10 @@ export default {
     computed: {
         wolvesAliveText() {
             return `${this.game.aliveWerewolfPlayers.length} / ${this.game.werewolfPlayers.length} ${this.$t("GameWerewolvesSide.alive")}`;
+        },
+        sortedWerewolves() {
+            const wereWolvesPlayers = [...this.game.werewolfPlayers];
+            return [...wereWolvesPlayers.sort(player => player.isAlive ? -1 : 1)];
         },
     },
 };

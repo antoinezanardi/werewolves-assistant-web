@@ -96,6 +96,10 @@ class Game {
     get mayorPlayer() {
         return this.players.find(({ attributes }) => attributes.find(({ attribute }) => attribute === "sheriff"));
     }
+
+    get eatenPlayer() {
+        return this.players.find(({ attributes }) => attributes.find(({ attribute }) => attribute === "eaten"));
+    }
 }
 
 export default Game;

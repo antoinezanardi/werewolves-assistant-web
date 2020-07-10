@@ -146,17 +146,25 @@
     },
     "GameVillagersSide": {
         "villagers": "Villageois",
-        "alive": "en vie"
+        "alive": "en vie",
+        "thisPlayerIsDead": "Ce joueur est mort"
     },
     "GameWerewolvesSide": {
         "werewolves": "Loups Garous",
-        "alive": "en vie"
+        "alive": "en vie",
+        "thisPlayerIsDead": "Ce joueur est mort"
     },
     "LookPlayField": {
         "wantsToLook": "souhaite voir le role de"
     },
     "EatPlayField": {
         "willEat": "vont manger"
+    },
+    "UsePotionPlayField": {
+        "doesntWantToUseLifePotion": "ne souhaite pas utiliser sa potion de vie",
+        "doesntWantToUseDeathPotion": "ne souhaite pas utiliser sa potion de mort",
+        "useLifePotionOn": "Utiliser la potion de vie sur ...",
+        "useDeathPotionOn": "Utiliser la potion de mort sur ..."
     },
     "ProtectPlayField": {
         "wantsToProtect": "souhaite protéger",
