@@ -23,18 +23,29 @@ export default {
             type: Array,
             required: true,
         },
+        play: {
+            type: Object,
+            required: true,
+        },
+        attribute: {
+            type: String,
+            required: true,
+        },
     },
     methods: {
         playerSelected({ player, selected }) {
             if (selected) {
-                for (const { _id } of this.targets) {
-                    const playerCardComponent = this.$refs[`playerCard${_id}`][0];
-                    if (_id !== player._id && playerCardComponent.selected) {
-                        playerCardComponent.unselectPlayer();
+                for (const target of this.targets) {
+                    const playerCardComponent = this.$refs[`playerCard${target._id}`][0];
+                    if (target._id !== player._id) {
+                        const playTarget = this.play.targets.find(playTarget => playTarget.player === target._id);
+                        if (playTarget && playTarget.attribute === this.attribute) {
+                            playerCardComponent.unselectPlayer();
+                        }
                     }
                 }
             }
-            this.$emit("playerSelected", { player, selected });
+            this.$emit("playerSelected", { player, selected, attribute: this.attribute });
         },
     },
 };

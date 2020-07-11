@@ -164,7 +164,9 @@
         "doesntWantToUseLifePotion": "ne souhaite pas utiliser sa potion de vie",
         "doesntWantToUseDeathPotion": "ne souhaite pas utiliser sa potion de mort",
         "useLifePotionOn": "Utiliser la potion de vie sur ...",
-        "useDeathPotionOn": "Utiliser la potion de mort sur ..."
+        "useDeathPotionOn": "Utiliser la potion de mort sur ...",
+        "wantsToUseLifePotionOn": "souhaite utiliser sa potion de vie sur",
+        "wantsToUseDeathPotionOn": "souhaite utiliser sa potion de mort sur"
     },
     "ProtectPlayField": {
         "wantsToProtect": "souhaite protéger",
@@ -177,6 +179,9 @@
     },
     "SettleVotesPlayField": {
         "chooseToHang": "souhaite pendre"
+    },
+    "DelegatePlayField": {
+        "wantsToDelegateTo": "souhaite déléguer son role de maire à"
     },
     "Role": {
         "villager": "Villageois",

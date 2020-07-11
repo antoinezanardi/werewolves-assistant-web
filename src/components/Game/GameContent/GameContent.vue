@@ -39,8 +39,13 @@ export default {
                 return this.play.votes.push(vote);
             }
         },
-        playerSelected({ player, selected }) {
-            const target = { player: player._id };
+        playerSelected({ player, selected, attribute }) {
+            const target = { player: player._id, attribute };
+            if (attribute === "drank-life-potion") {
+                target.potion = { life: true };
+            } else if (attribute === "drank-death-potion") {
+                target.potion = { death: true };
+            }
             const idx = this.play.targets.findIndex(target => target.player === player._id);
             if (idx !== -1) {
                 return selected ? this.play.targets.splice(idx, 1, target) : this.play.targets.splice(idx, 1);

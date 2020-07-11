@@ -12,7 +12,7 @@
                 </h3>
             </div>
         </div>
-        <PlayerTargets :game="game" :targets="game.alivePlayers" class="flex-grow-1" @playerSelected="playerSelected"/>
+        <PlayerTargets :game="game" :targets="protectablePlayers" :play="play" attribute="protected" class="flex-grow-1" @playerSelected="playerSelected"/>
     </div>
 </template>
 
@@ -43,6 +43,10 @@ export default {
             } else {
                 return `${text} ...`;
             }
+        },
+        protectablePlayers() {
+            const lastProtectEntry = this.game.history.find(gameHistoryEntry => gameHistoryEntry.play.action === "protect");
+            return lastProtectEntry ? this.game.alivePlayers.filter(({ _id }) => _id !== lastProtectEntry.play.targets[0].player._id) : this.game.alivePlayers;
         },
     },
     methods: {

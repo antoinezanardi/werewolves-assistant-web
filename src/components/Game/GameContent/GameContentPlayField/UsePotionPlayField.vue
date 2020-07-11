@@ -43,10 +43,12 @@
             <div class="col-12">
                 <div class="tab-content h-100">
                     <div class="tab-pane fade show h-100" id="use-life-potion-content" role="tabpanel">
-                        <PlayerTargets :game="game" :targets="[game.eatenPlayer]" class="h-100" @playerSelected="playerSelected"/>
+                        <PlayerTargets :game="game" :targets="[game.eatenPlayer]" :play="play" attribute="drank-life-potion"
+                                       class="h-100" @playerSelected="playerSelected"/>
                     </div>
                     <div class="tab-pane fade show h-100" id="use-death-potion-content" role="tabpanel">
-                        <PlayerTargets :game="game" :targets="game.alivePlayers" class="h-100" @playerSelected="playerSelected"/>
+                        <PlayerTargets :game="game" :targets="game.alivePlayers" :play="play" attribute="drank-death-potion"
+                                       class="h-100" @playerSelected="playerSelected"/>
                     </div>
                 </div>
             </div>
@@ -81,10 +83,22 @@ export default {
     },
     computed: {
         useLifePotionText() {
-            return this.$t("UsePotionPlayField.doesntWantToUseLifePotion");
+            const drankLifePotionTarget = this.play.targets.find(target => target.attribute === "drank-life-potion");
+            if (drankLifePotionTarget) {
+                const playerTargeted = this.game.players.find(({ _id }) => _id === drankLifePotionTarget.player);
+                return `${this.$t("UsePotionPlayField.wantsToUseLifePotionOn")} ${playerTargeted.name}`;
+            } else {
+                return this.$t("UsePotionPlayField.doesntWantToUseLifePotion");
+            }
         },
         useDeathPotionText() {
-            return this.$t("UsePotionPlayField.doesntWantToUseDeathPotion");
+            const drankDeathPotionTarget = this.play.targets.find(target => target.attribute === "drank-death-potion");
+            if (drankDeathPotionTarget) {
+                const playerTargeted = this.game.players.find(({ _id }) => _id === drankDeathPotionTarget.player);
+                return `${this.$t("UsePotionPlayField.wantsToUseDeathPotionOn")} ${playerTargeted.name}`;
+            } else {
+                return this.$t("UsePotionPlayField.doesntWantToUseDeathPotion");
+            }
         },
     },
     methods: {

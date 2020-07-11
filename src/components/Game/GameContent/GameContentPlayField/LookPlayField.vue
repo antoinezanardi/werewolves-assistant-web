@@ -12,7 +12,7 @@
                 </h3>
             </div>
         </div>
-        <PlayerTargets :game="game" :targets="alivePlayersExceptSeer" class="flex-grow-1" @playerSelected="playerSelected"/>
+        <PlayerTargets :game="game" :targets="alivePlayersExceptSeer" :play="play" attribute="seen" class="flex-grow-1" @playerSelected="playerSelected"/>
     </div>
 </template>
 

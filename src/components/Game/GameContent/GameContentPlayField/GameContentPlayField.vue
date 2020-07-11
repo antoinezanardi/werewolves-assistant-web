@@ -17,6 +17,8 @@
                            @playerVotes="playerVotes"/>
             <SettleVotesPlayField v-else-if="game.firstWaiting.to === 'settle-votes'" key="settle-votes" :game="game"
                                   :play="play" class="h-100" @playerSelected="playerSelected"/>
+            <DelegatePlayField v-else-if="game.firstWaiting.to === 'delegate'" key="delegate" :game="game"
+                               :play="play" class="h-100" @playerSelected="playerSelected"/>
             <div v-else key="unknown">?</div>
         </transition>
     </div>
@@ -32,10 +34,11 @@ import ProtectPlayField from "./ProtectPlayField";
 import MarkPlayField from "./MarkPlayField";
 import VotePlayField from "./VotePlayField";
 import SettleVotesPlayField from "./SettleVotesPlayField";
+import DelegatePlayField from "./DelegatePlayField";
 
 export default {
     name: "GameContentPlayField",
-    components: { SettleVotesPlayField, VotePlayField, MarkPlayField, ProtectPlayField, UsePotionPlayField, EatPlayField, LookPlayField, ElectSheriffPlayField },
+    components: { DelegatePlayField, SettleVotesPlayField, VotePlayField, MarkPlayField, ProtectPlayField, UsePotionPlayField, EatPlayField, LookPlayField, ElectSheriffPlayField },
     props: {
         game: {
             type: Game,

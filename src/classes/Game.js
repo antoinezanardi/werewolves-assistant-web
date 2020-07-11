@@ -93,12 +93,16 @@ class Game {
         return this.players.find(player => player.role.current === "raven");
     }
 
-    get mayorPlayer() {
-        return this.players.find(({ attributes }) => attributes.find(({ attribute }) => attribute === "sheriff"));
+    getPlayerWithAttribute(attributeName) {
+        return this.players.find(({ attributes }) => attributes.find(({ attribute }) => attribute === attributeName));
+    }
+
+    get sheriffPlayer() {
+        return this.getPlayerWithAttribute("sheriff");
     }
 
     get eatenPlayer() {
-        return this.players.find(({ attributes }) => attributes.find(({ attribute }) => attribute === "eaten"));
+        return this.getPlayerWithAttribute("eaten");
     }
 }
 

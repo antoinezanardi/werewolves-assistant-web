@@ -2,7 +2,7 @@
     <div id="settle-votes-play-field" class="d-flex flex-column">
         <div class="row justify-content-center align-items-center">
             <div class="col-12">
-                <PlayerCard :game="game" :player="game.mayorPlayer" size="lg"/>
+                <PlayerCard :game="game" :player="game.sheriffPlayer" size="lg"/>
             </div>
         </div>
         <div class="row">
@@ -12,7 +12,7 @@
                 </h3>
             </div>
         </div>
-        <PlayerTargets :game="game" :targets="tieBreakerPlayers" class="flex-grow-1" @playerSelected="playerSelected"/>
+        <PlayerTargets :game="game" :targets="tieBreakerPlayers" :play="play" attribute="chosen-for-vote" class="flex-grow-1" @playerSelected="playerSelected"/>
     </div>
 </template>
 

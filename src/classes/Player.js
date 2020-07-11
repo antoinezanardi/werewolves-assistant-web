@@ -16,6 +16,10 @@ class Player {
             of: getProp(player, "murdered.of"),
         };
     }
+
+    hasAttribute(attributeName) {
+        return !!this.attributes.find(({ attribute }) => attribute === attributeName);
+    }
 }
 
 export default Player;
