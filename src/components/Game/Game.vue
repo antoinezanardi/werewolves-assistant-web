@@ -6,7 +6,11 @@
             </div>
             <div v-else key="game" class="pt-2 row mr-0 h-100">
                 <GameVillagersSide :game="game" class="col-2 h-100"/>
-                <GameContent :game="game" class="col-8 h-100" @updateGame="updateGame"/>
+                <transition mode="out-in" name="fade">
+                    <GameContent v-if="game.status === 'playing'" key="playing-game" :game="game" class="col-8 h-100"
+                                 @updateGame="updateGame"/>
+                    <GameWinners v-else-if="game.status === 'done'" key="done-game" :game="game" class="col-8 h-100"/>
+                </transition>
                 <GameWolvesSide :game="game" class="col-2 h-100"/>
             </div>
         </transition>
@@ -19,10 +23,11 @@ import Loading from "../shared/Loading";
 import GameVillagersSide from "./GameVillagersSide/GameVillagersSide";
 import GameWolvesSide from "./GameWerewolvesSide/GameWerewolvesSide";
 import GameContent from "./GameContent/GameContent";
+import GameWinners from "./GameWinners/GameWinners";
 
 export default {
     name: "Game",
-    components: { GameContent, GameWolvesSide, GameVillagersSide, Loading },
+    components: { GameWinners, GameContent, GameWolvesSide, GameVillagersSide, Loading },
     data() {
         return {
             game: new Game(),

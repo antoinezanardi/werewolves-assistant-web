@@ -1,17 +1,19 @@
 <template>
-    <div id="eat-play-field" class="d-flex flex-column">
+    <div id="shoot-play-field" class="d-flex flex-column">
         <div class="row justify-content-center align-items-center">
-            <PlayerCard v-for="player of game.aliveWerewolfPlayers" :key="player.name" :game="game"
-                        :player="player" size="lg" class="col-3"/>
+            <div class="col-12">
+                <PlayerCard :game="game" :player="game.hunterPlayer" size="lg"/>
+            </div>
         </div>
         <div class="row">
             <div class="col-12">
                 <h3 class="text-center">
-                    <VRoller :defaultChar="eatTargetText" :text="eatTargetText"/>
+                    <VRoller :defaultChar="shootTargetText" :text="shootTargetText"/>
                 </h3>
             </div>
         </div>
-        <PlayerTargets :game="game" :targets="alivePlayersExceptWerewolves" :play="play" attribute="eaten" class="flex-grow-1" @playerSelected="playerSelected"/>
+        <PlayerTargets :game="game" :targets="game.alivePlayers" :play="play" attribute="shoot" class="flex-grow-1"
+                       @playerSelected="playerSelected"/>
     </div>
 </template>
 
@@ -21,7 +23,7 @@ import PlayerTargets from "../../../shared/Game/PlayerTargets/PlayerTargets";
 import Game from "../../../../classes/Game";
 
 export default {
-    name: "EatPlayField",
+    name: "ShootPlayField",
     components: { PlayerTargets, PlayerCard },
     props: {
         game: {
@@ -34,12 +36,9 @@ export default {
         },
     },
     computed: {
-        alivePlayersExceptWerewolves() {
-            return this.game.alivePlayers.filter(player => player.role.group !== "werewolves");
-        },
-        eatTargetText() {
+        shootTargetText() {
             const playerTargeted = this.play.targets.length ? this.game.players.find(({ _id }) => _id === this.play.targets[0].player) : null;
-            const text = `${this.$tc("EatPlayField.wantToEat", this.game.aliveWerewolfPlayers.length)} `;
+            const text = `${this.$t("ShootPlayField.wantsToShoot")} `;
             return playerTargeted ? text + playerTargeted.name : `${text} ...`;
         },
     },

@@ -158,7 +158,7 @@
         "wantsToLook": "souhaite voir le role de"
     },
     "EatPlayField": {
-        "willEat": "vont manger"
+        "wantToEat": "souhaite manger | souhaitent manger | souhaitent manger"
     },
     "UsePotionPlayField": {
         "doesntWantToUseLifePotion": "ne souhaite pas utiliser sa potion de vie",
@@ -182,6 +182,9 @@
     },
     "DelegatePlayField": {
         "wantsToDelegateTo": "souhaite déléguer son role de maire à"
+    },
+    "ShootPlayField": {
+        "wantsToShoot": "souhaite tirer sur"
     },
     "Role": {
         "villager": "Villageois",

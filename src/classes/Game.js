@@ -16,7 +16,7 @@ class Game {
         this.history = getProp(game, "history", [], history => history.map(historyEntry => new GameHistory(historyEntry)));
         this.won = {
             by: getProp(game, "won.by"),
-            players: getProp(game, "won.players", [], won => won.players.map(player => new Player(player))),
+            players: getProp(game, "won.players", [], players => players.map(player => new Player(player))),
         };
         this.createdAt = getProp(game, "createdAt");
         this.updatedAt = getProp(game, "updatedAt");
@@ -77,20 +77,28 @@ class Game {
             waiting.to === "shoot" || waiting.to === "settle-votes" || waiting.to === "delegate";
     }
 
+    getPlayerWithRole(role) {
+        return this.players.find(player => player.role.current === role);
+    }
+
     get seerPlayer() {
-        return this.players.find(player => player.role.current === "seer");
+        return this.getPlayerWithRole("seer");
     }
 
     get witchPlayer() {
-        return this.players.find(player => player.role.current === "witch");
+        return this.getPlayerWithRole("witch");
     }
 
     get guardPlayer() {
-        return this.players.find(player => player.role.current === "guard");
+        return this.getPlayerWithRole("guard");
     }
 
     get ravenPlayer() {
-        return this.players.find(player => player.role.current === "raven");
+        return this.getPlayerWithRole("raven");
+    }
+
+    get hunterPlayer() {
+        return this.getPlayerWithRole("hunter");
     }
 
     getPlayerWithAttribute(attributeName) {

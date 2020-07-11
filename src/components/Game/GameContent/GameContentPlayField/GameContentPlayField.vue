@@ -19,6 +19,8 @@
                                   :play="play" class="h-100" @playerSelected="playerSelected"/>
             <DelegatePlayField v-else-if="game.firstWaiting.to === 'delegate'" key="delegate" :game="game"
                                :play="play" class="h-100" @playerSelected="playerSelected"/>
+            <ShootPlayField v-else-if="game.firstWaiting.to === 'shoot'" key="shoot" :game="game"
+                            :play="play" class="h-100" @playerSelected="playerSelected"/>
             <div v-else key="unknown">?</div>
         </transition>
     </div>
@@ -35,10 +37,11 @@ import MarkPlayField from "./MarkPlayField";
 import VotePlayField from "./VotePlayField";
 import SettleVotesPlayField from "./SettleVotesPlayField";
 import DelegatePlayField from "./DelegatePlayField";
+import ShootPlayField from "./ShootPlayField";
 
 export default {
     name: "GameContentPlayField",
-    components: { DelegatePlayField, SettleVotesPlayField, VotePlayField, MarkPlayField, ProtectPlayField, UsePotionPlayField, EatPlayField, LookPlayField, ElectSheriffPlayField },
+    components: { ShootPlayField, DelegatePlayField, SettleVotesPlayField, VotePlayField, MarkPlayField, ProtectPlayField, UsePotionPlayField, EatPlayField, LookPlayField, ElectSheriffPlayField },
     props: {
         game: {
             type: Game,
