@@ -186,6 +186,16 @@
     "ShootPlayField": {
         "wantsToShoot": "souhaite tirer sur"
     },
+    "GameWinners": {
+        "wonByWerewolves": "Partie gagnée par le seul loup garou | Partie gagnée par les loups garous",
+        "wonByVillagers": "Partie gagnée par le seul villageois | Partie gagnée par les villageois",
+        "restartGame": "Recommencer une partie",
+        "quit": "Quitter",
+        "newGame": "Nouvelle partie",
+        "doYouWantToKeepSamePlayers": "Voulez-vous rejouer avec les mêmes joueurs ?",
+        "keepSamePlayers": "Garder les mêmes joueurs",
+        "fromScratch": "Recommencer du début"
+    },
     "Role": {
         "villager": "Villageois",
         "werewolf": "Loup-Garou",

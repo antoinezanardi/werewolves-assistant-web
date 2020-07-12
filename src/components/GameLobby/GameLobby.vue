@@ -88,6 +88,7 @@
 
 <script>
 import { mapActions } from "vuex";
+import { parse } from "qs";
 import Game from "../../classes/Game";
 import Loading from "../shared/Loading";
 import Player from "../../classes/Player";
@@ -146,6 +147,10 @@ export default {
             const { data } = await this.$werewolvesAssistantAPI.getGames({ status: "playing" });
             if (data.length) {
                 this.waitingGame = new Game(data[0]);
+            }
+            if (Object.keys(this.$route.query).length !== 0) {
+                const query = parse(this.$route.query);
+                this.game.players.push(...query.players.map(player => new Player(player)));
             }
         } catch (err) {
             this.$error.display(err);

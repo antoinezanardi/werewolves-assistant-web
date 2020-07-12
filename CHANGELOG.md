@@ -5,7 +5,8 @@
 ### 🚀 New features
 
 * Game lobby page with game composition, random repartition and role picker. 
-* Home page with play, log in, log out and stats buttons (placeholders for play and stats buttons).
+* Home page with play, log in, log out and stats buttons (placeholder for stat button).
+* Game with all basic roles. User can restart with same players at the end of the game.
 * Authentication logic with account modal. Two tabs with log in and register panel.
 * MIT License added.
 * Pretty badges added into `README.md` file.
