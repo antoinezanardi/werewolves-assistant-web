@@ -7,7 +7,6 @@
     opacity: 0;
 }
 
-
 //FADEIN
 
 @-webkit-keyframes fade-in {
@@ -41,4 +40,19 @@
 
 .fade-in-enter, .fade-leave-to {
     opacity: 0;
+}
+
+// TRANSLATE DOWN FADE
+.translate-down-fade-enter-active, .translate-down-fade-leave-active {
+    transition: all .30s ease;
+}
+
+.translate-down-fade-enter, .translate-down-fade-leave-to {
+    opacity: 0;
+    transform: translateY(15px);
+}
+
+// FLIP LIST MOVE
+.flip-list-move {
+    transition: transform 1s;
 }

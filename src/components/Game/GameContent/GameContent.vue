@@ -1,7 +1,7 @@
 <template>
     <div id="game-content" class="d-flex flex-column">
         <GameContentHeader :game="game"/>
-        <GameContentPlayField :game="game" :play="play" class="flex-grow-1" @playerVotes="playerVotes"
+        <GameContentPlayField :game="game" :play="play" id="game-content-play-field" @playerVotes="playerVotes"
                               @playerSelected="playerSelected"/>
         <GameContentFooter :game="game" :play="play" @updateGame="updateGame"/>
     </div>
@@ -66,5 +66,9 @@ export default {
 </script>
 
 <style scoped>
-
+    #game-content-play-field {
+        overflow-y: scroll;
+        width: 100%;
+        flex-grow: 1;
+    }
 </style>

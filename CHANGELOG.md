@@ -6,6 +6,18 @@
 
 * Statistics page done with basic infos like winning percent and most used role.
 
+### 🌟 Enhancements
+
+* Transition for changing game action, phases and card during a game.
+* In the header during a game, the card flips to a new one according to the new game action.
+* Werewolves and Villagers sides during a game have death transitions.
+
+### 🐛 Bug fixes
+
+* `seen` attribute well displayed in player stripes.
+* Display good error message if there is a tie in votes during sheriff election.
+* Good alignment (right) for player stripes in werewolves side.
+
 ### 📚 Documentation
 
 * Link for [Werewolves Assistant API](https://github.com/antoinezanardi/werewolves-assistant-api) on `README.md` fixed.

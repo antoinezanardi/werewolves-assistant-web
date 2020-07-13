@@ -115,6 +115,11 @@ export default {
                 filter: grayscale(1);
             }
         }
+
+        img {
+            filter: grayscale(0);
+            transition: all 0.25s linear;
+        }
     }
 
     .unset-player-button {

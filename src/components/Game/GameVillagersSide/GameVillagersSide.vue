@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-12 text-center">
                 <span v-html="'🧑🏻‍🌾'" class="mr-2"/>
-                <span v-html="villagersAliveText"/>
+                <VRoller :text="villagersAliveText" :defaultChar="villagersAliveText" class="d-inline-flex"/>
                 <hr class="bg-dark"/>
             </div>
         </div>
@@ -16,8 +16,10 @@
             <transition-group name="flip-list" class="w-100">
                 <div v-for="player in sortedVillagers" :key="player.name" class="player-strip villager-player-strip">
                     <div class="text-center text-truncate mt-1">
-                        <i v-if="player.isAlive === false" v-tooltip="$t('GameVillagersSide.thisPlayerIsDead')"
-                           class="fa fa-skull-crossbones mr-2"/>
+                        <transition name="translate-down-fade" mode="out-in">
+                            <i v-if="player.isAlive === false" v-tooltip="$t('GameVillagersSide.thisPlayerIsDead')"
+                               class="fa fa-skull-crossbones mr-2"/>
+                        </transition>
                         <span v-html="player.name"/>
                     </div>
                     <hr class="bg-dark mt-1 mb-2"/>
@@ -77,9 +79,5 @@ export default {
             border-left: unset;
             background-image: linear-gradient(to right, #3c3c3c, #646464);
         }
-    }
-
-    .flip-list-move {
-        transition: transform 1s;
     }
 </style>

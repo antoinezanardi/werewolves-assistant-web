@@ -1,18 +1,29 @@
 <template>
     <div id="game-content-header">
         <div class="row align-items-center">
-            <div id="game-phase" class="col-2 font-weight-bold">
-                <div class="fa mr-2 text-center d-block" :class="gamePhaseClasses"/>
+            <div id="game-phase" class="col-2 font-weight-bold text-center">
+                <transition name="translate-down-fade" mode="out-in">
+                    <div class="fa text-center d-block pt-2" :key="game.phase" :class="gamePhaseClasses"/>
+                </transition>
                 <VRoller class="text-center mt-2" :text="gamePhaseLabel" :defaultChar="gamePhaseLabel"/>
             </div>
             <div class="col-8">
-                <h1 class="mb-0 d-flex justify-content-center align-items-center pb-0">
-                    <img id="game-waiting-icon" :src="gameWaitingIcon" class="img-fluid mr-3" alt="Game Waiting Icon"/>
-                    <span class="text-center" v-html="gameWaitingText"/>
-                </h1>
+                <transition name="translate-down-fade" mode="out-in">
+                    <h1 :key="gameWaitingText" class="mb-0 d-flex justify-content-center align-items-center pb-0">
+                        <img id="game-waiting-icon" :src="gameWaitingIcon" class="img-fluid mr-3" alt="Game Waiting Icon"/>
+                        <span class="text-center" v-html="gameWaitingText"/>
+                    </h1>
+                </transition>
             </div>
             <div class="col-2 text-right">
-                <img id="game-waiting-card" :src="gameWaitingCard" class="img-fluid" alt="Game Waiting Card"/>
+                <VueFlip height="50px" width="50px" v-model="gameWaitingCard.flipped">
+                    <template v-slot:front>
+                        <img id="game-waiting-card-front" :src="gameWaitingCard.thumbnail.front" class="img-fluid" alt="Game Waiting Card Front"/>
+                    </template>
+                    <template v-slot:back>
+                        <img id="game-waiting-card-back" :src="gameWaitingCard.thumbnail.back" class="img-fluid" alt="Game Waiting Card Back"/>
+                    </template>
+                </VueFlip>
             </div>
         </div>
         <div class="row justify-content-center">
@@ -96,6 +107,13 @@ export default {
                     card: sheriffCard,
                 },
             },
+            gameWaitingCard: {
+                flipped: false,
+                thumbnail: {
+                    front: undefined,
+                    back: undefined,
+                },
+            },
         };
     },
     computed: {
@@ -116,19 +134,31 @@ export default {
             const { firstWaiting } = this.game;
             return this.actions[firstWaiting.to].icon;
         },
-        gameWaitingCard() {
-            const { firstWaiting } = this.game;
-            return this.actions[firstWaiting.to].card;
+    },
+    methods: {
+        changeGameWaitingCard(newWaitingTo) {
+            if (!this.gameWaitingCard.flipped) {
+                this.gameWaitingCard.thumbnail.back = this.actions[newWaitingTo.to].card;
+                this.gameWaitingCard.flipped = true;
+            } else {
+                this.gameWaitingCard.thumbnail.front = this.actions[newWaitingTo.to].card;
+                this.gameWaitingCard.flipped = false;
+            }
+        },
+    },
+    watch: {
+        "game.firstWaiting": {
+            handler(newFirstWaiting) {
+                this.changeGameWaitingCard(newFirstWaiting);
+            },
+            deep: true,
+            immediate: true,
         },
     },
 };
 </script>
 
 <style scoped>
-    #game-content-header {
-        height: 75px;
-    }
-
     #game-phase {
         font-size: 1.5rem;
     }

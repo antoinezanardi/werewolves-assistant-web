@@ -2,11 +2,11 @@
     <div id="game-content-play-field">
         <transition name="fade" mode="out-in">
             <ElectSheriffPlayField v-if="game.firstWaiting.to === 'elect-sheriff'" key="elect-sheriff" :game="game"
-                                   class="h-100" @playerVotes="playerVotes"/>
-            <LookPlayField v-else-if="game.firstWaiting.to === 'look'" key="look" :game="game" :play="play" class="h-100"
-                           @playerSelected="playerSelected"/>
-            <EatPlayField v-else-if="game.firstWaiting.to === 'eat'" key="eat" :game="game" :play="play" class="h-100"
-                          @playerSelected="playerSelected"/>
+                                   class="h-100 container-fluid" @playerVotes="playerVotes"/>
+            <LookPlayField v-else-if="game.firstWaiting.to === 'look'" key="look" :game="game" :play="play"
+                           class="h-100 container-fluid" @playerSelected="playerSelected"/>
+            <EatPlayField v-else-if="game.firstWaiting.to === 'eat'" key="eat" :game="game" :play="play"
+                          class="h-100 container-fluid" @playerSelected="playerSelected"/>
             <UsePotionPlayField v-else-if="game.firstWaiting.to === 'use-potion'" key="use-potion" :game="game" :play="play"
                                 class="h-100" @playerSelected="playerSelected"/>
             <ProtectPlayField v-else-if="game.firstWaiting.to === 'protect'" key="protect" :game="game" :play="play"

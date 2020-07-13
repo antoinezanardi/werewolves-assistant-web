@@ -130,6 +130,7 @@
     "PlayerAttribute": {
         "attributes": {
             "sheriff": "Ce joueur est maire",
+            "seen": "Ce joueur a été vu par la voyante",
             "eaten": "Ce joueur est la cible des loups garous",
             "drankLifePotion": "Ce joueur a bu la potion de vie",
             "drankDeathPotion": "Ce joueur a bu la potion de mort",
@@ -225,6 +226,7 @@
         "BAD_REQUEST": "Mauvaise requête serveur",
         "BAD_CREDENTIALS": "Mauvais e-mail ou mot de passe",
         "EMAIL_EXISTS": "Cet e-mail est déjà utilisé par un autre compte",
+        "TIE_IN_VOTES": "Il ne peut pas y avoir d'égalité dans les votes",
         "unknownError": "Erreur inconnue"
     },
     "VeeValidate": {
