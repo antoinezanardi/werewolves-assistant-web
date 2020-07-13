@@ -1,32 +1,58 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div id="app">
+        <transition mode="out-in" name="fade">
+            <SpinningLoader v-if="loading" key="loading"/>
+            <div v-else id="werewolves-assistant" key="werewolves-assistant" class="d-flex flex-column">
+                <transition name="fade-in">
+                    <NavBar v-if="$route.name !== 'Home'"/>
+                </transition>
+                <router-view class="fade-in flex-grow-1"/>
+            </div>
+        </transition>
     </div>
-    <router-view/>
-  </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import { mapActions } from "vuex";
+import SpinningLoader from "./components/SpinningLoader/SpinningLoader";
+import NavBar from "./components/NavBar/NavBar";
 
-#nav {
-  padding: 30px;
-}
+export default {
+    name: "App",
+    components: { NavBar, SpinningLoader },
+    data() {
+        return {
+            loading: true,
+        };
+    },
+    async mounted() {
+        await this.checkTokenAndLogin();
+        this.loading = false;
+    },
+    methods: {
+        ...mapActions("user", {
+            checkUserTokenAndLogin: "checkTokenAndLogin",
+            logOutUser: "logout",
+        }),
+        async checkTokenAndLogin() {
+            try {
+                await this.checkUserTokenAndLogin();
+            } catch (err) {
+                if (this.$route.name !== "login") {
+                    await this.logOutUser({ toasted: false });
+                }
+                this.$error.display(err);
+            }
+        },
+    },
+};
+</script>
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+<style lang="scss">
+    #app {
+        height: 100%;
+        #werewolves-assistant {
+            height: 100%;
+        }
+    }
 </style>

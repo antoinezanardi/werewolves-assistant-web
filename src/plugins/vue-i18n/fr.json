@@ -1,0 +1,224 @@
+{
+    "NavBar": {
+        "werewolvesAssistant": "Assistant Loups Garous",
+        "areYouSureYouWantToQuit": "Êtes-vous sûr de vouloir quitter ?",
+        "gameCompositionNotFinished": "La composition du jeu n'est pas encore finalisée",
+        "yourProgressIsSaved": "Votre progression dans le jeu est sauvegardée",
+        "quit": "Quitter le jeu",
+        "cancel": "Annuler"
+    },
+    "Home": {
+        "werewolvesAssistant": "Assistant Loups Garous",
+        "play": "Jouer",
+        "logInOrSignUp": "Se connecter ou s'inscrire",
+        "statistics": "Statistiques",
+        "logOut": "Se déconnecter",
+        "youMustLogInToPlay": "Vous devez vous connecter pour jouer"
+    },
+    "Login": {
+        "loggedIn": "Connecté",
+        "loggedOut": "Déconnecté"
+    },
+    "AccountModal": {
+        "logIn": "Se connecter",
+        "register": "S'inscrire",
+        "close": "Fermer",
+        "userCreated": "Compte créé avec succès"
+    },
+    "LoginPanel": {
+        "email": "E-mail",
+        "password": "Mot de passe",
+        "required": "Requis"
+    },
+    "RegisterPanel": {
+        "email": "E-mail",
+        "password": "Mot de passe",
+        "confirmPassword": "Confirmer le mot de passe",
+        "required": "Requis"
+    },
+    "GameLobby": {
+        "loading": "Recherche d'une partie en cours",
+        "gameComposition": "Composition de la partie",
+        "add": "Ajouter",
+        "maxPlayerReached": "Maximum de joueurs atteint",
+        "playerName": "Nom du joueur",
+        "playerNameAlreadyTaken": "Ce nom de joueur est déjà pris",
+        "launchParty": "Lancer la partie",
+        "getRandomRepartition": "Répartition aléatoire",
+        "fourPlayerRequiredToGetRandomRepartition": "4 joueurs minimum sont requis pour répartir aléatoirement les rôles",
+        "addPlayerWithName": "Ajoutez chaque joueur en insérant leur nom ci-dessus",
+        "missingPlayersToStart": "Il manque {missingCount} joueur pour commencer la partie | Il manque un seul joueur pour commencer la partie | Il manque {missingCount} joueurs pour commencer la partie",
+        "missingOneWerewolfToStart": "Il manque un loup garou pour commencer la partie",
+        "missingOneVillagerToStart": "Il manque un villageois pour commencer",
+        "allPlayerDontHaveARole": "Certains joueurs n'ont pas de role",
+        "gameCreated": "Partie créée"
+    },
+    "GameLobbyComposition": {
+        "playerCount": "Aucun joueur | {count} joueur | {count} joueurs",
+        "villagersCount": "Aucun villageois | {count} villageois | {count} villageois",
+        "werewolvesCount": "Aucun loup garou | {count} loup garou | {count} loups garous",
+        "minToStart": "Minimum {min} pour commencer"
+    },
+    "RolePicker": {
+        "chooseRole": "Choisir un role",
+        "maxInGameReached": "Ce role a été distribué trop de fois",
+        "doYouWantToSetItAnyway": "Voulez-vous donner ce role au joueur quand même ?",
+        "confirm": "Confirmer",
+        "cancel": "Annuler",
+        "roleWillBeSwitchedWithOtherPlayer": "Les roles seront échangés avec le joueur {roleName}",
+        "roleWillBeSwitchedWithAnotherPlayer": "Les roles seront échangés avec un des joueurs {roleName}"
+    },
+    "GameLobbyAlreadyHavePlayingGame": {
+        "youAlreadyHavePlayingGame": "Vous avez déjà une partie en cours",
+        "players": "{playersCount} joueurs",
+        "day": "Jour",
+        "night": "Nuit",
+        "resumeGame": "Reprendre la partie",
+        "cancelGame": "Annuler la partie",
+        "areYouSureYouWantToCancel": "Êtes-vous sûr de vouloir annuler cette partie?",
+        "yourProgressWillBeLost": "La progression sera définitivement perdue",
+        "dontCancel": "NE PAS ANNULER",
+        "gameCanceled": "Partie annulée"
+    },
+    "PlayerCard": {
+        "pickRole": "Choisir un role",
+        "unsetRole": "Retirer le role"
+    },
+    "Game": {
+        "loadingGame": "Chargement de la partie",
+        "wolves": "Loups garous"
+    },
+    "GameContentHeader": {
+        "day": "Jour",
+        "night": "Nuit",
+        "waiting": {
+            "all": {
+                "elect-sheriff": "Élection du maire",
+                "vote": "C'est l'heure du vote"
+            },
+            "seer": {
+                "look": "Au tour de la voyante"
+            },
+            "werewolves": {
+                "eat": "Au tour des loups garous"
+            },
+            "witch": {
+                "use-potion": "Au tour de la sorcière"
+            },
+            "guard": {
+                "protect": "Au tour du salvateur"
+            },
+            "raven": {
+                "mark": "Au tour du corbeau"
+            },
+            "hunter": {
+                "shoot": "Au tour du chasseur"
+            },
+            "sheriff": {
+                "delegate": "Passation de pouvoir du maire",
+                "settle-votes": "Départage des votes"
+            }
+        }
+    },
+    "GameContentFooter": {
+        "next": "Suivant",
+        "playersHaveVoted": "{votesCount}/{playersCount} joueurs ont voté",
+        "playersTargeted": "{targetsCount}/{min} joueur visé",
+        "minOnePlayerHasToVote": "Minimum 1 joueur doit voter",
+        "minOnePlayerHasToBeTargeted": "Minimum 1 joueur doit être visé"
+    },
+    "PlayerAttribute": {
+        "attributes": {
+            "sheriff": "Ce joueur est maire",
+            "eaten": "Ce joueur est la cible des loups garous",
+            "drankLifePotion": "Ce joueur a bu la potion de vie",
+            "drankDeathPotion": "Ce joueur a bu la potion de mort",
+            "protected": "Ce joueur est protégé",
+            "ravenMarked": "Ce joueur est marqué par le corbeau"
+        }
+    },
+    "PlayerThumbnail": {
+        "unsetPlayer": "Retirer le joueur"
+    },
+    "PlayerVote": {
+        "voteFor": "Vote pour",
+        "none": "Personne"
+    },
+    "GameVillagersSide": {
+        "villagers": "Villageois",
+        "alive": "en vie",
+        "thisPlayerIsDead": "Ce joueur est mort"
+    },
+    "GameWerewolvesSide": {
+        "werewolves": "Loups Garous",
+        "alive": "en vie",
+        "thisPlayerIsDead": "Ce joueur est mort"
+    },
+    "LookPlayField": {
+        "wantsToLook": "souhaite voir le role de"
+    },
+    "EatPlayField": {
+        "wantToEat": "souhaite manger | souhaitent manger | souhaitent manger"
+    },
+    "UsePotionPlayField": {
+        "doesntWantToUseLifePotion": "ne souhaite pas utiliser sa potion de vie",
+        "doesntWantToUseDeathPotion": "ne souhaite pas utiliser sa potion de mort",
+        "useLifePotionOn": "Utiliser la potion de vie sur ...",
+        "useDeathPotionOn": "Utiliser la potion de mort sur ...",
+        "wantsToUseLifePotionOn": "souhaite utiliser sa potion de vie sur",
+        "wantsToUseDeathPotionOn": "souhaite utiliser sa potion de mort sur"
+    },
+    "ProtectPlayField": {
+        "wantsToProtect": "souhaite protéger",
+        "wantsToSelfProtect": "souhaite se protéger"
+    },
+    "MarkPlayField": {
+        "wantsToMark": "souhaite marquer",
+        "wantsToSelfMark": "souhaite s'auto-marquer",
+        "skip": "ne souhaite marquer personne"
+    },
+    "SettleVotesPlayField": {
+        "chooseToHang": "souhaite pendre"
+    },
+    "DelegatePlayField": {
+        "wantsToDelegateTo": "souhaite déléguer son role de maire à"
+    },
+    "ShootPlayField": {
+        "wantsToShoot": "souhaite tirer sur"
+    },
+    "GameWinners": {
+        "wonByWerewolves": "Partie gagnée par le seul loup garou | Partie gagnée par les loups garous",
+        "wonByVillagers": "Partie gagnée par le seul villageois | Partie gagnée par les villageois",
+        "restartGame": "Recommencer une partie",
+        "quit": "Quitter",
+        "newGame": "Nouvelle partie",
+        "doYouWantToKeepSamePlayers": "Voulez-vous rejouer avec les mêmes joueurs ?",
+        "keepSamePlayers": "Garder les mêmes joueurs",
+        "fromScratch": "Recommencer du début"
+    },
+    "Role": {
+        "villager": "Villageois",
+        "werewolf": "Loup-Garou",
+        "seer": "Voyante",
+        "witch": "Sorcière",
+        "hunter": "Chasseur",
+        "guard": "Salvateur",
+        "raven": "Corbeau"
+    },
+    "Error": {
+        "unauthorized": "Vous ne pouvez pas accéder à cette page",
+        "BAD_REQUEST": "Mauvaise requête serveur",
+        "BAD_CREDENTIALS": "Mauvais e-mail ou mot de passe",
+        "EMAIL_EXISTS": "Cet e-mail est déjà utilisé par un autre compte",
+        "unknownError": "Erreur inconnue"
+    },
+    "VeeValidate": {
+        "required": "Ce champ est requis",
+        "email": "L'email renseigné est invalide",
+        "min": "Ce champ doit faire au minimum {length} caractères",
+        "confirm_password": "Les mots de passe de correspondent pas"
+    },
+    "VSelect": {
+        "noOption": "Aucun choix correspondant à la recherche"
+    }
+}

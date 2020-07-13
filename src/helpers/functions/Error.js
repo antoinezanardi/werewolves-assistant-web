@@ -1,0 +1,1 @@
+exports.isAPIError = err => err && err.response && err.response.data && err.response.data.HTTPCode;
