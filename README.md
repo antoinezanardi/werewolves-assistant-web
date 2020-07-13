@@ -12,7 +12,7 @@
 [![ForTheBadge uses-js](http://ForTheBadge.com/images/badges/uses-js.svg)](https://GitHub.com/antoinezanardi/werewolves-assistant-web)
 
 ## 🐺 Description
-Werewolves Assistant Web is a Vue web app using the [Werewolves Assistant API](https://github.com/antoinezanardi/werewolves-assistant-web).
+Werewolves Assistant Web is a Vue web app using the [Werewolves Assistant API](https://github.com/antoinezanardi/werewolves-assistant-api).
 Thanks to this app, be the game master of the Werewolves game is so easy ! Try it out now with live demos below.
 
 ## 🌻 Live demos

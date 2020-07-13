@@ -50,7 +50,7 @@
         "missingPlayersToStart": "Il manque {missingCount} joueur pour commencer la partie | Il manque un seul joueur pour commencer la partie | Il manque {missingCount} joueurs pour commencer la partie",
         "missingOneWerewolfToStart": "Il manque un loup garou pour commencer la partie",
         "missingOneVillagerToStart": "Il manque un villageois pour commencer",
-        "allPlayerDontHaveARole": "Certains joueurs n'ont pas de role",
+        "allPlayerDontHaveARole": "Certains joueurs n'ont pas de rôle",
         "gameCreated": "Partie créée"
     },
     "GameLobbyComposition": {
@@ -60,13 +60,13 @@
         "minToStart": "Minimum {min} pour commencer"
     },
     "RolePicker": {
-        "chooseRole": "Choisir un role",
-        "maxInGameReached": "Ce role a été distribué trop de fois",
-        "doYouWantToSetItAnyway": "Voulez-vous donner ce role au joueur quand même ?",
+        "chooseRole": "Choisir un rôle",
+        "maxInGameReached": "Ce rôle a été distribué trop de fois",
+        "doYouWantToSetItAnyway": "Voulez-vous donner ce rôle au joueur quand même ?",
         "confirm": "Confirmer",
         "cancel": "Annuler",
-        "roleWillBeSwitchedWithOtherPlayer": "Les roles seront échangés avec le joueur {roleName}",
-        "roleWillBeSwitchedWithAnotherPlayer": "Les roles seront échangés avec un des joueurs {roleName}"
+        "roleWillBeSwitchedWithOtherPlayer": "Les rôles seront échangés avec le joueur {roleName}",
+        "roleWillBeSwitchedWithAnotherPlayer": "Les rôles seront échangés avec un des joueurs {roleName}"
     },
     "GameLobbyAlreadyHavePlayingGame": {
         "youAlreadyHavePlayingGame": "Vous avez déjà une partie en cours",
@@ -81,8 +81,8 @@
         "gameCanceled": "Partie annulée"
     },
     "PlayerCard": {
-        "pickRole": "Choisir un role",
-        "unsetRole": "Retirer le role"
+        "pickRole": "Choisir un rôle",
+        "unsetRole": "Retirer le rôle"
     },
     "Game": {
         "loadingGame": "Chargement de la partie",
@@ -155,7 +155,7 @@
         "thisPlayerIsDead": "Ce joueur est mort"
     },
     "LookPlayField": {
-        "wantsToLook": "souhaite voir le role de"
+        "wantsToLook": "souhaite voir le rôle de"
     },
     "EatPlayField": {
         "wantToEat": "souhaite manger | souhaitent manger | souhaitent manger"
@@ -181,7 +181,7 @@
         "chooseToHang": "souhaite pendre"
     },
     "DelegatePlayField": {
-        "wantsToDelegateTo": "souhaite déléguer son role de maire à"
+        "wantsToDelegateTo": "souhaite déléguer son rôle de maire à"
     },
     "ShootPlayField": {
         "wantsToShoot": "souhaite tirer sur"
@@ -195,6 +195,21 @@
         "doYouWantToKeepSamePlayers": "Voulez-vous rejouer avec les mêmes joueurs ?",
         "keepSamePlayers": "Garder les mêmes joueurs",
         "fromScratch": "Recommencer du début"
+    },
+    "Statistics": {
+        "statistics": "Statistiques",
+        "loadingStatistics": "Chargement des statistiques",
+        "createdGames": "<b>{count}</b> partie créée | <b>{count}</b> parties créées",
+        "averageNumberOfPlayers": "<b>{count}</b> joueurs en moyenne par partie",
+        "averageNumberOfTurns": "<b>{count}</b> tours en moyenne par partie",
+        "mostUsedRole": "Rôle le plus distribué",
+        "leastUsedRole": "Rôle le moins distribué",
+        "withUsage": "avec une seule utilisation | avec {count} utilisations",
+        "averageVillagersWinning": "<b>{count}</b>% de victoire des villageois",
+        "averageWerewolvesWinning": "<b>{count}</b>% de victoire des loups garous",
+        "backToHome": "Retour à l'accueil",
+        "youDontHaveGamesCreatedYet": "Vous n'avez pas encore créé de partie",
+        "createGameNow": "Créer une partie maintenant"
     },
     "Role": {
         "villager": "Villageois",

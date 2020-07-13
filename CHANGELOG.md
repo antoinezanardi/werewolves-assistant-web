@@ -1,5 +1,19 @@
 # 📈 LIST OF CHANGES FOR WEREWOLVES ASSISTANT WEB
 
+## 0.2.0 (2020-07-??)
+
+### 🚀 New features
+
+* Statistics page done with basic infos like winning percent and most used role.
+
+### 📚 Documentation
+
+* Link for [Werewolves Assistant API](https://github.com/antoinezanardi/werewolves-assistant-api) on `README.md` fixed.
+
+### 📦 Packages
+
+---
+
 ## 0.1.0 (2020-07-13)
 
 ### 🚀 New features
