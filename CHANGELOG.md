@@ -1,6 +1,6 @@
 # 📈 LIST OF CHANGES FOR WEREWOLVES ASSISTANT WEB
 
-## 0.1.0 (2020-06-??)
+## 0.1.0 (2020-07-13)
 
 ### 🚀 New features
 
@@ -22,14 +22,14 @@
 * `node-sass` installed with version `4.14.1`.
 * `popper.js` installed with version `1.16.1`.
 * `qs` installed with version `6.9.4`.
-* `sass-loader` installed with version `9.0.1`.
-* `sweetalert2` installed with version `9.15.2`.
+* `sass-loader` installed with version `9.0.2`.
+* `sweetalert2` installed with version `9.15.3`.
 * `v-tooltip` installed with version `3.3.5`.
 * `vee-validate` installed with version `3.3.7`.
 * `vue-flip` installed with version `1.0.2`.
 * `vue-i18n` installed with version `8.18.2`.
 * `vue-roller` installed with version `1.9.0`.
-* `vue-select` installed with version `3.10.5`.
+* `vue-select` installed with version `3.10.7`.
 * `vue-toasted` installed with version `1.1.28`.
 * `@vue/cli-plugin-e2e-cypress` updated to version `4.4.6`.
 * `@vue/cli-plugin-eslint` updated to version `4.4.6`.
