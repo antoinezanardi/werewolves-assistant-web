@@ -1,11 +1,15 @@
 # 📈 LIST OF CHANGES FOR WEREWOLVES ASSISTANT WEB
 
-## 0.1.0 (2020-06-23)
+## 0.1.0 (2020-07-13)
 
 ### 🚀 New features
 
-* Home page with play, log in, log out and stats buttons (placeholders for play and stats buttons).
+* Game lobby page with game composition, random repartition and role picker. 
+* Home page with play, log in, log out and stats buttons (placeholder for stat button).
+* Game with all basic roles. User can restart with same players at the end of the game.
 * Authentication logic with account modal. Two tabs with log in and register panel.
+* MIT License added.
+* Pretty badges added into `README.md` file.
 
 ### 📦 Packages
 
@@ -17,17 +21,26 @@
 * `jsonwebtoken` installed with version `8.5.1`.
 * `node-sass` installed with version `4.14.1`.
 * `popper.js` installed with version `1.16.1`.
-* `sass-loader` installed with version `8.0.2`.
+* `qs` installed with version `6.9.4`.
+* `sass-loader` installed with version `9.0.2`.
+* `sweetalert2` installed with version `9.15.3`.
 * `v-tooltip` installed with version `3.3.5`.
-* `vee-validate` installed with version `3.3.5`.
+* `vee-validate` installed with version `3.3.7`.
+* `vue-flip` installed with version `1.0.2`.
 * `vue-i18n` installed with version `8.18.2`.
+* `vue-roller` installed with version `1.9.0`.
+* `vue-select` installed with version `3.10.7`.
 * `vue-toasted` installed with version `1.1.28`.
-* `@vue/cli-plugin-e2e-cypress` updated to version `4.4.5`.
-* `@vue/cli-plugin-eslint` updated to version `4.4.5`.
-* `@vue/cli-plugin-router` updated to version `4.4.5`.
-* `@vue/cli-plugin-unit-mocha` updated to version `4.4.5`.
-* `@vue/cli-plugin-vuex` updated to version `4.4.5`.
-* `@vue/cli-service` updated to version `4.4.5`.
+* `@vue/cli-plugin-e2e-cypress` updated to version `4.4.6`.
+* `@vue/cli-plugin-eslint` updated to version `4.4.6`.
+* `@vue/cli-plugin-router` updated to version `4.4.6`.
+* `@vue/cli-plugin-unit-mocha` updated to version `4.4.6`.
+* `@vue/cli-plugin-vuex` updated to version `4.4.6`.
+* `@vue/cli-service` updated to version `4.4.6`.
+* `@vue/eslint-config-airbnb` updated to version `5.1.0`.
+* `eslint` updated to version `7.4.0`.
+* `eslint-plugin-import` updated to version `2.22.0`.
+* `vuex` updated to version `3.5.1`.
 
 ---
 

@@ -1,26 +1,28 @@
 <template>
-    <div id="home">
-        <div class="row">
-            <div class="col-12 text-center">
-                <h1 id="title" class="text-center" v-html="$t('Home.werewolvesAssistant')"/>
-                <img src="../../assets/img/wolf.png" alt="Wolf"/>
+    <div id="home" class="container-fluid d-flex flex-column">
+        <div id="home-content" class="flex-column flex-grow-1">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1 id="title" class="text-center" v-html="$t('Home.werewolvesAssistant')"/>
+                    <img src="../../assets/img/wolf.png" alt="Wolf"/>
+                </div>
             </div>
-        </div>
-        <div class="row mt-4 justify-content-center">
-            <div class="col-lg-3 col-sm-12">
-                <button @click="play" class="btn btn-block btn-primary text-uppercase font-weight-bold home-btn">
-                    <i class="fa fa-play-circle mr-2"/>
-                    <span v-html="$t('Home.play')"/>
-                </button>
-                <transition name="fade" mode="out-in">
-                    <button v-if="isUserLogged" class="btn btn-block btn-dark text-uppercase font-weight-bold home-btn mt-4">
-                        <i class="far fa-chart-bar mr-2"/>
-                        <span v-html="$t('Home.statistics')"/>
+            <div class="mt-4 d-flex justify-content-center">
+                <div class="col-lg-3 col-sm-12">
+                    <button @click="play" class="btn btn-block btn-primary text-uppercase font-weight-bold home-btn">
+                        <i class="fa fa-play-circle mr-2"/>
+                        <span v-html="$t('Home.play')"/>
                     </button>
-                </transition>
+                    <transition name="fade" mode="out-in">
+                        <button v-if="isUserLogged" class="btn btn-block btn-dark text-uppercase font-weight-bold home-btn mt-4">
+                            <i class="far fa-chart-bar mr-2"/>
+                            <span v-html="$t('Home.statistics')"/>
+                        </button>
+                    </transition>
+                </div>
             </div>
         </div>
-        <div id="home-footer" class="row">
+        <div id="home-footer" class="">
             <div class="col-12 text-center">
                 <hr class="border-dark"/>
                 <transition name="fade" mode="out-in">
@@ -64,7 +66,7 @@ export default {
         },
         play() {
             if (this.isUserLogged) {
-                console.log("coucuo");
+                this.$router.push("/game-lobby");
             } else {
                 this.showAccountModal();
                 this.$toasted.info(this.$t("Home.youMustLogInToPlay"), { icon: "info-circle" });
@@ -84,9 +86,6 @@ export default {
     }
 
     #home-footer {
-        position: fixed;
-        bottom: 0;
-        padding: 25px;
-        width: 100%;
+        padding: 15px;
     }
 </style>

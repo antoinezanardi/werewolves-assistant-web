@@ -1,5 +1,5 @@
 <template>
-    <span id="btn-container" v-tooltip="tooltipOptions">
+    <div id="btn-container" v-tooltip="tooltipOptions">
         <button ref="submitButton" :class="[ classes, { disabled: loading || disabled } ]" @click="click"
                 :disabled="loading || disabled" type="submit">
             <transition mode="out-in" name="fade">
@@ -7,7 +7,7 @@
                 <HalfCircleSpinner v-else key="loading" :size="24" :animation-duration="1000"/>
             </transition>
         </button>
-    </span>
+    </div>
 </template>
 
 <script>
@@ -45,14 +45,15 @@ export default {
     computed: {
         tooltipOptions() {
             return {
-                container: "body",
                 content: this.disabled ? this.disabledTooltipText : this.tooltipText,
             };
         },
     },
     methods: {
         click(e) {
-            this.$emit("click", e);
+            if (!this.loading) {
+                this.$emit("click", e);
+            }
         },
     },
 };

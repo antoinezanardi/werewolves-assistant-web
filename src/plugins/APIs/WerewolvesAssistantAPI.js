@@ -1,5 +1,6 @@
 import Axios from "axios";
 import JWT from "jsonwebtoken";
+import { stringify } from "qs";
 import Config from "../../../config";
 
 const WerewolvesAssistantAPI = {
@@ -10,26 +11,17 @@ const WerewolvesAssistantAPI = {
             timeout: 0,
             headers: { "Content-Type": "application/json" },
         };
-        const axios = {
-            basic: Axios.create({
-                ...axiosConfig,
-                auth: {
-                    username: Config.API.werewolvesAssistant.basicAuth.username,
-                    password: Config.API.werewolvesAssistant.basicAuth.password,
-                },
-            }),
-            JWT: Axios.create(axiosConfig),
-        };
+        const axios = Axios.create(axiosConfig);
 
         Vue.prototype.$werewolvesAssistantAPI = {};
 
         Vue.prototype.$werewolvesAssistantAPI.setToken = token => {
-            axios.JWT.defaults.headers["Authorization"] = `Bearer ${token}`;
+            axios.defaults.headers["Authorization"] = `Bearer ${token}`;
         };
 
-        Vue.prototype.$werewolvesAssistantAPI.register = user => axios.basic.post(`/users`, user);
+        Vue.prototype.$werewolvesAssistantAPI.register = user => axios.post(`/users`, user);
 
-        Vue.prototype.$werewolvesAssistantAPI.login = user => axios.basic.post(`/users/login`, user);
+        Vue.prototype.$werewolvesAssistantAPI.login = user => axios.post(`/users/login`, user);
 
         Vue.prototype.$werewolvesAssistantAPI.decodeToken = () => {
             let decoded = { userId: 0 };
@@ -40,7 +32,21 @@ const WerewolvesAssistantAPI = {
             return decoded;
         };
 
-        Vue.prototype.$werewolvesAssistantAPI.getUser = userId => axios.basic.get(`/users/${userId}`);
+        Vue.prototype.$werewolvesAssistantAPI.getUser = userId => axios.get(`/users/${userId}`);
+
+        Vue.prototype.$werewolvesAssistantAPI.getGames = queryStrings => axios.get(`/games?${stringify(queryStrings)}`);
+
+        Vue.prototype.$werewolvesAssistantAPI.getGame = gameId => axios.get(`/games/${gameId}`);
+
+        Vue.prototype.$werewolvesAssistantAPI.getGameRepartition = queryStrings => axios.get(`/games/repartition?${stringify(queryStrings)}`);
+
+        Vue.prototype.$werewolvesAssistantAPI.createGame = data => axios.post("/games", data);
+
+        Vue.prototype.$werewolvesAssistantAPI.patchGame = (gameId, data) => axios.patch(`/games/${gameId}`, data);
+
+        Vue.prototype.$werewolvesAssistantAPI.makeAPlay = (gameId, play) => axios.post(`/games/${gameId}/play`, play);
+
+        Vue.prototype.$werewolvesAssistantAPI.getRoles = () => axios.get(`/roles`);
     },
 };
 

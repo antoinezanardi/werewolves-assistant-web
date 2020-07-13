@@ -69,9 +69,6 @@ export default {
             return this.panel === "log-in" ? this.$t("AccountModal.logIn") : this.$t("AccountModal.register");
         },
     },
-    mounted(){
-        this.$smoothReflow({ el: ".modal-body" });
-    },
     methods: {
         ...mapActions("user", {
             login: "login",

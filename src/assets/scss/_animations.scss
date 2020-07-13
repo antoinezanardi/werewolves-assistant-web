@@ -1,0 +1,20 @@
+.animated {
+    animation: bounce 0.40s infinite alternate;
+    -webkit-animation: bounce 0.40s infinite alternate;
+}
+@keyframes bounce {
+    from {
+        transform: translateY(0px);
+    }
+    to {
+        transform: translateY(-5px);
+    }
+}
+@-webkit-keyframes bounce {
+    from {
+        transform: translateY(0px);
+    }
+    to {
+        transform: translateY(-5px);
+    }
+}

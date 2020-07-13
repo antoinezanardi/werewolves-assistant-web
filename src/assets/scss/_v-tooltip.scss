@@ -3,9 +3,10 @@
     z-index: 10000;
 
     .tooltip-inner {
+        max-width: 300px;
         background: black;
         color: white;
-        border-radius: 16px;
+        border-radius: 5px;
         padding: 5px 10px 4px;
     }
 
@@ -50,6 +51,7 @@
     }
 
     &[x-placement^="right"] {
+
         margin-left: 5px;
 
         .tooltip-arrow {
@@ -80,19 +82,22 @@
     }
 
     &.popover {
-        $color: #f9f9f9;
+        $color: $dark-color;
+        $border-color: rgba(160, 160, 160, 0.56);
+        background-color: $border-color;
+        border-color: $border-color;
 
         .popover-inner {
             background: $color;
-            color: black;
-            padding: 24px;
-            border-radius: 5px;
+            color: white;
+            padding: 10px;
             box-shadow: 0 5px 30px rgba(black, .1);
         }
 
         .popover-arrow {
             border-color: $color;
         }
+        color: $border-color;
     }
 
     &[aria-hidden='true'] {
