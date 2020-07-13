@@ -2,9 +2,8 @@
     <div id="game-content-header">
         <div class="row align-items-center">
             <div id="game-phase" class="col-2 font-weight-bold">
-                <span class="fa mr-2" :class="gamePhaseClasses"/>
-                <span class="mr-2" v-html="gamePhaseText"/>
-                <span v-html="game.turn"/>
+                <div class="fa mr-2 text-center d-block" :class="gamePhaseClasses"/>
+                <VRoller class="text-center mt-2" :text="gamePhaseLabel" :defaultChar="gamePhaseLabel"/>
             </div>
             <div class="col-8">
                 <h1 class="mb-0 d-flex justify-content-center align-items-center pb-0">
@@ -105,6 +104,9 @@ export default {
         },
         gamePhaseText() {
             return this.game.phase === "day" ? this.$t("GameContentHeader.day") : this.$t("GameContentHeader.night");
+        },
+        gamePhaseLabel() {
+            return `${this.gamePhaseText} ${this.game.turn}`;
         },
         gameWaitingText() {
             const { firstWaiting } = this.game;
