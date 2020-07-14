@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-12 text-center">
                 <span v-html="'🧑🏻‍🌾'" class="mr-2"/>
-                <VRoller :text="villagersAliveText" :defaultChar="villagersAliveText" class="d-inline-flex"/>
+                <VRoller :text="villagersAliveText" :default-char="villagersAliveText" class="d-inline-flex"/>
                 <hr class="bg-dark"/>
             </div>
         </div>

@@ -8,7 +8,8 @@
         <div class="row">
             <div class="col-12">
                 <h3 class="text-center">
-                    <VRoller :defaultChar="delegateTargetText" :text="delegateTargetText"/>
+                    <VRoller :default-char="delegateTargetText" :text="delegateTargetText" class="d-inline-flex"/>
+                    <CancelPlayerTarget :play="play" attribute="delegate" class="ml-2" @playerSelected="playerSelected"/>
                 </h3>
             </div>
         </div>
@@ -21,10 +22,11 @@
 import PlayerCard from "../../../shared/Game/PlayerCard";
 import Game from "../../../../classes/Game";
 import PlayerTargets from "../../../shared/Game/PlayerTargets/PlayerTargets";
+import CancelPlayerTarget from "../../../shared/Game/CancelPlayerTarget";
 
 export default {
     name: "DelegatePlayField",
-    components: { PlayerTargets, PlayerCard },
+    components: { CancelPlayerTarget, PlayerTargets, PlayerCard },
     props: {
         game: {
             type: Game,

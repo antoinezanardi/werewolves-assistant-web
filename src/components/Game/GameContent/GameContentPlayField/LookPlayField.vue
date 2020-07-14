@@ -8,11 +8,13 @@
         <div class="row">
             <div class="col-12">
                 <h3 class="text-center">
-                    <VRoller :defaultChar="lookTargetText" :text="lookTargetText"/>
+                    <VRoller :default-char="lookTargetText" :text="lookTargetText" class="d-inline-flex"/>
+                    <CancelPlayerTarget :play="play" attribute="seen" class="ml-2" @playerSelected="playerSelected"/>
                 </h3>
             </div>
         </div>
-        <PlayerTargets :game="game" :targets="alivePlayersExceptSeer" :play="play" attribute="seen" class="flex-grow-1" @playerSelected="playerSelected"/>
+        <PlayerTargets :game="game" :targets="alivePlayersExceptSeer" :play="play" attribute="seen" class="flex-grow-1"
+                       @playerSelected="playerSelected"/>
     </div>
 </template>
 
@@ -20,10 +22,11 @@
 import Game from "../../../../classes/Game";
 import PlayerTargets from "../../../shared/Game/PlayerTargets/PlayerTargets";
 import PlayerCard from "../../../shared/Game/PlayerCard";
+import CancelPlayerTarget from "../../../shared/Game/CancelPlayerTarget";
 
 export default {
     name: "LookPlayField",
-    components: { PlayerCard, PlayerTargets },
+    components: { CancelPlayerTarget, PlayerCard, PlayerTargets },
     props: {
         game: {
             type: Game,

@@ -9,7 +9,8 @@
             <div class="col-12">
                 <h3 class="text-center">
                     <img :src="SVGs.lifePotionSVG" width="50" alt="Life Potion" class="mr-2">
-                    <VRoller :defaultChar="useLifePotionText" :text="useLifePotionText" class="d-inline"/>
+                    <VRoller :default-char="useLifePotionText" :text="useLifePotionText" class="d-inline-flex"/>
+                    <CancelPlayerTarget :play="play" attribute="drank-life-potion" class="ml-2" @playerSelected="playerSelected"/>
                 </h3>
             </div>
         </div>
@@ -17,21 +18,22 @@
             <div class="col-12">
                 <h3 class="text-center">
                     <img :src="SVGs.deathPotionSVG" width="50" alt="Death Potion" class="mr-2">
-                    <VRoller :defaultChar="useDeathPotionText" :text="useDeathPotionText" class="d-inline"/>
+                    <VRoller :default-char="useDeathPotionText" :text="useDeathPotionText" class="d-inline-flex"/>
+                    <CancelPlayerTarget :play="play" attribute="drank-death-potion" class="ml-2" @playerSelected="playerSelected"/>
                 </h3>
             </div>
         </div>
         <div class="row mt-2">
             <div class="col-12">
-                <ul class="nav nav-pills nav-fill" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link" id="use-life-potion-tab" data-toggle="pill" href="#use-life-potion-content" role="tab">
+                <ul class="nav nav-pills nav-fill">
+                    <li class="nav-item" @click="panel = 'life-potion'">
+                        <a class="nav-link" :class="{ active: panel === 'life-potion' }" id="use-life-potion-tab" href="#">
                             <img :src="SVGs.lifePotionSVG" width="25" alt="Life Potion" class="mr-2">
                             <span v-html="$t('UsePotionPlayField.useLifePotionOn')"/>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="use-death-potion-tab" data-toggle="pill" href="#use-death-potion-content" role="tab">
+                    <li class="nav-item" @click="panel = 'death-potion'">
+                        <a class="nav-link" :class="{ active: panel === 'death-potion' }" id="use-death-potion-tab" href="#">
                             <img :src="SVGs.deathPotionSVG" width="25" alt="Death Potion" class="mr-2">
                             <span v-html="$t('UsePotionPlayField.useDeathPotionOn')"/>
                         </a>
@@ -41,16 +43,16 @@
         </div>
         <div class="row flex-grow-1">
             <div class="col-12">
-                <div class="tab-content h-100">
-                    <div class="tab-pane fade show h-100" id="use-life-potion-content" role="tabpanel">
+                <transition mode="out-in" name="translate-down-fade">
+                    <div v-if="panel === 'life-potion'" key="life-potion-panel" class="h-100" id="use-life-potion-content">
                         <PlayerTargets :game="game" :targets="[game.eatenPlayer]" :play="play" attribute="drank-life-potion"
                                        class="h-100" @playerSelected="playerSelected"/>
                     </div>
-                    <div class="tab-pane fade show h-100" id="use-death-potion-content" role="tabpanel">
+                    <div v-else-if="panel === 'death-potion'" key="death-potion-panel" class="h-100" id="use-death-potion-content">
                         <PlayerTargets :game="game" :targets="game.alivePlayers" :play="play" attribute="drank-death-potion"
                                        class="h-100" @playerSelected="playerSelected"/>
                     </div>
-                </div>
+                </transition>
             </div>
         </div>
     </div>
@@ -62,10 +64,11 @@ import Game from "../../../../classes/Game";
 import lifePotionSVG from "../../../../assets/svg/attributes/drank-life-potion.svg";
 import deathPotionSVG from "../../../../assets/svg/attributes/drank-death-potion.svg";
 import PlayerTargets from "../../../shared/Game/PlayerTargets/PlayerTargets";
+import CancelPlayerTarget from "../../../shared/Game/CancelPlayerTarget";
 
 export default {
     name: "UsePotionPlayField",
-    components: { PlayerTargets, PlayerCard },
+    components: { CancelPlayerTarget, PlayerTargets, PlayerCard },
     props: {
         game: {
             type: Game,
@@ -79,6 +82,7 @@ export default {
     data() {
         return {
             SVGs: { lifePotionSVG, deathPotionSVG },
+            panel: undefined,
         };
     },
     computed: {

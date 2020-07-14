@@ -1,6 +1,6 @@
 <template>
     <div id="home" class="container-fluid d-flex flex-column">
-        <div id="home-content" class="flex-column flex-grow-1">
+        <div id="home-content" class="flex-column flex-grow-1 d-flex justify-content-center">
             <div class="row">
                 <div class="col-12 text-center">
                     <h1 id="title" class="text-center" v-html="$t('Home.werewolvesAssistant')"/>

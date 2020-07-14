@@ -8,7 +8,7 @@
         <div class="row pr-0">
             <div class="col-12 text-center pr-0">
                 <span v-html="'🐺'" class="mr-2"/>
-                <VRoller :text="werewolvesAliveText" :defaultChar="werewolvesAliveText" class="d-inline-flex"/>
+                <VRoller :text="werewolvesAliveText" :default-char="werewolvesAliveText" class="d-inline-flex"/>
                 <hr class="bg-dark"/>
             </div>
         </div>

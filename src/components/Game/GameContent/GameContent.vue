@@ -39,17 +39,24 @@ export default {
                 return this.play.votes.push(vote);
             }
         },
-        playerSelected({ player, selected, attribute }) {
-            const target = { player: player._id, attribute };
-            if (attribute === "drank-life-potion") {
+        playerSelected(payload) {
+            const target = { player: payload.player._id, attribute: payload.attribute };
+            if (target.attribute === "drank-life-potion") {
                 target.potion = { life: true };
-            } else if (attribute === "drank-death-potion") {
+            } else if (target.attribute === "drank-death-potion") {
                 target.potion = { death: true };
             }
-            const idx = this.play.targets.findIndex(target => target.player === player._id);
+            if (payload.selected) {
+                const idx = this.play.targets.findIndex(({ attribute }) => attribute === target.attribute);
+                if (idx !== -1) {
+                    this.play.targets.splice(idx, 1);
+                }
+            }
+            const idx = this.play.targets.findIndex(({ player, attribute }) => player === target.player && attribute === target.attribute);
+            console.log(target);
             if (idx !== -1) {
-                return selected ? this.play.targets.splice(idx, 1, target) : this.play.targets.splice(idx, 1);
-            } else if (selected) {
+                return payload.selected ? this.play.targets.splice(idx, 1, target) : this.play.targets.splice(idx, 1);
+            } else if (payload.selected) {
                 return this.play.targets.push(target);
             }
         },

@@ -1,6 +1,6 @@
 <template>
     <div class="player-card d-flex flex-column align-items-center"
-         :class="{ 'player-card-selectable': selectable, 'player-card-selected': selected }">
+         :class="{ 'selectable': selectable, 'selected': selected }" ref="playerCard">
         <PlayerThumbnail :game="game" :player="player" :size="size" :class="{ 'player-card-thumbnail-selected': selected }"
                          @rolePicked="rolePicked" @unsetPlayer="unsetPlayer" @click.native="togglePlayerSelected"/>
         <div class="player-card-name text-center" :class="{ 'player-card-name-lg': size === 'lg' }"
@@ -38,11 +38,10 @@ export default {
             type: Boolean,
             default: false,
         },
-    },
-    data() {
-        return {
-            selected: false,
-        };
+        selected: {
+            type: Boolean,
+            default: false,
+        },
     },
     computed: {
         playerRole() {
@@ -61,14 +60,7 @@ export default {
         },
         togglePlayerSelected() {
             if (this.selectable) {
-                this.selected = !this.selected;
-                this.$emit("playerSelected", { player: this.player, selected: this.selected });
-            }
-        },
-        unselectPlayer() {
-            if (this.selectable) {
-                this.selected = false;
-                this.$emit("playerSelected", { player: this.player, selected: false });
+                this.$emit("playerSelected", { player: this.player, selected: !this.selected });
             }
         },
     },
@@ -79,13 +71,13 @@ export default {
     .player-card {
         padding: 5px;
 
-        &.player-card-selectable {
+        &.selectable {
             .player-card-name {
                 cursor: pointer;
             }
         }
 
-        &.player-card-selected {
+        &.selected {
             .player-card-name {
                 font-weight: 700;
             }

@@ -11,14 +11,14 @@
             <div class="col-4">
                 <transition name="fade" mode="out-in">
                     <div v-if="game.isVotePlay" class="text-center" key="vote-play-requirements">
-                        <VRoller :defaultChar="votePlayRequirementsText" :text="votePlayRequirementsText"/>
+                        <VRoller :default-char="votePlayRequirementsText" :text="votePlayRequirementsText"/>
                         <div class="text-muted font-italic">
                             <i class="fa mr-2" :class="votePlayRequirementsIconClass"/>
                             <span v-html="$t('GameContentFooter.minOnePlayerHasToVote')"/>
                         </div>
                     </div>
                     <div v-else-if="game.isOneTargetPlay" class="text-center" key="one-target-play-requirements">
-                        <VRoller :defaultChar="oneTargetPlayRequirementsText" :text="oneTargetPlayRequirementsText"/>
+                        <VRoller :default-char="oneTargetPlayRequirementsText" :text="oneTargetPlayRequirementsText"/>
                         <div class="text-muted font-italic">
                             <i class="fa mr-2" :class="oneTargetPlayRequirementsIconClass"/>
                             <span v-html="$t('GameContentFooter.minOnePlayerHasToBeTargeted')"/>

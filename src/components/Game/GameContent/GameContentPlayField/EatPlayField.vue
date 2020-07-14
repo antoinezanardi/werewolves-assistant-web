@@ -7,7 +7,8 @@
         <div class="row">
             <div class="col-12">
                 <h3 class="text-center">
-                    <VRoller :defaultChar="eatTargetText" :text="eatTargetText"/>
+                    <VRoller :default-char="eatTargetText" :text="eatTargetText" class="d-inline-flex"/>
+                    <CancelPlayerTarget :play="play" attribute="eaten" class="ml-2" @playerSelected="playerSelected"/>
                 </h3>
             </div>
         </div>
@@ -19,10 +20,11 @@
 import PlayerCard from "../../../shared/Game/PlayerCard";
 import PlayerTargets from "../../../shared/Game/PlayerTargets/PlayerTargets";
 import Game from "../../../../classes/Game";
+import CancelPlayerTarget from "../../../shared/Game/CancelPlayerTarget";
 
 export default {
     name: "EatPlayField",
-    components: { PlayerTargets, PlayerCard },
+    components: { CancelPlayerTarget, PlayerTargets, PlayerCard },
     props: {
         game: {
             type: Game,

@@ -5,6 +5,8 @@
 ### 🚀 New features
 
 * Statistics page done with basic infos like winning percent and most used role.
+* Target are cancelable when chosen during a game action.
+* Added few metadata for SEO.
 
 ### 🌟 Enhancements
 
@@ -17,6 +19,7 @@
 * `seen` attribute well displayed in player stripes.
 * Display good error message if there is a tie in votes during sheriff election.
 * Good alignment (right) for player stripes in werewolves side.
+* When token is expired, good redirection to home page.
 
 ### 📚 Documentation
 

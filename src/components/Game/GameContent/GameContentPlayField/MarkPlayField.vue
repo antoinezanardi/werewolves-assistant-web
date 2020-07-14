@@ -8,7 +8,8 @@
         <div class="row">
             <div class="col-12">
                 <h3 class="text-center">
-                    <VRoller :defaultChar="markTargetText" :text="markTargetText"/>
+                    <VRoller :default-char="markTargetText" :text="markTargetText" class="d-inline-flex"/>
+                    <CancelPlayerTarget :play="play" attribute="raven-marked" class="ml-2" @playerSelected="playerSelected"/>
                 </h3>
             </div>
         </div>
@@ -20,10 +21,11 @@
 import PlayerCard from "../../../shared/Game/PlayerCard";
 import PlayerTargets from "../../../shared/Game/PlayerTargets/PlayerTargets";
 import Game from "../../../../classes/Game";
+import CancelPlayerTarget from "../../../shared/Game/CancelPlayerTarget";
 
 export default {
     name: "MarkPlayField",
-    components: { PlayerTargets, PlayerCard },
+    components: { CancelPlayerTarget, PlayerTargets, PlayerCard },
     props: {
         game: {
             type: Game,

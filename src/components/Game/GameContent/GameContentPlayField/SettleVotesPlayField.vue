@@ -8,7 +8,8 @@
         <div class="row">
             <div class="col-12">
                 <h3 class="text-center">
-                    <VRoller :defaultChar="settleVotesTargetText" :text="settleVotesTargetText"/>
+                    <VRoller :default-char="settleVotesTargetText" :text="settleVotesTargetText" class="d-inline-flex"/>
+                    <CancelPlayerTarget :play="play" attribute="chosen-for-vote" class="ml-2" @playerSelected="playerSelected"/>
                 </h3>
             </div>
         </div>
@@ -20,10 +21,11 @@
 import PlayerCard from "../../../shared/Game/PlayerCard";
 import Game from "../../../../classes/Game";
 import PlayerTargets from "../../../shared/Game/PlayerTargets/PlayerTargets";
+import CancelPlayerTarget from "../../../shared/Game/CancelPlayerTarget";
 
 export default {
     name: "SettleVotesPlayField",
-    components: { PlayerTargets, PlayerCard },
+    components: { CancelPlayerTarget, PlayerTargets, PlayerCard },
     props: {
         game: {
             type: Game,

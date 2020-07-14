@@ -197,6 +197,9 @@
         "keepSamePlayers": "Garder les mêmes joueurs",
         "fromScratch": "Recommencer du début"
     },
+    "CancelPlayerTarget": {
+        "cancelTarget": "Annuler cette cible"
+    },
     "Statistics": {
         "statistics": "Statistiques",
         "loadingStatistics": "Chargement des statistiques",
@@ -227,6 +230,7 @@
         "BAD_CREDENTIALS": "Mauvais e-mail ou mot de passe",
         "EMAIL_EXISTS": "Cet e-mail est déjà utilisé par un autre compte",
         "TIE_IN_VOTES": "Il ne peut pas y avoir d'égalité dans les votes",
+        "yourSessionHasExpired": "Votre session a expirée, veuillez vous reconnecter",
         "unknownError": "Erreur inconnue"
     },
     "VeeValidate": {

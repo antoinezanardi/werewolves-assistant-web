@@ -5,7 +5,7 @@
                 <transition name="translate-down-fade" mode="out-in">
                     <div class="fa text-center d-block pt-2" :key="game.phase" :class="gamePhaseClasses"/>
                 </transition>
-                <VRoller class="text-center mt-2" :text="gamePhaseLabel" :defaultChar="gamePhaseLabel"/>
+                <VRoller class="text-center mt-2" :text="gamePhaseLabel" :default-char="gamePhaseLabel"/>
             </div>
             <div class="col-8">
                 <transition name="translate-down-fade" mode="out-in">
