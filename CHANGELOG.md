@@ -8,12 +8,14 @@
 * Target are cancelable when chosen during a game action.
 * Added few metadata for SEO.`
 * Added contact, GitHub and Buy Me A Coffee buttons on home page.
+* Sentry added for monitoring bugs.
 
 ### 🌟 Enhancements
 
 * Transition for changing game action, phases and card during a game.
 * In the header during a game, the card flips to a new one according to the new game action.
 * Werewolves and Villagers sides during a game have death transitions.
+* Disclaimer added for GDPR in register panel.
 
 ### 🐛 Bug fixes
 
@@ -27,6 +29,10 @@
 * Link for [Werewolves Assistant API](https://github.com/antoinezanardi/werewolves-assistant-api) on `README.md` fixed.
 
 ### 📦 Packages
+
+* `@sentry/browser` installed with version `5.19.2`.
+* `@sentry/integrations` installed with version `5.19.2`.
+* `sweetalert2` updated to version `9.17.0`.
 
 ---
 

@@ -6,6 +6,8 @@ import "./assets/scss/styles.scss";
 
 Vue.config.productionTip = false;
 
+throw "coucou";
+
 new Vue({
     router,
     store,

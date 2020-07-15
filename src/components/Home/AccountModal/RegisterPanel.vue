@@ -69,6 +69,14 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-1 d-flex align-items-center">
+                <i class="fa fa-info-circle fa-2x"/>
+            </div>
+            <div class="col-10">
+                <span id="register-data-disclaimer-text" v-html="$t('RegisterPanel.userDataOnlyForAccount')"/>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -109,6 +117,9 @@ export default {
 };
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+    #register-data-disclaimer-text {
+        font-size: 0.8rem;
+        font-style: italic;
+    }
 </style>

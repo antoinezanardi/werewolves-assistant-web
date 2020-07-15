@@ -25,7 +25,12 @@ For your tests, please use the **Sandbox URL**.
 ## 🔨 Installation
 1. Install dependencies with `npm install` (add `--production` if you install the project on a remote server)
 2. Copy `.env.example` and paste it as `.env`
-3. Replace environment values in the fresh new `.env` file if necessary
+3. Replace environment values in the fresh new `.env` file if necessary:
+    * **VUE_APP_WEREWOLVES_ASSISTANT_API_URL**: Base URL of Werewolves Assistant API.
+    * **VUE_APP_SENTRY_KEY**: Private key used by Sentry for authenticating the project.
+    * **VUE_APP_SENTRY_PROJECT_ID**: Project ID used by Sentry.
+    * **VUE_APP_SENTRY_ENABLED**: If you want to enable error tracking. Don't activate it if you're not on remote server.
+
 
 ## 🔌 Let's go
 To start the web app **on development mode**, simply run `npm start`.

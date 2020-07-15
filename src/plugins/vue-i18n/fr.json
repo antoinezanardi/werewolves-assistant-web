@@ -37,7 +37,8 @@
         "email": "E-mail",
         "password": "Mot de passe",
         "confirmPassword": "Confirmer le mot de passe",
-        "required": "Requis"
+        "required": "Requis",
+        "userDataOnlyForAccount": "Ces informations ne sont enregistrées que pour vous permettre de vous connecter et ainsi enregistrer vos parties."
     },
     "GameLobby": {
         "loading": "Recherche d'une partie en cours",
