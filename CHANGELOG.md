@@ -6,7 +6,8 @@
 
 * Statistics page done with basic infos like winning percent and most used role.
 * Target are cancelable when chosen during a game action.
-* Added few metadata for SEO.
+* Added few metadata for SEO.`
+* Added contact, GitHub and Buy Me A Coffee buttons on home page.
 
 ### 🌟 Enhancements
 

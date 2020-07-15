@@ -20,26 +20,41 @@
                             <span v-html="$t('Home.statistics')"/>
                         </router-link>
                     </transition>
-                </div>
-            </div>
-        </div>
-        <div id="home-footer" class="">
-            <div class="col-12 text-center">
-                <hr class="border-dark"/>
-                <transition name="fade" mode="out-in">
-                    <div v-if="!isUserLogged" key="not-logged">
-                        <button @click="showAccountModal" class="btn btn-secondary">
+                    <transition name="fade" mode="out-in">
+                        <button v-if="!isUserLogged" key="not-logged" @click="showAccountModal"
+                                class="btn btn-secondary btn-block mt-4 text-uppercase font-weight-bold account-btn">
                             <i class="fa fa-key mr-2"/>
                             <span v-html="$t('Home.logInOrSignUp')"/>
                         </button>
-                    </div>
-                    <div v-else key="logged">
-                        <button @click="logout" class="btn btn-secondary">
+                        <button v-else key="logged" @click="logout"
+                                class="btn btn-secondary btn-block mt-4 text-uppercase font-weight-bold account-btn">
                             <i class="fa fa-sign-out-alt mr-2"/>
                             <span v-html="$t('Home.logOut')"/>
                         </button>
-                    </div>
-                </transition>
+                    </transition>
+                </div>
+            </div>
+        </div>
+        <div id="home-footer">
+            <hr class="border-dark"/>
+            <div class="row">
+                <div class="col d-flex align-items-center">
+                    <a href="mailto:werewolves.assistant@gmail.com" target="_blank" class="btn btn-secondary btn-lg">
+                        <i class="fa fa-envelope mr-2"/>
+                        <span v-html="$t('Home.contactMe')"/>
+                    </a>
+                </div>
+                <div class="col d-flex align-items-center justify-content-end">
+                    <a href="https://github.com/antoinezanardi/werewolves-assistant-web" target="_blank"
+                       class="btn btn-info btn-lg">
+                        <i class="fab fa-github mr-2"/>
+                        <span v-html="$t('Home.thisProjectIsOpenSource')"/>
+                    </a>
+                    <a class="bmc-button ml-2" target="_blank" href="https://www.buymeacoffee.com/antoinezanardi">
+                        <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a coffee">
+                        <span style="margin-left:5px;font-size:18px !important;" v-html="$t('Home.buyMeACoffee')"/>
+                    </a>
+                </div>
             </div>
         </div>
         <AccountModal ref="AccountModal"/>
@@ -80,6 +95,42 @@ export default {
 <style lang="scss" scoped>
     .home-btn {
         font-size: 2rem;
+    }
+
+    .account-btn {
+        font-size: 1rem;
+    }
+
+    .bmc-button img {
+        height: 34px !important;
+        width: 35px !important;
+        margin-bottom: 1px !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
+
+    .bmc-button {
+        padding: 5px 15px 7px 10px !important;
+        line-height: 35px !important;
+        height: 46px !important;
+        text-decoration: none !important;
+        display: inline-flex !important;
+        color: #FFFFFF !important;
+        background-color: #FF813F !important;
+        border-radius: 5px !important;
+        border: 1px solid transparent !important;
+        font-size: 22px !important;
+        -webkit-box-sizing: border-box !important;
+        box-sizing: border-box !important;
+        transition: all 0.25s linear;
+    }
+
+    .bmc-button:hover, .bmc-button:active, .bmc-button:focus {
+        -webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;
+        text-decoration: none !important;
+        box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;
+        opacity: 0.85 !important;
+        color: #FFFFFF !important;
     }
 
     #title {

@@ -13,7 +13,10 @@
         "logInOrSignUp": "Se connecter ou s'inscrire",
         "statistics": "Statistiques",
         "logOut": "Se déconnecter",
-        "youMustLogInToPlay": "Vous devez vous connecter pour jouer"
+        "youMustLogInToPlay": "Vous devez vous connecter pour jouer",
+        "contactMe": "Me contacter",
+        "thisProjectIsOpenSource": "Ce projet est open-source",
+        "buyMeACoffee": "M'offrir un café"
     },
     "Login": {
         "loggedIn": "Connecté",
