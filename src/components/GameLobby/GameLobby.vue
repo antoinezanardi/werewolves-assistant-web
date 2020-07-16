@@ -38,12 +38,12 @@
                     </div>
                 </div>
                 <GameLobbyComposition :game="game"/>
-                <div class="flex-grow-1">
+                <div id="game-lobby-players-container" class="flex-grow-1 container-fluid">
                     <transition mode="out-in" name="fade">
-                        <div v-if="!game.players.length" class="h-100 row justify-content-center align-items-center">
-                            <div class="row">
+                        <div v-if="!game.players.length" class="h-100 container-fluid">
+                            <div class="row h-100 justify-content-center align-items-center">
                                 <div class="col-12">
-                                    <h3 class="text-muted font-italic">
+                                    <h3 class="text-muted text-center font-italic">
                                         <i class="fa fa-user-plus mr-3"/>
                                         <span v-html="$t('GameLobby.addPlayerWithName')"/>
                                     </h3>
@@ -53,7 +53,7 @@
                         <transition-group v-else tag="div" name="player-item" id="players"
                                           class="row justify-content-center align-items-center h-100 p-2">
                             <PlayerCard v-for="player in game.players" :key="player.name" :game="game" :player="player"
-                                        class="player-item col-lg-2 col-xs-4" @rolePicked="rolePicked"
+                                        class="player-item col-lg-2 col-4" @rolePicked="rolePicked"
                                         @unsetRole="unsetRole" @unsetPlayer="unsetPlayer"/>
                         </transition-group>
                     </transition>
@@ -62,7 +62,7 @@
                     <hr class="bg-dark"/>
                 </div>
                 <div id="game-lobby-footer" class="row justify-content-between align-items-center">
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 col-sm-6">
                         <form @submit.prevent="getGameRepartition">
                             <SubmitButton classes="btn btn-dark btn-block text-uppercase font-weight-bold"
                                           :disabled-tooltip-text="$t('GameLobby.fourPlayerRequiredToGetRandomRepartition')"
@@ -71,7 +71,7 @@
                                           :disabled="loading.createGame || !game.areThereEnoughPlayers"/>
                         </form>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 col-sm-6 mt-2 mt-lg-0">
                         <form @submit.prevent="createGame">
                             <SubmitButton classes="btn btn-primary btn-lg btn-block text-uppercase font-weight-bold"
                                           :text="`<i class='fa fa-play-circle mr-2'></i>${$t('GameLobby.launchParty')}`"
@@ -256,5 +256,9 @@ export default {
 
     #player-name-input-error {
         height: 25px;
+    }
+
+    #game-lobby-players-container {
+        overflow-y: scroll;
     }
 </style>

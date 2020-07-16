@@ -2,7 +2,7 @@
     <div id="eat-play-field" class="d-flex flex-column">
         <div class="row justify-content-center align-items-center">
             <PlayerCard v-for="player of game.aliveWerewolfPlayers" :key="player.name" :game="game"
-                        :player="player" size="lg" class="col-3"/>
+                        :player="player" size="lg" class="col-6 col-lg-3"/>
         </div>
         <div class="row">
             <div class="col-12">

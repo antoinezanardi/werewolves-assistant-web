@@ -38,21 +38,22 @@
         <div id="home-footer">
             <hr class="border-dark"/>
             <div class="row">
-                <div class="col d-flex align-items-center">
+                <div class="col-lg-6 col-2 d-flex align-items-center">
                     <a href="mailto:werewolves.assistant@gmail.com" target="_blank" class="btn btn-secondary btn-lg">
-                        <i class="fa fa-envelope mr-2"/>
-                        <span v-html="$t('Home.contactMe')"/>
+                        <i class="fa fa-envelope"/>
+                        <span class="d-none d-md-inline-block ml-2" v-html="$t('Home.contactMe')"/>
                     </a>
                 </div>
-                <div class="col d-flex align-items-center justify-content-end">
+                <div class="col-lg-6 col-10 d-flex align-items-center justify-content-end">
                     <a href="https://github.com/antoinezanardi/werewolves-assistant-web" target="_blank"
                        class="btn btn-info btn-lg">
-                        <i class="fab fa-github mr-2"/>
-                        <span v-html="$t('Home.thisProjectIsOpenSource')"/>
+                        <i class="fab fa-github"/>
+                        <span class="d-none d-md-inline-block ml-2" v-html="$t('Home.thisProjectIsOpenSource')"/>
                     </a>
                     <a class="bmc-button ml-2" target="_blank" href="https://www.buymeacoffee.com/antoinezanardi">
                         <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a coffee">
-                        <span style="margin-left:5px;font-size:18px !important;" v-html="$t('Home.buyMeACoffee')"/>
+                        <span class="d-none d-md-inline-block ml-2" style="margin-left:5px;font-size:18px !important;"
+                              v-html="$t('Home.buyMeACoffee')"/>
                     </a>
                 </div>
             </div>
@@ -132,7 +133,7 @@ export default {
     }
 
     #title {
-        font-size: 3.5rem;
+        font-size: 3rem;
     }
 
     #home-footer {

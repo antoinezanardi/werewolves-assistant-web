@@ -5,10 +5,10 @@
                          @rolePicked="rolePicked" @unsetPlayer="unsetPlayer" @click.native="togglePlayerSelected"/>
         <div class="player-card-name text-center" :class="{ 'player-card-name-lg': size === 'lg' }"
              v-html="player.name" @click="togglePlayerSelected"/>
-        <div v-if="!game._id" class="player-card-role text-center text-muted d-flex align-items-center">
+        <div v-if="!game._id" class="player-card-role small text-center text-muted d-flex align-items-center">
             <i v-if="player.role.current" v-tooltip="$t('PlayerCard.unsetRole')" @click="unsetRole"
                class="fa fa-times-circle mr-1 unset-role-button"/>
-            <span v-html="playerRole"/>
+            <div class="text-truncate" v-html="playerRole"/>
         </div>
     </div>
 </template>

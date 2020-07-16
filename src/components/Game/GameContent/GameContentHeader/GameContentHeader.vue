@@ -9,10 +9,10 @@
             </div>
             <div class="col-8">
                 <transition name="translate-down-fade" mode="out-in">
-                    <h1 :key="gameWaitingText" class="mb-0 d-flex justify-content-center align-items-center pb-0">
+                    <h3 :key="gameWaitingText" class="mb-0 d-flex justify-content-center align-items-center pb-0">
                         <img id="game-waiting-icon" :src="gameWaitingIcon" class="img-fluid mr-3" alt="Game Waiting Icon"/>
                         <span class="text-center" v-html="gameWaitingText"/>
-                    </h1>
+                    </h3>
                 </transition>
             </div>
             <div class="col-2 text-right">

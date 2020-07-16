@@ -1,6 +1,6 @@
 <template>
     <div id="player-targets" class="row justify-content-center align-items-center">
-        <div v-for="player in targets" :key="player.name" class="col-2">
+        <div v-for="player in targets" :key="player.name" class="col-lg-2 col-4">
             <PlayerCard :ref="`playerCard${player._id}`" :game="game" :player="player" :selectable="true"
                         :selected="isPlayerSelected(player)" :class="{ selected: isPlayerSelected(player) }"
                         @playerSelected="playerSelected"/>

@@ -1,27 +1,27 @@
 <template>
     <div id="game-content-footer">
         <div class="row justify-content-center align-items-center">
-            <div class="col-4"/>
-            <div class="col-4">
+            <div class="col-lg-4 col-1"/>
+            <div class="col-lg-4 col-5">
                 <form @submit.prevent="submitPlay">
                     <SubmitButton classes="btn btn-primary btn-block btn-lg" :loading="loading" :disabled="!canSubmitPlay"
                                   :text="`<i class='fa fa-play-circle mr-2'></i>${$t('GameContentFooter.next')}`"/>
                 </form>
             </div>
-            <div class="col-4">
+            <div class="col-lg-4 col-6">
                 <transition name="fade" mode="out-in">
                     <div v-if="game.isVotePlay" class="text-center" key="vote-play-requirements">
                         <VRoller :default-char="votePlayRequirementsText" :text="votePlayRequirementsText"/>
                         <div class="text-muted font-italic">
                             <i class="fa mr-2" :class="votePlayRequirementsIconClass"/>
-                            <span v-html="$t('GameContentFooter.minOnePlayerHasToVote')"/>
+                            <span class="small" v-html="$t('GameContentFooter.minOnePlayerHasToVote')"/>
                         </div>
                     </div>
                     <div v-else-if="game.isOneTargetPlay" class="text-center" key="one-target-play-requirements">
                         <VRoller :default-char="oneTargetPlayRequirementsText" :text="oneTargetPlayRequirementsText"/>
                         <div class="text-muted font-italic">
                             <i class="fa mr-2" :class="oneTargetPlayRequirementsIconClass"/>
-                            <span v-html="$t('GameContentFooter.minOnePlayerHasToBeTargeted')"/>
+                            <span class="small" v-html="$t('GameContentFooter.minOnePlayerHasToBeTargeted')"/>
                         </div>
                     </div>
                 </transition>
