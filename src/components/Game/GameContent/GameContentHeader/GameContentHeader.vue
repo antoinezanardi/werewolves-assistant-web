@@ -1,21 +1,21 @@
 <template>
     <div id="game-content-header">
         <div class="row align-items-center">
-            <div id="game-phase" class="col-2 font-weight-bold text-center">
+            <div id="game-phase" class="col-lg-2 col-3 font-weight-bold text-center">
                 <transition name="translate-down-fade" mode="out-in">
                     <div class="fa text-center d-block pt-2" :key="game.phase" :class="gamePhaseClasses"/>
                 </transition>
                 <VRoller class="text-center mt-2" :text="gamePhaseLabel" :default-char="gamePhaseLabel"/>
             </div>
-            <div class="col-8">
+            <div class="col-lg-8 col-6">
                 <transition name="translate-down-fade" mode="out-in">
-                    <h3 :key="gameWaitingText" class="mb-0 d-flex justify-content-center align-items-center pb-0">
-                        <img id="game-waiting-icon" :src="gameWaitingIcon" class="img-fluid mr-3" alt="Game Waiting Icon"/>
+                    <h3 id="game-waiting-label" :key="gameWaitingText" class="mb-0 d-flex justify-content-center align-items-center pb-0">
+                        <img id="game-waiting-icon" :src="gameWaitingIcon" class="img-fluid mr-2" alt="Game Waiting Icon"/>
                         <span class="text-center" v-html="gameWaitingText"/>
                     </h3>
                 </transition>
             </div>
-            <div class="col-2 text-right">
+            <div class="col-lg-2 col-3 text-right">
                 <VueFlip height="50px" width="50px" v-model="gameWaitingCard.flipped">
                     <template v-slot:front>
                         <img id="game-waiting-card-front" :src="gameWaitingCard.thumbnail.front" class="img-fluid" alt="Game Waiting Card Front"/>
@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-8">
+            <div class="col-lg-8 col-12">
                 <hr class="bg-dark"/>
             </div>
         </div>
@@ -158,16 +158,19 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+    @import "../../../../../node_modules/bootstrap/scss/bootstrap";
+    @import "../../../../assets/scss/variables";
+
+    #game-waiting-label {
+        @include font-size(1.5rem);
+    }
+
     #game-phase {
-        font-size: 1.5rem;
+        @include font-size(1rem);
     }
 
     #game-waiting-icon {
-        height: 50px;
-    }
-
-    #game-waiting-card {
         height: 50px;
     }
 

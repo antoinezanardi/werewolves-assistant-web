@@ -23,7 +23,7 @@
                     <span v-html="$t('Statistics.createGameNow')"/>
                 </router-link>
             </div>
-            <div class="flex-grow-1" v-else key="statistics">
+            <div id="statistics-container" class="container-fluid flex-grow-1" v-else key="statistics">
                 <div class="row">
                     <div class="col-12">
                         <ul>
@@ -158,8 +158,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    li {
-        font-size: 1.25rem;
-        line-height: 3rem;
+    @import "../../../node_modules/bootstrap/scss/bootstrap";
+    @import "../../assets/scss/variables";
+
+    #statistics-container {
+        overflow-y: scroll;
+        li {
+            @include font-size(1.5rem);
+            margin-bottom: 1.15rem;
+        }
     }
 </style>

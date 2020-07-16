@@ -8,10 +8,10 @@
                 <GameLobbyAlreadyHavePlayingGame :game="waitingGame" @cancelGame="cancelGame"/>
             </div>
             <div key="game-composition" class="p-2 d-flex flex-column h-100" v-else>
-                <div id="title" class="row justify-content-center">
+                <div class="row justify-content-center">
                     <div class="col-lg-8">
-                        <h1 class="text-center">
-                            <i class="fa fa-gamepad text-primary mr-3"/>
+                        <h1 id="title" class="text-center">
+                            <i class="fa fa-gamepad text-primary mr-2"/>
                             <span v-html="$t('GameLobby.gameComposition')"/>
                         </h1>
                         <hr class="bg-dark"/>
@@ -43,8 +43,8 @@
                         <div v-if="!game.players.length" class="h-100 container-fluid">
                             <div class="row h-100 justify-content-center align-items-center">
                                 <div class="col-12">
-                                    <h3 class="text-muted text-center font-italic">
-                                        <i class="fa fa-user-plus mr-3"/>
+                                    <h3 id="no-player-text" class="text-muted text-center font-italic">
+                                        <i class="fa fa-user-plus mr-2"/>
                                         <span v-html="$t('GameLobby.addPlayerWithName')"/>
                                     </h3>
                                 </div>
@@ -239,7 +239,18 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+    @import "../../../node_modules/bootstrap/scss/bootstrap";
+    @import "../../assets/scss/_variables";
+
+    #title {
+        @include font-size(2rem);
+    }
+
+    #no-player-text {
+        @include font-size(1.5rem);
+    }
+
     .player-item {
         transition: all 0.5s;
     }

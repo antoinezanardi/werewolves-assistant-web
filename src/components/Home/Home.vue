@@ -94,12 +94,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    @import "../../../node_modules/bootstrap/scss/bootstrap";
+    @import "../../assets/scss/variables";
+
     .home-btn {
-        font-size: 2rem;
+        @include font-size(2rem);
     }
 
     .account-btn {
-        font-size: 1rem;
+        @include font-size(1rem);
     }
 
     .bmc-button img {
@@ -133,7 +136,7 @@ export default {
     }
 
     #title {
-        font-size: 3rem;
+        @include font-size(3rem);
     }
 
     #home-footer {
