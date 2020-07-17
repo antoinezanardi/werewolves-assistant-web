@@ -4,3 +4,13 @@ $primary-color: #007bff;
 $success-color: #28A745;
 $danger-color: #DC3545;
 $light-color: #F8F9FA;
+$sun-color: #FFE321;
+$moon-color: #96C8FF;
+
+.sun-color {
+    color: $sun-color
+}
+
+.moon-color {
+    color: $moon-color;
+}

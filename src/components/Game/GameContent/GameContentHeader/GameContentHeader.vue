@@ -167,18 +167,10 @@ export default {
     }
 
     #game-phase {
-        @include font-size(1rem);
+        @include font-size(1.15rem);
     }
 
     #game-waiting-icon {
         height: 50px;
-    }
-
-    .sun-color {
-        color: #FFE321
-    }
-
-    .moon-color {
-        color: #96C8FF;
     }
 </style>

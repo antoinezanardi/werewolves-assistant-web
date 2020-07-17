@@ -53,7 +53,6 @@ export default {
                 }
             }
             const idx = this.play.targets.findIndex(({ player, attribute }) => player === target.player && attribute === target.attribute);
-            console.log(target);
             if (idx !== -1) {
                 return payload.selected ? this.play.targets.splice(idx, 1, target) : this.play.targets.splice(idx, 1);
             } else if (payload.selected) {

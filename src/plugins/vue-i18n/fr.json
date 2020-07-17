@@ -163,13 +163,15 @@
         "wantsToLook": "souhaite voir le rôle de"
     },
     "EatPlayField": {
-        "wantToEat": "souhaite manger | souhaitent manger | souhaitent manger"
+        "wantToEat": "souhaite manger | souhaite manger | souhaitent manger"
     },
     "UsePotionPlayField": {
         "doesntWantToUseLifePotion": "ne souhaite pas utiliser sa potion de vie",
         "doesntWantToUseDeathPotion": "ne souhaite pas utiliser sa potion de mort",
         "useLifePotionOn": "Utiliser la potion de vie sur ...",
         "useDeathPotionOn": "Utiliser la potion de mort sur ...",
+        "lifePotionUsed": "La potion de vie a déjà été utilisée",
+        "deathPotionUsed": "La potion de mort a déjà été utilisée",
         "wantsToUseLifePotionOn": "souhaite utiliser sa potion de vie sur",
         "wantsToUseDeathPotionOn": "souhaite utiliser sa potion de mort sur"
     },

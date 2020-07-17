@@ -13,7 +13,7 @@
             </template>
             <template #option="player">
                 <RoleImage :role="player.role.current" class="role-image-option mr-2"/>
-                <span v-html="player.name"/>
+                <span class="text-truncate" v-html="player.name"/>
             </template>
             <template #no-options>
                 <i class="fa fa-ban mr-2"/>

@@ -7,7 +7,7 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <h3 class="text-center">
+                <h3 id="look-play-field-action-text" class="text-center">
                     <VRoller :default-char="lookTargetText" :text="lookTargetText" class="d-inline-flex"/>
                     <CancelPlayerTarget :play="play" attribute="seen" class="ml-2" @playerSelected="playerSelected"/>
                 </h3>
@@ -55,6 +55,11 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+    @import "../../../../../node_modules/bootstrap/scss/bootstrap";
+    @import "../../../../assets/scss/variables";
 
+    #look-play-field-action-text {
+        @include font-size(1.5rem);
+    }
 </style>

@@ -16,6 +16,7 @@
 * In the header during a game, the card flips to a new one according to the new game action.
 * Werewolves and Villagers sides during a game have death transitions.
 * Disclaimer added for GDPR in register panel.
+* When witch's turn, user is notified if both of her potion are used.
 
 ### 🐛 Bug fixes
 

@@ -7,7 +7,7 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <h3 class="text-center">
+                <h3 class="text-center use-potion-play-field-action-text">
                     <img :src="SVGs.lifePotionSVG" width="50" alt="Life Potion" class="mr-2">
                     <VRoller :default-char="useLifePotionText" :text="useLifePotionText" class="d-inline-flex"/>
                     <CancelPlayerTarget :play="play" attribute="drank-life-potion" class="ml-2" @playerSelected="playerSelected"/>
@@ -16,7 +16,7 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <h3 class="text-center">
+                <h3 class="text-center use-potion-play-field-action-text">
                     <img :src="SVGs.deathPotionSVG" width="50" alt="Death Potion" class="mr-2">
                     <VRoller :default-char="useDeathPotionText" :text="useDeathPotionText" class="d-inline-flex"/>
                     <CancelPlayerTarget :play="play" attribute="drank-death-potion" class="ml-2" @playerSelected="playerSelected"/>
@@ -26,16 +26,20 @@
         <div class="row mt-2">
             <div class="col-12">
                 <ul class="nav nav-pills nav-fill">
-                    <li class="nav-item" @click="panel = 'life-potion'">
-                        <a class="nav-link" :class="{ active: panel === 'life-potion' }" id="use-life-potion-tab" href="#">
-                            <img :src="SVGs.lifePotionSVG" width="25" alt="Life Potion" class="mr-2">
-                            <span v-html="$t('UsePotionPlayField.useLifePotionOn')"/>
+                    <li class="nav-item" @click="openLifePotionPanel">
+                        <a class="nav-link" :class="{ active: panel === 'life-potion', disabled: game.hasWitchUsedLifePotion }"
+                           id="use-life-potion-tab" href="#">
+                            <img :src="SVGs.lifePotionSVG" width="25" alt="Life Potion" class="mr-2"
+                                 :class="{ 'used-potion-svg': game.hasWitchUsedLifePotion }">
+                            <span v-html="lifePotionPanelTabText"/>
                         </a>
                     </li>
-                    <li class="nav-item" @click="panel = 'death-potion'">
-                        <a class="nav-link" :class="{ active: panel === 'death-potion' }" id="use-death-potion-tab" href="#">
-                            <img :src="SVGs.deathPotionSVG" width="25" alt="Death Potion" class="mr-2">
-                            <span v-html="$t('UsePotionPlayField.useDeathPotionOn')"/>
+                    <li class="nav-item" @click="openDeathPotionPanel">
+                        <a class="nav-link" :class="{ active: panel === 'death-potion', disabled: game.hasWitchUsedDeathPotion }"
+                           id="use-death-potion-tab" href="#">
+                            <img :src="SVGs.deathPotionSVG" width="25" alt="Death Potion" class="mr-2"
+                                 :class="{ 'used-potion-svg': game.hasWitchUsedDeathPotion }">
+                            <span v-html="deathPotionPanelTabText"/>
                         </a>
                     </li>
                 </ul>
@@ -104,15 +108,40 @@ export default {
                 return this.$t("UsePotionPlayField.doesntWantToUseDeathPotion");
             }
         },
+        lifePotionPanelTabText() {
+            return this.game.hasWitchUsedLifePotion ? this.$t("UsePotionPlayField.lifePotionUsed") : this.$t("UsePotionPlayField.useLifePotionOn");
+        },
+        deathPotionPanelTabText() {
+            return this.game.hasWitchUsedDeathPotion ? this.$t("UsePotionPlayField.deathPotionUsed") : this.$t("UsePotionPlayField.useDeathPotionOn");
+        },
     },
     methods: {
         playerSelected(payload) {
             this.$emit("playerSelected", payload);
         },
+        openLifePotionPanel() {
+            if (!this.game.hasWitchUsedLifePotion) {
+                this.panel = "life-potion";
+            }
+        },
+        openDeathPotionPanel() {
+            if (!this.game.hasWitchUsedDeathPotion) {
+                this.panel = "death-potion";
+            }
+        },
     },
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+    @import "../../../../../node_modules/bootstrap/scss/bootstrap";
+    @import "../../../../assets/scss/variables";
 
+    .use-potion-play-field-action-text {
+        @include responsive-font-size(1rem);
+    }
+
+    .used-potion-svg {
+        filter: grayscale(1);
+    }
 </style>
