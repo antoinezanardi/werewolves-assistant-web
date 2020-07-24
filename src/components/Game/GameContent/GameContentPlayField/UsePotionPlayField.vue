@@ -5,24 +5,8 @@
                 <PlayerCard :game="game" :player="game.witchPlayer" size="lg"/>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <h3 class="text-center use-potion-play-field-action-text">
-                    <img :src="SVGs.lifePotionSVG" width="50" alt="Life Potion" class="mr-2">
-                    <VRoller :default-char="useLifePotionText" :text="useLifePotionText" class="d-inline-flex"/>
-                    <CancelPlayerTarget :play="play" attribute="drank-life-potion" class="ml-2" @playerSelected="playerSelected"/>
-                </h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <h3 class="text-center use-potion-play-field-action-text">
-                    <img :src="SVGs.deathPotionSVG" width="50" alt="Death Potion" class="mr-2">
-                    <VRoller :default-char="useDeathPotionText" :text="useDeathPotionText" class="d-inline-flex"/>
-                    <CancelPlayerTarget :play="play" attribute="drank-death-potion" class="ml-2" @playerSelected="playerSelected"/>
-                </h3>
-            </div>
-        </div>
+        <PlayFieldActionText :game="game" :play="play" attribute="drank-life-potion" @playerSelected="playerSelected"/>
+        <PlayFieldActionText :game="game" :play="play" attribute="drank-death-potion" @playerSelected="playerSelected" class="mt-2"/>
         <div class="row mt-2">
             <div class="col-12">
                 <ul class="nav nav-pills nav-fill">
@@ -68,11 +52,11 @@ import Game from "../../../../classes/Game";
 import lifePotionSVG from "../../../../assets/svg/attributes/drank-life-potion.svg";
 import deathPotionSVG from "../../../../assets/svg/attributes/drank-death-potion.svg";
 import PlayerTargets from "../../../shared/Game/PlayerTargets/PlayerTargets";
-import CancelPlayerTarget from "../../../shared/Game/CancelPlayerTarget";
+import PlayFieldActionText from "../../../shared/Game/PlayField/PlayFieldActionText";
 
 export default {
     name: "UsePotionPlayField",
-    components: { CancelPlayerTarget, PlayerTargets, PlayerCard },
+    components: { PlayFieldActionText, PlayerTargets, PlayerCard },
     props: {
         game: {
             type: Game,
@@ -90,15 +74,6 @@ export default {
         };
     },
     computed: {
-        useLifePotionText() {
-            const drankLifePotionTarget = this.play.targets.find(target => target.attribute === "drank-life-potion");
-            if (drankLifePotionTarget) {
-                const playerTargeted = this.game.players.find(({ _id }) => _id === drankLifePotionTarget.player);
-                return `${this.$t("UsePotionPlayField.wantsToUseLifePotionOn")} ${playerTargeted.name}`;
-            } else {
-                return this.$t("UsePotionPlayField.doesntWantToUseLifePotion");
-            }
-        },
         useDeathPotionText() {
             const drankDeathPotionTarget = this.play.targets.find(target => target.attribute === "drank-death-potion");
             if (drankDeathPotionTarget) {
@@ -143,5 +118,9 @@ export default {
 
     .used-potion-svg {
         filter: grayscale(1);
+    }
+
+    .nav-link {
+        transition: all 0.25s linear;
     }
 </style>

@@ -30,11 +30,10 @@
 
 .vs__selected-options {
     flex-wrap: nowrap;
-    max-width: calc(100% - 41px);
+    max-width: calc(100% - 44px);
 }
 
 .vs__selected {
-    display: block;
     white-space: nowrap;
     text-overflow: ellipsis;
     max-width: 100%;

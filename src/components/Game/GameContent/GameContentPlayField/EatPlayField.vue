@@ -4,15 +4,9 @@
             <PlayerCard v-for="player of game.aliveWerewolfPlayers" :key="player.name" :game="game"
                         :player="player" size="lg" class="col-6 col-lg-3"/>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <h3 id="eat-play-field-action-text" class="text-center">
-                    <VRoller :default-char="eatTargetText" :text="eatTargetText" class="d-inline-flex"/>
-                    <CancelPlayerTarget :play="play" attribute="eaten" class="ml-2" @playerSelected="playerSelected"/>
-                </h3>
-            </div>
-        </div>
-        <PlayerTargets :game="game" :targets="alivePlayersExceptWerewolves" :play="play" attribute="eaten" class="flex-grow-1" @playerSelected="playerSelected"/>
+        <PlayFieldActionText :game="game" :play="play" attribute="eaten" @playerSelected="playerSelected"/>
+        <PlayerTargets :game="game" :targets="alivePlayersExceptWerewolves" :play="play" attribute="eaten"
+                       class="flex-grow-1" @playerSelected="playerSelected"/>
     </div>
 </template>
 
@@ -20,11 +14,11 @@
 import PlayerCard from "../../../shared/Game/PlayerCard";
 import PlayerTargets from "../../../shared/Game/PlayerTargets/PlayerTargets";
 import Game from "../../../../classes/Game";
-import CancelPlayerTarget from "../../../shared/Game/CancelPlayerTarget";
+import PlayFieldActionText from "../../../shared/Game/PlayField/PlayFieldActionText";
 
 export default {
     name: "EatPlayField",
-    components: { CancelPlayerTarget, PlayerTargets, PlayerCard },
+    components: { PlayFieldActionText, PlayerTargets, PlayerCard },
     props: {
         game: {
             type: Game,
@@ -39,11 +33,6 @@ export default {
         alivePlayersExceptWerewolves() {
             return this.game.alivePlayers.filter(player => player.role.group !== "werewolves");
         },
-        eatTargetText() {
-            const playerTargeted = this.play.targets.length ? this.game.players.find(({ _id }) => _id === this.play.targets[0].player) : null;
-            const text = `${this.$tc("EatPlayField.wantToEat", this.game.aliveWerewolfPlayers.length)} `;
-            return playerTargeted ? text + playerTargeted.name : `${text} ...`;
-        },
     },
     methods: {
         playerSelected(payload) {
@@ -54,10 +43,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    @import "../../../../../node_modules/bootstrap/scss/bootstrap";
-    @import "../../../../assets/scss/variables";
-
-    #eat-play-field-action-text {
-        @include font-size(1.5rem);
-    }
 </style>

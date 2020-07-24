@@ -5,15 +5,9 @@
                 <PlayerCard :game="game" :player="game.sheriffPlayer" size="lg"/>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <h3 class="text-center">
-                    <VRoller :default-char="settleVotesTargetText" :text="settleVotesTargetText" class="d-inline-flex"/>
-                    <CancelPlayerTarget :play="play" attribute="chosen-for-vote" class="ml-2" @playerSelected="playerSelected"/>
-                </h3>
-            </div>
-        </div>
-        <PlayerTargets :game="game" :targets="tieBreakerPlayers" :play="play" attribute="chosen-for-vote" class="flex-grow-1" @playerSelected="playerSelected"/>
+        <PlayFieldActionText :game="game" :play="play" attribute="chosen-for-vote" @playerSelected="playerSelected"/>
+        <PlayerTargets :game="game" :targets="tieBreakerPlayers" :play="play" attribute="chosen-for-vote" class="flex-grow-1"
+                       @playerSelected="playerSelected"/>
     </div>
 </template>
 
@@ -21,11 +15,11 @@
 import PlayerCard from "../../../shared/Game/PlayerCard";
 import Game from "../../../../classes/Game";
 import PlayerTargets from "../../../shared/Game/PlayerTargets/PlayerTargets";
-import CancelPlayerTarget from "../../../shared/Game/CancelPlayerTarget";
+import PlayFieldActionText from "../../../shared/Game/PlayField/PlayFieldActionText";
 
 export default {
     name: "SettleVotesPlayField",
-    components: { CancelPlayerTarget, PlayerTargets, PlayerCard },
+    components: { PlayFieldActionText, PlayerTargets, PlayerCard },
     props: {
         game: {
             type: Game,

@@ -50,7 +50,7 @@
                                 </div>
                             </div>
                         </div>
-                        <transition-group v-else tag="div" name="player-item" id="players"
+                        <transition-group v-else tag="div" name="fade-list" id="players"
                                           class="row justify-content-center align-items-center h-100 p-2">
                             <PlayerCard v-for="player in game.players" :key="player.name" :game="game" :player="player"
                                         class="player-item col-lg-2 col-4" @rolePicked="rolePicked"
@@ -249,20 +249,6 @@ export default {
 
     #no-player-text {
         @include font-size(1.5rem);
-    }
-
-    .player-item {
-        transition: all 0.5s;
-    }
-    .player-item-enter, .player-item-leave-to {
-        opacity: 0;
-    }
-    .player-item-leave-active {
-        position: absolute !important;
-    }
-
-    .flip-list-move {
-        transition: transform 1s;
     }
 
     #player-name-input-error {

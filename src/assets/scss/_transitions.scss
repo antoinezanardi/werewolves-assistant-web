@@ -56,3 +56,25 @@
 .flip-list-move {
     transition: transform 1s;
 }
+
+.player-item {
+    transition: all 0.5s;
+}
+.player-item-enter, .player-item-leave-to {
+    opacity: 0;
+}
+.player-item-leave-active {
+    position: absolute !important;
+}
+
+// FADE LIST
+
+.fade-list {
+    transition: all 0.5s;
+}
+.fade-list-enter, .fade-list-leave-to {
+    opacity: 0;
+}
+.fade-list-leave-active {
+    position: absolute !important;
+}

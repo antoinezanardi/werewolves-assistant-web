@@ -25,10 +25,10 @@
                     <hr class="bg-dark mt-1 mb-2"/>
                     <div class="d-flex">
                         <PlayerThumbnail :game="game" :player="player" class="ml-1"/>
-                        <div class="d-flex flex-wrap align-items-center flex-grow-1 p-1">
+                        <transition-group name="fade-list" class="d-flex flex-wrap align-items-center flex-grow-1 p-1">
                             <PlayerAttribute v-for="({ attribute, source }) in player.attributes" :key="attribute"
                                                  :attribute="attribute" :source="source"/>
-                        </div>
+                        </transition-group>
                     </div>
                 </div>
             </transition-group>

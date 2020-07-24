@@ -70,10 +70,10 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-2 d-flex align-items-center">
+            <div class="col-2 col-lg-1 d-flex align-items-center">
                 <i class="fa fa-info-circle fa-2x"/>
             </div>
-            <div class="col-10">
+            <div class="col-10 col-lg-10">
                 <span id="register-data-disclaimer-text" v-html="$t('RegisterPanel.userDataOnlyForAccount')"/>
             </div>
         </div>

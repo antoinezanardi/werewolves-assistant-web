@@ -5,14 +5,7 @@
                 <PlayerCard :game="game" :player="game.guardPlayer" size="lg"/>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <h3 class="text-center">
-                    <VRoller :default-char="protectTargetText" :text="protectTargetText" class="d-inline-flex"/>
-                    <CancelPlayerTarget :play="play" attribute="protected" class="ml-2" @playerSelected="playerSelected"/>
-                </h3>
-            </div>
-        </div>
+        <PlayFieldActionText :game="game" :play="play" attribute="protected" @playerSelected="playerSelected"/>
         <PlayerTargets :game="game" :targets="protectablePlayers" :play="play" attribute="protected" class="flex-grow-1" @playerSelected="playerSelected"/>
     </div>
 </template>
@@ -21,11 +14,11 @@
 import PlayerCard from "../../../shared/Game/PlayerCard";
 import Game from "../../../../classes/Game";
 import PlayerTargets from "../../../shared/Game/PlayerTargets/PlayerTargets";
-import CancelPlayerTarget from "../../../shared/Game/CancelPlayerTarget";
+import PlayFieldActionText from "../../../shared/Game/PlayField/PlayFieldActionText";
 
 export default {
     name: "ProtectPlayField",
-    components: { CancelPlayerTarget, PlayerTargets, PlayerCard },
+    components: { PlayFieldActionText, PlayerTargets, PlayerCard },
     props: {
         game: {
             type: Game,

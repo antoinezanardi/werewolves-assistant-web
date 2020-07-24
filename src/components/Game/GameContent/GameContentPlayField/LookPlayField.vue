@@ -5,14 +5,7 @@
                 <PlayerCard :game="game" :player="game.seerPlayer" size="lg"/>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <h3 id="look-play-field-action-text" class="text-center">
-                    <VRoller :default-char="lookTargetText" :text="lookTargetText" class="d-inline-flex"/>
-                    <CancelPlayerTarget :play="play" attribute="seen" class="ml-2" @playerSelected="playerSelected"/>
-                </h3>
-            </div>
-        </div>
+        <PlayFieldActionText :game="game" :play="play" attribute="seen" @playerSelected="playerSelected"/>
         <PlayerTargets :game="game" :targets="alivePlayersExceptSeer" :play="play" attribute="seen" class="flex-grow-1"
                        @playerSelected="playerSelected"/>
     </div>
@@ -22,11 +15,11 @@
 import Game from "../../../../classes/Game";
 import PlayerTargets from "../../../shared/Game/PlayerTargets/PlayerTargets";
 import PlayerCard from "../../../shared/Game/PlayerCard";
-import CancelPlayerTarget from "../../../shared/Game/CancelPlayerTarget";
+import PlayFieldActionText from "../../../shared/Game/PlayField/PlayFieldActionText";
 
 export default {
     name: "LookPlayField",
-    components: { CancelPlayerTarget, PlayerCard, PlayerTargets },
+    components: { PlayFieldActionText, PlayerCard, PlayerTargets },
     props: {
         game: {
             type: Game,
@@ -41,11 +34,6 @@ export default {
         alivePlayersExceptSeer() {
             return this.game.alivePlayers.filter(player => player.role.current !== "seer");
         },
-        lookTargetText() {
-            const playerTargeted = this.play.targets.length ? this.game.players.find(({ _id }) => _id === this.play.targets[0].player) : null;
-            const text = `${this.$t("LookPlayField.wantsToLook")} `;
-            return playerTargeted ? text + playerTargeted.name : `${text} ...`;
-        },
     },
     methods: {
         playerSelected(payload) {
@@ -54,12 +42,3 @@ export default {
     },
 };
 </script>
-
-<style lang="scss" scoped>
-    @import "../../../../../node_modules/bootstrap/scss/bootstrap";
-    @import "../../../../assets/scss/variables";
-
-    #look-play-field-action-text {
-        @include font-size(1.5rem);
-    }
-</style>

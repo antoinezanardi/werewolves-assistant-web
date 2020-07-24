@@ -159,39 +159,11 @@
         "alive": "en vie",
         "thisPlayerIsDead": "Ce joueur est mort"
     },
-    "LookPlayField": {
-        "wantsToLook": "souhaite voir le rôle de"
-    },
-    "EatPlayField": {
-        "wantToEat": "souhaite manger | souhaite manger | souhaitent manger"
-    },
     "UsePotionPlayField": {
-        "doesntWantToUseLifePotion": "ne souhaite pas utiliser sa potion de vie",
-        "doesntWantToUseDeathPotion": "ne souhaite pas utiliser sa potion de mort",
-        "useLifePotionOn": "Utiliser la potion de vie sur ...",
-        "useDeathPotionOn": "Utiliser la potion de mort sur ...",
         "lifePotionUsed": "La potion de vie a déjà été utilisée",
         "deathPotionUsed": "La potion de mort a déjà été utilisée",
-        "wantsToUseLifePotionOn": "souhaite utiliser sa potion de vie sur",
-        "wantsToUseDeathPotionOn": "souhaite utiliser sa potion de mort sur"
-    },
-    "ProtectPlayField": {
-        "wantsToProtect": "souhaite protéger",
-        "wantsToSelfProtect": "souhaite se protéger"
-    },
-    "MarkPlayField": {
-        "wantsToMark": "souhaite marquer",
-        "wantsToSelfMark": "souhaite s'auto-marquer",
-        "skip": "ne souhaite marquer personne"
-    },
-    "SettleVotesPlayField": {
-        "chooseToHang": "souhaite pendre"
-    },
-    "DelegatePlayField": {
-        "wantsToDelegateTo": "souhaite déléguer son rôle de maire à"
-    },
-    "ShootPlayField": {
-        "wantsToShoot": "souhaite tirer sur"
+        "useLifePotionOn": "Utiliser la potion de vie sur ...",
+        "useDeathPotionOn": "Utiliser la potion de mort sur ..."
     },
     "GameWinners": {
         "wonByWerewolves": "Partie gagnée par le seul loup garou | Partie gagnée par les loups garous",
@@ -203,7 +175,27 @@
         "keepSamePlayers": "Garder les mêmes joueurs",
         "fromScratch": "Recommencer du début"
     },
+    "PlayFieldActionText": {
+        "wantsToLook": "souhaite voir le rôle de",
+        "wantToEat": "souhaite manger | souhaite manger | souhaitent manger",
+        "doesntWantToUseLifePotion": "ne souhaite pas utiliser sa potion de vie",
+        "doesntWantToUseDeathPotion": "ne souhaite pas utiliser sa potion de mort",
+        "wantsToUseLifePotionOn": "souhaite utiliser sa potion de vie sur",
+        "wantsToUseDeathPotionOn": "souhaite utiliser sa potion de mort sur",
+        "wantsToUseLifePotionOnHerself": "souhaite utiliser sa potion de vie sur elle-même",
+        "wantsToUseDeathPotionOnHerself": "souhaite utiliser sa potion de mort sur elle-même",
+        "wantsToProtect": "souhaite protéger",
+        "wantsToProtectHimself": "souhaite se protéger lui-même",
+        "doesntWantToRavenMark": "ne souhaite marquer personne",
+        "wantsToRavenMark": "souhaite marquer",
+        "wantsToRavenMarkHimself": "souhaite se marquer lui-même",
+        "choosesToHang": "souhaite pendre",
+        "choosesToHangHimself": "souhaite se pendre lui-même",
+        "wantsToDelegateTo": "souhaite déléguer son rôle de maire à",
+        "wantsToShoot": "souhaite tirer sur"
+    },
     "CancelPlayerTarget": {
+        "cancel": "Annuler",
         "cancelTarget": "Annuler cette cible"
     },
     "Statistics": {

@@ -5,15 +5,9 @@
                 <PlayerCard :game="game" :player="game.ravenPlayer" size="lg"/>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <h3 class="text-center">
-                    <VRoller :default-char="markTargetText" :text="markTargetText" class="d-inline-flex"/>
-                    <CancelPlayerTarget :play="play" attribute="raven-marked" class="ml-2" @playerSelected="playerSelected"/>
-                </h3>
-            </div>
-        </div>
-        <PlayerTargets :game="game" :targets="game.alivePlayers" :play="play" attribute="raven-marked" class="flex-grow-1" @playerSelected="playerSelected"/>
+        <PlayFieldActionText :game="game" :play="play" attribute="raven-marked" @playerSelected="playerSelected"/>
+        <PlayerTargets :game="game" :targets="game.alivePlayers" :play="play" attribute="raven-marked" class="flex-grow-1"
+                       @playerSelected="playerSelected"/>
     </div>
 </template>
 
@@ -21,11 +15,11 @@
 import PlayerCard from "../../../shared/Game/PlayerCard";
 import PlayerTargets from "../../../shared/Game/PlayerTargets/PlayerTargets";
 import Game from "../../../../classes/Game";
-import CancelPlayerTarget from "../../../shared/Game/CancelPlayerTarget";
+import PlayFieldActionText from "../../../shared/Game/PlayField/PlayFieldActionText";
 
 export default {
     name: "MarkPlayField",
-    components: { CancelPlayerTarget, PlayerTargets, PlayerCard },
+    components: { PlayFieldActionText, PlayerTargets, PlayerCard },
     props: {
         game: {
             type: Game,

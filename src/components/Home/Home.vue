@@ -13,8 +13,8 @@
                         <i class="fa fa-play-circle mr-2"/>
                         <span v-html="$t('Home.play')"/>
                     </button>
-                    <transition name="fade" mode="out-in">
-                        <router-link v-if="isUserLogged" to="/statistics"
+                    <transition name="fade">
+                        <router-link v-if="isUserLogged" to="/statistics" key="statistics"
                                      class="btn btn-block btn-dark text-uppercase font-weight-bold home-btn mt-4">
                             <i class="far fa-chart-bar mr-2"/>
                             <span v-html="$t('Home.statistics')"/>
