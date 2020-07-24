@@ -112,6 +112,14 @@ class Game {
     get eatenPlayer() {
         return this.getPlayerWithAttribute("eaten");
     }
+
+    get hasWitchUsedLifePotion() {
+        return !!this.history.find(({ play }) => play.action === "use-potion" && !!play.targets.find(({ potion }) => potion.life));
+    }
+
+    get hasWitchUsedDeathPotion() {
+        return !!this.history.find(({ play }) => play.action === "use-potion" && !!play.targets.find(({ potion }) => potion.death));
+    }
 }
 
 export default Game;

@@ -1,5 +1,46 @@
 # 📈 LIST OF CHANGES FOR WEREWOLVES ASSISTANT WEB
 
+## 0.2.0 (2020-07-24)
+
+### 🚀 New features
+
+* Statistics page done with basic infos like winning percent and most used role.
+* Target are cancelable when chosen during a game action.
+* Added few metadata for SEO.
+* Added contact, GitHub and Buy Me A Coffee buttons on home page.
+* Sentry added for monitoring bugs.
+
+### 🌟 Enhancements
+
+* Transition for changing game action, phases and card during a game.
+* In the header during a game, the card flips to a new one according to the new game action.
+* Werewolves and Villagers sides during a game have death transitions.
+* Disclaimer added for GDPR in register panel.
+* When witch's turn, user is notified if both of her potion are used.
+* Sweet fade animations on player attributes.
+
+### 🐛 Bug fixes
+
+* `seen` attribute well displayed in player stripes.
+* Display good error message if there is a tie in votes during sheriff election.
+* Good alignment (right) for player stripes in werewolves side.
+* When token is expired, good redirection to home page.
+
+### 📚 Documentation
+
+* Link for [Werewolves Assistant API](https://github.com/antoinezanardi/werewolves-assistant-api) on `README.md` fixed.
+
+### 📦 Packages
+
+* `@sentry/browser` installed with version `5.20.0`.
+* `@sentry/integrations` installed with version `5.20.0`.
+* `@fortawesome/fontawesome-free` updated to version `5.14.0`.
+* `eslint` updated to version `7.5.0`.
+* `sweetalert2` updated to version `9.17.0`.
+* `vue-roller` updated to version `1.12.1`.
+
+---
+
 ## 0.1.0 (2020-07-13)
 
 ### 🚀 New features

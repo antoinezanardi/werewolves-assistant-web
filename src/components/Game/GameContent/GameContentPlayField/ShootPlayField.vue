@@ -5,13 +5,7 @@
                 <PlayerCard :game="game" :player="game.hunterPlayer" size="lg"/>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <h3 class="text-center">
-                    <VRoller :defaultChar="shootTargetText" :text="shootTargetText"/>
-                </h3>
-            </div>
-        </div>
+        <PlayFieldActionText :game="game" :play="play" attribute="shoot" @playerSelected="playerSelected"/>
         <PlayerTargets :game="game" :targets="game.alivePlayers" :play="play" attribute="shoot" class="flex-grow-1"
                        @playerSelected="playerSelected"/>
     </div>
@@ -21,10 +15,11 @@
 import PlayerCard from "../../../shared/Game/PlayerCard";
 import PlayerTargets from "../../../shared/Game/PlayerTargets/PlayerTargets";
 import Game from "../../../../classes/Game";
+import PlayFieldActionText from "../../../shared/Game/PlayField/PlayFieldActionText";
 
 export default {
     name: "ShootPlayField",
-    components: { PlayerTargets, PlayerCard },
+    components: { PlayFieldActionText, PlayerTargets, PlayerCard },
     props: {
         game: {
             type: Game,

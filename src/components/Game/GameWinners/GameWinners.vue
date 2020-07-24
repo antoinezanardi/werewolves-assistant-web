@@ -12,17 +12,17 @@
                 </div>
             </div>
             <div class="row justify-content-center mt-4">
-                <PlayerCard v-for="player in winners" :key="player.name" :game="game" :player="player" class="col-lg-2"/>
+                <PlayerCard v-for="player in winners" :key="player.name" :game="game" :player="player" class="col-lg-2 col-3"/>
             </div>
         </div>
         <div class="row justify-content-between align-items-center">
-            <div class="col-5">
+            <div class="col-lg-5">
                 <button class="btn btn-primary btn-block btn-lg" @click="restartGame">
                     <i class="fa fa-redo mr-2"/>
                     <span v-html="$t('GameWinners.restartGame')"/>
                 </button>
             </div>
-            <div class="col-5">
+            <div class="col-lg-5 mt-2 mt-lg-0">
                 <router-link class="btn btn-secondary btn-block" to="/">
                     <i class="fa fa-sign-out-alt mr-2"/>
                     <span v-html="$t('GameWinners.quit')"/>

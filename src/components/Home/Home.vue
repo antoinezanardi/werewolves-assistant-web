@@ -1,6 +1,6 @@
 <template>
     <div id="home" class="container-fluid d-flex flex-column">
-        <div id="home-content" class="flex-column flex-grow-1">
+        <div id="home-content" class="flex-column flex-grow-1 d-flex justify-content-center">
             <div class="row">
                 <div class="col-12 text-center">
                     <h1 id="title" class="text-center" v-html="$t('Home.werewolvesAssistant')"/>
@@ -13,32 +13,49 @@
                         <i class="fa fa-play-circle mr-2"/>
                         <span v-html="$t('Home.play')"/>
                     </button>
-                    <transition name="fade" mode="out-in">
-                        <button v-if="isUserLogged" class="btn btn-block btn-dark text-uppercase font-weight-bold home-btn mt-4">
+                    <transition name="fade">
+                        <router-link v-if="isUserLogged" to="/statistics" key="statistics"
+                                     class="btn btn-block btn-dark text-uppercase font-weight-bold home-btn mt-4">
                             <i class="far fa-chart-bar mr-2"/>
                             <span v-html="$t('Home.statistics')"/>
+                        </router-link>
+                    </transition>
+                    <transition name="fade" mode="out-in">
+                        <button v-if="!isUserLogged" key="not-logged" @click="showAccountModal"
+                                class="btn btn-secondary btn-block mt-4 text-uppercase font-weight-bold account-btn">
+                            <i class="fa fa-key mr-2"/>
+                            <span v-html="$t('Home.logInOrSignUp')"/>
+                        </button>
+                        <button v-else key="logged" @click="logout"
+                                class="btn btn-secondary btn-block mt-4 text-uppercase font-weight-bold account-btn">
+                            <i class="fa fa-sign-out-alt mr-2"/>
+                            <span v-html="$t('Home.logOut')"/>
                         </button>
                     </transition>
                 </div>
             </div>
         </div>
-        <div id="home-footer" class="">
-            <div class="col-12 text-center">
-                <hr class="border-dark"/>
-                <transition name="fade" mode="out-in">
-                    <div v-if="!isUserLogged" key="not-logged">
-                        <button @click="showAccountModal" class="btn btn-secondary">
-                            <i class="fa fa-key mr-2"/>
-                            <span v-html="$t('Home.logInOrSignUp')"/>
-                        </button>
-                    </div>
-                    <div v-else key="logged">
-                        <button @click="logout" class="btn btn-secondary">
-                            <i class="fa fa-sign-out-alt mr-2"/>
-                            <span v-html="$t('Home.logOut')"/>
-                        </button>
-                    </div>
-                </transition>
+        <div id="home-footer">
+            <hr class="border-dark"/>
+            <div class="row">
+                <div class="col-lg-6 col-2 d-flex align-items-center">
+                    <a href="mailto:werewolves.assistant@gmail.com" target="_blank" class="btn btn-secondary btn-lg">
+                        <i class="fa fa-envelope"/>
+                        <span class="d-none d-md-inline-block ml-2" v-html="$t('Home.contactMe')"/>
+                    </a>
+                </div>
+                <div class="col-lg-6 col-10 d-flex align-items-center justify-content-end">
+                    <a href="https://github.com/antoinezanardi/werewolves-assistant-web" target="_blank"
+                       class="btn btn-info btn-lg">
+                        <i class="fab fa-github"/>
+                        <span class="d-none d-md-inline-block ml-2" v-html="$t('Home.thisProjectIsOpenSource')"/>
+                    </a>
+                    <a class="bmc-button ml-2" target="_blank" href="https://www.buymeacoffee.com/antoinezanardi">
+                        <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a coffee">
+                        <span class="d-none d-md-inline-block ml-2" style="margin-left:5px;font-size:18px !important;"
+                              v-html="$t('Home.buyMeACoffee')"/>
+                    </a>
+                </div>
             </div>
         </div>
         <AccountModal ref="AccountModal"/>
@@ -77,12 +94,49 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    @import "../../../node_modules/bootstrap/scss/bootstrap";
+    @import "../../assets/scss/variables";
+
     .home-btn {
-        font-size: 2rem;
+        @include font-size(2rem);
+    }
+
+    .account-btn {
+        @include font-size(1rem);
+    }
+
+    .bmc-button img {
+        height: 34px !important;
+        width: 35px !important;
+        margin-bottom: 1px !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
+
+    .bmc-button {
+        padding: 5px 15px 7px 10px !important;
+        line-height: 35px !important;
+        height: 46px !important;
+        text-decoration: none !important;
+        display: inline-flex !important;
+        color: #FFFFFF !important;
+        background-color: #FF813F !important;
+        border-radius: 5px !important;
+        border: 1px solid transparent !important;
+        font-size: 22px !important;
+        -webkit-box-sizing: border-box !important;
+        box-sizing: border-box !important;
+        transition: all 0.25s linear;
+    }
+
+    .bmc-button:hover, .bmc-button:active, .bmc-button:focus {
+        text-decoration: none !important;
+        opacity: 0.85 !important;
+        color: #FFFFFF !important;
     }
 
     #title {
-        font-size: 3.5rem;
+        @include font-size(3rem);
     }
 
     #home-footer {

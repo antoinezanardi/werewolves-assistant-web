@@ -1,23 +1,33 @@
 <template>
     <div id="game-content-header">
         <div class="row align-items-center">
-            <div id="game-phase" class="col-2 font-weight-bold">
-                <span class="fa mr-2" :class="gamePhaseClasses"/>
-                <span class="mr-2" v-html="gamePhaseText"/>
-                <span v-html="game.turn"/>
+            <div id="game-phase" class="col-lg-2 col-3 font-weight-bold text-center">
+                <transition name="translate-down-fade" mode="out-in">
+                    <div class="fa text-center d-block pt-2" :key="game.phase" :class="gamePhaseClasses"/>
+                </transition>
+                <VRoller class="text-center mt-2" :text="gamePhaseLabel" :default-char="gamePhaseLabel"/>
             </div>
-            <div class="col-8">
-                <h1 class="mb-0 d-flex justify-content-center align-items-center pb-0">
-                    <img id="game-waiting-icon" :src="gameWaitingIcon" class="img-fluid mr-3" alt="Game Waiting Icon"/>
-                    <span class="text-center" v-html="gameWaitingText"/>
-                </h1>
+            <div class="col-lg-8 col-6">
+                <transition name="translate-down-fade" mode="out-in">
+                    <h3 id="game-waiting-label" :key="gameWaitingText" class="mb-0 d-flex justify-content-center align-items-center pb-0">
+                        <img id="game-waiting-icon" :src="gameWaitingIcon" class="img-fluid mr-2" alt="Game Waiting Icon"/>
+                        <span class="text-center" v-html="gameWaitingText"/>
+                    </h3>
+                </transition>
             </div>
-            <div class="col-2 text-right">
-                <img id="game-waiting-card" :src="gameWaitingCard" class="img-fluid" alt="Game Waiting Card"/>
+            <div class="col-lg-2 col-3 text-right">
+                <VueFlip height="50px" width="50px" v-model="gameWaitingCard.flipped">
+                    <template v-slot:front>
+                        <img id="game-waiting-card-front" :src="gameWaitingCard.thumbnail.front" class="img-fluid" alt="Game Waiting Card Front"/>
+                    </template>
+                    <template v-slot:back>
+                        <img id="game-waiting-card-back" :src="gameWaitingCard.thumbnail.back" class="img-fluid" alt="Game Waiting Card Back"/>
+                    </template>
+                </VueFlip>
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-8">
+            <div class="col-lg-8 col-12">
                 <hr class="bg-dark"/>
             </div>
         </div>
@@ -97,6 +107,13 @@ export default {
                     card: sheriffCard,
                 },
             },
+            gameWaitingCard: {
+                flipped: false,
+                thumbnail: {
+                    front: undefined,
+                    back: undefined,
+                },
+            },
         };
     },
     computed: {
@@ -106,6 +123,9 @@ export default {
         gamePhaseText() {
             return this.game.phase === "day" ? this.$t("GameContentHeader.day") : this.$t("GameContentHeader.night");
         },
+        gamePhaseLabel() {
+            return `${this.gamePhaseText} ${this.game.turn}`;
+        },
         gameWaitingText() {
             const { firstWaiting } = this.game;
             return this.$t(`GameContentHeader.waiting.${firstWaiting.for}.${firstWaiting.to}`);
@@ -114,36 +134,43 @@ export default {
             const { firstWaiting } = this.game;
             return this.actions[firstWaiting.to].icon;
         },
-        gameWaitingCard() {
-            const { firstWaiting } = this.game;
-            return this.actions[firstWaiting.to].card;
+    },
+    methods: {
+        changeGameWaitingCard(newWaitingTo) {
+            if (!this.gameWaitingCard.flipped) {
+                this.gameWaitingCard.thumbnail.back = this.actions[newWaitingTo.to].card;
+                this.gameWaitingCard.flipped = true;
+            } else {
+                this.gameWaitingCard.thumbnail.front = this.actions[newWaitingTo.to].card;
+                this.gameWaitingCard.flipped = false;
+            }
+        },
+    },
+    watch: {
+        "game.firstWaiting": {
+            handler(newFirstWaiting) {
+                this.changeGameWaitingCard(newFirstWaiting);
+            },
+            deep: true,
+            immediate: true,
         },
     },
 };
 </script>
 
-<style scoped>
-    #game-content-header {
-        height: 75px;
+<style lang="scss" scoped>
+    @import "../../../../../node_modules/bootstrap/scss/bootstrap";
+    @import "../../../../assets/scss/variables";
+
+    #game-waiting-label {
+        @include font-size(1.5rem);
     }
 
     #game-phase {
-        font-size: 1.5rem;
+        @include font-size(1.15rem);
     }
 
     #game-waiting-icon {
         height: 50px;
-    }
-
-    #game-waiting-card {
-        height: 50px;
-    }
-
-    .sun-color {
-        color: #FFE321
-    }
-
-    .moon-color {
-        color: #96C8FF;
     }
 </style>

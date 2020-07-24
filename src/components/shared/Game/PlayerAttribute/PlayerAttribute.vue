@@ -4,6 +4,7 @@
 
 <script>
 import sheriffSVG from "../../../../assets/svg/attributes/sheriff.svg";
+import seenSVG from "../../../../assets/svg/actions/look.svg";
 import eatenSVG from "../../../../assets/svg/attributes/eaten.svg";
 import drankLifePotionSVG from "../../../../assets/svg/attributes/drank-life-potion.svg";
 import drankDeathPotionSVG from "../../../../assets/svg/attributes/drank-death-potion.svg";
@@ -29,6 +30,10 @@ export default {
                 "sheriff": {
                     name: this.$t("PlayerAttribute.attributes.sheriff"),
                     SVG: sheriffSVG,
+                },
+                "seen": {
+                    name: this.$t("PlayerAttribute.attributes.seen"),
+                    SVG: seenSVG,
                 },
                 "eaten": {
                     name: this.$t("PlayerAttribute.attributes.eaten"),

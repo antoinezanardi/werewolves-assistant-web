@@ -12,8 +12,8 @@
 [![ForTheBadge uses-js](http://ForTheBadge.com/images/badges/uses-js.svg)](https://GitHub.com/antoinezanardi/werewolves-assistant-web)
 
 ## 🐺 Description
-Werewolves Assistant Web is a Vue web app using the [Werewolves Assistant API](https://github.com/antoinezanardi/werewolves-assistant-web).
-Thanks to this app, be the game master of the Werewolves game is so easy ! Try it out now with live demos below.
+Werewolves Assistant Web is a Vue web app using the [Werewolves Assistant API](https://github.com/antoinezanardi/werewolves-assistant-api).
+Thanks to this app, being the game master of the Werewolves of Millers Hollow game is so easy ! Try it out now with live demos below.
 
 ## 🌻 Live demos
 Two environments are set up:
@@ -25,7 +25,12 @@ For your tests, please use the **Sandbox URL**.
 ## 🔨 Installation
 1. Install dependencies with `npm install` (add `--production` if you install the project on a remote server)
 2. Copy `.env.example` and paste it as `.env`
-3. Replace environment values in the fresh new `.env` file if necessary
+3. Replace environment values in the fresh new `.env` file if necessary:
+    * **VUE_APP_WEREWOLVES_ASSISTANT_API_URL**: Base URL of Werewolves Assistant API.
+    * **VUE_APP_SENTRY_KEY**: Private key used by Sentry for authenticating the project.
+    * **VUE_APP_SENTRY_PROJECT_ID**: Project ID used by Sentry.
+    * **VUE_APP_SENTRY_ENABLED**: If you want to enable error tracking. Don't activate it if you're not on remote server.
+
 
 ## 🔌 Let's go
 To start the web app **on development mode**, simply run `npm start`.
