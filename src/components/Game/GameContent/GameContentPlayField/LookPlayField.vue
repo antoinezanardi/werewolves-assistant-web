@@ -5,14 +5,9 @@
                 <PlayerCard :game="game" :player="game.seerPlayer" size="lg"/>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <h3 class="text-center">
-                    <VRoller :defaultChar="lookTargetText" :text="lookTargetText"/>
-                </h3>
-            </div>
-        </div>
-        <PlayerTargets :game="game" :targets="alivePlayersExceptSeer" :play="play" attribute="seen" class="flex-grow-1" @playerSelected="playerSelected"/>
+        <PlayFieldActionText :game="game" :play="play" attribute="seen" @playerSelected="playerSelected"/>
+        <PlayerTargets :game="game" :targets="alivePlayersExceptSeer" :play="play" attribute="seen" class="flex-grow-1"
+                       @playerSelected="playerSelected"/>
     </div>
 </template>
 
@@ -20,10 +15,11 @@
 import Game from "../../../../classes/Game";
 import PlayerTargets from "../../../shared/Game/PlayerTargets/PlayerTargets";
 import PlayerCard from "../../../shared/Game/PlayerCard";
+import PlayFieldActionText from "../../../shared/Game/PlayField/PlayFieldActionText";
 
 export default {
     name: "LookPlayField",
-    components: { PlayerCard, PlayerTargets },
+    components: { PlayFieldActionText, PlayerCard, PlayerTargets },
     props: {
         game: {
             type: Game,
@@ -38,11 +34,6 @@ export default {
         alivePlayersExceptSeer() {
             return this.game.alivePlayers.filter(player => player.role.current !== "seer");
         },
-        lookTargetText() {
-            const playerTargeted = this.play.targets.length ? this.game.players.find(({ _id }) => _id === this.play.targets[0].player) : null;
-            const text = `${this.$t("LookPlayField.wantsToLook")} `;
-            return playerTargeted ? text + playerTargeted.name : `${text} ...`;
-        },
     },
     methods: {
         playerSelected(payload) {
@@ -51,7 +42,3 @@ export default {
     },
 };
 </script>
-
-<style scoped>
-
-</style>

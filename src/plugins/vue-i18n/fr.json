@@ -13,7 +13,10 @@
         "logInOrSignUp": "Se connecter ou s'inscrire",
         "statistics": "Statistiques",
         "logOut": "Se déconnecter",
-        "youMustLogInToPlay": "Vous devez vous connecter pour jouer"
+        "youMustLogInToPlay": "Vous devez vous connecter pour jouer",
+        "contactMe": "Me contacter",
+        "thisProjectIsOpenSource": "Ce projet est open-source",
+        "buyMeACoffee": "M'offrir un café"
     },
     "Login": {
         "loggedIn": "Connecté",
@@ -34,7 +37,8 @@
         "email": "E-mail",
         "password": "Mot de passe",
         "confirmPassword": "Confirmer le mot de passe",
-        "required": "Requis"
+        "required": "Requis",
+        "userDataOnlyForAccount": "Ces informations ne sont enregistrées que pour vous permettre de vous connecter et ainsi enregistrer vos parties."
     },
     "GameLobby": {
         "loading": "Recherche d'une partie en cours",
@@ -50,7 +54,7 @@
         "missingPlayersToStart": "Il manque {missingCount} joueur pour commencer la partie | Il manque un seul joueur pour commencer la partie | Il manque {missingCount} joueurs pour commencer la partie",
         "missingOneWerewolfToStart": "Il manque un loup garou pour commencer la partie",
         "missingOneVillagerToStart": "Il manque un villageois pour commencer",
-        "allPlayerDontHaveARole": "Certains joueurs n'ont pas de role",
+        "allPlayerDontHaveARole": "Certains joueurs n'ont pas de rôle",
         "gameCreated": "Partie créée"
     },
     "GameLobbyComposition": {
@@ -60,13 +64,13 @@
         "minToStart": "Minimum {min} pour commencer"
     },
     "RolePicker": {
-        "chooseRole": "Choisir un role",
-        "maxInGameReached": "Ce role a été distribué trop de fois",
-        "doYouWantToSetItAnyway": "Voulez-vous donner ce role au joueur quand même ?",
+        "chooseRole": "Choisir un rôle",
+        "maxInGameReached": "Ce rôle a été distribué trop de fois",
+        "doYouWantToSetItAnyway": "Voulez-vous donner ce rôle au joueur quand même ?",
         "confirm": "Confirmer",
         "cancel": "Annuler",
-        "roleWillBeSwitchedWithOtherPlayer": "Les roles seront échangés avec le joueur {roleName}",
-        "roleWillBeSwitchedWithAnotherPlayer": "Les roles seront échangés avec un des joueurs {roleName}"
+        "roleWillBeSwitchedWithOtherPlayer": "Les rôles seront échangés avec le joueur {roleName}",
+        "roleWillBeSwitchedWithAnotherPlayer": "Les rôles seront échangés avec un des joueurs {roleName}"
     },
     "GameLobbyAlreadyHavePlayingGame": {
         "youAlreadyHavePlayingGame": "Vous avez déjà une partie en cours",
@@ -81,8 +85,8 @@
         "gameCanceled": "Partie annulée"
     },
     "PlayerCard": {
-        "pickRole": "Choisir un role",
-        "unsetRole": "Retirer le role"
+        "pickRole": "Choisir un rôle",
+        "unsetRole": "Retirer le rôle"
     },
     "Game": {
         "loadingGame": "Chargement de la partie",
@@ -130,6 +134,7 @@
     "PlayerAttribute": {
         "attributes": {
             "sheriff": "Ce joueur est maire",
+            "seen": "Ce joueur a été vu par la voyante",
             "eaten": "Ce joueur est la cible des loups garous",
             "drankLifePotion": "Ce joueur a bu la potion de vie",
             "drankDeathPotion": "Ce joueur a bu la potion de mort",
@@ -154,37 +159,11 @@
         "alive": "en vie",
         "thisPlayerIsDead": "Ce joueur est mort"
     },
-    "LookPlayField": {
-        "wantsToLook": "souhaite voir le role de"
-    },
-    "EatPlayField": {
-        "wantToEat": "souhaite manger | souhaitent manger | souhaitent manger"
-    },
     "UsePotionPlayField": {
-        "doesntWantToUseLifePotion": "ne souhaite pas utiliser sa potion de vie",
-        "doesntWantToUseDeathPotion": "ne souhaite pas utiliser sa potion de mort",
+        "lifePotionUsed": "La potion de vie a déjà été utilisée",
+        "deathPotionUsed": "La potion de mort a déjà été utilisée",
         "useLifePotionOn": "Utiliser la potion de vie sur ...",
-        "useDeathPotionOn": "Utiliser la potion de mort sur ...",
-        "wantsToUseLifePotionOn": "souhaite utiliser sa potion de vie sur",
-        "wantsToUseDeathPotionOn": "souhaite utiliser sa potion de mort sur"
-    },
-    "ProtectPlayField": {
-        "wantsToProtect": "souhaite protéger",
-        "wantsToSelfProtect": "souhaite se protéger"
-    },
-    "MarkPlayField": {
-        "wantsToMark": "souhaite marquer",
-        "wantsToSelfMark": "souhaite s'auto-marquer",
-        "skip": "ne souhaite marquer personne"
-    },
-    "SettleVotesPlayField": {
-        "chooseToHang": "souhaite pendre"
-    },
-    "DelegatePlayField": {
-        "wantsToDelegateTo": "souhaite déléguer son role de maire à"
-    },
-    "ShootPlayField": {
-        "wantsToShoot": "souhaite tirer sur"
+        "useDeathPotionOn": "Utiliser la potion de mort sur ..."
     },
     "GameWinners": {
         "wonByWerewolves": "Partie gagnée par le seul loup garou | Partie gagnée par les loups garous",
@@ -195,6 +174,44 @@
         "doYouWantToKeepSamePlayers": "Voulez-vous rejouer avec les mêmes joueurs ?",
         "keepSamePlayers": "Garder les mêmes joueurs",
         "fromScratch": "Recommencer du début"
+    },
+    "PlayFieldActionText": {
+        "wantsToLook": "souhaite voir le rôle de",
+        "wantToEat": "souhaite manger | souhaite manger | souhaitent manger",
+        "doesntWantToUseLifePotion": "ne souhaite pas utiliser sa potion de vie",
+        "doesntWantToUseDeathPotion": "ne souhaite pas utiliser sa potion de mort",
+        "wantsToUseLifePotionOn": "souhaite utiliser sa potion de vie sur",
+        "wantsToUseDeathPotionOn": "souhaite utiliser sa potion de mort sur",
+        "wantsToUseLifePotionOnHerself": "souhaite utiliser sa potion de vie sur elle-même",
+        "wantsToUseDeathPotionOnHerself": "souhaite utiliser sa potion de mort sur elle-même",
+        "wantsToProtect": "souhaite protéger",
+        "wantsToProtectHimself": "souhaite se protéger lui-même",
+        "doesntWantToRavenMark": "ne souhaite marquer personne",
+        "wantsToRavenMark": "souhaite marquer",
+        "wantsToRavenMarkHimself": "souhaite se marquer lui-même",
+        "choosesToHang": "souhaite pendre",
+        "choosesToHangHimself": "souhaite se pendre lui-même",
+        "wantsToDelegateTo": "souhaite déléguer son rôle de maire à",
+        "wantsToShoot": "souhaite tirer sur"
+    },
+    "CancelPlayerTarget": {
+        "cancel": "Annuler",
+        "cancelTarget": "Annuler cette cible"
+    },
+    "Statistics": {
+        "statistics": "Statistiques",
+        "loadingStatistics": "Chargement des statistiques",
+        "createdGames": "<b>{count}</b> partie créée | <b>{count}</b> parties créées",
+        "averageNumberOfPlayers": "<b>{count}</b> joueurs en moyenne par partie",
+        "averageNumberOfTurns": "<b>{count}</b> tours en moyenne par partie",
+        "mostUsedRole": "Rôle le plus distribué",
+        "leastUsedRole": "Rôle le moins distribué",
+        "withUsage": "avec une seule utilisation | avec {count} utilisations",
+        "averageVillagersWinning": "<b>{count}</b>% de victoire des villageois",
+        "averageWerewolvesWinning": "<b>{count}</b>% de victoire des loups garous",
+        "backToHome": "Retour à l'accueil",
+        "youDontHaveGamesCreatedYet": "Vous n'avez pas encore créé de partie",
+        "createGameNow": "Créer une partie maintenant"
     },
     "Role": {
         "villager": "Villageois",
@@ -210,6 +227,8 @@
         "BAD_REQUEST": "Mauvaise requête serveur",
         "BAD_CREDENTIALS": "Mauvais e-mail ou mot de passe",
         "EMAIL_EXISTS": "Cet e-mail est déjà utilisé par un autre compte",
+        "TIE_IN_VOTES": "Il ne peut pas y avoir d'égalité dans les votes",
+        "yourSessionHasExpired": "Votre session a expirée, veuillez vous reconnecter",
         "unknownError": "Erreur inconnue"
     },
     "VeeValidate": {

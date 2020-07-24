@@ -5,13 +5,7 @@
                 <PlayerCard :game="game" :player="game.sheriffPlayer" size="lg"/>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <h3 class="text-center">
-                    <VRoller :defaultChar="delegateTargetText" :text="delegateTargetText"/>
-                </h3>
-            </div>
-        </div>
+        <PlayFieldActionText :game="game" :play="play" attribute="delegate" @playerSelected="playerSelected"/>
         <PlayerTargets :game="game" :targets="game.alivePlayers" :play="play" attribute="delegate" class="flex-grow-1"
                        @playerSelected="playerSelected"/>
     </div>
@@ -21,10 +15,11 @@
 import PlayerCard from "../../../shared/Game/PlayerCard";
 import Game from "../../../../classes/Game";
 import PlayerTargets from "../../../shared/Game/PlayerTargets/PlayerTargets";
+import PlayFieldActionText from "../../../shared/Game/PlayField/PlayFieldActionText";
 
 export default {
     name: "DelegatePlayField",
-    components: { PlayerTargets, PlayerCard },
+    components: { PlayFieldActionText, PlayerTargets, PlayerCard },
     props: {
         game: {
             type: Game,

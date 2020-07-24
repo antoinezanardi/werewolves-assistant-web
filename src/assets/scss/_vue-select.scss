@@ -27,3 +27,23 @@
 .vs__search {
     color: white
 }
+
+.vs__selected-options {
+    flex-wrap: nowrap;
+    max-width: calc(100% - 44px);
+}
+
+.vs__selected {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.vs--open .vs__search {
+    position: static;
+}
+
+.vs__dropdown-option {
+    white-space: normal;
+}

@@ -5,13 +5,13 @@
                 <Loading :text="$t('Game.loadingGame')"/>
             </div>
             <div v-else key="game" class="pt-2 row mr-0 h-100">
-                <GameVillagersSide :game="game" class="col-2 h-100"/>
+                <GameVillagersSide :game="game" class="col-md-2 d-none d-md-block h-100"/>
                 <transition mode="out-in" name="fade">
-                    <GameContent v-if="game.status === 'playing'" key="playing-game" :game="game" class="col-8 h-100"
+                    <GameContent v-if="game.status === 'playing'" key="playing-game" :game="game" class="col-12 col-md-8 h-100"
                                  @updateGame="updateGame"/>
-                    <GameWinners v-else-if="game.status === 'done'" key="done-game" :game="game" class="col-8 h-100"/>
+                    <GameWinners v-else-if="game.status === 'done'" key="done-game" :game="game" class="col-12 col-md-8 h-100"/>
                 </transition>
-                <GameWolvesSide :game="game" class="col-2 h-100"/>
+                <GameWolvesSide :game="game" class="col-md-2 d-none d-md-block h-100"/>
             </div>
         </transition>
     </div>

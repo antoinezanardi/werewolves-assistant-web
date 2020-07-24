@@ -2,6 +2,7 @@ import "./APIs";
 import "./bootstrap";
 import "./error";
 import Router from "./router";
+import "./sentry";
 import "./v-tooltip";
 import "./vee-validate";
 import "./vue-flip";
