@@ -1,11 +1,11 @@
 <template>
-    <div id="werewolves-side" class="pr-0">
+    <div id="werewolves-side">
         <div class="row">
             <div class="col-12 text-center">
                 <h3 v-html="`${$t('GameWerewolvesSide.werewolves')}`"/>
             </div>
         </div>
-        <div class="row pr-0">
+        <div class="row">
             <div class="col-12 text-center pr-0">
                 <span v-html="'🐺'" class="mr-2"/>
                 <VRoller :text="werewolvesAliveText" :default-char="werewolvesAliveText" class="d-inline-flex"/>

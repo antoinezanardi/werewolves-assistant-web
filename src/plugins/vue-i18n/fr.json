@@ -1,11 +1,7 @@
 {
     "NavBar": {
         "werewolvesAssistant": "Assistant Loups Garous",
-        "areYouSureYouWantToQuit": "Êtes-vous sûr de vouloir quitter ?",
-        "gameCompositionNotFinished": "La composition du jeu n'est pas encore finalisée",
-        "yourProgressIsSaved": "Votre progression dans le jeu est sauvegardée",
-        "quit": "Quitter le jeu",
-        "cancel": "Annuler"
+        "gameCompositionNotFinished": "La composition du jeu n'est pas encore finalisée"
     },
     "Home": {
         "werewolvesAssistant": "Assistant Loups Garous",
@@ -90,7 +86,10 @@
     },
     "Game": {
         "loadingGame": "Chargement de la partie",
-        "wolves": "Loups garous"
+        "areYouSureYouWantToQuit": "Êtes-vous sûr de vouloir quitter la partie en cours?",
+        "yourProgressIsSaved": "Votre progression est sauvegardée",
+        "quit": "Quitter le jeu",
+        "cancel": "Annuler"
     },
     "GamePlayFieldHeader": {
         "day": "Jour",

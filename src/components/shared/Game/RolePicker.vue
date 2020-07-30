@@ -55,7 +55,7 @@ export default {
             roles: "roles",
         }),
         roleText() {
-            return this.hoverOn ? this.$t(`Role.${this.hoverOn}`, 1) : `<i class="fa fa-chevron-up animated mr-2"></i>${this.$t("RolePicker.chooseRole")}`;
+            return this.hoverOn ? this.$tc(`Role.${this.hoverOn}`, 1) : `<i class="fa fa-chevron-up animated mr-2"></i>${this.$t("RolePicker.chooseRole")}`;
         },
         availableRoles() {
             return this.roles.filter(({ name }) => name !== this.player.role.current);

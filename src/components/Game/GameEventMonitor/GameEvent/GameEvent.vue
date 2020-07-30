@@ -88,7 +88,7 @@ export default {
                 },
                 "seer-looks": {
                     messages: [
-                        `${i18n.t("GameEvent.messages.seerHasSeen")} ${i18n.t(`Role.a.${this.hasGameEventTarget ? this.event.targets[0].player.role.current : null}`)} !`,
+                        `${i18n.t("GameEvent.messages.seerHasSeen")} ${i18n.t(`Role.a.${this.hasGameEventTarget ? this.event.targets[0].player.role.current : "villager"}`)} !`,
                     ],
                 },
                 "werewolves-start": {

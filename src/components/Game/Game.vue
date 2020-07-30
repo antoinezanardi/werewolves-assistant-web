@@ -11,23 +11,24 @@
                                  @updateGame="updateGame"/>
                     <GameWinners v-else-if="game.status === 'done'" key="done-game" :game="game" class="col-12 col-md-8 h-100"/>
                 </transition>
-                <GameWolvesSide :game="game" class="col-md-2 d-none d-md-block h-100"/>
+                <GameWerewolvesSide :game="game" class="col-md-2 d-none d-md-block h-100"/>
             </div>
         </transition>
     </div>
 </template>
 
 <script>
-import Game from "../../classes/Game";
-import Loading from "../shared/Loading";
+import Swal from "sweetalert2";
+import Game from "@/classes/Game";
+import Loading from "@/components/shared/Loading";
 import GameVillagersSide from "./GameVillagersSide/GameVillagersSide";
-import GameWolvesSide from "./GameWerewolvesSide/GameWerewolvesSide";
+import GameWerewolvesSide from "./GameWerewolvesSide/GameWerewolvesSide";
 import GameContent from "./GameContent/GameContent";
 import GameWinners from "./GameWinners/GameWinners";
 
 export default {
     name: "Game",
-    components: { GameWinners, GameContent, GameWolvesSide, GameVillagersSide, Loading },
+    components: { GameWinners, GameContent, GameWerewolvesSide, GameVillagersSide, Loading },
     data() {
         return {
             game: new Game(),
@@ -53,6 +54,24 @@ export default {
         updateGame(game) {
             this.game = new Game(game);
         },
+        confirmLeaveGame() {
+            return Swal.fire({
+                title: this.$t("Game.areYouSureYouWantToQuit"),
+                html: `${this.$t("Game.yourProgressIsSaved")} <i class='fa fa-check-circle text-success ml-1'></i>`,
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: `<i class='fa fa-sign-out-alt mr-2'></i>${this.$t("Game.quit")}`,
+                cancelButtonText: this.$t("Game.cancel"),
+            });
+        },
+    },
+    async beforeRouteLeave(to, from, next) {
+        if (this.game.status === "playing") {
+            const { value: confirmLeaveGame } = await this.confirmLeaveGame();
+            return confirmLeaveGame ? next() : next(false);
+        } else {
+            return next();
+        }
     },
 };
 </script>

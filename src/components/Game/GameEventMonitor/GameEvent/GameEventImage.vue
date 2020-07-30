@@ -19,7 +19,8 @@
         </div>
         <div v-else-if="isEffectGameEvent" class="h-100 d-flex justify-content-center align-items-center flex-column">
             <div id="role-effect-container" class="h-50">
-                <RoleImage class="h-100 animate__animated animate__flipInY animate__fast" :role="event.targets[0].player.role.current"
+                <RoleImage class="h-100 animate__animated animate__flipInY animate__fast role-image"
+                           :role="event.targets[0].player.role.current"
                            :class="{ 'dead-player': this.event.type === 'player-dies' }"/>
                 <img id="effect-image" :src="effectImageSource"
                      class="animate__animated animate__bounceIn animate__delay-1s" alt="Effect Image"/>
@@ -27,7 +28,8 @@
             <h3 class="text-center mt-2" v-html="event.targets[0].player.name"/>
         </div>
         <div class="h-100 d-flex justify-content-center align-items-center" v-else>
-            <RoleImage class="h-50 animate__animated animate__flipInY animate__fast" :role="game.firstWaiting.for"/>
+            <RoleImage class="h-50 animate__animated animate__flipInY animate__fast role-image"
+                       :role="game.firstWaiting.for"/>
         </div>
     </div>
 </template>
@@ -149,6 +151,11 @@ export default {
     .phase-transition-enter, .phase-transition-leave-to {
         opacity: 0;
         transform: translateY(35px);
+    }
+
+    .role-image {
+        border: 5px solid #303030;
+        border-radius: 5px;
     }
 
     #role-effect-container {

@@ -2,9 +2,18 @@
 
 ## 0.3.0 (2020-08-??)
 
+### 🚀 New features
+
+* If the user leaves a playing game, a confirm alert is triggered.
+
 ### 🌟 Enhancements
 
 * The trophy at the end of a game has a sweet `TADA !` animation.
+* When player are voting, the text `vote for` has been UX improved.
+
+### 🐛 Bug fixes
+
+* Werewolf side doesn't have an overflow-y anymore.
 
 ### 📦 Packages
 
