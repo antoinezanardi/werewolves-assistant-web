@@ -98,17 +98,15 @@ export default {
             }
         },
         generateGameRoleTurnEvents(newGame, oldGame) {
-            if (!newGame || !oldGame) {
-                return;
-            }
             const roleTurnEvents = {
                 seer: "seer-starts",
                 werewolves: "werewolves-start",
                 witch: "witch-starts",
                 guard: "guard-starts",
                 raven: "raven-starts",
+                hunter: "hunter-starts",
             };
-            if (newGame.firstWaiting.for !== oldGame.firstWaiting.for && newGame.firstWaiting.to !== oldGame.firstWaiting.to &&
+            if ((!oldGame || newGame.firstWaiting.for !== oldGame.firstWaiting.for && newGame.firstWaiting.to !== oldGame.firstWaiting.to) &&
                 roleTurnEvents[newGame.firstWaiting.for]) {
                 return this.events.push(new GameEvent({ type: roleTurnEvents[newGame.firstWaiting.for] }));
             }
@@ -126,7 +124,6 @@ export default {
                 if (newGame.tick === 1) {
                     this.events.push(new GameEvent({ type: "game-starts" }));
                 }
-                this.events.push(new GameEvent({ type: "sheriff-elected", targets: [{ player: this.game.players[0] }]}));
                 this.generateGamePhaseEvent(newGame, oldGame);
                 this.generateGameDeathEvents(newGame, oldGame);
                 this.generateGameRoleTurnEvents(newGame, oldGame);

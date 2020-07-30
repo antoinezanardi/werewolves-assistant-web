@@ -211,9 +211,20 @@
             "looksLifeSomeWerewolvesIntroducedThemselves": "Il semblerait qu'un ou plusieurs loups-garous se soient faufilé dans le village...",
             "villagersMurderWerewolves": "Villageois, prenez les fourches et nettoyez votre village de ces canidés !",
             "beforeStartingLetsElectSheriff": "Mais avant de vous entretuer, il faut élire le maire de ce village.",
+            "playerDies": "{player} est mort ! Quelle tragédie...",
+            "playerRevealsRole": "Il ou elle révèle son rôle aux survivants.",
             "playerHasBeenPromotedSheriff": "{player} a été promu maire !",
+            "sheriffCanMakeASpeech": "Le maire peut, s'il le souhaite, faire un discours poignant sur son élection.",
             "nightFalls": "La nuit tombe sur le village de Thiercelieux...",
-            "inhabitantsFallAsleep": "Les habitants du village s'endorment."
+            "inhabitantsFallAsleep": "Les habitants du village s'endorment.",
+            "dayRises": "Le jour se lève sur le village de Thiercelieux.",
+            "seerStarts": "La voyante se réveille et va découvrir dans sa boule de cristal le rôle d'un habitant.",
+            "seerHasSeen": "La voyante a vu",
+            "werewolvesStart": "Le loup-garou se réveille et va choisir son dîner de ce soir. | Les loups-garous se réveillent et vont choisir leur dîner de ce soir.",
+            "witchStarts": "La sorcière se réveille et va, si elle le souhaite, utiliser ses potions.",
+            "guardStarts": "Le salvateur se réveille et va protéger la personne de son choix.",
+            "ravenStarts": "Le corbeau se réveille et va, s'il le souhaite, marquer de sa plume un des habitants.",
+            "hunterStarts": "Dans son dernier souffle, le chasseur s'apprête à choisir la cible de sa vengeance."
         }
     },
     "Statistics": {
@@ -232,6 +243,15 @@
         "createGameNow": "Créer une partie maintenant"
     },
     "Role": {
+        "a": {
+            "villager": "un villageois",
+            "werewolf": "un loup-garou",
+            "seer": "une voyante",
+            "witch": "une sorcière",
+            "hunter": "un chasseur",
+            "guard": "un salvateur",
+            "raven": "un corbeau"
+        },
         "villager": "Villageois",
         "werewolf": "Loup-Garou | Loups-Garous",
         "seer": "Voyante",

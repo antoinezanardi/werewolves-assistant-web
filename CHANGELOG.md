@@ -2,13 +2,18 @@
 
 ## 0.3.0 (2020-08-??)
 
+### 🌟 Enhancements
+
+* The trophy at the end of a game has a sweet `TADA !` animation.
+
 ### 📦 Packages
 
+* `animate.css` installed with version `4.1.0`.
 * `uniqid` installed with version `5.2.0`.
 * `@sentry/browser` updated to version `5.20.1`.
 * `@sentry/integrations` updated to version `5.20.1`.
 * `sweetalert2` updated to version `9.17.1`.
-* `vue-i18n` updated to version `8.19.0`.
+* `vue-i18n` updated to version `8.20.0`.
 
 ---
 

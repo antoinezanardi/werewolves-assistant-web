@@ -3,7 +3,8 @@
         <div class="d-flex flex-column justify-content-center flex-grow-1">
             <div class="row">
                 <div class="col-12 text-center">
-                    <img :src="SVGs.trophy" width="100" alt="Trophy"/>
+                    <img :src="SVGs.trophy" class="animate__animated animate__tada animate__infinite animate__slower"
+                         width="100" alt="Trophy"/>
                 </div>
             </div>
             <div class="row mt-4">

@@ -17,9 +17,17 @@
                    :class="{ 'swing': phaseTransition.transitionEnded }"/>
             </transition>
         </div>
-        <div v-else-if="event.type === 'sheriff-elected'" id="role-effect-container" class="h-50">
-            <RoleImage class="h-100" :role="event.targets[0].player.role.current"/>
-            <img id="effect-image" :src="attributeImageSource" alt="Effect Image"/>
+        <div v-else-if="isEffectGameEvent" class="h-100 d-flex justify-content-center align-items-center flex-column">
+            <div id="role-effect-container" class="h-50">
+                <RoleImage class="h-100 animate__animated animate__flipInY animate__fast" :role="event.targets[0].player.role.current"
+                           :class="{ 'dead-player': this.event.type === 'player-dies' }"/>
+                <img id="effect-image" :src="effectImageSource"
+                     class="animate__animated animate__bounceIn animate__delay-1s" alt="Effect Image"/>
+            </div>
+            <h3 class="text-center mt-2" v-html="event.targets[0].player.name"/>
+        </div>
+        <div class="h-100 d-flex justify-content-center align-items-center" v-else>
+            <RoleImage class="h-50 animate__animated animate__flipInY animate__fast" :role="game.firstWaiting.for"/>
         </div>
     </div>
 </template>
@@ -29,6 +37,8 @@ import GameEvent from "@/classes/GameEvent";
 import Game from "@/classes/Game";
 import RoleImage from "@/components/shared/Game/RoleImage";
 import sheriffSVG from "@/assets/svg/attributes/sheriff.svg";
+import deadSVG from "@/assets/svg/attributes/dead.svg";
+import seenSVG from "@/assets/svg/actions/look.svg";
 
 export default {
     name: "GameEventImage",
@@ -60,9 +70,19 @@ export default {
         };
     },
     computed: {
-        attributeImageSource() {
-            return sheriffSVG;
+        isEffectGameEvent() {
+            const effectGameEventTypes = ["sheriff-elected", "player-dies", "seer-looks"];
+            return effectGameEventTypes.includes(this.event.type);
         },
+        effectImageSource() {
+            const effectGameEventTypeImageSource = {
+                "sheriff-elected": sheriffSVG,
+                "player-dies": deadSVG,
+                "seer-looks": seenSVG,
+            };
+            return effectGameEventTypeImageSource[this.event.type];
+        },
+
     },
     created() {
         if (this.event.type === "game-starts") {
@@ -113,7 +133,7 @@ export default {
         50% {
             transform: rotate(-20deg);
         }
-        100%{
+        100% {
             transform: rotate(0deg);
         }
     }
@@ -133,6 +153,10 @@ export default {
 
     #role-effect-container {
         position: relative;
+
+        img.dead-player {
+            filter: grayscale(1);
+        }
 
         #effect-image {
             position: absolute;

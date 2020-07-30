@@ -21,7 +21,7 @@ export default {
     },
     data() {
         return {
-            IMGs: { back, guard, hunter, raven, seer, villager, werewolf, witch },
+            IMGs: { back, guard, hunter, raven, seer, villager, werewolf, werewolves: werewolf, witch },
         };
     },
     computed: {

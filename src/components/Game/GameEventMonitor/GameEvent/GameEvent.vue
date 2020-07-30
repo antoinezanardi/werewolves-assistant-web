@@ -32,6 +32,7 @@ import Game from "@/classes/Game";
 import GameEvent from "@/classes/GameEvent";
 import i18n from "@/plugins/vue-i18n";
 import GameEventImage from "@/components/Game/GameEventMonitor/GameEvent/GameEventImage";
+import { insertIf } from "@/helpers/functions/Array";
 
 export default {
     name: "GameEvent",
@@ -52,6 +53,7 @@ export default {
         };
     },
     computed: {
+        // eslint-disable-next-line max-lines-per-function
         gameEventMetadata() {
             return {
                 "game-starts": {
@@ -63,11 +65,46 @@ export default {
                         i18n.t("GameEvent.messages.beforeStartingLetsElectSheriff"),
                     ],
                 },
+                "player-dies": {
+                    messages: [
+                        i18n.t("GameEvent.messages.playerDies", { player: this.hasGameEventTarget ? this.event.targets[0].player.name : null }),
+                        i18n.t("GameEvent.messages.playerRevealsRole"),
+                    ],
+                },
                 "sheriff-elected": {
-                    messages: [i18n.t("GameEvent.messages.playerHasBeenPromotedSheriff", { player: this.hasGameEventTarget ? this.event.targets[0].player.name : null })],
+                    messages: [
+                        i18n.t("GameEvent.messages.playerHasBeenPromotedSheriff", { player: this.hasGameEventTarget ? this.event.targets[0].player.name : null }),
+                        ...insertIf(this.game.tick === 1, i18n.t("GameEvent.messages.sheriffCanMakeASpeech")),
+                    ],
                 },
                 "night-falls": {
                     messages: [i18n.t("GameEvent.messages.nightFalls"), i18n.t("GameEvent.messages.inhabitantsFallAsleep")],
+                },
+                "day-rises": {
+                    messages: [i18n.t("GameEvent.messages.dayRises")],
+                },
+                "seer-starts": {
+                    messages: [i18n.t("GameEvent.messages.seerStarts")],
+                },
+                "seer-looks": {
+                    messages: [
+                        `${i18n.t("GameEvent.messages.seerHasSeen")} ${i18n.t(`Role.a.${this.hasGameEventTarget ? this.event.targets[0].player.role.current : null}`)} !`,
+                    ],
+                },
+                "werewolves-start": {
+                    messages: [i18n.tc("GameEvent.messages.werewolvesStart", this.game.aliveWerewolfPlayers.length)],
+                },
+                "witch-starts": {
+                    messages: [i18n.t("GameEvent.messages.witchStarts")],
+                },
+                "guard-starts": {
+                    messages: [i18n.t("GameEvent.messages.guardStarts")],
+                },
+                "raven-starts": {
+                    messages: [i18n.t("GameEvent.messages.ravenStarts")],
+                },
+                "hunter-starts": {
+                    messages: [i18n.t("GameEvent.messages.hunterStarts")],
                 },
             };
         },
