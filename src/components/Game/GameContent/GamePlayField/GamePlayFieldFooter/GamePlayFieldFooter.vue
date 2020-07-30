@@ -5,7 +5,7 @@
             <div class="col-lg-4 col-5">
                 <form @submit.prevent="submitPlay">
                     <SubmitButton classes="btn btn-primary btn-block btn-lg" :loading="loading" :disabled="!canSubmitPlay"
-                                  :text="`<i class='fa fa-play-circle mr-2'></i>${$t('GameContentFooter.next')}`"/>
+                                  :text="`<i class='fa fa-play-circle mr-2'></i>${$t('GamePlayFieldFooter.next')}`"/>
                 </form>
             </div>
             <div class="col-lg-4 col-6">
@@ -14,14 +14,14 @@
                         <VRoller :default-char="votePlayRequirementsText" :text="votePlayRequirementsText"/>
                         <div class="text-muted font-italic">
                             <i class="fa mr-2" :class="votePlayRequirementsIconClass"/>
-                            <span class="small" v-html="$t('GameContentFooter.minOnePlayerHasToVote')"/>
+                            <span class="small" v-html="$t('GamePlayFieldFooter.minOnePlayerHasToVote')"/>
                         </div>
                     </div>
                     <div v-else-if="game.isOneTargetPlay" class="text-center" key="one-target-play-requirements">
                         <VRoller :default-char="oneTargetPlayRequirementsText" :text="oneTargetPlayRequirementsText"/>
                         <div class="text-muted font-italic">
                             <i class="fa mr-2" :class="oneTargetPlayRequirementsIconClass"/>
-                            <span class="small" v-html="$t('GameContentFooter.minOnePlayerHasToBeTargeted')"/>
+                            <span class="small" v-html="$t('GamePlayFieldFooter.minOnePlayerHasToBeTargeted')"/>
                         </div>
                     </div>
                 </transition>
@@ -31,11 +31,11 @@
 </template>
 
 <script>
-import Game from "../../../../classes/Game";
-import SubmitButton from "../../../shared/Forms/SubmitButton";
+import Game from "../../../../../classes/Game";
+import SubmitButton from "../../../../shared/Forms/SubmitButton";
 
 export default {
-    name: "GameContentFooter",
+    name: "GamePlayFieldFooter",
     components: { SubmitButton },
     props: {
         game: {
@@ -54,13 +54,13 @@ export default {
     },
     computed: {
         votePlayRequirementsText() {
-            return this.$t("GameContentFooter.playersHaveVoted", { votesCount: this.play.votes.length, playersCount: this.game.alivePlayers.length });
+            return this.$t("GamePlayFieldFooter.playersHaveVoted", { votesCount: this.play.votes.length, playersCount: this.game.alivePlayers.length });
         },
         votePlayRequirementsIconClass() {
             return this.play.votes.length ? "fa-check text-success" : "fa-times text-danger";
         },
         oneTargetPlayRequirementsText() {
-            return this.$t("GameContentFooter.playersTargeted", { targetsCount: this.play.targets.length, min: 1 });
+            return this.$t("GamePlayFieldFooter.playersTargeted", { targetsCount: this.play.targets.length, min: 1 });
         },
         oneTargetPlayRequirementsIconClass() {
             return this.play.targets.length === 1 ? "fa-check text-success" : "fa-times text-danger";

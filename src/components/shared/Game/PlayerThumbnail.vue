@@ -2,7 +2,7 @@
     <div class="player-card-thumbnail" :class="{ 'player-card-thumbnail-lg': size === 'lg', 'dead-player-card': player.isAlive === false }">
         <i v-if="!game._id" v-tooltip="$t('PlayerThumbnail.unsetPlayer')" @click="unsetPlayer"
            class="fa fa-times-circle unset-player-button"/>
-        <VueFlip v-tooltip="game._id && $t(`Role.${player.role.current}`)" height="100%" width="100%" v-model="flipped">
+        <VueFlip v-tooltip="playerThumbnailTooltip" height="100%" width="100%" v-model="flipped">
             <template v-slot:front>
                 <v-popover :disabled="!!game._id" ref="frontPopover" :show="!game._id" placement="left">
                     <RoleImage :role="thumbnail.front"/>
@@ -50,6 +50,11 @@ export default {
                 back: undefined,
             },
         };
+    },
+    computed: {
+        playerThumbnailTooltip() {
+            return this.game._id || this.player.role.current ? this.$tc(`Role.${this.player.role.current}`, 1) : this.$t("PlayerThumbnail.chooseRole");
+        },
     },
     created() {
         if (this.player.role.current) {

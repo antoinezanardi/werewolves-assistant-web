@@ -45,7 +45,7 @@ export default {
     },
     computed: {
         playerRole() {
-            return this.player.role.current ? this.$t(`Role.${this.player.role.current}`) : this.$t(`PlayerCard.pickRole`);
+            return this.player.role.current ? this.$tc(`Role.${this.player.role.current}`, 1) : this.$t(`PlayerCard.pickRole`);
         },
     },
     methods: {

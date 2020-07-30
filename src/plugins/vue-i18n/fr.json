@@ -92,7 +92,7 @@
         "loadingGame": "Chargement de la partie",
         "wolves": "Loups garous"
     },
-    "GameContentHeader": {
+    "GamePlayFieldHeader": {
         "day": "Jour",
         "night": "Nuit",
         "waiting": {
@@ -124,7 +124,7 @@
             }
         }
     },
-    "GameContentFooter": {
+    "GamePlayFieldFooter": {
         "next": "Suivant",
         "playersHaveVoted": "{votesCount}/{playersCount} joueurs ont voté",
         "playersTargeted": "{targetsCount}/{min} joueur visé",
@@ -143,6 +143,7 @@
         }
     },
     "PlayerThumbnail": {
+        "chooseRole": "Choisir un rôle",
         "unsetPlayer": "Retirer le joueur"
     },
     "PlayerVote": {
@@ -198,6 +199,23 @@
         "cancel": "Annuler",
         "cancelTarget": "Annuler cette cible"
     },
+    "GameEventMonitor": {
+        "skip": "Passer"
+    },
+    "GameEvent": {
+        "next": "Suivant",
+        "previous": "Précédent",
+        "messages": {
+            "welcomeToTheVillage": "Bienvenue à tous dans le village de Thiercelieux !",
+            "compositionIs": "Ce village de {inhabitantCount} habitants se composent de ",
+            "looksLifeSomeWerewolvesIntroducedThemselves": "Il semblerait qu'un ou plusieurs loups-garous se soient faufilé dans le village...",
+            "villagersMurderWerewolves": "Villageois, prenez les fourches et nettoyez votre village de ces canidés !",
+            "beforeStartingLetsElectSheriff": "Mais avant de vous entretuer, il faut élire le maire de ce village.",
+            "playerHasBeenPromotedSheriff": "{player} a été promu maire !",
+            "nightFalls": "La nuit tombe sur le village de Thiercelieux...",
+            "inhabitantsFallAsleep": "Les habitants du village s'endorment."
+        }
+    },
     "Statistics": {
         "statistics": "Statistiques",
         "loadingStatistics": "Chargement des statistiques",
@@ -215,7 +233,7 @@
     },
     "Role": {
         "villager": "Villageois",
-        "werewolf": "Loup-Garou",
+        "werewolf": "Loup-Garou | Loups-Garous",
         "seer": "Voyante",
         "witch": "Sorcière",
         "hunter": "Chasseur",

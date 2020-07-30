@@ -39,13 +39,13 @@
                             <li>
                                 <span v-html="`${$t('Statistics.mostUsedRole')}: `"/>
                                 <RoleImage width="30" :role="mostUsedRole.role" class="mr-2"/>
-                                <span v-html="`(${$t(`Role.${mostUsedRole.role}`)})`" class="mr-2"/>
+                                <span v-html="`(${$tc(`Role.${mostUsedRole.role}`, 1)})`" class="mr-2"/>
                                 <span v-html="$tc('Statistics.withUsage', mostUsedRole.count, { count: mostUsedRole.count })"/>
                             </li>
                             <li>
                                 <span v-html="`${$t('Statistics.leastUsedRole')}: `"/>
                                 <RoleImage width="30" :role="leastUsedRole.role" class="mr-2"/>
-                                <span v-html="`(${$t(`Role.${leastUsedRole.role}`)})`" class="mr-2"/>
+                                <span v-html="`(${$tc(`Role.${leastUsedRole.role}`, 1)})`" class="mr-2"/>
                                 <span v-html="$tc('Statistics.withUsage', leastUsedRole.count, { count: leastUsedRole.count })"/>
                             </li>
                             <li>
