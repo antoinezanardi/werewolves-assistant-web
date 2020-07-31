@@ -168,14 +168,24 @@
         "useDeathPotionOn": "Utiliser la potion de mort sur ..."
     },
     "GameWinners": {
-        "wonByWerewolves": "Partie gagnée par le seul loup garou | Partie gagnée par les loups garous",
+        "wonByWerewolves": "Partie gagnée par le seul loup-garou | Partie gagnée par les loups-garous",
         "wonByVillagers": "Partie gagnée par le seul villageois | Partie gagnée par les villageois",
         "restartGame": "Recommencer une partie",
         "quit": "Quitter",
         "newGame": "Nouvelle partie",
         "doYouWantToKeepSamePlayers": "Voulez-vous rejouer avec les mêmes joueurs ?",
         "keepSamePlayers": "Garder les mêmes joueurs",
-        "fromScratch": "Recommencer du début"
+        "fromScratch": "Recommencer du début",
+        "seeGameSummary": "Voir le récapitulatif de partie"
+    },
+    "GameSummaryModal": {
+        "gameSummary": "Récapitulatif de la partie",
+        "gameHistory": "Historique de la partie",
+        "close": "Fermer"
+    },
+    "GameSummaryHistoryLine": {
+        "day": "Jour",
+        "night": "Nuit"
     },
     "PlayFieldActionText": {
         "wantsToLook": "souhaite voir le rôle de",

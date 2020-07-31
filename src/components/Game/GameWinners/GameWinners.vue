@@ -17,19 +17,26 @@
             </div>
         </div>
         <div class="row justify-content-between align-items-center">
-            <div class="col-lg-5">
+            <div class="col-lg-4">
+                <button class="btn btn-primary btn-block" @click="$refs.gameSummaryModal.show()">
+                    <i class="fa fa-list mr-2"/>
+                    <span v-html="$t('GameWinners.seeGameSummary')"/>
+                </button>
+            </div>
+            <div class="col-lg-4 mt-2 mt-lg-0">
                 <button class="btn btn-primary btn-block btn-lg" @click="restartGame">
                     <i class="fa fa-redo mr-2"/>
                     <span v-html="$t('GameWinners.restartGame')"/>
                 </button>
             </div>
-            <div class="col-lg-5 mt-2 mt-lg-0">
+            <div class="col-lg-4 mt-2 mt-lg-0">
                 <router-link class="btn btn-secondary btn-block" to="/">
                     <i class="fa fa-sign-out-alt mr-2"/>
                     <span v-html="$t('GameWinners.quit')"/>
                 </router-link>
             </div>
         </div>
+        <GameSummaryModal ref="gameSummaryModal" :game="game"/>
     </div>
 </template>
 
@@ -39,10 +46,11 @@ import { stringify } from "qs";
 import trophy from "../../../assets/svg/game/trophy.svg";
 import Game from "../../../classes/Game";
 import PlayerCard from "../../shared/Game/PlayerCard";
+import GameSummaryModal from "@/components/Game/GameWinners/GameSummaryModal/GameSummaryModal";
 
 export default {
     name: "GameWinners",
-    components: { PlayerCard },
+    components: { GameSummaryModal, PlayerCard },
     props: {
         game: {
             type: Game,

@@ -60,9 +60,13 @@
             </div>
         </transition>
         <div class="row">
-            <div class="col-12 text-center">
+            <div class="col">
                 <hr class="bg-dark mt-1 mb-2"/>
-                <router-link class="btn btn-secondary" to="/">
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-4">
+                <router-link class="btn btn-secondary btn-block" to="/">
                     <i class="fa fa-sign-out-alt mr-2"/>
                     <span v-html="$t('Statistics.backToHome')"/>
                 </router-link>
