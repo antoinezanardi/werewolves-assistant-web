@@ -12,6 +12,7 @@
         "lint": "vue-cli-service lint"
     },
     "dependencies": {
+        "@chenfengyuan/vue-countdown": "^1.1.5",
         "@fortawesome/fontawesome-free": "^5.14.0",
         "@sentry/browser": "^5.20.1",
         "@sentry/integrations": "^5.20.1",
@@ -32,7 +33,7 @@
         "vue": "^2.6.11",
         "vue-flip": "^1.0.2",
         "vue-i18n": "^8.20.0",
-        "vue-roller": "^1.12.1",
+        "vue-roller": "^1.12.2",
         "vue-router": "^3.2.0",
         "vue-select": "^3.10.7",
         "vue-toasted": "^1.1.28",

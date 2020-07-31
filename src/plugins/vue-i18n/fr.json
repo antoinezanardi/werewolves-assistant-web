@@ -128,7 +128,9 @@
         "playersHaveVoted": "{votesCount}/{playersCount} joueurs ont voté",
         "playersTargeted": "{targetsCount}/{min} joueur visé",
         "minOnePlayerHasToVote": "Minimum 1 joueur doit voter",
-        "minOnePlayerHasToBeTargeted": "Minimum 1 joueur doit être visé"
+        "minOnePlayerHasToBeTargeted": "Minimum 1 joueur doit être visé",
+        "timeForDebating": "Temps pour débattre",
+        "debateIsOver": "Le débat est terminé, il est temps de voter !"
     },
     "PlayerAttribute": {
         "attributes": {

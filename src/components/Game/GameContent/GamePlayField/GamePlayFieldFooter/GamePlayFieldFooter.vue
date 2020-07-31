@@ -1,7 +1,24 @@
 <template>
     <div id="game-content-footer">
         <div class="row justify-content-center align-items-center">
-            <div class="col-lg-4 col-1"/>
+            <div class="col-lg-4 col-1 text-center">
+                <VCountdown v-if="game.isTimedPlay" :time="5 * 60 * 1000" @end="countdown.ended = true">
+                    <template slot-scope="{ minutes, seconds }">
+                        <transition name="fade" mode="out-in">
+                            <div v-if="!countdown.ended" id="countdown-running" key="countdown-running">
+                                <i class="fa fa-stopwatch mr-2"/>
+                                <span v-html="`${$t('GamePlayFieldFooter.timeForDebating')}:`"/>
+                                <span class="ml-2" v-html="`${minutes}:${seconds.toString().padStart(2, '0')}`"/>
+                            </div>
+                            <div v-else id="countdown-ended" key="countdown-ended"
+                                 class="animate__animated animate__pulse animate__infinite">
+                                <i class="fa fa-stopwatch mr-2 text-danger"/>
+                                <span v-html="`${$t('GamePlayFieldFooter.debateIsOver')}`"/>
+                            </div>
+                        </transition>
+                    </template>
+                </VCountdown>
+            </div>
             <div class="col-lg-4 col-5">
                 <form @submit.prevent="submitPlay">
                     <SubmitButton classes="btn btn-primary btn-block btn-lg" :loading="loading" :disabled="!canSubmitPlay"
@@ -50,6 +67,9 @@ export default {
     data() {
         return {
             loading: false,
+            countdown: {
+                ended: false,
+            },
         };
     },
     computed: {

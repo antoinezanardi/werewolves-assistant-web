@@ -5,6 +5,7 @@
 ### 🚀 New features
 
 * If the user leaves a playing game, a confirm alert is triggered.
+* Timer of 5 minutes added for `elect-sheriff` and `vote` plays.
 
 ### 🌟 Enhancements
 
@@ -17,12 +18,14 @@
 
 ### 📦 Packages
 
+* `@chenfengyuan/vue-countdown` installed with version `1.1.5`.
 * `animate.css` installed with version `4.1.0`.
 * `uniqid` installed with version `5.2.0`.
 * `@sentry/browser` updated to version `5.20.1`.
 * `@sentry/integrations` updated to version `5.20.1`.
 * `sweetalert2` updated to version `9.17.1`.
 * `vue-i18n` updated to version `8.20.0`.
+* `vue-roller` updated to version `1.12.2`.
 
 ---
 
