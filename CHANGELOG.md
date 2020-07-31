@@ -6,6 +6,7 @@
 
 * If the user leaves a playing game, a confirm alert is triggered.
 * Timer of 5 minutes added for `elect-sheriff` and `vote` plays.
+* Game events like player death, role turn and some effect (like seen or promoted sheriff) are displayed during the game. 
 
 ### 🌟 Enhancements
 

@@ -6,11 +6,13 @@
                            @skipEvent="skipEvent"/>
             </transition>
         </div>
-        <div id="game-event-monitor-footer" class="d-flex justify-content-center">
-            <button class="btn btn-lg btn-primary" @click="skipEvent">
-                <i class="fa fa-chevron-circle-right mr-2"/>
-                <span v-html="$t('GameEventMonitor.skip')"/>
-            </button>
+        <div id="game-event-monitor-footer" class="row justify-content-center">
+            <div class="col-12 col-lg-4">
+                <button class="btn btn-lg btn-primary btn-block" @click="skipEvent">
+                    <i class="fa fa-chevron-circle-right mr-2"/>
+                    <span v-html="$t('GameEventMonitor.skip')"/>
+                </button>
+            </div>
         </div>
     </div>
 </template>

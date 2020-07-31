@@ -7,18 +7,18 @@
         </div>
         <div id="game-event-message-container" class="w-100">
             <div class="row align-items-center h-100">
-                <div class="col-1">
+                <div class="col-2 col-md-1">
                     <i class="fa fa-chevron-left fa-3x game-event-message-button" @click="previousGameEventMessage"
                        v-tooltip="canGoBackToPreviousGameEventMessage && $t('GameEvent.previous')"
                        :class="{ disabled: !canGoBackToPreviousGameEventMessage }"/>
                 </div>
-                <div class="col-10 text-center">
+                <div class="col-8 col-md-10 text-center">
                     <transition mode="out-in" name="fade">
                         <div id="game-event-message" class="text-center" :key="currentGameEventMessage"
                              v-html="currentGameEventMessage"/>
                     </transition>
                 </div>
-                <div class="col-1">
+                <div class="col-2 col-md-1">
                     <i class="fa fa-chevron-right fa-3x game-event-message-button" @click="nextGameEventMessage"
                        v-tooltip="$t('GameEvent.next')"/>
                 </div>

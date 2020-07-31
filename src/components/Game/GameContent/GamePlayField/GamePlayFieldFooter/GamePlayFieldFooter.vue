@@ -1,7 +1,7 @@
 <template>
     <div id="game-content-footer">
         <div class="row justify-content-center align-items-center">
-            <div class="col-lg-4 col-1 text-center">
+            <div class="col-lg-4 col-12 text-center order-md-0">
                 <VCountdown v-if="game.isTimedPlay" :time="5 * 60 * 1000" @end="countdown.ended = true">
                     <template slot-scope="{ minutes, seconds }">
                         <transition name="fade" mode="out-in">
@@ -19,13 +19,13 @@
                     </template>
                 </VCountdown>
             </div>
-            <div class="col-lg-4 col-5">
+            <div class="col-lg-4 col-12 order-last order-md-1">
                 <form @submit.prevent="submitPlay">
                     <SubmitButton classes="btn btn-primary btn-block btn-lg" :loading="loading" :disabled="!canSubmitPlay"
                                   :text="`<i class='fa fa-play-circle mr-2'></i>${$t('GamePlayFieldFooter.next')}`"/>
                 </form>
             </div>
-            <div class="col-lg-4 col-6">
+            <div class="col-lg-4 col order-md-2">
                 <transition name="fade" mode="out-in">
                     <div v-if="game.isVotePlay" class="text-center" key="vote-play-requirements">
                         <VRoller :default-char="votePlayRequirementsText" :text="votePlayRequirementsText"/>

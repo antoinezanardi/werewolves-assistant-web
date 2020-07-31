@@ -4,7 +4,7 @@
             <div v-if="loading.getGame" key="loading" class="h-100 d-flex justify-content-center align-items-center">
                 <Loading :text="$t('Game.loadingGame')"/>
             </div>
-            <div v-else key="game" class="pt-2 row mr-0 h-100">
+            <div v-else key="game" class="pt-2 row mx-0 h-100">
                 <GameVillagersSide :game="game" class="col-md-2 d-none d-md-block h-100"/>
                 <transition mode="out-in" name="fade">
                     <GameContent v-if="game.status === 'playing'" key="playing-game" :game="game" class="col-12 col-md-8 h-100"
