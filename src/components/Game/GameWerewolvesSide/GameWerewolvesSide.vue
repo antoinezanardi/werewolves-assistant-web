@@ -1,7 +1,7 @@
 <template>
     <div id="werewolves-side">
         <div class="row">
-            <div class="col-12 text-center">
+            <div class="col-12 text-center pr-0">
                 <h3 v-html="`${$t('GameWerewolvesSide.werewolves')}`"/>
             </div>
         </div>

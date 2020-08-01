@@ -1,7 +1,6 @@
 {
     "NavBar": {
-        "werewolvesAssistant": "Assistant Loups Garous",
-        "gameCompositionNotFinished": "La composition du jeu n'est pas encore finalisée"
+        "werewolvesAssistant": "Assistant Loups Garous"
     },
     "Home": {
         "werewolvesAssistant": "Assistant Loups Garous",
@@ -51,7 +50,11 @@
         "missingOneWerewolfToStart": "Il manque un loup garou pour commencer la partie",
         "missingOneVillagerToStart": "Il manque un villageois pour commencer",
         "allPlayerDontHaveARole": "Certains joueurs n'ont pas de rôle",
-        "gameCreated": "Partie créée"
+        "gameCreated": "Partie créée",
+        "areYouSureYouWantToQuit": "Êtes-vous sûr de vouloir quitter la composition de partie ?",
+        "gameCompositionNotFinished": "La composition du jeu n'est pas encore finalisée.",
+        "quit": "Quitter",
+        "cancel": "Annuler"
     },
     "GameLobbyComposition": {
         "playerCount": "Aucun joueur | {count} joueur | {count} joueurs",
@@ -86,10 +89,11 @@
     },
     "Game": {
         "loadingGame": "Chargement de la partie",
-        "areYouSureYouWantToQuit": "Êtes-vous sûr de vouloir quitter la partie en cours?",
-        "yourProgressIsSaved": "Votre progression est sauvegardée",
+        "areYouSureYouWantToQuit": "Êtes-vous sûr de vouloir quitter la partie en cours ?",
+        "yourProgressIsSaved": "Votre progression est sauvegardée.",
         "quit": "Quitter le jeu",
-        "cancel": "Annuler"
+        "cancel": "Annuler",
+        "youDontOwnThisGame": "Cette partie ne vous appartient pas"
     },
     "GamePlayFieldHeader": {
         "day": "Jour",

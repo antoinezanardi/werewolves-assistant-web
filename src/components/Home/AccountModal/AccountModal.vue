@@ -53,7 +53,7 @@ import $ from "jquery";
 import SubmitButton from "../../shared/Forms/SubmitButton";
 import LoginPanel from "./LoginPanel";
 import RegisterPanel from "./RegisterPanel";
-import { isAPIError } from "../../../helpers/functions/Error";
+import { isAPIError } from "@/helpers/functions/Error";
 
 export default {
     name: "AccountModal",

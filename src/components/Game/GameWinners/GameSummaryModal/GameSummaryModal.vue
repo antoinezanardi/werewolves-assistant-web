@@ -10,7 +10,7 @@
                 </div>
                 <div class="modal-body">
                     <h4 class="text-center mt-2">
-                        <i class="fa fa-clock mr-2"/>
+                        <i class="fa fa-clock mr-2"/>-
                         <span v-html="$t('GameSummaryModal.gameHistory')"/>
                     </h4>
                     <div id="game-summary-history" class="container-fluid">

@@ -5,6 +5,7 @@
 ### 🚀 New features
 
 * If the user leaves a playing game, a confirm alert is triggered.
+* If the user leaves the game lobby while composition has started, a confirm alert is triggered.
 * Timer of 5 minutes added for `elect-sheriff` and `vote` plays.
 * Game events like player death, role turn and some effect (like seen or promoted sheriff) are displayed during the game. 
 
@@ -12,10 +13,12 @@
 
 * The trophy at the end of a game has a sweet `TADA !` animation.
 * When player are voting, the text `vote for` has been UX improved.
+* Quit button added to Game Lobby.
 
 ### 🐛 Bug fixes
 
 * Werewolf side doesn't have an overflow-y anymore.
+* User is redirected to home page if he tries to load a game he doesn't own.
 
 ### 📦 Packages
 
@@ -24,9 +27,10 @@
 * `uniqid` installed with version `5.2.0`.
 * `@sentry/browser` updated to version `5.20.1`.
 * `@sentry/integrations` updated to version `5.20.1`.
+* `eslint` updated to version `7.6.0`.
 * `sweetalert2` updated to version `9.17.1`.
 * `vue-i18n` updated to version `8.20.0`.
-* `vue-roller` updated to version `1.12.2`.
+* `vue-roller` updated to version `1.12.3`.
 
 ---
 

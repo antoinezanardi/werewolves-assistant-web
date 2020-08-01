@@ -25,6 +25,7 @@ import GameVillagersSide from "./GameVillagersSide/GameVillagersSide";
 import GameWerewolvesSide from "./GameWerewolvesSide/GameWerewolvesSide";
 import GameContent from "./GameContent/GameContent";
 import GameWinners from "./GameWinners/GameWinners";
+import { isAPIError } from "@/helpers/functions/Error";
 
 export default {
     name: "Game",
@@ -46,7 +47,12 @@ export default {
                 const { data } = await this.$werewolvesAssistantAPI.getGame(this.$route.params.id);
                 this.game = new Game(data);
             } catch (e) {
-                this.$error.display(e);
+                if (isAPIError(e) && e.response.data.type === "GAME_DOESNT_BELONG_TO_USER") {
+                    await this.$router.push("/");
+                    this.$toasted.error(this.$t("Game.youDontOwnThisGame"), { icon: "lock" });
+                } else {
+                    this.$error.display(e);
+                }
             } finally {
                 this.loading.getGame = false;
             }

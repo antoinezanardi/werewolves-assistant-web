@@ -1,18 +1,18 @@
 <template>
     <div id="villagers-side">
         <div class="row">
-            <div class="col-12 text-center">
+            <div class="col-12 text-center pl-0">
                 <h3 v-html="$t('GameVillagersSide.villagers')"/>
             </div>
         </div>
         <div class="row">
-            <div class="col-12 text-center">
+            <div class="col-12 text-center pl-0">
                 <span v-html="'🧑🏻‍🌾'" class="mr-2"/>
                 <VRoller :text="villagersAliveText" :default-char="villagersAliveText" class="d-inline-flex"/>
                 <hr class="bg-dark"/>
             </div>
         </div>
-        <div id="villagers-list" class="row ml-0">
+        <div id="villagers-list" class="row">
             <transition-group name="flip-list" class="w-100">
                 <div v-for="player in sortedVillagers" :key="player.name" class="player-strip villager-player-strip">
                     <div class="text-center text-truncate mt-1">
