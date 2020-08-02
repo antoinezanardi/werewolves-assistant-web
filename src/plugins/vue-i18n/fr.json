@@ -184,12 +184,27 @@
     },
     "GameSummaryModal": {
         "gameSummary": "Récapitulatif de la partie",
+        "gameResults": "Résultats de la partie",
         "gameHistory": "Historique de la partie",
+        "villagers": "Villageois",
+        "werewolves": "Loups-Garous",
         "close": "Fermer"
     },
     "GameSummaryHistoryLine": {
         "day": "Jour",
-        "night": "Nuit"
+        "night": "Nuit",
+        "actions": {
+            "eat": "ont décidé de manger",
+            "use-potion": "a utilisé une potion sur",
+            "look": "a vu",
+            "shoot": "a tiré sur",
+            "protect": "a protégé",
+            "mark": "a marqué",
+            "elect-sheriff": "a élu comme maire",
+            "vote": "a décidé de pendre",
+            "delegate": "a légué son rôle de maire à",
+            "settle-votes": "a tranché pour pendre"
+        }
     },
     "PlayFieldActionText": {
         "wantsToLook": "souhaite voir le rôle de",
@@ -266,6 +281,18 @@
             "hunter": "un chasseur",
             "guard": "un salvateur",
             "raven": "un corbeau"
+        },
+        "the": {
+            "villager": "le villageois",
+            "werewolf": "le loup-garou",
+            "werewolves": "les loups-garous",
+            "seer": "la voyante",
+            "witch": "la sorcière",
+            "hunter": "le chasseur",
+            "guard": "le salvateur",
+            "raven": "le corbeau",
+            "sheriff": "le maire",
+            "all": "le village"
         },
         "villager": "Villageois",
         "werewolf": "Loup-Garou | Loups-Garous",

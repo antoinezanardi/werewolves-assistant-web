@@ -29,6 +29,7 @@
 * `@sentry/integrations` updated to version `5.20.1`.
 * `eslint` updated to version `7.6.0`.
 * `sweetalert2` updated to version `9.17.1`.
+* `vee-validate` updated to version `3.3.8`.
 * `vue-i18n` updated to version `8.20.0`.
 * `vue-roller` updated to version `1.12.3`.
 

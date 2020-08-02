@@ -7,9 +7,7 @@
         </div>
         <div class="row">
             <div class="col-12 text-center pl-0">
-                <span v-html="'🧑🏻‍🌾'" class="mr-2"/>
-                <VRoller :text="villagersAliveText" :default-char="villagersAliveText" class="d-inline-flex"/>
-                <hr class="bg-dark"/>
+                <AliveVillagers :game="game"/>
             </div>
         </div>
         <div id="villagers-list" class="row">
@@ -40,9 +38,10 @@
 import PlayerThumbnail from "../../shared/Game/PlayerThumbnail";
 import PlayerAttribute from "../../shared/Game/PlayerAttribute/PlayerAttribute";
 import Game from "../../../classes/Game";
+import AliveVillagers from "@/components/shared/Game/Sides/AliveVillagers";
 export default {
     name: "GameVillagersSide",
-    components: { PlayerAttribute, PlayerThumbnail },
+    components: { AliveVillagers, PlayerAttribute, PlayerThumbnail },
     props: {
         game: {
             type: Game,
@@ -50,9 +49,6 @@ export default {
         },
     },
     computed: {
-        villagersAliveText() {
-            return `${this.game.aliveVillagerPlayers.length} / ${this.game.villagerPlayers.length} ${this.$t("GameVillagersSide.alive")}`;
-        },
         sortedVillagers() {
             const villagerPlayers = [...this.game.villagerPlayers];
             return [...villagerPlayers.sort(player => player.isAlive ? -1 : 1)];

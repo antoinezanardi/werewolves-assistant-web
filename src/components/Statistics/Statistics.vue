@@ -78,7 +78,7 @@
 <script>
 import Loading from "../shared/Loading";
 import Game from "../../classes/Game";
-import RoleImage from "../shared/Game/RoleImage";
+import RoleImage from "../shared/Game/Role/RoleImage";
 export default {
     name: "Statistics",
     components: { RoleImage, Loading },

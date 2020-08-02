@@ -29,7 +29,7 @@
         "sweetalert2": "^9.17.1",
         "uniqid": "^5.2.0",
         "v-tooltip": "^2.0.3",
-        "vee-validate": "^3.3.7",
+        "vee-validate": "^3.3.8",
         "vue": "^2.6.11",
         "vue-flip": "^1.0.2",
         "vue-i18n": "^8.20.0",

@@ -37,7 +37,7 @@
 <script>
 import GameEvent from "@/classes/GameEvent";
 import Game from "@/classes/Game";
-import RoleImage from "@/components/shared/Game/RoleImage";
+import RoleImage from "@/components/shared/Game/Role/RoleImage";
 import sheriffSVG from "@/assets/svg/attributes/sheriff.svg";
 import deadSVG from "@/assets/svg/attributes/dead.svg";
 import seenSVG from "@/assets/svg/actions/look.svg";

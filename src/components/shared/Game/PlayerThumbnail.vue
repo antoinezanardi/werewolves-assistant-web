@@ -23,7 +23,7 @@
 import Game from "../../../classes/Game";
 import Player from "../../../classes/Player";
 import RolePicker from "./RolePicker";
-import RoleImage from "./RoleImage";
+import RoleImage from "./Role/RoleImage";
 
 export default {
     name: "PlayerThumbnail",

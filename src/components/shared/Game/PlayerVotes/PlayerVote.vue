@@ -26,7 +26,7 @@
 import Player from "../../../../classes/Player";
 import Game from "../../../../classes/Game";
 import PlayerCard from "../PlayerCard";
-import RoleImage from "../RoleImage";
+import RoleImage from "../Role/RoleImage";
 
 export default {
     name: "PlayerVote",
