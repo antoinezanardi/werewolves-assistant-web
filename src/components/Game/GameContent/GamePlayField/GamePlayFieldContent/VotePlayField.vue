@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import Game from "../../../../classes/Game";
-import PlayerVotes from "../../../shared/Game/PlayerVotes/PlayerVotes";
+import Game from "../../../../../classes/Game";
+import PlayerVotes from "../../../../shared/Game/PlayerVotes/PlayerVotes";
 
 export default {
     name: "VotePlayField",

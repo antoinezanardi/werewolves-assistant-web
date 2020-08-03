@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import Game from "../../../../classes/Game";
+import Game from "../../../../../classes/Game";
 import ElectSheriffPlayField from "./ElectSheriffPlayField";
 import LookPlayField from "./LookPlayField";
 import EatPlayField from "./EatPlayField";
@@ -40,7 +40,7 @@ import DelegatePlayField from "./DelegatePlayField";
 import ShootPlayField from "./ShootPlayField";
 
 export default {
-    name: "GameContentPlayField",
+    name: "GamePlayFieldContent",
     components: { ShootPlayField, DelegatePlayField, SettleVotesPlayField, VotePlayField, MarkPlayField, ProtectPlayField, UsePotionPlayField, EatPlayField, LookPlayField, ElectSheriffPlayField },
     props: {
         game: {

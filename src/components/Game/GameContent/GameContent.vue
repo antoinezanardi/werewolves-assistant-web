@@ -1,21 +1,24 @@
 <template>
     <div id="game-content" class="d-flex flex-column">
-        <GameContentHeader :game="game"/>
-        <GameContentPlayField :game="game" :play="play" id="game-content-play-field" @playerVotes="playerVotes"
-                              @playerSelected="playerSelected"/>
-        <GameContentFooter :game="game" :play="play" @updateGame="updateGame"/>
+        <transition mode="out-in" name="fade">
+            <GameEventMonitor v-if="events.length" key="game-event-monitor" :game="game" :events="events"
+                              @skipEvent="removeEvent"/>
+            <GamePlayField v-else key="game-play-field" :game="game" :play="play"
+                           @playerSelected="playerSelected" @playerVotes="playerVotes"
+                           @updateGame="updateGame"/>
+        </transition>
     </div>
 </template>
 
 <script>
 import Game from "../../../classes/Game";
-import GameContentHeader from "./GameContentHeader/GameContentHeader";
-import GameContentFooter from "./GameContentFooter/GameContentFooter";
-import GameContentPlayField from "./GameContentPlayField/GameContentPlayField";
+import GamePlayField from "./GamePlayField/GamePlayField";
+import GameEvent from "../../../classes/GameEvent";
+import GameEventMonitor from "../GameEventMonitor/GameEventMonitor";
 
 export default {
     name: "GameContent",
-    components: { GameContentPlayField, GameContentFooter, GameContentHeader },
+    components: { GameEventMonitor, GamePlayField },
     props: {
         game: {
             type: Game,
@@ -28,8 +31,10 @@ export default {
                 votes: [],
                 targets: [],
             },
+            events: [],
         };
     },
+
     methods: {
         playerVotes(vote) {
             const idx = this.play.votes.findIndex(({ from }) => from === vote.from);
@@ -65,16 +70,71 @@ export default {
         },
         updateGame(game) {
             this.resetPlay();
+            const lastGameHistoryEntry = game.history[0];
+            if (lastGameHistoryEntry.play.action === "look") {
+                this.events.push(new GameEvent({ type: "seer-looks", targets: lastGameHistoryEntry.play.targets }));
+            } else if (lastGameHistoryEntry.play.action === "elect-sheriff" || lastGameHistoryEntry.play.action === "delegate") {
+                this.events.push(new GameEvent({ type: "sheriff-elected", targets: lastGameHistoryEntry.play.targets }));
+            }
             this.$emit("updateGame", game);
+        },
+        generateGamePhaseEvent(newGame, oldGame) {
+            if (newGame.tick === 2) {
+                return this.events.push(new GameEvent({ type: "night-falls" }));
+            } else if (newGame && oldGame && newGame.phase !== oldGame.phase) {
+                const event = newGame.phase === "day" ? new GameEvent({ type: "day-rises" }) : new GameEvent({ type: "night-falls" });
+                return this.events.push(event);
+            }
+        },
+        generateGameDeathEvents(newGame, oldGame) {
+            if (!newGame || !oldGame) {
+                return;
+            }
+            for (const newPlayer of newGame.players) {
+                const oldPlayer = oldGame.players.find(({ _id }) => _id === newPlayer._id);
+                if (!newPlayer.isAlive && oldPlayer.isAlive) {
+                    this.events.push(new GameEvent({ type: "player-dies", targets: [{ player: newPlayer }] }));
+                }
+            }
+        },
+        generateGameRoleTurnEvents(newGame, oldGame) {
+            const roleTurnEvents = {
+                seer: "seer-starts",
+                werewolves: "werewolves-start",
+                witch: "witch-starts",
+                guard: "guard-starts",
+                raven: "raven-starts",
+                hunter: "hunter-starts",
+            };
+            if ((!oldGame || newGame.firstWaiting.for !== oldGame.firstWaiting.for && newGame.firstWaiting.to !== oldGame.firstWaiting.to) &&
+                roleTurnEvents[newGame.firstWaiting.for]) {
+                return this.events.push(new GameEvent({ type: roleTurnEvents[newGame.firstWaiting.for] }));
+            }
+        },
+        removeEvent(event) {
+            const idx = this.events.findIndex(({ _id }) => _id === event._id);
+            if (idx !== -1) {
+                this.events.splice(idx, 1);
+            }
+        },
+    },
+    watch: {
+        game: {
+            handler(newGame, oldGame) {
+                if (newGame.tick === 1) {
+                    this.events.push(new GameEvent({ type: "game-starts" }));
+                }
+                this.generateGamePhaseEvent(newGame, oldGame);
+                this.generateGameDeathEvents(newGame, oldGame);
+                this.generateGameRoleTurnEvents(newGame, oldGame);
+            },
+            deep: true,
+            immediate: true,
         },
     },
 };
 </script>
 
 <style scoped>
-    #game-content-play-field {
-        overflow-y: scroll;
-        width: 100%;
-        flex-grow: 1;
-    }
+
 </style>

@@ -79,7 +79,12 @@
                                           :disabled="loading.getGameRepartition || !canCreateGame"/>
                         </form>
                     </div>
-                    <div class="col-lg-3"/>
+                    <div class="col-lg-3 mt-2 mt-lg-0">
+                        <router-link class="btn btn-secondary btn-block" to="/">
+                            <i class="fa fa-sign-out-alt mr-2"/>
+                            <span v-html="$t('GameLobby.quit')"/>
+                        </router-link>
+                    </div>
                 </div>
             </div>
         </transition>
@@ -96,6 +101,7 @@ import PlayerCard from "../shared/Game/PlayerCard";
 import GameLobbyAlreadyHavePlayingGame from "./GameLobbyAlreadyHavePlayingGame";
 import SubmitButton from "../shared/Forms/SubmitButton";
 import GameLobbyComposition from "./GameLobbyComposition";
+import Swal from "sweetalert2";
 
 export default {
     name: "GameLobby",
@@ -235,6 +241,24 @@ export default {
         cancelGame() {
             this.waitingGame = new Game();
         },
+        confirmLeaveGameLobby() {
+            return Swal.fire({
+                title: this.$t("GameLobby.areYouSureYouWantToQuit"),
+                html: this.$t("GameLobby.gameCompositionNotFinished"),
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: `<i class='fa fa-sign-out-alt mr-2'></i>${this.$t("GameLobby.quit")}`,
+                cancelButtonText: this.$t("GameLobby.cancel"),
+            });
+        },
+    },
+    async beforeRouteLeave(to, from, next) {
+        if (!this.waitingGame._id && this.game.players.length && to.name !== "Game") {
+            const { value: confirmLeaveGameLobby } = await this.confirmLeaveGameLobby();
+            return confirmLeaveGameLobby ? next() : next(false);
+        } else {
+            return next();
+        }
     },
 };
 </script>

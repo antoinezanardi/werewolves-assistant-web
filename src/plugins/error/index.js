@@ -1,5 +1,5 @@
 import Vue from "vue";
-import { isAPIError } from "../../helpers/functions/Error";
+import { isAPIError } from "@/helpers/functions/Error";
 import i18n from "../vue-i18n";
 import Router from "../router";
 
