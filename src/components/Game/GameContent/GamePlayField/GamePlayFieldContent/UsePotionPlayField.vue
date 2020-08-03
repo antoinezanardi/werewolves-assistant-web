@@ -47,12 +47,12 @@
 </template>
 
 <script>
-import PlayerCard from "../../../shared/Game/PlayerCard";
-import Game from "../../../../classes/Game";
-import lifePotionSVG from "../../../../assets/svg/attributes/drank-life-potion.svg";
-import deathPotionSVG from "../../../../assets/svg/attributes/drank-death-potion.svg";
-import PlayerTargets from "../../../shared/Game/PlayerTargets/PlayerTargets";
-import PlayFieldActionText from "../../../shared/Game/PlayField/PlayFieldActionText";
+import PlayerCard from "../../../../shared/Game/PlayerCard";
+import Game from "../../../../../classes/Game";
+import lifePotionSVG from "../../../../../assets/svg/attributes/drank-life-potion.svg";
+import deathPotionSVG from "../../../../../assets/svg/attributes/drank-death-potion.svg";
+import PlayerTargets from "../../../../shared/Game/PlayerTargets/PlayerTargets";
+import PlayFieldActionText from "../../../../shared/Game/PlayField/PlayFieldActionText";
 
 export default {
     name: "UsePotionPlayField",
@@ -109,8 +109,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    @import "../../../../../node_modules/bootstrap/scss/bootstrap";
-    @import "../../../../assets/scss/variables";
+    @import "../../../../../../node_modules/bootstrap/scss/bootstrap";
+    @import "../../../../../assets/scss/variables";
 
     .use-potion-play-field-action-text {
         @include responsive-font-size(1rem);

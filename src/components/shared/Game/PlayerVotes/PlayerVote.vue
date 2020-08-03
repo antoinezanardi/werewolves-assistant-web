@@ -2,8 +2,7 @@
     <div class="player-vote d-flex flex-column align-items-center p-2">
         <PlayerCard :game="game" :player="player"/>
         <div class="mb-3 vote-for-text text-center">
-            <i class="fa fa-chevron-down mr-2"/>
-            <span v-html="$t('PlayerVote.voteFor')"/>
+            <span class="font-italic" v-html="$t('PlayerVote.voteFor')"/>
         </div>
         <VSelect :options="targetablePlayers" :placeholder="$t('PlayerVote.none')" :filter-by="filterBy" label="name"
                  @input="playerVotes">
@@ -27,7 +26,7 @@
 import Player from "../../../../classes/Player";
 import Game from "../../../../classes/Game";
 import PlayerCard from "../PlayerCard";
-import RoleImage from "../RoleImage";
+import RoleImage from "../Role/RoleImage";
 
 export default {
     name: "PlayerVote",

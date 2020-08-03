@@ -1,18 +1,16 @@
 <template>
     <div id="villagers-side">
         <div class="row">
-            <div class="col-12 text-center">
+            <div class="col-12 text-center pl-0">
                 <h3 v-html="$t('GameVillagersSide.villagers')"/>
             </div>
         </div>
         <div class="row">
-            <div class="col-12 text-center">
-                <span v-html="'🧑🏻‍🌾'" class="mr-2"/>
-                <VRoller :text="villagersAliveText" :default-char="villagersAliveText" class="d-inline-flex"/>
-                <hr class="bg-dark"/>
+            <div class="col-12 text-center pl-0">
+                <AliveVillagers :game="game"/>
             </div>
         </div>
-        <div id="villagers-list" class="row ml-0">
+        <div id="villagers-list" class="row">
             <transition-group name="flip-list" class="w-100">
                 <div v-for="player in sortedVillagers" :key="player.name" class="player-strip villager-player-strip">
                     <div class="text-center text-truncate mt-1">
@@ -40,9 +38,10 @@
 import PlayerThumbnail from "../../shared/Game/PlayerThumbnail";
 import PlayerAttribute from "../../shared/Game/PlayerAttribute/PlayerAttribute";
 import Game from "../../../classes/Game";
+import AliveVillagers from "@/components/shared/Game/Sides/AliveVillagers";
 export default {
     name: "GameVillagersSide",
-    components: { PlayerAttribute, PlayerThumbnail },
+    components: { AliveVillagers, PlayerAttribute, PlayerThumbnail },
     props: {
         game: {
             type: Game,
@@ -50,9 +49,6 @@ export default {
         },
     },
     computed: {
-        villagersAliveText() {
-            return `${this.game.aliveVillagerPlayers.length} / ${this.game.villagerPlayers.length} ${this.$t("GameVillagersSide.alive")}`;
-        },
         sortedVillagers() {
             const villagerPlayers = [...this.game.villagerPlayers];
             return [...villagerPlayers.sort(player => player.isAlive ? -1 : 1)];

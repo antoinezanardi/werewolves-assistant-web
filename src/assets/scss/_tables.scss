@@ -1,0 +1,10 @@
+.table {
+    &.table-hover {
+    }
+    tr {
+        color: white !important;
+        td {
+            border-color: #515151;
+        }
+    }
+}

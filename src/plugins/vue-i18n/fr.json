@@ -1,11 +1,6 @@
 {
     "NavBar": {
-        "werewolvesAssistant": "Assistant Loups Garous",
-        "areYouSureYouWantToQuit": "Êtes-vous sûr de vouloir quitter ?",
-        "gameCompositionNotFinished": "La composition du jeu n'est pas encore finalisée",
-        "yourProgressIsSaved": "Votre progression dans le jeu est sauvegardée",
-        "quit": "Quitter le jeu",
-        "cancel": "Annuler"
+        "werewolvesAssistant": "Assistant Loups Garous"
     },
     "Home": {
         "werewolvesAssistant": "Assistant Loups Garous",
@@ -55,7 +50,11 @@
         "missingOneWerewolfToStart": "Il manque un loup garou pour commencer la partie",
         "missingOneVillagerToStart": "Il manque un villageois pour commencer",
         "allPlayerDontHaveARole": "Certains joueurs n'ont pas de rôle",
-        "gameCreated": "Partie créée"
+        "gameCreated": "Partie créée",
+        "areYouSureYouWantToQuit": "Êtes-vous sûr de vouloir quitter la composition de partie ?",
+        "gameCompositionNotFinished": "La composition du jeu n'est pas encore finalisée.",
+        "quit": "Quitter",
+        "cancel": "Annuler"
     },
     "GameLobbyComposition": {
         "playerCount": "Aucun joueur | {count} joueur | {count} joueurs",
@@ -90,9 +89,13 @@
     },
     "Game": {
         "loadingGame": "Chargement de la partie",
-        "wolves": "Loups garous"
+        "areYouSureYouWantToQuit": "Êtes-vous sûr de vouloir quitter la partie en cours ?",
+        "yourProgressIsSaved": "Votre progression est sauvegardée.",
+        "quit": "Quitter le jeu",
+        "cancel": "Annuler",
+        "youDontOwnThisGame": "Cette partie ne vous appartient pas"
     },
-    "GameContentHeader": {
+    "GamePlayFieldHeader": {
         "day": "Jour",
         "night": "Nuit",
         "waiting": {
@@ -124,12 +127,14 @@
             }
         }
     },
-    "GameContentFooter": {
+    "GamePlayFieldFooter": {
         "next": "Suivant",
         "playersHaveVoted": "{votesCount}/{playersCount} joueurs ont voté",
         "playersTargeted": "{targetsCount}/{min} joueur visé",
         "minOnePlayerHasToVote": "Minimum 1 joueur doit voter",
-        "minOnePlayerHasToBeTargeted": "Minimum 1 joueur doit être visé"
+        "minOnePlayerHasToBeTargeted": "Minimum 1 joueur doit être visé",
+        "timeForDebating": "Temps pour débattre",
+        "debateIsOver": "Le débat est terminé, il est temps de voter !"
     },
     "PlayerAttribute": {
         "attributes": {
@@ -143,6 +148,7 @@
         }
     },
     "PlayerThumbnail": {
+        "chooseRole": "Choisir un rôle",
         "unsetPlayer": "Retirer le joueur"
     },
     "PlayerVote": {
@@ -166,14 +172,39 @@
         "useDeathPotionOn": "Utiliser la potion de mort sur ..."
     },
     "GameWinners": {
-        "wonByWerewolves": "Partie gagnée par le seul loup garou | Partie gagnée par les loups garous",
+        "wonByWerewolves": "Partie gagnée par le seul loup-garou | Partie gagnée par les loups-garous",
         "wonByVillagers": "Partie gagnée par le seul villageois | Partie gagnée par les villageois",
         "restartGame": "Recommencer une partie",
         "quit": "Quitter",
         "newGame": "Nouvelle partie",
         "doYouWantToKeepSamePlayers": "Voulez-vous rejouer avec les mêmes joueurs ?",
         "keepSamePlayers": "Garder les mêmes joueurs",
-        "fromScratch": "Recommencer du début"
+        "fromScratch": "Recommencer du début",
+        "seeGameSummary": "Voir le récapitulatif de partie"
+    },
+    "GameSummaryModal": {
+        "gameSummary": "Récapitulatif de la partie",
+        "gameResults": "Résultats de la partie",
+        "gameHistory": "Historique de la partie",
+        "villagers": "Villageois",
+        "werewolves": "Loups-Garous",
+        "close": "Fermer"
+    },
+    "GameSummaryHistoryLine": {
+        "day": "Jour",
+        "night": "Nuit",
+        "actions": {
+            "eat": "ont décidé de manger",
+            "use-potion": "a utilisé une potion sur",
+            "look": "a vu",
+            "shoot": "a tiré sur",
+            "protect": "a protégé",
+            "mark": "a marqué",
+            "elect-sheriff": "a élu comme maire",
+            "vote": "a décidé de pendre",
+            "delegate": "a légué son rôle de maire à",
+            "settle-votes": "a tranché pour pendre"
+        }
     },
     "PlayFieldActionText": {
         "wantsToLook": "souhaite voir le rôle de",
@@ -198,6 +229,34 @@
         "cancel": "Annuler",
         "cancelTarget": "Annuler cette cible"
     },
+    "GameEventMonitor": {
+        "skip": "Passer"
+    },
+    "GameEvent": {
+        "next": "Suivant",
+        "previous": "Précédent",
+        "messages": {
+            "welcomeToTheVillage": "Bienvenue à tous dans le village de Thiercelieux !",
+            "compositionIs": "Ce village de {inhabitantCount} habitants se composent de ",
+            "looksLifeSomeWerewolvesIntroducedThemselves": "Il semblerait qu'un ou plusieurs loups-garous se soient faufilé dans le village...",
+            "villagersMurderWerewolves": "Villageois, prenez les fourches et nettoyez votre village de ces canidés !",
+            "beforeStartingLetsElectSheriff": "Mais avant de vous entretuer, il faut élire le maire de ce village.",
+            "playerDies": "{player} est mort ! Quelle tragédie...",
+            "playerRevealsRole": "Il ou elle révèle son rôle aux survivants.",
+            "playerHasBeenPromotedSheriff": "{player} a été promu maire !",
+            "sheriffCanMakeASpeech": "Le maire peut, s'il le souhaite, faire un discours poignant sur son élection.",
+            "nightFalls": "La nuit tombe sur le village de Thiercelieux...",
+            "inhabitantsFallAsleep": "Les habitants du village s'endorment.",
+            "dayRises": "Le jour se lève sur le village de Thiercelieux.",
+            "seerStarts": "La voyante se réveille et va découvrir dans sa boule de cristal le rôle d'un habitant.",
+            "seerHasSeen": "La voyante a vu",
+            "werewolvesStart": "Le loup-garou se réveille et va choisir son dîner de ce soir. | Les loups-garous se réveillent et vont choisir leur dîner de ce soir.",
+            "witchStarts": "La sorcière se réveille et va, si elle le souhaite, utiliser ses potions.",
+            "guardStarts": "Le salvateur se réveille et va protéger la personne de son choix.",
+            "ravenStarts": "Le corbeau se réveille et va, s'il le souhaite, marquer de sa plume un des habitants.",
+            "hunterStarts": "Dans son dernier souffle, le chasseur s'apprête à choisir la cible de sa vengeance."
+        }
+    },
     "Statistics": {
         "statistics": "Statistiques",
         "loadingStatistics": "Chargement des statistiques",
@@ -214,13 +273,37 @@
         "createGameNow": "Créer une partie maintenant"
     },
     "Role": {
+        "a": {
+            "villager": "un villageois",
+            "werewolf": "un loup-garou",
+            "seer": "une voyante",
+            "witch": "une sorcière",
+            "hunter": "un chasseur",
+            "guard": "un salvateur",
+            "raven": "un corbeau"
+        },
+        "the": {
+            "villager": "le villageois",
+            "werewolf": "le loup-garou",
+            "werewolves": "les loups-garous",
+            "seer": "la voyante",
+            "witch": "la sorcière",
+            "hunter": "le chasseur",
+            "guard": "le salvateur",
+            "raven": "le corbeau",
+            "sheriff": "le maire",
+            "all": "le village"
+        },
         "villager": "Villageois",
-        "werewolf": "Loup-Garou",
+        "werewolf": "Loup-Garou | Loups-Garous",
         "seer": "Voyante",
         "witch": "Sorcière",
         "hunter": "Chasseur",
         "guard": "Salvateur",
         "raven": "Corbeau"
+    },
+    "RoleText": {
+        "chooseARole": "Choisir un rôle"
     },
     "Error": {
         "unauthorized": "Vous ne pouvez pas accéder à cette page",

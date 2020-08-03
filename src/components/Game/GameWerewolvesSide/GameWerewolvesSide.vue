@@ -1,15 +1,13 @@
 <template>
-    <div id="werewolves-side" class="pr-0">
+    <div id="werewolves-side">
         <div class="row">
-            <div class="col-12 text-center">
+            <div class="col-12 text-center pr-0">
                 <h3 v-html="`${$t('GameWerewolvesSide.werewolves')}`"/>
             </div>
         </div>
-        <div class="row pr-0">
+        <div class="row">
             <div class="col-12 text-center pr-0">
-                <span v-html="'🐺'" class="mr-2"/>
-                <VRoller :text="werewolvesAliveText" :default-char="werewolvesAliveText" class="d-inline-flex"/>
-                <hr class="bg-dark"/>
+                <AliveWerewolves :game="game"/>
             </div>
         </div>
         <div class="row">
@@ -40,10 +38,11 @@
 import Game from "../../../classes/Game";
 import PlayerAttribute from "../../shared/Game/PlayerAttribute/PlayerAttribute";
 import PlayerThumbnail from "../../shared/Game/PlayerThumbnail";
+import AliveWerewolves from "@/components/shared/Game/Sides/AliveWerewolves";
 
 export default {
     name: "GameWerewolvesSide",
-    components: { PlayerThumbnail, PlayerAttribute },
+    components: { AliveWerewolves, PlayerThumbnail, PlayerAttribute },
     props: {
         game: {
             type: Game,
@@ -51,9 +50,6 @@ export default {
         },
     },
     computed: {
-        werewolvesAliveText() {
-            return `${this.game.aliveWerewolfPlayers.length} / ${this.game.werewolfPlayers.length} ${this.$t("GameWerewolvesSide.alive")}`;
-        },
         sortedWerewolves() {
             const wereWolvesPlayers = [...this.game.werewolfPlayers];
             return [...wereWolvesPlayers.sort(player => player.isAlive ? -1 : 1)];

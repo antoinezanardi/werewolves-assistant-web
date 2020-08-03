@@ -77,6 +77,11 @@ class Game {
             waiting.to === "shoot" || waiting.to === "settle-votes" || waiting.to === "delegate";
     }
 
+    get isTimedPlay() {
+        const waiting = this.firstWaiting;
+        return waiting.to === "elect-sheriff" || waiting.to === "vote";
+    }
+
     getPlayerWithRole(role) {
         return this.players.find(player => player.role.current === role);
     }

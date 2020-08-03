@@ -12,10 +12,10 @@
 </template>
 
 <script>
-import PlayerCard from "../../../shared/Game/PlayerCard";
-import PlayerTargets from "../../../shared/Game/PlayerTargets/PlayerTargets";
-import Game from "../../../../classes/Game";
-import PlayFieldActionText from "../../../shared/Game/PlayField/PlayFieldActionText";
+import PlayerCard from "../../../../shared/Game/PlayerCard";
+import PlayerTargets from "../../../../shared/Game/PlayerTargets/PlayerTargets";
+import Game from "../../../../../classes/Game";
+import PlayFieldActionText from "../../../../shared/Game/PlayField/PlayFieldActionText";
 
 export default {
     name: "MarkPlayField",

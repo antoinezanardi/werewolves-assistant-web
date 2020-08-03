@@ -8,7 +8,7 @@
         <div v-if="!game._id" class="player-card-role small text-center text-muted d-flex align-items-center">
             <i v-if="player.role.current" v-tooltip="$t('PlayerCard.unsetRole')" @click="unsetRole"
                class="fa fa-times-circle mr-1 unset-role-button"/>
-            <div class="text-truncate" v-html="playerRole"/>
+            <RoleText class="text-truncate" :role="player.role.current"/>
         </div>
     </div>
 </template>
@@ -17,10 +17,11 @@
 import Player from "../../../classes/Player";
 import Game from "../../../classes/Game";
 import PlayerThumbnail from "./PlayerThumbnail";
+import RoleText from "@/components/shared/Game/Role/RoleText";
 
 export default {
     name: "PlayerCard",
-    components: { PlayerThumbnail },
+    components: { RoleText, PlayerThumbnail },
     props: {
         game: {
             type: Game,
@@ -41,11 +42,6 @@ export default {
         selected: {
             type: Boolean,
             default: false,
-        },
-    },
-    computed: {
-        playerRole() {
-            return this.player.role.current ? this.$t(`Role.${this.player.role.current}`) : this.$t(`PlayerCard.pickRole`);
         },
     },
     methods: {
