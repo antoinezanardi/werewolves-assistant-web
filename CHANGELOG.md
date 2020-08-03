@@ -1,13 +1,15 @@
 # 📈 LIST OF CHANGES FOR WEREWOLVES ASSISTANT WEB
 
-## 0.3.0 (2020-08-??)
+## 1.0.0-beta.1 (2020-08-03)
 
 ### 🚀 New features
 
 * If the user leaves a playing game, a confirm alert is triggered.
 * If the user leaves the game lobby while composition has started, a confirm alert is triggered.
 * Timer of 5 minutes added for `elect-sheriff` and `vote` plays.
-* Game events like player death, role turn and some effect (like seen or promoted sheriff) are displayed during the game. 
+* Game events like player death, role turn and some effect (like seen or promoted sheriff) are displayed during the game.
+* Game summary is available at the end of a game with game results and game history.
+* `sitemaps.xml` file added for SEO.
 
 ### 🌟 Enhancements
 

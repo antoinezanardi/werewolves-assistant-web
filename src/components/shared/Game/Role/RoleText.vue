@@ -22,6 +22,7 @@ export default {
                 werewolf: this.$t("Role.the.werewolf"),
                 werewolves: this.$t("Role.the.werewolves"),
                 witch: this.$t("Role.the.witch"),
+                sheriff: this.$t("Role.the.sheriff"),
                 all: this.$t("Role.the.all"),
             };
             return this.role && roleText[this.role] ? roleText[this.role] : this.$t("RoleText.chooseARole");

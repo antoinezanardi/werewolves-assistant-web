@@ -302,6 +302,9 @@
         "guard": "Salvateur",
         "raven": "Corbeau"
     },
+    "RoleText": {
+        "chooseARole": "Choisir un rôle"
+    },
     "Error": {
         "unauthorized": "Vous ne pouvez pas accéder à cette page",
         "BAD_REQUEST": "Mauvaise requête serveur",

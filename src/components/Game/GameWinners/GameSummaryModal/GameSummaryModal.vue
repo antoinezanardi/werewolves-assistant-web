@@ -1,6 +1,6 @@
 <template>
     <div class="modal fade" id="game-summary-modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" v-html="$t('GameSummaryModal.gameSummary')"/>
@@ -15,19 +15,19 @@
                             <span v-html="$t('GameSummaryModal.gameResults')"/>
                         </h4>
                         <hr class="bg-dark"/>
-                        <div class="row justify-content-center">
-                            <div class="col d-flex align-items-center justify-content-center text-center">
+                        <div class="row justify-content-around">
+                            <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center text-center">
                                 <img :src="game.won.by === 'villagers' ? SVGs.trophy : SVGs.dead" class="pb-3 mr-4"
                                      width="75" alt="Result"/>
-                                <div>
+                                <div class="flex-grow-1">
                                     <h3 v-html="$t('GameSummaryModal.villagers')"/>
                                     <AliveVillagers :game="game"/>
                                 </div>
                             </div>
-                            <div class="col d-flex align-items-center justify-content-center text-center">
+                            <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center text-center">
                                 <img :src="game.won.by === 'werewolves' ? SVGs.trophy : SVGs.dead" class="pb-3 mr-4"
                                      width="75" alt="Result"/>
-                                <div>
+                                <div class="flex-grow-1">
                                     <h3 v-html="$t('GameSummaryModal.werewolves')"/>
                                     <AliveWerewolves :game="game"/>
                                 </div>
@@ -38,7 +38,7 @@
                         <hr class="bg-dark"/>
                     </div>
                     <div id="game-summary-history" class="h-50">
-                        <h4 class="text-center mt-2">
+                        <h4 class="text-center mt-2 mb-3">
                             <i class="fa fa-clock mr-2"/>
                             <span v-html="$t('GameSummaryModal.gameHistory')"/>
                         </h4>
@@ -99,8 +99,8 @@ export default {
 </script>
 
 <style scoped>
-    #game-summary-history {
-        overflow-y: scroll;
-        /*max-height: 50vh;*/
+    .modal-body {
+        max-height: calc(100vh - 173px);
+        overflow-y: auto;
     }
 </style>
