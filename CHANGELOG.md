@@ -8,7 +8,7 @@
 
 ### 🐛 Bug fixes
 
-* [#10](https://github.com/antoinezanardi/werewolves-assistant-web/issues/10) - Fixed some typography errors in game events.
+* [#10](https://github.com/antoinezanardi/werewolves-assistant-web/issues/10) - Fixed some typography errors in game events. 
 
 ### 🌟 Enhancements
 
