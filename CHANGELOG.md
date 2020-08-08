@@ -4,11 +4,16 @@
 
 ### 🚀 New features
 
-* `About` page added with a lot of useful information.
+* [#11](https://github.com/antoinezanardi/werewolves-assistant-web/issues/11) - `About` page added with a lot of useful information.
+
+### 🐛 Bug fixes
+
+* [#10](https://github.com/antoinezanardi/werewolves-assistant-web/issues/10) - Fixed some typography errors in game events.
 
 ### 🌟 Enhancements
 
 * Pick-up line added on Home page for explaining the concept of Werewolves Assistant.
+
 
 ### 📚 Documentation
 
