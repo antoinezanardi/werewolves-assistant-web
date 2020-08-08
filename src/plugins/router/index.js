@@ -1,9 +1,10 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../../components/Home/Home";
-import GameLobby from "../../components/GameLobby/GameLobby";
-import Game from "../../components/Game/Game";
-import Statistics from "../../components/Statistics/Statistics";
+import Home from "@/components/Home/Home";
+import GameLobby from "@/components/GameLobby/GameLobby";
+import Game from "@/components/Game/Game";
+import Statistics from "@/components/Statistics/Statistics";
+import About from "@/components/About/About";
 
 Vue.use(VueRouter);
 
@@ -27,6 +28,10 @@ const routes = [{
     path: "/",
     name: "Home",
     component: Home,
+}, {
+    path: "/about",
+    name: "About",
+    component: About,
 }, {
     path: "/game-lobby",
     name: "GameLobby",

@@ -1,9 +1,9 @@
 {
     "NavBar": {
-        "werewolvesAssistant": "Assistant Loups Garous"
+        "werewolvesAssistant": "Assistant Loups-Garous"
     },
     "Home": {
-        "werewolvesAssistant": "Assistant Loups Garous",
+        "werewolvesAssistant": "Assistant Loups-Garous",
         "play": "Jouer",
         "logInOrSignUp": "Se connecter ou s'inscrire",
         "statistics": "Statistiques",
@@ -11,7 +11,9 @@
         "youMustLogInToPlay": "Vous devez vous connecter pour jouer",
         "contactMe": "Me contacter",
         "thisProjectIsOpenSource": "Ce projet est open-source",
-        "buyMeACoffee": "M'offrir un café"
+        "buyMeACoffee": "M'offrir un café",
+        "whatIsItAbout": "À quoi ça sert",
+        "bestToolForGameMastering": "L'outil idéal pour le maître du jeu des Loups-Garous de Thiercelieux"
     },
     "Login": {
         "loggedIn": "Connecté",
@@ -34,6 +36,41 @@
         "confirmPassword": "Confirmer le mot de passe",
         "required": "Requis",
         "userDataOnlyForAccount": "Ces informations ne sont enregistrées que pour vous permettre de vous connecter et ainsi enregistrer vos parties."
+    },
+    "About": {
+        "werewolvesAssistantWhatFor": "Un assistant ? Pour quoi faire ?",
+        "theGame": "Le jeu",
+        "werewolvesOfMillersHollowTM": "Les Loups-Garous de Thiercelieux™",
+        "iDontKnowThisGame": "Je ne connnais pas ce jeu",
+        "watchYouTubeVideo": "Regarder une vidéo explicative sur YouTube",
+        "isAGame": "est un jeu de société d'ambiance dans lequel chaque joueur incarne un villageois ou un loup-garou. Chaque partie est animée par un maître du jeu non-joueur et apporte son lot de surprises, de trahisons, de retournements de situations, de rires et parfois de pleurs.",
+        "forAGameToBeSuccessful": "Pour qu'une partie soit réussie, le maître du jeu doit l'animer en installant une ambiance prenante, en y imposant un rythme et en connaissant les règles du jeu sur le bout des doigts. Dans le cas où le maître du jeu doit gérer un nombre conséquent de joueurs, a peu d'expérience ou est dans un état second, ce n'est pas une tâche facile...",
+        "werewolvesAssistantIsHere": "L'assistant Loups-Garous entre en scène !",
+        "forHelpingGameMaster": "Pour aider le maître du jeu dans sa lourde tâche qu'est l'animation d'une partie de Loups-Garous, l'Assistant Loups-Garous est l'outil parfait !",
+        "theAssistantHasManyFeaturesLike": "L'Assistant possède un panel de fonctionnalités tel que:",
+        "screenForGameComposition": "Un écran de composition de partie permettant de créer une partie de 4 à 20 joueurs avec la possibilité de répartir aléatoirement les rôles.",
+        "interfaceForGameMonitoring": "Une interface ludique de suivi de partie.",
+        "interfaceForEachActionAndEvents": "Pour chaque évènement, la possibilité de renseigner les choix des joueurs comme la cible des loups-garous ou l'élection du maire par exemple.<br/> L'Assistant se charge de l'ordre de passage des joueurs, d'afficher les morts ou autres évènements et de retenir tous les choix faits durant la partie.",
+        "gameSummaryWhenPartyIsDone": "Un récapitulatif lorsque la partie est terminée avec le camp gagnant et l'historique complet.",
+        "assistantIsFreeAndAvailable": "En somme, l'Assistant va vous faire découvrir ou re-découvrir le plaisir d'être le maître du jeu pendant une partie de Loups-Garous. Il est disponible sur tout support ayant un navigateur Internet et est 100% GRATUIT.",
+        "attentionPlease": "ATTENTION CEPENDANT",
+        "assistantDoesntReplaceTheOriginalGame": "L'Assistant n'a aucune vocation à remplacer le jeu original Les Loups-Garous de Thiercelieux™. Pour utiliser l'Assistant, un jeu avec ses cartes est nécessaire. L'Assistant n'est qu'un support pour le maître du jeu qui est le seul utilisateur de l'outil, les joueurs n'y ont pas accès.",
+        "howToContribute": "Comment contribuer à ce projet ?",
+        "someMethodsToContribute": "Il existe plusieurs moyens de contribuer à ce projet:",
+        "theAssistantIsOpenSource": "L'Assistant Loups-Garous est un projet open-source !",
+        "availableOnGitHub": "Disponible sur GitHub",
+        "atThisAddress": "à cette addresse",
+        "pleaseAddAStar": "que vous soyez développeur, graphiste ou même testeur, votre aide est la bienvenue. D'ailleurs, si le projet vous plaît, n'hésitez pas à ajouter une étoile ou à suivre le créateur !",
+        "thisProjectNotWithoutFees": "Ce projet a pour vocation de rester un service gratuit. Néanmoins, l'hébergement et l'infrastructure de l'outil sont tous deux payants. Si vous souhaitez participer ou si vous aimez le travail du créateur de ce projet, vous pouvez faire un don sur",
+        "hisBuyMeACoffeePage": "sa page Buy Me A Coffee",
+        "speakAboutThisProject": "Parlez de ce projet autour de vous ! Le bouche à oreille permettra aux nombreux indécis du role-play de se lancer dans la grande aventure du maître du jeu grâce à l'Assistant Loups-Garous.",
+        "aWordFromCreator": "Un mot du créateur de l'Assistant Loup-Garous",
+        "ImTheCreator": "Je suis Antoine ZANARDI, développeur Full-Stack Web et adepte de l'open-source en général. Si vous souhaitez en savoir plus sur moi, je vous invite à découvrir",
+        "myPortfolio": "mon portoflio",
+        "forMe": "Pour moi",
+        "isOneOfTheBestGame": "est un des meilleurs jeux entre amis ou en famille autour d'une table, où s'entremellent alliances et trahisons, un peu comme un Mario Kart en fait... Au fur et à mesure d'une partie, la vraie nature de chaque joueur se révèle, les masques tombent, chacun se sent menacé... Autant de rebondissements qui rendent chaque partie unique !",
+        "ImAFanOfGameMastering": "Étant un grand fan du rôle de maître du jeu, j'ai toujours eu l'envie de partager ce doux sentiment de chef d'orchestre durant une partie. J'ai donc créé cet assistant pour que n'importe qui puisse endosser ce rôle si important, et ce, dans n'importe quelle configuration de jeu.",
+        "pleaseRateThisProjectAndHaveFun": "N'hésitez pas à me faire part de vos avis sur cet assistant. Il a été créé pour servir tous maîtres du jeu, novices ou experts, et rendre vos parties mémorables. Amusez-vous bien ! "
     },
     "GameLobby": {
         "loading": "Recherche d'une partie en cours",

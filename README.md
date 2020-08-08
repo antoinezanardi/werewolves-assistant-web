@@ -12,13 +12,13 @@
 [![ForTheBadge uses-js](http://ForTheBadge.com/images/badges/uses-js.svg)](https://GitHub.com/antoinezanardi/werewolves-assistant-web)
 
 ## 🐺 Description
-Werewolves Assistant Web is a Vue web app using the [Werewolves Assistant API](https://github.com/antoinezanardi/werewolves-assistant-api).
+Werewolves Assistant Web is a Vue web app using the <a href="https://github.com/antoinezanardi/werewolves-assistant-api" target="_blank">Werewolves Assistant API</a>.
 Thanks to this app, being the game master of the Werewolves of Millers Hollow game is so easy ! Try it out now with live demos below.
 
 ## 🌻 Live demos
 Two environments are set up:
-* **Sandbox**: https://sandbox.werewolves-assistant.antoinezanardi.fr
-* **Production**: https://werewolves-assistant.antoinezanardi.fr
+* **Sandbox**: <a href="https://sandbox.werewolves-assistant.antoinezanardi.fr" target="_blank">Join here</a>
+* **Production**: <a href="https://werewolves-assistant.antoinezanardi.fr" target="_blank">Join here</a>
 
 For your tests, please use the **Sandbox URL**.
 

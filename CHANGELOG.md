@@ -1,5 +1,28 @@
 # 📈 LIST OF CHANGES FOR WEREWOLVES ASSISTANT WEB
 
+## 1.0.0-beta.2 (2020-08-03)
+
+### 🚀 New features
+
+* `About` page added with a lot of useful information.
+
+### 🌟 Enhancements
+
+* Pick-up line added on Home page for explaining the concept of Werewolves Assistant.
+
+### 📚 Documentation
+
+* Links for [Werewolves Assistant API](https://github.com/antoinezanardi/werewolves-assistant-api) and demos on `README.md` open now a new tab when clicked.
+
+### 📦 Packages
+
+* `vue-github-buttons` installed with version `3.1.0`.
+* `bootstrap` updated to version `4.5.2`.
+* `sass-loader` updated to version `9.0.3`.
+* `vue-router` updated to version `3.4.2`.
+
+---
+
 ## 1.0.0-beta.1 (2020-08-03)
 
 ### 🚀 New features
