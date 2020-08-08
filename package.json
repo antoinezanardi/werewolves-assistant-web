@@ -34,6 +34,7 @@
         "vue-flip": "^1.0.2",
         "vue-github-buttons": "^3.1.0",
         "vue-i18n": "^8.20.0",
+        "vue-keypress": "^2.1.1",
         "vue-roller": "^1.12.3",
         "vue-router": "^3.4.2",
         "vue-select": "^3.10.7",

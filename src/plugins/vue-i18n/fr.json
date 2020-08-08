@@ -267,11 +267,15 @@
         "cancelTarget": "Annuler cette cible"
     },
     "GameEventMonitor": {
-        "skip": "Passer"
+        "skip": "Passer",
+        "skipToNextEvent": "Passer au prochain évènement"
     },
     "GameEvent": {
         "next": "Suivant",
         "previous": "Précédent",
+        "press": "Appuyez sur",
+        "toGoBack": "pour revenir en arrière",
+        "toGoFurther": "pour passer à la suite",
         "messages": {
             "welcomeToTheVillage": "Bienvenue à tous dans le village de Thiercelieux !",
             "compositionIs": "Ce village de {inhabitantCount} habitants se composent de ",

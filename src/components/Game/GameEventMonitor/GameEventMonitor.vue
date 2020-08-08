@@ -8,8 +8,9 @@
         </div>
         <div id="game-event-monitor-footer" class="row justify-content-center">
             <div class="col-12 col-lg-4">
-                <button class="btn btn-lg btn-primary btn-block" @click="skipEvent">
-                    <i class="fa fa-chevron-circle-right mr-2"/>
+                <button class="btn btn-lg btn-primary btn-block" v-tooltip="$t('GameEventMonitor.skipToNextEvent')"
+                        @click="skipEvent">
+                    <i class="fa fa-forward mr-2"/>
                     <span v-html="$t('GameEventMonitor.skip')"/>
                 </button>
             </div>

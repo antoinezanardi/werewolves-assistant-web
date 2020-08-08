@@ -8,12 +8,12 @@
 
 ### 🐛 Bug fixes
 
-* [#10](https://github.com/antoinezanardi/werewolves-assistant-web/issues/10) - Fixed some typography errors in game events. 
+* [#10](https://github.com/antoinezanardi/werewolves-assistant-web/issues/10) - Fixed some typography errors in game events.
 
 ### 🌟 Enhancements
 
+* [#12](https://github.com/antoinezanardi/werewolves-assistant-web/issues/12) - Navigation between game event messages enabled with left and right arrow keys.
 * Pick-up line added on Home page for explaining the concept of Werewolves Assistant.
-
 
 ### 📚 Documentation
 
@@ -22,6 +22,7 @@
 ### 📦 Packages
 
 * `vue-github-buttons` installed with version `3.1.0`.
+* `vue-keypress` installed with version `2.1.1`.
 * `bootstrap` updated to version `4.5.2`.
 * `sass-loader` updated to version `9.0.3`.
 * `vue-router` updated to version `3.4.2`.
