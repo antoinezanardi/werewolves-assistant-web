@@ -171,7 +171,8 @@
         "minOnePlayerHasToVote": "Minimum 1 joueur doit voter",
         "minOnePlayerHasToBeTargeted": "Minimum 1 joueur doit être visé",
         "timeForDebating": "Temps pour débattre",
-        "debateIsOver": "Le débat est terminé, il est temps de voter !"
+        "debateIsOver": "Le débat est terminé, il est temps de voter !",
+        "tieInVotesForbidden": "L'égalité pour ce vote est interdite"
     },
     "PlayerAttribute": {
         "attributes": {

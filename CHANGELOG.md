@@ -13,6 +13,7 @@
 ### 🌟 Enhancements
 
 * [#12](https://github.com/antoinezanardi/werewolves-assistant-web/issues/12) - Navigation between game event messages enabled with left and right arrow keys.
+* [#14](https://github.com/antoinezanardi/werewolves-assistant-web/issues/14) - Message for preventing tie in votes during sheriff election.
 * Pick-up line added on Home page for explaining the concept of Werewolves Assistant.
 
 ### 📚 Documentation
@@ -23,8 +24,14 @@
 
 * `vue-github-buttons` installed with version `3.1.0`.
 * `vue-keypress` installed with version `2.1.1`.
+* `@vue/cli-plugin-e2e-cypress` updated to version `4.5.2`.
+* `@vue/cli-plugin-router` updated to version `4.5.2`.
+* `@vue/cli-plugin-unit-mocha` updated to version `4.5.2`.
+* `@vue/cli-plugin-vuex` updated to version `4.5.2`.
+* `@vue/cli-service` updated to version `4.5.2`.
 * `bootstrap` updated to version `4.5.2`.
 * `sass-loader` updated to version `9.0.3`.
+* `vee-validate` installed with version `3.3.9`.
 * `vue-router` updated to version `3.4.2`.
 
 ---

@@ -33,6 +33,10 @@
                             <i class="fa mr-2" :class="votePlayRequirementsIconClass"/>
                             <span class="small" v-html="$t('GamePlayFieldFooter.minOnePlayerHasToVote')"/>
                         </div>
+                        <div class="text-muted font-italic">
+                            <i class="fa mr-2" :class="tieInVotesForbiddenIconClass"/>
+                            <span class="small" v-html="$t('GamePlayFieldFooter.tieInVotesForbidden')"/>
+                        </div>
                     </div>
                     <div v-else-if="game.isOneTargetPlay" class="text-center" key="one-target-play-requirements">
                         <VRoller :default-char="oneTargetPlayRequirementsText" :text="oneTargetPlayRequirementsText"/>
@@ -50,6 +54,7 @@
 <script>
 import Game from "../../../../../classes/Game";
 import SubmitButton from "../../../../shared/Forms/SubmitButton";
+import { getNominatedPlayers } from "@/helpers/functions/Player";
 
 export default {
     name: "GamePlayFieldFooter",
@@ -73,6 +78,16 @@ export default {
         };
     },
     computed: {
+        isThereTieInVotes() {
+            if (!this.play.votes.length) {
+                return undefined;
+            }
+            const nominatedPlayers = getNominatedPlayers(this.play.votes, this.game, this.game.firstWaiting.to);
+            return nominatedPlayers.length > 1;
+        },
+        tieInVotesForbiddenIconClass() {
+            return this.isThereTieInVotes ? "fa-times text-danger" : "fa-check text-success";
+        },
         votePlayRequirementsText() {
             return this.$t("GamePlayFieldFooter.playersHaveVoted", { votesCount: this.play.votes.length, playersCount: this.game.alivePlayers.length });
         },
@@ -86,7 +101,7 @@ export default {
             return this.play.targets.length === 1 ? "fa-check text-success" : "fa-times text-danger";
         },
         canSubmitPlay() {
-            return this.game.isVotePlay && !!this.play.votes.length ||
+            return this.game.isVotePlay && !!this.play.votes.length && (!this.game.isForbiddenTieVotePlay || !this.isThereTieInVotes) ||
                 this.game.isOneTargetPlay && this.play.targets.length === 1 ||
                 this.game.firstWaiting.to === "use-potion" || this.game.firstWaiting.to === "mark";
         },

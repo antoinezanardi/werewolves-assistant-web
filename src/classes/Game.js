@@ -71,6 +71,11 @@ class Game {
         return waiting.to === "elect-sheriff" || waiting.to === "vote";
     }
 
+    get isForbiddenTieVotePlay() {
+        const waiting = this.firstWaiting;
+        return waiting.to === "elect-sheriff";
+    }
+
     get isOneTargetPlay() {
         const waiting = this.firstWaiting;
         return waiting.to === "look" || waiting.to === "eat" || waiting.to === "protect" ||
