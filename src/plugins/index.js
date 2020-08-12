@@ -13,5 +13,6 @@ import "./vue-keypress";
 import "./vue-roller";
 import "./vue-select";
 import "./vue-toasted";
+import "./vue-tour";
 
 export { Router, i18n };

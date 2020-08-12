@@ -162,7 +162,8 @@
                 "delegate": "Passation de pouvoir du maire",
                 "settle-votes": "Départage des votes"
             }
-        }
+        },
+        "whatAmISupposedToDo": "Qu'est-ce que ce je dois faire ici?"
     },
     "GamePlayFieldFooter": {
         "next": "Suivant",
@@ -173,6 +174,78 @@
         "timeForDebating": "Temps pour débattre",
         "debateIsOver": "Le débat est terminé, il est temps de voter !",
         "tieInVotesForbidden": "L'égalité pour ce vote est interdite"
+    },
+    "GamePlayFieldTutorial": {
+        "elect-sheriff": {
+            "howToPlay": "Comment élire le maire ?",
+            "sheriffIsElectedWhen": "Au début de la partie, un maire doit être élu par tous les joueurs vivants.",
+            "playersHave5Min": "Les joueurs ont 5 minutes pour se mettre d'accord sur qui sera leur prochain maire. À la fin du temps, le maître du jeu doit stopper les discussions et procéder à l'élection.",
+            "eachPlayerVoteForSheriff": "Chaque joueur a donc une voix à donner pour l'élection, mais ne peut voter pour lui-même. Il peut néanmoins voter blanc. Le maître du jeu demande le vote de chacun à tour de rôle.",
+            "toValidateAnElection": "Pour que le maire soit élu, au moins un joueur doit avoir voté et une égalité dans les votes est impossible."
+        },
+        "look": {
+            "howToPlay": "Comment jouer la voyante ?",
+            "seerLooksWhen": "Chaque nuit, si elle est vivante, la voyante se réveille.",
+            "seerCanLook": "Grâce à son don, la voyante voit le rôle de n'importe quel joueur vivant.",
+            "seerPointsAtTarget": "La voyante doit pointer du doigt sa cible et le maître du jeu révelera à haute voix le rôle de cette dernière.",
+            "toValidateLook": "Pour que la voyante puisse révéler un rôle, elle doit obligatoirement choisir une cible."
+        },
+        "eat": {
+            "howToPlay": "Comment jouer les loups-garous ?",
+            "werewolvesEatWhen": "Chaque nuit, les loups-garous se réveillent.",
+            "werewolvesEatAVictim": "Les loups-garous choisissent leur victime parmis les joueurs vivants qui mourra le matin suivant s'il ne reçoit pas de protection.",
+            "werewolvesPointAtVictim": "Les loups-garous se mettent d'accord sans bruit et pointent du doigt leur victime.",
+            "toValidateEat": "Pour que les loups-garous puissent choisir leur prochain repas, ils doivent obligatoirement choisir une cible."
+        },
+        "use-potion": {
+            "howToPlay": "Comment jouer la sorcière ?",
+            "witchUsesPotionWhen": "Chaque nuit, si elle est vivante, la sorcière se réveille même si elle n'a plus de potion à utiliser.",
+            "witchCanUsePotions": "La sorcière possède une potion de vie et une potion de mort. Elle peut utiliser chacune d'elle UNE SEULE FOIS pendant la partie. Le maître du jeu va demander pour chaque potion le choix de la sorcière.",
+            "lifePotionProtects": "La potion de vie, utilisable qu'une fois pendant la partie, permet de sauver la victime des loups-garous de la mort. Le maître du jeu désigne la victime des loups-garous et la sorcière doit sans bruit acquiescer ou refuser d'utiliser sa potion.",
+            "ifLifePotionHasBeenUsed": "Si la potion de vie a déjà été utilisée, le maître du jeu doit quand même demander le choix de la sorcière, mais sans pointer du doigt la victime des loups-garous. Ceci permet de ne pas révéler que la potion de vie a été utilisée.",
+            "deathPotionKills": "La potion de mort, utilisable qu'une fois pendant la partie, permet d'empoisonner une victime qui mourra le matin suivant. La sorcière doit sans bruit acquiescer ou refuser d'utiliser sa potion en pointant sa victime le cas échéant.",
+            "ifDeathPotionHasBeenUsed": "Si la potion de mort a déjà été utilisée, le maître du jeu doit quand même demander le choix de la sorcière. Ceci permet de ne pas révéler que la potion de mort a été utilisée.",
+            "toValidateUsePotion": "Durant son tour, la sorcière peut utiliser les deux potions, une seule, ou passer son tour."
+        },
+        "protect": {
+            "howToPlay": "Comment jouer le salvateur ?",
+            "guardProtectsWhen": "Chaque nuit, s'il est vivant, le salvateur se réveille.",
+            "guardCanProtect": "Le salvateur protège la personne de son choix et cette dernière ne pourra pas mourir durant cette nuit. Le salvateur peut se protéger lui-même mais ne peut pas choisir deux nuits de suite la même personne.",
+            "guardPointsAtTarget": "Le salvateur doit pointer du doigt sans bruit la personne qu'il souhaite protéger.",
+            "toValidateProtect": "Pour que le salvateur puisse protéger une personne de la mort, il doit obligatoirement choisir une cible."
+        },
+        "mark": {
+            "howToPlay": "Comment joueur le corbeau ?",
+            "ravenMarksWhen": "Chaque nuit, s'il est vivant, le corbeau se réveille.",
+            "ravenCanMark": "Le corbeau peut, s'il le souhaite, marquer de sa plume n'importe quel joueur qui lui semble suspect. La personne visée par sa marque se verra attribuer 2 voix supplémentaires lors du prochain vote du village la journée. Il peut se désigner lui-même.",
+            "ravenPointsAtTarget": "S'il souhaite marquer un joueur, le corbeau doit pointer du doigt sans bruit sa cible.",
+            "gameMasterWillDropMarkCard": "Le maître du jeu déposera alors la marque du corbeau devant la personne choisie.",
+            "toValidateMark": "Durant son tour, le corbeau peut désigner une cible ou passer son tour."
+        },
+        "vote": {
+            "howToPlay": "Comment procéder au vote ?",
+            "allVoteWhen": "Chaque fois que le jour se lève, les habitants débattent pour mettre à mort l'un des leurs en espérant trouver un loup-garou.",
+            "playersHave5Min": "Les joueurs ont 5 minutes pour se mettre d'accord sur qui sera pendu. À la fin du temps, le maître du jeu doit stopper les discussions et procéder au vote.",
+            "eachPlayerVote": "Chaque joueur a donc une voix à donner pour le vote, mais ne peut voter pour lui-même. Il peut néanmoins voter blanc. Le maître du jeu demande le vote de chacun à tour de rôle.",
+            "toValidateAVote": "Pour que la pendaison ait lieu, au moins un joueur doit avoir voté."
+        },
+        "delegate": {
+            "howToPlay": "Comment déléguer le rôle de maire ?",
+            "sheriffDelegatesWhen": "À chaque fois que le maire meurt, il doit déléguer son rôle à l'un des survivants.",
+            "noDemocracyHere": "Aucune démocratie ici, le maire mourrant choisi arbitrairement son successeur en le pointant du doigt.",
+            "toValidateDelegation": "Pour que le maire délègue son pouvoir, il doit obligatoirement choisir une cible."
+        },
+        "shoot": {
+            "howToPlay": "Comment jouer le chasseur ?",
+            "hunterShootsWhen": "Quand le chasseur meurt, il prend son fusil pour se venger dans son dernier souffle.",
+            "hunterCanShoot": "Le chasseur mourrant choisi arbitrairement sa victime en la pointant du doigt. Elle mourra instantanément du coup fatal.",
+            "toValidateShoot": "Pour que le chasseur prenne sa revanche, il doit obligatoirement choisir une cible."
+        },
+        "settle-votes": {
+            "howToPlay": "Comment départager les votes ?",
+            "sheriffSettleVotesWhen": "À chaque fois que la village n'arrive pas à se mettre d'accord sur qui pendre, le maire doit trancher.",
+            "toValidateSettleVotes": "Pour que le vote soit tranché, le maire doit obligatoirement choisir une cible."
+        }
     },
     "PlayerAttribute": {
         "attributes": {
@@ -364,5 +437,13 @@
     },
     "VSelect": {
         "noOption": "Aucun choix correspondant à la recherche"
+    },
+    "VueTour": {
+        "labels": {
+            "buttonSkip": "Passer le tutoriel",
+            "buttonPrevious": "Précédent",
+            "buttonNext": "Suivant",
+            "buttonStop": "Terminer "
+        }
     }
 }

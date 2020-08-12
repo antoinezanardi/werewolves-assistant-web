@@ -1,6 +1,7 @@
 @import "../../../node_modules/animate.css/animate.min.css";
 @import "../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
 @import "../../../node_modules/vue-github-buttons/dist/vue-github-buttons.min.css";
+@import "../../../node_modules/vue-tour/dist/vue-tour.css";
 
 @import "colors";
 @import "all";
@@ -12,7 +13,8 @@
 @import "tables";
 @import "v-tooltip";
 @import "vue-flip";
-@import "vue-select";
 @import "vue-roller";
+@import "vue-select";
+@import "vue-tour";
 
 @import "variables";

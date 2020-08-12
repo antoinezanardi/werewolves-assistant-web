@@ -15,15 +15,21 @@
                     </h3>
                 </transition>
             </div>
-            <div class="col-lg-2 col-3 text-right">
-                <VueFlip height="50px" width="50px" v-model="gameWaitingCard.flipped">
-                    <template v-slot:front>
-                        <img id="game-waiting-card-front" :src="gameWaitingCard.thumbnail.front" class="img-fluid" alt="Game Waiting Card Front"/>
-                    </template>
-                    <template v-slot:back>
-                        <img id="game-waiting-card-back" :src="gameWaitingCard.thumbnail.back" class="img-fluid" alt="Game Waiting Card Back"/>
-                    </template>
-                </VueFlip>
+            <div class="col-lg-2 col-3 d-flex flex-column justify-content-center align-items-center">
+                <div id="game-waiting-card-container">
+                    <VueFlip height="50px" width="50px" v-model="gameWaitingCard.flipped">
+                        <template v-slot:front>
+                            <img id="game-waiting-card-front" :src="gameWaitingCard.thumbnail.front" class="img-fluid" alt="Game Waiting Card Front"/>
+                        </template>
+                        <template v-slot:back>
+                            <img id="game-waiting-card-back" :src="gameWaitingCard.thumbnail.back" class="img-fluid" alt="Game Waiting Card Back"/>
+                        </template>
+                    </VueFlip>
+                    <button id="what-to-do-button" class="btn btn-primary" @click="$emit('startTutorial')"
+                            v-tooltip="$t('GamePlayFieldHeader.whatAmISupposedToDo')">
+                        <i class="fa fa-question-circle"/>
+                    </button>
+                </div>
             </div>
         </div>
         <div class="row justify-content-center">
@@ -53,6 +59,7 @@ import villagerCard from "../../../../../assets/img/roles/villager.png";
 import werewolfCard from "../../../../../assets/img/roles/werewolf.png";
 import witchCard from "../../../../../assets/img/roles/witch.png";
 import sheriffCard from "../../../../../assets/img/attributes/sheriff.png";
+import backCard from "@/assets/img/roles/back.png";
 
 export default {
     name: "GamePlayFieldHeader",
@@ -110,8 +117,8 @@ export default {
             gameWaitingCard: {
                 flipped: false,
                 thumbnail: {
-                    front: undefined,
-                    back: undefined,
+                    front: backCard,
+                    back: backCard,
                 },
             },
         };
@@ -172,5 +179,17 @@ export default {
 
     #game-waiting-icon {
         height: 50px;
+    }
+
+    #game-waiting-card-container {
+        position: relative;
+
+        #what-to-do-button {
+            padding: 0.05rem 0.35rem;
+            border-radius: 20px;
+            position: absolute;
+            top: -15px;
+            right: -30%;
+        }
     }
 </style>

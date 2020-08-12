@@ -1,9 +1,10 @@
 <template>
     <div id="game-play-field" class="h-100 d-flex flex-column">
-        <GamePlayFieldHeader :game="game"/>
+        <GamePlayFieldHeader :game="game" @startTutorial="startTutorial"/>
         <GamePlayFieldContent :game="game" :play="play" id="game-content-play-field" @playerVotes="playerVotes"
                               @playerSelected="playerSelected"/>
         <GamePlayFieldFooter :game="game" :play="play" @updateGame="updateGame"/>
+        <GamePlayFieldTutorial ref="gamePlayFieldTutorial" :game="game"/>
     </div>
 </template>
 
@@ -12,10 +13,12 @@ import GamePlayFieldHeader from "./GamePlayFieldHeader/GamePlayFieldHeader";
 import GamePlayFieldFooter from "./GamePlayFieldFooter/GamePlayFieldFooter";
 import GamePlayFieldContent from "./GamePlayFieldContent/GamePlayFieldContent";
 import Game from "../../../../classes/Game";
+import GamePlayFieldTutorial
+    from "@/components/Game/GameContent/GamePlayField/GamePlayFieldTutorial/GamePlayFieldTutorial";
 
 export default {
     name: "GamePlayField",
-    components: { GamePlayFieldContent, GamePlayFieldFooter, GamePlayFieldHeader },
+    components: {GamePlayFieldTutorial, GamePlayFieldContent, GamePlayFieldFooter, GamePlayFieldHeader },
     props: {
         game: {
             type: Game,
@@ -35,6 +38,9 @@ export default {
         },
         updateGame(game) {
             this.$emit("updateGame", game);
+        },
+        startTutorial() {
+            this.$refs.gamePlayFieldTutorial.startTour();
         },
     },
 };

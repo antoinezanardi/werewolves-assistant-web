@@ -5,6 +5,7 @@
 ### 🚀 New features
 
 * [#11](https://github.com/antoinezanardi/werewolves-assistant-web/issues/11) - `About` page added with a lot of useful information.
+* [#16](https://github.com/antoinezanardi/werewolves-assistant-web/issues/16) - On each role action during a game, a tutorial explains all: role, purpose, why, consequences.
 
 ### 🐛 Bug fixes
 
@@ -23,16 +24,18 @@
 ### 📦 Packages
 
 * `vue-github-buttons` installed with version `3.1.0`.
-* `vue-keypress` installed with version `2.1.1`.
-* `@vue/cli-plugin-e2e-cypress` updated to version `4.5.2`.
-* `@vue/cli-plugin-router` updated to version `4.5.2`.
-* `@vue/cli-plugin-unit-mocha` updated to version `4.5.2`.
-* `@vue/cli-plugin-vuex` updated to version `4.5.2`.
-* `@vue/cli-service` updated to version `4.5.2`.
-* `bootstrap` updated to version `4.5.2`.
+* `vue-github-buttons` installed with version `3.1.0`.
+* `vue-tour` installed with version `1.5.0`.
+* `@vue/cli-plugin-e2e-cypress` updated to version `4.5.3`.
+* `@vue/cli-plugin-router` updated to version `4.5.3`.
+* `@vue/cli-plugin-unit-mocha` updated to version `4.5.3`.
+* `@vue/cli-plugin-vuex` updated to version `4.5.3`.
+* `@vue/cli-service` updated to version `4.5.3`.
+* `bootstrap` updated to version `4.5.3`.
 * `sass-loader` updated to version `9.0.3`.
 * `vee-validate` installed with version `3.3.9`.
-* `vue-router` updated to version `3.4.2`.
+* `vue-router` updated to version `3.4.3`.
+* `vue-select` updated to version `3.10.8`.
 
 ---
 
