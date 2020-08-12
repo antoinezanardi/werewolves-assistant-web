@@ -1,8 +1,8 @@
 <template>
     <div id="mark-play-field" class="d-flex flex-column">
         <div class="row justify-content-center align-items-center">
-            <div class="col-12">
-                <PlayerCard :game="game" :player="game.ravenPlayer" size="lg"/>
+            <div class="col-12 col-lg-4">
+                <PlayerCard id="raven-player-card" :game="game" :player="game.ravenPlayer" size="lg"/>
             </div>
         </div>
         <PlayFieldActionText :game="game" :play="play" attribute="raven-marked" @playerSelected="playerSelected"/>

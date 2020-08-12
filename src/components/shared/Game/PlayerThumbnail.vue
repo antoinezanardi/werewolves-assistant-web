@@ -1,5 +1,5 @@
 <template>
-    <div class="player-card-thumbnail" :class="{ 'player-card-thumbnail-lg': size === 'lg', 'dead-player-card': player.isAlive === false }">
+    <span class="player-card-thumbnail" :class="{ 'player-card-thumbnail-lg': size === 'lg', 'dead-player-card': player.isAlive === false }">
         <i v-if="!game._id" v-tooltip="$t('PlayerThumbnail.unsetPlayer')" @click="unsetPlayer"
            class="fa fa-times-circle unset-player-button"/>
         <VueFlip v-tooltip="playerThumbnailTooltip" height="100%" width="100%" v-model="flipped">
@@ -16,7 +16,7 @@
                 </v-popover>
             </template>
         </VueFlip>
-    </div>
+    </span>
 </template>
 
 <script>

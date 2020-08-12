@@ -124,8 +124,13 @@ export default {
                 if (newGame.tick === 1) {
                     this.events.push(new GameEvent({ type: "game-starts" }));
                 }
-                this.generateGamePhaseEvent(newGame, oldGame);
-                this.generateGameDeathEvents(newGame, oldGame);
+                if (newGame.phase === "day") {
+                    this.generateGamePhaseEvent(newGame, oldGame);
+                    this.generateGameDeathEvents(newGame, oldGame);
+                } else {
+                    this.generateGameDeathEvents(newGame, oldGame);
+                    this.generateGamePhaseEvent(newGame, oldGame);
+                }
                 this.generateGameRoleTurnEvents(newGame, oldGame);
             },
             deep: true,

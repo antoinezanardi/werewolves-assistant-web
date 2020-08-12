@@ -1,9 +1,9 @@
 {
     "NavBar": {
-        "werewolvesAssistant": "Assistant Loups Garous"
+        "werewolvesAssistant": "Assistant Loups-Garous"
     },
     "Home": {
-        "werewolvesAssistant": "Assistant Loups Garous",
+        "werewolvesAssistant": "Assistant Loups-Garous",
         "play": "Jouer",
         "logInOrSignUp": "Se connecter ou s'inscrire",
         "statistics": "Statistiques",
@@ -11,7 +11,9 @@
         "youMustLogInToPlay": "Vous devez vous connecter pour jouer",
         "contactMe": "Me contacter",
         "thisProjectIsOpenSource": "Ce projet est open-source",
-        "buyMeACoffee": "M'offrir un café"
+        "buyMeACoffee": "M'offrir un café",
+        "whatIsItAbout": "À quoi ça sert",
+        "bestToolForGameMastering": "L'outil idéal pour le maître du jeu des Loups-Garous de Thiercelieux"
     },
     "Login": {
         "loggedIn": "Connecté",
@@ -34,6 +36,41 @@
         "confirmPassword": "Confirmer le mot de passe",
         "required": "Requis",
         "userDataOnlyForAccount": "Ces informations ne sont enregistrées que pour vous permettre de vous connecter et ainsi enregistrer vos parties."
+    },
+    "About": {
+        "werewolvesAssistantWhatFor": "Un assistant ? Pour quoi faire ?",
+        "theGame": "Le jeu",
+        "werewolvesOfMillersHollowTM": "Les Loups-Garous de Thiercelieux™",
+        "iDontKnowThisGame": "Je ne connnais pas ce jeu",
+        "watchYouTubeVideo": "Regarder une vidéo explicative sur YouTube",
+        "isAGame": "est un jeu de société d'ambiance dans lequel chaque joueur incarne un villageois ou un loup-garou. Chaque partie est animée par un maître du jeu non-joueur et apporte son lot de surprises, de trahisons, de retournements de situations, de rires et parfois de pleurs.",
+        "forAGameToBeSuccessful": "Pour qu'une partie soit réussie, le maître du jeu doit l'animer en installant une ambiance prenante, en y imposant un rythme et en connaissant les règles du jeu sur le bout des doigts. Dans le cas où le maître du jeu doit gérer un nombre conséquent de joueurs, a peu d'expérience ou est dans un état second, ce n'est pas une tâche facile...",
+        "werewolvesAssistantIsHere": "L'assistant Loups-Garous entre en scène !",
+        "forHelpingGameMaster": "Pour aider le maître du jeu dans sa lourde tâche qu'est l'animation d'une partie de Loups-Garous, l'Assistant Loups-Garous est l'outil parfait !",
+        "theAssistantHasManyFeaturesLike": "L'Assistant possède un panel de fonctionnalités tel que:",
+        "screenForGameComposition": "Un écran de composition de partie permettant de créer une partie de 4 à 20 joueurs avec la possibilité de répartir aléatoirement les rôles.",
+        "interfaceForGameMonitoring": "Une interface ludique de suivi de partie.",
+        "interfaceForEachActionAndEvents": "Pour chaque évènement, la possibilité de renseigner les choix des joueurs comme la cible des loups-garous ou l'élection du maire par exemple.<br/> L'Assistant se charge de l'ordre de passage des joueurs, d'afficher les morts ou autres évènements et de retenir tous les choix faits durant la partie.",
+        "gameSummaryWhenPartyIsDone": "Un récapitulatif lorsque la partie est terminée avec le camp gagnant et l'historique complet.",
+        "assistantIsFreeAndAvailable": "En somme, l'Assistant va vous faire découvrir ou re-découvrir le plaisir d'être le maître du jeu pendant une partie de Loups-Garous. Il est disponible sur tout support ayant un navigateur Internet et est 100% GRATUIT.",
+        "attentionPlease": "ATTENTION CEPENDANT",
+        "assistantDoesntReplaceTheOriginalGame": "L'Assistant n'a aucune vocation à remplacer le jeu original Les Loups-Garous de Thiercelieux™. Pour utiliser l'Assistant, un jeu avec ses cartes est nécessaire. L'Assistant n'est qu'un support pour le maître du jeu qui est le seul utilisateur de l'outil, les joueurs n'y ont pas accès.",
+        "howToContribute": "Comment contribuer à ce projet ?",
+        "someMethodsToContribute": "Il existe plusieurs moyens de contribuer à ce projet:",
+        "theAssistantIsOpenSource": "L'Assistant Loups-Garous est un projet open-source !",
+        "availableOnGitHub": "Disponible sur GitHub",
+        "atThisAddress": "à cette addresse",
+        "pleaseAddAStar": "que vous soyez développeur, graphiste ou même testeur, votre aide est la bienvenue. D'ailleurs, si le projet vous plaît, n'hésitez pas à ajouter une étoile ou à suivre le créateur !",
+        "thisProjectNotWithoutFees": "Ce projet a pour vocation de rester un service gratuit. Néanmoins, l'hébergement et l'infrastructure de l'outil sont tous deux payants. Si vous souhaitez participer ou si vous aimez le travail du créateur de ce projet, vous pouvez faire un don sur",
+        "hisBuyMeACoffeePage": "sa page Buy Me A Coffee",
+        "speakAboutThisProject": "Parlez de ce projet autour de vous ! Le bouche à oreille permettra aux nombreux indécis du role-play de se lancer dans la grande aventure du maître du jeu grâce à l'Assistant Loups-Garous.",
+        "aWordFromCreator": "Un mot du créateur de l'Assistant Loup-Garous",
+        "ImTheCreator": "Je suis Antoine ZANARDI, développeur Full-Stack Web et adepte de l'open-source en général. Si vous souhaitez en savoir plus sur moi, je vous invite à découvrir",
+        "myPortfolio": "mon portoflio",
+        "forMe": "Pour moi",
+        "isOneOfTheBestGame": "est un des meilleurs jeux entre amis ou en famille autour d'une table, où s'entremellent alliances et trahisons, un peu comme un Mario Kart en fait... Au fur et à mesure d'une partie, la vraie nature de chaque joueur se révèle, les masques tombent, chacun se sent menacé... Autant de rebondissements qui rendent chaque partie unique !",
+        "ImAFanOfGameMastering": "Étant un grand fan du rôle de maître du jeu, j'ai toujours eu l'envie de partager ce doux sentiment de chef d'orchestre durant une partie. J'ai donc créé cet assistant pour que n'importe qui puisse endosser ce rôle si important, et ce, dans n'importe quelle configuration de jeu.",
+        "pleaseRateThisProjectAndHaveFun": "N'hésitez pas à me faire part de vos avis sur cet assistant. Il a été créé pour servir tous maîtres du jeu, novices ou experts, et rendre vos parties mémorables. Amusez-vous bien ! "
     },
     "GameLobby": {
         "loading": "Recherche d'une partie en cours",
@@ -60,7 +97,8 @@
         "playerCount": "Aucun joueur | {count} joueur | {count} joueurs",
         "villagersCount": "Aucun villageois | {count} villageois | {count} villageois",
         "werewolvesCount": "Aucun loup garou | {count} loup garou | {count} loups garous",
-        "minToStart": "Minimum {min} pour commencer"
+        "minToStart": "Minimum {min} pour commencer",
+        "minPlayerRequirementsToStart": "Minimum 4 joueurs avec un rôle pour commencer dont 1 loup-garou et 1 villageois"
     },
     "RolePicker": {
         "chooseRole": "Choisir un rôle",
@@ -70,6 +108,13 @@
         "cancel": "Annuler",
         "roleWillBeSwitchedWithOtherPlayer": "Les rôles seront échangés avec le joueur {roleName}",
         "roleWillBeSwitchedWithAnotherPlayer": "Les rôles seront échangés avec un des joueurs {roleName}"
+    },
+    "GameLobbyTutorial": {
+        "howToUseGameLobby": "Comment composer une équipe ?",
+        "toStartAGame": "Pour lancer une partie, le maître du jeu doit renseigner 4 à 20 joueurs et leur attribuer un rôle.",
+        "eachPlayerName": "Il peut renseigner le nom de chaque joueur ici.",
+        "randomRepartition": "Une fois tous les joueurs ajoutés, il peut répartir aléatoirement les rôles. Il faut un minimum de 4 joueurs pour faire une répartition aléatoire.",
+        "requirementsToStartAGame": "Pour pouvoir lancer une partie, les joueurs doivent être 4 minimum et tous posséder un rôle. La partie doit comporter au moins 1 loup-garou et 1 villageois (avec ou sans pouvoir)."
     },
     "GameLobbyAlreadyHavePlayingGame": {
         "youAlreadyHavePlayingGame": "Vous avez déjà une partie en cours",
@@ -134,7 +179,80 @@
         "minOnePlayerHasToVote": "Minimum 1 joueur doit voter",
         "minOnePlayerHasToBeTargeted": "Minimum 1 joueur doit être visé",
         "timeForDebating": "Temps pour débattre",
-        "debateIsOver": "Le débat est terminé, il est temps de voter !"
+        "debateIsOver": "Le débat est terminé, il est temps de voter !",
+        "tieInVotesForbidden": "L'égalité pour ce vote est interdite"
+    },
+    "GamePlayFieldTutorial": {
+        "elect-sheriff": {
+            "howToPlay": "Comment élire le maire ?",
+            "sheriffIsElectedWhen": "Au début de la partie, un maire doit être élu par tous les joueurs vivants.",
+            "playersHave5Min": "Les joueurs ont 5 minutes pour se mettre d'accord sur qui sera leur prochain maire. À la fin du temps, le maître du jeu doit stopper les discussions et procéder à l'élection.",
+            "eachPlayerVoteForSheriff": "Chaque joueur a donc une voix à donner pour l'élection, mais ne peut voter pour lui-même. Il peut néanmoins voter blanc. Le maître du jeu demande le vote de chacun à tour de rôle.",
+            "toValidateAnElection": "Pour que le maire soit élu, au moins un joueur doit avoir voté et une égalité dans les votes est impossible."
+        },
+        "look": {
+            "howToPlay": "Comment jouer la voyante ?",
+            "seerLooksWhen": "Chaque nuit, si elle est vivante, la voyante se réveille.",
+            "seerCanLook": "Grâce à son don, la voyante voit le rôle de n'importe quel joueur vivant.",
+            "seerPointsAtTarget": "La voyante doit pointer du doigt sa cible et le maître du jeu révelera à haute voix le rôle de cette dernière.",
+            "toValidateLook": "Pour que la voyante puisse révéler un rôle, elle doit obligatoirement choisir une cible."
+        },
+        "eat": {
+            "howToPlay": "Comment jouer les loups-garous ?",
+            "werewolvesEatWhen": "Chaque nuit, les loups-garous se réveillent.",
+            "werewolvesEatAVictim": "Les loups-garous choisissent leur victime parmis les joueurs vivants qui mourra le matin suivant s'il ne reçoit pas de protection.",
+            "werewolvesPointAtVictim": "Les loups-garous se mettent d'accord sans bruit et pointent du doigt leur victime.",
+            "toValidateEat": "Pour que les loups-garous puissent choisir leur prochain repas, ils doivent obligatoirement choisir une cible."
+        },
+        "use-potion": {
+            "howToPlay": "Comment jouer la sorcière ?",
+            "witchUsesPotionWhen": "Chaque nuit, si elle est vivante, la sorcière se réveille même si elle n'a plus de potion à utiliser.",
+            "witchCanUsePotions": "La sorcière possède une potion de vie et une potion de mort. Elle peut utiliser chacune d'elle UNE SEULE FOIS pendant la partie. Le maître du jeu va demander pour chaque potion le choix de la sorcière.",
+            "lifePotionProtects": "La potion de vie, utilisable qu'une fois pendant la partie, permet de sauver la victime des loups-garous de la mort. Le maître du jeu désigne la victime des loups-garous et la sorcière doit sans bruit acquiescer ou refuser d'utiliser sa potion.",
+            "ifLifePotionHasBeenUsed": "Si la potion de vie a déjà été utilisée, le maître du jeu doit quand même demander le choix de la sorcière, mais sans pointer du doigt la victime des loups-garous. Ceci permet de ne pas révéler que la potion de vie a été utilisée.",
+            "deathPotionKills": "La potion de mort, utilisable qu'une fois pendant la partie, permet d'empoisonner une victime qui mourra le matin suivant. La sorcière doit sans bruit acquiescer ou refuser d'utiliser sa potion en pointant sa victime le cas échéant.",
+            "ifDeathPotionHasBeenUsed": "Si la potion de mort a déjà été utilisée, le maître du jeu doit quand même demander le choix de la sorcière. Ceci permet de ne pas révéler que la potion de mort a été utilisée.",
+            "toValidateUsePotion": "Durant son tour, la sorcière peut utiliser les deux potions, une seule, ou passer son tour."
+        },
+        "protect": {
+            "howToPlay": "Comment jouer le salvateur ?",
+            "guardProtectsWhen": "Chaque nuit, s'il est vivant, le salvateur se réveille.",
+            "guardCanProtect": "Le salvateur protège la personne de son choix et cette dernière ne pourra pas mourir durant cette nuit. Le salvateur peut se protéger lui-même mais ne peut pas choisir deux nuits de suite la même personne.",
+            "guardPointsAtTarget": "Le salvateur doit pointer du doigt sans bruit la personne qu'il souhaite protéger.",
+            "toValidateProtect": "Pour que le salvateur puisse protéger une personne de la mort, il doit obligatoirement choisir une cible."
+        },
+        "mark": {
+            "howToPlay": "Comment joueur le corbeau ?",
+            "ravenMarksWhen": "Chaque nuit, s'il est vivant, le corbeau se réveille.",
+            "ravenCanMark": "Le corbeau peut, s'il le souhaite, marquer de sa plume n'importe quel joueur qui lui semble suspect. La personne visée par sa marque se verra attribuer 2 voix supplémentaires lors du prochain vote du village la journée. Il peut se désigner lui-même.",
+            "ravenPointsAtTarget": "S'il souhaite marquer un joueur, le corbeau doit pointer du doigt sans bruit sa cible.",
+            "gameMasterWillDropMarkCard": "Le maître du jeu déposera alors la marque du corbeau devant la personne choisie.",
+            "toValidateMark": "Durant son tour, le corbeau peut désigner une cible ou passer son tour."
+        },
+        "vote": {
+            "howToPlay": "Comment procéder au vote ?",
+            "allVoteWhen": "Chaque fois que le jour se lève, les habitants débattent pour mettre à mort l'un des leurs en espérant trouver un loup-garou.",
+            "playersHave5Min": "Les joueurs ont 5 minutes pour se mettre d'accord sur qui sera pendu. À la fin du temps, le maître du jeu doit stopper les discussions et procéder au vote.",
+            "eachPlayerVote": "Chaque joueur a donc une voix à donner pour le vote, mais ne peut voter pour lui-même. Il peut néanmoins voter blanc. Le maître du jeu demande le vote de chacun à tour de rôle.",
+            "toValidateAVote": "Pour que la pendaison ait lieu, au moins un joueur doit avoir voté."
+        },
+        "delegate": {
+            "howToPlay": "Comment déléguer le rôle de maire ?",
+            "sheriffDelegatesWhen": "À chaque fois que le maire meurt, il doit déléguer son rôle à l'un des survivants.",
+            "noDemocracyHere": "Aucune démocratie ici, le maire mourrant choisi arbitrairement son successeur en le pointant du doigt.",
+            "toValidateDelegation": "Pour que le maire délègue son pouvoir, il doit obligatoirement choisir une cible."
+        },
+        "shoot": {
+            "howToPlay": "Comment jouer le chasseur ?",
+            "hunterShootsWhen": "Quand le chasseur meurt, il prend son fusil pour se venger dans son dernier souffle.",
+            "hunterCanShoot": "Le chasseur mourrant choisi arbitrairement sa victime en la pointant du doigt. Elle mourra instantanément du coup fatal.",
+            "toValidateShoot": "Pour que le chasseur prenne sa revanche, il doit obligatoirement choisir une cible."
+        },
+        "settle-votes": {
+            "howToPlay": "Comment départager les votes ?",
+            "sheriffSettleVotesWhen": "À chaque fois que la village n'arrive pas à se mettre d'accord sur qui pendre, le maire doit trancher.",
+            "toValidateSettleVotes": "Pour que le vote soit tranché, le maire doit obligatoirement choisir une cible."
+        }
     },
     "PlayerAttribute": {
         "attributes": {
@@ -195,8 +313,12 @@
         "night": "Nuit",
         "actions": {
             "eat": "ont décidé de manger",
-            "use-potion": "a utilisé une potion sur",
-            "look": "a vu",
+            "use-potion": {
+                "life": "a utilisé sa potion de vie sur",
+                "death": "a utilisé sa potion de mort sur",
+                "both": "a utilisé ses potions sur"
+            },
+            "look": "a vu le rôle de",
             "shoot": "a tiré sur",
             "protect": "a protégé",
             "mark": "a marqué",
@@ -204,7 +326,8 @@
             "vote": "a décidé de pendre",
             "delegate": "a légué son rôle de maire à",
             "settle-votes": "a tranché pour pendre"
-        }
+        },
+        "skipTurn": "a passé son tour"
     },
     "PlayFieldActionText": {
         "wantsToLook": "souhaite voir le rôle de",
@@ -230,20 +353,24 @@
         "cancelTarget": "Annuler cette cible"
     },
     "GameEventMonitor": {
-        "skip": "Passer"
+        "skip": "Passer",
+        "skipToNextEvent": "Passer au prochain évènement"
     },
     "GameEvent": {
         "next": "Suivant",
         "previous": "Précédent",
+        "press": "Appuyez sur",
+        "toGoBack": "pour revenir en arrière",
+        "toGoFurther": "pour passer à la suite",
         "messages": {
             "welcomeToTheVillage": "Bienvenue à tous dans le village de Thiercelieux !",
             "compositionIs": "Ce village de {inhabitantCount} habitants se composent de ",
-            "looksLifeSomeWerewolvesIntroducedThemselves": "Il semblerait qu'un ou plusieurs loups-garous se soient faufilé dans le village...",
+            "looksLifeSomeWerewolvesIntroducedThemselves": "Il semblerait qu'un ou plusieurs loups-garous se soient faufilés dans le village...",
             "villagersMurderWerewolves": "Villageois, prenez les fourches et nettoyez votre village de ces canidés !",
             "beforeStartingLetsElectSheriff": "Mais avant de vous entretuer, il faut élire le maire de ce village.",
             "playerDies": "{player} est mort ! Quelle tragédie...",
             "playerRevealsRole": "Il ou elle révèle son rôle aux survivants.",
-            "playerHasBeenPromotedSheriff": "{player} a été promu maire !",
+            "playerHasBeenPromotedSheriff": "{player} a été élu maire !",
             "sheriffCanMakeASpeech": "Le maire peut, s'il le souhaite, faire un discours poignant sur son élection.",
             "nightFalls": "La nuit tombe sur le village de Thiercelieux...",
             "inhabitantsFallAsleep": "Les habitants du village s'endorment.",
@@ -305,6 +432,14 @@
     "RoleText": {
         "chooseARole": "Choisir un rôle"
     },
+    "WhatToDoButton": {
+        "whatAmISupposedToDo": "Qu'est-ce que ce je dois faire ici?"
+    },
+    "NotFound": {
+        "looksLikeYouGotLost": "Il semblerait que vous soyez perdu...",
+        "getOutBeforeWerewolvesCome": "Déguerpissez avant que les loups-garous arrivent !",
+        "flee": "Prendre la fuite"
+    },
     "Error": {
         "unauthorized": "Vous ne pouvez pas accéder à cette page",
         "BAD_REQUEST": "Mauvaise requête serveur",
@@ -322,5 +457,13 @@
     },
     "VSelect": {
         "noOption": "Aucun choix correspondant à la recherche"
+    },
+    "VueTour": {
+        "labels": {
+            "buttonSkip": "Passer le tutoriel",
+            "buttonPrevious": "Précédent",
+            "buttonNext": "Suivant",
+            "buttonStop": "Terminer "
+        }
     }
 }

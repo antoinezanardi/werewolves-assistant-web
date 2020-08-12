@@ -98,9 +98,13 @@ export default {
 };
 </script>
 
-<style scoped>
-    .modal-body {
-        max-height: calc(100vh - 173px);
-        overflow-y: auto;
+<style lang="scss" scoped>
+    #game-summary-modal {
+        overflow-y: hidden;
+
+        .modal-body {
+            max-height: calc(100vh - 173px);
+            overflow-y: auto;
+        }
     }
 </style>

@@ -1,7 +1,7 @@
 <template>
     <div id="btn-container" v-tooltip="tooltipOptions">
         <button ref="submitButton" :class="[ classes, { disabled: loading || disabled } ]" @click="click"
-                :disabled="loading || disabled" type="submit">
+                :disabled="loading || disabled" class="d-flex justify-content-center align-items-center" type="submit">
             <transition mode="out-in" name="fade">
                 <span v-if="!loading" key="text" v-html="text"/>
                 <HalfCircleSpinner v-else key="loading" :size="24" :animation-duration="1000"/>

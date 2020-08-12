@@ -1,5 +1,46 @@
 # 📈 LIST OF CHANGES FOR WEREWOLVES ASSISTANT WEB
 
+## 1.0.0-beta.2 (2020-08-12)
+
+### 🚀 New features
+
+* [#11](https://github.com/antoinezanardi/werewolves-assistant-web/issues/11) - `About` page added with a lot of useful information.
+* [#16](https://github.com/antoinezanardi/werewolves-assistant-web/issues/16) - On each role action during a game, a tutorial explains all: role, purpose, why, consequences.
+* [#18](https://github.com/antoinezanardi/werewolves-assistant-web/issues/18) - Tutorial for `GameLobby` page which explains how to start a game.
+
+### 🐛 Bug fixes
+
+* [#10](https://github.com/antoinezanardi/werewolves-assistant-web/issues/10) - Fixed some typography errors in game events.
+
+### 🌟 Enhancements
+
+* [#12](https://github.com/antoinezanardi/werewolves-assistant-web/issues/12) - Navigation between game event messages enabled with left and right arrow keys.
+* [#14](https://github.com/antoinezanardi/werewolves-assistant-web/issues/14) - Message for preventing tie in votes during sheriff election.
+* Pick-up line added on `Home` page for explaining the concept of Werewolves Assistant.
+* Version number added on `Home` page.
+
+### 📚 Documentation
+
+* Links for [Werewolves Assistant API](https://github.com/antoinezanardi/werewolves-assistant-api) and demos on `README.md` open now a new tab when clicked.
+
+### 📦 Packages
+
+* `vue-github-buttons` installed with version `3.1.0`.
+* `vue-github-buttons` installed with version `3.1.0`.
+* `vue-tour` installed with version `1.5.0`.
+* `@vue/cli-plugin-e2e-cypress` updated to version `4.5.3`.
+* `@vue/cli-plugin-router` updated to version `4.5.3`.
+* `@vue/cli-plugin-unit-mocha` updated to version `4.5.3`.
+* `@vue/cli-plugin-vuex` updated to version `4.5.3`.
+* `@vue/cli-service` updated to version `4.5.3`.
+* `bootstrap` updated to version `4.5.3`.
+* `sass-loader` updated to version `9.0.3`.
+* `vee-validate` installed with version `3.3.9`.
+* `vue-router` updated to version `3.4.3`.
+* `vue-select` updated to version `3.10.8`.
+
+---
+
 ## 1.0.0-beta.1 (2020-08-03)
 
 ### 🚀 New features
