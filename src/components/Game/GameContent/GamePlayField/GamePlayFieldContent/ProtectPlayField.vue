@@ -1,8 +1,8 @@
 <template>
     <div id="protect-play-field" class="d-flex flex-column">
         <div class="row justify-content-center align-items-center">
-            <div class="col-12">
-                <PlayerCard :game="game" :player="game.guardPlayer" size="lg"/>
+            <div class="col-12 col-lg-4">
+                <PlayerCard id="guard-player-card" :game="game" :player="game.guardPlayer" size="lg"/>
             </div>
         </div>
         <PlayFieldActionText :game="game" :play="play" attribute="protected" @playerSelected="playerSelected"/>

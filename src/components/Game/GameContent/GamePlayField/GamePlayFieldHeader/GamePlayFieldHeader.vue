@@ -15,15 +15,18 @@
                     </h3>
                 </transition>
             </div>
-            <div class="col-lg-2 col-3 text-right">
-                <VueFlip height="50px" width="50px" v-model="gameWaitingCard.flipped">
-                    <template v-slot:front>
-                        <img id="game-waiting-card-front" :src="gameWaitingCard.thumbnail.front" class="img-fluid" alt="Game Waiting Card Front"/>
-                    </template>
-                    <template v-slot:back>
-                        <img id="game-waiting-card-back" :src="gameWaitingCard.thumbnail.back" class="img-fluid" alt="Game Waiting Card Back"/>
-                    </template>
-                </VueFlip>
+            <div class="col-lg-2 col-3 d-flex flex-column justify-content-center align-items-center">
+                <div id="game-waiting-card-container">
+                    <VueFlip height="50px" width="50px" v-model="gameWaitingCard.flipped">
+                        <template v-slot:front>
+                            <img id="game-waiting-card-front" :src="gameWaitingCard.thumbnail.front" class="img-fluid" alt="Game Waiting Card Front"/>
+                        </template>
+                        <template v-slot:back>
+                            <img id="game-waiting-card-back" :src="gameWaitingCard.thumbnail.back" class="img-fluid" alt="Game Waiting Card Back"/>
+                        </template>
+                    </VueFlip>
+                    <WhatToDoButton id="what-to-do-button" @click.native="$emit('startTutorial')"/>
+                </div>
             </div>
         </div>
         <div class="row justify-content-center">
@@ -53,9 +56,12 @@ import villagerCard from "../../../../../assets/img/roles/villager.png";
 import werewolfCard from "../../../../../assets/img/roles/werewolf.png";
 import witchCard from "../../../../../assets/img/roles/witch.png";
 import sheriffCard from "../../../../../assets/img/attributes/sheriff.png";
+import backCard from "@/assets/img/roles/back.png";
+import WhatToDoButton from "@/components/shared/Game/WhatToDoButton/WhatToDoButton";
 
 export default {
     name: "GamePlayFieldHeader",
+    components: {WhatToDoButton},
     props: {
         game: {
             type: Game,
@@ -110,8 +116,8 @@ export default {
             gameWaitingCard: {
                 flipped: false,
                 thumbnail: {
-                    front: undefined,
-                    back: undefined,
+                    front: backCard,
+                    back: backCard,
                 },
             },
         };
@@ -172,5 +178,15 @@ export default {
 
     #game-waiting-icon {
         height: 50px;
+    }
+
+    #game-waiting-card-container {
+        position: relative;
+    }
+
+    #what-to-do-button {
+        position: absolute;
+        top: -15px;
+        right: -30%;
     }
 </style>

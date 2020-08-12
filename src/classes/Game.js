@@ -62,6 +62,11 @@ class Game {
         return !this.players.filter(player => player.role.current === undefined).length;
     }
 
+    get canStartGame() {
+        return this.areThereEnoughPlayers && this.areThereEnoughVillagers &&
+            this.areThereEnoughWerewolves && this.allPlayersHaveRole;
+    }
+
     get firstWaiting() {
         return this.waiting[0];
     }
@@ -69,6 +74,11 @@ class Game {
     get isVotePlay() {
         const waiting = this.firstWaiting;
         return waiting.to === "elect-sheriff" || waiting.to === "vote";
+    }
+
+    get isForbiddenTieVotePlay() {
+        const waiting = this.firstWaiting;
+        return waiting.to === "elect-sheriff";
     }
 
     get isOneTargetPlay() {

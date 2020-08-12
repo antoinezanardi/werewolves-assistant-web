@@ -3,12 +3,24 @@
         <div id="home-content" class="flex-column flex-grow-1 d-flex justify-content-center">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h1 id="title" class="text-center" v-html="$t('Home.werewolvesAssistant')"/>
-                    <img src="../../assets/img/wolf.png" alt="Wolf"/>
+                    <img width="150" src="../../assets/img/wolf.png" alt="Wolf"/>
+                    <h1 id="title" class="text-center">
+                        <span id="title-wrapper" class="text-center">
+                            <span v-html="$t('Home.werewolvesAssistant')"/>
+                            <span id="version" class="badge badge-dark text-center text-uppercase">
+                                <span v-html="'v1.0.0'"/>
+                                <span class="text-muted" v-html="' - beta'"/>
+                            </span>
+                        </span>
+                    </h1>
+                    <h4 id="subtitle" class="text-center">
+                        <i class="fa fa-star mr-2 text-warning"/>
+                        <span class="text-secondary" v-html="$t('Home.bestToolForGameMastering')"/>
+                    </h4>
                 </div>
             </div>
             <div class="mt-4 d-flex justify-content-center">
-                <div class="col-lg-3 col-sm-12">
+                <div class="col-lg-4 col-sm-12">
                     <button @click="play" class="btn btn-block btn-primary text-uppercase font-weight-bold home-btn">
                         <i class="fa fa-play-circle mr-2"/>
                         <span v-html="$t('Home.play')"/>
@@ -20,6 +32,12 @@
                             <span v-html="$t('Home.statistics')"/>
                         </router-link>
                     </transition>
+                    <router-link to="/about" key="about"
+                                 class="btn btn-block btn-dark font-weight-bold home-btn mt-4">
+                        <span v-html="$t('Home.whatIsItAbout')"/>
+                        <i class="fas fa-question ml-2"
+                           :class="{ 'animate__animated animate__heartBeat animate__infinite': !aboutPageVisited }"/>
+                    </router-link>
                     <transition name="fade" mode="out-in">
                         <button v-if="!isUserLogged" key="not-logged" @click="showAccountModal"
                                 class="btn btn-secondary btn-block mt-4 text-uppercase font-weight-bold account-btn">
@@ -73,6 +91,9 @@ export default {
         ...mapGetters("user", {
             isUserLogged: "isLogged",
         }),
+        aboutPageVisited() {
+            return localStorage.getItem("aboutPageVisited") === "true";
+        },
     },
     methods: {
         ...mapActions("user", {
@@ -137,6 +158,22 @@ export default {
 
     #title {
         @include font-size(3rem);
+        position: relative;
+
+        #title-wrapper {
+            position: relative;
+        }
+    }
+
+    #subtitle {
+        @include font-size(1.2rem);
+    }
+
+    #version {
+        font-size: 1rem;
+        position: absolute;
+        right: 0;
+        bottom: 100%;
     }
 
     #home-footer {

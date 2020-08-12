@@ -9,19 +9,19 @@
             </div>
             <div key="game-composition" class="p-2 d-flex flex-column h-100" v-else>
                 <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <h1 id="title" class="text-center">
-                            <i class="fa fa-gamepad text-primary mr-2"/>
-                            <span v-html="$t('GameLobby.gameComposition')"/>
+                    <div class="col-lg-6 text-center">
+                        <h1 id="game-lobby-title" class="d-inline-flex align-items-center justify-content-center">
+                            <i class="fa fa-gamepad text-primary"/>
+                            <span v-html="$t('GameLobby.gameComposition')" class="mx-3"/>
+                            <WhatToDoButton @click.native="startTutorial"/>
                         </h1>
-                        <hr class="bg-dark"/>
                     </div>
                 </div>
                 <div id="player-form" class="row justify-content-center">
                     <div class="col-lg-4">
                         <form @submit.prevent="addPlayer">
                             <div class="input-group">
-                                <input type="text" class="form-control" :placeholder="playerNameInputPlaceholder"
+                                <input id="game-lobby-player-input" class="form-control" :placeholder="playerNameInputPlaceholder"
                                        v-model="playerName" :disabled="game.isMaxPlayerReached"
                                        :class="{ 'is-invalid': isPlayerNameTaken }"/>
                                 <div class="input-group-append">
@@ -38,6 +38,9 @@
                     </div>
                 </div>
                 <GameLobbyComposition :game="game"/>
+                <div>
+                    <hr class="bg-dark mt-3 mb-2"/>
+                </div>
                 <div id="game-lobby-players-container" class="flex-grow-1 container-fluid">
                     <transition mode="out-in" name="fade">
                         <div v-if="!game.players.length" class="h-100 container-fluid">
@@ -64,7 +67,7 @@
                 <div id="game-lobby-footer" class="row justify-content-between align-items-center">
                     <div class="col-lg-3 col-sm-6">
                         <form @submit.prevent="getGameRepartition">
-                            <SubmitButton classes="btn btn-dark btn-block text-uppercase font-weight-bold"
+                            <SubmitButton id="random-repartition-button" classes="btn btn-dark btn-block text-uppercase font-weight-bold"
                                           :disabled-tooltip-text="$t('GameLobby.fourPlayerRequiredToGetRandomRepartition')"
                                           :text="`<i class='fas fa-random mr-2'></i>${$t('GameLobby.getRandomRepartition')}`"
                                           :loading="loading.getGameRepartition"
@@ -76,7 +79,7 @@
                             <SubmitButton classes="btn btn-primary btn-lg btn-block text-uppercase font-weight-bold"
                                           :text="`<i class='fa fa-play-circle mr-2'></i>${$t('GameLobby.launchParty')}`"
                                           :disabled-tooltip-text="createGameButtonDisabledText" :loading="loading.createGame"
-                                          :disabled="loading.getGameRepartition || !canCreateGame"/>
+                                          :disabled="loading.getGameRepartition || !game.canStartGame"/>
                         </form>
                     </div>
                     <div class="col-lg-3 mt-2 mt-lg-0">
@@ -86,6 +89,7 @@
                         </router-link>
                     </div>
                 </div>
+                <GameLobbyTutorial ref="gameLobbyTutorial"/>
             </div>
         </transition>
     </div>
@@ -102,10 +106,14 @@ import GameLobbyAlreadyHavePlayingGame from "./GameLobbyAlreadyHavePlayingGame";
 import SubmitButton from "../shared/Forms/SubmitButton";
 import GameLobbyComposition from "./GameLobbyComposition";
 import Swal from "sweetalert2";
+import WhatToDoButton from "@/components/shared/Game/WhatToDoButton/WhatToDoButton";
+import GameLobbyTutorial from "@/components/GameLobby/GameLobbyTutorial";
 
 export default {
     name: "GameLobby",
-    components: { GameLobbyComposition, SubmitButton, GameLobbyAlreadyHavePlayingGame, PlayerCard, Loading },
+    components: {
+        GameLobbyTutorial,
+        WhatToDoButton, GameLobbyComposition, SubmitButton, GameLobbyAlreadyHavePlayingGame, PlayerCard, Loading },
     data() {
         return {
             waitingGame: new Game(),
@@ -124,10 +132,6 @@ export default {
         },
         canAddPlayer() {
             return !this.isPlayerNameTaken && !this.game.isMaxPlayerReached;
-        },
-        canCreateGame() {
-            return this.game.areThereEnoughPlayers && this.game.areThereEnoughVillagers &&
-                this.game.areThereEnoughWerewolves && this.game.allPlayersHaveRole;
         },
         playerNameInputPlaceholder() {
             return this.game.isMaxPlayerReached ? this.$t("GameLobby.maxPlayerReached") : this.$t("GameLobby.playerName");
@@ -251,6 +255,9 @@ export default {
                 cancelButtonText: this.$t("GameLobby.cancel"),
             });
         },
+        startTutorial() {
+            this.$refs.gameLobbyTutorial.startTour();
+        },
     },
     async beforeRouteLeave(to, from, next) {
         if (!this.waitingGame._id && this.game.players.length && to.name !== "Game") {
@@ -267,8 +274,9 @@ export default {
     @import "../../../node_modules/bootstrap/scss/bootstrap";
     @import "../../assets/scss/_variables";
 
-    #title {
-        @include font-size(2rem);
+    #game-lobby-title {
+        @include font-size(2.2rem);
+        padding: 10px;
     }
 
     #no-player-text {

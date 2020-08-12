@@ -9,8 +9,8 @@
         <PlayFieldActionText :game="game" :play="play" attribute="drank-death-potion" @playerSelected="playerSelected" class="mt-2"/>
         <div class="row mt-2">
             <div class="col-12">
-                <ul class="nav nav-pills nav-fill">
-                    <li class="nav-item" @click="openLifePotionPanel">
+                <ul id="potion-tabs" class="nav nav-pills nav-fill">
+                    <li id="life-potion-tab" class="nav-item" @click="openLifePotionPanel">
                         <a class="nav-link" :class="{ active: panel === 'life-potion', disabled: game.hasWitchUsedLifePotion }"
                            id="use-life-potion-tab" href="#">
                             <img :src="SVGs.lifePotionSVG" width="25" alt="Life Potion" class="mr-2"
@@ -18,7 +18,7 @@
                             <span v-html="lifePotionPanelTabText"/>
                         </a>
                     </li>
-                    <li class="nav-item" @click="openDeathPotionPanel">
+                    <li id="death-potion-tab" class="nav-item" @click="openDeathPotionPanel">
                         <a class="nav-link" :class="{ active: panel === 'death-potion', disabled: game.hasWitchUsedDeathPotion }"
                            id="use-death-potion-tab" href="#">
                             <img :src="SVGs.deathPotionSVG" width="25" alt="Death Potion" class="mr-2"
