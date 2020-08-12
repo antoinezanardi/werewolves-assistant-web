@@ -4,7 +4,15 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <img width="150" src="../../assets/img/wolf.png" alt="Wolf"/>
-                    <h1 id="title" class="text-center" v-html="$t('Home.werewolvesAssistant')"/>
+                    <h1 id="title" class="text-center">
+                        <span id="title-wrapper" class="text-center">
+                            <span v-html="$t('Home.werewolvesAssistant')"/>
+                            <span id="version" class="badge badge-dark text-center text-uppercase">
+                                <span v-html="'v1.0.0'"/>
+                                <span class="text-muted" v-html="' - beta'"/>
+                            </span>
+                        </span>
+                    </h1>
                     <h4 id="subtitle" class="text-center">
                         <i class="fa fa-star mr-2 text-warning"/>
                         <span class="text-secondary" v-html="$t('Home.bestToolForGameMastering')"/>
@@ -150,10 +158,22 @@ export default {
 
     #title {
         @include font-size(3rem);
+        position: relative;
+
+        #title-wrapper {
+            position: relative;
+        }
     }
 
     #subtitle {
         @include font-size(1.2rem);
+    }
+
+    #version {
+        font-size: 1rem;
+        position: absolute;
+        right: 0;
+        bottom: 100%;
     }
 
     #home-footer {

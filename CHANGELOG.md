@@ -16,7 +16,8 @@
 
 * [#12](https://github.com/antoinezanardi/werewolves-assistant-web/issues/12) - Navigation between game event messages enabled with left and right arrow keys.
 * [#14](https://github.com/antoinezanardi/werewolves-assistant-web/issues/14) - Message for preventing tie in votes during sheriff election.
-* Pick-up line added on Home page for explaining the concept of Werewolves Assistant.
+* Pick-up line added on `Home` page for explaining the concept of Werewolves Assistant.
+* Version number added on `Home` page.
 
 ### 📚 Documentation
 
