@@ -5,6 +5,7 @@ import GameLobby from "@/components/GameLobby/GameLobby";
 import Game from "@/components/Game/Game";
 import Statistics from "@/components/Statistics/Statistics";
 import About from "@/components/About/About";
+import NotFound from "@/components/NotFound/NotFound";
 
 Vue.use(VueRouter);
 
@@ -24,27 +25,36 @@ VueRouter.prototype.replace = function replace(query, onResolve, onReject) {
     return originalReplace.call(this, query).catch(err => err);
 };
 
-const routes = [{
-    path: "/",
-    name: "Home",
-    component: Home,
-}, {
-    path: "/about",
-    name: "About",
-    component: About,
-}, {
-    path: "/game-lobby",
-    name: "GameLobby",
-    component: GameLobby,
-}, {
-    path: "/game/:id",
-    name: "Game",
-    component: Game,
-}, {
-    path: "/statistics",
-    name: "Statistics",
-    component: Statistics,
-}];
+const routes = [
+    {
+        path: "/",
+        name: "Home",
+        component: Home,
+    }, {
+        path: "/about",
+        name: "About",
+        component: About,
+    }, {
+        path: "/game-lobby",
+        name: "GameLobby",
+        component: GameLobby,
+    }, {
+        path: "/game/:id",
+        name: "Game",
+        component: Game,
+    }, {
+        path: "/statistics",
+        name: "Statistics",
+        component: Statistics,
+    }, {
+        path: "/404",
+        name: "NotFound",
+        component: NotFound,
+    }, {
+        path: "*",
+        redirect: "/404",
+    },
+];
 
 const Router = new VueRouter({
     mode: "history",

@@ -6,6 +6,7 @@
 
 * [#11](https://github.com/antoinezanardi/werewolves-assistant-web/issues/11) - `About` page added with a lot of useful information.
 * [#16](https://github.com/antoinezanardi/werewolves-assistant-web/issues/16) - On each role action during a game, a tutorial explains all: role, purpose, why, consequences.
+* [#18](https://github.com/antoinezanardi/werewolves-assistant-web/issues/18) - Tutorial for `GameLobby` page which explains how to start a game.
 
 ### 🐛 Bug fixes
 

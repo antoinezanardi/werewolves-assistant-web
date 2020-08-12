@@ -97,7 +97,8 @@
         "playerCount": "Aucun joueur | {count} joueur | {count} joueurs",
         "villagersCount": "Aucun villageois | {count} villageois | {count} villageois",
         "werewolvesCount": "Aucun loup garou | {count} loup garou | {count} loups garous",
-        "minToStart": "Minimum {min} pour commencer"
+        "minToStart": "Minimum {min} pour commencer",
+        "minPlayerRequirementsToStart": "Minimum 4 joueurs avec un rôle pour commencer dont 1 loup-garou et 1 villageois"
     },
     "RolePicker": {
         "chooseRole": "Choisir un rôle",
@@ -107,6 +108,13 @@
         "cancel": "Annuler",
         "roleWillBeSwitchedWithOtherPlayer": "Les rôles seront échangés avec le joueur {roleName}",
         "roleWillBeSwitchedWithAnotherPlayer": "Les rôles seront échangés avec un des joueurs {roleName}"
+    },
+    "GameLobbyTutorial": {
+        "howToUseGameLobby": "Comment composer une équipe ?",
+        "toStartAGame": "Pour lancer une partie, le maître du jeu doit renseigner 4 à 20 joueurs et leur attribuer un rôle.",
+        "eachPlayerName": "Il peut renseigner le nom de chaque joueur ici.",
+        "randomRepartition": "Une fois tous les joueurs ajoutés, il peut répartir aléatoirement les rôles. Il faut un minimum de 4 joueurs pour faire une répartition aléatoire.",
+        "requirementsToStartAGame": "Pour pouvoir lancer une partie, les joueurs doivent être 4 minimum et tous posséder un rôle. La partie doit comporter au moins 1 loup-garou et 1 villageois (avec ou sans pouvoir)."
     },
     "GameLobbyAlreadyHavePlayingGame": {
         "youAlreadyHavePlayingGame": "Vous avez déjà une partie en cours",
@@ -162,8 +170,7 @@
                 "delegate": "Passation de pouvoir du maire",
                 "settle-votes": "Départage des votes"
             }
-        },
-        "whatAmISupposedToDo": "Qu'est-ce que ce je dois faire ici?"
+        }
     },
     "GamePlayFieldFooter": {
         "next": "Suivant",
@@ -306,8 +313,12 @@
         "night": "Nuit",
         "actions": {
             "eat": "ont décidé de manger",
-            "use-potion": "a utilisé une potion sur",
-            "look": "a vu",
+            "use-potion": {
+                "life": "a utilisé sa potion de vie sur",
+                "death": "a utilisé sa potion de mort sur",
+                "both": "a utilisé ses potions sur"
+            },
+            "look": "a vu le rôle de",
             "shoot": "a tiré sur",
             "protect": "a protégé",
             "mark": "a marqué",
@@ -315,7 +326,8 @@
             "vote": "a décidé de pendre",
             "delegate": "a légué son rôle de maire à",
             "settle-votes": "a tranché pour pendre"
-        }
+        },
+        "skipTurn": "a passé son tour"
     },
     "PlayFieldActionText": {
         "wantsToLook": "souhaite voir le rôle de",
@@ -419,6 +431,14 @@
     },
     "RoleText": {
         "chooseARole": "Choisir un rôle"
+    },
+    "WhatToDoButton": {
+        "whatAmISupposedToDo": "Qu'est-ce que ce je dois faire ici?"
+    },
+    "NotFound": {
+        "looksLikeYouGotLost": "Il semblerait que vous soyez perdu...",
+        "getOutBeforeWerewolvesCome": "Déguerpissez avant que les loups-garous arrivent !",
+        "flee": "Prendre la fuite"
     },
     "Error": {
         "unauthorized": "Vous ne pouvez pas accéder à cette page",

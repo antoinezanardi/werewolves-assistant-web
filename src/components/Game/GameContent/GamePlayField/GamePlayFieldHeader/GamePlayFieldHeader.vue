@@ -25,10 +25,7 @@
                             <img id="game-waiting-card-back" :src="gameWaitingCard.thumbnail.back" class="img-fluid" alt="Game Waiting Card Back"/>
                         </template>
                     </VueFlip>
-                    <button id="what-to-do-button" class="btn btn-primary" @click="$emit('startTutorial')"
-                            v-tooltip="$t('GamePlayFieldHeader.whatAmISupposedToDo')">
-                        <i class="fa fa-question-circle"/>
-                    </button>
+                    <WhatToDoButton id="what-to-do-button" @click.native="$emit('startTutorial')"/>
                 </div>
             </div>
         </div>
@@ -60,9 +57,11 @@ import werewolfCard from "../../../../../assets/img/roles/werewolf.png";
 import witchCard from "../../../../../assets/img/roles/witch.png";
 import sheriffCard from "../../../../../assets/img/attributes/sheriff.png";
 import backCard from "@/assets/img/roles/back.png";
+import WhatToDoButton from "@/components/shared/Game/WhatToDoButton/WhatToDoButton";
 
 export default {
     name: "GamePlayFieldHeader",
+    components: {WhatToDoButton},
     props: {
         game: {
             type: Game,
@@ -183,13 +182,11 @@ export default {
 
     #game-waiting-card-container {
         position: relative;
+    }
 
-        #what-to-do-button {
-            padding: 0.05rem 0.35rem;
-            border-radius: 20px;
-            position: absolute;
-            top: -15px;
-            right: -30%;
-        }
+    #what-to-do-button {
+        position: absolute;
+        top: -15px;
+        right: -30%;
     }
 </style>
