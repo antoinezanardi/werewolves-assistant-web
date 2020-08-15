@@ -121,6 +121,7 @@ export default {
     watch: {
         game: {
             handler(newGame, oldGame) {
+                // this.events.push(new GameEvent({ type: "player-dies", targets: [{ player: this.game.players[1] }] }));
                 if (newGame.tick === 1) {
                     this.events.push(new GameEvent({ type: "game-starts" }));
                 }

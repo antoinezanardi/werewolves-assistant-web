@@ -2,7 +2,7 @@
     <div id="game-content-footer">
         <hr class="bg-dark my-1"/>
         <div class="row justify-content-center align-items-center">
-            <div class="col-lg-4 col-12 text-center order-md-0">
+            <div class="col-lg-4 col-12 text-center order-lg-0">
                 <VCountdown v-if="game.isTimedPlay" :time="5 * 60 * 1000" @end="countdown.ended = true">
                     <template slot-scope="{ minutes, seconds }">
                         <transition name="fade" mode="out-in">
@@ -20,14 +20,14 @@
                     </template>
                 </VCountdown>
             </div>
-            <div class="col-lg-4 col-12 order-last order-md-1">
+            <div class="col-lg-4 col-12 order-last order-lg-1">
                 <form @submit.prevent="submitPlay">
                     <SubmitButton id="play-submit-button" classes="btn btn-primary btn-block btn-lg"
                                   :loading="loading" :disabled="!canSubmitPlay"
                                   :text="`<i class='fa fa-play-circle mr-2'></i>${$t('GamePlayFieldFooter.next')}`"/>
                 </form>
             </div>
-            <div class="col-lg-4 col order-md-2">
+            <div class="col-lg-4 col order-lg-2">
                 <transition name="fade" mode="out-in">
                     <div v-if="game.isVotePlay" id="vote-play-requirements" class="text-center"
                          key="vote-play-requirements">

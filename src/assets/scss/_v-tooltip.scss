@@ -112,3 +112,13 @@
         transition: opacity .15s;
     }
 }
+
+.v-popover {
+    height: 100%;
+    width: 100%;
+
+    .trigger {
+        height: 100%;
+        width: 100%;
+    }
+}
