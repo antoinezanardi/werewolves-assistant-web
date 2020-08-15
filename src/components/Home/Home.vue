@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="mt-4 d-flex justify-content-center">
-                <div class="col-lg-4 col-sm-12">
+                <div class="col-lg-4 col-md-6 col-sm-12">
                     <button @click="play" class="btn btn-block btn-primary text-uppercase font-weight-bold home-btn">
                         <i class="fa fa-play-circle mr-2"/>
                         <span v-html="$t('Home.play')"/>
@@ -56,15 +56,15 @@
         <div id="home-footer">
             <hr class="border-dark"/>
             <div class="row">
-                <div class="col-lg-6 col-2 d-flex align-items-center">
-                    <a href="mailto:werewolves.assistant@gmail.com" target="_blank" class="btn btn-secondary btn-lg">
+                <div class="col-md-4 col-2 d-flex align-items-center">
+                    <a href="mailto:werewolves.assistant@gmail.com" target="_blank" class="btn btn-secondary">
                         <i class="fa fa-envelope"/>
                         <span class="d-none d-md-inline-block ml-2" v-html="$t('Home.contactMe')"/>
                     </a>
                 </div>
-                <div class="col-lg-6 col-10 d-flex align-items-center justify-content-end">
+                <div class="col-md-8 col-10 d-flex align-items-center justify-content-end">
                     <a href="https://github.com/antoinezanardi/werewolves-assistant-web" target="_blank"
-                       class="btn btn-info btn-lg">
+                       class="btn btn-info">
                         <i class="fab fa-github"/>
                         <span class="d-none d-md-inline-block ml-2" v-html="$t('Home.thisProjectIsOpenSource')"/>
                     </a>
@@ -127,8 +127,8 @@ export default {
     }
 
     .bmc-button img {
-        height: 34px !important;
-        width: 35px !important;
+        height: 24px !important;
+        width: 25px !important;
         margin-bottom: 1px !important;
         box-shadow: none !important;
         border: none !important;
@@ -136,15 +136,15 @@ export default {
 
     .bmc-button {
         padding: 5px 15px 7px 10px !important;
-        line-height: 35px !important;
-        height: 46px !important;
+        line-height: 24px !important;
+        height: 36px !important;
         text-decoration: none !important;
         display: inline-flex !important;
         color: #FFFFFF !important;
         background-color: #FF813F !important;
         border-radius: 5px !important;
         border: 1px solid transparent !important;
-        font-size: 22px !important;
+        font-size: 16px !important;
         -webkit-box-sizing: border-box !important;
         box-sizing: border-box !important;
         transition: all 0.25s linear;

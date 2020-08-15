@@ -1,15 +1,15 @@
 <template>
-    <div id="game-event-image" class="h-100 d-flex justify-content-center align-items-center">
+    <div id="game-event-image" class="d-flex flex-grow-1 justify-content-center align-items-center">
         <VueFlip v-if="event.type === 'game-starts'" id="game-starts-image" transition="0.75s"
-                 height="50%" width="100%" v-model="gameStartsEvent.flipped">
+                 height="30vh" width="30vh" v-model="gameStartsEvent.flipped">
             <template v-slot:front>
-                <RoleImage class="h-100" :role="gameStartsEvent.thumbnail.front"/>
+                <RoleImage class="h-100 rounded" :role="gameStartsEvent.thumbnail.front"/>
             </template>
             <template v-slot:back>
-                <RoleImage class="h-100" :role="gameStartsEvent.thumbnail.back"/>
+                <RoleImage class="h-100 rounded" :role="gameStartsEvent.thumbnail.back"/>
             </template>
         </VueFlip>
-        <div v-else-if="event.type === 'night-falls' || event.type === 'day-rises'" class="w-100 text-center">
+        <div v-else-if="isPhaseGameEvent" class="w-100 text-center">
             <transition mode="out-in" name="phase-transition">
                 <i v-if="phaseTransition.displayedPhase === 'day'" key="day" class="phase-icon fa fa-sun sun-color"
                    :class="{ 'fa-spin': phaseTransition.transitionEnded }"/>
@@ -17,18 +17,18 @@
                    :class="{ 'swing': phaseTransition.transitionEnded }"/>
             </transition>
         </div>
-        <div v-else-if="isEffectGameEvent" class="h-100 d-flex justify-content-center align-items-center flex-column">
-            <div id="role-effect-container" class="h-50">
-                <RoleImage class="h-100 animate__animated animate__flipInY animate__fast role-image"
-                           :role="event.targets[0].player.role.current"
-                           :class="{ 'dead-player': this.event.type === 'player-dies' }"/>
+        <div v-else-if="isEffectGameEvent" class="d-flex flex-grow-1 justify-content-center align-items-center flex-column">
+            <div id="role-effect-container">
+                <RoleImage class="animate__animated animate__flipInY animate__fast role-image"
+                       :role="event.targets[0].player.role.current"
+                       :class="{ 'dead-player': this.event.type === 'player-dies' }"/>
                 <img id="effect-image" :src="effectImageSource"
                      class="animate__animated animate__bounceIn animate__delay-1s" alt="Effect Image"/>
             </div>
             <h3 class="text-center mt-2" v-html="event.targets[0].player.name"/>
         </div>
-        <div class="h-100 d-flex justify-content-center align-items-center" v-else>
-            <RoleImage class="h-50 animate__animated animate__flipInY animate__fast role-image"
+        <div v-else class="d-flex flex-grow-1 justify-content-center align-items-center flex-column">
+            <RoleImage class="animate__animated animate__flipInY animate__fast role-image"
                        :role="game.firstWaiting.for"/>
         </div>
     </div>
@@ -76,6 +76,9 @@ export default {
             const effectGameEventTypes = ["sheriff-elected", "player-dies", "seer-looks"];
             return effectGameEventTypes.includes(this.event.type);
         },
+        isPhaseGameEvent() {
+            return this.event.type === "night-falls" || this.event.type === "day-rises";
+        },
         effectImageSource() {
             const effectGameEventTypeImageSource = {
                 "sheriff-elected": sheriffSVG,
@@ -121,11 +124,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    @import "../../../../../node_modules/bootstrap/scss/bootstrap";
-    @import "../../../../assets/scss/variables";
-
     .phase-icon {
-        @include font-size(7rem);
+        font-size: 7rem;
     }
 
     @keyframes swing {
@@ -156,6 +156,7 @@ export default {
     .role-image {
         border: 5px solid #303030;
         border-radius: 5px;
+        height: 20vh;
     }
 
     #role-effect-container {

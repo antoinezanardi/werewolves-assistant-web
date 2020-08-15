@@ -2,20 +2,17 @@
     <span class="player-card-thumbnail" :class="{ 'player-card-thumbnail-lg': size === 'lg', 'dead-player-card': player.isAlive === false }">
         <i v-if="!game._id" v-tooltip="$t('PlayerThumbnail.unsetPlayer')" @click="unsetPlayer"
            class="fa fa-times-circle unset-player-button"/>
-        <VueFlip v-tooltip="playerThumbnailTooltip" height="100%" width="100%" v-model="flipped">
-            <template v-slot:front>
-                <v-popover :disabled="!!game._id" ref="frontPopover" :show="!game._id" placement="left">
+        <v-popover :disabled="!!game._id" ref="thumbnailPopover" placement="left">
+            <VueFlip v-tooltip="playerThumbnailTooltip" height="100%" width="100%" v-model="flipped">
+                <template v-slot:front>
                     <RoleImage :role="thumbnail.front"/>
-                    <RolePicker :player="player" :game="game" slot="popover" @rolePicked="rolePicked"/>
-                </v-popover>
-            </template>
-            <template v-slot:back>
-                <v-popover :disabled="!!game._id" ref="backPopover" placement="left">
+                </template>
+                <template v-slot:back>
                     <RoleImage :role="thumbnail.back"/>
-                    <RolePicker :player="player" :game="game" slot="popover" @rolePicked="rolePicked"/>
-                </v-popover>
-            </template>
-        </VueFlip>
+                </template>
+            </VueFlip>
+            <RolePicker :player="player" :game="game" slot="popover" @rolePicked="rolePicked"/>
+        </v-popover>
     </span>
 </template>
 
@@ -71,9 +68,11 @@ export default {
                 this.flipped = false;
             }
         },
+        showRolePicker() {
+            this.$refs.thumbnailPopover.show();
+        },
         rolePicked(role) {
-            this.$refs.frontPopover.hide();
-            this.$refs.backPopover.hide();
+            this.$refs.thumbnailPopover.hide();
             this.$emit("rolePicked", { name: this.player.name, role });
         },
         unsetPlayer() {

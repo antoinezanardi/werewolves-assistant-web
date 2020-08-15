@@ -1,5 +1,5 @@
 <template>
-    <img :src="roleImage" alt="Role Image" class="img-fluid"/>
+    <img :src="roleImage" alt="Role Image" class="img-fluid rounded"/>
 </template>
 
 <script>

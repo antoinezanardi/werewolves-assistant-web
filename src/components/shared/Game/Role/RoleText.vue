@@ -1,5 +1,5 @@
 <template>
-    <div class="text-capitalize" v-html="roleText"/>
+    <div :class="roleTextClasses" v-html="roleText"/>
 </template>
 
 <script>
@@ -26,6 +26,13 @@ export default {
                 all: this.$t("Role.the.all"),
             };
             return this.role && roleText[this.role] ? roleText[this.role] : this.$t("RoleText.chooseARole");
+        },
+        roleTextClasses() {
+            if (this.role) {
+                return "text-capitalize cursor-pointer";
+            } else {
+                return "text-capitalize cursor-pointer font-weight-bolder animate__animated animate__slow animate__heartBeat";
+            }
         },
     },
 };

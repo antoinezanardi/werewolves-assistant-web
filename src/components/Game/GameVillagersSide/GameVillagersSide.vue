@@ -51,7 +51,15 @@ export default {
     computed: {
         sortedVillagers() {
             const villagerPlayers = [...this.game.villagerPlayers];
-            return [...villagerPlayers.sort(player => player.isAlive ? -1 : 1)];
+            return [...villagerPlayers.sort((playerA, playerB) => {
+                if (!playerA.isAlive) {
+                    return 1;
+                } else if (playerB.isAlive) {
+                    return playerA.role.current === "villager" ? 1 : -1;
+                } else {
+                    return -1;
+                }
+            })];
         },
     },
 };

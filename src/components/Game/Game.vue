@@ -1,5 +1,5 @@
 <template>
-    <div id="game" class="container-fluid page-with-navbar pb-2">
+    <div id="game" class="container-fluid page-with-navbar">
         <transition name="fade" mode="out-in">
             <div v-if="loading.getGame" key="loading" class="h-100 d-flex justify-content-center align-items-center">
                 <Loading :text="$t('Game.loadingGame')"/>
@@ -7,9 +7,9 @@
             <div v-else key="game" class="pt-2 row mx-0 h-100">
                 <GameVillagersSide :game="game" class="col-md-2 d-none d-md-block h-100"/>
                 <transition mode="out-in" name="fade">
-                    <GameContent v-if="game.status === 'playing'" key="playing-game" :game="game" class="col-12 col-md-8 h-100"
+                    <GameContent v-if="game.status === 'playing'" key="playing-game" :game="game" class="col-12 col-md-8 h-100 pb-2"
                                  @updateGame="updateGame"/>
-                    <GameWinners v-else-if="game.status === 'done'" key="done-game" :game="game" class="col-12 col-md-8 h-100"/>
+                    <GameWinners v-else-if="game.status === 'done'" key="done-game" :game="game" class="col-12 col-md-8 h-100 pb-2"/>
                 </transition>
                 <GameWerewolvesSide :game="game" class="col-md-2 d-none d-md-block h-100"/>
             </div>

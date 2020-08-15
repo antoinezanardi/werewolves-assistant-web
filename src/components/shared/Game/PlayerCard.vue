@@ -1,14 +1,14 @@
 <template>
     <div class="player-card d-flex flex-column align-items-center"
          :class="{ 'selectable': selectable, 'selected': selected }" ref="playerCard">
-        <PlayerThumbnail :game="game" :player="player" :size="size" :class="{ 'player-card-thumbnail-selected': selected }"
+        <PlayerThumbnail ref="playerThumbnail" :game="game" :player="player" :size="size" :class="{ 'player-card-thumbnail-selected': selected }"
                          @rolePicked="rolePicked" @unsetPlayer="unsetPlayer" @click.native="togglePlayerSelected"/>
         <div class="player-card-name text-center" :class="{ 'player-card-name-lg': size === 'lg' }"
              v-html="player.name" @click="togglePlayerSelected"/>
         <div v-if="!game._id" class="player-card-role small text-center text-muted d-flex align-items-center">
             <i v-if="player.role.current" v-tooltip="$t('PlayerCard.unsetRole')" @click="unsetRole"
                class="fa fa-times-circle mr-1 unset-role-button"/>
-            <RoleText class="text-truncate" :role="player.role.current"/>
+            <RoleText class="text-truncate" :role="player.role.current" @click.native="$refs.playerThumbnail.showRolePicker()"/>
         </div>
     </div>
 </template>

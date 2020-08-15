@@ -1,16 +1,16 @@
 <template>
-    <div id="game-event" class="container-fluid d-flex flex-column align-items-center justify-content-center h-100">
+    <div id="game-event" class="container-fluid d-flex flex-grow-1 flex-column">
         <Keypress key-event="keyup" :key-code="37" @success="previousGameEventMessage"/>
         <Keypress key-event="keyup" :key-code="39" @success="nextGameEventMessage"/>
-        <div id="game-event-image-container" class="row justify-content-center align-items-center w-100">
-            <div class="col-12 h-100">
+        <div id="game-event-image-container" class="row justify-content-center align-items-center">
+            <div class="col-12 d-flex justify-content-center flex-grow-1">
                 <GameEventImage :game="game" :event="event"/>
             </div>
         </div>
-        <div id="game-event-message-container" class="w-100">
-            <div class="row align-items-center h-100">
+        <div id="game-event-message-container" class="w-100 d-flex">
+            <div class="row align-items-center d-flex flex-grow-1">
                 <div class="col-2 col-md-1">
-                    <v-popover trigger="hover" :disabled="!canGoBackToPreviousGameEventMessage">
+                    <v-popover trigger="hover" :disabled="!canGoBackToPreviousGameEventMessage || isTouchDevice">
                         <i class="fa fa-chevron-left fa-3x game-event-message-button" @click="previousGameEventMessage"
                            :class="{ disabled: !canGoBackToPreviousGameEventMessage }"/>
                         <template slot="popover">
@@ -31,7 +31,7 @@
                     </transition>
                 </div>
                 <div class="col-2 col-md-1">
-                    <v-popover trigger="hover">
+                    <v-popover trigger="hover" :disabled="isTouchDevice">
                         <i class="fa fa-chevron-right fa-3x game-event-message-button" @click="nextGameEventMessage"/>
                         <template slot="popover">
                             <div v-html="$t('GameEvent.next')"/>
@@ -55,6 +55,7 @@ import GameEvent from "@/classes/GameEvent";
 import i18n from "@/plugins/vue-i18n";
 import GameEventImage from "@/components/Game/GameEventMonitor/GameEvent/GameEventImage";
 import { insertIf } from "@/helpers/functions/Array";
+import { isTouchDevice } from "@/helpers/functions/Device";
 import leftArrowKey from "@/assets/img/game/left-arrow-key.png";
 import rightArrowKey from "@/assets/img/game/right-arrow-key.png";
 
@@ -168,6 +169,7 @@ export default {
             gameCompositionText += `.`;
             return gameCompositionText;
         },
+        isTouchDevice,
     },
     methods: {
         previousGameEventMessage() {
@@ -198,7 +200,7 @@ export default {
         height: 50%;
 
         #game-event-message {
-            @include font-size(1.75rem);
+            @include font-size(1.25rem);
         }
 
         .game-event-message-button {

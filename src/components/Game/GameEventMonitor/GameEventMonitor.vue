@@ -1,6 +1,6 @@
 <template>
     <div id="game-event-monitor" class="d-flex flex-column h-100">
-        <div id="game-event-monitor-content" class="flex-grow-1">
+        <div id="game-event-monitor-content" class="d-flex flex-grow-1">
             <transition mode="out-in" name="fade">
                 <GameEvent v-if="currentEvent" :key="currentEvent._id" :game="game" :event="currentEvent"
                            @skipEvent="skipEvent"/>
