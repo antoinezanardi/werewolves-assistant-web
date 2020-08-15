@@ -1,5 +1,5 @@
 <template>
-    <div id="game-lobby" class="container-fluid page-with-navbar">
+    <div id="game-lobby" class="container-fluid page-with-navbar pb-2">
         <transition mode="out-in" name="fade">
             <div v-if="loading.searchForPlayingGame" key="loading" class="h-100 d-flex justify-content-center align-items-center">
                 <Loading :text="$t('GameLobby.loading')"/>
@@ -7,54 +7,52 @@
             <div v-else-if="waitingGame._id" key="existing-game" class="h-100 d-flex justify-content-center align-items-center">
                 <GameLobbyAlreadyHavePlayingGame :game="waitingGame" @cancelGame="cancelGame"/>
             </div>
-            <div key="game-composition" class="p-2 d-flex flex-column h-100" v-else>
-                <div class="row justify-content-center">
-                    <div class="col-lg-6 text-center">
-                        <h1 id="game-lobby-title" class="d-inline-flex align-items-center justify-content-center">
-                            <i class="fa fa-gamepad text-primary"/>
-                            <span v-html="$t('GameLobby.gameComposition')" class="mx-3"/>
-                            <WhatToDoButton @click.native="startTutorial"/>
-                        </h1>
-                    </div>
-                </div>
-                <div id="player-form" class="row justify-content-center">
-                    <div class="col-lg-4">
-                        <form @submit.prevent="addPlayer">
-                            <div class="input-group">
-                                <input id="game-lobby-player-input" class="form-control" :placeholder="playerNameInputPlaceholder"
-                                       v-model="playerName" :disabled="game.isMaxPlayerReached"
-                                       :class="{ 'is-invalid': isPlayerNameTaken }"/>
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" :disabled="!canAddPlayer">
-                                        <i class='fa fa-plus mr-1'/>
-                                        <span v-html="$t('GameLobby.add')"/>
-                                    </button>
-                                </div>
-                            </div>
-                            <div id="player-name-input-error">
-                                <span v-if="isPlayerNameTaken" v-html="$t('GameLobby.playerNameAlreadyTaken')"/>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <GameLobbyComposition :game="game"/>
+            <div key="game-composition" class="d-flex flex-column h-100" v-else>
                 <div>
-                    <hr class="bg-dark mt-3 mb-2"/>
-                </div>
-                <div id="game-lobby-players-container" class="flex-grow-1 container-fluid">
-                    <transition mode="out-in" name="fade">
-                        <div v-if="!game.players.length" class="h-100 container-fluid">
-                            <div class="row h-100 justify-content-center align-items-center">
-                                <div class="col-12">
-                                    <h3 id="no-player-text" class="text-muted text-center font-italic">
-                                        <i class="fa fa-user-plus mr-2"/>
-                                        <span v-html="$t('GameLobby.addPlayerWithName')"/>
-                                    </h3>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-7 text-center">
+                            <h1 id="game-lobby-title" class="d-inline-flex align-items-center justify-content-center">
+                                <i class="fa fa-gamepad text-primary"/>
+                                <span v-html="$t('GameLobby.gameComposition')" class="mx-3"/>
+                                <WhatToDoButton @click.native="startTutorial"/>
+                            </h1>
+                        </div>
+                    </div>
+                    <div id="player-form" class="row justify-content-center">
+                        <div class="col-lg-5 col-md-8 col-12">
+                            <form @submit.prevent="addPlayer">
+                                <div class="input-group">
+                                    <input id="game-lobby-player-input" class="form-control" :placeholder="playerNameInputPlaceholder"
+                                           v-model="playerName" :disabled="game.isMaxPlayerReached"
+                                           :class="{ 'is-invalid': isPlayerNameTaken }"/>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" :disabled="!canAddPlayer">
+                                            <i class='fa fa-plus mr-1'/>
+                                            <span v-html="$t('GameLobby.add')"/>
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
+                                <div id="player-name-input-error">
+                                    <span v-if="isPlayerNameTaken" v-html="$t('GameLobby.playerNameAlreadyTaken')"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <GameLobbyComposition :game="game"/>
+                    <div>
+                        <hr class="bg-dark mt-3 mb-2"/>
+                    </div>
+                </div>
+                <div id="game-lobby-players-container" class="d-flex flex-column flex-grow-1">
+                    <transition mode="out-in" name="fade">
+                        <div class="d-flex flex-column justify-content-center flex-grow-1" v-if="!game.players.length">
+                            <h3 id="no-player-text" class="text-muted text-center font-italic d-flex justify-content-center align-items-center">
+                                <i class="fa fa-user-plus mr-2"/>
+                                <span v-html="$t('GameLobby.addPlayerWithName')"/>
+                            </h3>
                         </div>
                         <transition-group v-else tag="div" name="fade-list" id="players"
-                                          class="row justify-content-center align-items-center h-100 p-2">
+                                          class="row justify-content-center align-items-center flex-grow-1 m-2">
                             <PlayerCard v-for="player in game.players" :key="player.name" :game="game" :player="player"
                                         class="player-item col-lg-2 col-4" @rolePicked="rolePicked"
                                         @unsetRole="unsetRole" @unsetPlayer="unsetPlayer"/>
@@ -63,30 +61,30 @@
                 </div>
                 <div>
                     <hr class="bg-dark"/>
-                </div>
-                <div id="game-lobby-footer" class="row justify-content-between align-items-center">
-                    <div class="col-lg-3 col-sm-6">
-                        <form @submit.prevent="getGameRepartition">
-                            <SubmitButton id="random-repartition-button" classes="btn btn-dark btn-block text-uppercase font-weight-bold"
-                                          :disabled-tooltip-text="$t('GameLobby.fourPlayerRequiredToGetRandomRepartition')"
-                                          :text="`<i class='fas fa-random mr-2'></i>${$t('GameLobby.getRandomRepartition')}`"
-                                          :loading="loading.getGameRepartition"
-                                          :disabled="loading.createGame || !game.areThereEnoughPlayers"/>
-                        </form>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 mt-2 mt-lg-0">
-                        <form @submit.prevent="createGame">
-                            <SubmitButton classes="btn btn-primary btn-lg btn-block text-uppercase font-weight-bold"
-                                          :text="`<i class='fa fa-play-circle mr-2'></i>${$t('GameLobby.launchParty')}`"
-                                          :disabled-tooltip-text="createGameButtonDisabledText" :loading="loading.createGame"
-                                          :disabled="loading.getGameRepartition || !game.canStartGame"/>
-                        </form>
-                    </div>
-                    <div class="col-lg-3 mt-2 mt-lg-0">
-                        <router-link class="btn btn-secondary btn-block" to="/">
-                            <i class="fa fa-sign-out-alt mr-2"/>
-                            <span v-html="$t('GameLobby.quit')"/>
-                        </router-link>
+                    <div id="game-lobby-footer" class="row justify-content-between align-items-center">
+                        <div class="col-lg-4 col-sm-6">
+                            <form @submit.prevent="getGameRepartition">
+                                <SubmitButton id="random-repartition-button" classes="btn btn-dark btn-block text-uppercase font-weight-bold"
+                                              :disabled-tooltip-text="$t('GameLobby.fourPlayerRequiredToGetRandomRepartition')"
+                                              :text="`<i class='fas fa-random mr-2'></i>${$t('GameLobby.getRandomRepartition')}`"
+                                              :loading="loading.getGameRepartition"
+                                              :disabled="loading.createGame || !game.areThereEnoughPlayers"/>
+                            </form>
+                        </div>
+                        <div class="col-lg-4 col-sm-6 mt-lg-0 mt-2 mt-sm-0">
+                            <form @submit.prevent="createGame">
+                                <SubmitButton classes="btn btn-primary btn-lg btn-block text-uppercase font-weight-bold"
+                                              :text="`<i class='fa fa-play-circle mr-2'></i>${$t('GameLobby.launchParty')}`"
+                                              :disabled-tooltip-text="createGameButtonDisabledText" :loading="loading.createGame"
+                                              :disabled="loading.getGameRepartition || !game.canStartGame"/>
+                            </form>
+                        </div>
+                        <div class="col-lg-4 mt-2 mt-lg-0">
+                            <router-link class="btn btn-secondary btn-block" to="/">
+                                <i class="fa fa-sign-out-alt mr-2"/>
+                                <span v-html="$t('GameLobby.quit')"/>
+                            </router-link>
+                        </div>
                     </div>
                 </div>
                 <GameLobbyTutorial ref="gameLobbyTutorial"/>
@@ -101,19 +99,25 @@ import { parse } from "qs";
 import Game from "../../classes/Game";
 import Loading from "../shared/Loading";
 import Player from "../../classes/Player";
-import PlayerCard from "../shared/Game/PlayerCard";
 import GameLobbyAlreadyHavePlayingGame from "./GameLobbyAlreadyHavePlayingGame";
 import SubmitButton from "../shared/Forms/SubmitButton";
 import GameLobbyComposition from "./GameLobbyComposition";
 import Swal from "sweetalert2";
 import WhatToDoButton from "@/components/shared/Game/WhatToDoButton/WhatToDoButton";
 import GameLobbyTutorial from "@/components/GameLobby/GameLobbyTutorial";
+import PlayerCard from "@/components/shared/Game/PlayerCard";
 
 export default {
     name: "GameLobby",
     components: {
+        PlayerCard,
         GameLobbyTutorial,
-        WhatToDoButton, GameLobbyComposition, SubmitButton, GameLobbyAlreadyHavePlayingGame, PlayerCard, Loading },
+        WhatToDoButton,
+        GameLobbyComposition,
+        SubmitButton,
+        GameLobbyAlreadyHavePlayingGame,
+        Loading,
+    },
     data() {
         return {
             waitingGame: new Game(),
@@ -289,5 +293,6 @@ export default {
 
     #game-lobby-players-container {
         overflow-y: scroll;
+        min-height: 75px;
     }
 </style>

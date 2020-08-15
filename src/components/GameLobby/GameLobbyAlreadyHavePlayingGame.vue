@@ -17,18 +17,18 @@
             </div>
         </div>
         <div class="row justify-content-center mt-4 mb-4">
-            <div class="col-lg-8 col-12">
+            <div class="col-md  -8 col-12">
                 <hr class="bg-dark"/>
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-lg-4 col-12">
+            <div class="col-lg-4 col-md-6 col-12">
                 <router-link :to="`game/${game._id}`" class="btn btn-primary btn-block text-uppercase btn-lg font-weight-bold">
                     <i class="fa fa-play-circle mr-2"/>
                     <span v-html="$t('GameLobbyAlreadyHavePlayingGame.resumeGame')"/>
                 </router-link>
             </div>
-            <div class="col-lg-4 col-12 mt-lg-0 mt-3">
+            <div class="col-lg-4 col-md-6 col-12 mt-md-0 mt-3">
                 <form @submit.prevent="cancelGame">
                     <SubmitButton :loading="loading" classes="btn btn-block btn-lg btn-dark text-uppercase font-weight-bold"
                                   :text="`<i class='fa fa-times-circle mr-2'></i>${$t('GameLobbyAlreadyHavePlayingGame.cancelGame')}`"/>

@@ -1,5 +1,33 @@
 # 📈 LIST OF CHANGES FOR WEREWOLVES ASSISTANT WEB
 
+## 1.0.0-beta.3 (2020-08-15) 
+
+### 🌟 Enhancements
+
+* [#21](https://github.com/antoinezanardi/werewolves-assistant-web/issues/21) - Responsive design for large screens, tablets and phones on:
+    - `Home` page.
+    - `Statistics` page.
+    - `About` page.
+    - `GameLobby` page.
+    - `Game` page.
+* Sweet animation when player has to choose a role in game lobby.
+* Better sort of players on villager side. Sort first by `isAlive` and then by `role`. Villagers with powers are on top of the list.
+
+### 🐛 Bug fixes
+
+* [#22](https://github.com/antoinezanardi/werewolves-assistant-web/issues/22) - Werewolf card in `About` page header was not properly displayed on Safari.
+* [#22](https://github.com/antoinezanardi/werewolves-assistant-web/issues/22) - Bad flexbox display in `GameLobby` page on Safari.
+* [#22](https://github.com/antoinezanardi/werewolves-assistant-web/issues/22) - Bad flexbox display  for game events during a game on Safari.
+
+### 📦 Packages
+
+* `@sentry/browser` updated to version `5.21.0`.
+* `@sentry/integrations` updated to version `5.21.0`.
+* `eslint` updated to version `7.7.0`.
+* `vue-i18n` updated to version `5.21.0`.
+
+---
+
 ## 1.0.0-beta.2 (2020-08-12)
 
 ### 🚀 New features
@@ -25,7 +53,6 @@
 
 ### 📦 Packages
 
-* `vue-github-buttons` installed with version `3.1.0`.
 * `vue-github-buttons` installed with version `3.1.0`.
 * `vue-tour` installed with version `1.5.0`.
 * `@vue/cli-plugin-e2e-cypress` updated to version `4.5.3`.

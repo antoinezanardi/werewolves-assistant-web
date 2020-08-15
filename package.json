@@ -1,6 +1,6 @@
 {
     "name": "werewolves-assistant-web",
-    "version": "1.0.0-beta.2",
+    "version": "1.0.0-beta.3",
     "private": true,
     "scripts": {
         "start": "npm run serve",
@@ -14,8 +14,8 @@
     "dependencies": {
         "@chenfengyuan/vue-countdown": "^1.1.5",
         "@fortawesome/fontawesome-free": "^5.14.0",
-        "@sentry/browser": "^5.20.1",
-        "@sentry/integrations": "^5.20.1",
+        "@sentry/browser": "^5.21.1",
+        "@sentry/integrations": "^5.21.1",
         "animate.css": "^4.1.0",
         "axios": "^0.19.2",
         "bootstrap": "^4.5.2",
@@ -33,7 +33,7 @@
         "vue": "^2.6.11",
         "vue-flip": "^1.0.2",
         "vue-github-buttons": "^3.1.0",
-        "vue-i18n": "^8.20.0",
+        "vue-i18n": "^8.21.0",
         "vue-keypress": "^2.1.1",
         "vue-roller": "^1.12.3",
         "vue-router": "^3.4.3",
@@ -52,7 +52,7 @@
         "@vue/eslint-config-airbnb": "^5.1.0",
         "@vue/test-utils": "^1.0.3",
         "chai": "^4.1.2",
-        "eslint": "^7.6.0",
+        "eslint": "^7.7.0",
         "eslint-plugin-import": "^2.22.0",
         "eslint-plugin-vue": "^6.2.2",
         "vue-template-compiler": "^2.6.11"

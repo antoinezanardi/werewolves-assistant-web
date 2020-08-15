@@ -3,8 +3,8 @@
         <div class="row mt-2">
             <div class="col-12">
                 <h1 class="section-title">
-                    <img width="65" :src="IMGs.werewolf" alt="werewolf" class="mr-3"/>
-                    <span v-html="$t('About.werewolvesAssistantWhatFor')"/>
+                    <img :src="IMGs.werewolf" class="rounded" alt="werewolf"/>
+                    <span class="ml-3" v-html="$t('About.werewolvesAssistantWhatFor')"/>
                 </h1>
                 <hr class="bg-dark"/>
             </div>
@@ -18,7 +18,7 @@
                             <span v-html="`${$t('About.theGame')} ${$t('About.werewolvesOfMillersHollowTM')}`"/>
                         </h3>
                     </div>
-                    <div class="col-lg-3 col-12">
+                    <div class="col-lg-4 col-12">
                         <a class="btn btn-primary btn-block" href="https://www.youtube.com/watch?v=3HUz8CAORro"
                            target="_blank" v-tooltip="$t('About.watchYouTubeVideo')">
                             <i class="fa fa-question-circle mr-2"/>
@@ -166,6 +166,10 @@ export default {
         align-content: center;
         @include font-size(2.5rem);
 
+        img {
+            width: 65px;
+            height: 65px;
+        }
         span {
             display: flex;
             align-items: center;

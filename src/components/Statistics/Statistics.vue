@@ -6,6 +6,10 @@
                     <i class="far fa-chart-bar mr-3"/>
                     <span v-html="$t('Statistics.statistics')"/>
                 </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
                 <hr class="bg-dark mt-1 mb-2"/>
             </div>
         </div>
@@ -65,7 +69,7 @@
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-12 col-lg-4">
+            <div class="col-lg-4 col-md-6 col-12">
                 <router-link class="btn btn-secondary btn-block" to="/">
                     <i class="fa fa-sign-out-alt mr-2"/>
                     <span v-html="$t('Statistics.backToHome')"/>
@@ -167,6 +171,7 @@ export default {
 
     #statistics-container {
         overflow-y: scroll;
+
         li {
             @include font-size(1.5rem);
             margin-bottom: 1.15rem;
