@@ -1,6 +1,6 @@
 # 📈 LIST OF CHANGES FOR WEREWOLVES ASSISTANT WEB
 
-## 1.0.0-beta.3 (2020-08-??)
+## 1.0.0-beta.3 (2020-08-15)
 
 ### 🌟 Enhancements
 
@@ -9,6 +9,7 @@
     - `Statistics` page.
     - `About` page.
     - `GameLobby` page.
+    - `Game` page.
 * Sweet animation when player has to choose a role in game lobby.
 * Better sort of players on villager side. Sort first by `isAlive` and then by `role`. Villagers with powers are on top of the list.
 

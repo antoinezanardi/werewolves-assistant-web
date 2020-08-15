@@ -7,7 +7,7 @@
             </transition>
         </div>
         <div id="game-event-monitor-footer" class="row justify-content-center">
-            <div class="col-12 col-lg-4">
+            <div class="col-lg-6 col-md-8 col-12">
                 <button class="btn btn-lg btn-primary btn-block" v-tooltip="$t('GameEventMonitor.skipToNextEvent')"
                         @click="skipEvent">
                     <i class="fa fa-forward mr-2"/>

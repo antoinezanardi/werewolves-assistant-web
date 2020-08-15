@@ -9,7 +9,7 @@
         </div>
         <div id="game-event-message-container" class="w-100 d-flex">
             <div class="row align-items-center d-flex flex-grow-1">
-                <div class="col-2 col-md-1">
+                <div class="col-2 col-md-1 px-0">
                     <v-popover trigger="hover" :disabled="!canGoBackToPreviousGameEventMessage || isTouchDevice">
                         <i class="fa fa-chevron-left fa-3x game-event-message-button" @click="previousGameEventMessage"
                            :class="{ disabled: !canGoBackToPreviousGameEventMessage }"/>
@@ -30,7 +30,7 @@
                              v-html="currentGameEventMessage"/>
                     </transition>
                 </div>
-                <div class="col-2 col-md-1">
+                <div class="col-2 col-md-1 px-0 text-right">
                     <v-popover trigger="hover" :disabled="isTouchDevice">
                         <i class="fa fa-chevron-right fa-3x game-event-message-button" @click="nextGameEventMessage"/>
                         <template slot="popover">
