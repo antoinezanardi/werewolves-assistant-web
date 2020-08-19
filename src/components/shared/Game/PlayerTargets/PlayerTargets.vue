@@ -1,7 +1,7 @@
 <template>
     <div id="player-targets" class="row justify-content-center align-items-center">
         <div v-for="player in targets" :key="player.name" class="col-lg-2 col-4">
-            <PlayerCard :ref="`playerCard${player._id}`" :game="game" :player="player" :selectable="true"
+            <PlayerCard :ref="`playerCard${player._id}`" :player="player" :selectable="true"
                         :selected="isPlayerSelected(player)" :class="{ selected: isPlayerSelected(player) }"
                         @playerSelected="playerSelected"/>
         </div>
@@ -10,16 +10,11 @@
 
 <script>
 import PlayerCard from "../PlayerCard";
-import Game from "../../../../classes/Game";
 
 export default {
     name: "PlayerTargets",
     components: { PlayerCard },
     props: {
-        game: {
-            type: Game,
-            required: true,
-        },
         targets: {
             type: Array,
             required: true,

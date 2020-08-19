@@ -1,6 +1,8 @@
 {
     "NavBar": {
-        "werewolvesAssistant": "Assistant Loups-Garous"
+        "werewolvesAssistant": "Assistant Loups-Garous",
+        "options": "Options",
+        "quit": "Retour à l'accueil"
     },
     "Home": {
         "werewolvesAssistant": "Assistant Loups-Garous",
@@ -138,7 +140,8 @@
         "yourProgressIsSaved": "Votre progression est sauvegardée.",
         "quit": "Quitter le jeu",
         "cancel": "Annuler",
-        "youDontOwnThisGame": "Cette partie ne vous appartient pas"
+        "youDontOwnThisGame": "Cette partie ne vous appartient pas",
+        "cantGetGame": "Impossible de récupérer la partie"
     },
     "GamePlayFieldHeader": {
         "day": "Jour",

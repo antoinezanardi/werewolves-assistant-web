@@ -1,25 +1,25 @@
 <template>
     <div id="game-content-play-field">
         <transition name="fade" mode="out-in">
-            <ElectSheriffPlayField v-if="game.firstWaiting.to === 'elect-sheriff'" key="elect-sheriff" :game="game"
+            <ElectSheriffPlayField v-if="game.firstWaiting.to === 'elect-sheriff'" key="elect-sheriff"
                                    class="h-100 container-fluid" @playerVotes="playerVotes"/>
-            <LookPlayField v-else-if="game.firstWaiting.to === 'look'" key="look" :game="game" :play="play"
+            <LookPlayField v-else-if="game.firstWaiting.to === 'look'" key="look" :play="play"
                            class="h-100 container-fluid" @playerSelected="playerSelected"/>
-            <EatPlayField v-else-if="game.firstWaiting.to === 'eat'" key="eat" :game="game" :play="play"
+            <EatPlayField v-else-if="game.firstWaiting.to === 'eat'" key="eat" :play="play"
                           class="h-100 container-fluid" @playerSelected="playerSelected"/>
-            <UsePotionPlayField v-else-if="game.firstWaiting.to === 'use-potion'" key="use-potion" :game="game" :play="play"
+            <UsePotionPlayField v-else-if="game.firstWaiting.to === 'use-potion'" key="use-potion" :play="play"
                                 class="h-100 container-fluid" @playerSelected="playerSelected"/>
-            <ProtectPlayField v-else-if="game.firstWaiting.to === 'protect'" key="protect" :game="game" :play="play"
+            <ProtectPlayField v-else-if="game.firstWaiting.to === 'protect'" key="protect" :play="play"
                               class="h-100 container-fluid" @playerSelected="playerSelected"/>
-            <MarkPlayField v-else-if="game.firstWaiting.to === 'mark'" key="mark" :game="game" :play="play"
+            <MarkPlayField v-else-if="game.firstWaiting.to === 'mark'" key="mark" :play="play"
                            class="h-100 container-fluid" @playerSelected="playerSelected"/>
-            <VotePlayField v-else-if="game.firstWaiting.to === 'vote'" key="vote" :game="game"
+            <VotePlayField v-else-if="game.firstWaiting.to === 'vote'" key="vote"
                            class="h-100 container-fluid" @playerVotes="playerVotes"/>
-            <SettleVotesPlayField v-else-if="game.firstWaiting.to === 'settle-votes'" key="settle-votes" :game="game"
+            <SettleVotesPlayField v-else-if="game.firstWaiting.to === 'settle-votes'" key="settle-votes"
                                   :play="play" class="h-100 container-fluid" @playerSelected="playerSelected"/>
-            <DelegatePlayField v-else-if="game.firstWaiting.to === 'delegate'" key="delegate" :game="game"
+            <DelegatePlayField v-else-if="game.firstWaiting.to === 'delegate'" key="delegate"
                                :play="play" class="h-100 container-fluid" @playerSelected="playerSelected"/>
-            <ShootPlayField v-else-if="game.firstWaiting.to === 'shoot'" key="shoot" :game="game"
+            <ShootPlayField v-else-if="game.firstWaiting.to === 'shoot'" key="shoot"
                             :play="play" class="h-100 container-fluid" @playerSelected="playerSelected"/>
             <div v-else key="unknown">?</div>
         </transition>
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import Game from "../../../../../classes/Game";
+import { mapGetters } from "vuex";
 import ElectSheriffPlayField from "./ElectSheriffPlayField";
 import LookPlayField from "./LookPlayField";
 import EatPlayField from "./EatPlayField";
@@ -43,14 +43,15 @@ export default {
     name: "GamePlayFieldContent",
     components: { ShootPlayField, DelegatePlayField, SettleVotesPlayField, VotePlayField, MarkPlayField, ProtectPlayField, UsePotionPlayField, EatPlayField, LookPlayField, ElectSheriffPlayField },
     props: {
-        game: {
-            type: Game,
-            required: true,
-        },
         play: {
             type: Object,
             required: true,
         },
+    },
+    computed: {
+        ...mapGetters("game", {
+            game: "game",
+        }),
     },
     methods: {
         playerVotes(vote) {

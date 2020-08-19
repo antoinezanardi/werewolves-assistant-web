@@ -1,7 +1,7 @@
 <template>
     <div class="player-card d-flex flex-column align-items-center"
          :class="{ 'selectable': selectable, 'selected': selected }" ref="playerCard">
-        <PlayerThumbnail ref="playerThumbnail" :game="game" :player="player" :size="size" :class="{ 'player-card-thumbnail-selected': selected }"
+        <PlayerThumbnail ref="playerThumbnail" :player="player" :size="size" :class="{ 'player-card-thumbnail-selected': selected }"
                          @rolePicked="rolePicked" @unsetPlayer="unsetPlayer" @click.native="togglePlayerSelected"/>
         <div class="player-card-name text-center" :class="{ 'player-card-name-lg': size === 'lg' }"
              v-html="player.name" @click="togglePlayerSelected"/>
@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import Player from "../../../classes/Player";
-import Game from "../../../classes/Game";
+import { mapGetters } from "vuex";
+import Player from "@/classes/Player";
 import PlayerThumbnail from "./PlayerThumbnail";
 import RoleText from "@/components/shared/Game/Role/RoleText";
 
@@ -23,10 +23,6 @@ export default {
     name: "PlayerCard",
     components: { RoleText, PlayerThumbnail },
     props: {
-        game: {
-            type: Game,
-            required: true,
-        },
         player: {
             type: Player,
             required: true,
@@ -43,6 +39,11 @@ export default {
             type: Boolean,
             default: false,
         },
+    },
+    computed: {
+        ...mapGetters("game", {
+            game: "game",
+        }),
     },
     methods: {
         unsetPlayer() {

@@ -1,6 +1,6 @@
 <template>
     <div class="player-vote d-flex flex-column align-items-center p-2">
-        <PlayerCard :game="game" :player="player"/>
+        <PlayerCard :player="player"/>
         <div class="mb-3 vote-for-text text-center">
             <span class="font-italic" v-html="$t('PlayerVote.voteFor')"/>
         </div>
@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import Player from "../../../../classes/Player";
-import Game from "../../../../classes/Game";
+import { mapGetters } from "vuex";
+import Player from "@/classes/Player";
 import PlayerCard from "../PlayerCard";
 import RoleImage from "../Role/RoleImage";
 
@@ -32,16 +32,15 @@ export default {
     name: "PlayerVote",
     components: { RoleImage, PlayerCard },
     props: {
-        game: {
-            type: Game,
-            required: true,
-        },
         player: {
             type: Player,
             required: true,
         },
     },
     computed: {
+        ...mapGetters("game", {
+            game: "game",
+        }),
         targetablePlayers() {
             return this.game.alivePlayers.filter(({ name }) => name !== this.player.name);
         },

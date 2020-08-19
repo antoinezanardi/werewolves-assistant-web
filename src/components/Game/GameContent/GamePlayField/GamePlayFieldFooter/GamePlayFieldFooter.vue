@@ -56,18 +56,14 @@
 </template>
 
 <script>
-import Game from "@/classes/Game";
-import SubmitButton from "../../../../shared/Forms/SubmitButton";
+import { mapActions, mapGetters } from "vuex";
+import SubmitButton from "@/components/shared/Forms/SubmitButton";
 import { getNominatedPlayers } from "@/helpers/functions/Player";
 
 export default {
     name: "GamePlayFieldFooter",
     components: { SubmitButton },
     props: {
-        game: {
-            type: Game,
-            required: true,
-        },
         play: {
             type: Object,
             required: true,
@@ -82,6 +78,9 @@ export default {
         };
     },
     computed: {
+        ...mapGetters("game", {
+            game: "game",
+        }),
         isThereTieInVotes() {
             if (!this.play.votes.length) {
                 return undefined;
@@ -111,12 +110,15 @@ export default {
         },
     },
     methods: {
+        ...mapActions("game", {
+            setGame: "setGame",
+        }),
         async submitPlay() {
             try {
                 this.loading = true;
                 const playData = { ...this.play, source: this.game.firstWaiting.for, action: this.game.firstWaiting.to };
                 const { data } = await this.$werewolvesAssistantAPI.makeAPlay(this.game._id, playData);
-                this.$emit("updateGame", data);
+                await this.setGame(data);
             } catch (e) {
                 this.$error.display(e);
             } finally {

@@ -12,17 +12,13 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import CancelPlayerTarget from "./CancelPlayerTarget";
-import Game from "../../../../classes/Game";
 
 export default {
     name: "PlayFieldActionText",
     components: { CancelPlayerTarget },
     props: {
-        game: {
-            type: Game,
-            required: true,
-        },
         play: {
             type: Object,
             required: true,
@@ -33,6 +29,9 @@ export default {
         },
     },
     computed: {
+        ...mapGetters("game", {
+            game: "game",
+        }),
         // eslint-disable-next-line max-lines-per-function
         attributeTexts() {
             return {

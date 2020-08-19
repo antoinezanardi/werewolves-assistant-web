@@ -5,6 +5,11 @@
 ### 🐛 Bug fixes
 
 * [#26](https://github.com/antoinezanardi/werewolves-assistant-web/issues/26) - Canceled game has now a dedicated page.
+* [#28](https://github.com/antoinezanardi/werewolves-assistant-web/issues/28) - If the user tries to get a game with an unknown id, he is redirected to home page.
+
+### ♻️ Refactoring
+
+* `game` object is not a property anymore but stored into `vuex` store.
 
 ### 📦 Packages
 

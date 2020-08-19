@@ -27,7 +27,6 @@
 </template>
 
 <script>
-import Game from "@/classes/Game";
 import GameHistory from "@/classes/GameHistory";
 import eatenSVG from "@/assets/svg/attributes/eaten.svg";
 import deathPotionSVG from "@/assets/svg/attributes/drank-death-potion.svg";
@@ -45,10 +44,6 @@ export default {
     name: "GameSummaryHistoryLine",
     components: { RoleText, RoleImage },
     props: {
-        game: {
-            type: Game,
-            required: true,
-        },
         gameHistoryEntry: {
             type: GameHistory,
             required: true,

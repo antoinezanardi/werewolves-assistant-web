@@ -11,10 +11,10 @@
         </VueFlip>
         <div v-else-if="isPhaseGameEvent" class="w-100 text-center">
             <transition mode="out-in" name="phase-transition">
-                <i v-if="phaseTransition.displayedPhase === 'day'" key="day" class="phase-icon fa fa-sun sun-color"
-                   :class="{ 'fa-spin': phaseTransition.transitionEnded }"/>
+                <i v-if="displayedPhase === 'day'" key="day" class="phase-icon fa fa-sun sun-color"
+                   :class="{ 'fa-spin': phaseTransition.ended }"/>
                 <i v-else key="night" class="phase-icon fa fa-moon moon-color"
-                   :class="{ 'swing': phaseTransition.transitionEnded }"/>
+                   :class="{ 'swing': phaseTransition.ended }"/>
             </transition>
         </div>
         <div v-else-if="isEffectGameEvent" class="d-flex flex-grow-1 justify-content-center align-items-center flex-column">
@@ -35,8 +35,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import GameEvent from "@/classes/GameEvent";
-import Game from "@/classes/Game";
 import RoleImage from "@/components/shared/Game/Role/RoleImage";
 import sheriffSVG from "@/assets/svg/attributes/sheriff.svg";
 import deadSVG from "@/assets/svg/attributes/dead.svg";
@@ -46,10 +46,6 @@ export default {
     name: "GameEventImage",
     components: { RoleImage },
     props: {
-        game: {
-            type: Game,
-            required: true,
-        },
         event: {
             type: GameEvent,
             required: true,
@@ -66,12 +62,15 @@ export default {
                 },
             },
             phaseTransition: {
-                displayedPhase: this.game.phase === "day" ? "night" : "day",
-                transitionEnded: false,
+                started: false,
+                ended: false,
             },
         };
     },
     computed: {
+        ...mapGetters("game", {
+            game: "game",
+        }),
         isEffectGameEvent() {
             const effectGameEventTypes = ["sheriff-elected", "player-dies", "seer-looks"];
             return effectGameEventTypes.includes(this.event.type);
@@ -87,7 +86,13 @@ export default {
             };
             return effectGameEventTypeImageSource[this.event.type];
         },
-
+        displayedPhase() {
+            if (this.game.phase === "night") {
+                return this.phaseTransition.started ? "night" : "day";
+            } else {
+                return this.phaseTransition.started ? "day" : "night";
+            }
+        },
     },
     created() {
         if (this.event.type === "game-starts") {
@@ -113,10 +118,10 @@ export default {
         },
         triggerPhaseTransition() {
             setTimeout(() => {
-                this.phaseTransition.displayedPhase = this.phaseTransition.displayedPhase === "night" ? "day" : "night";
+                this.phaseTransition.started = true;
             }, 1000);
             setTimeout(() => {
-                this.phaseTransition.transitionEnded = true;
+                this.phaseTransition.ended = true;
             }, 2500);
         },
     },

@@ -30,17 +30,12 @@ import villager from "../../../assets/img/roles/villager.png";
 import werewolf from "../../../assets/img/roles/werewolf.png";
 import witch from "../../../assets/img/roles/witch.png";
 import Player from "../../../classes/Player";
-import Game from "../../../classes/Game";
 
 export default {
     name: "RolePicker",
     props: {
         player: {
             type: Player,
-            required: true,
-        },
-        game: {
-            type: Game,
             required: true,
         },
     },
@@ -53,6 +48,9 @@ export default {
     computed: {
         ...mapGetters("role", {
             roles: "roles",
+        }),
+        ...mapGetters("game", {
+            game: "game",
         }),
         roleText() {
             return this.hoverOn ? this.$tc(`Role.${this.hoverOn}`, 1) : `<i class="fa fa-chevron-up animated mr-2"></i>${this.$t("RolePicker.chooseRole")}`;

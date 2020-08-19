@@ -21,7 +21,7 @@
                                      width="75" alt="Result"/>
                                 <div class="flex-grow-1">
                                     <h3 v-html="$t('GameSummaryModal.villagers')"/>
-                                    <AliveVillagers :game="game"/>
+                                    <AliveVillagers/>
                                 </div>
                             </div>
                             <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center text-center">
@@ -29,7 +29,7 @@
                                      width="75" alt="Result"/>
                                 <div class="flex-grow-1">
                                     <h3 v-html="$t('GameSummaryModal.werewolves')"/>
-                                    <AliveWerewolves :game="game"/>
+                                    <AliveWerewolves/>
                                 </div>
                             </div>
                         </div>
@@ -47,7 +47,7 @@
                                 <table class="table table-hover w-100">
                                     <tbody>
                                     <GameSummaryHistoryLine v-for="gameHistoryEntry in reversedGameHistory" :key="gameHistoryEntry._id"
-                                                            :game="game" :game-history-entry="gameHistoryEntry"/>
+                                                            :game-history-entry="gameHistoryEntry"/>
                                     </tbody>
                                 </table>
                             </div>
@@ -63,8 +63,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import $ from "jquery";
-import Game from "@/classes/Game";
 import GameSummaryHistoryLine from "@/components/Game/GameWinners/GameSummaryModal/GameSummaryHistoryLine";
 import AliveVillagers from "@/components/shared/Game/Sides/AliveVillagers";
 import AliveWerewolves from "@/components/shared/Game/Sides/AliveWerewolves";
@@ -74,18 +74,15 @@ import dead from "@/assets/svg/attributes/dead.svg";
 export default {
     name: "GameSummaryModal",
     components: { AliveWerewolves, AliveVillagers, GameSummaryHistoryLine },
-    props: {
-        game: {
-            type: Game,
-            required: true,
-        },
-    },
     data() {
         return {
             SVGs: { trophy, dead },
         };
     },
     computed: {
+        ...mapGetters("game", {
+            game: "game",
+        }),
         reversedGameHistory() {
             return [...this.game.history].reverse();
         },

@@ -31,16 +31,15 @@
 
 <script>
 import Swal from "sweetalert2";
+import { mapGetters } from "vuex";
 import { stringify } from "qs";
-import Game from "@/classes/Game";
 
 export default {
     name: "GameCanceled",
-    props: {
-        game: {
-            type: Game,
-            required: true,
-        },
+    computed: {
+        ...mapGetters("game", {
+            game: "game",
+        }),
     },
     methods: {
         confirmRestartGame() {

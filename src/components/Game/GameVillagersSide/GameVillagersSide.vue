@@ -7,7 +7,7 @@
         </div>
         <div class="row">
             <div class="col-12 text-center pl-0">
-                <AliveVillagers :game="game"/>
+                <AliveVillagers/>
             </div>
         </div>
         <div id="villagers-list" class="row">
@@ -26,7 +26,7 @@
                             <PlayerAttribute v-for="({ attribute, source }) in player.attributes" :key="attribute"
                                                  :attribute="attribute" :source="source"/>
                         </transition-group>
-                        <PlayerThumbnail :game="game" :player="player" class="mr-1"/>
+                        <PlayerThumbnail :player="player" class="mr-1"/>
                     </div>
                 </div>
             </transition-group>
@@ -35,20 +35,18 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import PlayerThumbnail from "../../shared/Game/PlayerThumbnail";
 import PlayerAttribute from "../../shared/Game/PlayerAttribute/PlayerAttribute";
-import Game from "../../../classes/Game";
 import AliveVillagers from "@/components/shared/Game/Sides/AliveVillagers";
+
 export default {
     name: "GameVillagersSide",
     components: { AliveVillagers, PlayerAttribute, PlayerThumbnail },
-    props: {
-        game: {
-            type: Game,
-            required: true,
-        },
-    },
     computed: {
+        ...mapGetters("game", {
+            game: "game",
+        }),
         sortedVillagers() {
             const villagerPlayers = [...this.game.villagerPlayers];
             return [...villagerPlayers.sort((playerA, playerB) => {

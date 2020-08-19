@@ -2,11 +2,11 @@
     <div id="look-play-field" class="d-flex flex-column">
         <div class="row justify-content-center align-items-center">
             <div class="col-12">
-                <PlayerCard :game="game" :player="game.witchPlayer" size="lg"/>
+                <PlayerCard :player="game.witchPlayer" size="lg"/>
             </div>
         </div>
-        <PlayFieldActionText :game="game" :play="play" attribute="drank-life-potion" @playerSelected="playerSelected"/>
-        <PlayFieldActionText :game="game" :play="play" attribute="drank-death-potion" @playerSelected="playerSelected" class="mt-2"/>
+        <PlayFieldActionText :play="play" attribute="drank-life-potion" @playerSelected="playerSelected"/>
+        <PlayFieldActionText :play="play" attribute="drank-death-potion" @playerSelected="playerSelected" class="mt-2"/>
         <div class="row mt-2">
             <div class="col-12">
                 <ul id="potion-tabs" class="nav nav-pills nav-fill">
@@ -33,11 +33,11 @@
             <div class="col-12">
                 <transition mode="out-in" name="translate-down-fade">
                     <div v-if="panel === 'life-potion'" key="life-potion-panel" class="h-100" id="use-life-potion-content">
-                        <PlayerTargets :game="game" :targets="[game.eatenPlayer]" :play="play" attribute="drank-life-potion"
+                        <PlayerTargets :targets="[game.eatenPlayer]" :play="play" attribute="drank-life-potion"
                                        class="h-100" @playerSelected="playerSelected"/>
                     </div>
                     <div v-else-if="panel === 'death-potion'" key="death-potion-panel" class="h-100" id="use-death-potion-content">
-                        <PlayerTargets :game="game" :targets="game.alivePlayers" :play="play" attribute="drank-death-potion"
+                        <PlayerTargets :targets="game.alivePlayers" :play="play" attribute="drank-death-potion"
                                        class="h-100" @playerSelected="playerSelected"/>
                     </div>
                 </transition>
@@ -47,8 +47,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import PlayerCard from "../../../../shared/Game/PlayerCard";
-import Game from "../../../../../classes/Game";
 import lifePotionSVG from "../../../../../assets/svg/attributes/drank-life-potion.svg";
 import deathPotionSVG from "../../../../../assets/svg/attributes/drank-death-potion.svg";
 import PlayerTargets from "../../../../shared/Game/PlayerTargets/PlayerTargets";
@@ -58,10 +58,6 @@ export default {
     name: "UsePotionPlayField",
     components: { PlayFieldActionText, PlayerTargets, PlayerCard },
     props: {
-        game: {
-            type: Game,
-            required: true,
-        },
         play: {
             type: Object,
             required: true,
@@ -74,6 +70,9 @@ export default {
         };
     },
     computed: {
+        ...mapGetters("game", {
+            game: "game",
+        }),
         useDeathPotionText() {
             const drankDeathPotionTarget = this.play.targets.find(target => target.attribute === "drank-death-potion");
             if (drankDeathPotionTarget) {

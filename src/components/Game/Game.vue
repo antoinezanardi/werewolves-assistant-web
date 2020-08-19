@@ -5,22 +5,21 @@
                 <Loading :text="$t('Game.loadingGame')"/>
             </div>
             <div v-else key="game" class="pt-2 row mx-0 h-100">
-                <GameVillagersSide :game="game" class="col-lg-2 col-md-3 d-none d-md-block h-100"/>
+                <GameVillagersSide class="col-lg-2 col-md-3 d-none d-md-block h-100"/>
                 <transition mode="out-in" name="fade">
-                    <GameContent v-if="game.status === 'playing'" key="playing-game" :game="game" class="col-lg-8 col-md-6 col-12 h-100 pb-2"
-                                 @updateGame="updateGame"/>
-                    <GameWinners v-else-if="game.status === 'done'" key="done-game" :game="game" class="col-lg-8 col-md-6 col-12 h-100 pb-2"/>
-                    <GameCanceled v-else-if="game.status === 'canceled'" key="canceled-game" :game="game" class="col-lg-8 col-md-6 col-12 h-100 pb-2"/>
+                    <GameContent v-if="game.status === 'playing'" key="playing-game" class="col-lg-8 col-md-6 col-12 h-100 pb-2"/>
+                    <GameWinners v-else-if="game.status === 'done'" key="done-game" class="col-lg-8 col-md-6 col-12 h-100 pb-2"/>
+                    <GameCanceled v-else-if="game.status === 'canceled'" key="canceled-game" class="col-lg-8 col-md-6 col-12 h-100 pb-2"/>
                 </transition>
-                <GameWerewolvesSide :game="game" class="col-lg-2 col-md-3 d-none d-md-block h-100"/>
+                <GameWerewolvesSide class="col-lg-2 col-md-3 d-none d-md-block h-100"/>
             </div>
         </transition>
     </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 import Swal from "sweetalert2";
-import Game from "@/classes/Game";
 import Loading from "@/components/shared/Loading";
 import GameVillagersSide from "./GameVillagersSide/GameVillagersSide";
 import GameWerewolvesSide from "./GameWerewolvesSide/GameWerewolvesSide";
@@ -34,33 +33,40 @@ export default {
     components: { GameCanceled, GameWinners, GameContent, GameWerewolvesSide, GameVillagersSide, Loading },
     data() {
         return {
-            game: new Game(),
             loading: {
                 getGame: true,
             },
         };
     },
+    computed: {
+        ...mapGetters("game", {
+            game: "game",
+        }),
+    },
     created() {
         this.getGame();
     },
     methods: {
+        ...mapActions("game", {
+            getAndSetGame: "getAndSetGame",
+        }),
         async getGame() {
             try {
-                const { data } = await this.$werewolvesAssistantAPI.getGame(this.$route.params.id);
-                this.game = new Game(data);
+                await this.getAndSetGame({ gameId: this.$route.params.id });
             } catch (e) {
-                if (isAPIError(e) && e.response.data.type === "GAME_DOESNT_BELONG_TO_USER") {
+                if (isAPIError(e)) {
+                    if (e.response.data.type === "GAME_DOESNT_BELONG_TO_USER") {
+                        this.$toasted.error(this.$t("Game.youDontOwnThisGame"), { icon: "lock" });
+                    } else if (e.response.data.type === "BAD_REQUEST") {
+                        this.$toasted.error(this.$t("Game.cantGetGame"), { icon: "ban" });
+                    }
                     await this.$router.push("/");
-                    this.$toasted.error(this.$t("Game.youDontOwnThisGame"), { icon: "lock" });
                 } else {
                     this.$error.display(e);
                 }
             } finally {
                 this.loading.getGame = false;
             }
-        },
-        updateGame(game) {
-            this.game = new Game(game);
         },
         confirmLeaveGame() {
             return Swal.fire({

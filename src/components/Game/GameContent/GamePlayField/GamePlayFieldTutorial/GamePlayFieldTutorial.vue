@@ -11,17 +11,14 @@
 </template>
 
 <script>
-import Game from "@/classes/Game";
+import { mapGetters } from "vuex";
 
 export default {
     name: "GamePlayFieldTutorial",
-    props: {
-        game: {
-            type: Game,
-            required: true,
-        },
-    },
     computed: {
+        ...mapGetters("game", {
+            game: "game",
+        }),
         // eslint-disable-next-line max-lines-per-function
         steps() {
             const header = { title: this.$t(`GamePlayFieldTutorial.${this.game.firstWaiting.to}.howToPlay`) };

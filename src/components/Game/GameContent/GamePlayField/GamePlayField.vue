@@ -1,10 +1,10 @@
 <template>
     <div id="game-play-field" class="h-100 d-flex flex-column">
-        <GamePlayFieldHeader :game="game" @startTutorial="startTutorial"/>
-        <GamePlayFieldContent :game="game" :play="play" id="game-content-play-field" @playerVotes="playerVotes"
+        <GamePlayFieldHeader @startTutorial="startTutorial"/>
+        <GamePlayFieldContent :play="play" id="game-content-play-field" @playerVotes="playerVotes"
                               @playerSelected="playerSelected"/>
-        <GamePlayFieldFooter :game="game" :play="play" @updateGame="updateGame"/>
-        <GamePlayFieldTutorial ref="gamePlayFieldTutorial" :game="game"/>
+        <GamePlayFieldFooter :play="play"/>
+        <GamePlayFieldTutorial ref="gamePlayFieldTutorial"/>
     </div>
 </template>
 
@@ -12,7 +12,6 @@
 import GamePlayFieldHeader from "./GamePlayFieldHeader/GamePlayFieldHeader";
 import GamePlayFieldFooter from "./GamePlayFieldFooter/GamePlayFieldFooter";
 import GamePlayFieldContent from "./GamePlayFieldContent/GamePlayFieldContent";
-import Game from "../../../../classes/Game";
 import GamePlayFieldTutorial
     from "@/components/Game/GameContent/GamePlayField/GamePlayFieldTutorial/GamePlayFieldTutorial";
 
@@ -20,10 +19,6 @@ export default {
     name: "GamePlayField",
     components: {GamePlayFieldTutorial, GamePlayFieldContent, GamePlayFieldFooter, GamePlayFieldHeader },
     props: {
-        game: {
-            type: Game,
-            required: true,
-        },
         play: {
             type: Object,
             required: true,
@@ -35,9 +30,6 @@ export default {
         },
         playerSelected(payload) {
             this.$emit("playerSelected", payload);
-        },
-        updateGame(game) {
-            this.$emit("updateGame", game);
         },
         startTutorial() {
             this.$refs.gamePlayFieldTutorial.startTour();

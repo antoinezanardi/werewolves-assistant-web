@@ -7,17 +7,14 @@
 </template>
 
 <script>
-import Game from "@/classes/Game";
+import { mapGetters } from "vuex";
 
 export default {
     name: "AliveWerewolves",
-    props: {
-        game: {
-            type: Game,
-            required: true,
-        },
-    },
     computed: {
+        ...mapGetters("game", {
+            game: "game",
+        }),
         werewolvesAliveText() {
             return `${this.game.aliveWerewolfPlayers.length} / ${this.game.werewolfPlayers.length} ${this.$t("GameWerewolvesSide.alive")}`;
         },

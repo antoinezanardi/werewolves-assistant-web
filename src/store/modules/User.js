@@ -1,8 +1,8 @@
 import Vue from "vue";
 import JWT from "jsonwebtoken";
-import User from "../../classes/User";
-import i18n from "../../plugins/vue-i18n";
-import router from "../../plugins/router";
+import User from "@/classes/User";
+import i18n from "@/plugins/vue-i18n";
+import router from "@/plugins/router";
 
 const state = {
     user: new User(),

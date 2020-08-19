@@ -38,36 +38,30 @@
 </template>
 
 <script>
-import Game from "../../../../../classes/Game";
-import sheriffSVG from "../../../../../assets/svg/attributes/sheriff.svg";
-import eatenSVG from "../../../../../assets/svg/attributes/eaten.svg";
-import drankDeathPotionSVG from "../../../../../assets/svg/attributes/drank-death-potion.svg";
-import lookSVG from "../../../../../assets/svg/actions/look.svg";
-import shootSVG from "../../../../../assets/svg/actions/shoot.svg";
-import voteSVG from "../../../../../assets/svg/actions/vote.svg";
-import settleVotesSVG from "../../../../../assets/svg/actions/settle-votes.svg";
-import protectedSVG from "../../../../../assets/svg/attributes/protected.svg";
-import ravenMarkedSVG from "../../../../../assets/svg/attributes/raven-marked.svg";
-import guardCard from "../../../../../assets/img/roles/guard.png";
-import hunterCard from "../../../../../assets/img/roles/hunter.png";
-import ravenCard from "../../../../../assets/img/roles/raven.png";
-import seerCard from "../../../../../assets/img/roles/seer.png";
-import villagerCard from "../../../../../assets/img/roles/villager.png";
-import werewolfCard from "../../../../../assets/img/roles/werewolf.png";
-import witchCard from "../../../../../assets/img/roles/witch.png";
-import sheriffCard from "../../../../../assets/img/attributes/sheriff.png";
+import { mapGetters } from "vuex";
+import sheriffSVG from "@/assets/svg/attributes/sheriff.svg";
+import eatenSVG from "@/assets/svg/attributes/eaten.svg";
+import drankDeathPotionSVG from "@/assets/svg/attributes/drank-death-potion.svg";
+import lookSVG from "@/assets/svg/actions/look.svg";
+import shootSVG from "@/assets/svg/actions/shoot.svg";
+import voteSVG from "@/assets/svg/actions/vote.svg";
+import settleVotesSVG from "@/assets/svg/actions/settle-votes.svg";
+import protectedSVG from "@/assets/svg/attributes/protected.svg";
+import ravenMarkedSVG from "@/assets/svg/attributes/raven-marked.svg";
+import guardCard from "@/assets/img/roles/guard.png";
+import hunterCard from "@/assets/img/roles/hunter.png";
+import ravenCard from "@/assets/img/roles/raven.png";
+import seerCard from "@/assets/img/roles/seer.png";
+import villagerCard from "@/assets/img/roles/villager.png";
+import werewolfCard from "@/assets/img/roles/werewolf.png";
+import witchCard from "@/assets/img/roles/witch.png";
+import sheriffCard from "@/assets/img/attributes/sheriff.png";
 import backCard from "@/assets/img/roles/back.png";
 import WhatToDoButton from "@/components/shared/Game/WhatToDoButton/WhatToDoButton";
 
 export default {
     name: "GamePlayFieldHeader",
-    components: {WhatToDoButton},
-    props: {
-        game: {
-            type: Game,
-            required: true,
-        },
-    },
+    components: { WhatToDoButton },
     // eslint-disable-next-line max-lines-per-function
     data() {
         return {
@@ -123,6 +117,9 @@ export default {
         };
     },
     computed: {
+        ...mapGetters("game", {
+            game: "game",
+        }),
         gamePhaseClasses() {
             return this.game.phase === "day" ? "fa-sun sun-color" : "fa-moon moon-color";
         },

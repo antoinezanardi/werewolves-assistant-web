@@ -4,7 +4,7 @@
         <Keypress key-event="keyup" :key-code="39" @success="nextGameEventMessage"/>
         <div id="game-event-image-container" class="row justify-content-center align-items-center">
             <div class="col-12 d-flex justify-content-center flex-grow-1">
-                <GameEventImage :game="game" :event="event"/>
+                <GameEventImage :event="event"/>
             </div>
         </div>
         <div id="game-event-message-container" class="w-100 d-flex">
@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import Game from "@/classes/Game";
+import { mapGetters } from "vuex";
 import GameEvent from "@/classes/GameEvent";
 import i18n from "@/plugins/vue-i18n";
 import GameEventImage from "@/components/Game/GameEventMonitor/GameEvent/GameEventImage";
@@ -63,10 +63,6 @@ export default {
     name: "GameEvent",
     components: { GameEventImage },
     props: {
-        game: {
-            type: Game,
-            required: true,
-        },
         event: {
             type: GameEvent,
             required: true,
@@ -81,6 +77,9 @@ export default {
         };
     },
     computed: {
+        ...mapGetters("game", {
+            game: "game",
+        }),
         // eslint-disable-next-line max-lines-per-function
         gameEventMetadata() {
             return {

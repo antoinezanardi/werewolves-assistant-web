@@ -11,13 +11,13 @@
                     <RoleImage :role="thumbnail.back"/>
                 </template>
             </VueFlip>
-            <RolePicker :player="player" :game="game" slot="popover" @rolePicked="rolePicked"/>
+            <RolePicker :player="player" slot="popover" @rolePicked="rolePicked"/>
         </v-popover>
     </span>
 </template>
 
 <script>
-import Game from "../../../classes/Game";
+import { mapGetters } from "vuex";
 import Player from "../../../classes/Player";
 import RolePicker from "./RolePicker";
 import RoleImage from "./Role/RoleImage";
@@ -26,10 +26,6 @@ export default {
     name: "PlayerThumbnail",
     components: { RoleImage, RolePicker },
     props: {
-        game: {
-            type: Game,
-            required: true,
-        },
         player: {
             type: Player,
             required: true,
@@ -49,6 +45,9 @@ export default {
         };
     },
     computed: {
+        ...mapGetters("game", {
+            game: "game",
+        }),
         playerThumbnailTooltip() {
             return this.game._id || this.player.role.current ? this.$tc(`Role.${this.player.role.current}`, 1) : this.$t("PlayerThumbnail.chooseRole");
         },

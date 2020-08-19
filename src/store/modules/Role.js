@@ -1,5 +1,5 @@
 import Vue from "vue";
-import Role from "../../classes/Role";
+import Role from "@/classes/Role";
 
 const state = {
     roles: undefined,

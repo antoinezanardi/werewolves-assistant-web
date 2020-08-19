@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="row justify-content-center mt-4">
-                <PlayerCard v-for="player in winners" :key="player.name" :game="game" :player="player" class="col-lg-2 col-3"/>
+                <PlayerCard v-for="player in winners" :key="player.name" :player="player" class="col-lg-2 col-3"/>
             </div>
         </div>
         <div class="row justify-content-between align-items-center">
@@ -36,33 +36,30 @@
                 </router-link>
             </div>
         </div>
-        <GameSummaryModal ref="gameSummaryModal" :game="game"/>
+        <GameSummaryModal ref="gameSummaryModal"/>
     </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import Swal from "sweetalert2";
 import { stringify } from "qs";
-import trophy from "../../../assets/svg/game/trophy.svg";
-import Game from "../../../classes/Game";
+import trophy from "@/assets/svg/game/trophy.svg";
 import PlayerCard from "../../shared/Game/PlayerCard";
 import GameSummaryModal from "@/components/Game/GameWinners/GameSummaryModal/GameSummaryModal";
 
 export default {
     name: "GameWinners",
     components: { GameSummaryModal, PlayerCard },
-    props: {
-        game: {
-            type: Game,
-            required: true,
-        },
-    },
     data() {
         return {
             SVGs: { trophy },
         };
     },
     computed: {
+        ...mapGetters("game", {
+            game: "game",
+        }),
         winnersText() {
             return this.game.won.by === "werewolves" ? this.$tc("GameWinners.wonByWerewolves", this.winners.length) : this.$tc("GameWinners.wonByVillagers", this.winners.length);
         },

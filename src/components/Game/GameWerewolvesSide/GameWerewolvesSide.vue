@@ -7,7 +7,7 @@
         </div>
         <div class="row">
             <div class="col-12 text-center pr-0">
-                <AliveWerewolves :game="game"/>
+                <AliveWerewolves/>
             </div>
         </div>
         <div class="row">
@@ -22,7 +22,7 @@
                     </div>
                     <hr class="bg-dark mt-1 mb-2"/>
                     <div class="d-flex">
-                        <PlayerThumbnail :game="game" :player="player" class="ml-1"/>
+                        <PlayerThumbnail :player="player" class="ml-1"/>
                         <transition-group name="fade-list" class="d-flex flex-wrap align-items-center flex-grow-1 p-1">
                             <PlayerAttribute v-for="({ attribute, source }) in player.attributes" :key="attribute"
                                                  :attribute="attribute" :source="source"/>
@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import Game from "../../../classes/Game";
+import { mapGetters } from "vuex";
 import PlayerAttribute from "../../shared/Game/PlayerAttribute/PlayerAttribute";
 import PlayerThumbnail from "../../shared/Game/PlayerThumbnail";
 import AliveWerewolves from "@/components/shared/Game/Sides/AliveWerewolves";
@@ -43,13 +43,10 @@ import AliveWerewolves from "@/components/shared/Game/Sides/AliveWerewolves";
 export default {
     name: "GameWerewolvesSide",
     components: { AliveWerewolves, PlayerThumbnail, PlayerAttribute },
-    props: {
-        game: {
-            type: Game,
-            required: true,
-        },
-    },
     computed: {
+        ...mapGetters("game", {
+            game: "game",
+        }),
         sortedWerewolves() {
             const wereWolvesPlayers = [...this.game.werewolfPlayers];
             return [...wereWolvesPlayers.sort(player => player.isAlive ? -1 : 1)];
