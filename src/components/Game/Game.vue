@@ -10,6 +10,7 @@
                     <GameContent v-if="game.status === 'playing'" key="playing-game" :game="game" class="col-lg-8 col-md-6 col-12 h-100 pb-2"
                                  @updateGame="updateGame"/>
                     <GameWinners v-else-if="game.status === 'done'" key="done-game" :game="game" class="col-lg-8 col-md-6 col-12 h-100 pb-2"/>
+                    <GameCanceled v-else-if="game.status === 'canceled'" key="canceled-game" :game="game" class="col-lg-8 col-md-6 col-12 h-100 pb-2"/>
                 </transition>
                 <GameWerewolvesSide :game="game" class="col-lg-2 col-md-3 d-none d-md-block h-100"/>
             </div>
@@ -26,10 +27,11 @@ import GameWerewolvesSide from "./GameWerewolvesSide/GameWerewolvesSide";
 import GameContent from "./GameContent/GameContent";
 import GameWinners from "./GameWinners/GameWinners";
 import { isAPIError } from "@/helpers/functions/Error";
+import GameCanceled from "@/components/Game/GameCanceled/GameCanceled";
 
 export default {
     name: "Game",
-    components: { GameWinners, GameContent, GameWerewolvesSide, GameVillagersSide, Loading },
+    components: { GameCanceled, GameWinners, GameContent, GameWerewolvesSide, GameVillagersSide, Loading },
     data() {
         return {
             game: new Game(),

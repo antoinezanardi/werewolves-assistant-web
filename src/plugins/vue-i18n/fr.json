@@ -300,6 +300,15 @@
         "fromScratch": "Recommencer du début",
         "seeGameSummary": "Voir le récapitulatif de partie"
     },
+    "GameCanceled": {
+        "gameCanceled": "Partie annulée (Oooh ...)",
+        "restartGame": "Recommencer une partie",
+        "quit": "Quitter",
+        "newGame": "Nouvelle partie",
+        "doYouWantToKeepSamePlayers": "Voulez-vous rejouer avec les mêmes joueurs ?",
+        "keepSamePlayers": "Garder les mêmes joueurs",
+        "fromScratch": "Recommencer du début"
+        },
     "GameSummaryModal": {
         "gameSummary": "Récapitulatif de la partie",
         "gameResults": "Résultats de la partie",

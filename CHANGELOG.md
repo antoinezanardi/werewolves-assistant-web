@@ -1,6 +1,24 @@
 # 📈 LIST OF CHANGES FOR WEREWOLVES ASSISTANT WEB
 
-## 1.0.0-beta.3 (2020-08-15) 
+## 1.0.0-beta.4 (2020-08-??)
+
+### 🐛 Bug fixes
+
+* [#26](https://github.com/antoinezanardi/werewolves-assistant-web/issues/26) - Canceled game has now a dedicated page.
+
+### 📦 Packages
+
+* `@vue/cli-plugin-e2e-cypress` updated to version `4.5.4`.
+* `@vue/cli-plugin-eslint` updated to version `4.5.4`.
+* `@vue/cli-plugin-router` updated to version `4.5.4`.
+* `@vue/cli-plugin-unit-mocha` updated to version `4.5.4`.
+* `@vue/cli-plugin-vuex` updated to version `4.5.4`.
+* `@vue/cli-service` updated to version `4.5.4`.
+* `@vue/test-utils` updated to version `1.0.4`.
+
+---
+
+## 1.0.0-beta.3 (2020-08-15)
 
 ### 🌟 Enhancements
 
