@@ -7,7 +7,8 @@ export default {
     name: "RoleText",
     props: {
         role: {
-            required: true,
+            type: String,
+            default: "",
         },
     },
     computed: {

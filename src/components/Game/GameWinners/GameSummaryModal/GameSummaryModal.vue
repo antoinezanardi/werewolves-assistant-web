@@ -1,11 +1,13 @@
 <template>
-    <div class="modal fade" id="game-summary-modal" tabindex="-1" role="dialog">
+    <div id="game-summary-modal" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" v-html="$t('GameSummaryModal.gameSummary')"/>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" class="text-white">&times;</span>
+                        <span aria-hidden="true" class="text-white">
+                            &times;
+                        </span>
                     </button>
                 </div>
                 <div class="modal-body d-flex flex-column h-100">
@@ -46,8 +48,9 @@
                             <div class="col-12">
                                 <table class="table table-hover w-100">
                                     <tbody>
-                                    <GameSummaryHistoryLine v-for="gameHistoryEntry in reversedGameHistory" :key="gameHistoryEntry._id"
-                                                            :game-history-entry="gameHistoryEntry"/>
+                                        <GameSummaryHistoryLine v-for="gameHistoryEntry in reversedGameHistory"
+                                                                :key="gameHistoryEntry._id"
+                                                                :game-history-entry="gameHistoryEntry"/>
                                     </tbody>
                                 </table>
                             </div>
@@ -55,7 +58,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" v-html="$t('GameSummaryModal.close')"/>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                            v-html="$t('GameSummaryModal.close')"/>
                 </div>
             </div>
         </div>

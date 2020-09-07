@@ -1,5 +1,5 @@
 <template>
-    <div class="modal fade" id="account-modal" tabindex="-1" role="dialog" aria-hidden="true"
+    <div id="account-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
          data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -7,15 +7,15 @@
                     <div id="account-modal-title" class="modal-title">
                         <ul class="nav nav-pills nav-fill">
                             <li class="nav-item">
-                                <a class="nav-link" :class="{ active: panel === 'log-in' }" href="#"
-                                   @click.prevent="switchPanel('log-in')" :disabled="loading">
+                                <a class="nav-link" :class="{ active: panel === 'log-in' }" href="#" :disabled="loading"
+                                   @click.prevent="switchPanel('log-in')">
                                     <i class="fa fa-sign-in-alt mr-2"/>
                                     <span v-html="$t('AccountModal.logIn')"/>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" :class="{ active: panel === 'register' }" href="#"
-                                   @click.prevent="switchPanel('register')" :disabled="loading">
+                                   :disabled="loading" @click.prevent="switchPanel('register')">
                                     <i class="fa fa-user-plus mr-2"/>
                                     <span v-html="$t('AccountModal.register')"/>
                                 </a>
@@ -27,8 +27,10 @@
                     <form @submit.prevent="submit">
                         <div class="modal-body">
                             <transition mode="out-in" name="switch-panel">
-                                <LoginPanel v-if="panel === 'log-in'" ref="loginPanel" key="log-in-panel" :loading="loading" class="account-panel"/>
-                                <RegisterPanel v-else-if="panel === 'register'" ref="registerPanel" key="register-panel" :loading="loading" class="account-panel"/>
+                                <LoginPanel v-if="panel === 'log-in'" ref="loginPanel" key="log-in-panel"
+                                            :loading="loading" class="account-panel"/>
+                                <RegisterPanel v-else-if="panel === 'register'" ref="registerPanel" key="register-panel"
+                                               :loading="loading" class="account-panel"/>
                             </transition>
                         </div>
                         <div class="modal-footer d-flex justify-content-between">

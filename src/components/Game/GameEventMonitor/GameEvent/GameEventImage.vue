@@ -1,11 +1,11 @@
 <template>
     <div id="game-event-image" class="d-flex flex-grow-1 justify-content-center align-items-center">
-        <VueFlip v-if="event.type === 'game-starts'" id="game-starts-image" transition="0.75s"
-                 height="30vh" width="30vh" v-model="gameStartsEvent.flipped">
-            <template v-slot:front>
+        <VueFlip v-if="event.type === 'game-starts'" id="game-starts-image" v-model="gameStartsEvent.flipped"
+                 transition="0.75s" height="30vh" width="30vh">
+            <template #front>
                 <RoleImage class="h-100 rounded" :role="gameStartsEvent.thumbnail.front"/>
             </template>
-            <template v-slot:back>
+            <template #back>
                 <RoleImage class="h-100 rounded" :role="gameStartsEvent.thumbnail.back"/>
             </template>
         </VueFlip>
@@ -17,19 +17,19 @@
                    :class="{ 'swing': phaseTransition.ended }"/>
             </transition>
         </div>
-        <div v-else-if="isEffectGameEvent" class="d-flex flex-grow-1 justify-content-center align-items-center flex-column">
+        <div v-else-if="isEffectGameEvent"
+             class="d-flex flex-grow-1 justify-content-center align-items-center flex-column">
             <div id="role-effect-container">
                 <RoleImage class="animate__animated animate__flipInY animate__fast role-image"
-                       :role="event.targets[0].player.role.current"
-                       :class="{ 'dead-player': this.event.type === 'player-dies' }"/>
+                           :role="event.targets[0].player.role.current"
+                           :class="{ 'dead-player': event.type === 'player-dies' }"/>
                 <img id="effect-image" :src="effectImageSource"
                      class="animate__animated animate__bounceIn animate__delay-1s" alt="Effect Image"/>
             </div>
             <h3 class="text-center mt-2" v-html="event.targets[0].player.name"/>
         </div>
         <div v-else class="d-flex flex-grow-1 justify-content-center align-items-center flex-column">
-            <RoleImage class="animate__animated animate__flipInY animate__fast role-image"
-                       :role="game.firstWaiting.for"/>
+            <RoleImage class="animate__animated animate__flipInY animate__fast role-image" :role="game.firstWaiting.for"/>
         </div>
     </div>
 </template>

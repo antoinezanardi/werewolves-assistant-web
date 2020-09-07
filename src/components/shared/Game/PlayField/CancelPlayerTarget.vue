@@ -1,7 +1,7 @@
 <template>
     <transition mode="out-in" name="translate-down-fade">
-        <span v-if="!!targetedPlayer" id="cancel-player-target" class="badge-pill badge-dark" key="cancel-player-target"
-             v-tooltip="$t('CancelPlayerTarget.cancelTarget')" @click="cancelTarget">
+        <span v-if="!!targetedPlayer" id="cancel-player-target" key="cancel-player-target"
+              v-tooltip="$t('CancelPlayerTarget.cancelTarget')" class="badge-pill badge-dark" @click="cancelTarget">
             <span v-html="$t('CancelPlayerTarget.cancel')"/>
             <i class="fa fa-times-circle ml-2"/>
         </span>
@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import Player from "@/classes/Player";
+
 export default {
     name: "CancelPlayerTarget",
     props: {
@@ -17,6 +19,7 @@ export default {
             required: true,
         },
         targetedPlayer: {
+            validator: value => value instanceof Player || value === null,
             required: true,
         },
     },

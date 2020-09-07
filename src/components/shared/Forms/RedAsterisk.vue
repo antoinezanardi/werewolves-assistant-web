@@ -1,5 +1,7 @@
 <template>
-    <span class="asterisk">*</span>
+    <span class="asterisk">
+        *
+    </span>
 </template>
 
 <script>

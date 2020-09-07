@@ -18,7 +18,7 @@
         </div>
         <div class="row justify-content-between align-items-center">
             <div class="col-lg-4">
-                <button class="btn btn-primary btn-block" @click="$refs.gameSummaryModal.show()">
+                <button class="btn btn-primary btn-block" @click="$refs.gameSummaryModal.show">
                     <i class="fa fa-list mr-2"/>
                     <span v-html="$t('GameWinners.seeGameSummary')"/>
                 </button>

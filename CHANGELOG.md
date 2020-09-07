@@ -2,9 +2,13 @@
 
 ## 1.0.0-beta.4 (2020-08-??)
 
+### 🚀 New features
+
+* [#25](https://github.com/antoinezanardi/werewolves-assistant-web/issues/25) - User can cancel a playing game by clicking on the button in the nav bar.
+* [#26](https://github.com/antoinezanardi/werewolves-assistant-web/issues/26) - Canceled game has now a dedicated page.
+
 ### 🐛 Bug fixes
 
-* [#26](https://github.com/antoinezanardi/werewolves-assistant-web/issues/26) - Canceled game has now a dedicated page.
 * [#28](https://github.com/antoinezanardi/werewolves-assistant-web/issues/28) - If the user tries to get a game with an unknown id, he is redirected to home page.
 
 ### ♻️ Refactoring
@@ -13,13 +17,21 @@
 
 ### 📦 Packages
 
+* `@sentry/browser` updated to version `5.22.3`.
+* `@sentry/integrations` updated to version `5.22.3`.
 * `@vue/cli-plugin-e2e-cypress` updated to version `4.5.4`.
 * `@vue/cli-plugin-eslint` updated to version `4.5.4`.
 * `@vue/cli-plugin-router` updated to version `4.5.4`.
 * `@vue/cli-plugin-unit-mocha` updated to version `4.5.4`.
 * `@vue/cli-plugin-vuex` updated to version `4.5.4`.
 * `@vue/cli-service` updated to version `4.5.4`.
-* `@vue/test-utils` updated to version `1.0.4`.
+* `@vue/test-utils` updated to version `1.0.5`.
+* `axios` updated to version `0.20.0`.
+* `eslint` updated to version `7.8.1`.
+* `sass-loader` updated to version `10.0.2`.
+* `sweetalert2` updated to version `9.17.2`.
+* `vue` updated to version `2.6.12`.
+* `vue-template-compiler` updated to version `2.6.12`.
 
 ---
 

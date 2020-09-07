@@ -7,9 +7,12 @@
             <div v-else key="game" class="pt-2 row mx-0 h-100">
                 <GameVillagersSide class="col-lg-2 col-md-3 d-none d-md-block h-100"/>
                 <transition mode="out-in" name="fade">
-                    <GameContent v-if="game.status === 'playing'" key="playing-game" class="col-lg-8 col-md-6 col-12 h-100 pb-2"/>
-                    <GameWinners v-else-if="game.status === 'done'" key="done-game" class="col-lg-8 col-md-6 col-12 h-100 pb-2"/>
-                    <GameCanceled v-else-if="game.status === 'canceled'" key="canceled-game" class="col-lg-8 col-md-6 col-12 h-100 pb-2"/>
+                    <GameContent v-if="game.status === 'playing'" key="playing-game"
+                                 class="col-lg-8 col-md-6 col-12 h-100 pb-2"/>
+                    <GameWinners v-else-if="game.status === 'done'" key="done-game"
+                                 class="col-lg-8 col-md-6 col-12 h-100 pb-2"/>
+                    <GameCanceled v-else-if="game.status === 'canceled'" key="canceled-game"
+                                  class="col-lg-8 col-md-6 col-12 h-100 pb-2"/>
                 </transition>
                 <GameWerewolvesSide class="col-lg-2 col-md-3 d-none d-md-block h-100"/>
             </div>

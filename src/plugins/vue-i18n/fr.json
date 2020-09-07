@@ -2,7 +2,13 @@
     "NavBar": {
         "werewolvesAssistant": "Assistant Loups-Garous",
         "options": "Options",
-        "quit": "Retour à l'accueil"
+        "quit": "Retour à l'accueil",
+        "cancelGame": "Annuler la partie",
+        "areYouSureYouWantToCancelGame": "Êtes-vous sûr de vouloir annuler cette partie ?",
+        "thisCantBeUndo": "Vous ne pourrez plus intéragir avec cette partie et cette action est irréversible.",
+        "confirm": "Confirmer",
+        "cancel": "Annuler",
+        "gameCanceled": "Partie annulée"
     },
     "Home": {
         "werewolvesAssistant": "Assistant Loups-Garous",

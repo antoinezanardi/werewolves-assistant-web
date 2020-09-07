@@ -1,5 +1,5 @@
 <template>
-    <img alt="Attribute" class="player-attribute" v-tooltip="tooltip" :src="attributes[attribute].SVG"/>
+    <img v-tooltip="tooltip" alt="Attribute" class="player-attribute" :src="attributes[attribute].SVG"/>
 </template>
 
 <script>

@@ -27,7 +27,7 @@
                     <span v-html="$t('Statistics.createGameNow')"/>
                 </router-link>
             </div>
-            <div id="statistics-container" class="container-fluid flex-grow-1" v-else key="statistics">
+            <div v-else id="statistics-container" key="statistics" class="container-fluid flex-grow-1">
                 <div class="row">
                     <div class="col-12">
                         <ul>
@@ -43,13 +43,13 @@
                             <li>
                                 <span v-html="`${$t('Statistics.mostUsedRole')}: `"/>
                                 <RoleImage width="30" :role="mostUsedRole.role" class="mr-2"/>
-                                <span v-html="`(${$tc(`Role.${mostUsedRole.role}`, 1)})`" class="mr-2"/>
+                                <span class="mr-2" v-html="`(${$tc(`Role.${mostUsedRole.role}`, 1)})`"/>
                                 <span v-html="$tc('Statistics.withUsage', mostUsedRole.count, { count: mostUsedRole.count })"/>
                             </li>
                             <li>
                                 <span v-html="`${$t('Statistics.leastUsedRole')}: `"/>
                                 <RoleImage width="30" :role="leastUsedRole.role" class="mr-2"/>
-                                <span v-html="`(${$tc(`Role.${leastUsedRole.role}`, 1)})`" class="mr-2"/>
+                                <span class="mr-2" v-html="`(${$tc(`Role.${leastUsedRole.role}`, 1)})`"/>
                                 <span v-html="$tc('Statistics.withUsage', leastUsedRole.count, { count: leastUsedRole.count })"/>
                             </li>
                             <li>

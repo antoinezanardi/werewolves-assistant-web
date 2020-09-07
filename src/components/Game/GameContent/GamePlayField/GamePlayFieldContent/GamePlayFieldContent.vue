@@ -21,7 +21,9 @@
                                :play="play" class="h-100 container-fluid" @playerSelected="playerSelected"/>
             <ShootPlayField v-else-if="game.firstWaiting.to === 'shoot'" key="shoot"
                             :play="play" class="h-100 container-fluid" @playerSelected="playerSelected"/>
-            <div v-else key="unknown">?</div>
+            <div v-else key="unknown">
+                ?
+            </div>
         </transition>
     </div>
 </template>

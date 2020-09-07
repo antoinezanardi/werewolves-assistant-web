@@ -17,7 +17,8 @@ export default {
     name: "RoleImage",
     props: {
         role: {
-            required: true,
+            type: String,
+            default: undefined,
         },
     },
     data() {

@@ -6,7 +6,7 @@
                 <VCountdown v-if="game.isTimedPlay" :time="5 * 60 * 1000" @end="countdown.ended = true">
                     <template slot-scope="{ minutes, seconds }">
                         <transition name="fade" mode="out-in">
-                            <div v-if="!countdown.ended" id="countdown-running" class="countdown" key="countdown-running">
+                            <div v-if="!countdown.ended" id="countdown-running" key="countdown-running" class="countdown">
                                 <i class="fa fa-stopwatch mr-2"/>
                                 <span v-html="`${$t('GamePlayFieldFooter.timeForDebating')}:`"/>
                                 <span class="ml-2" v-html="`${minutes}:${seconds.toString().padStart(2, '0')}`"/>
@@ -29,8 +29,8 @@
             </div>
             <div class="col-lg-4 col order-lg-2">
                 <transition name="fade" mode="out-in">
-                    <div v-if="game.isVotePlay" id="vote-play-requirements" class="text-center"
-                         key="vote-play-requirements">
+                    <div v-if="game.isVotePlay" id="vote-play-requirements" key="vote-play-requirements"
+                         class="text-center">
                         <VRoller :default-char="votePlayRequirementsText" :text="votePlayRequirementsText"/>
                         <div class="text-muted font-italic">
                             <i class="fa mr-2" :class="votePlayRequirementsIconClass"/>
@@ -41,8 +41,8 @@
                             <span class="small" v-html="$t('GamePlayFieldFooter.tieInVotesForbidden')"/>
                         </div>
                     </div>
-                    <div v-else-if="game.isOneTargetPlay" id="one-target-play-requirements" class="text-center"
-                         key="one-target-play-requirements">
+                    <div v-else-if="game.isOneTargetPlay" id="one-target-play-requirements" key="one-target-play-requirements"
+                         class="text-center">
                         <VRoller :default-char="oneTargetPlayRequirementsText" :text="oneTargetPlayRequirementsText"/>
                         <div class="text-muted font-italic">
                             <i class="fa mr-2" :class="oneTargetPlayRequirementsIconClass"/>
@@ -92,7 +92,10 @@ export default {
             return this.isThereTieInVotes ? "fa-times text-danger" : "fa-check text-success";
         },
         votePlayRequirementsText() {
-            return this.$t("GamePlayFieldFooter.playersHaveVoted", { votesCount: this.play.votes.length, playersCount: this.game.alivePlayers.length });
+            return this.$t("GamePlayFieldFooter.playersHaveVoted", {
+                votesCount: this.play.votes.length,
+                playersCount: this.game.alivePlayers.length,
+            });
         },
         votePlayRequirementsIconClass() {
             return this.play.votes.length ? "fa-check text-success" : "fa-times text-danger";

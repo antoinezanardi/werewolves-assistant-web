@@ -6,7 +6,8 @@
             </div>
         </div>
         <PlayFieldActionText :play="play" attribute="protected" @playerSelected="playerSelected"/>
-        <PlayerTargets :targets="protectablePlayers" :play="play" attribute="protected" class="flex-grow-1" @playerSelected="playerSelected"/>
+        <PlayerTargets :targets="protectablePlayers" :play="play" attribute="protected" class="flex-grow-1"
+                       @playerSelected="playerSelected"/>
     </div>
 </template>
 

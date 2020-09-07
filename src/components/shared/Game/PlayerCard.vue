@@ -1,14 +1,16 @@
 <template>
-    <div class="player-card d-flex flex-column align-items-center"
-         :class="{ 'selectable': selectable, 'selected': selected }" ref="playerCard">
-        <PlayerThumbnail ref="playerThumbnail" :player="player" :size="size" :class="{ 'player-card-thumbnail-selected': selected }"
+    <div ref="playerCard" class="player-card d-flex flex-column align-items-center"
+         :class="{ 'selectable': selectable, 'selected': selected }">
+        <PlayerThumbnail ref="playerThumbnail" :player="player" :size="size"
+                         :class="{ 'player-card-thumbnail-selected': selected }"
                          @rolePicked="rolePicked" @unsetPlayer="unsetPlayer" @click.native="togglePlayerSelected"/>
         <div class="player-card-name text-center" :class="{ 'player-card-name-lg': size === 'lg' }"
-             v-html="player.name" @click="togglePlayerSelected"/>
+             @click="togglePlayerSelected" v-html="player.name"/>
         <div v-if="!game._id" class="player-card-role small text-center text-muted d-flex align-items-center">
-            <i v-if="player.role.current" v-tooltip="$t('PlayerCard.unsetRole')" @click="unsetRole"
-               class="fa fa-times-circle mr-1 unset-role-button"/>
-            <RoleText class="text-truncate" :role="player.role.current" @click.native="$refs.playerThumbnail.showRolePicker()"/>
+            <i v-if="player.role.current" v-tooltip="$t('PlayerCard.unsetRole')"
+               class="fa fa-times-circle mr-1 unset-role-button" @click="unsetRole"/>
+            <RoleText class="text-truncate" :role="player.role.current"
+                      @click.native="$refs.playerThumbnail.showRolePicker"/>
         </div>
     </div>
 </template>

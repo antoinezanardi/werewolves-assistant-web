@@ -3,7 +3,7 @@
         <div class="row align-items-center">
             <div id="game-phase" class="col-lg-2 col-3 font-weight-bold text-center">
                 <transition name="translate-down-fade" mode="out-in">
-                    <div class="fa text-center d-block pt-2" :key="game.phase" :class="gamePhaseClasses"/>
+                    <div :key="game.phase" class="fa text-center d-block pt-2" :class="gamePhaseClasses"/>
                 </transition>
                 <VRoller class="text-center mt-2" :text="gamePhaseLabel" :default-char="gamePhaseLabel"/>
             </div>
@@ -17,12 +17,14 @@
             </div>
             <div class="col-lg-2 col-3 d-flex flex-column justify-content-center align-items-center">
                 <div id="game-waiting-card-container">
-                    <VueFlip height="50px" width="50px" v-model="gameWaitingCard.flipped">
-                        <template v-slot:front>
-                            <img id="game-waiting-card-front" :src="gameWaitingCard.thumbnail.front" class="img-fluid" alt="Game Waiting Card Front"/>
+                    <VueFlip v-model="gameWaitingCard.flipped" height="50px" width="50px">
+                        <template #front>
+                            <img id="game-waiting-card-front" :src="gameWaitingCard.thumbnail.front" class="img-fluid"
+                                 alt="Game Waiting Card Front"/>
                         </template>
-                        <template v-slot:back>
-                            <img id="game-waiting-card-back" :src="gameWaitingCard.thumbnail.back" class="img-fluid" alt="Game Waiting Card Back"/>
+                        <template #back>
+                            <img id="game-waiting-card-back" :src="gameWaitingCard.thumbnail.back"
+                                 class="img-fluid" alt="Game Waiting Card Back"/>
                         </template>
                     </VueFlip>
                     <WhatToDoButton id="what-to-do-button" @click.native="$emit('startTutorial')"/>
@@ -138,6 +140,15 @@ export default {
             return this.actions[firstWaiting.to].icon;
         },
     },
+    watch: {
+        "game.firstWaiting": {
+            handler(newFirstWaiting) {
+                this.changeGameWaitingCard(newFirstWaiting);
+            },
+            deep: true,
+            immediate: true,
+        },
+    },
     methods: {
         changeGameWaitingCard(newWaitingTo) {
             if (!this.gameWaitingCard.flipped) {
@@ -147,15 +158,6 @@ export default {
                 this.gameWaitingCard.thumbnail.front = this.actions[newWaitingTo.to].card;
                 this.gameWaitingCard.flipped = false;
             }
-        },
-    },
-    watch: {
-        "game.firstWaiting": {
-            handler(newFirstWaiting) {
-                this.changeGameWaitingCard(newFirstWaiting);
-            },
-            deep: true,
-            immediate: true,
         },
     },
 };

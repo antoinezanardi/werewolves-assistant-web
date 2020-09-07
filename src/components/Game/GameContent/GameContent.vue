@@ -30,6 +30,27 @@ export default {
             game: "game",
         }),
     },
+    watch: {
+        game: {
+            handler(newGame, oldGame) {
+                this.resetPlay();
+                // this.events.push(new GameEvent({ type: "player-dies", targets: [{ player: this.game.players[1] }] }));
+                if (newGame.tick === 1) {
+                    this.events.push(new GameEvent({ type: "game-starts" }));
+                }
+                if (newGame.phase === "day") {
+                    this.generateGamePhaseEvent(newGame, oldGame);
+                    this.generateGameDeathEvents(newGame, oldGame);
+                } else {
+                    this.generateGameDeathEvents(newGame, oldGame);
+                    this.generateGamePhaseEvent(newGame, oldGame);
+                }
+                this.generateGameRoleTurnEvents(newGame, oldGame);
+            },
+            deep: true,
+            immediate: true,
+        },
+    },
     methods: {
         playerVotes(vote) {
             const idx = this.play.votes.findIndex(({ from }) => from === vote.from);
@@ -109,27 +130,6 @@ export default {
             if (idx !== -1) {
                 this.events.splice(idx, 1);
             }
-        },
-    },
-    watch: {
-        game: {
-            handler(newGame, oldGame) {
-                this.resetPlay();
-                // this.events.push(new GameEvent({ type: "player-dies", targets: [{ player: this.game.players[1] }] }));
-                if (newGame.tick === 1) {
-                    this.events.push(new GameEvent({ type: "game-starts" }));
-                }
-                if (newGame.phase === "day") {
-                    this.generateGamePhaseEvent(newGame, oldGame);
-                    this.generateGameDeathEvents(newGame, oldGame);
-                } else {
-                    this.generateGameDeathEvents(newGame, oldGame);
-                    this.generateGamePhaseEvent(newGame, oldGame);
-                }
-                this.generateGameRoleTurnEvents(newGame, oldGame);
-            },
-            deep: true,
-            immediate: true,
         },
     },
 };

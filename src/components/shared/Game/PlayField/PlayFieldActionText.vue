@@ -5,7 +5,8 @@
                 <h3 id="play-field-action-text" :key="actionText" v-html="actionText"/>
             </transition>
             <div id="cancel-player-target-container" class="d-flex align-items-center justify-content-center">
-                <CancelPlayerTarget :attribute="attribute" :targeted-player="targetedPlayer" @playerSelected="playerSelected"/>
+                <CancelPlayerTarget :attribute="attribute" :targeted-player="targetedPlayer"
+                                    @playerSelected="playerSelected"/>
             </div>
         </div>
     </div>

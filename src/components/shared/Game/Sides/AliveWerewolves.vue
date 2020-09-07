@@ -1,6 +1,6 @@
 <template>
     <div id="alive-werewolves">
-        <span v-html="'🐺'" class="mr-2"/>
+        <span class="mr-2" v-html="'🐺'"/>
         <VRoller :text="werewolvesAliveText" :default-char="werewolvesAliveText" class="d-inline-flex"/>
         <hr class="bg-dark"/>
     </div>

@@ -1,7 +1,7 @@
 <template>
     <div id="game-play-field" class="h-100 d-flex flex-column">
         <GamePlayFieldHeader @startTutorial="startTutorial"/>
-        <GamePlayFieldContent :play="play" id="game-content-play-field" @playerVotes="playerVotes"
+        <GamePlayFieldContent id="game-content-play-field" :play="play" @playerVotes="playerVotes"
                               @playerSelected="playerSelected"/>
         <GamePlayFieldFooter :play="play"/>
         <GamePlayFieldTutorial ref="gamePlayFieldTutorial"/>
@@ -17,7 +17,7 @@ import GamePlayFieldTutorial
 
 export default {
     name: "GamePlayField",
-    components: {GamePlayFieldTutorial, GamePlayFieldContent, GamePlayFieldFooter, GamePlayFieldHeader },
+    components: { GamePlayFieldTutorial, GamePlayFieldContent, GamePlayFieldFooter, GamePlayFieldHeader },
     props: {
         play: {
             type: Object,

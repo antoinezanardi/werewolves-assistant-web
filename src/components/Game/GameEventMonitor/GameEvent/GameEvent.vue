@@ -11,8 +11,9 @@
             <div class="row align-items-center d-flex flex-grow-1">
                 <div class="col-2 col-md-1 px-0">
                     <v-popover trigger="hover" :disabled="!canGoBackToPreviousGameEventMessage || isTouchDevice">
-                        <i class="fa fa-chevron-left fa-3x game-event-message-button" @click="previousGameEventMessage"
-                           :class="{ disabled: !canGoBackToPreviousGameEventMessage }"/>
+                        <i class="fa fa-chevron-left fa-3x game-event-message-button"
+                           :class="{ disabled: !canGoBackToPreviousGameEventMessage }"
+                           @click="previousGameEventMessage"/>
                         <template slot="popover">
                             <div v-html="$t('GameEvent.previous')"/>
                             <hr class="bg-secondary my-1"/>
@@ -26,7 +27,7 @@
                 </div>
                 <div class="col-8 col-md-10 text-center">
                     <transition mode="out-in" name="fade">
-                        <div id="game-event-message" class="text-center" :key="currentGameEventMessage"
+                        <div id="game-event-message" :key="currentGameEventMessage" class="text-center"
                              v-html="currentGameEventMessage"/>
                     </transition>
                 </div>

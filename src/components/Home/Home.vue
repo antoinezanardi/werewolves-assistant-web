@@ -21,31 +21,32 @@
             </div>
             <div class="mt-4 d-flex justify-content-center">
                 <div class="col-lg-4 col-md-6 col-sm-12">
-                    <button @click="play" class="btn btn-block btn-primary text-uppercase font-weight-bold home-btn">
+                    <button class="btn btn-block btn-primary text-uppercase font-weight-bold home-btn" @click="play">
                         <i class="fa fa-play-circle mr-2"/>
                         <span v-html="$t('Home.play')"/>
                     </button>
                     <transition name="fade">
-                        <router-link v-if="isUserLogged" to="/statistics" key="statistics"
+                        <router-link v-if="isUserLogged" key="statistics" to="/statistics"
                                      class="btn btn-block btn-dark text-uppercase font-weight-bold home-btn mt-4">
                             <i class="far fa-chart-bar mr-2"/>
                             <span v-html="$t('Home.statistics')"/>
                         </router-link>
                     </transition>
-                    <router-link to="/about" key="about"
-                                 class="btn btn-block btn-dark font-weight-bold home-btn mt-4">
+                    <router-link key="about" to="/about" class="btn btn-block btn-dark font-weight-bold home-btn mt-4">
                         <span v-html="$t('Home.whatIsItAbout')"/>
                         <i class="fas fa-question ml-2"
                            :class="{ 'animate__animated animate__heartBeat animate__infinite': !aboutPageVisited }"/>
                     </router-link>
                     <transition name="fade" mode="out-in">
-                        <button v-if="!isUserLogged" key="not-logged" @click="showAccountModal"
-                                class="btn btn-secondary btn-block mt-4 text-uppercase font-weight-bold account-btn">
+                        <button v-if="!isUserLogged" key="not-logged"
+                                class="btn btn-secondary btn-block mt-4 text-uppercase font-weight-bold account-btn"
+                                @click="showAccountModal">
                             <i class="fa fa-key mr-2"/>
                             <span v-html="$t('Home.logInOrSignUp')"/>
                         </button>
-                        <button v-else key="logged" @click="logout"
-                                class="btn btn-secondary btn-block mt-4 text-uppercase font-weight-bold account-btn">
+                        <button v-else key="logged"
+                                class="btn btn-secondary btn-block mt-4 text-uppercase font-weight-bold account-btn"
+                                @click="logout">
                             <i class="fa fa-sign-out-alt mr-2"/>
                             <span v-html="$t('Home.logOut')"/>
                         </button>
@@ -68,10 +69,9 @@
                         <i class="fab fa-github"/>
                         <span class="d-none d-md-inline-block ml-2" v-html="$t('Home.thisProjectIsOpenSource')"/>
                     </a>
-                    <a class="bmc-button ml-2" target="_blank" href="https://www.buymeacoffee.com/antoinezanardi">
-                        <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a coffee">
-                        <span class="d-none d-md-inline-block ml-2" style="margin-left:5px;font-size:18px !important;"
-                              v-html="$t('Home.buyMeACoffee')"/>
+                    <a id="bmc-button" class="ml-2" target="_blank" href="https://www.buymeacoffee.com/antoinezanardi">
+                        <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a coffee"/>
+                        <span id="bmc-button-text" class="d-none d-md-inline-block ml-2" v-html="$t('Home.buyMeACoffee')"/>
                     </a>
                 </div>
             </div>
@@ -134,7 +134,7 @@ export default {
         border: none !important;
     }
 
-    .bmc-button {
+    #bmc-button {
         padding: 5px 15px 7px 10px !important;
         line-height: 24px !important;
         height: 36px !important;
@@ -148,6 +148,11 @@ export default {
         -webkit-box-sizing: border-box !important;
         box-sizing: border-box !important;
         transition: all 0.25s linear;
+
+        #bmc-button-text {
+            margin-left: 5px;
+            font-size: 18px;
+        }
     }
 
     .bmc-button:hover, .bmc-button:active, .bmc-button:focus {

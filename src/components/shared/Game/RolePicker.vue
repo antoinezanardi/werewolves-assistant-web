@@ -2,10 +2,10 @@
     <div id="role-picker" class="container-fluid">
         <div class="row role-thumbnail-row">
             <div class="col d-flex role-thumbnail justify-content-center align-items-center flex-wrap">
-                <div class="role-img-container" v-for="role in availableRoles" :key="role.name"
-                     @click="pickRole(role)" @mouseover="hoverOn = role.name"
-                     @mouseleave="hoverOn = undefined" :class="{ selected: player.role.current === role.name }">
-                    <img class="img-fluid" :src="getThumbnail(role.name)" alt="Role thumbnail">
+                <div v-for="role in availableRoles" :key="role.name" class="role-img-container"
+                     :class="{ selected: player.role.current === role.name }" @click="pickRole(role)"
+                     @mouseover="hoverOn = role.name" @mouseleave="hoverOn = undefined">
+                    <img class="img-fluid" :src="getThumbnail(role.name)" alt="Role thumbnail"/>
                 </div>
             </div>
         </div>
