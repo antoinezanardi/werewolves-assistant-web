@@ -105,7 +105,11 @@ export default {
         setGameStartsInterval() {
             this.gameStartsEvent.thumbnail.back = this.game.players[0].role.current;
             setInterval(() => {
-                this.gameStartsEvent.playerIdx = this.gameStartsEvent.playerIdx + 1 === this.game.players.length ? 0 : this.gameStartsEvent.playerIdx + 1;
+                if (this.gameStartsEvent.playerIdx + 1 === this.game.players.length) {
+                    this.gameStartsEvent.playerIdx = 0;
+                } else {
+                    this.gameStartsEvent.playerIdx += 1;
+                }
                 const player = this.game.players[this.gameStartsEvent.playerIdx];
                 if (!this.gameStartsEvent.flipped) {
                     this.gameStartsEvent.thumbnail.back = player.role.current;

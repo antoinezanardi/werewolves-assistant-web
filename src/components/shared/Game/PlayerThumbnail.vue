@@ -49,7 +49,11 @@ export default {
             game: "game",
         }),
         playerThumbnailTooltip() {
-            return this.game._id || this.player.role.current ? this.$tc(`Role.${this.player.role.current}`, 1) : this.$t("PlayerThumbnail.chooseRole");
+            if (this.game._id || this.player.role.current) {
+                return this.$tc(`Role.${this.player.role.current}`, 1);
+            } else {
+                return this.$t("PlayerThumbnail.chooseRole");
+            }
         },
     },
     watch: {

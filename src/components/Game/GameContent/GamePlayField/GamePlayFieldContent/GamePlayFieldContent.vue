@@ -43,7 +43,10 @@ import ShootPlayField from "./ShootPlayField";
 
 export default {
     name: "GamePlayFieldContent",
-    components: { ShootPlayField, DelegatePlayField, SettleVotesPlayField, VotePlayField, MarkPlayField, ProtectPlayField, UsePotionPlayField, EatPlayField, LookPlayField, ElectSheriffPlayField },
+    components: {
+        ShootPlayField, DelegatePlayField, SettleVotesPlayField, VotePlayField, MarkPlayField, ProtectPlayField, UsePotionPlayField,
+        EatPlayField, LookPlayField, ElectSheriffPlayField,
+    },
     props: {
         play: {
             type: Object,

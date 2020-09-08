@@ -21,7 +21,8 @@
                     <li id="death-potion-tab" class="nav-item" @click="openDeathPotionPanel">
                         <a id="use-death-potion-tab" class="nav-link"
                            :class="{ active: panel === 'death-potion', disabled: game.hasWitchUsedDeathPotion }" href="#">
-                            <img :src="SVGs.deathPotionSVG" width="25" alt="Death Potion" class="mr-2" :class="{ 'used-potion-svg': game.hasWitchUsedDeathPotion }"/>
+                            <img :src="SVGs.deathPotionSVG" width="25" alt="Death Potion" class="mr-2"
+                                 :class="{ 'used-potion-svg': game.hasWitchUsedDeathPotion }"/>
                             <span v-html="deathPotionPanelTabText"/>
                         </a>
                     </li>

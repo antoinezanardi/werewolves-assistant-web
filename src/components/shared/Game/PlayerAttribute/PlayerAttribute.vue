@@ -60,7 +60,12 @@ export default {
     },
     computed: {
         tooltip() {
-            return { content: `<div class="mb-2">${this.attributes[this.attribute].name}</div><img width="50" src="${this.attributes[this.attribute].SVG}"/>` };
+            return {
+                content: `<div class="mb-2">
+                                ${this.attributes[this.attribute].name}
+                          </div>
+                          <img width="50" src="${this.attributes[this.attribute].SVG}"/>`,
+            };
         },
     },
 };

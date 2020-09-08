@@ -53,7 +53,11 @@ export default {
             game: "game",
         }),
         roleText() {
-            return this.hoverOn ? this.$tc(`Role.${this.hoverOn}`, 1) : `<i class="fa fa-chevron-up animated mr-2"></i>${this.$t("RolePicker.chooseRole")}`;
+            if (this.hoverOn) {
+                return this.$tc(`Role.${this.hoverOn}`, 1);
+            } else {
+                return `<i class="fa fa-chevron-up animated mr-2"></i>${this.$t("RolePicker.chooseRole")}`;
+            }
         },
         availableRoles() {
             return this.roles.filter(({ name }) => name !== this.player.role.current);
@@ -64,6 +68,12 @@ export default {
             return this.IMGs[roleName];
         },
         confirmPickRole(role) {
+            let footer;
+            if (role.maxInGame === 1) {
+                footer = this.$t("RolePicker.roleWillBeSwitchedWithOtherPlayer", { roleName: this.roleText });
+            } else {
+                footer = this.$t("RolePicker.roleWillBeSwitchedWithAnotherPlayer", { roleName: this.roleText });
+            }
             return Swal.fire({
                 title: this.$t("RolePicker.maxInGameReached"),
                 text: this.$t("RolePicker.doYouWantToSetItAnyway"),
@@ -71,7 +81,7 @@ export default {
                 showCancelButton: true,
                 confirmButtonText: this.$t("RolePicker.confirm"),
                 cancelButtonText: this.$t("RolePicker.cancel"),
-                footer: role.maxInGame === 1 ? this.$t("RolePicker.roleWillBeSwitchedWithOtherPlayer", { roleName: this.roleText }) : this.$t("RolePicker.roleWillBeSwitchedWithAnotherPlayer", { roleName: this.roleText }),
+                footer,
             });
         },
         async pickRole(role) {

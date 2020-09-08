@@ -11,8 +11,21 @@ module.exports = {
         ecmaVersion: 2020,
     },
     rules: {
-        "no-console": process.env.nodeEnv === "production" ? "error" : "off",
-        "no-debugger": process.env.nodeEnv === "production" ? "error" : "off",
+        // ---- ESLint Rules -----
+        // Possible Errors
+        "for-direction": "error",
+        "getter-return": "error",
+        "no-async-promise-executor": "error",
+        "no-await-in-loop": "error",
+        "no-compare-neg-zero": "error",
+        "no-cond-assign": "error",
+        "no-console": process.env.nodeEnv === "production" ? "error" : "warn",
+        "no-constant-condition": "error",
+        "no-control-regex": "error",
+        "no-debugger": process.env.nodeEnv === "production" ? "error" : "warn",
+        "no-dupe-args": "error",
+        "no-dupe-else-if": "error",
+        "no-dupe-keys": "error",
         "no-empty": "error",
         "no-extra-parens": "error",
         "no-extra-semi": "error",

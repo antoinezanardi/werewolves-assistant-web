@@ -83,6 +83,8 @@ export default {
         }),
         // eslint-disable-next-line max-lines-per-function
         gameEventMetadata() {
+            const gameEventTargetName = this.hasGameEventTarget ? this.event.targets[0].player.name : null;
+            const gameEventTargetRole = this.hasGameEventTarget ? i18n.t(`Role.a.${this.event.targets[0].player.role.current}`) : null;
             return {
                 "game-starts": {
                     messages: [
@@ -95,13 +97,13 @@ export default {
                 },
                 "player-dies": {
                     messages: [
-                        i18n.t("GameEvent.messages.playerDies", { player: this.hasGameEventTarget ? this.event.targets[0].player.name : null }),
+                        i18n.t("GameEvent.messages.playerDies", { player: gameEventTargetName }),
                         i18n.t("GameEvent.messages.playerRevealsRole"),
                     ],
                 },
                 "sheriff-elected": {
                     messages: [
-                        i18n.t("GameEvent.messages.playerHasBeenPromotedSheriff", { player: this.hasGameEventTarget ? this.event.targets[0].player.name : null }),
+                        i18n.t("GameEvent.messages.playerHasBeenPromotedSheriff", { gameEventTargetName }),
                         ...insertIf(this.game.tick === 1, i18n.t("GameEvent.messages.sheriffCanMakeASpeech")),
                     ],
                 },
@@ -116,7 +118,7 @@ export default {
                 },
                 "seer-looks": {
                     messages: [
-                        `${i18n.t("GameEvent.messages.seerHasSeen")} ${i18n.t(`Role.a.${this.hasGameEventTarget ? this.event.targets[0].player.role.current : "villager"}`)} !`,
+                        `${i18n.t("GameEvent.messages.seerHasSeen")} ${gameEventTargetRole} !`,
                     ],
                 },
                 "werewolves-start": {

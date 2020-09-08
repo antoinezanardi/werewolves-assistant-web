@@ -61,7 +61,11 @@ export default {
             game: "game",
         }),
         winnersText() {
-            return this.game.won.by === "werewolves" ? this.$tc("GameWinners.wonByWerewolves", this.winners.length) : this.$tc("GameWinners.wonByVillagers", this.winners.length);
+            if (this.game.won.by === "werewolves") {
+                return this.$tc("GameWinners.wonByWerewolves", this.winners.length);
+            } else {
+                return this.$tc("GameWinners.wonByVillagers", this.winners.length);
+            }
         },
         winners() {
             return this.game.won.by === "werewolves" ? this.game.werewolfPlayers : this.game.villagerPlayers;

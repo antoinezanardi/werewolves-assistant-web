@@ -53,10 +53,10 @@
                                 <span v-html="$tc('Statistics.withUsage', leastUsedRole.count, { count: leastUsedRole.count })"/>
                             </li>
                             <li>
-                                <span v-html="$tc('Statistics.averageVillagersWinning', averageVillagersWinning, { count: averageVillagersWinning })"/>
+                                <span v-html="averageVillagersWinningText"/>
                             </li>
                             <li>
-                                <span v-html="$tc('Statistics.averageWerewolvesWinning', averageWerewolvesWinning, { count: averageWerewolvesWinning })"/>
+                                <span v-html="averageWerewolvesWinningText"/>
                             </li>
                         </ul>
                     </div>
@@ -110,8 +110,14 @@ export default {
         averageVillagersWinning() {
             return this.gamesWonByVillagers ? Math.round(this.gamesWonByVillagers.length * 100 / this.doneGames.length) : undefined;
         },
+        averageVillagersWinningText() {
+            return this.$tc("Statistics.averageVillagersWinning", this.averageVillagersWinning, { count: this.averageVillagersWinning });
+        },
         averageWerewolvesWinning() {
             return this.gamesWonByVillagers ? Math.round(this.gamesWonByWerewolves.length * 100 / this.doneGames.length) : undefined;
+        },
+        averageWerewolvesWinningText() {
+            return this.$tc("Statistics.averageWerewolvesWinning", this.averageWerewolvesWinning, { count: this.averageWerewolvesWinning });
         },
         roleUsage() {
             if (this.games) {

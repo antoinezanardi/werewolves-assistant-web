@@ -96,7 +96,11 @@ export default {
         },
         actionText() {
             if (this.targetedPlayer) {
-                return this.isPlayerTargetingHimself ? this.$t(this.attributeTexts[this.attribute].selfTargeted) : `${this.attributeTexts[this.attribute].targeted} ${this.targetedPlayer.name}`;
+                if (this.isPlayerTargetingHimself) {
+                    return this.$t(this.attributeTexts[this.attribute].selfTargeted);
+                } else {
+                    return `${this.attributeTexts[this.attribute].targeted} ${this.targetedPlayer.name}`;
+                }
             } else {
                 return this.attributeTexts[this.attribute].notTargeted;
             }

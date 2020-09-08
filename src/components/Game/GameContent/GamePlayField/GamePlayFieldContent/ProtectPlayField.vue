@@ -41,7 +41,11 @@ export default {
         },
         protectablePlayers() {
             const lastProtectEntry = this.game.history.find(gameHistoryEntry => gameHistoryEntry.play.action === "protect");
-            return lastProtectEntry ? this.game.alivePlayers.filter(({ _id }) => _id !== lastProtectEntry.play.targets[0].player._id) : this.game.alivePlayers;
+            if (lastProtectEntry) {
+                return this.game.alivePlayers.filter(({ _id }) => _id !== lastProtectEntry.play.targets[0].player._id);
+            } else {
+                return this.game.alivePlayers;
+            }
         },
     },
     methods: {
