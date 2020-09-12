@@ -17,20 +17,23 @@
 
 ### 📦 Packages
 
-* `@sentry/browser` updated to version `5.22.3`.
-* `@sentry/integrations` updated to version `5.22.3`.
-* `@vue/cli-plugin-e2e-cypress` updated to version `4.5.4`.
-* `@vue/cli-plugin-eslint` updated to version `4.5.4`.
-* `@vue/cli-plugin-router` updated to version `4.5.4`.
-* `@vue/cli-plugin-unit-mocha` updated to version `4.5.4`.
-* `@vue/cli-plugin-vuex` updated to version `4.5.4`.
-* `@vue/cli-service` updated to version `4.5.4`.
-* `@vue/test-utils` updated to version `1.0.5`.
+* `@sentry/browser` updated to version `5.23.0`.
+* `@sentry/integrations` updated to version `5.23.0`.
+* `@vue/cli-plugin-e2e-cypress` updated to version `4.5.6`.
+* `@vue/cli-plugin-eslint` updated to version `4.5.6`.
+* `@vue/cli-plugin-router` updated to version `4.5.6`.
+* `@vue/cli-plugin-unit-mocha` updated to version `4.5.6`.
+* `@vue/cli-plugin-vuex` updated to version `4.5.6`.
+* `@vue/cli-service` updated to version `4.5.6`.
+* `@vue/test-utils` updated to version `1.1.0`.
+* `animate.css` updated to version `4.1.1`.
 * `axios` updated to version `0.20.0`.
-* `eslint` updated to version `7.8.1`.
+* `eslint` updated to version `7.9.0`.
 * `sass-loader` updated to version `10.0.2`.
-* `sweetalert2` updated to version `9.17.2`.
+* `sweetalert2` updated to version `10.0.2`.
+* `vee-validate` updated to version `3.3.11`.
 * `vue` updated to version `2.6.12`.
+* `vue-i18n` updated to version `8.21.1`.
 * `vue-template-compiler` updated to version `2.6.12`.
 
 ---

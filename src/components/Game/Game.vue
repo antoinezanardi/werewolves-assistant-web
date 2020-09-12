@@ -86,9 +86,8 @@ export default {
         if (this.game.status === "playing") {
             const { value: confirmLeaveGame } = await this.confirmLeaveGame();
             return confirmLeaveGame ? next() : next(false);
-        } else {
-            return next();
         }
+        return next();
     },
 };
 </script>

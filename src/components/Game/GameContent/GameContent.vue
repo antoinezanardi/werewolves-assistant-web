@@ -122,7 +122,7 @@ export default {
             };
             if ((!oldGame || newGame.firstWaiting.for !== oldGame.firstWaiting.for && newGame.firstWaiting.to !== oldGame.firstWaiting.to) &&
                 roleTurnEvents[newGame.firstWaiting.for]) {
-                return this.events.push(new GameEvent({ type: roleTurnEvents[newGame.firstWaiting.for] }));
+                this.events.push(new GameEvent({ type: roleTurnEvents[newGame.firstWaiting.for] }));
             }
         },
         removeEvent(event) {

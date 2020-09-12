@@ -96,7 +96,7 @@ export default {
     },
     methods: {
         startTour() {
-            this.$tours["gamePlayFieldTour"].start();
+            this.$tours.gamePlayFieldTour.start();
         },
     },
 };

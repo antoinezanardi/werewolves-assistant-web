@@ -49,15 +49,16 @@ export default {
         }),
         sortedVillagers() {
             const villagerPlayers = [...this.game.villagerPlayers];
-            return [...villagerPlayers.sort((playerA, playerB) => {
-                if (!playerA.isAlive) {
-                    return 1;
-                } else if (playerB.isAlive) {
-                    return playerA.role.current === "villager" ? 1 : -1;
-                } else {
+            return [
+                ...villagerPlayers.sort((playerA, playerB) => {
+                    if (!playerA.isAlive) {
+                        return 1;
+                    } else if (playerB.isAlive) {
+                        return playerA.role.current === "villager" ? 1 : -1;
+                    }
                     return -1;
-                }
-            })];
+                }),
+            ];
         },
     },
 };

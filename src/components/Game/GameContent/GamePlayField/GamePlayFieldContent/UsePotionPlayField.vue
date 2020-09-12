@@ -79,9 +79,8 @@ export default {
             if (drankDeathPotionTarget) {
                 const playerTargeted = this.game.players.find(({ _id }) => _id === drankDeathPotionTarget.player);
                 return `${this.$t("UsePotionPlayField.wantsToUseDeathPotionOn")} ${playerTargeted.name}`;
-            } else {
-                return this.$t("UsePotionPlayField.doesntWantToUseDeathPotion");
             }
+            return this.$t("UsePotionPlayField.doesntWantToUseDeathPotion");
         },
         lifePotionPanelTabText() {
             return this.game.hasWitchUsedLifePotion ? this.$t("UsePotionPlayField.lifePotionUsed") : this.$t("UsePotionPlayField.useLifePotionOn");

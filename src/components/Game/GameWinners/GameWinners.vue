@@ -63,9 +63,8 @@ export default {
         winnersText() {
             if (this.game.won.by === "werewolves") {
                 return this.$tc("GameWinners.wonByWerewolves", this.winners.length);
-            } else {
-                return this.$tc("GameWinners.wonByVillagers", this.winners.length);
             }
+            return this.$tc("GameWinners.wonByVillagers", this.winners.length);
         },
         winners() {
             return this.game.won.by === "werewolves" ? this.game.werewolfPlayers : this.game.villagerPlayers;
@@ -85,10 +84,9 @@ export default {
         async restartGame() {
             const { value } = await this.confirmRestartGame();
             if (value) {
-                return await this.$router.push(`/game-lobby?${stringify({ players: this.game.players.map(player => ({ name: player.name })) })}`);
-            } else {
-                return await this.$router.push("/game-lobby");
+                return this.$router.push(`/game-lobby?${stringify({ players: this.game.players.map(player => ({ name: player.name })) })}`);
             }
+            return this.$router.push("/game-lobby");
         },
     },
 };

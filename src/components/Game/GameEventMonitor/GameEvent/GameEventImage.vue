@@ -89,9 +89,8 @@ export default {
         displayedPhase() {
             if (this.game.phase === "night") {
                 return this.phaseTransition.started ? "night" : "day";
-            } else {
-                return this.phaseTransition.started ? "day" : "night";
             }
+            return this.phaseTransition.started ? "day" : "night";
         },
     },
     created() {

@@ -1,4 +1,4 @@
-import { getProp } from "../helpers/functions/Class";
+import { getProp } from "@/helpers/functions/Class";
 import User from "./User";
 import Player from "./Player";
 import GameHistory from "./GameHistory";
@@ -11,7 +11,7 @@ class Game {
         this.turn = getProp(game, "turn");
         this.phase = getProp(game, "phase");
         this.tick = getProp(game, "tick");
-        this.waiting = getProp(game, "waiting", [], waiting => waiting.map(waiting => waiting));
+        this.waiting = getProp(game, "waiting", [], waiting => waiting.map(waitingEntry => waitingEntry));
         this.status = getProp(game, "status");
         this.history = getProp(game, "history", [], history => history.map(historyEntry => new GameHistory(historyEntry)));
         this.won = {

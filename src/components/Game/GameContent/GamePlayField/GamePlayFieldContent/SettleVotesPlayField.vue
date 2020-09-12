@@ -31,7 +31,7 @@ export default {
             game: "game",
         }),
         tieBreakerPlayers() {
-            const gameHistoryEntry = this.game.history.find(gameHistoryEntry => gameHistoryEntry.play.action === "vote");
+            const gameHistoryEntry = this.game.history.find(({ play }) => play.action === "vote");
             return gameHistoryEntry.play.targets.map(({ player }) => player);
         },
     },

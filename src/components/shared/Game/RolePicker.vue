@@ -55,9 +55,8 @@ export default {
         roleText() {
             if (this.hoverOn) {
                 return this.$tc(`Role.${this.hoverOn}`, 1);
-            } else {
-                return `<i class="fa fa-chevron-up animated mr-2"></i>${this.$t("RolePicker.chooseRole")}`;
             }
+            return `<i class="fa fa-chevron-up animated mr-2"></i>${this.$t("RolePicker.chooseRole")}`;
         },
         availableRoles() {
             return this.roles.filter(({ name }) => name !== this.player.role.current);
@@ -68,7 +67,7 @@ export default {
             return this.IMGs[roleName];
         },
         confirmPickRole(role) {
-            let footer;
+            let footer = "";
             if (role.maxInGame === 1) {
                 footer = this.$t("RolePicker.roleWillBeSwitchedWithOtherPlayer", { roleName: this.roleText });
             } else {

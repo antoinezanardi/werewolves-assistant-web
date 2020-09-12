@@ -33,7 +33,7 @@ export default {
     },
     methods: {
         startTour() {
-            this.$tours["gameLobbyTutorial"].start();
+            this.$tours.gameLobbyTutorial.start();
         },
     },
 };

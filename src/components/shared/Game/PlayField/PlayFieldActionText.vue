@@ -88,22 +88,19 @@ export default {
         },
         targetedPlayer() {
             if (this.play.targets.length) {
-                const target = this.play.targets.find(target => target.attribute === this.attribute);
-                return target ? this.game.players.find(player => player._id === target.player) : null;
-            } else {
-                return null;
+                const targetedPlayer = this.play.targets.find(target => target.attribute === this.attribute);
+                return targetedPlayer ? this.game.players.find(player => player._id === targetedPlayer.player) : null;
             }
+            return null;
         },
         actionText() {
             if (this.targetedPlayer) {
                 if (this.isPlayerTargetingHimself) {
                     return this.$t(this.attributeTexts[this.attribute].selfTargeted);
-                } else {
-                    return `${this.attributeTexts[this.attribute].targeted} ${this.targetedPlayer.name}`;
                 }
-            } else {
-                return this.attributeTexts[this.attribute].notTargeted;
+                return `${this.attributeTexts[this.attribute].targeted} ${this.targetedPlayer.name}`;
             }
+            return this.attributeTexts[this.attribute].notTargeted;
         },
     },
     methods: {

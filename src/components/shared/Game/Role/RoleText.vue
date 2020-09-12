@@ -31,9 +31,8 @@ export default {
         roleTextClasses() {
             if (this.role) {
                 return "text-capitalize cursor-pointer";
-            } else {
-                return "text-capitalize cursor-pointer font-weight-bolder animate__animated animate__slow animate__heartBeat";
             }
+            return "text-capitalize cursor-pointer font-weight-bolder animate__animated animate__slow animate__heartBeat";
         },
     },
 };

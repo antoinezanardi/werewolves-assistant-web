@@ -117,9 +117,7 @@ export default {
                     messages: [i18n.t("GameEvent.messages.seerStarts")],
                 },
                 "seer-looks": {
-                    messages: [
-                        `${i18n.t("GameEvent.messages.seerHasSeen")} ${gameEventTargetRole} !`,
-                    ],
+                    messages: [`${i18n.t("GameEvent.messages.seerHasSeen")} ${gameEventTargetRole} !`],
                 },
                 "werewolves-start": {
                     messages: [i18n.tc("GameEvent.messages.werewolvesStart", this.game.aliveWerewolfPlayers.length)],

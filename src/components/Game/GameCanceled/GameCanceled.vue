@@ -55,10 +55,9 @@ export default {
         async restartGame() {
             const { value } = await this.confirmRestartGame();
             if (value) {
-                return await this.$router.push(`/game-lobby?${stringify({ players: this.game.players.map(player => ({ name: player.name })) })}`);
-            } else {
-                return await this.$router.push("/game-lobby");
+                return this.$router.push(`/game-lobby?${stringify({ players: this.game.players.map(player => ({ name: player.name })) })}`);
             }
+            return this.$router.push("/game-lobby");
         },
     },
 };

@@ -83,6 +83,7 @@
 <script>
 import RedAsterisk from "../../shared/Forms/RedAsterisk";
 import Vue from "vue";
+
 export default {
     name: "RegisterPanel",
     components: { RedAsterisk },

@@ -35,9 +35,8 @@ export default {
             const text = `${this.$t("MarkPlayField.wantsToMark")} `;
             if (playerTargeted) {
                 return playerTargeted._id === this.game.ravenPlayer._id ? this.$t("MarkPlayField.wantsToSelfMark") : text + playerTargeted.name;
-            } else {
-                return this.$t("MarkPlayField.skip");
             }
+            return this.$t("MarkPlayField.skip");
         },
     },
     methods: {

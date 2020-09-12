@@ -51,9 +51,8 @@ export default {
         playerThumbnailTooltip() {
             if (this.game._id || this.player.role.current) {
                 return this.$tc(`Role.${this.player.role.current}`, 1);
-            } else {
-                return this.$t("PlayerThumbnail.chooseRole");
             }
+            return this.$t("PlayerThumbnail.chooseRole");
         },
     },
     watch: {

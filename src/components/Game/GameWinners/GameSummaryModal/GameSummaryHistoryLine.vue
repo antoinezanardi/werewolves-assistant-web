@@ -57,9 +57,8 @@ export default {
             const { phase, turn } = this.gameHistoryEntry;
             if (phase === "day") {
                 return `${this.$t("GameSummaryHistoryLine.day")} ${turn}`;
-            } else {
-                return `${this.$t("GameSummaryHistoryLine.night")} ${turn}`;
             }
+            return `${this.$t("GameSummaryHistoryLine.night")} ${turn}`;
         },
         actionImageSource() {
             const actionImageSource = {
@@ -89,12 +88,10 @@ export default {
                     return this.$t(`GameSummaryHistoryLine.actions.use-potion.both`);
                 } else if (targets[0].potion.life) {
                     return this.$t(`GameSummaryHistoryLine.actions.use-potion.life`);
-                } else {
-                    return this.$t(`GameSummaryHistoryLine.actions.use-potion.death`);
                 }
-            } else {
-                return this.$t(`GameSummaryHistoryLine.actions.${this.gameHistoryEntry.play.action}`);
+                return this.$t(`GameSummaryHistoryLine.actions.use-potion.death`);
             }
+            return this.$t(`GameSummaryHistoryLine.actions.${this.gameHistoryEntry.play.action}`);
         },
     },
 };

@@ -10,7 +10,6 @@ extend("confirm_password", {
     validate: (value, { other }) => value === other,
     params: [{ name: "other", isTarget: true }],
 });
-
 configure({
     defaultMessage: (field, values) => i18n.t(`VeeValidate.${values._rule_}`, values),
     classes: {
@@ -18,6 +17,5 @@ configure({
         invalid: "is-invalid",
     },
 });
-
 Vue.component("ValidationProvider", ValidationProvider);
 Vue.component("ValidationObserver", ValidationObserver);

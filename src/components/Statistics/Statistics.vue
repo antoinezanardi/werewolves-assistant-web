@@ -83,6 +83,7 @@
 import Loading from "../shared/Loading";
 import Game from "../../classes/Game";
 import RoleImage from "../shared/Game/Role/RoleImage";
+
 export default {
     name: "Statistics",
     components: { RoleImage, Loading },
@@ -132,9 +133,8 @@ export default {
                     }
                 }
                 return roles;
-            } else {
-                return undefined;
             }
+            return undefined;
         },
         mostUsedRole() {
             let mostUsedRole;

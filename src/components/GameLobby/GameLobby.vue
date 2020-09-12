@@ -152,9 +152,8 @@ export default {
                 return this.$t("GameLobby.missingOneVillagerToStart");
             } else if (!this.game.allPlayersHaveRole) {
                 return this.$t("GameLobby.allPlayerDontHaveARole");
-            } else {
-                return "";
             }
+            return "";
         },
     },
     async created() {
@@ -185,7 +184,7 @@ export default {
         addPlayer() {
             const playerName = this.playerName.trim();
             if (!playerName || !this.canAddPlayer) {
-                return this.playerName = "";
+                this.playerName = "";
             } else {
                 this.game.players.push(new Player({ name: playerName }));
                 this.playerName = "";
@@ -200,7 +199,7 @@ export default {
                 const players = this.game.players.map(({ name }) => ({ name }));
                 const { data } = await this.$werewolvesAssistantAPI.getGameRepartition({ players });
                 for (const { name, role, group } of data.players) {
-                    const player = this.game.players.find(player => player.name === name);
+                    const player = this.game.players.find(({ name: playerName }) => playerName === name);
                     player.role.current = role;
                     player.role.group = group;
                 }
@@ -273,9 +272,8 @@ export default {
         if (!this.waitingGame._id && this.game.players.length && to.name !== "Game") {
             const { value: confirmLeaveGameLobby } = await this.confirmLeaveGameLobby();
             return confirmLeaveGameLobby ? next() : next(false);
-        } else {
-            return next();
         }
+        return next();
     },
 };
 </script>

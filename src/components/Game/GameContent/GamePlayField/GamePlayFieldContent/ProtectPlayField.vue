@@ -35,17 +35,15 @@ export default {
             const text = `${this.$t("ProtectPlayField.wantsToProtect")} `;
             if (playerTargeted) {
                 return playerTargeted._id === this.game.guardPlayer._id ? this.$t("ProtectPlayField.wantsToSelfProtect") : text + playerTargeted.name;
-            } else {
-                return `${text} ...`;
             }
+            return `${text} ...`;
         },
         protectablePlayers() {
             const lastProtectEntry = this.game.history.find(gameHistoryEntry => gameHistoryEntry.play.action === "protect");
             if (lastProtectEntry) {
                 return this.game.alivePlayers.filter(({ _id }) => _id !== lastProtectEntry.play.targets[0].player._id);
-            } else {
-                return this.game.alivePlayers;
             }
+            return this.game.alivePlayers;
         },
     },
     methods: {

@@ -1,4 +1,3 @@
-import Vue from "vue";
 import { isAPIError } from "@/helpers/functions/Error";
 import i18n from "../vue-i18n";
 import Router from "../router";
@@ -6,7 +5,6 @@ import Router from "../router";
 const Error = {
     install(Vue) {
         Vue.prototype.$error = {};
-
         Vue.prototype.$error.display = error => {
             if (isAPIError(error)) {
                 const { response } = error;
@@ -21,6 +19,8 @@ const Error = {
         };
     },
 };
+
+import Vue from "vue";
 
 Vue.use(Error);
 
