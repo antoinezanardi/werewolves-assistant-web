@@ -25,11 +25,7 @@ export default {
             events: [],
         };
     },
-    computed: {
-        ...mapGetters("game", {
-            game: "game",
-        }),
-    },
+    computed: { ...mapGetters("game", { game: "game" }) },
     watch: {
         game: {
             handler(newGame, oldGame) {

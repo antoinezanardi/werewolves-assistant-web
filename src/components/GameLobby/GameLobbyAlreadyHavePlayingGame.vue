@@ -54,9 +54,7 @@ export default {
         },
     },
     data() {
-        return {
-            loading: false,
-        };
+        return { loading: false };
     },
     computed: {
         gamePhaseText() {

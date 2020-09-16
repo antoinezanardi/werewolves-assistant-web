@@ -32,15 +32,9 @@ import { mapActions, mapGetters } from "vuex";
 
 export default {
     name: "NavBar",
-    computed: {
-        ...mapGetters("game", {
-            game: "game",
-        }),
-    },
+    computed: { ...mapGetters("game", { game: "game" }) },
     methods: {
-        ...mapActions("game", {
-            setGame: "setGame",
-        }),
+        ...mapActions("game", { setGame: "setGame" }),
         async backToHomePage() {
             await this.$router.push("/");
         },

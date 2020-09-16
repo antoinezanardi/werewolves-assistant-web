@@ -5,9 +5,7 @@
 </template>
 
 <script>
-export default {
-    name: "WhatToDoButton",
-};
+export default { name: "WhatToDoButton" };
 </script>
 
 <style scoped>

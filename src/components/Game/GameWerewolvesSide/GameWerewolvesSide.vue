@@ -44,9 +44,7 @@ export default {
     name: "GameWerewolvesSide",
     components: { AliveWerewolves, PlayerThumbnail, PlayerAttribute },
     computed: {
-        ...mapGetters("game", {
-            game: "game",
-        }),
+        ...mapGetters("game", { game: "game" }),
         sortedWerewolves() {
             const wereWolvesPlayers = [...this.game.werewolfPlayers];
             return [...wereWolvesPlayers.sort(player => player.isAlive ? -1 : 1)];

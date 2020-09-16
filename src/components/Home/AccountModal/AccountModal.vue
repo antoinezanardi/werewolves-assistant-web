@@ -72,9 +72,7 @@ export default {
         },
     },
     methods: {
-        ...mapActions("user", {
-            login: "login",
-        }),
+        ...mapActions("user", { login: "login" }),
         show() {
             this.switchPanel("log-in");
             Vue.nextTick(() => this.$refs.loginPanel.reset());

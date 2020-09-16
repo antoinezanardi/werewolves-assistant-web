@@ -17,9 +17,7 @@ import { mapGetters } from "vuex";
 export default {
     name: "GamePlayFieldTutorial",
     computed: {
-        ...mapGetters("game", {
-            game: "game",
-        }),
+        ...mapGetters("game", { game: "game" }),
         // eslint-disable-next-line max-lines-per-function
         steps() {
             const header = { title: this.$t(`GamePlayFieldTutorial.${this.game.firstWaiting.to}.howToPlay`) };

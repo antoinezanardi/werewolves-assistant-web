@@ -44,9 +44,7 @@ export default {
     name: "GameVillagersSide",
     components: { AliveVillagers, PlayerAttribute, PlayerThumbnail },
     computed: {
-        ...mapGetters("game", {
-            game: "game",
-        }),
+        ...mapGetters("game", { game: "game" }),
         sortedVillagers() {
             const villagerPlayers = [...this.game.villagerPlayers];
             return [

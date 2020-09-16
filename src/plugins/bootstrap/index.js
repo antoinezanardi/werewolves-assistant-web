@@ -3,4 +3,5 @@ import "popper.js";
 import "bootstrap";
 import "bootstrap/scss/bootstrap.scss";
 
-window.jQuery = window.$ = jQuery;
+window.jQuery = jQuery;
+window.$ = jQuery;

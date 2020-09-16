@@ -6,6 +6,4 @@ import Role from "./modules/Role";
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
-    modules: { game: Game, user: User, role: Role },
-});
+export default new Vuex.Store({ modules: { game: Game, user: User, role: Role } });

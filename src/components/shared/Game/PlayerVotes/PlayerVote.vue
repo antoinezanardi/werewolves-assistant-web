@@ -38,9 +38,7 @@ export default {
         },
     },
     computed: {
-        ...mapGetters("game", {
-            game: "game",
-        }),
+        ...mapGetters("game", { game: "game" }),
         targetablePlayers() {
             return this.game.alivePlayers.filter(({ name }) => name !== this.player.name);
         },

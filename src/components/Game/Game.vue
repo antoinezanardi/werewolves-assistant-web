@@ -35,24 +35,14 @@ export default {
     name: "Game",
     components: { GameCanceled, GameWinners, GameContent, GameWerewolvesSide, GameVillagersSide, Loading },
     data() {
-        return {
-            loading: {
-                getGame: true,
-            },
-        };
+        return { loading: { getGame: true } };
     },
-    computed: {
-        ...mapGetters("game", {
-            game: "game",
-        }),
-    },
+    computed: { ...mapGetters("game", { game: "game" }) },
     created() {
         this.getGame();
     },
     methods: {
-        ...mapActions("game", {
-            getAndSetGame: "getAndSetGame",
-        }),
+        ...mapActions("game", { getAndSetGame: "getAndSetGame" }),
         async getGame() {
             try {
                 await this.getAndSetGame({ gameId: this.$route.params.id });

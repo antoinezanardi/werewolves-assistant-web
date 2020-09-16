@@ -26,9 +26,7 @@ export default {
         },
     },
     computed: {
-        ...mapGetters("game", {
-            game: "game",
-        }),
+        ...mapGetters("game", { game: "game" }),
         alivePlayersExceptWerewolves() {
             return this.game.alivePlayers.filter(player => player.role.group !== "werewolves");
         },

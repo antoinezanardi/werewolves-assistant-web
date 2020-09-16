@@ -42,11 +42,7 @@ export default {
             default: false,
         },
     },
-    computed: {
-        ...mapGetters("game", {
-            game: "game",
-        }),
-    },
+    computed: { ...mapGetters("game", { game: "game" }) },
     methods: {
         unsetPlayer() {
             this.$emit("unsetPlayer", this.player.name);

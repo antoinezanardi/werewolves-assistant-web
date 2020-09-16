@@ -30,9 +30,7 @@ export default {
         },
     },
     computed: {
-        ...mapGetters("game", {
-            game: "game",
-        }),
+        ...mapGetters("game", { game: "game" }),
         // eslint-disable-next-line max-lines-per-function
         attributeTexts() {
             return {
@@ -83,7 +81,7 @@ export default {
             return this.targetedPlayer &&
                 (this.attribute === "drank-life-potion" || this.attribute === "drank-death-potion") && this.targetedPlayer.role.current === "witch" ||
                 this.attribute === "protected" && this.targetedPlayer.role.current === "guard" ||
-                this.attribute === "raven-marked" && this.targetedPlayer.role.current === "raven"||
+                this.attribute === "raven-marked" && this.targetedPlayer.role.current === "raven" ||
                 this.attribute === "chosen-for-vote" && this.targetedPlayer.hasAttribute("sheriff");
         },
         targetedPlayer() {

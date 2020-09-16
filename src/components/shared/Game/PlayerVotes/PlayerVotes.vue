@@ -12,11 +12,7 @@ import PlayerVote from "./PlayerVote";
 export default {
     name: "PlayerVotes",
     components: { PlayerVote },
-    computed: {
-        ...mapGetters("game", {
-            game: "game",
-        }),
-    },
+    computed: { ...mapGetters("game", { game: "game" }) },
     methods: {
         playerVotes(vote) {
             this.$emit("playerVotes", vote);

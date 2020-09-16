@@ -79,14 +79,10 @@ export default {
     name: "GameSummaryModal",
     components: { AliveWerewolves, AliveVillagers, GameSummaryHistoryLine },
     data() {
-        return {
-            SVGs: { trophy, dead },
-        };
+        return { SVGs: { trophy, dead } };
     },
     computed: {
-        ...mapGetters("game", {
-            game: "game",
-        }),
+        ...mapGetters("game", { game: "game" }),
         reversedGameHistory() {
             return [...this.game.history].reverse();
         },

@@ -72,15 +72,11 @@ export default {
     data() {
         return {
             loading: false,
-            countdown: {
-                ended: false,
-            },
+            countdown: { ended: false },
         };
     },
     computed: {
-        ...mapGetters("game", {
-            game: "game",
-        }),
+        ...mapGetters("game", { game: "game" }),
         isThereTieInVotes() {
             if (!this.play.votes.length) {
                 return undefined;
@@ -113,9 +109,7 @@ export default {
         },
     },
     methods: {
-        ...mapActions("game", {
-            setGame: "setGame",
-        }),
+        ...mapActions("game", { setGame: "setGame" }),
         async submitPlay() {
             try {
                 this.loading = true;

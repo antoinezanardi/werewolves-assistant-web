@@ -36,11 +36,7 @@ import { stringify } from "qs";
 
 export default {
     name: "GameCanceled",
-    computed: {
-        ...mapGetters("game", {
-            game: "game",
-        }),
-    },
+    computed: { ...mapGetters("game", { game: "game" }) },
     methods: {
         confirmRestartGame() {
             return Swal.fire({

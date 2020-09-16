@@ -53,11 +53,7 @@ export default {
             required: true,
         },
     },
-    computed: {
-        ...mapGetters("game", {
-            game: "game",
-        }),
-    },
+    computed: { ...mapGetters("game", { game: "game" }) },
     methods: {
         playerVotes(vote) {
             this.$emit("playerVotes", vote);

@@ -68,9 +68,7 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("game", {
-            game: "game",
-        }),
+        ...mapGetters("game", { game: "game" }),
         isEffectGameEvent() {
             const effectGameEventTypes = ["sheriff-elected", "player-dies", "seer-looks"];
             return effectGameEventTypes.includes(this.event.type);

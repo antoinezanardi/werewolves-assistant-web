@@ -119,9 +119,7 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("game", {
-            game: "game",
-        }),
+        ...mapGetters("game", { game: "game" }),
         gamePhaseClasses() {
             return this.game.phase === "day" ? "fa-sun sun-color" : "fa-moon moon-color";
         },

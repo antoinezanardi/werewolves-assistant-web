@@ -175,12 +175,8 @@ export default {
         }
     },
     methods: {
-        ...mapActions("user", {
-            checkUserAuthentication: "checkUserAuthentication",
-        }),
-        ...mapActions("game", {
-            setGame: "setGame",
-        }),
+        ...mapActions("user", { checkUserAuthentication: "checkUserAuthentication" }),
+        ...mapActions("game", { setGame: "setGame" }),
         addPlayer() {
             const playerName = this.playerName.trim();
             if (!playerName || !this.canAddPlayer) {

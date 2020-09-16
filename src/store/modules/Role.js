@@ -3,9 +3,7 @@ import Role from "@/classes/Role";
 
 export default {
     namespaced: true,
-    state: {
-        roles: undefined,
-    },
+    state: { roles: undefined },
     getters: {
         roles(state) {
             return state.roles;

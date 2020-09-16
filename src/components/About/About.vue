@@ -146,11 +146,7 @@ import werewolf from "@/assets/img/roles/werewolf.png";
 export default {
     name: "About",
     data() {
-        return {
-            IMGs: {
-                werewolf,
-            },
-        };
+        return { IMGs: { werewolf } };
     },
     created() {
         localStorage.setItem("aboutPageVisited", "true");

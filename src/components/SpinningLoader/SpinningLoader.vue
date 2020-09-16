@@ -15,9 +15,7 @@
 </template>
 
 <script>
-export default {
-    name: "SpinningLoader",
-};
+export default { name: "SpinningLoader" };
 </script>
 
 <style scoped>

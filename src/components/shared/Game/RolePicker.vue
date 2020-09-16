@@ -46,12 +46,8 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("role", {
-            roles: "roles",
-        }),
-        ...mapGetters("game", {
-            game: "game",
-        }),
+        ...mapGetters("role", { roles: "roles" }),
+        ...mapGetters("game", { game: "game" }),
         roleText() {
             if (this.hoverOn) {
                 return this.$tc(`Role.${this.hoverOn}`, 1);

@@ -88,17 +88,13 @@ export default {
     name: "Home",
     components: { AccountModal },
     computed: {
-        ...mapGetters("user", {
-            isUserLogged: "isLogged",
-        }),
+        ...mapGetters("user", { isUserLogged: "isLogged" }),
         aboutPageVisited() {
             return localStorage.getItem("aboutPageVisited") === "true";
         },
     },
     methods: {
-        ...mapActions("user", {
-            logout: "logout",
-        }),
+        ...mapActions("user", { logout: "logout" }),
         showAccountModal() {
             this.$refs.AccountModal.show();
         },

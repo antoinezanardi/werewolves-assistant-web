@@ -27,9 +27,7 @@ export default {
         },
     },
     computed: {
-        ...mapGetters("game", {
-            game: "game",
-        }),
+        ...mapGetters("game", { game: "game" }),
         tieBreakerPlayers() {
             const gameHistoryEntry = this.game.history.find(({ play }) => play.action === "vote");
             return gameHistoryEntry.play.targets.map(({ player }) => player);

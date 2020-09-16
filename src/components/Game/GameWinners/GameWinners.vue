@@ -52,14 +52,10 @@ export default {
     name: "GameWinners",
     components: { GameSummaryModal, PlayerCard },
     data() {
-        return {
-            SVGs: { trophy },
-        };
+        return { SVGs: { trophy } };
     },
     computed: {
-        ...mapGetters("game", {
-            game: "game",
-        }),
+        ...mapGetters("game", { game: "game" }),
         winnersText() {
             if (this.game.won.by === "werewolves") {
                 return this.$tc("GameWinners.wonByWerewolves", this.winners.length);

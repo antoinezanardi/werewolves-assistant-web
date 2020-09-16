@@ -7,6 +7,10 @@
 * [#25](https://github.com/antoinezanardi/werewolves-assistant-web/issues/25) - User can cancel a playing game by clicking on the button in the nav bar.
 * [#26](https://github.com/antoinezanardi/werewolves-assistant-web/issues/26) - Canceled game has now a dedicated page.
 
+### 🌟 Enhancements
+
+* [#31](https://github.com/antoinezanardi/werewolves-assistant-web/issues/31) - `ESLint` rules completed with `vue` rules and some forgotten other rules. `.eslintrc.js` file contains now all existing rules. 
+
 ### 🐛 Bug fixes
 
 * [#28](https://github.com/antoinezanardi/werewolves-assistant-web/issues/28) - If the user tries to get a game with an unknown id, he is redirected to home page.

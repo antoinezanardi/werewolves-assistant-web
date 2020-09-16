@@ -71,9 +71,7 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("game", {
-            game: "game",
-        }),
+        ...mapGetters("game", { game: "game" }),
         useDeathPotionText() {
             const drankDeathPotionTarget = this.play.targets.find(target => target.attribute === "drank-death-potion");
             if (drankDeathPotionTarget) {

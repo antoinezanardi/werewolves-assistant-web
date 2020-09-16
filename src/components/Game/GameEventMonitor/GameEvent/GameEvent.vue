@@ -72,15 +72,11 @@ export default {
     data() {
         return {
             messageIdx: 0,
-            IMGs: {
-                leftArrowKey, rightArrowKey,
-            },
+            IMGs: { leftArrowKey, rightArrowKey },
         };
     },
     computed: {
-        ...mapGetters("game", {
-            game: "game",
-        }),
+        ...mapGetters("game", { game: "game" }),
         // eslint-disable-next-line max-lines-per-function
         gameEventMetadata() {
             const gameEventTargetName = this.hasGameEventTarget ? this.event.targets[0].player.name : null;
@@ -107,33 +103,15 @@ export default {
                         ...insertIf(this.game.tick === 1, i18n.t("GameEvent.messages.sheriffCanMakeASpeech")),
                     ],
                 },
-                "night-falls": {
-                    messages: [i18n.t("GameEvent.messages.nightFalls"), i18n.t("GameEvent.messages.inhabitantsFallAsleep")],
-                },
-                "day-rises": {
-                    messages: [i18n.t("GameEvent.messages.dayRises")],
-                },
-                "seer-starts": {
-                    messages: [i18n.t("GameEvent.messages.seerStarts")],
-                },
-                "seer-looks": {
-                    messages: [`${i18n.t("GameEvent.messages.seerHasSeen")} ${gameEventTargetRole} !`],
-                },
-                "werewolves-start": {
-                    messages: [i18n.tc("GameEvent.messages.werewolvesStart", this.game.aliveWerewolfPlayers.length)],
-                },
-                "witch-starts": {
-                    messages: [i18n.t("GameEvent.messages.witchStarts")],
-                },
-                "guard-starts": {
-                    messages: [i18n.t("GameEvent.messages.guardStarts")],
-                },
-                "raven-starts": {
-                    messages: [i18n.t("GameEvent.messages.ravenStarts")],
-                },
-                "hunter-starts": {
-                    messages: [i18n.t("GameEvent.messages.hunterStarts")],
-                },
+                "night-falls": { messages: [i18n.t("GameEvent.messages.nightFalls"), i18n.t("GameEvent.messages.inhabitantsFallAsleep")] },
+                "day-rises": { messages: [i18n.t("GameEvent.messages.dayRises")] },
+                "seer-starts": { messages: [i18n.t("GameEvent.messages.seerStarts")] },
+                "seer-looks": { messages: [`${i18n.t("GameEvent.messages.seerHasSeen")} ${gameEventTargetRole} !`] },
+                "werewolves-start": { messages: [i18n.tc("GameEvent.messages.werewolvesStart", this.game.aliveWerewolfPlayers.length)] },
+                "witch-starts": { messages: [i18n.t("GameEvent.messages.witchStarts")] },
+                "guard-starts": { messages: [i18n.t("GameEvent.messages.guardStarts")] },
+                "raven-starts": { messages: [i18n.t("GameEvent.messages.ravenStarts")] },
+                "hunter-starts": { messages: [i18n.t("GameEvent.messages.hunterStarts")] },
             };
         },
         hasGameEventTarget() {

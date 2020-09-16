@@ -6,9 +6,7 @@ import router from "@/plugins/router";
 
 export default {
     namespaced: true,
-    state: {
-        user: new User(),
-    },
+    state: { user: new User() },
     getters: {
         user(state) {
             return state.user;

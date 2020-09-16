@@ -27,9 +27,7 @@ export default {
         },
     },
     computed: {
-        ...mapGetters("game", {
-            game: "game",
-        }),
+        ...mapGetters("game", { game: "game" }),
         delegateTargetText() {
             const playerTargeted = this.play.targets.length ? this.game.players.find(({ _id }) => _id === this.play.targets[0].player) : null;
             const text = `${this.$t("DelegatePlayField.wantsToDelegateTo")} `;

@@ -3,9 +3,7 @@ import Game from "@/classes/Game";
 
 export default {
     namespaced: true,
-    state: {
-        game: new Game(),
-    },
+    state: { game: new Game() },
     getters: {
         game(state) {
             return state.game;

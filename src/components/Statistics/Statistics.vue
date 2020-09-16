@@ -88,9 +88,7 @@ export default {
     name: "Statistics",
     components: { RoleImage, Loading },
     data() {
-        return {
-            games: null,
-        };
+        return { games: null };
     },
     computed: {
         doneGames() {

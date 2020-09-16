@@ -45,9 +45,7 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("game", {
-            game: "game",
-        }),
+        ...mapGetters("game", { game: "game" }),
         playerThumbnailTooltip() {
             if (this.game._id || this.player.role.current) {
                 return this.$tc(`Role.${this.player.role.current}`, 1);

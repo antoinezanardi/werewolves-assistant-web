@@ -45,9 +45,7 @@ export default {
     },
     computed: {
         tooltipOptions() {
-            return {
-                content: this.disabled ? this.disabledTooltipText : this.tooltipText,
-            };
+            return { content: this.disabled ? this.disabledTooltipText : this.tooltipText };
         },
     },
     methods: {

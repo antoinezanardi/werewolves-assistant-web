@@ -12,9 +12,7 @@ import { mapGetters } from "vuex";
 export default {
     name: "AliveVillagers",
     computed: {
-        ...mapGetters("game", {
-            game: "game",
-        }),
+        ...mapGetters("game", { game: "game" }),
         villagersAliveText() {
             return `${this.game.aliveVillagerPlayers.length} / ${this.game.villagerPlayers.length} ${this.$t("GameVillagersSide.alive")}`;
         },
