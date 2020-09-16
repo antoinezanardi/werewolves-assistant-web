@@ -6,31 +6,48 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/antoinezanardi/werewolves-assistant-web/badge.svg?targetFile=package.json)](https://snyk.io/test/github/antoinezanardi/werewolves-assistant-web?targetFile=package.json)
 [![Contributions are welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/antoinezanardi/werewolves-assistant-web/issues)
 
-[![Open Source Love svg3](https://badges.frapsoft.com/os/v3/open-source.svg?v=103)](https://github.com/antoinezanardi/werewolves-assistant-web/)
-
+[![ForTheBadge open-source](https://forthebadge.com/images/badges/open-source.svg)](https://forthebadge.com)
 [![ForTheBadge built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)](https://GitHub.com/antoinezanardi/)
-[![ForTheBadge uses-js](http://ForTheBadge.com/images/badges/uses-js.svg)](https://GitHub.com/antoinezanardi/werewolves-assistant-web)
+[![ForTheBadge made-with-vue](https://forthebadge.com/images/badges/made-with-vue.svg)](https://forthebadge.com)
 
-## 🐺 Description
-Werewolves Assistant Web is a Vue web app using the <a href="https://github.com/antoinezanardi/werewolves-assistant-api" target="_blank">Werewolves Assistant API</a>.
-Thanks to this app, being the game master of the Werewolves of Millers Hollow game is so easy ! Try it out now with live demos below.
+## 🐺 What is this tool ?
+**🐺 Werewolves Assistant Web** is a Vue web app using the <a href="https://github.com/antoinezanardi/werewolves-assistant-api" target="_blank">Werewolves Assistant API</a>.
+Thanks to this app, being the game master of the Werewolves of Millers Hollow game is so easy ! 
 
-## 🌻 Live demos
-Two environments are set up:
-* **Sandbox**: <a href="https://sandbox.werewolves-assistant.antoinezanardi.fr" target="_blank">Join here</a>
-* **Production**: <a href="https://werewolves-assistant.antoinezanardi.fr" target="_blank">Join here</a>
+**🐺 Werewolves Assistant Web** provides to game masters:
+- A game lobby for creating a party starting from 4 to 20 players. Roles can be assigned randomly to save time.
+- A cool interface displaying all useful game's data to the game master.
+- For each turn, game master can fill every player's choices. The Assistant will consequently display deaths and events, manage the turns order and save all players choices.
+- At the end of the game, a complete summary with game's winner and what happened during the game.
 
-For your tests, please use the **Sandbox URL**.
+#####🤔 Want to know more about this awesome project ? <a href="https://werewolves-assistant.antoinezanardi.fr/about" target="_blank">**Check out the dedicated about page**</a>.
+
+## 🔍 Let's try !
+Two versions are available for testing this project:
+
+✨<a href="https://werewolves-assistant.antoinezanardi.fr" target="_blank">**Main version**</a>
+
+🔧<a href="https://sandbox.werewolves-assistant.antoinezanardi.fr" target="_blank">**Sandbox version**</a>
+
+**Sandbox version** may contains some bugs and unexpected behaviors as its purpose is to test new features before deploying on **main version**.
+
+## 📈 Versions & changelog
+Each change when a new version comes up is listed in the <a href="https://github.com/antoinezanardi/werewolves-assistant-web/blob/master/CHANGELOG.md" target="_blank">CHANGELOG.md file</a> placed at project's root.
+
+Also, you can keep up with changes by watching releases with the **Watch GitHub button** at the top of this page.
+
+Current release on **main version** is [![GitHub release](https://img.shields.io/github/release/antoinezanardi/werewolves-assistant-web.svg)](https://GitHub.com/antoinezanardi/werewolves-assistant-web/releases/).
+
+###### 🏷️ <a href="https://github.com/antoinezanardi/werewolves-assistant-web/releases" target="_blank">All releases for this project are available here</a>. 
 
 ## 🔨 Installation
-1. Install dependencies with `npm install` (add `--production` if you install the project on a remote server)
+1. Install dependencies with `npm install` (add `--production` to omit dev dependencies)
 2. Copy `.env.example` and paste it as `.env`
 3. Replace environment values in the fresh new `.env` file if necessary:
     * **VUE_APP_WEREWOLVES_ASSISTANT_API_URL**: Base URL of Werewolves Assistant API.
     * **VUE_APP_SENTRY_KEY**: Private key used by Sentry for authenticating the project.
     * **VUE_APP_SENTRY_PROJECT_ID**: Project ID used by Sentry.
     * **VUE_APP_SENTRY_ENABLED**: If you want to enable error tracking. Don't activate it if you're not on remote server.
-
 
 ## 🔌 Let's go
 To start the web app **on development mode**, simply run `npm start`.
