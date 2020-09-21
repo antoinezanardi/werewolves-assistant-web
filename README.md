@@ -40,22 +40,31 @@ Current release on **main version** is [![GitHub release](https://img.shields.io
 
 ###### 🏷️ <a href="https://github.com/antoinezanardi/werewolves-assistant-web/releases" target="_blank">All releases for this project are available here</a>. 
 
+## ☑️ Code analysis and consistency
+In order to keep the code clean, consistent and free of bad JS practises, **[ESLint](https://eslint.org/)** is installed with nearly **313 rules activated** !
+
+Complete list of all enabled rules is available in the **[.eslintrc.js file](https://github.com/antoinezanardi/werewolves-assistant-web/blob/master/.eslintrc.js)**.
+
 ## 🔨 Installation
-1. Install dependencies with `npm install` (add `--production` to omit dev dependencies)
-2. Copy `.env.example` and paste it as `.env`
+1. Install dependencies with `npm install` (add `--production` to omit dev dependencies).
+2. Copy `.env.example` and paste it as `.env`.
 3. Replace environment values in the fresh new `.env` file if necessary:
     * **VUE_APP_WEREWOLVES_ASSISTANT_API_URL**: Base URL of Werewolves Assistant API.
-    * **VUE_APP_SENTRY_KEY**: Private key used by Sentry for authenticating the project.
-    * **VUE_APP_SENTRY_PROJECT_ID**: Project ID used by Sentry.
-    * **VUE_APP_SENTRY_ENABLED**: If you want to enable error tracking. Don't activate it if you're not on remote server.
+    * **VUE_APP_SENTRY_KEY**: Private key used by Sentry for authenticating the project. (_Not required_)
+    * **VUE_APP_SENTRY_PROJECT_ID**: Project ID used by Sentry. (_Not required_)
+    * **VUE_APP_SENTRY_ENABLED**: If you want to enable error tracking. (_Not required_)
 
 ## 🔌 Let's go
 To start the web app **on development mode**, simply run `npm start`.
 
-To start the web app **on production mode**, run `npm run build` and host the `dist` folder with `http-server` for example.
+To start the web app **on production mode**, run `npm run build` and host the `dist` folder with an HTTP server.
 
 ## ⚙️ Other useful commands
-- **Lint**: `npm run lint` checks for code style. Based on AirBnB configuration with many more rules.
-- **Build**: `npm run build` launches the Vue build process and .
+- **Lint**: `npm run lint` checks for code style.
+- **Build**: `npm run build` launches the Vue build process.
 - **Unit tests**: `npm run test:unit` runs various unit tests using `mocha` and `chai`.
 - **E2E tests**: `npm run test:e2e` runs various E2E tests using `cypress`.
+
+## ❤️ Contributor list
+
+There are no contributor yet... Be the first one by **[creating a pull request](https://github.com/antoinezanardi/werewolves-assistant-web/pulls)** !

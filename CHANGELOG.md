@@ -9,6 +9,7 @@
 
 ### 🌟 Enhancements
 
+* [#29](https://github.com/antoinezanardi/werewolves-assistant-web/issues/29) - `README.md` file has been approved with new badges and 4 new sections. 
 * [#31](https://github.com/antoinezanardi/werewolves-assistant-web/issues/31) - `ESLint` rules completed with `vue` rules and some forgotten other rules. `.eslintrc.js` file contains now all existing rules. 
 
 ### 🐛 Bug fixes
