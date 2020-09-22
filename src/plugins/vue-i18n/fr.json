@@ -99,7 +99,8 @@
         "areYouSureYouWantToQuit": "Êtes-vous sûr de vouloir quitter la composition de partie ?",
         "gameCompositionNotFinished": "La composition du jeu n'est pas encore finalisée.",
         "quit": "Quitter",
-        "cancel": "Annuler"
+        "cancel": "Annuler",
+        "playerNameLengthMax": "Limite de caractères atteinte pour un nom de joueur (30 max.)"
     },
     "GameLobbyComposition": {
         "playerCount": "Aucun joueur | {count} joueur | {count} joueurs",

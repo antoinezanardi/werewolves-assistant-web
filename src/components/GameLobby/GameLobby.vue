@@ -24,7 +24,7 @@
                                 <div class="input-group">
                                     <input id="game-lobby-player-input" v-model="playerName" class="form-control"
                                            :placeholder="playerNameInputPlaceholder" :disabled="game.isMaxPlayerReached"
-                                           :class="{ 'is-invalid': isPlayerNameTaken }"/>
+                                           :class="{ 'is-invalid': isPlayerNameTaken }" maxlength="30"/>
                                     <div class="input-group-append">
                                         <button class="btn btn-primary" :disabled="!canAddPlayer">
                                             <i class="fa fa-plus mr-1"/>
@@ -34,6 +34,7 @@
                                 </div>
                                 <div id="player-name-input-error">
                                     <span v-if="isPlayerNameTaken" v-html="$t('GameLobby.playerNameAlreadyTaken')"/>
+                                    <span v-else-if="sanitizedPlayerName.length === 30" v-html="$t('GameLobby.playerNameLengthMax')"/>
                                 </div>
                             </form>
                         </div>
@@ -96,18 +97,19 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
 import { mapActions } from "vuex";
 import { parse } from "qs";
-import Game from "../../classes/Game";
-import Loading from "../shared/Loading";
-import Player from "../../classes/Player";
+import Game from "@/classes/Game";
+import Player from "@/classes/Player";
 import GameLobbyAlreadyHavePlayingGame from "./GameLobbyAlreadyHavePlayingGame";
-import SubmitButton from "../shared/Forms/SubmitButton";
 import GameLobbyComposition from "./GameLobbyComposition";
-import Swal from "sweetalert2";
+import Loading from "@/components/shared/Loading";
+import SubmitButton from "@/components/shared/Forms/SubmitButton";
 import WhatToDoButton from "@/components/shared/Game/WhatToDoButton/WhatToDoButton";
 import GameLobbyTutorial from "@/components/GameLobby/GameLobbyTutorial";
 import PlayerCard from "@/components/shared/Game/PlayerCard";
+import { filterOutHTMLTags } from "@/helpers/functions/String";
 
 export default {
     name: "GameLobby",
@@ -134,7 +136,7 @@ export default {
     },
     computed: {
         isPlayerNameTaken() {
-            return this.game.players.find(({ name }) => name === this.playerName.trim());
+            return this.game.players.find(({ name }) => name === this.sanitizedPlayerName);
         },
         canAddPlayer() {
             return !this.isPlayerNameTaken && !this.game.isMaxPlayerReached;
@@ -154,6 +156,9 @@ export default {
                 return this.$t("GameLobby.allPlayerDontHaveARole");
             }
             return "";
+        },
+        sanitizedPlayerName() {
+            return filterOutHTMLTags(this.playerName.trim());
         },
     },
     async created() {
@@ -178,11 +183,10 @@ export default {
         ...mapActions("user", { checkUserAuthentication: "checkUserAuthentication" }),
         ...mapActions("game", { setGame: "setGame" }),
         addPlayer() {
-            const playerName = this.playerName.trim();
-            if (!playerName || !this.canAddPlayer) {
+            if (!this.sanitizedPlayerName || !this.canAddPlayer) {
                 this.playerName = "";
             } else {
-                this.game.players.push(new Player({ name: playerName }));
+                this.game.players.push(new Player({ name: this.sanitizedPlayerName }));
                 this.playerName = "";
             }
         },
@@ -288,7 +292,7 @@ export default {
     }
 
     #player-name-input-error {
-        height: 25px;
+        height: 45px;
     }
 
     #game-lobby-players-container {

@@ -11,6 +11,7 @@
 
 * [#29](https://github.com/antoinezanardi/werewolves-assistant-web/issues/29) - `README.md` file has been approved with new badges and 4 new sections. 
 * [#31](https://github.com/antoinezanardi/werewolves-assistant-web/issues/31) - `ESLint` rules completed with `vue` rules and some forgotten other rules. `.eslintrc.js` file contains now all existing rules. 
+* [#32](https://github.com/antoinezanardi/werewolves-assistant-web/issues/32) - Player name input has been restricted of 30 maximum length and HTML tags were filtered out. 
 
 ### 🐛 Bug fixes
 
@@ -22,8 +23,9 @@
 
 ### 📦 Packages
 
-* `@sentry/browser` updated to version `5.23.0`.
-* `@sentry/integrations` updated to version `5.23.0`.
+* `xss` installed with version `1.0.8`.
+* `@sentry/browser` updated to version `5.24.2`.
+* `@sentry/integrations` updated to version `5.24.2`.
 * `@vue/cli-plugin-e2e-cypress` updated to version `4.5.6`.
 * `@vue/cli-plugin-eslint` updated to version `4.5.6`.
 * `@vue/cli-plugin-router` updated to version `4.5.6`.
@@ -35,8 +37,8 @@
 * `axios` updated to version `0.20.0`.
 * `eslint` updated to version `7.9.0`.
 * `sass-loader` updated to version `10.0.2`.
-* `sweetalert2` updated to version `10.0.2`.
-* `vee-validate` updated to version `3.3.11`.
+* `sweetalert2` updated to version `10.3.1`.
+* `vee-validate` updated to version `3.4.0`.
 * `vue` updated to version `2.6.12`.
 * `vue-i18n` updated to version `8.21.1`.
 * `vue-template-compiler` updated to version `2.6.12`.

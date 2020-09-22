@@ -14,8 +14,8 @@
     "dependencies": {
         "@chenfengyuan/vue-countdown": "^1.1.5",
         "@fortawesome/fontawesome-free": "^5.14.0",
-        "@sentry/browser": "^5.23.0",
-        "@sentry/integrations": "^5.23.0",
+        "@sentry/browser": "^5.24.2",
+        "@sentry/integrations": "^5.24.2",
         "animate.css": "^4.1.1",
         "axios": "^0.20.0",
         "bootstrap": "^4.5.2",
@@ -26,10 +26,10 @@
         "popper.js": "^1.16.1",
         "qs": "^6.9.4",
         "sass-loader": "^10.0.2",
-        "sweetalert2": "^10.0.2",
+        "sweetalert2": "^10.3.1",
         "uniqid": "^5.2.0",
         "v-tooltip": "^2.0.3",
-        "vee-validate": "^3.3.11",
+        "vee-validate": "^3.4.0",
         "vue": "^2.6.12",
         "vue-flip": "^1.0.2",
         "vue-github-buttons": "^3.1.0",
@@ -40,7 +40,8 @@
         "vue-select": "^3.10.8",
         "vue-toasted": "^1.1.28",
         "vue-tour": "^1.5.0",
-        "vuex": "^3.5.1"
+        "vuex": "^3.5.1",
+        "xss": "^1.0.8"
     },
     "devDependencies": {
         "@vue/cli-plugin-e2e-cypress": "^4.5.6",
