@@ -20,7 +20,7 @@ Thanks to this app, being the game master of the Werewolves of Millers Hollow ga
 - For each turn, game master can fill every player's choices. The Assistant will consequently display deaths and events, manage the turns order and save all players choices.
 - At the end of the game, a complete summary with game's winner and what happened during the game.
 
-#####🤔 Want to know more about this awesome project ? <a href="https://werewolves-assistant.antoinezanardi.fr/about" target="_blank">**Check out the dedicated about page**</a>.
+#### 🤔 Want to know more about this awesome project ? <a href="https://werewolves-assistant.antoinezanardi.fr/about" target="_blank">**Check out the dedicated about page**</a>.
 
 ## 🔍 Let's try !
 Two versions are available for testing this project:
