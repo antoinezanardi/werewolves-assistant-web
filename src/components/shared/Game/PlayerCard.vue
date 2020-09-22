@@ -1,5 +1,5 @@
 <template>
-    <div ref="playerCard" class="player-card d-flex flex-column align-items-center"
+    <div ref="playerCard" class="player-card d-flex flex-column align-items-center w-100"
          :class="{ 'selectable': selectable, 'selected': selected }">
         <PlayerThumbnail ref="playerThumbnail" :player="player" :size="size"
                          :class="{ 'player-card-thumbnail-selected': selected }"

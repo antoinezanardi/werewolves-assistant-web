@@ -12,6 +12,7 @@
 * [#29](https://github.com/antoinezanardi/werewolves-assistant-web/issues/29) - `README.md` file has been approved with new badges and 4 new sections. 
 * [#31](https://github.com/antoinezanardi/werewolves-assistant-web/issues/31) - `ESLint` rules completed with `vue` rules and some forgotten other rules. `.eslintrc.js` file contains now all existing rules. 
 * [#32](https://github.com/antoinezanardi/werewolves-assistant-web/issues/32) - Player name input has been restricted of 30 maximum length and HTML tags were filtered out. 
+* [#33](https://github.com/antoinezanardi/werewolves-assistant-web/issues/33) - Player name too long is truncated for preventing overflow. 
 
 ### 🐛 Bug fixes
 

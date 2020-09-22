@@ -2,9 +2,9 @@
     <div id="game-event" class="container-fluid d-flex flex-grow-1 flex-column">
         <Keypress key-event="keyup" :key-code="37" @success="previousGameEventMessage"/>
         <Keypress key-event="keyup" :key-code="39" @success="nextGameEventMessage"/>
-        <div id="game-event-image-container" class="row justify-content-center align-items-center">
-            <div class="col-12 d-flex justify-content-center flex-grow-1">
-                <GameEventImage :event="event"/>
+        <div id="game-event-image-container" class="d-flex justify-content-center align-items-center w-100">
+            <div class="d-flex justify-content-center flex-grow-1 w-100">
+                <GameEventImage class="w-100" :event="event"/>
             </div>
         </div>
         <div id="game-event-message-container" class="w-100 d-flex">

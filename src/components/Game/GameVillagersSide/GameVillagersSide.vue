@@ -13,7 +13,7 @@
         <div id="villagers-list" class="row">
             <transition-group name="flip-list" class="w-100">
                 <div v-for="player in sortedVillagers" :key="player.name" class="player-strip villager-player-strip">
-                    <div class="text-center text-truncate mt-1">
+                    <div class="text-center text-truncate m-1">
                         <transition name="translate-down-fade" mode="out-in">
                             <i v-if="player.isAlive === false" v-tooltip="$t('GameVillagersSide.thisPlayerIsDead')"
                                class="fa fa-skull-crossbones mr-2"/>
