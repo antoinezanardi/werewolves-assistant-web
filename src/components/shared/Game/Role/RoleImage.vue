@@ -17,13 +17,12 @@ export default {
     name: "RoleImage",
     props: {
         role: {
-            required: true,
+            type: String,
+            default: undefined,
         },
     },
     data() {
-        return {
-            IMGs: { back, guard, hunter, raven, seer, villager, werewolf, werewolves: werewolf, witch, all: villager, sheriff },
-        };
+        return { IMGs: { back, guard, hunter, raven, seer, villager, werewolf, werewolves: werewolf, witch, all: villager, sheriff } };
     },
     computed: {
         roleImage() {

@@ -19,8 +19,8 @@
                         </h3>
                     </div>
                     <div class="col-lg-4 col-12">
-                        <a class="btn btn-primary btn-block" href="https://www.youtube.com/watch?v=3HUz8CAORro"
-                           target="_blank" v-tooltip="$t('About.watchYouTubeVideo')">
+                        <a v-tooltip="$t('About.watchYouTubeVideo')" class="btn btn-primary btn-block"
+                           href="https://www.youtube.com/watch?v=3HUz8CAORro" target="_blank">
                             <i class="fa fa-question-circle mr-2"/>
                             <span v-html="$t('About.iDontKnowThisGame')"/>
                         </a>
@@ -31,7 +31,7 @@
         </div>
         <div class="row section-content">
             <div class="col-12">
-                <p v-html="`${$t('About.werewolvesOfMillersHollowTM')} ${$t('About.isAGame')}`  "/>
+                <p v-html="`${$t('About.werewolvesOfMillersHollowTM')} ${$t('About.isAGame')} `"/>
                 <p v-html="$t('About.forAGameToBeSuccessful')"/>
             </div>
         </div>
@@ -50,16 +50,16 @@
                 <p v-html="$t('About.theAssistantHasManyFeaturesLike')"/>
                 <ul>
                     <li v-html="$t('About.screenForGameComposition')"/>
-                    <li v-html="$t('About.interfaceForGameMonitoring')" class="mt-3"/>
-                    <li v-html="$t('About.interfaceForEachActionAndEvents')" class="mt-3"/>
-                    <li v-html="$t('About.gameSummaryWhenPartyIsDone')" class="mt-3"/>
+                    <li class="mt-3" v-html="$t('About.interfaceForGameMonitoring')"/>
+                    <li class="mt-3" v-html="$t('About.interfaceForEachActionAndEvents')"/>
+                    <li class="mt-3" v-html="$t('About.gameSummaryWhenPartyIsDone')"/>
                 </ul>
                 <p v-html="$t('About.assistantIsFreeAndAvailable')"/>
                 <p class="text-center">
-                    <i class="fa fa-exclamation-triangle fa-2x text-warning mr-3"></i>
-                    <span v-html="$t('About.attentionPlease')" class="font-weight-bold"/>
+                    <i class="fa fa-exclamation-triangle fa-2x text-warning mr-3"/>
+                    <span class="font-weight-bold" v-html="$t('About.attentionPlease')"/>
                 </p>
-                <hr class="bg-dark">
+                <hr class="bg-dark"/>
                 <p v-html="$t('About.assistantDoesntReplaceTheOriginalGame')"/>
             </div>
         </div>
@@ -80,7 +80,8 @@
                         <div class="d-flex flex-column justify-content-center align-items-center">
                             <div>
                                 <span v-html="`${$t('About.theAssistantIsOpenSource')}. ${$t('About.availableOnGitHub')} `"/>
-                                <a target="_blank" href="https://github.com/antoinezanardi/werewolves-assistant-web" v-html="`${$t('About.atThisAddress')}`"/>
+                                <a target="_blank" href="https://github.com/antoinezanardi/werewolves-assistant-web"
+                                   v-html="`${$t('About.atThisAddress')}`"/>
                                 <span v-html="`, ${$t('About.pleaseAddAStar')}`"/>
                             </div>
                             <div class="mt-3">
@@ -91,10 +92,11 @@
                     </li>
                     <li class="mt-4">
                         <span v-html="`${$t('About.thisProjectNotWithoutFees')} `"/>
-                        <a target="_blank" href="https://www.buymeacoffee.com/antoinezanardi" v-html="$t('About.hisBuyMeACoffeePage')"/>
+                        <a target="_blank" href="https://www.buymeacoffee.com/antoinezanardi"
+                           v-html="$t('About.hisBuyMeACoffeePage')"/>
                         <span v-html="'.'"/>
                     </li>
-                    <li v-html="$t('About.speakAboutThisProject')" class="mt-4"/>
+                    <li class="mt-4" v-html="$t('About.speakAboutThisProject')"/>
                 </ul>
             </div>
         </div>
@@ -144,11 +146,7 @@ import werewolf from "@/assets/img/roles/werewolf.png";
 export default {
     name: "About",
     data() {
-        return {
-            IMGs: {
-                werewolf,
-            },
-        };
+        return { IMGs: { werewolf } };
     },
     created() {
         localStorage.setItem("aboutPageVisited", "true");

@@ -5,24 +5,21 @@
                 <h3 id="play-field-action-text" :key="actionText" v-html="actionText"/>
             </transition>
             <div id="cancel-player-target-container" class="d-flex align-items-center justify-content-center">
-                <CancelPlayerTarget :attribute="attribute" :targeted-player="targetedPlayer" @playerSelected="playerSelected"/>
+                <CancelPlayerTarget :attribute="attribute" :targeted-player="targetedPlayer"
+                                    @playerSelected="playerSelected"/>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import CancelPlayerTarget from "./CancelPlayerTarget";
-import Game from "../../../../classes/Game";
 
 export default {
     name: "PlayFieldActionText",
     components: { CancelPlayerTarget },
     props: {
-        game: {
-            type: Game,
-            required: true,
-        },
         play: {
             type: Object,
             required: true,
@@ -33,6 +30,7 @@ export default {
         },
     },
     computed: {
+        ...mapGetters("game", { game: "game" }),
         // eslint-disable-next-line max-lines-per-function
         attributeTexts() {
             return {
@@ -83,23 +81,24 @@ export default {
             return this.targetedPlayer &&
                 (this.attribute === "drank-life-potion" || this.attribute === "drank-death-potion") && this.targetedPlayer.role.current === "witch" ||
                 this.attribute === "protected" && this.targetedPlayer.role.current === "guard" ||
-                this.attribute === "raven-marked" && this.targetedPlayer.role.current === "raven"||
+                this.attribute === "raven-marked" && this.targetedPlayer.role.current === "raven" ||
                 this.attribute === "chosen-for-vote" && this.targetedPlayer.hasAttribute("sheriff");
         },
         targetedPlayer() {
             if (this.play.targets.length) {
-                const target = this.play.targets.find(target => target.attribute === this.attribute);
-                return target ? this.game.players.find(player => player._id === target.player) : null;
-            } else {
-                return null;
+                const targetedPlayer = this.play.targets.find(target => target.attribute === this.attribute);
+                return targetedPlayer ? this.game.players.find(player => player._id === targetedPlayer.player) : null;
             }
+            return null;
         },
         actionText() {
             if (this.targetedPlayer) {
-                return this.isPlayerTargetingHimself ? this.$t(this.attributeTexts[this.attribute].selfTargeted) : `${this.attributeTexts[this.attribute].targeted} ${this.targetedPlayer.name}`;
-            } else {
-                return this.attributeTexts[this.attribute].notTargeted;
+                if (this.isPlayerTargetingHimself) {
+                    return this.$t(this.attributeTexts[this.attribute].selfTargeted);
+                }
+                return `${this.attributeTexts[this.attribute].targeted} ${this.targetedPlayer.name}`;
             }
+            return this.attributeTexts[this.attribute].notTargeted;
         },
     },
     methods: {

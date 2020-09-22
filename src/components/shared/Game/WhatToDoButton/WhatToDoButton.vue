@@ -1,14 +1,11 @@
 <template>
-    <button id="what-to-do-button" class="btn btn-primary"
-            v-tooltip="$t('WhatToDoButton.whatAmISupposedToDo')">
+    <button id="what-to-do-button" v-tooltip="$t('WhatToDoButton.whatAmISupposedToDo')" class="btn btn-primary">
         <i class="fa fa-question-circle"/>
     </button>
 </template>
 
 <script>
-export default {
-    name: "WhatToDoButton",
-};
+export default { name: "WhatToDoButton" };
 </script>
 
 <style scoped>

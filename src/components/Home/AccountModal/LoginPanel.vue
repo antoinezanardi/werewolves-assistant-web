@@ -14,8 +14,8 @@
                                     <i class="fa fa-at"/>
                                 </span>
                             </div>
-                            <input id="log-in-email" type="email" class="form-control" ref="logInEmailInput"
-                                   v-model="credentials.email" :placeholder="$t('LoginPanel.required')"
+                            <input id="log-in-email" ref="logInEmailInput" v-model="credentials.email" type="email"
+                                   class="form-control" :placeholder="$t('LoginPanel.required')"
                                    required :class="classes" :disabled="loading"/>
                         </div>
                         <div v-html="errors[0]"/>
@@ -30,17 +30,17 @@
                         <span v-html="$t('LoginPanel.password')"/>
                         <RedAsterisk class="ml-1"/>
                     </label>
-                    <ValidationProvider rules="required" v-slot="{ errors, classes }">
+                    <ValidationProvider v-slot="{ errors, classes }" rules="required">
                         <div class="input-group">
                             <div class="input-group-prepend" :class="classes">
                                 <span class="input-group-text">
                                     <i class="fa fa-lock"/>
                                 </span>
                             </div>
-                            <input id="log-in-password" ref="logInPasswordInput"
+                            <input id="log-in-password" ref="logInPasswordInput" v-model="credentials.password"
                                    type="password" class="form-control" :class="classes"
-                                   :placeholder="$t('LoginPanel.required')" required
-                                   v-model="credentials.password" minlength="5" :disabled="loading"/>
+                                   :placeholder="$t('LoginPanel.required')" required minlength="5"
+                                   :disabled="loading"/>
                         </div>
                         <div v-html="errors[0]"/>
                     </ValidationProvider>

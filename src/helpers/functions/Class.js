@@ -25,7 +25,6 @@ export function getProp(obj, properties, defaultValue = undefined, callback = un
             obj = obj[property];
         }
         return callback ? callback(obj) : obj;
-    } else {
-        return defaultValue;
     }
+    return defaultValue;
 }

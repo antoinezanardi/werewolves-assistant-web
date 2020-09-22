@@ -16,7 +16,7 @@ const WerewolvesAssistantAPI = {
         Vue.prototype.$werewolvesAssistantAPI = {};
 
         Vue.prototype.$werewolvesAssistantAPI.setToken = token => {
-            axios.defaults.headers["Authorization"] = `Bearer ${token}`;
+            axios.defaults.headers.Authorization = `Bearer ${token}`;
         };
 
         Vue.prototype.$werewolvesAssistantAPI.register = user => axios.post(`/users`, user);

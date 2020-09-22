@@ -1,21 +1,23 @@
 <template>
-    <div class="player-card d-flex flex-column align-items-center"
-         :class="{ 'selectable': selectable, 'selected': selected }" ref="playerCard">
-        <PlayerThumbnail ref="playerThumbnail" :game="game" :player="player" :size="size" :class="{ 'player-card-thumbnail-selected': selected }"
+    <div ref="playerCard" class="player-card d-flex flex-column align-items-center w-100"
+         :class="{ 'selectable': selectable, 'selected': selected }">
+        <PlayerThumbnail ref="playerThumbnail" :player="player" :size="size"
+                         :class="{ 'player-card-thumbnail-selected': selected }"
                          @rolePicked="rolePicked" @unsetPlayer="unsetPlayer" @click.native="togglePlayerSelected"/>
         <div class="player-card-name text-center" :class="{ 'player-card-name-lg': size === 'lg' }"
-             v-html="player.name" @click="togglePlayerSelected"/>
+             @click="togglePlayerSelected" v-html="player.name"/>
         <div v-if="!game._id" class="player-card-role small text-center text-muted d-flex align-items-center">
-            <i v-if="player.role.current" v-tooltip="$t('PlayerCard.unsetRole')" @click="unsetRole"
-               class="fa fa-times-circle mr-1 unset-role-button"/>
-            <RoleText class="text-truncate" :role="player.role.current" @click.native="$refs.playerThumbnail.showRolePicker()"/>
+            <i v-if="player.role.current" v-tooltip="$t('PlayerCard.unsetRole')"
+               class="fa fa-times-circle mr-1 unset-role-button" @click="unsetRole"/>
+            <RoleText class="text-truncate" :role="player.role.current"
+                      @click.native="$refs.playerThumbnail.showRolePicker"/>
         </div>
     </div>
 </template>
 
 <script>
-import Player from "../../../classes/Player";
-import Game from "../../../classes/Game";
+import { mapGetters } from "vuex";
+import Player from "@/classes/Player";
 import PlayerThumbnail from "./PlayerThumbnail";
 import RoleText from "@/components/shared/Game/Role/RoleText";
 
@@ -23,10 +25,6 @@ export default {
     name: "PlayerCard",
     components: { RoleText, PlayerThumbnail },
     props: {
-        game: {
-            type: Game,
-            required: true,
-        },
         player: {
             type: Player,
             required: true,
@@ -44,6 +42,7 @@ export default {
             default: false,
         },
     },
+    computed: { ...mapGetters("game", { game: "game" }) },
     methods: {
         unsetPlayer() {
             this.$emit("unsetPlayer", this.player.name);

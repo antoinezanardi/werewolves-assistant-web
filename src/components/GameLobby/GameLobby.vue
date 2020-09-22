@@ -7,13 +7,13 @@
             <div v-else-if="waitingGame._id" key="existing-game" class="h-100 d-flex justify-content-center align-items-center">
                 <GameLobbyAlreadyHavePlayingGame :game="waitingGame" @cancelGame="cancelGame"/>
             </div>
-            <div key="game-composition" class="d-flex flex-column h-100" v-else>
+            <div v-else key="game-composition" class="d-flex flex-column h-100">
                 <div>
                     <div class="row justify-content-center">
                         <div class="col-lg-7 text-center">
                             <h1 id="game-lobby-title" class="d-inline-flex align-items-center justify-content-center">
                                 <i class="fa fa-gamepad text-primary"/>
-                                <span v-html="$t('GameLobby.gameComposition')" class="mx-3"/>
+                                <span class="mx-3" v-html="$t('GameLobby.gameComposition')"/>
                                 <WhatToDoButton @click.native="startTutorial"/>
                             </h1>
                         </div>
@@ -22,18 +22,19 @@
                         <div class="col-lg-5 col-md-8 col-12">
                             <form @submit.prevent="addPlayer">
                                 <div class="input-group">
-                                    <input id="game-lobby-player-input" class="form-control" :placeholder="playerNameInputPlaceholder"
-                                           v-model="playerName" :disabled="game.isMaxPlayerReached"
-                                           :class="{ 'is-invalid': isPlayerNameTaken }"/>
+                                    <input id="game-lobby-player-input" v-model="playerName" class="form-control"
+                                           :placeholder="playerNameInputPlaceholder" :disabled="game.isMaxPlayerReached"
+                                           :class="{ 'is-invalid': isPlayerNameTaken }" maxlength="30"/>
                                     <div class="input-group-append">
                                         <button class="btn btn-primary" :disabled="!canAddPlayer">
-                                            <i class='fa fa-plus mr-1'/>
+                                            <i class="fa fa-plus mr-1"/>
                                             <span v-html="$t('GameLobby.add')"/>
                                         </button>
                                     </div>
                                 </div>
                                 <div id="player-name-input-error">
                                     <span v-if="isPlayerNameTaken" v-html="$t('GameLobby.playerNameAlreadyTaken')"/>
+                                    <span v-else-if="sanitizedPlayerName.length === 30" v-html="$t('GameLobby.playerNameLengthMax')"/>
                                 </div>
                             </form>
                         </div>
@@ -45,13 +46,14 @@
                 </div>
                 <div id="game-lobby-players-container" class="d-flex flex-column flex-grow-1">
                     <transition mode="out-in" name="fade">
-                        <div class="d-flex flex-column justify-content-center flex-grow-1" v-if="!game.players.length">
-                            <h3 id="no-player-text" class="text-muted text-center font-italic d-flex justify-content-center align-items-center">
+                        <div v-if="!game.players.length" class="d-flex flex-column justify-content-center flex-grow-1">
+                            <h3 id="no-player-text"
+                                class="text-muted text-center font-italic d-flex justify-content-center align-items-center">
                                 <i class="fa fa-user-plus mr-2"/>
                                 <span v-html="$t('GameLobby.addPlayerWithName')"/>
                             </h3>
                         </div>
-                        <transition-group v-else tag="div" name="fade-list" id="players"
+                        <transition-group v-else id="players" tag="div" name="fade-list"
                                           class="row justify-content-center align-items-center flex-grow-1 m-2">
                             <PlayerCard v-for="player in game.players" :key="player.name" :game="game" :player="player"
                                         class="player-item col-lg-2 col-4" @rolePicked="rolePicked"
@@ -64,7 +66,8 @@
                     <div id="game-lobby-footer" class="row justify-content-between align-items-center">
                         <div class="col-lg-4 col-sm-6">
                             <form @submit.prevent="getGameRepartition">
-                                <SubmitButton id="random-repartition-button" classes="btn btn-dark btn-block text-uppercase font-weight-bold"
+                                <SubmitButton id="random-repartition-button"
+                                              classes="btn btn-dark btn-block text-uppercase font-weight-bold"
                                               :disabled-tooltip-text="$t('GameLobby.fourPlayerRequiredToGetRandomRepartition')"
                                               :text="`<i class='fas fa-random mr-2'></i>${$t('GameLobby.getRandomRepartition')}`"
                                               :loading="loading.getGameRepartition"
@@ -94,18 +97,19 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
 import { mapActions } from "vuex";
 import { parse } from "qs";
-import Game from "../../classes/Game";
-import Loading from "../shared/Loading";
-import Player from "../../classes/Player";
+import Game from "@/classes/Game";
+import Player from "@/classes/Player";
 import GameLobbyAlreadyHavePlayingGame from "./GameLobbyAlreadyHavePlayingGame";
-import SubmitButton from "../shared/Forms/SubmitButton";
 import GameLobbyComposition from "./GameLobbyComposition";
-import Swal from "sweetalert2";
+import Loading from "@/components/shared/Loading";
+import SubmitButton from "@/components/shared/Forms/SubmitButton";
 import WhatToDoButton from "@/components/shared/Game/WhatToDoButton/WhatToDoButton";
 import GameLobbyTutorial from "@/components/GameLobby/GameLobbyTutorial";
 import PlayerCard from "@/components/shared/Game/PlayerCard";
+import { filterOutHTMLTags } from "@/helpers/functions/String";
 
 export default {
     name: "GameLobby",
@@ -132,7 +136,7 @@ export default {
     },
     computed: {
         isPlayerNameTaken() {
-            return this.game.players.find(({ name }) => name === this.playerName.trim());
+            return this.game.players.find(({ name }) => name === this.sanitizedPlayerName);
         },
         canAddPlayer() {
             return !this.isPlayerNameTaken && !this.game.isMaxPlayerReached;
@@ -150,13 +154,16 @@ export default {
                 return this.$t("GameLobby.missingOneVillagerToStart");
             } else if (!this.game.allPlayersHaveRole) {
                 return this.$t("GameLobby.allPlayerDontHaveARole");
-            } else {
-                return "";
             }
+            return "";
+        },
+        sanitizedPlayerName() {
+            return filterOutHTMLTags(this.playerName.trim());
         },
     },
     async created() {
         try {
+            await this.setGame(new Game());
             await this.checkUserAuthentication();
             const { data } = await this.$werewolvesAssistantAPI.getGames({ status: "playing" });
             if (data.length) {
@@ -173,15 +180,13 @@ export default {
         }
     },
     methods: {
-        ...mapActions("user", {
-            checkUserAuthentication: "checkUserAuthentication",
-        }),
+        ...mapActions("user", { checkUserAuthentication: "checkUserAuthentication" }),
+        ...mapActions("game", { setGame: "setGame" }),
         addPlayer() {
-            const playerName = this.playerName.trim();
-            if (!playerName || !this.canAddPlayer) {
-                return this.playerName = "";
+            if (!this.sanitizedPlayerName || !this.canAddPlayer) {
+                this.playerName = "";
             } else {
-                this.game.players.push(new Player({ name: playerName }));
+                this.game.players.push(new Player({ name: this.sanitizedPlayerName }));
                 this.playerName = "";
             }
         },
@@ -194,7 +199,7 @@ export default {
                 const players = this.game.players.map(({ name }) => ({ name }));
                 const { data } = await this.$werewolvesAssistantAPI.getGameRepartition({ players });
                 for (const { name, role, group } of data.players) {
-                    const player = this.game.players.find(player => player.name === name);
+                    const player = this.game.players.find(({ name: playerName }) => playerName === name);
                     player.role.current = role;
                     player.role.group = group;
                 }
@@ -267,9 +272,8 @@ export default {
         if (!this.waitingGame._id && this.game.players.length && to.name !== "Game") {
             const { value: confirmLeaveGameLobby } = await this.confirmLeaveGameLobby();
             return confirmLeaveGameLobby ? next() : next(false);
-        } else {
-            return next();
         }
+        return next();
     },
 };
 </script>
@@ -288,7 +292,7 @@ export default {
     }
 
     #player-name-input-error {
-        height: 25px;
+        height: 45px;
     }
 
     #game-lobby-players-container {

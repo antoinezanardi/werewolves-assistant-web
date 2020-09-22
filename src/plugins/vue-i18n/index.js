@@ -4,7 +4,6 @@ import fr from "./fr";
 import en from "./en";
 
 Vue.use(VueI18n);
-
 const i18n = new VueI18n({
     locale: "fr",
     messages: { fr, en },

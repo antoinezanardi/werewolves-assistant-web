@@ -2,10 +2,10 @@
     <div id="role-picker" class="container-fluid">
         <div class="row role-thumbnail-row">
             <div class="col d-flex role-thumbnail justify-content-center align-items-center flex-wrap">
-                <div class="role-img-container" v-for="role in availableRoles" :key="role.name"
-                     @click="pickRole(role)" @mouseover="hoverOn = role.name"
-                     @mouseleave="hoverOn = undefined" :class="{ selected: player.role.current === role.name }">
-                    <img class="img-fluid" :src="getThumbnail(role.name)" alt="Role thumbnail">
+                <div v-for="role in availableRoles" :key="role.name" class="role-img-container"
+                     :class="{ selected: player.role.current === role.name }" @click="pickRole(role)"
+                     @mouseover="hoverOn = role.name" @mouseleave="hoverOn = undefined">
+                    <img class="img-fluid" :src="getThumbnail(role.name)" alt="Role thumbnail"/>
                 </div>
             </div>
         </div>
@@ -30,17 +30,12 @@ import villager from "../../../assets/img/roles/villager.png";
 import werewolf from "../../../assets/img/roles/werewolf.png";
 import witch from "../../../assets/img/roles/witch.png";
 import Player from "../../../classes/Player";
-import Game from "../../../classes/Game";
 
 export default {
     name: "RolePicker",
     props: {
         player: {
             type: Player,
-            required: true,
-        },
-        game: {
-            type: Game,
             required: true,
         },
     },
@@ -51,11 +46,13 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("role", {
-            roles: "roles",
-        }),
+        ...mapGetters("role", { roles: "roles" }),
+        ...mapGetters("game", { game: "game" }),
         roleText() {
-            return this.hoverOn ? this.$tc(`Role.${this.hoverOn}`, 1) : `<i class="fa fa-chevron-up animated mr-2"></i>${this.$t("RolePicker.chooseRole")}`;
+            if (this.hoverOn) {
+                return this.$tc(`Role.${this.hoverOn}`, 1);
+            }
+            return `<i class="fa fa-chevron-up animated mr-2"></i>${this.$t("RolePicker.chooseRole")}`;
         },
         availableRoles() {
             return this.roles.filter(({ name }) => name !== this.player.role.current);
@@ -66,6 +63,12 @@ export default {
             return this.IMGs[roleName];
         },
         confirmPickRole(role) {
+            let footer = "";
+            if (role.maxInGame === 1) {
+                footer = this.$t("RolePicker.roleWillBeSwitchedWithOtherPlayer", { roleName: this.roleText });
+            } else {
+                footer = this.$t("RolePicker.roleWillBeSwitchedWithAnotherPlayer", { roleName: this.roleText });
+            }
             return Swal.fire({
                 title: this.$t("RolePicker.maxInGameReached"),
                 text: this.$t("RolePicker.doYouWantToSetItAnyway"),
@@ -73,7 +76,7 @@ export default {
                 showCancelButton: true,
                 confirmButtonText: this.$t("RolePicker.confirm"),
                 cancelButtonText: this.$t("RolePicker.cancel"),
-                footer: role.maxInGame === 1 ? this.$t("RolePicker.roleWillBeSwitchedWithOtherPlayer", { roleName: this.roleText }) : this.$t("RolePicker.roleWillBeSwitchedWithAnotherPlayer", { roleName: this.roleText }),
+                footer,
             });
         },
         async pickRole(role) {

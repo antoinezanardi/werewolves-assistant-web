@@ -1,7 +1,7 @@
 <template>
     <div id="loading" class="d-flex justify-content-center align-items-center text-center">
         <HalfCircleSpinner id="loading-icon" :animation-duration="1000" :size="iconSize"/>
-        <span id="loading-text" v-if="text" v-html="text"/>
+        <span v-if="text" id="loading-text" v-html="text"/>
     </div>
 </template>
 
@@ -10,10 +10,11 @@ import HalfCircleSpinner from "epic-spinners/src/components/lib/HalfCircleSpinne
 
 export default {
     name: "Loading",
-    components: {HalfCircleSpinner},
+    components: { HalfCircleSpinner },
     props: {
         text: {
             type: String,
+            default: "",
         },
         iconSize: {
             type: Number,

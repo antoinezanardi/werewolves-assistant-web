@@ -3,7 +3,7 @@ function incrementPlayerVoteCount(votedPlayers, playerId, game, inc = 1) {
     if (votedPlayer) {
         votedPlayer.vote += inc;
     } else {
-        const player = game.players.find(player => player._id === playerId);
+        const player = game.players.find(({ _id }) => _id === playerId);
         votedPlayers.push({ ...player, vote: inc });
     }
 }
@@ -14,7 +14,7 @@ export function getNominatedPlayers(votes, game, action) {
         incrementPlayerVoteCount(votedPlayers, vote.for, game);
     }
     if (action === "vote") {
-        const ravenMarkedPlayer = this.game.getPlayerWithAttribute("raven-marked");
+        const ravenMarkedPlayer = game.getPlayerWithAttribute("raven-marked");
         if (ravenMarkedPlayer.isAlive) {
             incrementPlayerVoteCount(votedPlayers, ravenMarkedPlayer._id, game, 2);
         }

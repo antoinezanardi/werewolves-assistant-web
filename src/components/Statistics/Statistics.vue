@@ -27,7 +27,7 @@
                     <span v-html="$t('Statistics.createGameNow')"/>
                 </router-link>
             </div>
-            <div id="statistics-container" class="container-fluid flex-grow-1" v-else key="statistics">
+            <div v-else id="statistics-container" key="statistics" class="container-fluid flex-grow-1">
                 <div class="row">
                     <div class="col-12">
                         <ul>
@@ -43,20 +43,20 @@
                             <li>
                                 <span v-html="`${$t('Statistics.mostUsedRole')}: `"/>
                                 <RoleImage width="30" :role="mostUsedRole.role" class="mr-2"/>
-                                <span v-html="`(${$tc(`Role.${mostUsedRole.role}`, 1)})`" class="mr-2"/>
+                                <span class="mr-2" v-html="`(${$tc(`Role.${mostUsedRole.role}`, 1)})`"/>
                                 <span v-html="$tc('Statistics.withUsage', mostUsedRole.count, { count: mostUsedRole.count })"/>
                             </li>
                             <li>
                                 <span v-html="`${$t('Statistics.leastUsedRole')}: `"/>
                                 <RoleImage width="30" :role="leastUsedRole.role" class="mr-2"/>
-                                <span v-html="`(${$tc(`Role.${leastUsedRole.role}`, 1)})`" class="mr-2"/>
+                                <span class="mr-2" v-html="`(${$tc(`Role.${leastUsedRole.role}`, 1)})`"/>
                                 <span v-html="$tc('Statistics.withUsage', leastUsedRole.count, { count: leastUsedRole.count })"/>
                             </li>
                             <li>
-                                <span v-html="$tc('Statistics.averageVillagersWinning', averageVillagersWinning, { count: averageVillagersWinning })"/>
+                                <span v-html="averageVillagersWinningText"/>
                             </li>
                             <li>
-                                <span v-html="$tc('Statistics.averageWerewolvesWinning', averageWerewolvesWinning, { count: averageWerewolvesWinning })"/>
+                                <span v-html="averageWerewolvesWinningText"/>
                             </li>
                         </ul>
                     </div>
@@ -83,13 +83,12 @@
 import Loading from "../shared/Loading";
 import Game from "../../classes/Game";
 import RoleImage from "../shared/Game/Role/RoleImage";
+
 export default {
     name: "Statistics",
     components: { RoleImage, Loading },
     data() {
-        return {
-            games: null,
-        };
+        return { games: null };
     },
     computed: {
         doneGames() {
@@ -110,8 +109,14 @@ export default {
         averageVillagersWinning() {
             return this.gamesWonByVillagers ? Math.round(this.gamesWonByVillagers.length * 100 / this.doneGames.length) : undefined;
         },
+        averageVillagersWinningText() {
+            return this.$tc("Statistics.averageVillagersWinning", this.averageVillagersWinning, { count: this.averageVillagersWinning });
+        },
         averageWerewolvesWinning() {
             return this.gamesWonByVillagers ? Math.round(this.gamesWonByWerewolves.length * 100 / this.doneGames.length) : undefined;
+        },
+        averageWerewolvesWinningText() {
+            return this.$tc("Statistics.averageWerewolvesWinning", this.averageWerewolvesWinning, { count: this.averageWerewolvesWinning });
         },
         roleUsage() {
             if (this.games) {
@@ -126,9 +131,8 @@ export default {
                     }
                 }
                 return roles;
-            } else {
-                return undefined;
             }
+            return undefined;
         },
         mostUsedRole() {
             let mostUsedRole;

@@ -2,26 +2,22 @@
     <v-tour name="gamePlayFieldTour" :steps="steps" :options="options">
         <template slot-scope="tour">
             <transition name="fade">
-                <v-step  v-if="tour.steps[tour.currentStep]" :key="tour.currentStep" :step="tour.steps[tour.currentStep]"
-                         :previous-step="tour.previousStep" :next-step="tour.nextStep" :stop="tour.stop"
-                         :is-first="tour.isFirst" :is-last="tour.isLast" :labels="tour.labels" :highlight="tour.highlight"/>
+                <v-step v-if="tour.steps[tour.currentStep]" :key="tour.currentStep" :step="tour.steps[tour.currentStep]"
+                        :previous-step="tour.previousStep" :next-step="tour.nextStep" :stop="tour.stop"
+                        :is-first="tour.isFirst" :is-last="tour.isLast" :labels="tour.labels"
+                        :highlight="tour.highlight"/>
             </transition>
         </template>
     </v-tour>
 </template>
 
 <script>
-import Game from "@/classes/Game";
+import { mapGetters } from "vuex";
 
 export default {
     name: "GamePlayFieldTutorial",
-    props: {
-        game: {
-            type: Game,
-            required: true,
-        },
-    },
     computed: {
+        ...mapGetters("game", { game: "game" }),
         // eslint-disable-next-line max-lines-per-function
         steps() {
             const header = { title: this.$t(`GamePlayFieldTutorial.${this.game.firstWaiting.to}.howToPlay`) };
@@ -98,7 +94,7 @@ export default {
     },
     methods: {
         startTour() {
-            this.$tours["gamePlayFieldTour"].start();
+            this.$tours.gamePlayFieldTour.start();
         },
     },
 };

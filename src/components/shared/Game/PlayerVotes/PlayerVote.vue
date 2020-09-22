@@ -1,18 +1,18 @@
 <template>
     <div class="player-vote d-flex flex-column align-items-center p-2">
-        <PlayerCard :game="game" :player="player"/>
+        <PlayerCard :player="player"/>
         <div class="mb-3 vote-for-text text-center">
             <span class="font-italic" v-html="$t('PlayerVote.voteFor')"/>
         </div>
-        <VSelect :options="targetablePlayers" :placeholder="$t('PlayerVote.none')" :filter-by="filterBy" label="name"
-                 @input="playerVotes">
-            <template #selected-option="player">
-                <RoleImage :role="player.role.current" class="role-image-option mr-2"/>
-                <span v-html="player.name"/>
+        <VSelect :options="targetablePlayers" :placeholder="$t('PlayerVote.none')" :filter-by="filterBy"
+                 label="name" @input="playerVotes">
+            <template #selected-option="{ role, name }">
+                <RoleImage :role="role.current" class="role-image-option mr-2"/>
+                <span v-html="name"/>
             </template>
-            <template #option="player">
-                <RoleImage :role="player.role.current" class="role-image-option mr-2"/>
-                <span class="text-truncate" v-html="player.name"/>
+            <template #option="{ role, name }">
+                <RoleImage :role="role.current" class="role-image-option mr-2"/>
+                <span class="text-truncate" v-html="name"/>
             </template>
             <template #no-options>
                 <i class="fa fa-ban mr-2"/>
@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import Player from "../../../../classes/Player";
-import Game from "../../../../classes/Game";
+import { mapGetters } from "vuex";
+import Player from "@/classes/Player";
 import PlayerCard from "../PlayerCard";
 import RoleImage from "../Role/RoleImage";
 
@@ -32,16 +32,13 @@ export default {
     name: "PlayerVote",
     components: { RoleImage, PlayerCard },
     props: {
-        game: {
-            type: Game,
-            required: true,
-        },
         player: {
             type: Player,
             required: true,
         },
     },
     computed: {
+        ...mapGetters("game", { game: "game" }),
         targetablePlayers() {
             return this.game.alivePlayers.filter(({ name }) => name !== this.player.name);
         },

@@ -1,23 +1,23 @@
 <template>
     <span class="player-card-thumbnail" :class="{ 'player-card-thumbnail-lg': size === 'lg', 'dead-player-card': player.isAlive === false }">
-        <i v-if="!game._id" v-tooltip="$t('PlayerThumbnail.unsetPlayer')" @click="unsetPlayer"
-           class="fa fa-times-circle unset-player-button"/>
-        <v-popover :disabled="!!game._id" ref="thumbnailPopover" placement="left">
-            <VueFlip v-tooltip="playerThumbnailTooltip" height="100%" width="100%" v-model="flipped">
-                <template v-slot:front>
+        <i v-if="!game._id" v-tooltip="$t('PlayerThumbnail.unsetPlayer')" class="fa fa-times-circle unset-player-button"
+           @click="unsetPlayer"/>
+        <v-popover ref="thumbnailPopover" :disabled="!!game._id" placement="left">
+            <VueFlip v-model="flipped" v-tooltip="playerThumbnailTooltip" height="100%" width="100%">
+                <template #front>
                     <RoleImage :role="thumbnail.front"/>
                 </template>
-                <template v-slot:back>
+                <template #back>
                     <RoleImage :role="thumbnail.back"/>
                 </template>
             </VueFlip>
-            <RolePicker :player="player" :game="game" slot="popover" @rolePicked="rolePicked"/>
+            <RolePicker slot="popover" :player="player" @rolePicked="rolePicked"/>
         </v-popover>
     </span>
 </template>
 
 <script>
-import Game from "../../../classes/Game";
+import { mapGetters } from "vuex";
 import Player from "../../../classes/Player";
 import RolePicker from "./RolePicker";
 import RoleImage from "./Role/RoleImage";
@@ -26,10 +26,6 @@ export default {
     name: "PlayerThumbnail",
     components: { RoleImage, RolePicker },
     props: {
-        game: {
-            type: Game,
-            required: true,
-        },
         player: {
             type: Player,
             required: true,
@@ -49,8 +45,19 @@ export default {
         };
     },
     computed: {
+        ...mapGetters("game", { game: "game" }),
         playerThumbnailTooltip() {
-            return this.game._id || this.player.role.current ? this.$tc(`Role.${this.player.role.current}`, 1) : this.$t("PlayerThumbnail.chooseRole");
+            if (this.game._id || this.player.role.current) {
+                return this.$tc(`Role.${this.player.role.current}`, 1);
+            }
+            return this.$t("PlayerThumbnail.chooseRole");
+        },
+    },
+    watch: {
+        "player.role.current"(newRole, oldRole) {
+            if (newRole !== oldRole) {
+                this.changeRole(newRole);
+            }
         },
     },
     created() {
@@ -79,57 +86,50 @@ export default {
             this.$emit("unsetPlayer", this.player.name);
         },
     },
-    watch: {
-        "player.role.current"(newRole, oldRole) {
-            if (newRole !== oldRole) {
-                this.changeRole(newRole);
-            }
-        },
-    },
 };
 </script>
 
 <style lang="scss" scoped>
-    .player-card-thumbnail {
-        cursor: pointer;
-        width: 50px;
-        height: 50px;
-        border: 3px solid grey;
-        border-radius: 5px;
-        position: relative;
-        transition: all 0.25s ease;
+.player-card-thumbnail {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border: 3px solid grey;
+    border-radius: 5px;
+    position: relative;
+    transition: all 0.25s ease;
 
-        &:hover {
-            border-color: #D4D4D4;
-        }
+    &:hover {
+        border-color: #D4D4D4;
+    }
 
-        &.player-card-thumbnail-lg {
-            width: 100px;
-            height: 100px;
-        }
+    &.player-card-thumbnail-lg {
+        width: 100px;
+        height: 100px;
+    }
 
-        &.player-card-thumbnail-selected {
-            border-color: white;
-            width: 70px;
-            height: 70px;
-        }
+    &.player-card-thumbnail-selected {
+        border-color: white;
+        width: 70px;
+        height: 70px;
+    }
 
-        &.dead-player-card {
-            img {
-                filter: grayscale(1);
-            }
-        }
-
+    &.dead-player-card {
         img {
-            filter: grayscale(0);
-            transition: all 0.25s linear;
+            filter: grayscale(1);
         }
     }
 
-    .unset-player-button {
-        cursor: pointer;
-        position: absolute;
-        right: -15px;
-        top: -15px;
+    img {
+        filter: grayscale(0);
+        transition: all 0.25s linear;
     }
+}
+
+.unset-player-button {
+    cursor: pointer;
+    position: absolute;
+    right: -15px;
+    top: -15px;
+}
 </style>

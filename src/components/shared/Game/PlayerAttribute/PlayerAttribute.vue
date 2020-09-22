@@ -1,5 +1,5 @@
 <template>
-    <img alt="Attribute" class="player-attribute" v-tooltip="tooltip" :src="attributes[attribute].SVG"/>
+    <img v-tooltip="tooltip" alt="Attribute" class="player-attribute" :src="attributes[attribute].SVG"/>
 </template>
 
 <script>
@@ -60,7 +60,12 @@ export default {
     },
     computed: {
         tooltip() {
-            return { content: `<div class="mb-2">${this.attributes[this.attribute].name}</div><img width="50" src="${this.attributes[this.attribute].SVG}"/>` };
+            return {
+                content: `<div class="mb-2">
+                                ${this.attributes[this.attribute].name}
+                          </div>
+                          <img width="50" src="${this.attributes[this.attribute].SVG}"/>`,
+            };
         },
     },
 };

@@ -8,7 +8,6 @@ import About from "@/components/About/About";
 import NotFound from "@/components/NotFound/NotFound";
 
 Vue.use(VueRouter);
-
 const originalPush = VueRouter.prototype.push;
 VueRouter.prototype.push = function push(location, onResolve, onReject) {
     if (onResolve || onReject) {
@@ -16,7 +15,6 @@ VueRouter.prototype.push = function push(location, onResolve, onReject) {
     }
     return originalPush.call(this, location).catch(err => err);
 };
-
 const originalReplace = VueRouter.prototype.replace;
 VueRouter.prototype.replace = function replace(query, onResolve, onReject) {
     if (onResolve || onReject) {
@@ -24,7 +22,6 @@ VueRouter.prototype.replace = function replace(query, onResolve, onReject) {
     }
     return originalReplace.call(this, query).catch(err => err);
 };
-
 const routes = [
     {
         path: "/",
@@ -55,7 +52,6 @@ const routes = [
         redirect: "/404",
     },
 ];
-
 const Router = new VueRouter({
     mode: "history",
     base: process.env.BASE_URL,

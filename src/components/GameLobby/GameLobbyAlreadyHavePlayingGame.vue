@@ -54,17 +54,14 @@ export default {
         },
     },
     data() {
-        return {
-            loading: false,
-        };
+        return { loading: false };
     },
     computed: {
         gamePhaseText() {
             if (this.game.phase === "day") {
                 return `<i class="fas fa-sun sun-color mr-2"></i>${this.$t("GameLobbyAlreadyHavePlayingGame.day")} ${this.game.turn}`;
-            } else {
-                return `<i class="fas fa-moon moon-color mr-2"></i>${this.$t("GameLobbyAlreadyHavePlayingGame.night")} ${this.game.turn}`;
             }
+            return `<i class="fas fa-moon moon-color mr-2"></i>${this.$t("GameLobbyAlreadyHavePlayingGame.night")} ${this.game.turn}`;
         },
     },
     methods: {

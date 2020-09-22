@@ -27,7 +27,6 @@
 </template>
 
 <script>
-import Game from "@/classes/Game";
 import GameHistory from "@/classes/GameHistory";
 import eatenSVG from "@/assets/svg/attributes/eaten.svg";
 import deathPotionSVG from "@/assets/svg/attributes/drank-death-potion.svg";
@@ -45,10 +44,6 @@ export default {
     name: "GameSummaryHistoryLine",
     components: { RoleText, RoleImage },
     props: {
-        game: {
-            type: Game,
-            required: true,
-        },
         gameHistoryEntry: {
             type: GameHistory,
             required: true,
@@ -62,9 +57,8 @@ export default {
             const { phase, turn } = this.gameHistoryEntry;
             if (phase === "day") {
                 return `${this.$t("GameSummaryHistoryLine.day")} ${turn}`;
-            } else {
-                return `${this.$t("GameSummaryHistoryLine.night")} ${turn}`;
             }
+            return `${this.$t("GameSummaryHistoryLine.night")} ${turn}`;
         },
         actionImageSource() {
             const actionImageSource = {
@@ -92,12 +86,12 @@ export default {
             } else if (this.gameHistoryEntry.play.action === "use-potion") {
                 if (targets.length === 2) {
                     return this.$t(`GameSummaryHistoryLine.actions.use-potion.both`);
-                } else {
-                    return targets[0].potion.life ? this.$t(`GameSummaryHistoryLine.actions.use-potion.life`) : this.$t(`GameSummaryHistoryLine.actions.use-potion.death`);
+                } else if (targets[0].potion.life) {
+                    return this.$t(`GameSummaryHistoryLine.actions.use-potion.life`);
                 }
-            } else {
-                return this.$t(`GameSummaryHistoryLine.actions.${this.gameHistoryEntry.play.action}`);
+                return this.$t(`GameSummaryHistoryLine.actions.use-potion.death`);
             }
+            return this.$t(`GameSummaryHistoryLine.actions.${this.gameHistoryEntry.play.action}`);
         },
     },
 };
