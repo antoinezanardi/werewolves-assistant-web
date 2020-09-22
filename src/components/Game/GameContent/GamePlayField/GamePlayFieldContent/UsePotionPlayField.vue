@@ -38,7 +38,7 @@
                     </div>
                     <div v-else-if="panel === 'death-potion'" id="use-death-potion-content" key="death-potion-panel"
                          class="h-100">
-                        <PlayerTargets :targets="game.alivePlayers" :play="play" attribute="drank-death-potion"
+                        <PlayerTargets :targets="alivePlayersWithoutWerewolvesTarget" :play="play" attribute="drank-death-potion"
                                        class="h-100" @playerSelected="playerSelected"/>
                     </div>
                 </transition>
@@ -85,6 +85,9 @@ export default {
         },
         deathPotionPanelTabText() {
             return this.game.hasWitchUsedDeathPotion ? this.$t("UsePotionPlayField.deathPotionUsed") : this.$t("UsePotionPlayField.useDeathPotionOn");
+        },
+        alivePlayersWithoutWerewolvesTarget() {
+            return this.game.alivePlayers.filter(player => !player.hasAttribute("eaten"));
         },
     },
     methods: {

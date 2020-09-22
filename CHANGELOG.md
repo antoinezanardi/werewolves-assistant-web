@@ -9,14 +9,15 @@
 
 ### 🌟 Enhancements
 
+* [#27](https://github.com/antoinezanardi/werewolves-assistant-web/issues/27) - Player eaten by werewolves can't be targeted by the witch's death potion anymore.
 * [#29](https://github.com/antoinezanardi/werewolves-assistant-web/issues/29) - `README.md` file has been approved with new badges and 4 new sections. 
 * [#31](https://github.com/antoinezanardi/werewolves-assistant-web/issues/31) - `ESLint` rules completed with `vue` rules and some forgotten other rules. `.eslintrc.js` file contains now all existing rules. 
-* [#32](https://github.com/antoinezanardi/werewolves-assistant-web/issues/32) - Player name input has been restricted of 30 maximum length and HTML tags were filtered out. 
-* [#33](https://github.com/antoinezanardi/werewolves-assistant-web/issues/33) - Player name too long is truncated for preventing overflow. 
 
 ### 🐛 Bug fixes
 
 * [#28](https://github.com/antoinezanardi/werewolves-assistant-web/issues/28) - If the user tries to get a game with an unknown id, he is redirected to home page.
+* [#32](https://github.com/antoinezanardi/werewolves-assistant-web/issues/32) - Player name input has been restricted of 30 maximum length and HTML tags were filtered out. 
+* [#33](https://github.com/antoinezanardi/werewolves-assistant-web/issues/33) - Player name too long is truncated for preventing overflow. 
 
 ### ♻️ Refactoring
 
