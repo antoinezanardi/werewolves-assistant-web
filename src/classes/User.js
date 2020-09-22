@@ -1,4 +1,4 @@
-import { getProp } from "../helpers/functions/Class";
+import { getProp } from "@/helpers/functions/Class";
 
 class User {
     constructor(user = null) {

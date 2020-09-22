@@ -1,4 +1,4 @@
-import { getProp } from "../helpers/functions/Class";
+import { getProp } from "@/helpers/functions/Class";
 import Player from "./Player";
 
 class GameHistory {

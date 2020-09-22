@@ -1,11 +1,11 @@
 <template>
-    <span class="asterisk">*</span>
+    <span class="asterisk">
+        *
+    </span>
 </template>
 
 <script>
-export default {
-    name: "RedAsterisk",
-};
+export default { name: "RedAsterisk" };
 </script>
 
 <style scoped>

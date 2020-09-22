@@ -1,6 +1,14 @@
 {
     "NavBar": {
-        "werewolvesAssistant": "Assistant Loups-Garous"
+        "werewolvesAssistant": "Assistant Loups-Garous",
+        "options": "Options",
+        "quit": "Retour à l'accueil",
+        "cancelGame": "Annuler la partie",
+        "areYouSureYouWantToCancelGame": "Êtes-vous sûr de vouloir annuler cette partie ?",
+        "thisCantBeUndo": "Vous ne pourrez plus intéragir avec cette partie et cette action est irréversible.",
+        "confirm": "Confirmer",
+        "cancel": "Annuler",
+        "gameCanceled": "Partie annulée"
     },
     "Home": {
         "werewolvesAssistant": "Assistant Loups-Garous",
@@ -91,7 +99,8 @@
         "areYouSureYouWantToQuit": "Êtes-vous sûr de vouloir quitter la composition de partie ?",
         "gameCompositionNotFinished": "La composition du jeu n'est pas encore finalisée.",
         "quit": "Quitter",
-        "cancel": "Annuler"
+        "cancel": "Annuler",
+        "playerNameLengthMax": "Limite de caractères atteinte pour un nom de joueur (30 max.)"
     },
     "GameLobbyComposition": {
         "playerCount": "Aucun joueur | {count} joueur | {count} joueurs",
@@ -138,7 +147,8 @@
         "yourProgressIsSaved": "Votre progression est sauvegardée.",
         "quit": "Quitter le jeu",
         "cancel": "Annuler",
-        "youDontOwnThisGame": "Cette partie ne vous appartient pas"
+        "youDontOwnThisGame": "Cette partie ne vous appartient pas",
+        "cantGetGame": "Impossible de récupérer la partie"
     },
     "GamePlayFieldHeader": {
         "day": "Jour",
@@ -300,6 +310,15 @@
         "fromScratch": "Recommencer du début",
         "seeGameSummary": "Voir le récapitulatif de partie"
     },
+    "GameCanceled": {
+        "gameCanceled": "Partie annulée (Oooh ...)",
+        "restartGame": "Recommencer une partie",
+        "quit": "Quitter",
+        "newGame": "Nouvelle partie",
+        "doYouWantToKeepSamePlayers": "Voulez-vous rejouer avec les mêmes joueurs ?",
+        "keepSamePlayers": "Garder les mêmes joueurs",
+        "fromScratch": "Recommencer du début"
+        },
     "GameSummaryModal": {
         "gameSummary": "Récapitulatif de la partie",
         "gameResults": "Résultats de la partie",

@@ -1,30 +1,21 @@
 <template>
     <div id="game-content" class="d-flex flex-column">
         <transition mode="out-in" name="fade">
-            <GameEventMonitor v-if="events.length" key="game-event-monitor" :game="game" :events="events"
-                              @skipEvent="removeEvent"/>
-            <GamePlayField v-else key="game-play-field" :game="game" :play="play"
-                           @playerSelected="playerSelected" @playerVotes="playerVotes"
-                           @updateGame="updateGame"/>
+            <GameEventMonitor v-if="events.length" key="game-event-monitor" :events="events" @skipEvent="removeEvent"/>
+            <GamePlayField v-else key="game-play-field" :play="play" @playerSelected="playerSelected" @playerVotes="playerVotes"/>
         </transition>
     </div>
 </template>
 
 <script>
-import Game from "../../../classes/Game";
+import { mapGetters } from "vuex";
 import GamePlayField from "./GamePlayField/GamePlayField";
-import GameEvent from "../../../classes/GameEvent";
+import GameEvent from "@/classes/GameEvent";
 import GameEventMonitor from "../GameEventMonitor/GameEventMonitor";
 
 export default {
     name: "GameContent",
     components: { GameEventMonitor, GamePlayField },
-    props: {
-        game: {
-            type: Game,
-            required: true,
-        },
-    },
     data() {
         return {
             play: {
@@ -34,7 +25,28 @@ export default {
             events: [],
         };
     },
-
+    computed: { ...mapGetters("game", { game: "game" }) },
+    watch: {
+        game: {
+            handler(newGame, oldGame) {
+                this.resetPlay();
+                // this.events.push(new GameEvent({ type: "player-dies", targets: [{ player: this.game.players[1] }] }));
+                if (newGame.tick === 1) {
+                    this.events.push(new GameEvent({ type: "game-starts" }));
+                }
+                if (newGame.phase === "day") {
+                    this.generateGamePhaseEvent(newGame, oldGame);
+                    this.generateGameDeathEvents(newGame, oldGame);
+                } else {
+                    this.generateGameDeathEvents(newGame, oldGame);
+                    this.generateGamePhaseEvent(newGame, oldGame);
+                }
+                this.generateGameRoleTurnEvents(newGame, oldGame);
+            },
+            deep: true,
+            immediate: true,
+        },
+    },
     methods: {
         playerVotes(vote) {
             const idx = this.play.votes.findIndex(({ from }) => from === vote.from);
@@ -67,16 +79,14 @@ export default {
         resetPlay() {
             this.play.votes = [];
             this.play.targets = [];
-        },
-        updateGame(game) {
-            this.resetPlay();
-            const lastGameHistoryEntry = game.history[0];
-            if (lastGameHistoryEntry.play.action === "look") {
-                this.events.push(new GameEvent({ type: "seer-looks", targets: lastGameHistoryEntry.play.targets }));
-            } else if (lastGameHistoryEntry.play.action === "elect-sheriff" || lastGameHistoryEntry.play.action === "delegate") {
-                this.events.push(new GameEvent({ type: "sheriff-elected", targets: lastGameHistoryEntry.play.targets }));
+            if (this.game.history.length) {
+                const lastGameHistoryEntry = this.game.history[0];
+                if (lastGameHistoryEntry.play.action === "look") {
+                    this.events.push(new GameEvent({ type: "seer-looks", targets: lastGameHistoryEntry.play.targets }));
+                } else if (lastGameHistoryEntry.play.action === "elect-sheriff" || lastGameHistoryEntry.play.action === "delegate") {
+                    this.events.push(new GameEvent({ type: "sheriff-elected", targets: lastGameHistoryEntry.play.targets }));
+                }
             }
-            this.$emit("updateGame", game);
         },
         generateGamePhaseEvent(newGame, oldGame) {
             if (newGame.tick === 2) {
@@ -108,7 +118,7 @@ export default {
             };
             if ((!oldGame || newGame.firstWaiting.for !== oldGame.firstWaiting.for && newGame.firstWaiting.to !== oldGame.firstWaiting.to) &&
                 roleTurnEvents[newGame.firstWaiting.for]) {
-                return this.events.push(new GameEvent({ type: roleTurnEvents[newGame.firstWaiting.for] }));
+                this.events.push(new GameEvent({ type: roleTurnEvents[newGame.firstWaiting.for] }));
             }
         },
         removeEvent(event) {
@@ -116,26 +126,6 @@ export default {
             if (idx !== -1) {
                 this.events.splice(idx, 1);
             }
-        },
-    },
-    watch: {
-        game: {
-            handler(newGame, oldGame) {
-                // this.events.push(new GameEvent({ type: "player-dies", targets: [{ player: this.game.players[1] }] }));
-                if (newGame.tick === 1) {
-                    this.events.push(new GameEvent({ type: "game-starts" }));
-                }
-                if (newGame.phase === "day") {
-                    this.generateGamePhaseEvent(newGame, oldGame);
-                    this.generateGameDeathEvents(newGame, oldGame);
-                } else {
-                    this.generateGameDeathEvents(newGame, oldGame);
-                    this.generateGamePhaseEvent(newGame, oldGame);
-                }
-                this.generateGameRoleTurnEvents(newGame, oldGame);
-            },
-            deep: true,
-            immediate: true,
         },
     },
 };

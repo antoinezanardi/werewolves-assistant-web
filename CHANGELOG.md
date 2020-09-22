@@ -1,6 +1,53 @@
 # 📈 LIST OF CHANGES FOR WEREWOLVES ASSISTANT WEB
 
-## 1.0.0-beta.3 (2020-08-15) 
+## 1.0.0-beta.4 (2020-08-??)
+
+### 🚀 New features
+
+* [#25](https://github.com/antoinezanardi/werewolves-assistant-web/issues/25) - User can cancel a playing game by clicking on the button in the nav bar.
+* [#26](https://github.com/antoinezanardi/werewolves-assistant-web/issues/26) - Canceled game has now a dedicated page.
+
+### 🌟 Enhancements
+
+* [#27](https://github.com/antoinezanardi/werewolves-assistant-web/issues/27) - Player eaten by werewolves can't be targeted by the witch's death potion anymore.
+* [#29](https://github.com/antoinezanardi/werewolves-assistant-web/issues/29) - `README.md` file has been approved with new badges and 4 new sections. 
+* [#31](https://github.com/antoinezanardi/werewolves-assistant-web/issues/31) - `ESLint` rules completed with `vue` rules and some forgotten other rules. `.eslintrc.js` file contains now all existing rules. 
+
+### 🐛 Bug fixes
+
+* [#28](https://github.com/antoinezanardi/werewolves-assistant-web/issues/28) - If the user tries to get a game with an unknown id, he is redirected to home page.
+* [#32](https://github.com/antoinezanardi/werewolves-assistant-web/issues/32) - Player name input has been restricted of 30 maximum length and HTML tags were filtered out. 
+* [#33](https://github.com/antoinezanardi/werewolves-assistant-web/issues/33) - Player name too long is truncated for preventing overflow. 
+
+### ♻️ Refactoring
+
+* `game` object is not a property anymore but stored into `vuex` store.
+
+### 📦 Packages
+
+* `xss` installed with version `1.0.8`.
+* `@sentry/browser` updated to version `5.24.2`.
+* `@sentry/integrations` updated to version `5.24.2`.
+* `@vue/cli-plugin-e2e-cypress` updated to version `4.5.6`.
+* `@vue/cli-plugin-eslint` updated to version `4.5.6`.
+* `@vue/cli-plugin-router` updated to version `4.5.6`.
+* `@vue/cli-plugin-unit-mocha` updated to version `4.5.6`.
+* `@vue/cli-plugin-vuex` updated to version `4.5.6`.
+* `@vue/cli-service` updated to version `4.5.6`.
+* `@vue/test-utils` updated to version `1.1.0`.
+* `animate.css` updated to version `4.1.1`.
+* `axios` updated to version `0.20.0`.
+* `eslint` updated to version `7.9.0`.
+* `sass-loader` updated to version `10.0.2`.
+* `sweetalert2` updated to version `10.3.1`.
+* `vee-validate` updated to version `3.4.0`.
+* `vue` updated to version `2.6.12`.
+* `vue-i18n` updated to version `8.21.1`.
+* `vue-template-compiler` updated to version `2.6.12`.
+
+---
+
+## 1.0.0-beta.3 (2020-08-15)
 
 ### 🌟 Enhancements
 

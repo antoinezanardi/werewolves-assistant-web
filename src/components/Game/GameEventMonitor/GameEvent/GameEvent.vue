@@ -2,17 +2,18 @@
     <div id="game-event" class="container-fluid d-flex flex-grow-1 flex-column">
         <Keypress key-event="keyup" :key-code="37" @success="previousGameEventMessage"/>
         <Keypress key-event="keyup" :key-code="39" @success="nextGameEventMessage"/>
-        <div id="game-event-image-container" class="row justify-content-center align-items-center">
-            <div class="col-12 d-flex justify-content-center flex-grow-1">
-                <GameEventImage :game="game" :event="event"/>
+        <div id="game-event-image-container" class="d-flex justify-content-center align-items-center w-100">
+            <div class="d-flex justify-content-center flex-grow-1 w-100">
+                <GameEventImage class="w-100" :event="event"/>
             </div>
         </div>
         <div id="game-event-message-container" class="w-100 d-flex">
             <div class="row align-items-center d-flex flex-grow-1">
                 <div class="col-2 col-md-1 px-0">
                     <v-popover trigger="hover" :disabled="!canGoBackToPreviousGameEventMessage || isTouchDevice">
-                        <i class="fa fa-chevron-left fa-3x game-event-message-button" @click="previousGameEventMessage"
-                           :class="{ disabled: !canGoBackToPreviousGameEventMessage }"/>
+                        <i class="fa fa-chevron-left fa-3x game-event-message-button"
+                           :class="{ disabled: !canGoBackToPreviousGameEventMessage }"
+                           @click="previousGameEventMessage"/>
                         <template slot="popover">
                             <div v-html="$t('GameEvent.previous')"/>
                             <hr class="bg-secondary my-1"/>
@@ -26,7 +27,7 @@
                 </div>
                 <div class="col-8 col-md-10 text-center">
                     <transition mode="out-in" name="fade">
-                        <div id="game-event-message" class="text-center" :key="currentGameEventMessage"
+                        <div id="game-event-message" :key="currentGameEventMessage" class="text-center"
                              v-html="currentGameEventMessage"/>
                     </transition>
                 </div>
@@ -50,7 +51,7 @@
 </template>
 
 <script>
-import Game from "@/classes/Game";
+import { mapGetters } from "vuex";
 import GameEvent from "@/classes/GameEvent";
 import i18n from "@/plugins/vue-i18n";
 import GameEventImage from "@/components/Game/GameEventMonitor/GameEvent/GameEventImage";
@@ -63,10 +64,6 @@ export default {
     name: "GameEvent",
     components: { GameEventImage },
     props: {
-        game: {
-            type: Game,
-            required: true,
-        },
         event: {
             type: GameEvent,
             required: true,
@@ -75,14 +72,15 @@ export default {
     data() {
         return {
             messageIdx: 0,
-            IMGs: {
-                leftArrowKey, rightArrowKey,
-            },
+            IMGs: { leftArrowKey, rightArrowKey },
         };
     },
     computed: {
+        ...mapGetters("game", { game: "game" }),
         // eslint-disable-next-line max-lines-per-function
         gameEventMetadata() {
+            const gameEventTargetName = this.hasGameEventTarget ? this.event.targets[0].player.name : null;
+            const gameEventTargetRole = this.hasGameEventTarget ? i18n.t(`Role.a.${this.event.targets[0].player.role.current}`) : null;
             return {
                 "game-starts": {
                     messages: [
@@ -95,45 +93,25 @@ export default {
                 },
                 "player-dies": {
                     messages: [
-                        i18n.t("GameEvent.messages.playerDies", { player: this.hasGameEventTarget ? this.event.targets[0].player.name : null }),
+                        i18n.t("GameEvent.messages.playerDies", { player: gameEventTargetName }),
                         i18n.t("GameEvent.messages.playerRevealsRole"),
                     ],
                 },
                 "sheriff-elected": {
                     messages: [
-                        i18n.t("GameEvent.messages.playerHasBeenPromotedSheriff", { player: this.hasGameEventTarget ? this.event.targets[0].player.name : null }),
+                        i18n.t("GameEvent.messages.playerHasBeenPromotedSheriff", { gameEventTargetName }),
                         ...insertIf(this.game.tick === 1, i18n.t("GameEvent.messages.sheriffCanMakeASpeech")),
                     ],
                 },
-                "night-falls": {
-                    messages: [i18n.t("GameEvent.messages.nightFalls"), i18n.t("GameEvent.messages.inhabitantsFallAsleep")],
-                },
-                "day-rises": {
-                    messages: [i18n.t("GameEvent.messages.dayRises")],
-                },
-                "seer-starts": {
-                    messages: [i18n.t("GameEvent.messages.seerStarts")],
-                },
-                "seer-looks": {
-                    messages: [
-                        `${i18n.t("GameEvent.messages.seerHasSeen")} ${i18n.t(`Role.a.${this.hasGameEventTarget ? this.event.targets[0].player.role.current : "villager"}`)} !`,
-                    ],
-                },
-                "werewolves-start": {
-                    messages: [i18n.tc("GameEvent.messages.werewolvesStart", this.game.aliveWerewolfPlayers.length)],
-                },
-                "witch-starts": {
-                    messages: [i18n.t("GameEvent.messages.witchStarts")],
-                },
-                "guard-starts": {
-                    messages: [i18n.t("GameEvent.messages.guardStarts")],
-                },
-                "raven-starts": {
-                    messages: [i18n.t("GameEvent.messages.ravenStarts")],
-                },
-                "hunter-starts": {
-                    messages: [i18n.t("GameEvent.messages.hunterStarts")],
-                },
+                "night-falls": { messages: [i18n.t("GameEvent.messages.nightFalls"), i18n.t("GameEvent.messages.inhabitantsFallAsleep")] },
+                "day-rises": { messages: [i18n.t("GameEvent.messages.dayRises")] },
+                "seer-starts": { messages: [i18n.t("GameEvent.messages.seerStarts")] },
+                "seer-looks": { messages: [`${i18n.t("GameEvent.messages.seerHasSeen")} ${gameEventTargetRole} !`] },
+                "werewolves-start": { messages: [i18n.tc("GameEvent.messages.werewolvesStart", this.game.aliveWerewolfPlayers.length)] },
+                "witch-starts": { messages: [i18n.t("GameEvent.messages.witchStarts")] },
+                "guard-starts": { messages: [i18n.t("GameEvent.messages.guardStarts")] },
+                "raven-starts": { messages: [i18n.t("GameEvent.messages.ravenStarts")] },
+                "hunter-starts": { messages: [i18n.t("GameEvent.messages.hunterStarts")] },
             };
         },
         hasGameEventTarget() {

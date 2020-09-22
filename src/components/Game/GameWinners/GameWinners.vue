@@ -13,12 +13,12 @@
                 </div>
             </div>
             <div class="row justify-content-center mt-4">
-                <PlayerCard v-for="player in winners" :key="player.name" :game="game" :player="player" class="col-lg-2 col-3"/>
+                <PlayerCard v-for="player in winners" :key="player.name" :player="player" class="col-lg-2 col-3"/>
             </div>
         </div>
         <div class="row justify-content-between align-items-center">
             <div class="col-lg-4">
-                <button class="btn btn-primary btn-block" @click="$refs.gameSummaryModal.show()">
+                <button class="btn btn-primary btn-block" @click="$refs.gameSummaryModal.show">
                     <i class="fa fa-list mr-2"/>
                     <span v-html="$t('GameWinners.seeGameSummary')"/>
                 </button>
@@ -36,35 +36,31 @@
                 </router-link>
             </div>
         </div>
-        <GameSummaryModal ref="gameSummaryModal" :game="game"/>
+        <GameSummaryModal ref="gameSummaryModal"/>
     </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import Swal from "sweetalert2";
 import { stringify } from "qs";
-import trophy from "../../../assets/svg/game/trophy.svg";
-import Game from "../../../classes/Game";
+import trophy from "@/assets/svg/game/trophy.svg";
 import PlayerCard from "../../shared/Game/PlayerCard";
 import GameSummaryModal from "@/components/Game/GameWinners/GameSummaryModal/GameSummaryModal";
 
 export default {
     name: "GameWinners",
     components: { GameSummaryModal, PlayerCard },
-    props: {
-        game: {
-            type: Game,
-            required: true,
-        },
-    },
     data() {
-        return {
-            SVGs: { trophy },
-        };
+        return { SVGs: { trophy } };
     },
     computed: {
+        ...mapGetters("game", { game: "game" }),
         winnersText() {
-            return this.game.won.by === "werewolves" ? this.$tc("GameWinners.wonByWerewolves", this.winners.length) : this.$tc("GameWinners.wonByVillagers", this.winners.length);
+            if (this.game.won.by === "werewolves") {
+                return this.$tc("GameWinners.wonByWerewolves", this.winners.length);
+            }
+            return this.$tc("GameWinners.wonByVillagers", this.winners.length);
         },
         winners() {
             return this.game.won.by === "werewolves" ? this.game.werewolfPlayers : this.game.villagerPlayers;
@@ -84,10 +80,9 @@ export default {
         async restartGame() {
             const { value } = await this.confirmRestartGame();
             if (value) {
-                return await this.$router.push(`/game-lobby?${stringify({ players: this.game.players.map(player => ({ name: player.name })) })}`);
-            } else {
-                return await this.$router.push("/game-lobby");
+                return this.$router.push(`/game-lobby?${stringify({ players: this.game.players.map(player => ({ name: player.name })) })}`);
             }
+            return this.$router.push("/game-lobby");
         },
     },
 };

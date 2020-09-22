@@ -6,6 +6,6 @@ import Config from "../../../config";
 if (Config.sentry.enabled) {
     Sentry.init({
         dsn: `https://${Config.sentry.key}.ingest.sentry.io/${Config.sentry.projectId}`,
-        integrations: [new VueIntegration({Vue, attachProps: true})],
+        integrations: [new VueIntegration({ Vue, attachProps: true })],
     });
 }

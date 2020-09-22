@@ -21,9 +21,7 @@ export default {
     name: "App",
     components: { NavBar, SpinningLoader },
     data() {
-        return {
-            loading: true,
-        };
+        return { loading: true };
     },
     async mounted() {
         await this.checkTokenAndLogin();

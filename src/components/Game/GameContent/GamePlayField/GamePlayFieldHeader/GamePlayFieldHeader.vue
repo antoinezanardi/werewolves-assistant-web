@@ -3,7 +3,7 @@
         <div class="row align-items-center">
             <div id="game-phase" class="col-lg-2 col-3 font-weight-bold text-center">
                 <transition name="translate-down-fade" mode="out-in">
-                    <div class="fa text-center d-block pt-2" :key="game.phase" :class="gamePhaseClasses"/>
+                    <div :key="game.phase" class="fa text-center d-block pt-2" :class="gamePhaseClasses"/>
                 </transition>
                 <VRoller class="text-center mt-2" :text="gamePhaseLabel" :default-char="gamePhaseLabel"/>
             </div>
@@ -17,12 +17,14 @@
             </div>
             <div class="col-lg-2 col-3 d-flex flex-column justify-content-center align-items-center">
                 <div id="game-waiting-card-container">
-                    <VueFlip height="50px" width="50px" v-model="gameWaitingCard.flipped">
-                        <template v-slot:front>
-                            <img id="game-waiting-card-front" :src="gameWaitingCard.thumbnail.front" class="img-fluid" alt="Game Waiting Card Front"/>
+                    <VueFlip v-model="gameWaitingCard.flipped" height="50px" width="50px">
+                        <template #front>
+                            <img id="game-waiting-card-front" :src="gameWaitingCard.thumbnail.front" class="img-fluid"
+                                 alt="Game Waiting Card Front"/>
                         </template>
-                        <template v-slot:back>
-                            <img id="game-waiting-card-back" :src="gameWaitingCard.thumbnail.back" class="img-fluid" alt="Game Waiting Card Back"/>
+                        <template #back>
+                            <img id="game-waiting-card-back" :src="gameWaitingCard.thumbnail.back"
+                                 class="img-fluid" alt="Game Waiting Card Back"/>
                         </template>
                     </VueFlip>
                     <WhatToDoButton id="what-to-do-button" @click.native="$emit('startTutorial')"/>
@@ -38,36 +40,30 @@
 </template>
 
 <script>
-import Game from "../../../../../classes/Game";
-import sheriffSVG from "../../../../../assets/svg/attributes/sheriff.svg";
-import eatenSVG from "../../../../../assets/svg/attributes/eaten.svg";
-import drankDeathPotionSVG from "../../../../../assets/svg/attributes/drank-death-potion.svg";
-import lookSVG from "../../../../../assets/svg/actions/look.svg";
-import shootSVG from "../../../../../assets/svg/actions/shoot.svg";
-import voteSVG from "../../../../../assets/svg/actions/vote.svg";
-import settleVotesSVG from "../../../../../assets/svg/actions/settle-votes.svg";
-import protectedSVG from "../../../../../assets/svg/attributes/protected.svg";
-import ravenMarkedSVG from "../../../../../assets/svg/attributes/raven-marked.svg";
-import guardCard from "../../../../../assets/img/roles/guard.png";
-import hunterCard from "../../../../../assets/img/roles/hunter.png";
-import ravenCard from "../../../../../assets/img/roles/raven.png";
-import seerCard from "../../../../../assets/img/roles/seer.png";
-import villagerCard from "../../../../../assets/img/roles/villager.png";
-import werewolfCard from "../../../../../assets/img/roles/werewolf.png";
-import witchCard from "../../../../../assets/img/roles/witch.png";
-import sheriffCard from "../../../../../assets/img/attributes/sheriff.png";
+import { mapGetters } from "vuex";
+import sheriffSVG from "@/assets/svg/attributes/sheriff.svg";
+import eatenSVG from "@/assets/svg/attributes/eaten.svg";
+import drankDeathPotionSVG from "@/assets/svg/attributes/drank-death-potion.svg";
+import lookSVG from "@/assets/svg/actions/look.svg";
+import shootSVG from "@/assets/svg/actions/shoot.svg";
+import voteSVG from "@/assets/svg/actions/vote.svg";
+import settleVotesSVG from "@/assets/svg/actions/settle-votes.svg";
+import protectedSVG from "@/assets/svg/attributes/protected.svg";
+import ravenMarkedSVG from "@/assets/svg/attributes/raven-marked.svg";
+import guardCard from "@/assets/img/roles/guard.png";
+import hunterCard from "@/assets/img/roles/hunter.png";
+import ravenCard from "@/assets/img/roles/raven.png";
+import seerCard from "@/assets/img/roles/seer.png";
+import villagerCard from "@/assets/img/roles/villager.png";
+import werewolfCard from "@/assets/img/roles/werewolf.png";
+import witchCard from "@/assets/img/roles/witch.png";
+import sheriffCard from "@/assets/img/attributes/sheriff.png";
 import backCard from "@/assets/img/roles/back.png";
 import WhatToDoButton from "@/components/shared/Game/WhatToDoButton/WhatToDoButton";
 
 export default {
     name: "GamePlayFieldHeader",
-    components: {WhatToDoButton},
-    props: {
-        game: {
-            type: Game,
-            required: true,
-        },
-    },
+    components: { WhatToDoButton },
     // eslint-disable-next-line max-lines-per-function
     data() {
         return {
@@ -123,6 +119,7 @@ export default {
         };
     },
     computed: {
+        ...mapGetters("game", { game: "game" }),
         gamePhaseClasses() {
             return this.game.phase === "day" ? "fa-sun sun-color" : "fa-moon moon-color";
         },
@@ -141,6 +138,15 @@ export default {
             return this.actions[firstWaiting.to].icon;
         },
     },
+    watch: {
+        "game.firstWaiting": {
+            handler(newFirstWaiting) {
+                this.changeGameWaitingCard(newFirstWaiting);
+            },
+            deep: true,
+            immediate: true,
+        },
+    },
     methods: {
         changeGameWaitingCard(newWaitingTo) {
             if (!this.gameWaitingCard.flipped) {
@@ -150,15 +156,6 @@ export default {
                 this.gameWaitingCard.thumbnail.front = this.actions[newWaitingTo.to].card;
                 this.gameWaitingCard.flipped = false;
             }
-        },
-    },
-    watch: {
-        "game.firstWaiting": {
-            handler(newFirstWaiting) {
-                this.changeGameWaitingCard(newFirstWaiting);
-            },
-            deep: true,
-            immediate: true,
         },
     },
 };
