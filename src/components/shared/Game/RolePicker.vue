@@ -21,15 +21,15 @@
 
 import Swal from "sweetalert2";
 import { mapGetters } from "vuex";
-import back from "../../../assets/img/roles/back.png";
-import guard from "../../../assets/img/roles/guard.png";
-import hunter from "../../../assets/img/roles/hunter.png";
-import raven from "../../../assets/img/roles/raven.png";
-import seer from "../../../assets/img/roles/seer.png";
-import villager from "../../../assets/img/roles/villager.png";
-import werewolf from "../../../assets/img/roles/werewolf.png";
-import witch from "../../../assets/img/roles/witch.png";
-import Player from "../../../classes/Player";
+import back from "@/assets/img/roles/back.png";
+import guard from "@/assets/img/roles/guard.png";
+import hunter from "@/assets/img/roles/hunter.png";
+import raven from "@/assets/img/roles/raven.png";
+import seer from "@/assets/img/roles/seer.png";
+import villager from "@/assets/img/roles/villager.png";
+import werewolf from "@/assets/img/roles/werewolf.png";
+import witch from "@/assets/img/roles/witch.png";
+import Player from "@/classes/Player";
 
 export default {
     name: "RolePicker",
