@@ -18,7 +18,7 @@
         </div>
         <div class="row justify-content-between align-items-center">
             <div class="col-lg-4">
-                <button class="btn btn-primary btn-block" @click="$refs.gameSummaryModal.show">
+                <button class="btn btn-primary btn-block" @click="showGameSummaryModal">
                     <i class="fa fa-list mr-2"/>
                     <span v-html="$t('GameWinners.seeGameSummary')"/>
                 </button>
@@ -83,6 +83,9 @@ export default {
                 return this.$router.push(`/game-lobby?${stringify({ players: this.game.players.map(player => ({ name: player.name })) })}`);
             }
             return this.$router.push("/game-lobby");
+        },
+        showGameSummaryModal() {
+            this.$refs.gameSummaryModal.show();
         },
     },
 };
