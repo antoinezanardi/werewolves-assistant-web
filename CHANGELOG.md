@@ -1,5 +1,23 @@
 # 📈 LIST OF CHANGES FOR WEREWOLVES ASSISTANT WEB
 
+## 1.0.0-beta.5 (2020-10-04)
+
+### 🐛 Bug fixes
+
+- Game summary was not loading because of bad $ref loading.
+
+### 📦 Packages
+
+* `@fortawesome/fontawesome-free` updated to version `5.15.0`.
+* `eslint` updated to version `7.10.0`.
+* `eslint-plugin-import` updated to version `2.22.1`.
+* `eslint-plugin-vue` updated to version `7.0.0`.
+* `sweetalert2` updated to version `10.3.5`.
+* `vue-roller` updated to version `1.12.4`.
+* `vue-router` updated to version `3.4.5`.
+
+---
+
 ## 1.0.0-beta.4 (2020-09-22)
 
 ### 🚀 New features

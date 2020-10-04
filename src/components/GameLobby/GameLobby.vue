@@ -122,6 +122,13 @@ export default {
         GameLobbyAlreadyHavePlayingGame,
         Loading,
     },
+    async beforeRouteLeave(to, from, next) {
+        if (!this.waitingGame._id && this.game.players.length && to.name !== "Game") {
+            const { value: confirmLeaveGameLobby } = await this.confirmLeaveGameLobby();
+            return confirmLeaveGameLobby ? next() : next(false);
+        }
+        return next();
+    },
     data() {
         return {
             waitingGame: new Game(),
@@ -267,13 +274,6 @@ export default {
         startTutorial() {
             this.$refs.gameLobbyTutorial.startTour();
         },
-    },
-    async beforeRouteLeave(to, from, next) {
-        if (!this.waitingGame._id && this.game.players.length && to.name !== "Game") {
-            const { value: confirmLeaveGameLobby } = await this.confirmLeaveGameLobby();
-            return confirmLeaveGameLobby ? next() : next(false);
-        }
-        return next();
     },
 };
 </script>
