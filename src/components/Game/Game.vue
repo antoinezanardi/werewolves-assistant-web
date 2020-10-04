@@ -34,6 +34,13 @@ import GameCanceled from "@/components/Game/GameCanceled/GameCanceled";
 export default {
     name: "Game",
     components: { GameCanceled, GameWinners, GameContent, GameWerewolvesSide, GameVillagersSide, Loading },
+    async beforeRouteLeave(to, from, next) {
+        if (this.game.status === "playing") {
+            const { value: confirmLeaveGame } = await this.confirmLeaveGame();
+            return confirmLeaveGame ? next() : next(false);
+        }
+        return next();
+    },
     data() {
         return { loading: { getGame: true } };
     },
@@ -71,13 +78,6 @@ export default {
                 cancelButtonText: this.$t("Game.cancel"),
             });
         },
-    },
-    async beforeRouteLeave(to, from, next) {
-        if (this.game.status === "playing") {
-            const { value: confirmLeaveGame } = await this.confirmLeaveGame();
-            return confirmLeaveGame ? next() : next(false);
-        }
-        return next();
     },
 };
 </script>
