@@ -56,7 +56,7 @@
                         <transition-group v-else id="players" tag="div" name="fade-list"
                                           class="row justify-content-center align-items-center flex-grow-1 m-2">
                             <PlayerCard v-for="player in game.players" :key="player.name" :game="game" :player="player"
-                                        class="player-item col-lg-2 col-4" @rolePicked="rolePicked"
+                                        class="player-item col-lg-2 col-4" @choose-role="showRolePickerModal"
                                         @unsetRole="unsetRole" @unsetPlayer="unsetPlayer"/>
                         </transition-group>
                     </transition>
@@ -91,6 +91,7 @@
                     </div>
                 </div>
                 <GameLobbyTutorial ref="gameLobbyTutorial"/>
+                <GameLobbyRolePickerModal ref="gameLobbyRolePickerModal" :game="game" @role-picked="rolePicked"/>
             </div>
         </transition>
     </div>
@@ -110,10 +111,12 @@ import WhatToDoButton from "@/components/shared/Game/WhatToDoButton/WhatToDoButt
 import GameLobbyTutorial from "@/components/GameLobby/GameLobbyTutorial";
 import PlayerCard from "@/components/shared/Game/PlayerCard";
 import { filterOutHTMLTags } from "@/helpers/functions/String";
+import GameLobbyRolePickerModal from "@/components/GameLobby/GameLobbyRolePickerModal";
 
 export default {
     name: "GameLobby",
     components: {
+        GameLobbyRolePickerModal,
         PlayerCard,
         GameLobbyTutorial,
         WhatToDoButton,
@@ -216,19 +219,15 @@ export default {
                 this.loading.getGameRepartition = false;
             }
         },
-        rolePicked({ name: playerName, role }) {
-            for (const player of this.game.players) {
-                if (playerName === player.name) {
-                    if (role.maxInGame <= this.game.players.filter(({ role: playerRole }) => playerRole.current === role.name).length) {
-                        const sameRolePlayer = this.game.players.find(({ role: playerRole }) => playerRole.current === role.name);
-                        sameRolePlayer.role.current = player.role.current;
-                        sameRolePlayer.role.group = player.role.group;
-                    }
-                    player.role.current = role.name;
-                    player.role.group = role.group;
-                    break;
-                }
+        rolePicked({ player, role }) {
+            const playerInGame = this.game.players.find(({ name }) => name === player.name);
+            if (role.maxInGame <= this.game.players.filter(({ role: playerRole }) => playerRole.current === role.name).length) {
+                const sameRolePlayer = this.game.players.find(({ role: playerRole }) => playerRole.current === role.name);
+                sameRolePlayer.role.current = playerInGame.role.current;
+                sameRolePlayer.role.group = playerInGame.role.group;
             }
+            playerInGame.role.current = role.name;
+            playerInGame.role.group = role.group;
         },
         unsetPlayer(playerName) {
             const idx = this.game.players.findIndex(({ name }) => name === playerName);
@@ -273,6 +272,9 @@ export default {
         },
         startTutorial() {
             this.$refs.gameLobbyTutorial.startTour();
+        },
+        showRolePickerModal(player) {
+            this.$refs.gameLobbyRolePickerModal.show(player);
         },
     },
 };

@@ -109,6 +109,16 @@
         "minToStart": "Minimum {min} pour commencer",
         "minPlayerRequirementsToStart": "Minimum 4 joueurs avec un rôle pour commencer dont 1 loup-garou et 1 villageois"
     },
+    "GameLobbyRolePickerModal": {
+        "noRole": "Aucun rôle",
+        "pickRoleFor": "Choisir un rôle pour",
+        "close": "Fermer",
+        "assignRole": "Assigner ce rôle",
+        "pleaseChooseRole": "Veuillez d'abord choisir un rôle pour l'assigner à ce joueur",
+        "searchRole": "Rechercher un rôle",
+        "chooseRoleOnTheRight": "Veuillez choisir un rôle ci-contre",
+        "side": "Camp"
+    },
     "RolePicker": {
         "chooseRole": "Choisir un rôle",
         "maxInGameReached": "Ce rôle a été distribué trop de fois",
@@ -439,6 +449,15 @@
             "raven": "le corbeau",
             "sheriff": "le maire",
             "all": "le village"
+        },
+        "description": {
+            "villager": "Je suis une super longue description, histoire de savoir si ça passe bien.C'est un super exemple",
+            "werewolf": "Loup-Garou | Loups-Garous",
+            "seer": "Voyante",
+            "witch": "Sorcière",
+            "hunter": "Chasseur",
+            "guard": "Salvateur",
+            "raven": "Corbeau"
         },
         "villager": "Villageois",
         "werewolf": "Loup-Garou | Loups-Garous",

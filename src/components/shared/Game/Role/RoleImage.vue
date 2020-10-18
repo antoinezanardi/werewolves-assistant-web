@@ -22,7 +22,21 @@ export default {
         },
     },
     data() {
-        return { IMGs: { back, guard, hunter, raven, seer, villager, werewolf, werewolves: werewolf, witch, all: villager, sheriff } };
+        return {
+            IMGs: {
+                back,
+                guard,
+                hunter,
+                raven,
+                seer,
+                villager,
+                werewolf,
+                werewolves: werewolf,
+                witch, all: villager,
+                villagers: villager,
+                sheriff,
+            },
+        };
     },
     computed: {
         roleImage() {
