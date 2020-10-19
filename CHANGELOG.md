@@ -7,18 +7,19 @@
 * `@fortawesome/fontawesome-free` updated to version `5.15.1`.
 * `@sentry/browser` updated to version `5.26.0`.
 * `@sentry/integrations` updated to version `5.26.0`.
-* `@vue/cli-plugin-e2e-cypress` updated to version `4.5.7`.
-* `@vue/cli-plugin-eslint` updated to version `4.5.7`.
-* `@vue/cli-plugin-router` updated to version `4.5.7`.
-* `@vue/cli-plugin-unit-mocha` updated to version `4.5.7`.
-* `@vue/cli-service` updated to version `4.5.7`.
+* `@vue/cli-plugin-e2e-cypress` updated to version `4.5.8`.
+* `@vue/cli-plugin-eslint` updated to version `4.5.8`.
+* `@vue/cli-plugin-router` updated to version `4.5.8`.
+* `@vue/cli-plugin-unit-mocha` updated to version `4.5.8`.
+* `@vue/cli-plugin-vuex` updated to version `4.5.8`.
+* `@vue/cli-service` updated to version `4.5.8`.
 * `bootstrap` updated to version `4.5.3`.
 * `eslint` updated to version `7.11.0`.
-* `eslint-plugin-vue` updated to version `7.0.1`.
+* `eslint-plugin-vue` updated to version `7.1.0`.
 * `sass-loader` updated to version `10.0.3`.
 * `sweetalert2` updated to version `10.6.1`.
 * `vee-validate` updated to version `3.4.2`.
-* `vue-i18n` updated to version `8.22.0`.
+* `vue-i18n` updated to version `8.22.1`.
 * `vue-router` updated to version `3.4.7`.
 
 

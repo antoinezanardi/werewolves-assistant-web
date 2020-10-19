@@ -34,7 +34,7 @@
         "vue": "^2.6.12",
         "vue-flip": "1.0.2",
         "vue-github-buttons": "^3.1.0",
-        "vue-i18n": "^8.22.0",
+        "vue-i18n": "^8.22.1",
         "vue-keypress": "^2.1.1",
         "vue-roller": "^1.12.4",
         "vue-router": "^3.4.7",
@@ -45,18 +45,18 @@
         "xss": "^1.0.8"
     },
     "devDependencies": {
-        "@vue/cli-plugin-e2e-cypress": "^4.5.7",
-        "@vue/cli-plugin-eslint": "^4.5.7",
-        "@vue/cli-plugin-router": "^4.5.7",
-        "@vue/cli-plugin-unit-mocha": "^4.5.7",
-        "@vue/cli-plugin-vuex": "^4.5.7",
-        "@vue/cli-service": "^4.5.7",
+        "@vue/cli-plugin-e2e-cypress": "^4.5.8",
+        "@vue/cli-plugin-eslint": "^4.5.8",
+        "@vue/cli-plugin-router": "^4.5.8",
+        "@vue/cli-plugin-unit-mocha": "^4.5.8",
+        "@vue/cli-plugin-vuex": "^4.5.8",
+        "@vue/cli-service": "^4.5.8",
         "@vue/eslint-config-airbnb": "^5.1.0",
         "@vue/test-utils": "^1.1.0",
         "chai": "^4.1.2",
         "eslint": "^7.11.0",
         "eslint-plugin-import": "^2.22.1",
-        "eslint-plugin-vue": "^7.0.1",
+        "eslint-plugin-vue": "^7.1.0",
         "vue-template-compiler": "^2.6.12"
     }
 }

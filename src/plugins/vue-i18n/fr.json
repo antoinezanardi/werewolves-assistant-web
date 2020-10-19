@@ -451,13 +451,51 @@
             "all": "le village"
         },
         "description": {
-            "villager": "Je suis une super longue description, histoire de savoir si ça passe bien.C'est un super exemple",
-            "werewolf": "Loup-Garou | Loups-Garous",
-            "seer": "Voyante",
-            "witch": "Sorcière",
-            "hunter": "Chasseur",
-            "guard": "Salvateur",
-            "raven": "Corbeau"
+            "villager": [
+                "Son but est d'éliminer les Loups-Garous.",
+                "Il n'a aucune compétence particulière.",
+                "Ses seules armes sont la capacité d'analyse des comportements pour identifier les Loups-Garous."
+            ],
+            "werewolf": [
+                "Son but est d'éliminer les Villageois.",
+                "Chaque nuit, ils dévorent un Villageois. Le jour, ils essaient de masquer leur identité nocturne pour échapper à la vindicte populaire.",
+                "Leur nombre peut varier suivant le nombre de joueurs et les variantes appliquées.",
+                "En aucun cas un simple Loup-Garou ne peut dévorer un autre Loup-Garou."
+            ],
+            "seer": [
+                "Son but est d'éliminer les Loups-Garous.",
+                "Chaque nuit, elle voit la carte d'un joueur de son choix.",
+                "Elle doit aider les autres Villageois mais rester discrète pour ne pas être démasquée par les Loups-Garous."
+            ],
+            "witch": [
+                "Son but est d'éliminer les Loups-Garous.",
+                "Elle sait concocter 2 potions extrêmement puissantes: une potion de guérison pour ressusciter le joueur dévoré par les Loups-Garous et une potion d'empoisonnement utilisée la nuit pour éliminer un joueur.",
+                "La Sorcière peut utiliser chaque potion 1 seule fois dans la partie.",
+                "Elle peut se servir de ses 2 potions la même nuit.",
+                "Le matin, suivant la ou les potions utilisées, il pourra y avoir 2 joueurs éliminés ou aucun !",
+                "La Sorcière peut également utiliser la potion de guérison à son profit, et donc se guérir elle-même si elle vient d'être dévorée par les Loups-Garous."
+            ],
+            "hunter": [
+                "Son but est d'éliminer les Loups-Garous.",
+                "S'il se fait dévorer par les Loups-Garous ou éliminer malencontreusement par les Villageois, le Chasseur doit répliquer avant de rendre l'âme en éliminant immédiatement n'importe quel autre joueur de son choix.",
+                "Si le Chasseur est l'amoureux d'un joueur éliminé, avant de quitter la partie le Chasseur doit immédiatement éliminer un autre joueur de son choix.",
+                "Cela peut entraîner une partie où il ne reste aucun joueur survivant. Dans ce cas, la victoire n'appartient à aucun des deux camps."
+            ],
+            "guard": [
+                "Son but est d'éliminer les Loups-Garous.",
+                "Ce personnage peut préserver les villageois de la morsure des Loups-Garous... Chaque nuit, le Salvateur est appelé avant les Loups-Garous.",
+                "Le Salvateur désigne alors un joueur au meneur de jeu. (Il est de tradition que le Salvateur reproduise d'abord avec ses mains la figure dessinée sur la carte).",
+                "Le joueur ainsi désigné sera protégé sera protégé la nuit durant (et celle-ci seulement) contre les Loups-Garous. Même désigné par eux, il ne sera pas éliminé du jeu.",
+                "Le Salvateur a le droit de s'auto-protégé. Il n'a pas le droit de protéger 2 nuits de suite le même joueur.",
+                "La protection du Salvateur ne donne aucun résultat sur la Petite Fille. (Elle est en pleine crise de préadolescence et rien ne saurait lui éviter d'avoir des ennuis).",
+                "Le Salvateur ne protège ni du Joueur de Flûte ni de l'infection par l'Infect Père des Loups."
+            ],
+            "raven": [
+                "Son but est d'éliminer les Loups-Garous.",
+                "Cet individu adore faire connaître ses suspicions de culpabilité en marquant, juste avant l'aube, le joueur de son choix. Son impact est certain malgré le manque de courage de notre oiseau !",
+                "Chaque fin de nuit, après que les Loups-Garous se sont rendormis, à l'appel de son rôle le corbeau peut désigner un joueur qu'il suspecte ou passer son tour.",
+                "Le meneur dépose alors le marqueur \"Malédiction du Corbeau\" devant le joueur désigné. Ce joueur aura automatiquement 2 voix de plus contre lui au prochain décompte des votes."
+            ]
         },
         "villager": "Villageois",
         "werewolf": "Loup-Garou | Loups-Garous",

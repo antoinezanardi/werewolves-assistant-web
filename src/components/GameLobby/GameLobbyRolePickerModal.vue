@@ -27,9 +27,9 @@
                 <div class="modal-body">
                     <div class="container-fluid h-100">
                         <div class="row h-100">
-                            <div class="col-md-4 h-100">
+                            <div id="selected-role-panel" class="col-md-4 h-100">
                                 <div class="row align-items-center justify-content-center h-50">
-                                    <div class="col-12 d-flex justify-content-center text-center h-100">
+                                    <div class="col-12 d-flex justify-content-center text-center h-100 pt-3">
                                         <VueFlip v-model="selectedRoleThumbnail.flipped" height="100%" width="100%">
                                             <template #front>
                                                 <RoleImage class="h-100" :role="selectedRoleThumbnail.front"/>
@@ -41,22 +41,24 @@
                                     </div>
                                 </div>
                                 <div class="h-50">
-                                    <div id="role-text-container" class="row">
-                                        <div class="col-12 text-center">
-                                            <transition mode="out-in" name="fade">
-                                                <RoleText v-if="isRolePicked" id="selected-role-text" :key="selected.role.name"
-                                                          :role="selected.role.name" class="mt-3"/>
-                                                <div v-else class="text-center">
+                                    <transition mode="out-in" name="fade">
+                                        <div v-if="!isRolePicked">
+                                            <div class="row mt-2">
+                                                <div class="col-12 text-center">
                                                     <div id="choose-role-text" class="my-3"
                                                          v-html="$t('GameLobbyRolePickerModal.chooseRoleOnTheRight')"/>
                                                     <i class="fa fa-2x fa-chevron-right animate__animated animate__slow animate__headShake
                                                               animate__infinite"/>
                                                 </div>
-                                            </transition>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <transition mode="out-in" name="fade">
-                                        <div v-if="isRolePicked" :key="selected.role.name">
+                                        <div v-else :key="selected.role.name">
+                                            <div class="row mt-2">
+                                                <div class="col-12 text-center">
+                                                    <RoleText v-if="isRolePicked" id="selected-role-text" :key="selected.role.name"
+                                                              :role="selected.role.name"/>
+                                                </div>
+                                            </div>
                                             <div class="row mt-2">
                                                 <div class="col-12 d-flex justify-content-center align-items-center">
                                                     <span class="font-weight-bold mr-2" v-html="`${$t('GameLobbyRolePickerModal.side')}: `"/>
@@ -64,7 +66,10 @@
                                                 </div>
                                             </div>
                                             <div class="row mt-2">
-                                                <div class="col-12" v-html="$t(`Role.description.${selected.role.name}`)"/>
+                                                <div class="col-12">
+                                                    <p v-for="paragraph of $t(`Role.description.${selected.role.name}`)"
+                                                       :key="paragraph" v-html="paragraph"/>
+                                                </div>
                                             </div>
                                         </div>
                                     </transition>
@@ -216,6 +221,10 @@ export default {
                 overflow-y: auto;
             }
         }
+    }
+
+    #selected-role-panel {
+        overflow-y: scroll;
     }
 
     #selected-player-current-role-image {
