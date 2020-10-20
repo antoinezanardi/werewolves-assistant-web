@@ -116,8 +116,9 @@
         "assignRole": "Assigner ce rôle",
         "pleaseChooseRole": "Veuillez d'abord choisir un rôle pour l'assigner à ce joueur",
         "searchRole": "Rechercher un rôle",
-        "chooseRoleOnTheRight": "Veuillez choisir un rôle ci-contre",
-        "side": "Camp"
+        "chooseRole": "Veuillez choisir un rôle",
+        "side": "Camp",
+        "random": "Aléatoire"
     },
     "RolePicker": {
         "chooseRole": "Choisir un rôle",

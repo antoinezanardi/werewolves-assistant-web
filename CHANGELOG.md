@@ -4,6 +4,7 @@
 
 ### 📦 Packages
 
+* `vue-scrollto` updated to version `2.19.1`.
 * `@fortawesome/fontawesome-free` updated to version `5.15.1`.
 * `@sentry/browser` updated to version `5.26.0`.
 * `@sentry/integrations` updated to version `5.26.0`.

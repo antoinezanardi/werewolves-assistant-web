@@ -38,6 +38,7 @@
         "vue-keypress": "^2.1.1",
         "vue-roller": "^1.12.4",
         "vue-router": "^3.4.7",
+        "vue-scrollto": "^2.19.1",
         "vue-select": "^3.10.8",
         "vue-toasted": "^1.1.28",
         "vue-tour": "^1.5.0",

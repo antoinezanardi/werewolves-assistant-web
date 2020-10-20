@@ -5,20 +5,18 @@
                 <div class="modal-header">
                     <div class="container-fluid">
                         <div class="row align-items-center">
-                            <div class="col-md-2 text-center">
+                            <div class="offset-md-0 col-md-2 order-md-0 offset-2 col-8 order-0 text-center">
                                 <RoleImage id="selected-player-current-role-image" :role="selected.player.role.current"/>
                                 <RoleText v-if="selected.player.role.current" :role="selected.player.role.current"/>
                                 <div v-else v-html="$t('GameLobbyRolePickerModal.noRole')"/>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-8 order-md-1 col-12 order-2">
                                 <h5 class="modal-title text-center"
                                     v-html="`${$t('GameLobbyRolePickerModal.pickRoleFor')} ${selected.player.name}`"/>
                             </div>
-                            <div class="col-md-2 text-right">
+                            <div class="col-md-2 order-md-2 col-2 order-1 text-right">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span class="text-white" aria-hidden="true">
-                                        &times;
-                                    </span>
+                                    <span class="text-white" aria-hidden="true" v-html="'&times;'"/>
                                 </button>
                             </div>
                         </div>
@@ -27,9 +25,9 @@
                 <div class="modal-body">
                     <div class="container-fluid h-100">
                         <div class="row h-100">
-                            <div id="selected-role-panel" class="col-md-4 h-100">
+                            <div id="selected-role-panel" class="col-md-4 col-12">
                                 <div class="row align-items-center justify-content-center h-50">
-                                    <div class="col-12 d-flex justify-content-center text-center h-100 pt-3">
+                                    <div class="col-12 d-flex justify-content-center text-center h-100 pt-1">
                                         <VueFlip v-model="selectedRoleThumbnail.flipped" height="100%" width="100%">
                                             <template #front>
                                                 <RoleImage class="h-100" :role="selectedRoleThumbnail.front"/>
@@ -45,28 +43,29 @@
                                         <div v-if="!isRolePicked">
                                             <div class="row mt-2">
                                                 <div class="col-12 text-center">
-                                                    <div id="choose-role-text" class="my-3"
-                                                         v-html="$t('GameLobbyRolePickerModal.chooseRoleOnTheRight')"/>
+                                                    <div id="choose-role-text" class="my-2"
+                                                         v-html="$t('GameLobbyRolePickerModal.chooseRole')"/>
                                                     <i class="fa fa-2x fa-chevron-right animate__animated animate__slow animate__headShake
-                                                              animate__infinite"/>
+                                                              animate__infinite d-md-inline-block d-none"/>
+                                                    <i class="fa fa-2x fa-chevron-down animate__animated animate__slow animate__swing
+                                                              animate__infinite d-md-none"/>
                                                 </div>
                                             </div>
                                         </div>
                                         <div v-else :key="selected.role.name">
-                                            <div class="row mt-2">
-                                                <div class="col-12 text-center">
+                                            <div class="row mt-3">
+                                                <div class="col-6 text-center">
                                                     <RoleText v-if="isRolePicked" id="selected-role-text" :key="selected.role.name"
-                                                              :role="selected.role.name"/>
+                                                              :role="selected.role.name" class="font-weight-bold"/>
                                                 </div>
-                                            </div>
-                                            <div class="row mt-2">
-                                                <div class="col-12 d-flex justify-content-center align-items-center">
+                                                <div class="col-6 d-flex justify-content-center align-items-center">
                                                     <span class="font-weight-bold mr-2" v-html="`${$t('GameLobbyRolePickerModal.side')}: `"/>
                                                     <RoleImage id="selected-role-side-image" :role="selected.role.group"/>
                                                 </div>
                                             </div>
                                             <div class="row mt-2">
                                                 <div class="col-12">
+                                                    <hr class="bg-dark mt-1 mb-2"/>
                                                     <p v-for="paragraph of $t(`Role.description.${selected.role.name}`)"
                                                        :key="paragraph" v-html="paragraph"/>
                                                 </div>
@@ -75,9 +74,21 @@
                                     </transition>
                                 </div>
                             </div>
-                            <div id="roles-panel" class="col-md-8 h-100">
-                                <div class="row align-items-center justify-content-center">
-                                    <div v-for="role in roles" :key="role.name" class="col-lg-2 col-4 text-center p-2"
+                            <div class="col-12 d-md-none">
+                                <hr class="bg-dark my-1"/>
+                            </div>
+                            <div id="roles-panel" class="col-md-8 col-12">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-2 col-3 text-center p-2" @click="selectRandomRole">
+                                        <div class="role-image-container">
+                                            <RoleImage role="back"/>
+                                        </div>
+                                        <div class="cursor-pointer">
+                                            <i class="fa fa-random mr-1"/>
+                                            <span class="font-italic" v-html="$t('GameLobbyRolePickerModal.random')"/>
+                                        </div>
+                                    </div>
+                                    <div v-for="role in roles" :key="role.name" class="col-md-2 col-3 text-center p-2"
                                          @click="changeSelectedRole(role)">
                                         <div class="role-image-container" :class="{ selected: role === selected.role }">
                                             <RoleImage :role="role.name"/>
@@ -92,15 +103,18 @@
                 <div class="modal-footer">
                     <div class="container-fluid">
                         <div class="row align-items-center">
-                            <div class="col-4"/>
-                            <div v-tooltip="!isRolePicked && $t('GameLobbyRolePickerModal.pleaseChooseRole')" class="col-4">
+                            <div v-tooltip="!isRolePicked && $t('GameLobbyRolePickerModal.pleaseChooseRole')"
+                                 class="offset-md-4 col-md-4 offset-2 col-8">
                                 <form @submit.prevent="assignRole">
                                     <button type="submit" class="btn btn-primary btn-lg btn-block" :disabled="!isRolePicked"
                                             v-html="$t('GameLobbyRolePickerModal.assignRole')"/>
                                 </form>
                             </div>
-                            <div class="col-4 text-right">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal" v-html="$t('GameLobbyRolePickerModal.close')"/>
+                            <div class="col-md-4 col-2 text-right">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                    <i class="d-md-none fa fa-times"/>
+                                    <span class="d-md-inline d-none" v-html="$t('GameLobbyRolePickerModal.close')"/>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -114,6 +128,7 @@
 import { mapGetters } from "vuex";
 import Swal from "sweetalert2";
 import $ from "jquery";
+import VueScrollTo from "vue-scrollto";
 import Game from "@/classes/Game";
 import Player from "@/classes/Player";
 import Role from "@/classes/Role";
@@ -162,6 +177,10 @@ export default {
         hide() {
             $("#game-lobby-role-picker-modal").modal("hide");
         },
+        selectRandomRole() {
+            const randomIdx = Math.floor(Math.random() * this.roles.length);
+            this.changeSelectedRole(this.roles[randomIdx]);
+        },
         changeSelectedRole(newRole) {
             if (newRole !== this.selected.role) {
                 if (!this.selectedRoleThumbnail.flipped) {
@@ -171,8 +190,9 @@ export default {
                     this.selectedRoleThumbnail.front = newRole.name;
                     this.selectedRoleThumbnail.flipped = false;
                 }
+                this.selected.role = newRole;
+                VueScrollTo.scrollTo(".modal-body", 500, { container: "#selected-role-panel" });
             }
-            this.selected.role = newRole;
         },
         confirmPickRole(role) {
             let footer = "";
@@ -212,6 +232,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    @import "../../../node_modules/bootstrap/scss/bootstrap-grid";
+
     #game-lobby-role-picker-modal {
         overflow-y: hidden;
 
@@ -225,6 +247,10 @@ export default {
 
     #selected-role-panel {
         overflow-y: scroll;
+        height: 45%;
+        @include media-breakpoint-up(md) {
+            height: 100%;
+        }
     }
 
     #selected-player-current-role-image {
@@ -242,6 +268,13 @@ export default {
     #selected-role-side-image {
         height: 35px;
         width: 35px;
+    }
+
+    #roles-panel {
+        height: 55%;
+        @include media-breakpoint-up(md) {
+            height: 100%;
+        }
     }
 
     .role-image-container {
