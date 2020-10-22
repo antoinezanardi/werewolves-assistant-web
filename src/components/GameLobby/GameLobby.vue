@@ -46,7 +46,7 @@
                 </div>
                 <div id="game-lobby-players-container" class="d-flex flex-column flex-grow-1">
                     <transition mode="out-in" name="fade">
-                        <div v-if="!game.players.length" class="d-flex flex-column justify-content-center flex-grow-1">
+                        <div v-if="!game.players.length" class="d-flex flex-column justify-content-center flex-grow-1 visible-scrollbar">
                             <h3 id="no-player-text"
                                 class="text-muted text-center font-italic d-flex justify-content-center align-items-center">
                                 <i class="fa fa-user-plus mr-2"/>

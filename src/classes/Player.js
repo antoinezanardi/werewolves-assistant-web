@@ -20,6 +20,10 @@ class Player {
     hasAttribute(attributeName) {
         return !!this.attributes.find(({ attribute }) => attribute === attributeName);
     }
+
+    get currentRole() {
+        return this.role.current;
+    }
 }
 
 export default Player;

@@ -118,7 +118,10 @@
         "searchRole": "Rechercher un rôle",
         "chooseRole": "Veuillez choisir un rôle",
         "side": "Camp",
-        "random": "Aléatoire"
+        "random": "Aléatoire",
+        "totalInGame": "0 dans la partie | 1 dans la partie | {total} dans la partie",
+        "maxInGameReached": "Maximum atteint pour ce rôle",
+        "totalInGameInThisRole": "Total dans la partie avec ce rôle"
     },
     "RolePicker": {
         "chooseRole": "Choisir un rôle",

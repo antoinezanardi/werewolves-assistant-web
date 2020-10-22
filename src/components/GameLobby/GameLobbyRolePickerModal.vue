@@ -25,8 +25,8 @@
                 <div class="modal-body">
                     <div class="container-fluid h-100">
                         <div class="row h-100">
-                            <div id="selected-role-panel" class="col-md-4 col-12">
-                                <div class="row align-items-center justify-content-center h-50">
+                            <div id="selected-role-panel" class="col-md-4 col-12 visible-scrollbar">
+                                <div id="selected-role-thumbnail" class="row align-items-center justify-content-center">
                                     <div class="col-12 d-flex justify-content-center text-center h-100 pt-1">
                                         <VueFlip v-model="selectedRoleThumbnail.flipped" height="100%" width="100%">
                                             <template #front>
@@ -38,7 +38,7 @@
                                         </VueFlip>
                                     </div>
                                 </div>
-                                <div class="h-50">
+                                <div id="selected-role-data">
                                     <transition mode="out-in" name="fade">
                                         <div v-if="!isRolePicked">
                                             <div class="row mt-2">
@@ -64,6 +64,19 @@
                                                 </div>
                                             </div>
                                             <div class="row mt-2">
+                                                <div class="col-12 text-center">
+                                                    <div>
+                                                        <i class="fa fa-chess-pawn text-info mr-2"/>
+                                                        <span v-html="selectedRoleAlreadyTakenText"/>
+                                                    </div>
+                                                    <div v-if="selected.role.maxInGame === game.getPlayersWithRole(selected.role.name).length">
+                                                        <i class="fa fa-exclamation-circle animate__animated animate__heartBeat
+                                                                    animate__infinite mr-2"/>
+                                                        <span v-html="$t('GameLobbyRolePickerModal.maxInGameReached')"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
                                                 <div class="col-12">
                                                     <hr class="bg-dark mt-1 mb-2"/>
                                                     <p v-for="paragraph of $t(`Role.description.${selected.role.name}`)"
@@ -77,7 +90,7 @@
                             <div class="col-12 d-md-none">
                                 <hr class="bg-dark my-1"/>
                             </div>
-                            <div id="roles-panel" class="col-md-8 col-12">
+                            <div id="roles-panel" class="col-md-8 col-12 visible-scrollbar">
                                 <div class="row justify-content-center">
                                     <div class="col-md-2 col-3 text-center p-2" @click="selectRandomRole">
                                         <div class="role-image-container">
@@ -91,6 +104,12 @@
                                     <div v-for="role in roles" :key="role.name" class="col-md-2 col-3 text-center p-2"
                                          @click="changeSelectedRole(role)">
                                         <div class="role-image-container" :class="{ selected: role === selected.role }">
+                                            <div v-if="game.getPlayersWithRole(role.name).length"
+                                                 v-tooltip="$t('GameLobbyRolePickerModal.totalInGameInThisRole')"
+                                                 class="role-count-in-game badge badge-light">
+                                                <i class="fa fa-chess-pawn mr-2"/>
+                                                <span v-html="game.getPlayersWithRole(role.name).length"/>
+                                            </div>
                                             <RoleImage :role="role.name"/>
                                         </div>
                                         <RoleText :role="role.name"/>
@@ -161,6 +180,10 @@ export default {
         ...mapGetters("role", { roles: "roles" }),
         isRolePicked() {
             return this.selected.role.name;
+        },
+        selectedRoleAlreadyTakenText() {
+            const totalInGame = this.game.getPlayersWithRole(this.selected.role.name).length;
+            return this.$tc("GameLobbyRolePickerModal.totalInGame", totalInGame, { total: totalInGame });
         },
     },
     methods: {
@@ -253,6 +276,14 @@ export default {
         }
     }
 
+    #selected-role-thumbnail {
+        height: 47%;
+    }
+
+    #selected-role-data {
+        height: 47%;
+    }
+
     #selected-player-current-role-image {
         width: 35px;
     }
@@ -283,6 +314,18 @@ export default {
         margin: 3px;
         transition: all 0.25s ease;
         cursor: pointer;
+
+        .role-count-in-game {
+            position: absolute;
+            right: 2px;
+            top: 2px;
+            opacity: 0.8;
+            transition: all 0.25s ease;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
 
         &:hover {
             border-color: #CACACA;
