@@ -92,8 +92,12 @@ class Game {
         return waiting.to === "elect-sheriff" || waiting.to === "vote";
     }
 
+    getPlayersWithRole(role) {
+        return this.players.filter(player => player.currentRole === role);
+    }
+
     getPlayerWithRole(role) {
-        return this.players.find(player => player.role.current === role);
+        return this.players.find(player => player.currentRole === role);
     }
 
     get seerPlayer() {
