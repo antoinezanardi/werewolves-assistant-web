@@ -46,7 +46,7 @@
                 </div>
                 <div id="game-lobby-players-container" class="d-flex flex-column flex-grow-1">
                     <transition mode="out-in" name="fade">
-                        <div v-if="!game.players.length" class="d-flex flex-column justify-content-center flex-grow-1 visible-scrollbar">
+                        <div v-if="!game.players.length" class="d-flex flex-column justify-content-center flex-grow-1">
                             <h3 id="no-player-text"
                                 class="text-muted text-center font-italic d-flex justify-content-center align-items-center">
                                 <i class="fa fa-user-plus mr-2"/>
@@ -54,7 +54,7 @@
                             </h3>
                         </div>
                         <transition-group v-else id="players" tag="div" name="fade-list"
-                                          class="row justify-content-center align-items-center flex-grow-1 m-2">
+                                          class="row justify-content-center align-items-center flex-grow-1 visible-scrollbar py-2 mx-2">
                             <PlayerCard v-for="player in game.players" :key="player.name" :game="game" :player="player"
                                         class="player-item col-lg-2 col-4" @choose-role="showRolePickerModal"
                                         @unsetRole="unsetRole" @unsetPlayer="unsetPlayer"/>
@@ -291,6 +291,10 @@ export default {
 
     #no-player-text {
         @include font-size(1.5rem);
+    }
+
+    #players {
+        overflow-y: scroll;
     }
 
     #player-name-input-error {
