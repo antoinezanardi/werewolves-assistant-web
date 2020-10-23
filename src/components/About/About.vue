@@ -3,7 +3,7 @@
         <div class="row mt-2">
             <div class="col-12">
                 <h1 class="section-title">
-                    <img :src="IMGs.werewolf" class="rounded" alt="werewolf"/>
+                    <RoleImage role="werewolf" class="rounded" alt="werewolf"/>
                     <span class="ml-3" v-html="$t('About.werewolvesAssistantWhatFor')"/>
                 </h1>
                 <hr class="bg-dark"/>
@@ -129,7 +129,7 @@
                 <hr class="bg-dark"/>
             </div>
         </div>
-        <div class="row mb-3 justify-content-center">
+        <div class="row mb-5 justify-content-center">
             <div class="col-12 col-lg-4">
                 <router-link class="btn btn-secondary btn-block" to="/">
                     <i class="fa fa-sign-out-alt mr-2"/>
@@ -141,13 +141,11 @@
 </template>
 
 <script>
-import werewolf from "@/assets/img/roles/werewolf.png";
+import RoleImage from "@/components/shared/Game/Role/RoleImage";
 
 export default {
     name: "About",
-    data() {
-        return { IMGs: { werewolf } };
-    },
+    components: { RoleImage },
     created() {
         localStorage.setItem("aboutPageVisited", "true");
     },

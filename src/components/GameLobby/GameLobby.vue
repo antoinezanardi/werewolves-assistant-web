@@ -54,7 +54,7 @@
                             </h3>
                         </div>
                         <transition-group v-else id="players" tag="div" name="fade-list"
-                                          class="row justify-content-center align-items-center flex-grow-1 visible-scrollbar py-2 mx-2">
+                                          class="row justify-content-center align-items-center flex-grow-1 visible-scrollbar py-2 mx-2ser">
                             <PlayerCard v-for="player in game.players" :key="player.name" :game="game" :player="player"
                                         class="player-item col-lg-2 col-4" @choose-role="showRolePickerModal"
                                         @unsetRole="unsetRole" @unsetPlayer="unsetPlayer"/>

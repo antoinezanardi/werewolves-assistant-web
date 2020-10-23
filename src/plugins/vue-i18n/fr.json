@@ -121,16 +121,8 @@
         "random": "Aléatoire",
         "totalInGame": "0 dans la partie | 1 dans la partie | {total} dans la partie",
         "maxInGameReached": "Maximum atteint pour ce rôle",
-        "totalInGameInThisRole": "Total dans la partie avec ce rôle"
-    },
-    "RolePicker": {
-        "chooseRole": "Choisir un rôle",
-        "maxInGameReached": "Ce rôle a été distribué trop de fois",
-        "doYouWantToSetItAnyway": "Voulez-vous donner ce rôle au joueur quand même ?",
-        "confirm": "Confirmer",
-        "cancel": "Annuler",
-        "roleWillBeSwitchedWithOtherPlayer": "Les rôles seront échangés avec le joueur {roleName}",
-        "roleWillBeSwitchedWithAnotherPlayer": "Les rôles seront échangés avec un des joueurs {roleName}"
+        "totalInGameInThisRole": "Total dans la partie avec ce rôle",
+        "selectedPlayerAlreadyHasSelectedRole": "Le joueur sélectionné possède déjà ce rôle"
     },
     "GameLobbyTutorial": {
         "howToUseGameLobby": "Comment composer une équipe ?",
@@ -526,6 +518,7 @@
         "BAD_CREDENTIALS": "Mauvais e-mail ou mot de passe",
         "EMAIL_EXISTS": "Cet e-mail est déjà utilisé par un autre compte",
         "TIE_IN_VOTES": "Il ne peut pas y avoir d'égalité dans les votes",
+        "TOO_MANY_REQUESTS": "Trop de requêtes d'un coup... Calm down !",
         "yourSessionHasExpired": "Votre session a expirée, veuillez vous reconnecter",
         "unknownError": "Erreur inconnue"
     },

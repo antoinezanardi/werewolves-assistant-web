@@ -5,25 +5,28 @@
 ### 🚀 New features
 
 * [#49](https://github.com/antoinezanardi/werewolves-assistant-web/issues/49) - New role picker in the game lobby with all data about the role (max in game, description and more...).
+* [#51](https://github.com/antoinezanardi/werewolves-assistant-web/issues/51) - All role images are loaded from the API.
 
 ### 📦 Packages
 
-* `vue-scrollto` updated to version `2.19.1`.
+* `vue-lazyload` installed with version `1.3.3`.
+* `vue-scrollto` installed with version `2.19.1`.
 * `@fortawesome/fontawesome-free` updated to version `5.15.1`.
-* `@sentry/browser` updated to version `5.27.0`.
-* `@sentry/integrations` updated to version `5.27.0`.
+* `@sentry/browser` updated to version `5.27.1`.
+* `@sentry/integrations` updated to version `5.27.1`.
 * `@vue/cli-plugin-e2e-cypress` updated to version `4.5.8`.
 * `@vue/cli-plugin-eslint` updated to version `4.5.8`.
 * `@vue/cli-plugin-router` updated to version `4.5.8`.
 * `@vue/cli-plugin-unit-mocha` updated to version `4.5.8`.
 * `@vue/cli-plugin-vuex` updated to version `4.5.8`.
 * `@vue/cli-service` updated to version `4.5.8`.
+* `axios` updated to version `0.21.0`.
 * `bootstrap` updated to version `4.5.3`.
 * `eslint` updated to version `7.11.0`.
 * `eslint-plugin-vue` updated to version `7.1.0`.
 * `sass-loader` updated to version `10.0.4`.
-* `sweetalert2` updated to version `10.7.0`.
-* `vee-validate` updated to version `3.4.2`.
+* `sweetalert2` updated to version `10.8.1`.
+* `vee-validate` updated to version `3.4.3`.
 * `vue-i18n` updated to version `8.22.1`.
 * `vue-router` updated to version `3.4.7`.
 

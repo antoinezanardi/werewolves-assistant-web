@@ -1,17 +1,11 @@
 <template>
-    <img :src="roleImage" alt="Role Image" class="img-fluid rounded"/>
+    <img :key="roleImageSource" v-lazy="roleImageSource" alt="Role Image" class="img-fluid rounded"/>
 </template>
 
 <script>
 import back from "@/assets/img/roles/back.png";
-import guard from "@/assets/img/roles/guard.png";
-import hunter from "@/assets/img/roles/hunter.png";
-import raven from "@/assets/img/roles/raven.png";
-import seer from "@/assets/img/roles/seer.png";
-import villager from "@/assets/img/roles/villager.png";
-import werewolf from "@/assets/img/roles/werewolf.png";
-import witch from "@/assets/img/roles/witch.png";
 import sheriff from "@/assets/img/attributes/sheriff.png";
+import Config from "../../../../../config";
 
 export default {
     name: "RoleImage",
@@ -21,26 +15,21 @@ export default {
             default: undefined,
         },
     },
-    data() {
-        return {
-            IMGs: {
-                back,
-                guard,
-                hunter,
-                raven,
-                seer,
-                villager,
-                werewolf,
-                werewolves: werewolf,
-                witch, all: villager,
-                villagers: villager,
-                sheriff,
-            },
-        };
-    },
     computed: {
-        roleImage() {
-            return this.role ? this.IMGs[this.role] : this.IMGs.back;
+        roleImageSource() {
+            let fileName;
+            if (!this.role) {
+                return back;
+            } else if (this.role === "sheriff") {
+                return sheriff;
+            } else if (this.role === "werewolves") {
+                fileName = "werewolf";
+            } else if (this.role === "villagers" || this.role === "all") {
+                fileName = "villager";
+            } else {
+                fileName = this.role;
+            }
+            return `${Config.API.werewolvesAssistant.baseURL}/img/roles/${fileName}.png`;
         },
     },
 };
