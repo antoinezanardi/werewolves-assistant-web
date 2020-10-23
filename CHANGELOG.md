@@ -7,6 +7,10 @@
 * [#49](https://github.com/antoinezanardi/werewolves-assistant-web/issues/49) - New role picker in the game lobby with all data about the role (max in game, description and more...).
 * [#51](https://github.com/antoinezanardi/werewolves-assistant-web/issues/51) - All role images are loaded from the API.
 
+### 🌟 Enhancements
+
+* [#50](https://github.com/antoinezanardi/werewolves-assistant-web/issues/50) - ESLint rules and ESLint Vue plugin rules updated.
+
 ### 📦 Packages
 
 * `vue-lazyload` installed with version `1.3.3`.

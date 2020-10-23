@@ -18,7 +18,7 @@
             <div class="col-lg-2 col-3 d-flex flex-column justify-content-center align-items-center">
                 <div id="game-waiting-card-container">
                     <RoleImage :role="gameWaitingRole"/>
-                    <WhatToDoButton id="what-to-do-button" @click.native="$emit('startTutorial')"/>
+                    <WhatToDoButton id="what-to-do-button" @click.native="$emit('start-tutorial')"/>
                 </div>
             </div>
         </div>

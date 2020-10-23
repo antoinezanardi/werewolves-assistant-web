@@ -7,7 +7,7 @@
                         <span v-html="$t('RegisterPanel.email')"/>
                         <RedAsterisk class="ml-1"/>
                     </label>
-                    <ValidationProvider v-slot="{ errors, classes }">
+                    <ValidationProvider #default="{ errors, classes }">
                         <div class="input-group">
                             <div class="input-group-prepend" :class="classes">
                                 <span class="input-group-text">
@@ -30,7 +30,7 @@
                         <span v-html="$t('RegisterPanel.password')"/>
                         <RedAsterisk class="ml-1"/>
                     </label>
-                    <ValidationProvider v-slot="{ errors, classes }" rules="required" vid="confirmation">
+                    <ValidationProvider #default="{ errors, classes }" rules="required" vid="confirmation">
                         <div class="input-group">
                             <div class="input-group-prepend" :class="classes">
                                 <span class="input-group-text">
@@ -53,7 +53,7 @@
                         <span v-html="$t('RegisterPanel.confirmPassword')"/>
                         <RedAsterisk class="ml-1"/>
                     </label>
-                    <ValidationProvider v-slot="{ errors, classes }" rules="confirm_password:confirmation">
+                    <ValidationProvider #default="{ errors, classes }" rules="confirm_password:confirmation">
                         <div class="input-group">
                             <div class="input-group-prepend" :class="classes">
                                 <span class="input-group-text">

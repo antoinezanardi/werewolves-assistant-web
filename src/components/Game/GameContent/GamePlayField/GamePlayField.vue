@@ -1,8 +1,8 @@
 <template>
     <div id="game-play-field" class="h-100 d-flex flex-column">
-        <GamePlayFieldHeader @startTutorial="startTutorial"/>
-        <GamePlayFieldContent id="game-content-play-field" :play="play" @playerVotes="playerVotes"
-                              @playerSelected="playerSelected"/>
+        <GamePlayFieldHeader @start-tutorial="startTutorial"/>
+        <GamePlayFieldContent id="game-content-play-field" :play="play" @player-votes="playerVotes"
+                              @player-selected="playerSelected"/>
         <GamePlayFieldFooter :play="play"/>
         <GamePlayFieldTutorial ref="gamePlayFieldTutorial"/>
     </div>
@@ -26,10 +26,10 @@ export default {
     },
     methods: {
         playerVotes(vote) {
-            this.$emit("playerVotes", vote);
+            this.$emit("player-votes", vote);
         },
         playerSelected(payload) {
-            this.$emit("playerSelected", payload);
+            this.$emit("player-selected", payload);
         },
         startTutorial() {
             this.$refs.gamePlayFieldTutorial.startTour();

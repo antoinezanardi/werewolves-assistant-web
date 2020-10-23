@@ -5,7 +5,7 @@
                 <Loading :text="$t('GameLobby.loading')"/>
             </div>
             <div v-else-if="waitingGame._id" key="existing-game" class="h-100 d-flex justify-content-center align-items-center">
-                <GameLobbyAlreadyHavePlayingGame :game="waitingGame" @cancelGame="cancelGame"/>
+                <GameLobbyAlreadyHavePlayingGame :game="waitingGame" @cancel-game="cancelGame"/>
             </div>
             <div v-else key="game-composition" class="d-flex flex-column h-100">
                 <div>
@@ -57,7 +57,7 @@
                                           class="row justify-content-center align-items-center flex-grow-1 visible-scrollbar py-2 mx-2ser">
                             <PlayerCard v-for="player in game.players" :key="player.name" :game="game" :player="player"
                                         class="player-item col-lg-2 col-4" @choose-role="showRolePickerModal"
-                                        @unsetRole="unsetRole" @unsetPlayer="unsetPlayer"/>
+                                        @unset-role="unsetRole" @unset-player="unsetPlayer"/>
                         </transition-group>
                     </transition>
                 </div>

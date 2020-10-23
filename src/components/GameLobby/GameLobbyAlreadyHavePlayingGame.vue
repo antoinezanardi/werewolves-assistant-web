@@ -82,7 +82,7 @@ export default {
                 if (value) {
                     await this.$werewolvesAssistantAPI.patchGame(this.game._id, { status: "canceled" });
                     this.$toasted.success(this.$t("GameLobbyAlreadyHavePlayingGame.gameCanceled"), { icon: "check" });
-                    this.$emit("cancelGame");
+                    this.$emit("cancel-game");
                 }
             } catch (e) {
                 this.$error.display(e);

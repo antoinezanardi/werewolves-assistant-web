@@ -3,7 +3,7 @@
         <div v-for="player in targets" :key="player.name" class="col-lg-2 col-4">
             <PlayerCard :ref="`playerCard${player._id}`" :player="player" :selectable="true"
                         :selected="isPlayerSelected(player)" :class="{ selected: isPlayerSelected(player) }"
-                        @playerSelected="playerSelected"/>
+                        @player-selected="playerSelected"/>
         </div>
     </div>
 </template>
@@ -30,7 +30,7 @@ export default {
     },
     methods: {
         playerSelected({ player, selected }) {
-            this.$emit("playerSelected", { player, selected, attribute: this.attribute });
+            this.$emit("player-selected", { player, selected, attribute: this.attribute });
         },
         isPlayerSelected(player) {
             return !!this.play.targets.find(target => target.player === player._id && target.attribute === this.attribute);

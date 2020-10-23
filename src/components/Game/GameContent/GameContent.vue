@@ -1,8 +1,8 @@
 <template>
     <div id="game-content" class="d-flex flex-column">
         <transition mode="out-in" name="fade">
-            <GameEventMonitor v-if="events.length" key="game-event-monitor" :events="events" @skipEvent="removeEvent"/>
-            <GamePlayField v-else key="game-play-field" :play="play" @playerSelected="playerSelected" @playerVotes="playerVotes"/>
+            <GameEventMonitor v-if="events.length" key="game-event-monitor" :events="events" @skip-event="removeEvent"/>
+            <GamePlayField v-else key="game-play-field" :play="play" @player-selected="playerSelected" @player-votes="playerVotes"/>
         </transition>
     </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
     <div id="vote-play-field">
-        <PlayerVotes class="h-100" @playerVotes="playerVotes"/>
+        <PlayerVotes class="h-100" @player-votes="playerVotes"/>
     </div>
 </template>
 
@@ -12,7 +12,7 @@ export default {
     components: { PlayerVotes },
     methods: {
         playerVotes(vote) {
-            this.$emit("playerVotes", vote);
+            this.$emit("player-votes", vote);
         },
     },
 };

@@ -7,7 +7,7 @@
                         <span v-html="$t('LoginPanel.email')"/>
                         <RedAsterisk class="ml-1"/>
                     </label>
-                    <ValidationProvider ref="emailValidationProvider" v-slot="{ errors, classes }">
+                    <ValidationProvider ref="emailValidationProvider" #default="{ errors, classes }">
                         <div class="input-group">
                             <div class="input-group-prepend" :class="classes">
                                 <span class="input-group-text">
@@ -30,7 +30,7 @@
                         <span v-html="$t('LoginPanel.password')"/>
                         <RedAsterisk class="ml-1"/>
                     </label>
-                    <ValidationProvider v-slot="{ errors, classes }" rules="required">
+                    <ValidationProvider #default="{ errors, classes }" rules="required">
                         <div class="input-group">
                             <div class="input-group-prepend" :class="classes">
                                 <span class="input-group-text">

@@ -5,9 +5,9 @@
                 <PlayerCard :player="game.sheriffPlayer" size="lg"/>
             </div>
         </div>
-        <PlayFieldActionText :play="play" attribute="chosen-for-vote" @playerSelected="playerSelected"/>
+        <PlayFieldActionText :play="play" attribute="chosen-for-vote" @player-selected="playerSelected"/>
         <PlayerTargets :targets="tieBreakerPlayers" :play="play" attribute="chosen-for-vote" class="flex-grow-1"
-                       @playerSelected="playerSelected"/>
+                       @player-selected="playerSelected"/>
     </div>
 </template>
 
@@ -35,7 +35,7 @@ export default {
     },
     methods: {
         playerSelected(payload) {
-            this.$emit("playerSelected", payload);
+            this.$emit("player-selected", payload);
         },
     },
 };

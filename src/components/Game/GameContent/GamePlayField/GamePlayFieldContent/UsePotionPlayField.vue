@@ -5,8 +5,8 @@
                 <PlayerCard :player="game.witchPlayer" size="lg"/>
             </div>
         </div>
-        <PlayFieldActionText :play="play" attribute="drank-life-potion" @playerSelected="playerSelected"/>
-        <PlayFieldActionText :play="play" attribute="drank-death-potion" class="mt-2" @playerSelected="playerSelected"/>
+        <PlayFieldActionText :play="play" attribute="drank-life-potion" @player-selected="playerSelected"/>
+        <PlayFieldActionText :play="play" attribute="drank-death-potion" class="mt-2" @player-selected="playerSelected"/>
         <div class="row mt-2">
             <div class="col-12">
                 <ul id="potion-tabs" class="nav nav-pills nav-fill">
@@ -34,12 +34,12 @@
                 <transition mode="out-in" name="translate-down-fade">
                     <div v-if="panel === 'life-potion'" id="use-life-potion-content" key="life-potion-panel" class="h-100">
                         <PlayerTargets :targets="[game.eatenPlayer]" :play="play" attribute="drank-life-potion"
-                                       class="h-100" @playerSelected="playerSelected"/>
+                                       class="h-100" @player-selected="playerSelected"/>
                     </div>
                     <div v-else-if="panel === 'death-potion'" id="use-death-potion-content" key="death-potion-panel"
                          class="h-100">
                         <PlayerTargets :targets="alivePlayersWithoutWerewolvesTarget" :play="play" attribute="drank-death-potion"
-                                       class="h-100" @playerSelected="playerSelected"/>
+                                       class="h-100" @player-selected="playerSelected"/>
                     </div>
                 </transition>
             </div>
@@ -92,7 +92,7 @@ export default {
     },
     methods: {
         playerSelected(payload) {
-            this.$emit("playerSelected", payload);
+            this.$emit("player-selected", payload);
         },
         openLifePotionPanel() {
             if (!this.game.hasWitchUsedLifePotion) {

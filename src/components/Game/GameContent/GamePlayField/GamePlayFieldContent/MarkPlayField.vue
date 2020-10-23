@@ -5,9 +5,9 @@
                 <PlayerCard id="raven-player-card" :player="game.ravenPlayer" size="lg"/>
             </div>
         </div>
-        <PlayFieldActionText :play="play" attribute="raven-marked" @playerSelected="playerSelected"/>
+        <PlayFieldActionText :play="play" attribute="raven-marked" @player-selected="playerSelected"/>
         <PlayerTargets :targets="game.alivePlayers" :play="play" attribute="raven-marked" class="flex-grow-1"
-                       @playerSelected="playerSelected"/>
+                       @player-selected="playerSelected"/>
     </div>
 </template>
 
@@ -39,7 +39,7 @@ export default {
     },
     methods: {
         playerSelected(payload) {
-            this.$emit("playerSelected", payload);
+            this.$emit("player-selected", payload);
         },
     },
 };
