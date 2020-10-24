@@ -9,6 +9,7 @@
 
 ### 🌟 Enhancements
 
+* [#47](https://github.com/antoinezanardi/werewolves-assistant-web/issues/47) - `Roles available` section added in `About` page.
 * [#50](https://github.com/antoinezanardi/werewolves-assistant-web/issues/50) - ESLint rules and ESLint Vue plugin rules updated.
 
 ### 📦 Packages
@@ -26,7 +27,7 @@
 * `@vue/cli-service` updated to version `4.5.8`.
 * `axios` updated to version `0.21.0`.
 * `bootstrap` updated to version `4.5.3`.
-* `eslint` updated to version `7.11.0`.
+* `eslint` updated to version `7.12.0`.
 * `eslint-plugin-vue` updated to version `7.1.0`.
 * `sass-loader` updated to version `10.0.4`.
 * `sweetalert2` updated to version `10.8.1`.

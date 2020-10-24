@@ -66,6 +66,31 @@
         <div class="row mt-4">
             <div class="col-12">
                 <h3 class="section-subtitle">
+                    <RoleImage :role="undefined" class="mr-3"/>
+                    <span v-html="$t('About.availableRoles')"/>
+                </h3>
+                <hr class="bg-dark"/>
+            </div>
+        </div>
+        <div class="row section-content">
+            <div class="col-12">
+                <p v-html="$tc('About.thereAreCountAvailableRoles', roles.length, { count: roles.length })"/>
+                <div v-for="(role, index) in roles" :key="role.name" class="row justify-content-center align-items-center">
+                    <RoleImage :role="role.name" class="col-md-2 col-4"/>
+                    <RoleText :role="role.name" class="col-md-2 col-4 text-center font-weight-bold"/>
+                    <div class="col-md-8 mt-md-0 col-12 mt-3">
+                        <p v-for="paragraph of $t(`Role.description.${role.name}`)"
+                           :key="paragraph" v-html="paragraph"/>
+                    </div>
+                    <div v-if="index + 1 !== roles.length" class="col-12">
+                        <hr class="bg-dark"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12">
+                <h3 class="section-subtitle">
                     <i class="fas fa-hands-helping fa-2x mr-3 text-success"/>
                     <span v-html="$t('About.howToContribute')"/>
                 </h3>
@@ -79,7 +104,7 @@
                     <li>
                         <div class="d-flex flex-column justify-content-center align-items-center">
                             <div>
-                                <span v-html="`${$t('About.theAssistantIsOpenSource')}. ${$t('About.availableOnGitHub')} `"/>
+                                <span v-html="`${$t('About.theAssistantIsOpenSource')} ${$t('About.availableOnGitHub')} `"/>
                                 <a target="_blank" href="https://github.com/antoinezanardi/werewolves-assistant-web"
                                    v-html="`${$t('About.atThisAddress')}`"/>
                                 <span v-html="`, ${$t('About.pleaseAddAStar')}`"/>
@@ -141,11 +166,14 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import RoleImage from "@/components/shared/Game/Role/RoleImage";
+import RoleText from "@/components/shared/Game/Role/RoleText";
 
 export default {
     name: "About",
-    components: { RoleImage },
+    components: { RoleText, RoleImage },
+    computed: { ...mapGetters("role", { roles: "roles" }) },
     created() {
         localStorage.setItem("aboutPageVisited", "true");
     },
@@ -181,6 +209,10 @@ export default {
         i {
             display: flex;
             align-items: center;
+        }
+        img {
+            width: 65px;
+            height: 65px;
         }
         span {
             display: flex;
