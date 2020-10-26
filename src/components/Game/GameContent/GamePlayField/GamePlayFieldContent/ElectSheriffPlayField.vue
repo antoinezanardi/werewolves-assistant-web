@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import PlayerVotes from "../../../../shared/Game/PlayerVotes/PlayerVotes";
+import PlayerVotes from "@/components/shared/Game/PlayerVotes/PlayerVotes";
 
 export default {
     name: "ElectSheriffPlayField",

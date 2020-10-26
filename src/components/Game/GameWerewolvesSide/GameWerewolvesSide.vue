@@ -1,5 +1,5 @@
 <template>
-    <div id="werewolves-side">
+    <div id="werewolves-side" class="visible-scrollbar">
         <div class="row">
             <div class="col-12 text-center pr-0">
                 <h3 v-html="`${$t('GameWerewolvesSide.werewolves')}`"/>

@@ -1,8 +1,8 @@
 <template>
     <div id="game-play-field" class="h-100 d-flex flex-column">
         <GamePlayFieldHeader @start-tutorial="startTutorial"/>
-        <GamePlayFieldContent id="game-content-play-field" :play="play" @player-votes="playerVotes"
-                              @player-selected="playerSelected"/>
+        <GamePlayFieldContent id="game-content-play-field" :play="play" class="visible-scrollbar"
+                              @player-votes="playerVotes" @player-selected="playerSelected"/>
         <GamePlayFieldFooter :play="play"/>
         <GamePlayFieldTutorial ref="gamePlayFieldTutorial"/>
     </div>

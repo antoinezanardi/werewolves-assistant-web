@@ -10,6 +10,7 @@
 ### 🌟 Enhancements
 
 * [#38](https://github.com/antoinezanardi/werewolves-assistant-web/issues/38) - All user info (email and password) limited to 50 characters in length.
+* [#41](https://github.com/antoinezanardi/werewolves-assistant-web/issues/41) - UX for events enhanced with animations and re-designed skip button.
 * [#47](https://github.com/antoinezanardi/werewolves-assistant-web/issues/47) - `Roles available` section added in `About` page.
 * [#50](https://github.com/antoinezanardi/werewolves-assistant-web/issues/50) - ESLint rules and ESLint Vue plugin rules updated.
 

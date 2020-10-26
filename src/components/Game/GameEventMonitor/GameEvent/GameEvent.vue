@@ -11,7 +11,8 @@
             <div class="row align-items-center d-flex flex-grow-1">
                 <div class="col-2 col-md-1 px-0">
                     <v-popover trigger="hover" :disabled="!canGoBackToPreviousGameEventMessage || isTouchDevice">
-                        <i class="fa fa-chevron-left fa-3x game-event-message-button"
+                        <i class="fa fa-chevron-left fa-3x game-event-message-button animate__animated
+                                  animate__heartBeat animate__repeat-2 animate__slow"
                            :class="{ disabled: !canGoBackToPreviousGameEventMessage }"
                            @click="previousGameEventMessage"/>
                         <template #popover>
@@ -33,7 +34,8 @@
                 </div>
                 <div class="col-2 col-md-1 px-0 text-right">
                     <v-popover trigger="hover" :disabled="isTouchDevice">
-                        <i class="fa fa-chevron-right fa-3x game-event-message-button" @click="nextGameEventMessage"/>
+                        <i class="fa fa-chevron-right fa-3x game-event-message-button animate__animated animate__heartBeat animate__repeat-2
+                                  animate__slow" @click="nextGameEventMessage"/>
                         <template #popover>
                             <div v-html="$t('GameEvent.next')"/>
                             <hr class="bg-secondary my-1"/>

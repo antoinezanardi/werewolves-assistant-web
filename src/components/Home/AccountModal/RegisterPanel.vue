@@ -62,7 +62,7 @@
                             </div>
                             <input id="register-confirm-password" v-model="confirmPassword" type="password"
                                    class="form-control" :class="classes" :placeholder="$t('RegisterPanel.required')"
-                                   required minlength="5" :disabled="loading"/>
+                                   required minlength="5" maxlength="50" :disabled="loading"/>
                         </div>
                         <div v-html="errors[0]"/>
                     </ValidationProvider>
