@@ -15,7 +15,7 @@
                                 </span>
                             </div>
                             <input id="log-in-email" ref="logInEmailInput" v-model="credentials.email" type="email"
-                                   class="form-control" :placeholder="$t('LoginPanel.required')"
+                                   class="form-control" :placeholder="$t('LoginPanel.required')" maxlength="50"
                                    required :class="classes" :disabled="loading"/>
                         </div>
                         <div v-html="errors[0]"/>
@@ -39,7 +39,7 @@
                             </div>
                             <input id="log-in-password" ref="logInPasswordInput" v-model="credentials.password"
                                    type="password" class="form-control" :class="classes"
-                                   :placeholder="$t('LoginPanel.required')" required minlength="5"
+                                   :placeholder="$t('LoginPanel.required')" required minlength="5" maxlength="50"
                                    :disabled="loading"/>
                         </div>
                         <div v-html="errors[0]"/>

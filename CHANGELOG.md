@@ -9,6 +9,7 @@
 
 ### 🌟 Enhancements
 
+* [#38](https://github.com/antoinezanardi/werewolves-assistant-web/issues/38) - All user info (email and password) limited to 50 characters in length.
 * [#47](https://github.com/antoinezanardi/werewolves-assistant-web/issues/47) - `Roles available` section added in `About` page.
 * [#50](https://github.com/antoinezanardi/werewolves-assistant-web/issues/50) - ESLint rules and ESLint Vue plugin rules updated.
 
@@ -33,7 +34,7 @@
 * `sweetalert2` updated to version `10.8.1`.
 * `vee-validate` updated to version `3.4.3`.
 * `vue-i18n` updated to version `8.22.1`.
-* `vue-router` updated to version `3.4.7`.
+* `vue-router` updated to version `3.4.8`.
 
 
 ## 1.0.0-beta.5 (2020-10-04)

@@ -14,7 +14,7 @@
                                     <i class="fa fa-at"/>
                                 </span>
                             </div>
-                            <input id="register-email" ref="registerEmailInput" v-model="credentials.email"
+                            <input id="register-email" ref="registerEmailInput" v-model="credentials.email" maxlength="50"
                                    type="email" class="form-control" :placeholder="$t('RegisterPanel.required')"
                                    required :class="classes" :disabled="loading"/>
                         </div>
@@ -39,7 +39,7 @@
                             </div>
                             <input id="register-password" v-model="credentials.password" type="password"
                                    class="form-control" :class="classes" :placeholder="$t('RegisterPanel.required')"
-                                   required minlength="5" :disabled="loading"/>
+                                   required minlength="5" maxlength="50" :disabled="loading"/>
                         </div>
                         <div v-html="errors[0]"/>
                     </ValidationProvider>
