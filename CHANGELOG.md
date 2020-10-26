@@ -13,6 +13,10 @@
 * [#47](https://github.com/antoinezanardi/werewolves-assistant-web/issues/47) - `Roles available` section added in `About` page.
 * [#50](https://github.com/antoinezanardi/werewolves-assistant-web/issues/50) - ESLint rules and ESLint Vue plugin rules updated.
 
+### 🐛 Bug fixes
+
+* [#53](https://github.com/antoinezanardi/werewolves-assistant-web/issues/53) - Travis warnings fixed according to build info.
+
 ### 📦 Packages
 
 * `vue-lazyload` installed with version `1.3.3`.
