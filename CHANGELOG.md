@@ -4,6 +4,7 @@
 
 ### 🚀 New features
 
+* [#39](https://github.com/antoinezanardi/werewolves-assistant-web/issues/39) - `CONTRIBUTING.md` file added for helping people to contribute to this awesome project.
 * [#49](https://github.com/antoinezanardi/werewolves-assistant-web/issues/49) - New role picker in the game lobby with all data about the role (max in game, description and more...).
 * [#51](https://github.com/antoinezanardi/werewolves-assistant-web/issues/51) - All role images are loaded from the API.
 

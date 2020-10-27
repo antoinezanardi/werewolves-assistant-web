@@ -41,7 +41,7 @@ Current release on **main version** is [![GitHub release](https://img.shields.io
 ###### 🏷️ <a href="https://github.com/antoinezanardi/werewolves-assistant-web/releases" target="_blank">All releases for this project are available here</a>. 
 
 ## ☑️ Code analysis and consistency
-In order to keep the code clean, consistent and free of bad JS practises, **[ESLint](https://eslint.org/)** is installed with nearly **313 rules activated** !
+In order to keep the code clean, consistent and free of bad JS practises, **[ESLint](https://eslint.org/)** is installed with nearly **320 rules activated** !
 
 Complete list of all enabled rules is available in the **[.eslintrc.js file](https://github.com/antoinezanardi/werewolves-assistant-web/blob/master/.eslintrc.js)**.
 
