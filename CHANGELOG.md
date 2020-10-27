@@ -23,6 +23,7 @@
 
 * `vue-lazyload` installed with version `1.3.3`.
 * `vue-scrollto` installed with version `2.19.1`.
+* `vue-star-rating` installed with version `1.7.0`.
 * `@fortawesome/fontawesome-free` updated to version `5.15.1`.
 * `@sentry/browser` updated to version `5.27.1`.
 * `@sentry/integrations` updated to version `5.27.1`.
@@ -34,7 +35,7 @@
 * `@vue/cli-service` updated to version `4.5.8`.
 * `axios` updated to version `0.21.0`.
 * `bootstrap` updated to version `4.5.3`.
-* `eslint` updated to version `7.12.0`.
+* `eslint` updated to version `7.12.1`.
 * `eslint-plugin-vue` updated to version `7.1.0`.
 * `sass-loader` updated to version `10.0.4`.
 * `sweetalert2` updated to version `10.8.1`.

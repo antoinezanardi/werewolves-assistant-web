@@ -1,5 +1,13 @@
 <template>
     <div id="game-winners" class="d-flex flex-column">
+        <div class="row">
+            <div class="col-12 text-right">
+                <button class="btn btn-outline-warning" @click="showGameReviewModal">
+                    <i class="fa fa-star mr-2"/>
+                    <span v-html="$t('GameWinners.rateThisGame')"/>
+                </button>
+            </div>
+        </div>
         <div class="d-flex flex-column justify-content-center flex-grow-1">
             <div class="row">
                 <div class="col-12 text-center">
@@ -37,6 +45,7 @@
             </div>
         </div>
         <GameSummaryModal ref="gameSummaryModal"/>
+        <GameReviewModal ref="gameReviewModal"/>
     </div>
 </template>
 
@@ -47,10 +56,11 @@ import { stringify } from "qs";
 import trophy from "@/assets/svg/game/trophy.svg";
 import PlayerCard from "../../shared/Game/PlayerCard";
 import GameSummaryModal from "@/components/Game/GameWinners/GameSummaryModal/GameSummaryModal";
+import GameReviewModal from "@/components/Game/GameWinners/GameReviewModal/GameReviewModal";
 
 export default {
     name: "GameWinners",
-    components: { GameSummaryModal, PlayerCard },
+    components: { GameReviewModal, GameSummaryModal, PlayerCard },
     data() {
         return { SVGs: { trophy } };
     },
@@ -86,6 +96,9 @@ export default {
         },
         showGameSummaryModal() {
             this.$refs.gameSummaryModal.show();
+        },
+        showGameReviewModal() {
+            this.$refs.gameReviewModal.show();
         },
     },
 };

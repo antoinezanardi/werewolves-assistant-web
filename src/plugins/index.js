@@ -14,6 +14,7 @@ import "./vue-lazyload";
 import "./vue-roller";
 import "./vue-scrollto";
 import "./vue-select";
+import "./vue-star-rating";
 import "./vue-toasted";
 import "./vue-tour";
 
