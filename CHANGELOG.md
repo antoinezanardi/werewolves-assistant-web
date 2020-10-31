@@ -22,11 +22,11 @@
 ### 📦 Packages
 
 * `vue-lazyload` installed with version `1.3.3`.
-* `vue-scrollto` installed with version `2.19.1`.
+* `vue-scrollto` installed with version `2.20.0`.
 * `vue-star-rating` installed with version `1.7.0`.
 * `@fortawesome/fontawesome-free` updated to version `5.15.1`.
-* `@sentry/browser` updated to version `5.27.1`.
-* `@sentry/integrations` updated to version `5.27.1`.
+* `@sentry/browser` updated to version `5.27.2`.
+* `@sentry/integrations` updated to version `5.27.2`.
 * `@vue/cli-plugin-e2e-cypress` updated to version `4.5.8`.
 * `@vue/cli-plugin-eslint` updated to version `4.5.8`.
 * `@vue/cli-plugin-router` updated to version `4.5.8`.
@@ -38,7 +38,7 @@
 * `eslint` updated to version `7.12.1`.
 * `eslint-plugin-vue` updated to version `7.1.0`.
 * `sass-loader` updated to version `10.0.4`.
-* `sweetalert2` updated to version `10.8.1`.
+* `sweetalert2` updated to version `10.9.0`.
 * `vee-validate` updated to version `3.4.3`.
 * `vue-i18n` updated to version `8.22.1`.
 * `vue-router` updated to version `3.4.8`.

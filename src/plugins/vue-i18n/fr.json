@@ -336,6 +336,24 @@
         "werewolves": "Loups-Garous",
         "close": "Fermer"
     },
+    "GameReviewModal": {
+        "rateThisGame": "Noter cette partie",
+        "byRatingThisGameYouImproveAssistant": "En laissant un avis sur cette partie, vous permettez à l'Assistant Loups-Garous d'être amélioré. Un grand merci à vous.",
+        "rateYourAssistantExperience": "Noter votre expérience avec l'Assistant",
+        "assistantExperience": {
+            "awesome": "Géniale",
+            "good": "Bonne",
+            "average": "Moyenne",
+            "bad": "Mauvaise",
+            "awful": "Catastrophique"
+        },
+        "aLittleComment": "Un petit commentaire ?",
+        "dontHesitateToComment": "N'hésitez pas à donner votre avis, vos idées, vos impressions qui aideront à améliorer l'Assistant Loups-Garous",
+        "IveFoundABug": "J'ai rencontré un bug ou un dysfonctionnement...",
+        "sorryThatYouFoundABug": "Désolé pour cette mésaventure... N'hésitez pas à la décrire pour nous aider à améliorer l'Assistant Loups-Garous !",
+        "rate": "Noter",
+        "close": "Fermer"
+    },
     "GameSummaryHistoryLine": {
         "day": "Jour",
         "night": "Nuit",
@@ -506,6 +524,9 @@
     },
     "RoleText": {
         "chooseARole": "Choisir un rôle"
+    },
+    "InputAvailableCharacters": {
+        "maxAvailableCharacters": " / {max} caractères maximum"
     },
     "WhatToDoButton": {
         "whatAmISupposedToDo": "Qu'est-ce que ce je dois faire ici?"
