@@ -1,13 +1,5 @@
 <template>
     <div id="game-winners" class="d-flex flex-column">
-        <div class="row">
-            <div class="col-12 text-right">
-                <button class="btn btn-outline-warning" @click="showGameReviewModal">
-                    <i class="fa fa-star mr-2"/>
-                    <span v-html="$t('GameWinners.rateThisGame')"/>
-                </button>
-            </div>
-        </div>
         <div class="d-flex flex-column justify-content-center flex-grow-1">
             <div class="row">
                 <div class="col-12 text-center">
@@ -17,7 +9,15 @@
             </div>
             <div class="row mt-4">
                 <div class="col-12 text-center">
-                    <h1 v-html="winnersText"/>
+                    <h2 v-html="winnersText"/>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-12 text-center">
+                    <button class="btn btn-outline-warning" @click="showGameReviewModal">
+                        <i class="fa fa-star mr-2"/>
+                        <span v-html="$t('GameWinners.rateThisGame')"/>
+                    </button>
                 </div>
             </div>
             <div class="row justify-content-center mt-4">

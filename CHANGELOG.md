@@ -33,6 +33,7 @@
 * `@vue/cli-plugin-unit-mocha` updated to version `4.5.8`.
 * `@vue/cli-plugin-vuex` updated to version `4.5.8`.
 * `@vue/cli-service` updated to version `4.5.8`.
+* `@vue/test-utils` updated to version `1.1.1`.
 * `axios` updated to version `0.21.0`.
 * `bootstrap` updated to version `4.5.3`.
 * `eslint` updated to version `7.12.1`.

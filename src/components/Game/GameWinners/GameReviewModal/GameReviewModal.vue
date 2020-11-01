@@ -1,86 +1,96 @@
 <template>
-    <div id="game-review-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div id="game-review-modal" class="modal fade" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" v-html="$t('GameReviewModal.rateThisGame')"/>
-                </div>
-                <div class="modal-body">
-                    <div class="row align-items-center">
-                        <div class="col-md-1 col-2 pr-0 text-center text-danger">
-                            <i class="fa fa-heart fa-2x animate__animated animate__heartBeat animate__slow animate__repeat-2"/>
-                        </div>
-                        <div id="why-review-text" class="col-md-11 col-10 font-italic"
-                             v-html="$t('GameReviewModal.byRatingThisGameYouImproveAssistant')"/>
+                <form @submit.prevent="rateGame">
+                    <div class="modal-header">
+                        <h5 class="modal-title" v-html="$t('GameReviewModal.rateThisGame')"/>
                     </div>
-                    <hr class="my-3 bg-dark"/>
-                    <div class="row my-2">
-                        <div class="col-12 text-muted text-center" v-html="$t('GameReviewModal.rateYourAssistantExperience')"/>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 d-flex justify-content-center">
-                            <VueStarRating :rating="rating" :increment="0.5" :animate="true" :glow="6" glow-color="#FFFFF"
-                                           :star-size="40" :rounded-corners="true" :padding="10" :show-rating="false"
-                                           @rating-selected="setRating"/>
-                        </div>
-                    </div>
-                    <div class="row mt-2">
-                        <transition mode="out-in" name="fade">
-                            <div id="rating-text" :key="ratingMetadata.text"
-                                 class="col-12 text-center font-weight-bold" :class="`text-${ratingMetadata.color}`">
-                                <i v-if="rating" class="far mr-2" :class="`fa-${ratingMetadata.icon}`"/>
-                                <span v-if="rating" v-html="ratingMetadata.text"/>
+                    <div class="modal-body">
+                        <div class="row align-items-center">
+                            <div class="col-md-1 col-2 pr-0 text-center text-danger">
+                                <i class="fa fa-heart fa-2x animate__animated animate__heartBeat animate__slow animate__repeat-2"/>
                             </div>
-                        </transition>
-                    </div>
-                    <div class="row my-1">
-                        <div class="col-12">
-                            <label for="review-comment" v-html="$t('GameReviewModal.aLittleComment')"/>
-                            <textarea id="review-comment" v-model="comment.value" v-tooltip="comment.tooltip.options"
-                                      :placeholder="$t('GameReviewModal.dontHesitateToComment')"
-                                      class="form-control" maxlength="500" rows="3"/>
+                            <div id="why-review-text" class="col-md-11 col-10 font-italic"
+                                 v-html="$t('GameReviewModal.byRatingThisGameYouImproveAssistant')"/>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 text-center">
-                            <InputAvailableCharacters :value="comment.value" :max-length="500"/>
+                        <hr class="my-3 bg-dark"/>
+                        <div class="row my-2">
+                            <div class="col-12 text-muted text-center" v-html="$t('GameReviewModal.rateYourAssistantExperience')"/>
                         </div>
-                    </div>
-                    <div class="row my-2">
-                        <div class="col-12">
-                            <div class="d-flex justify-content-center align-items-center">
-                                <input id="game-review-bug" v-model="dysfunctionFound" type="checkbox" class="mr-2 cursor-pointer"/>
-                                <label class="form-check-label d-flex justify-content-center align-items-center cursor-pointer"
-                                       for="game-review-bug">
-                                    <span class="text-center" v-html="$t('GameReviewModal.IveFoundABug')"/>
-                                    <i class="fa fa-bug fa-2x ml-2 text-danger"/>
-                                </label>
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-center">
+                                <VueStarRating :rating="rating" :increment="0.5" :animate="true" :glow="6" glow-color="#FFFFF"
+                                               :star-size="40" :rounded-corners="true" :padding="10" :show-rating="false"
+                                               :read-only="loading" @rating-selected="setRating"/>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <div class="row align-items-center w-100">
-                        <div class="offset-md-4 col-md-4 offset-1 col-8">
-                            <SubmitButton classes="btn btn-primary btn-lg btn-block"
-                                          :text="`<i class='fa fa-star mr-2'></i>${$t('GameReviewModal.rate')}`"
-                                          :loading="loading"/>
+                        <div class="row mt-2">
+                            <transition mode="out-in" name="fade">
+                                <div id="rating-text" :key="ratingMetadata.text"
+                                     class="col-12 text-center font-weight-bold" :class="`text-${ratingMetadata.color}`">
+                                    <i v-if="rating" class="far mr-2" :class="`fa-${ratingMetadata.icon}`"/>
+                                    <span v-if="rating" v-html="ratingMetadata.text"/>
+                                </div>
+                            </transition>
                         </div>
-                        <div class="col-md-4 col-2 text-right">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                <span class="d-md-inline d-none" v-html="$t('GameReviewModal.close')"/>
-                                <span class="d-md-none" v-html="'&times;'"/>
-                            </button>
+                        <div class="row my-1">
+                            <div class="col-12">
+                                <label for="review-comment" v-html="$t('GameReviewModal.aLittleComment')"/>
+                                <textarea id="review-comment" v-model="comment.value" v-tooltip="comment.tooltip.options"
+                                          :placeholder="$t('GameReviewModal.dontHesitateToComment')" :disabled="loading"
+                                          class="form-control" maxlength="500" rows="3"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <InputAvailableCharacters :value="comment.value" :max-length="500"/>
+                            </div>
+                        </div>
+                        <div class="row my-2">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <input id="game-review-bug" v-model="dysfunctionFound" :disabled="loading"
+                                           type="checkbox" class="mr-2 cursor-pointer"/>
+                                    <label class="form-check-label d-flex justify-content-center align-items-center cursor-pointer"
+                                           for="game-review-bug">
+                                        <span class="text-center" v-html="$t('GameReviewModal.IveFoundABug')"/>
+                                        <i class="fa fa-bug fa-2x ml-2 text-danger"/>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-12 d-flex justify-content-center">
+                                <gh-btns-star slug="antoinezanardi/werewolves-assistant-web" show-count/>
+                                <gh-btns-follow user="antoinezanardi" show-count/>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <div class="modal-footer">
+                        <div class="row align-items-center w-100">
+                            <div class="offset-md-4 col-md-4 offset-1 col-8">
+                                <SubmitButton classes="btn btn-primary btn-lg btn-block"
+                                              :text="`<i class='fa fa-star mr-2'></i>${$t('GameReviewModal.rate')}`"
+                                              :loading="loading" :disabled="!rating"
+                                              :disabled-tooltip-text="$t('GameReviewModal.youMustRateFirst')"/>
+                            </div>
+                            <div class="col-md-4 col-2 text-right">
+                                <button type="button" class="btn btn-secondary" :disabled="loading" @click="hide">
+                                    <span class="d-md-inline d-none" v-html="$t('GameReviewModal.close')"/>
+                                    <span class="d-md-none" v-html="'&times;'"/>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import $ from "jquery";
 import InputAvailableCharacters from "@/components/shared/Forms/InputAvailableCharacters";
 import SubmitButton from "@/components/shared/Forms/SubmitButton";
@@ -132,14 +142,37 @@ export default {
         },
     },
     methods: {
+        ...mapActions("game", { setGame: "setGame" }),
         show() {
             $("#game-review-modal").modal("show");
             this.rating = this.game.review.rating;
             this.comment.value = this.game.review.comment ? this.game.review.comment : "";
             this.dysfunctionFound = this.game.review.dysfunctionFound;
         },
+        hide() {
+            this.comment.tooltip.options.show = false;
+            $("#game-review-modal").modal("hide");
+        },
         setRating(rating) {
             this.rating = rating;
+        },
+        async rateGame() {
+            try {
+                this.loading = true;
+                const review = {
+                    rating: this.rating,
+                    comment: this.comment.value ? this.comment.value : undefined,
+                    dysfunctionFound: this.dysfunctionFound,
+                };
+                const { data } = await this.$werewolvesAssistantAPI.patchGame(this.game._id, { review });
+                await this.setGame(data);
+                this.hide();
+                this.$toasted.success(this.$t("GameReviewModal.thanksForYourReview"), { icon: "heart" });
+            } catch (e) {
+                this.$error.display(e);
+            } finally {
+                this.loading = false;
+            }
         },
     },
 };
@@ -163,5 +196,11 @@ export default {
     #game-review-bug {
         width: 30px;
         height: 30px;
+    }
+
+    .modal-footer {
+        & > div {
+            display: contents;
+        }
     }
 </style>

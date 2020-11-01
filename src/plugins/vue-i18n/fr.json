@@ -352,6 +352,8 @@
         "IveFoundABug": "J'ai rencontré un bug ou un dysfonctionnement...",
         "sorryThatYouFoundABug": "Désolé pour cette mésaventure... N'hésitez pas à la décrire pour nous aider à améliorer l'Assistant Loups-Garous !",
         "rate": "Noter",
+        "thanksForYourReview": "Merci pour votre retour. Votre avis sera pris en compte !",
+        "youMustRateFirst": "Vous devez attribuer une note d'abord",
         "close": "Fermer"
     },
     "GameSummaryHistoryLine": {
