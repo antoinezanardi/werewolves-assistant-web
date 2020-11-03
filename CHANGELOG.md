@@ -1,6 +1,6 @@
 # 📈 LIST OF CHANGES FOR WEREWOLVES ASSISTANT WEB
 
-## 1.0.0-beta.6 (2020-10-??)
+## 1.0.0-beta.6 (2020-11-03)
 
 ### 🚀 New features
 
@@ -13,6 +13,7 @@
 
 * [#38](https://github.com/antoinezanardi/werewolves-assistant-web/issues/38) - All user info (email and password) limited to 50 characters in length.
 * [#41](https://github.com/antoinezanardi/werewolves-assistant-web/issues/41) - UX for events enhanced with animations and re-designed skip button.
+* [#42](https://github.com/antoinezanardi/werewolves-assistant-web/issues/42) - `README.md` file improved.
 * [#47](https://github.com/antoinezanardi/werewolves-assistant-web/issues/47) - `Roles available` section added in `About` page.
 * [#50](https://github.com/antoinezanardi/werewolves-assistant-web/issues/50) - ESLint rules and ESLint Vue plugin rules updated.
 
@@ -45,6 +46,7 @@
 * `vue-i18n` updated to version `8.22.1`.
 * `vue-router` updated to version `3.4.8`.
 
+---
 
 ## 1.0.0-beta.5 (2020-10-04)
 
