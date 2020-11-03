@@ -2,15 +2,15 @@
     <div ref="playerCard" class="player-card d-flex flex-column align-items-center w-100"
          :class="{ 'selectable': selectable, 'selected': selected }">
         <PlayerThumbnail ref="playerThumbnail" :player="player" :size="size"
-                         :class="{ 'player-card-thumbnail-selected': selected }"
-                         @rolePicked="rolePicked" @unsetPlayer="unsetPlayer" @click.native="togglePlayerSelected"/>
+                         :class="{ 'player-card-thumbnail-selected': selected }" @unset-player="unsetPlayer"
+                         @player-selected="togglePlayerSelected"/>
         <div class="player-card-name text-center" :class="{ 'player-card-name-lg': size === 'lg' }"
              @click="togglePlayerSelected" v-html="player.name"/>
         <div v-if="!game._id" class="player-card-role small text-center text-muted d-flex align-items-center">
             <i v-if="player.role.current" v-tooltip="$t('PlayerCard.unsetRole')"
                class="fa fa-times-circle mr-1 unset-role-button" @click="unsetRole"/>
             <RoleText class="text-truncate" :role="player.role.current"
-                      @click.native="$refs.playerThumbnail.showRolePicker"/>
+                      @click.native="$emit('choose-role', player)"/>
         </div>
     </div>
 </template>
@@ -45,17 +45,16 @@ export default {
     computed: { ...mapGetters("game", { game: "game" }) },
     methods: {
         unsetPlayer() {
-            this.$emit("unsetPlayer", this.player.name);
+            this.$emit("unset-player", this.player.name);
         },
         unsetRole() {
-            this.$emit("unsetRole", this.player.name);
-        },
-        rolePicked(payload) {
-            this.$emit("rolePicked", payload);
+            this.$emit("unset-role", this.player.name);
         },
         togglePlayerSelected() {
             if (this.selectable) {
-                this.$emit("playerSelected", { player: this.player, selected: !this.selected });
+                this.$emit("player-selected", { player: this.player, selected: !this.selected });
+            } else if (!this.game._id) {
+                this.$emit("choose-role", this.player);
             }
         },
     },

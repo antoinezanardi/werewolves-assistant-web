@@ -4,7 +4,7 @@
         <div class="row justify-content-center align-items-center">
             <div class="col-lg-4 col-12 text-center order-lg-0">
                 <VCountdown v-if="game.isTimedPlay" :time="5 * 60 * 1000" @end="countdown.ended = true">
-                    <template slot-scope="{ minutes, seconds }">
+                    <template #default="{ minutes, seconds }">
                         <transition name="fade" mode="out-in">
                             <div v-if="!countdown.ended" id="countdown-running" key="countdown-running" class="countdown">
                                 <i class="fa fa-stopwatch mr-2"/>

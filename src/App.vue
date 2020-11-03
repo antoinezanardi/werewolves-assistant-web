@@ -25,6 +25,7 @@ export default {
     },
     async mounted() {
         await this.checkTokenAndLogin();
+        await this.getAndSetRoles();
         this.loading = false;
     },
     methods: {
@@ -32,6 +33,7 @@ export default {
             checkUserTokenAndLogin: "checkTokenAndLogin",
             logOutUser: "logout",
         }),
+        ...mapActions("role", { getAndSetRoles: "getAndSetRoles" }),
         async checkTokenAndLogin() {
             try {
                 await this.checkUserTokenAndLogin();

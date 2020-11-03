@@ -53,7 +53,7 @@
         "watchYouTubeVideo": "Regarder une vidéo explicative sur YouTube",
         "isAGame": "est un jeu de société d'ambiance dans lequel chaque joueur incarne un villageois ou un loup-garou. Chaque partie est animée par un maître du jeu non-joueur et apporte son lot de surprises, de trahisons, de retournements de situations, de rires et parfois de pleurs.",
         "forAGameToBeSuccessful": "Pour qu'une partie soit réussie, le maître du jeu doit l'animer en installant une ambiance prenante, en y imposant un rythme et en connaissant les règles du jeu sur le bout des doigts. Dans le cas où le maître du jeu doit gérer un nombre conséquent de joueurs, a peu d'expérience ou est dans un état second, ce n'est pas une tâche facile...",
-        "werewolvesAssistantIsHere": "L'assistant Loups-Garous entre en scène !",
+        "werewolvesAssistantIsHere": "L'Assistant Loups-Garous entre en scène !",
         "forHelpingGameMaster": "Pour aider le maître du jeu dans sa lourde tâche qu'est l'animation d'une partie de Loups-Garous, l'Assistant Loups-Garous est l'outil parfait !",
         "theAssistantHasManyFeaturesLike": "L'Assistant possède un panel de fonctionnalités tel que:",
         "screenForGameComposition": "Un écran de composition de partie permettant de créer une partie de 4 à 20 joueurs avec la possibilité de répartir aléatoirement les rôles.",
@@ -63,6 +63,8 @@
         "assistantIsFreeAndAvailable": "En somme, l'Assistant va vous faire découvrir ou re-découvrir le plaisir d'être le maître du jeu pendant une partie de Loups-Garous. Il est disponible sur tout support ayant un navigateur Internet et est 100% GRATUIT.",
         "attentionPlease": "ATTENTION CEPENDANT",
         "assistantDoesntReplaceTheOriginalGame": "L'Assistant n'a aucune vocation à remplacer le jeu original Les Loups-Garous de Thiercelieux™. Pour utiliser l'Assistant, un jeu avec ses cartes est nécessaire. L'Assistant n'est qu'un support pour le maître du jeu qui est le seul utilisateur de l'outil, les joueurs n'y ont pas accès.",
+        "availableRoles": "Rôles disponibles",
+        "thereAreCountAvailableRoles": "Dans cette version de l'Assistant Loups-Garous, {count} roles sont disponibles:",
         "howToContribute": "Comment contribuer à ce projet ?",
         "someMethodsToContribute": "Il existe plusieurs moyens de contribuer à ce projet:",
         "theAssistantIsOpenSource": "L'Assistant Loups-Garous est un projet open-source !",
@@ -72,7 +74,7 @@
         "thisProjectNotWithoutFees": "Ce projet a pour vocation de rester un service gratuit. Néanmoins, l'hébergement et l'infrastructure de l'outil sont tous deux payants. Si vous souhaitez participer ou si vous aimez le travail du créateur de ce projet, vous pouvez faire un don sur",
         "hisBuyMeACoffeePage": "sa page Buy Me A Coffee",
         "speakAboutThisProject": "Parlez de ce projet autour de vous ! Le bouche à oreille permettra aux nombreux indécis du role-play de se lancer dans la grande aventure du maître du jeu grâce à l'Assistant Loups-Garous.",
-        "aWordFromCreator": "Un mot du créateur de l'Assistant Loup-Garous",
+        "aWordFromCreator": "Un mot du créateur de l'Assistant Loups-Garous",
         "ImTheCreator": "Je suis Antoine ZANARDI, développeur Full-Stack Web et adepte de l'open-source en général. Si vous souhaitez en savoir plus sur moi, je vous invite à découvrir",
         "myPortfolio": "mon portoflio",
         "forMe": "Pour moi",
@@ -109,14 +111,20 @@
         "minToStart": "Minimum {min} pour commencer",
         "minPlayerRequirementsToStart": "Minimum 4 joueurs avec un rôle pour commencer dont 1 loup-garou et 1 villageois"
     },
-    "RolePicker": {
-        "chooseRole": "Choisir un rôle",
-        "maxInGameReached": "Ce rôle a été distribué trop de fois",
-        "doYouWantToSetItAnyway": "Voulez-vous donner ce rôle au joueur quand même ?",
-        "confirm": "Confirmer",
-        "cancel": "Annuler",
-        "roleWillBeSwitchedWithOtherPlayer": "Les rôles seront échangés avec le joueur {roleName}",
-        "roleWillBeSwitchedWithAnotherPlayer": "Les rôles seront échangés avec un des joueurs {roleName}"
+    "GameLobbyRolePickerModal": {
+        "noRole": "Aucun rôle",
+        "pickRoleFor": "Choisir un rôle pour",
+        "close": "Fermer",
+        "assignRole": "Assigner ce rôle",
+        "pleaseChooseRole": "Veuillez d'abord choisir un rôle pour l'assigner à ce joueur",
+        "searchRole": "Rechercher un rôle",
+        "chooseRole": "Veuillez choisir un rôle",
+        "side": "Camp",
+        "random": "Aléatoire",
+        "totalInGame": "0 dans la partie | 1 dans la partie | {total} dans la partie",
+        "maxInGameReached": "Maximum atteint pour ce rôle",
+        "totalInGameInThisRole": "Total dans la partie avec ce rôle",
+        "selectedPlayerAlreadyHasSelectedRole": "Le joueur sélectionné possède déjà ce rôle"
     },
     "GameLobbyTutorial": {
         "howToUseGameLobby": "Comment composer une équipe ?",
@@ -308,7 +316,8 @@
         "doYouWantToKeepSamePlayers": "Voulez-vous rejouer avec les mêmes joueurs ?",
         "keepSamePlayers": "Garder les mêmes joueurs",
         "fromScratch": "Recommencer du début",
-        "seeGameSummary": "Voir le récapitulatif de partie"
+        "seeGameSummary": "Voir le récapitulatif de partie",
+        "rateThisGame": "Noter la partie"
     },
     "GameCanceled": {
         "gameCanceled": "Partie annulée (Oooh ...)",
@@ -325,6 +334,29 @@
         "gameHistory": "Historique de la partie",
         "villagers": "Villageois",
         "werewolves": "Loups-Garous",
+        "close": "Fermer"
+    },
+    "GameReviewButton": {
+        "rateThisGame": "Noter votre expérience"
+    },
+    "GameReviewModal": {
+        "rateThisGame": "Noter cette partie",
+        "byRatingThisGameYouImproveAssistant": "En laissant un avis sur cette partie, vous permettez à l'Assistant Loups-Garous d'être amélioré. Un grand merci à vous.",
+        "rateYourAssistantExperience": "Noter votre expérience avec l'Assistant",
+        "assistantExperience": {
+            "awesome": "Géniale",
+            "good": "Bonne",
+            "average": "Moyenne",
+            "bad": "Mauvaise",
+            "awful": "Catastrophique"
+        },
+        "aLittleComment": "Un petit commentaire ?",
+        "dontHesitateToComment": "N'hésitez pas à donner votre avis, vos idées, vos impressions qui aideront à améliorer l'Assistant Loups-Garous",
+        "IveFoundABug": "J'ai rencontré un bug ou un dysfonctionnement...",
+        "sorryThatYouFoundABug": "Désolé pour cette mésaventure... N'hésitez pas à la décrire pour nous aider à améliorer l'Assistant Loups-Garous !",
+        "rate": "Noter",
+        "thanksForYourReview": "Merci pour votre retour. Votre avis sera pris en compte !",
+        "youMustRateFirst": "Vous devez attribuer une note d'abord",
         "close": "Fermer"
     },
     "GameSummaryHistoryLine": {
@@ -440,6 +472,53 @@
             "sheriff": "le maire",
             "all": "le village"
         },
+        "description": {
+            "villager": [
+                "Son but est d'éliminer les Loups-Garous.",
+                "Il n'a aucune compétence particulière.",
+                "Ses seules armes sont la capacité d'analyse des comportements pour identifier les Loups-Garous."
+            ],
+            "werewolf": [
+                "Son but est d'éliminer les Villageois.",
+                "Chaque nuit, ils dévorent un Villageois. Le jour, ils essaient de masquer leur identité nocturne pour échapper à la vindicte populaire.",
+                "Leur nombre peut varier suivant le nombre de joueurs et les variantes appliquées.",
+                "En aucun cas un simple Loup-Garou ne peut dévorer un autre Loup-Garou."
+            ],
+            "seer": [
+                "Son but est d'éliminer les Loups-Garous.",
+                "Chaque nuit, elle voit la carte d'un joueur de son choix.",
+                "Elle doit aider les autres Villageois mais rester discrète pour ne pas être démasquée par les Loups-Garous."
+            ],
+            "witch": [
+                "Son but est d'éliminer les Loups-Garous.",
+                "Elle sait concocter 2 potions extrêmement puissantes: une potion de guérison pour ressusciter le joueur dévoré par les Loups-Garous et une potion d'empoisonnement utilisée la nuit pour éliminer un joueur.",
+                "La Sorcière peut utiliser chaque potion 1 seule fois dans la partie.",
+                "Elle peut se servir de ses 2 potions la même nuit.",
+                "Le matin, suivant la ou les potions utilisées, il pourra y avoir 2 joueurs éliminés ou aucun !",
+                "La Sorcière peut également utiliser la potion de guérison à son profit, et donc se guérir elle-même si elle vient d'être dévorée par les Loups-Garous."
+            ],
+            "hunter": [
+                "Son but est d'éliminer les Loups-Garous.",
+                "S'il se fait dévorer par les Loups-Garous ou éliminer malencontreusement par les Villageois, le Chasseur doit répliquer avant de rendre l'âme en éliminant immédiatement n'importe quel autre joueur de son choix.",
+                "Si le Chasseur est l'amoureux d'un joueur éliminé, avant de quitter la partie le Chasseur doit immédiatement éliminer un autre joueur de son choix.",
+                "Cela peut entraîner une partie où il ne reste aucun joueur survivant. Dans ce cas, la victoire n'appartient à aucun des deux camps."
+            ],
+            "guard": [
+                "Son but est d'éliminer les Loups-Garous.",
+                "Ce personnage peut préserver les villageois de la morsure des Loups-Garous... Chaque nuit, le Salvateur est appelé avant les Loups-Garous.",
+                "Le Salvateur désigne alors un joueur au meneur de jeu. (Il est de tradition que le Salvateur reproduise d'abord avec ses mains la figure dessinée sur la carte).",
+                "Le joueur ainsi désigné sera protégé sera protégé la nuit durant (et celle-ci seulement) contre les Loups-Garous. Même désigné par eux, il ne sera pas éliminé du jeu.",
+                "Le Salvateur a le droit de s'auto-protégé. Il n'a pas le droit de protéger 2 nuits de suite le même joueur.",
+                "La protection du Salvateur ne donne aucun résultat sur la Petite Fille. (Elle est en pleine crise de préadolescence et rien ne saurait lui éviter d'avoir des ennuis).",
+                "Le Salvateur ne protège ni du Joueur de Flûte ni de l'infection par l'Infect Père des Loups."
+            ],
+            "raven": [
+                "Son but est d'éliminer les Loups-Garous.",
+                "Cet individu adore faire connaître ses suspicions de culpabilité en marquant, juste avant l'aube, le joueur de son choix. Son impact est certain malgré le manque de courage de notre oiseau !",
+                "Chaque fin de nuit, après que les Loups-Garous se sont rendormis, à l'appel de son rôle le corbeau peut désigner un joueur qu'il suspecte ou passer son tour.",
+                "Le meneur dépose alors le marqueur \"Malédiction du Corbeau\" devant le joueur désigné. Ce joueur aura automatiquement 2 voix de plus contre lui au prochain décompte des votes."
+            ]
+        },
         "villager": "Villageois",
         "werewolf": "Loup-Garou | Loups-Garous",
         "seer": "Voyante",
@@ -450,6 +529,9 @@
     },
     "RoleText": {
         "chooseARole": "Choisir un rôle"
+    },
+    "InputAvailableCharacters": {
+        "maxAvailableCharacters": " / {max} caractères maximum"
     },
     "WhatToDoButton": {
         "whatAmISupposedToDo": "Qu'est-ce que ce je dois faire ici?"
@@ -465,6 +547,7 @@
         "BAD_CREDENTIALS": "Mauvais e-mail ou mot de passe",
         "EMAIL_EXISTS": "Cet e-mail est déjà utilisé par un autre compte",
         "TIE_IN_VOTES": "Il ne peut pas y avoir d'égalité dans les votes",
+        "TOO_MANY_REQUESTS": "Trop de requêtes d'un coup... Calm down !",
         "yourSessionHasExpired": "Votre session a expirée, veuillez vous reconnecter",
         "unknownError": "Erreur inconnue"
     },

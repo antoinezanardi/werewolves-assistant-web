@@ -18,6 +18,11 @@ class Game {
             by: getProp(game, "won.by"),
             players: getProp(game, "won.players", [], players => players.map(player => new Player(player))),
         };
+        this.review = {
+            rating: getProp(game, "review.rating"),
+            comment: getProp(game, "review.comment"),
+            dysfunctionFound: getProp(game, "review.dysfunctionFound"),
+        };
         this.createdAt = getProp(game, "createdAt");
         this.updatedAt = getProp(game, "updatedAt");
     }
@@ -92,8 +97,12 @@ class Game {
         return waiting.to === "elect-sheriff" || waiting.to === "vote";
     }
 
+    getPlayersWithRole(role) {
+        return this.players.filter(player => player.currentRole === role);
+    }
+
     getPlayerWithRole(role) {
-        return this.players.find(player => player.role.current === role);
+        return this.players.find(player => player.currentRole === role);
     }
 
     get seerPlayer() {

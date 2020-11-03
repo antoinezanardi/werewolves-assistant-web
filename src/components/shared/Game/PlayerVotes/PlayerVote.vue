@@ -50,7 +50,7 @@ export default {
         playerVotes(target) {
             target = target ? target._id : null;
             const vote = { from: this.player._id, for: target };
-            this.$emit("playerVotes", vote);
+            this.$emit("player-votes", vote);
         },
     },
 };

@@ -5,9 +5,9 @@
                 <PlayerCard id="guard-player-card" :player="game.guardPlayer" size="lg"/>
             </div>
         </div>
-        <PlayFieldActionText :play="play" attribute="protected" @playerSelected="playerSelected"/>
+        <PlayFieldActionText :play="play" attribute="protected" @player-selected="playerSelected"/>
         <PlayerTargets :targets="protectablePlayers" :play="play" attribute="protected" class="flex-grow-1"
-                       @playerSelected="playerSelected"/>
+                       @player-selected="playerSelected"/>
     </div>
 </template>
 
@@ -46,7 +46,7 @@ export default {
     },
     methods: {
         playerSelected(payload) {
-            this.$emit("playerSelected", payload);
+            this.$emit("player-selected", payload);
         },
     },
 };

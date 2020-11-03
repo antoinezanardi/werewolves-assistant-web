@@ -2,29 +2,25 @@
     <span class="player-card-thumbnail" :class="{ 'player-card-thumbnail-lg': size === 'lg', 'dead-player-card': player.isAlive === false }">
         <i v-if="!game._id" v-tooltip="$t('PlayerThumbnail.unsetPlayer')" class="fa fa-times-circle unset-player-button"
            @click="unsetPlayer"/>
-        <v-popover ref="thumbnailPopover" :disabled="!!game._id" placement="left">
-            <VueFlip v-model="flipped" v-tooltip="playerThumbnailTooltip" height="100%" width="100%">
-                <template #front>
-                    <RoleImage :role="thumbnail.front"/>
-                </template>
-                <template #back>
-                    <RoleImage :role="thumbnail.back"/>
-                </template>
-            </VueFlip>
-            <RolePicker slot="popover" :player="player" @rolePicked="rolePicked"/>
-        </v-popover>
+        <VueFlip v-model="flipped" v-tooltip="playerThumbnailTooltip" height="100%" width="100%" @click.native="$emit('player-selected')">
+            <template #front>
+                <RoleImage :role="thumbnail.front"/>
+            </template>
+            <template #back>
+                <RoleImage :role="thumbnail.back"/>
+            </template>
+        </VueFlip>
     </span>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import Player from "../../../classes/Player";
-import RolePicker from "./RolePicker";
+import Player from "@/classes/Player";
 import RoleImage from "./Role/RoleImage";
 
 export default {
     name: "PlayerThumbnail",
-    components: { RoleImage, RolePicker },
+    components: { RoleImage },
     props: {
         player: {
             type: Player,
@@ -75,15 +71,8 @@ export default {
                 this.flipped = false;
             }
         },
-        showRolePicker() {
-            this.$refs.thumbnailPopover.show();
-        },
-        rolePicked(role) {
-            this.$refs.thumbnailPopover.hide();
-            this.$emit("rolePicked", { name: this.player.name, role });
-        },
         unsetPlayer() {
-            this.$emit("unsetPlayer", this.player.name);
+            this.$emit("unset-player", this.player.name);
         },
     },
 };
@@ -95,7 +84,7 @@ export default {
     width: 50px;
     height: 50px;
     border: 3px solid grey;
-    border-radius: 5px;
+    border-radius: 8px;
     position: relative;
     transition: all 0.25s ease;
 

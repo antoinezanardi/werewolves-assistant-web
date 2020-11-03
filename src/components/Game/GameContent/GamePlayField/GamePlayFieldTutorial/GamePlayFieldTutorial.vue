@@ -1,6 +1,6 @@
 <template>
     <v-tour name="gamePlayFieldTour" :steps="steps" :options="options">
-        <template slot-scope="tour">
+        <template #default="tour">
             <transition name="fade">
                 <v-step v-if="tour.steps[tour.currentStep]" :key="tour.currentStep" :step="tour.steps[tour.currentStep]"
                         :previous-step="tour.previousStep" :next-step="tour.nextStep" :stop="tour.stop"

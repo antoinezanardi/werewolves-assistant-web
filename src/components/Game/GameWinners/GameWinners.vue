@@ -9,7 +9,12 @@
             </div>
             <div class="row mt-4">
                 <div class="col-12 text-center">
-                    <h1 v-html="winnersText"/>
+                    <h2 v-html="winnersText"/>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-12 text-center">
+                    <GameReviewButton @show-game-review-modal="showGameReviewModal"/>
                 </div>
             </div>
             <div class="row justify-content-center mt-4">
@@ -37,6 +42,7 @@
             </div>
         </div>
         <GameSummaryModal ref="gameSummaryModal"/>
+        <GameReviewModal ref="gameReviewModal"/>
     </div>
 </template>
 
@@ -47,10 +53,12 @@ import { stringify } from "qs";
 import trophy from "@/assets/svg/game/trophy.svg";
 import PlayerCard from "../../shared/Game/PlayerCard";
 import GameSummaryModal from "@/components/Game/GameWinners/GameSummaryModal/GameSummaryModal";
+import GameReviewModal from "@/components/shared/Game/GameReview/GameReviewModal/GameReviewModal";
+import GameReviewButton from "@/components/shared/Game/GameReview/GameReviewButton/GameReviewButton";
 
 export default {
     name: "GameWinners",
-    components: { GameSummaryModal, PlayerCard },
+    components: { GameReviewButton, GameReviewModal, GameSummaryModal, PlayerCard },
     data() {
         return { SVGs: { trophy } };
     },
@@ -86,6 +94,9 @@ export default {
         },
         showGameSummaryModal() {
             this.$refs.gameSummaryModal.show();
+        },
+        showGameReviewModal() {
+            this.$refs.gameReviewModal.show();
         },
     },
 };

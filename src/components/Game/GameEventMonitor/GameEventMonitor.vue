@@ -2,12 +2,12 @@
     <div id="game-event-monitor" class="d-flex flex-column h-100">
         <div id="game-event-monitor-content" class="d-flex flex-grow-1">
             <transition mode="out-in" name="fade">
-                <GameEvent v-if="currentEvent" :key="currentEvent._id" :event="currentEvent" @skipEvent="skipEvent"/>
+                <GameEvent v-if="currentEvent" :key="currentEvent._id" :event="currentEvent" @skip-event="skipEvent"/>
             </transition>
         </div>
         <div id="game-event-monitor-footer" class="row justify-content-center">
-            <div class="col-lg-6 col-md-8 col-12">
-                <button v-tooltip="$t('GameEventMonitor.skipToNextEvent')" class="btn btn-lg btn-primary btn-block" @click="skipEvent">
+            <div class="col-12 text-right">
+                <button v-tooltip="$t('GameEventMonitor.skipToNextEvent')" class="btn btn-secondary" @click="skipEvent">
                     <i class="fa fa-forward mr-2"/>
                     <span v-html="$t('GameEventMonitor.skip')"/>
                 </button>
@@ -36,7 +36,7 @@ export default {
     methods: {
         skipEvent() {
             if (this.currentEvent) {
-                this.$emit("skipEvent", { _id: this.currentEvent._id });
+                this.$emit("skip-event", { _id: this.currentEvent._id });
             }
         },
     },

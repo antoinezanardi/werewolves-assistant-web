@@ -1,5 +1,5 @@
 <template>
-    <div id="villagers-side">
+    <div id="villagers-side" class="visible-scrollbar">
         <div class="row">
             <div class="col-12 text-center pl-0">
                 <h3 v-html="$t('GameVillagersSide.villagers')"/>

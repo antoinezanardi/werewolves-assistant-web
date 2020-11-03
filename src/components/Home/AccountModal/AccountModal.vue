@@ -23,7 +23,7 @@
                         </ul>
                     </div>
                 </div>
-                <ValidationObserver v-slot="{ invalid }" ref="accountModalValidationObserver">
+                <ValidationObserver #default="{ invalid }" ref="accountModalValidationObserver">
                     <form @submit.prevent="submit">
                         <div class="modal-body">
                             <transition mode="out-in" name="switch-panel">

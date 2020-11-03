@@ -5,9 +5,9 @@
                 <PlayerCard id="seer-player-card" :player="game.seerPlayer" size="lg"/>
             </div>
         </div>
-        <PlayFieldActionText :play="play" attribute="seen" @playerSelected="playerSelected"/>
+        <PlayFieldActionText :play="play" attribute="seen" @player-selected="playerSelected"/>
         <PlayerTargets :targets="alivePlayersExceptSeer" :play="play" attribute="seen" class="flex-grow-1"
-                       @playerSelected="playerSelected"/>
+                       @player-selected="playerSelected"/>
     </div>
 </template>
 
@@ -34,7 +34,7 @@ export default {
     },
     methods: {
         playerSelected(payload) {
-            this.$emit("playerSelected", payload);
+            this.$emit("player-selected", payload);
         },
     },
 };
