@@ -179,7 +179,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    @import "../../../../../node_modules/bootstrap/scss/bootstrap-grid";
+    @import "../../../../../../node_modules/bootstrap/scss/bootstrap-grid";
 
     #rating-text {
         height: 40px;

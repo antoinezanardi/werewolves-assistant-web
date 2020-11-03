@@ -11,6 +11,11 @@
                     <h1 v-html="$t('GameCanceled.gameCanceled')"/>
                 </div>
             </div>
+            <div class="row mt-2">
+                <div class="col-12 text-center">
+                    <GameReviewButton @show-game-review-modal="showGameReviewModal"/>
+                </div>
+            </div>
         </div>
         <div class="row justify-content-center align-items-center">
             <div class="col-md-6 mt-2 mt-md-0">
@@ -26,6 +31,7 @@
                 </router-link>
             </div>
         </div>
+        <GameReviewModal ref="gameReviewModal"/>
     </div>
 </template>
 
@@ -33,9 +39,12 @@
 import Swal from "sweetalert2";
 import { mapGetters } from "vuex";
 import { stringify } from "qs";
+import GameReviewButton from "@/components/shared/Game/GameReview/GameReviewButton/GameReviewButton";
+import GameReviewModal from "@/components/shared/Game/GameReview/GameReviewModal/GameReviewModal";
 
 export default {
     name: "GameCanceled",
+    components: { GameReviewModal, GameReviewButton },
     computed: { ...mapGetters("game", { game: "game" }) },
     methods: {
         confirmRestartGame() {
@@ -54,6 +63,9 @@ export default {
                 return this.$router.push(`/game-lobby?${stringify({ players: this.game.players.map(player => ({ name: player.name })) })}`);
             }
             return this.$router.push("/game-lobby");
+        },
+        showGameReviewModal() {
+            this.$refs.gameReviewModal.show();
         },
     },
 };

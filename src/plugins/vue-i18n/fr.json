@@ -336,6 +336,9 @@
         "werewolves": "Loups-Garous",
         "close": "Fermer"
     },
+    "GameReviewButton": {
+        "rateThisGame": "Noter votre expérience"
+    },
     "GameReviewModal": {
         "rateThisGame": "Noter cette partie",
         "byRatingThisGameYouImproveAssistant": "En laissant un avis sur cette partie, vous permettez à l'Assistant Loups-Garous d'être amélioré. Un grand merci à vous.",

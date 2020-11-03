@@ -5,6 +5,7 @@
 ### 🚀 New features
 
 * [#39](https://github.com/antoinezanardi/werewolves-assistant-web/issues/39) - `CONTRIBUTING.md` file added for helping people to contribute to this awesome project.
+* [#48](https://github.com/antoinezanardi/werewolves-assistant-web/issues/48) - Users can review game at the end of a game, canceled or not.
 * [#49](https://github.com/antoinezanardi/werewolves-assistant-web/issues/49) - New role picker in the game lobby with all data about the role (max in game, description and more...).
 * [#51](https://github.com/antoinezanardi/werewolves-assistant-web/issues/51) - All role images are loaded from the API.
 
@@ -38,7 +39,7 @@
 * `bootstrap` updated to version `4.5.3`.
 * `eslint` updated to version `7.12.1`.
 * `eslint-plugin-vue` updated to version `7.1.0`.
-* `sass-loader` updated to version `10.0.4`.
+* `sass-loader` updated to version `10.0.5`.
 * `sweetalert2` updated to version `10.9.0`.
 * `vee-validate` updated to version `3.4.3`.
 * `vue-i18n` updated to version `8.22.1`.
