@@ -1,32 +1,52 @@
 # 📈 LIST OF CHANGES FOR WEREWOLVES ASSISTANT WEB
 
-## 1.0.0-beta.6 (2020-10-??)
+## 1.0.0-beta.6 (2020-11-03)
 
 ### 🚀 New features
 
+* [#39](https://github.com/antoinezanardi/werewolves-assistant-web/issues/39) - `CONTRIBUTING.md` file added for helping people to contribute to this awesome project.
+* [#48](https://github.com/antoinezanardi/werewolves-assistant-web/issues/48) - Users can review game at the end of a game, canceled or not.
 * [#49](https://github.com/antoinezanardi/werewolves-assistant-web/issues/49) - New role picker in the game lobby with all data about the role (max in game, description and more...).
+* [#51](https://github.com/antoinezanardi/werewolves-assistant-web/issues/51) - All role images are loaded from the API.
+
+### 🌟 Enhancements
+
+* [#38](https://github.com/antoinezanardi/werewolves-assistant-web/issues/38) - All user info (email and password) limited to 50 characters in length.
+* [#41](https://github.com/antoinezanardi/werewolves-assistant-web/issues/41) - UX for events enhanced with animations and re-designed skip button.
+* [#42](https://github.com/antoinezanardi/werewolves-assistant-web/issues/42) - `README.md` file improved.
+* [#47](https://github.com/antoinezanardi/werewolves-assistant-web/issues/47) - `Roles available` section added in `About` page.
+* [#50](https://github.com/antoinezanardi/werewolves-assistant-web/issues/50) - ESLint rules and ESLint Vue plugin rules updated.
+
+### 🐛 Bug fixes
+
+* [#53](https://github.com/antoinezanardi/werewolves-assistant-web/issues/53) - Travis warnings fixed according to build info.
 
 ### 📦 Packages
 
-* `vue-scrollto` updated to version `2.19.1`.
+* `vue-lazyload` installed with version `1.3.3`.
+* `vue-scrollto` installed with version `2.20.0`.
+* `vue-star-rating` installed with version `1.7.0`.
 * `@fortawesome/fontawesome-free` updated to version `5.15.1`.
-* `@sentry/browser` updated to version `5.27.0`.
-* `@sentry/integrations` updated to version `5.27.0`.
+* `@sentry/browser` updated to version `5.27.2`.
+* `@sentry/integrations` updated to version `5.27.2`.
 * `@vue/cli-plugin-e2e-cypress` updated to version `4.5.8`.
 * `@vue/cli-plugin-eslint` updated to version `4.5.8`.
 * `@vue/cli-plugin-router` updated to version `4.5.8`.
 * `@vue/cli-plugin-unit-mocha` updated to version `4.5.8`.
 * `@vue/cli-plugin-vuex` updated to version `4.5.8`.
 * `@vue/cli-service` updated to version `4.5.8`.
+* `@vue/test-utils` updated to version `1.1.1`.
+* `axios` updated to version `0.21.0`.
 * `bootstrap` updated to version `4.5.3`.
-* `eslint` updated to version `7.11.0`.
+* `eslint` updated to version `7.12.1`.
 * `eslint-plugin-vue` updated to version `7.1.0`.
-* `sass-loader` updated to version `10.0.4`.
-* `sweetalert2` updated to version `10.7.0`.
-* `vee-validate` updated to version `3.4.2`.
+* `sass-loader` updated to version `10.0.5`.
+* `sweetalert2` updated to version `10.9.0`.
+* `vee-validate` updated to version `3.4.3`.
 * `vue-i18n` updated to version `8.22.1`.
-* `vue-router` updated to version `3.4.7`.
+* `vue-router` updated to version `3.4.8`.
 
+---
 
 ## 1.0.0-beta.5 (2020-10-04)
 

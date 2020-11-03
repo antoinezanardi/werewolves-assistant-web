@@ -122,10 +122,9 @@
                 <div class="modal-footer">
                     <div class="container-fluid">
                         <div class="row align-items-center">
-                            <div v-tooltip="!isRolePicked && $t('GameLobbyRolePickerModal.pleaseChooseRole')"
-                                 class="offset-md-4 col-md-4 offset-2 col-8">
+                            <div v-tooltip="assignRoleTooltip" class="offset-md-4 col-md-4 offset-2 col-8">
                                 <form @submit.prevent="assignRole">
-                                    <button type="submit" class="btn btn-primary btn-lg btn-block" :disabled="!isRolePicked"
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block" :disabled="!canAssignRole"
                                             v-html="$t('GameLobbyRolePickerModal.assignRole')"/>
                                 </form>
                             </div>
@@ -185,20 +184,35 @@ export default {
             const totalInGame = this.game.getPlayersWithRole(this.selected.role.name).length;
             return this.$tc("GameLobbyRolePickerModal.totalInGame", totalInGame, { total: totalInGame });
         },
+        canAssignRole() {
+            return this.isRolePicked && this.selected.role.name !== this.selected.player.currentRole;
+        },
+        assignRoleTooltip() {
+            if (!this.isRolePicked) {
+                return this.$t("GameLobbyRolePickerModal.pleaseChooseRole");
+            } else if (this.isRolePicked && this.selected.role.name === this.selected.player.currentRole) {
+                return this.$t("GameLobbyRolePickerModal.selectedPlayerAlreadyHasSelectedRole");
+            }
+            return "";
+        },
     },
     methods: {
         show(selectedPlayer) {
-            $("#game-lobby-role-picker-modal").modal("show");
-            this.selected.player = new Player(selectedPlayer);
-            this.selected.role = new Role();
             this.selectedRoleThumbnail = {
-                flipped: false,
                 front: undefined,
                 back: undefined,
             };
+            this.selected.player = new Player(selectedPlayer);
+            this.selected.role = new Role();
+            $("#game-lobby-role-picker-modal").modal("show");
         },
         hide() {
             $("#game-lobby-role-picker-modal").modal("hide");
+            this.selected.role = new Role();
+            this.selectedRoleThumbnail = {
+                front: undefined,
+                back: undefined,
+            };
         },
         selectRandomRole() {
             const randomIdx = Math.floor(Math.random() * this.roles.length);
@@ -261,7 +275,7 @@ export default {
         overflow-y: hidden;
 
         .modal-body {
-            height: calc(85vh - 113px);
+            height: calc(85vh - 225px);
             #roles-panel {
                 overflow-y: auto;
             }
@@ -321,6 +335,7 @@ export default {
             top: 2px;
             opacity: 0.8;
             transition: all 0.25s ease;
+            z-index: 1;
 
             &:hover {
                 opacity: 1;

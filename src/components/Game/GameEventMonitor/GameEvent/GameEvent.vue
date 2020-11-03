@@ -11,10 +11,11 @@
             <div class="row align-items-center d-flex flex-grow-1">
                 <div class="col-2 col-md-1 px-0">
                     <v-popover trigger="hover" :disabled="!canGoBackToPreviousGameEventMessage || isTouchDevice">
-                        <i class="fa fa-chevron-left fa-3x game-event-message-button"
+                        <i class="fa fa-chevron-left fa-3x game-event-message-button animate__animated
+                                  animate__heartBeat animate__repeat-2 animate__slow"
                            :class="{ disabled: !canGoBackToPreviousGameEventMessage }"
                            @click="previousGameEventMessage"/>
-                        <template slot="popover">
+                        <template #popover>
                             <div v-html="$t('GameEvent.previous')"/>
                             <hr class="bg-secondary my-1"/>
                             <div class="text-muted font-italic">
@@ -33,8 +34,9 @@
                 </div>
                 <div class="col-2 col-md-1 px-0 text-right">
                     <v-popover trigger="hover" :disabled="isTouchDevice">
-                        <i class="fa fa-chevron-right fa-3x game-event-message-button" @click="nextGameEventMessage"/>
-                        <template slot="popover">
+                        <i class="fa fa-chevron-right fa-3x game-event-message-button animate__animated animate__heartBeat animate__repeat-2
+                                  animate__slow" @click="nextGameEventMessage"/>
+                        <template #popover>
                             <div v-html="$t('GameEvent.next')"/>
                             <hr class="bg-secondary my-1"/>
                             <div class="text-muted font-italic">
@@ -157,7 +159,7 @@ export default {
         },
         nextGameEventMessage() {
             if (this.messageIdx + 1 === this.gameEventMessages.length) {
-                this.$emit("skipEvent", { _id: this.event._id });
+                this.$emit("skip-event", { _id: this.event._id });
             } else {
                 this.messageIdx++;
             }

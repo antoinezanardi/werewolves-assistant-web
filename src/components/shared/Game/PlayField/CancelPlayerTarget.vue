@@ -26,7 +26,7 @@ export default {
     methods: {
         cancelTarget() {
             if (this.targetedPlayer) {
-                this.$emit("playerSelected", { player: { _id: this.targetedPlayer._id }, selected: false, attribute: this.attribute });
+                this.$emit("player-selected", { player: { _id: this.targetedPlayer._id }, selected: false, attribute: this.attribute });
             }
         },
     },

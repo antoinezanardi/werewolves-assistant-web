@@ -72,7 +72,7 @@ export default {
             }
         },
         unsetPlayer() {
-            this.$emit("unsetPlayer", this.player.name);
+            this.$emit("unset-player", this.player.name);
         },
     },
 };

@@ -65,10 +65,10 @@
         </transition>
         <div class="row">
             <div class="col">
-                <hr class="bg-dark mt-1 mb-2"/>
+                <hr class="bg-dark"/>
             </div>
         </div>
-        <div class="row justify-content-center">
+        <div class="row justify-content-center my-2">
             <div class="col-lg-4 col-md-6 col-12">
                 <router-link class="btn btn-secondary btn-block" to="/">
                     <i class="fa fa-sign-out-alt mr-2"/>

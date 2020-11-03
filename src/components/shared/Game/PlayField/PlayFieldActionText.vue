@@ -6,7 +6,7 @@
             </transition>
             <div id="cancel-player-target-container" class="d-flex align-items-center justify-content-center">
                 <CancelPlayerTarget :attribute="attribute" :targeted-player="targetedPlayer"
-                                    @playerSelected="playerSelected"/>
+                                    @player-selected="playerSelected"/>
             </div>
         </div>
     </div>
@@ -103,7 +103,7 @@ export default {
     },
     methods: {
         playerSelected(payload) {
-            this.$emit("playerSelected", payload);
+            this.$emit("player-selected", payload);
         },
     },
 };

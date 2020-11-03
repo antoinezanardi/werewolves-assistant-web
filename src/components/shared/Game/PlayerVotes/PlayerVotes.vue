@@ -1,7 +1,7 @@
 <template>
     <div id="player-votes" class="row justify-content-center align-items-center">
         <PlayerVote v-for="player in game.alivePlayers" :key="player.name" :player="player"
-                    class="col-6 col-lg-3" @playerVotes="playerVotes"/>
+                    class="col-6 col-lg-3" @player-votes="playerVotes"/>
     </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
     computed: { ...mapGetters("game", { game: "game" }) },
     methods: {
         playerVotes(vote) {
-            this.$emit("playerVotes", vote);
+            this.$emit("player-votes", vote);
         },
     },
 };

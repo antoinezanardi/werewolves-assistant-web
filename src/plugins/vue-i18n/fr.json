@@ -53,7 +53,7 @@
         "watchYouTubeVideo": "Regarder une vidéo explicative sur YouTube",
         "isAGame": "est un jeu de société d'ambiance dans lequel chaque joueur incarne un villageois ou un loup-garou. Chaque partie est animée par un maître du jeu non-joueur et apporte son lot de surprises, de trahisons, de retournements de situations, de rires et parfois de pleurs.",
         "forAGameToBeSuccessful": "Pour qu'une partie soit réussie, le maître du jeu doit l'animer en installant une ambiance prenante, en y imposant un rythme et en connaissant les règles du jeu sur le bout des doigts. Dans le cas où le maître du jeu doit gérer un nombre conséquent de joueurs, a peu d'expérience ou est dans un état second, ce n'est pas une tâche facile...",
-        "werewolvesAssistantIsHere": "L'assistant Loups-Garous entre en scène !",
+        "werewolvesAssistantIsHere": "L'Assistant Loups-Garous entre en scène !",
         "forHelpingGameMaster": "Pour aider le maître du jeu dans sa lourde tâche qu'est l'animation d'une partie de Loups-Garous, l'Assistant Loups-Garous est l'outil parfait !",
         "theAssistantHasManyFeaturesLike": "L'Assistant possède un panel de fonctionnalités tel que:",
         "screenForGameComposition": "Un écran de composition de partie permettant de créer une partie de 4 à 20 joueurs avec la possibilité de répartir aléatoirement les rôles.",
@@ -63,6 +63,8 @@
         "assistantIsFreeAndAvailable": "En somme, l'Assistant va vous faire découvrir ou re-découvrir le plaisir d'être le maître du jeu pendant une partie de Loups-Garous. Il est disponible sur tout support ayant un navigateur Internet et est 100% GRATUIT.",
         "attentionPlease": "ATTENTION CEPENDANT",
         "assistantDoesntReplaceTheOriginalGame": "L'Assistant n'a aucune vocation à remplacer le jeu original Les Loups-Garous de Thiercelieux™. Pour utiliser l'Assistant, un jeu avec ses cartes est nécessaire. L'Assistant n'est qu'un support pour le maître du jeu qui est le seul utilisateur de l'outil, les joueurs n'y ont pas accès.",
+        "availableRoles": "Rôles disponibles",
+        "thereAreCountAvailableRoles": "Dans cette version de l'Assistant Loups-Garous, {count} roles sont disponibles:",
         "howToContribute": "Comment contribuer à ce projet ?",
         "someMethodsToContribute": "Il existe plusieurs moyens de contribuer à ce projet:",
         "theAssistantIsOpenSource": "L'Assistant Loups-Garous est un projet open-source !",
@@ -72,7 +74,7 @@
         "thisProjectNotWithoutFees": "Ce projet a pour vocation de rester un service gratuit. Néanmoins, l'hébergement et l'infrastructure de l'outil sont tous deux payants. Si vous souhaitez participer ou si vous aimez le travail du créateur de ce projet, vous pouvez faire un don sur",
         "hisBuyMeACoffeePage": "sa page Buy Me A Coffee",
         "speakAboutThisProject": "Parlez de ce projet autour de vous ! Le bouche à oreille permettra aux nombreux indécis du role-play de se lancer dans la grande aventure du maître du jeu grâce à l'Assistant Loups-Garous.",
-        "aWordFromCreator": "Un mot du créateur de l'Assistant Loup-Garous",
+        "aWordFromCreator": "Un mot du créateur de l'Assistant Loups-Garous",
         "ImTheCreator": "Je suis Antoine ZANARDI, développeur Full-Stack Web et adepte de l'open-source en général. Si vous souhaitez en savoir plus sur moi, je vous invite à découvrir",
         "myPortfolio": "mon portoflio",
         "forMe": "Pour moi",
@@ -121,16 +123,8 @@
         "random": "Aléatoire",
         "totalInGame": "0 dans la partie | 1 dans la partie | {total} dans la partie",
         "maxInGameReached": "Maximum atteint pour ce rôle",
-        "totalInGameInThisRole": "Total dans la partie avec ce rôle"
-    },
-    "RolePicker": {
-        "chooseRole": "Choisir un rôle",
-        "maxInGameReached": "Ce rôle a été distribué trop de fois",
-        "doYouWantToSetItAnyway": "Voulez-vous donner ce rôle au joueur quand même ?",
-        "confirm": "Confirmer",
-        "cancel": "Annuler",
-        "roleWillBeSwitchedWithOtherPlayer": "Les rôles seront échangés avec le joueur {roleName}",
-        "roleWillBeSwitchedWithAnotherPlayer": "Les rôles seront échangés avec un des joueurs {roleName}"
+        "totalInGameInThisRole": "Total dans la partie avec ce rôle",
+        "selectedPlayerAlreadyHasSelectedRole": "Le joueur sélectionné possède déjà ce rôle"
     },
     "GameLobbyTutorial": {
         "howToUseGameLobby": "Comment composer une équipe ?",
@@ -322,7 +316,8 @@
         "doYouWantToKeepSamePlayers": "Voulez-vous rejouer avec les mêmes joueurs ?",
         "keepSamePlayers": "Garder les mêmes joueurs",
         "fromScratch": "Recommencer du début",
-        "seeGameSummary": "Voir le récapitulatif de partie"
+        "seeGameSummary": "Voir le récapitulatif de partie",
+        "rateThisGame": "Noter la partie"
     },
     "GameCanceled": {
         "gameCanceled": "Partie annulée (Oooh ...)",
@@ -339,6 +334,29 @@
         "gameHistory": "Historique de la partie",
         "villagers": "Villageois",
         "werewolves": "Loups-Garous",
+        "close": "Fermer"
+    },
+    "GameReviewButton": {
+        "rateThisGame": "Noter votre expérience"
+    },
+    "GameReviewModal": {
+        "rateThisGame": "Noter cette partie",
+        "byRatingThisGameYouImproveAssistant": "En laissant un avis sur cette partie, vous permettez à l'Assistant Loups-Garous d'être amélioré. Un grand merci à vous.",
+        "rateYourAssistantExperience": "Noter votre expérience avec l'Assistant",
+        "assistantExperience": {
+            "awesome": "Géniale",
+            "good": "Bonne",
+            "average": "Moyenne",
+            "bad": "Mauvaise",
+            "awful": "Catastrophique"
+        },
+        "aLittleComment": "Un petit commentaire ?",
+        "dontHesitateToComment": "N'hésitez pas à donner votre avis, vos idées, vos impressions qui aideront à améliorer l'Assistant Loups-Garous",
+        "IveFoundABug": "J'ai rencontré un bug ou un dysfonctionnement...",
+        "sorryThatYouFoundABug": "Désolé pour cette mésaventure... N'hésitez pas à la décrire pour nous aider à améliorer l'Assistant Loups-Garous !",
+        "rate": "Noter",
+        "thanksForYourReview": "Merci pour votre retour. Votre avis sera pris en compte !",
+        "youMustRateFirst": "Vous devez attribuer une note d'abord",
         "close": "Fermer"
     },
     "GameSummaryHistoryLine": {
@@ -512,6 +530,9 @@
     "RoleText": {
         "chooseARole": "Choisir un rôle"
     },
+    "InputAvailableCharacters": {
+        "maxAvailableCharacters": " / {max} caractères maximum"
+    },
     "WhatToDoButton": {
         "whatAmISupposedToDo": "Qu'est-ce que ce je dois faire ici?"
     },
@@ -526,6 +547,7 @@
         "BAD_CREDENTIALS": "Mauvais e-mail ou mot de passe",
         "EMAIL_EXISTS": "Cet e-mail est déjà utilisé par un autre compte",
         "TIE_IN_VOTES": "Il ne peut pas y avoir d'égalité dans les votes",
+        "TOO_MANY_REQUESTS": "Trop de requêtes d'un coup... Calm down !",
         "yourSessionHasExpired": "Votre session a expirée, veuillez vous reconnecter",
         "unknownError": "Erreur inconnue"
     },

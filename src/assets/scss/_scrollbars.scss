@@ -5,7 +5,7 @@ $scrollbar-background-color: #1A1C1D;
     scrollbar-color: $scrollbar-background-color $scrollbar-color;
 
     &::-webkit-scrollbar {
-        width: 5px;
+        width: 3px;
         background-color: $scrollbar-background-color;
     }
 
