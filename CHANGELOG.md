@@ -7,6 +7,7 @@
 
 ### 🌟 Enhancements
 
+* [#58](https://github.com/antoinezanardi/werewolves-assistant-web/issues/58) - Animation added for menu entrance in the top right corner.
 
 ### 🐛 Bug fixes
 

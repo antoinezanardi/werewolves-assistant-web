@@ -10,7 +10,7 @@
                     <i class="fa fa-cog mr-2"/>
                     <span class="d-none d-md-inline-block" v-html="$t('NavBar.options')"/>
                 </a>
-                <div class="dropdown-menu">
+                <div class="dropdown-menu animate__animated animate__zoomIn animate__faster">
                     <a v-if="$route.name === 'Game' && game.status === 'playing'" href="#" class="dropdown-item"
                        @click.prevent="cancelGame">
                         <i class="fa fa-times-circle text-danger mr-2"/>
