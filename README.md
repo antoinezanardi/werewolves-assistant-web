@@ -100,6 +100,6 @@ To start the web app **on production mode**, run `npm run build` and host the `d
 
 This project is licensed under the [MIT License](http://opensource.org/licenses/MIT).
 
-## <a name="contributor-list">❤️ Contributor list</a>
+## <a name="contributors">❤️ Contributors</a>
 
 There are no contributor yet... Be the first one by **[creating a pull request](https://github.com/antoinezanardi/werewolves-assistant-web/pulls)** !

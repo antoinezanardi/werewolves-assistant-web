@@ -1,5 +1,31 @@
 # 📈 LIST OF CHANGES FOR WEREWOLVES ASSISTANT WEB
 
+## 1.0.0-beta.7 (2020-11-??)
+
+### 🚀 New features
+
+
+### 🌟 Enhancements
+
+
+### 🐛 Bug fixes
+
+
+### 📚 Documentation
+
+* [#60](https://github.com/antoinezanardi/werewolves-assistant-web/issues/60) - Bad `contributors` anchor link fixed.
+
+### 📦 Packages
+
+* `@sentry/browser` updated to version `5.27.3`.
+* `@sentry/integrations` updated to version `5.27.3`.
+* `eslint` updated to version `7.13.0`.
+* `sweetalert2` updated to version `10.9.1`.
+* `vee-validate` updated to version `3.4.4`.
+* `vue-router` updated to version `3.4.9`.
+
+---
+
 ## 1.0.0-beta.6 (2020-11-03)
 
 ### 🚀 New features
