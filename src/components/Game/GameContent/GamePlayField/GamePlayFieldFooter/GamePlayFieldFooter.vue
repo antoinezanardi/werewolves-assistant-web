@@ -9,7 +9,7 @@
                             <div v-if="!countdown.ended" id="countdown-running" key="countdown-running" class="countdown">
                                 <i class="fa fa-stopwatch mr-2"/>
                                 <span v-html="`${$t('GamePlayFieldFooter.timeForDebating')}:`"/>
-                                <span class="ml-2" v-html="`${minutes}:${seconds.toString().padStart(2, '0')}`"/>
+                                <VRoller class="ml-2 d-inline-flex" :text="`${minutes}:${seconds.toString().padStart(2, '0')}`"/>
                             </div>
                             <div v-else id="countdown-ended" key="countdown-ended"
                                  class="animate__animated animate__pulse animate__infinite countdown">

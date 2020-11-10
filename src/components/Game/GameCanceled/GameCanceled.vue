@@ -55,6 +55,7 @@ export default {
                 showCancelButton: true,
                 confirmButtonText: this.$t("GameCanceled.keepSamePlayers"),
                 cancelButtonText: this.$t("GameCanceled.fromScratch"),
+                heightAuto: false,
             });
         },
         async restartGame() {

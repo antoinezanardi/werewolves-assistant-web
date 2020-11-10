@@ -82,8 +82,12 @@ Complete list of all enabled rules is available in the **[.eslintrc.js file](htt
         -  _**Not Required**_
     * **VUE_APP_SENTRY_PROJECT_ID**: Project ID used by Sentry.
         -  _**Not Required**_
-    * **VUE_APP_SENTRY_ENABLED**: If you want to enable error tracking.
+    * **VUE_APP_SENTRY_ENABLED**: If you want to enable error tracking with Sentry.
+        -  _**Not Required - Default value**_: `false`
+    * **VUE_APP_GOOGLE_ANALYTICS_ID**: Tracking and measurement ID used by Google Analytics.
         -  _**Not Required**_
+    * **VUE_APP_GOOGLE_ANALYTICS_ENABLED**: If you want to enable traffic data measurement with Google Analytics.
+        -  _**Not Required - Default value**_: `false`
 
 ## <a name="lets-go">🔌 Let's go</a>
 To start the web app **on development mode**, simply run `npm start`.
@@ -100,6 +104,6 @@ To start the web app **on production mode**, run `npm run build` and host the `d
 
 This project is licensed under the [MIT License](http://opensource.org/licenses/MIT).
 
-## <a name="contributor-list">❤️ Contributor list</a>
+## <a name="contributors">❤️ Contributors</a>
 
 There are no contributor yet... Be the first one by **[creating a pull request](https://github.com/antoinezanardi/werewolves-assistant-web/pulls)** !

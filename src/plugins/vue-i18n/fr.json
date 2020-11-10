@@ -310,6 +310,7 @@
     "GameWinners": {
         "wonByWerewolves": "Partie gagnée par le seul loup-garou | Partie gagnée par les loups-garous",
         "wonByVillagers": "Partie gagnée par le seul villageois | Partie gagnée par les villageois",
+        "wonByNobody": "Match nul ! Aucun survivant dans le village...",
         "restartGame": "Recommencer une partie",
         "quit": "Quitter",
         "newGame": "Nouvelle partie",
@@ -540,6 +541,11 @@
         "looksLikeYouGotLost": "Il semblerait que vous soyez perdu...",
         "getOutBeforeWerewolvesCome": "Déguerpissez avant que les loups-garous arrivent !",
         "flee": "Prendre la fuite"
+    },
+    "NotAvailable": {
+        "theAssistantIsUnavailable": "L'Assistant est indisponible pour le moment...",
+        "willBeAvailableSoon": "Encore un coup de ces fichus Loups-Garous ... Le maire a été averti, l'Assistant sera bientôt de nouveau opérationel.",
+        "refresh": "Rafraichir la page"
     },
     "Error": {
         "unauthorized": "Vous ne pouvez pas accéder à cette page",
