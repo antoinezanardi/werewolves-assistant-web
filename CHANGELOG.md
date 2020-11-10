@@ -9,6 +9,7 @@
 
 ### 🌟 Enhancements
 
+* [#56](https://github.com/antoinezanardi/werewolves-assistant-web/issues/56) - The Assistant handles games without winners.
 * [#58](https://github.com/antoinezanardi/werewolves-assistant-web/issues/58) - Animation added for menu entrance in the top right corner.
 
 ### 🐛 Bug fixes
