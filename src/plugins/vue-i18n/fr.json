@@ -541,6 +541,11 @@
         "getOutBeforeWerewolvesCome": "Déguerpissez avant que les loups-garous arrivent !",
         "flee": "Prendre la fuite"
     },
+    "NotAvailable": {
+        "theAssistantIsUnavailable": "L'Assistant est indisponible pour le moment...",
+        "willBeAvailableSoon": "Encore un coup de ces fichus Loups-Garous ... Le maire a été averti, l'Assistant sera bientôt de nouveau opérationel.",
+        "refresh": "Rafraichir la page"
+    },
     "Error": {
         "unauthorized": "Vous ne pouvez pas accéder à cette page",
         "BAD_REQUEST": "Mauvaise requête serveur",

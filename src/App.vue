@@ -2,6 +2,7 @@
     <div id="app">
         <transition mode="out-in" name="fade">
             <SpinningLoader v-if="loading" key="loading"/>
+            <NotAvailable v-else-if="unavailableAPI"/>
             <div v-else id="werewolves-assistant" key="werewolves-assistant" class="d-flex flex-column">
                 <transition name="fade-in">
                     <NavBar v-if="$route.name !== 'Home'"/>
@@ -16,17 +17,23 @@
 import { mapActions } from "vuex";
 import SpinningLoader from "./components/SpinningLoader/SpinningLoader";
 import NavBar from "./components/NavBar/NavBar";
+import NotAvailable from "@/components/NotAvailable/NotAvailable";
 
 export default {
     name: "App",
-    components: { NavBar, SpinningLoader },
+    components: { NotAvailable, NavBar, SpinningLoader },
     data() {
-        return { loading: true };
+        return { loading: true, unavailableAPI: false };
     },
     async mounted() {
-        await this.checkTokenAndLogin();
-        await this.getAndSetRoles();
-        this.loading = false;
+        try {
+            await this.checkTokenAndLogin();
+            await this.getAndSetRoles();
+        } catch (e) {
+            this.unavailableAPI = true;
+        } finally {
+            this.loading = false;
+        }
     },
     methods: {
         ...mapActions("user", {

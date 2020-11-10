@@ -4,6 +4,7 @@
 
 ### 🚀 New features
 
+* [#61](https://github.com/antoinezanardi/werewolves-assistant-web/issues/61) - `Not Available` page added when API is down.
 * [#62](https://github.com/antoinezanardi/werewolves-assistant-web/issues/62) - Google analytics plugin implemented.
 
 ### 🌟 Enhancements
