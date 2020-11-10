@@ -310,6 +310,7 @@
     "GameWinners": {
         "wonByWerewolves": "Partie gagnée par le seul loup-garou | Partie gagnée par les loups-garous",
         "wonByVillagers": "Partie gagnée par le seul villageois | Partie gagnée par les villageois",
+        "wonByNobody": "Match nul ! Aucun survivant dans le village...",
         "restartGame": "Recommencer une partie",
         "quit": "Quitter",
         "newGame": "Nouvelle partie",

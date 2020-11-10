@@ -13,6 +13,7 @@
 
 ### 🐛 Bug fixes
 
+* [#57](https://github.com/antoinezanardi/werewolves-assistant-web/issues/57) - VRoller component added if necessary.
 
 ### 📚 Documentation
 
