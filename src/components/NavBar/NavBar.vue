@@ -46,6 +46,7 @@ export default {
                 showCancelButton: true,
                 confirmButtonText: this.$t("NavBar.confirm"),
                 cancelButtonText: this.$t("NavBar.cancel"),
+                heightAuto: false,
             });
         },
         async cancelGame() {

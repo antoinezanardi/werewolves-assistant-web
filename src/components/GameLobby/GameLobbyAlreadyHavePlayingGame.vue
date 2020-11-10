@@ -73,6 +73,7 @@ export default {
                 showCancelButton: true,
                 confirmButtonText: this.$t("GameLobbyAlreadyHavePlayingGame.cancelGame"),
                 cancelButtonText: this.$t("GameLobbyAlreadyHavePlayingGame.dontCancel"),
+                heightAuto: false,
             });
         },
         async cancelGame() {

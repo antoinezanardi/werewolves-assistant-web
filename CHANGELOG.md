@@ -14,6 +14,7 @@
 
 ### 🐛 Bug fixes
 
+* [#30](https://github.com/antoinezanardi/werewolves-assistant-web/issues/30) - Height auto of sweetalert2 disabled on all instances.
 * [#57](https://github.com/antoinezanardi/werewolves-assistant-web/issues/57) - VRoller component added if necessary.
 
 ### 📚 Documentation
