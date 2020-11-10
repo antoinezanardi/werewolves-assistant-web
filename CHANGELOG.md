@@ -4,6 +4,7 @@
 
 ### 🚀 New features
 
+* [#62](https://github.com/antoinezanardi/werewolves-assistant-web/issues/62) - Google analytics plugin implemented.
 
 ### 🌟 Enhancements
 
@@ -18,6 +19,7 @@
 
 ### 📦 Packages
 
+* `vue-gtag` installed with version `1.10.0`.
 * `@sentry/browser` updated to version `5.27.3`.
 * `@sentry/integrations` updated to version `5.27.3`.
 * `eslint` updated to version `7.13.0`.

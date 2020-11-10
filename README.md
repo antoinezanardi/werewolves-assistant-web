@@ -82,8 +82,12 @@ Complete list of all enabled rules is available in the **[.eslintrc.js file](htt
         -  _**Not Required**_
     * **VUE_APP_SENTRY_PROJECT_ID**: Project ID used by Sentry.
         -  _**Not Required**_
-    * **VUE_APP_SENTRY_ENABLED**: If you want to enable error tracking.
+    * **VUE_APP_SENTRY_ENABLED**: If you want to enable error tracking with Sentry.
+        -  _**Not Required - Default value**_: `false`
+    * **VUE_APP_GOOGLE_ANALYTICS_ID**: Tracking and measurement ID used by Google Analytics.
         -  _**Not Required**_
+    * **VUE_APP_GOOGLE_ANALYTICS_ENABLED**: If you want to enable traffic data measurement with Google Analytics.
+        -  _**Not Required - Default value**_: `false`
 
 ## <a name="lets-go">🔌 Let's go</a>
 To start the web app **on development mode**, simply run `npm start`.
