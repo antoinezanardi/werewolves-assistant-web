@@ -192,8 +192,8 @@
     },
     "GamePlayFieldFooter": {
         "next": "Suivant",
-        "playersHaveVoted": "{votesCount}/{playersCount} joueurs ont voté",
-        "playersTargeted": "{targetsCount}/{min} joueur visé",
+        "playersHaveVoted": "joueurs ont voté",
+        "playerTargeted": "joueur visé",
         "minOnePlayerHasToVote": "Minimum 1 joueur doit voter",
         "minOnePlayerHasToBeTargeted": "Minimum 1 joueur doit être visé",
         "timeForDebating": "Temps pour débattre",
