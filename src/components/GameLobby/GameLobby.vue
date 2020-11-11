@@ -268,6 +268,7 @@ export default {
                 showCancelButton: true,
                 confirmButtonText: `<i class='fa fa-sign-out-alt mr-2'></i>${this.$t("GameLobby.quit")}`,
                 cancelButtonText: this.$t("GameLobby.cancel"),
+                heightAuto: false,
             });
         },
         startTutorial() {

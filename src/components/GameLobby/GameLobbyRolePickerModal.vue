@@ -246,6 +246,7 @@ export default {
                 confirmButtonText: this.$t("RolePicker.confirm"),
                 cancelButtonText: this.$t("RolePicker.cancel"),
                 footer,
+                heightAuto: false,
             });
         },
         async assignRole() {

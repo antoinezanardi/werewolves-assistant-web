@@ -76,6 +76,7 @@ export default {
                 showCancelButton: true,
                 confirmButtonText: `<i class='fa fa-sign-out-alt mr-2'></i>${this.$t("Game.quit")}`,
                 cancelButtonText: this.$t("Game.cancel"),
+                heightAuto: false,
             });
         },
     },

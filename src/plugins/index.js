@@ -8,6 +8,7 @@ import "./vee-validate";
 import "./vue-countdown";
 import "./vue-flip";
 import "./vue-github-buttons";
+import "./vue-gtag";
 import i18n from "./vue-i18n";
 import "./vue-keypress";
 import "./vue-lazyload";

@@ -1,5 +1,39 @@
 # 📈 LIST OF CHANGES FOR WEREWOLVES ASSISTANT WEB
 
+## 1.0.0-beta.7 (2020-11-11)
+
+### 🚀 New features
+
+* [#61](https://github.com/antoinezanardi/werewolves-assistant-web/issues/61) - `Not Available` page added when API is down.
+* [#62](https://github.com/antoinezanardi/werewolves-assistant-web/issues/62) - Google analytics plugin implemented.
+
+### 🌟 Enhancements
+
+* [#56](https://github.com/antoinezanardi/werewolves-assistant-web/issues/56) - The Assistant handles games without winners.
+* [#58](https://github.com/antoinezanardi/werewolves-assistant-web/issues/58) - Animation added for menu entrance in the top right corner.
+
+### 🐛 Bug fixes
+
+* [#30](https://github.com/antoinezanardi/werewolves-assistant-web/issues/30) - Height auto of sweetalert2 disabled on all instances.
+* [#57](https://github.com/antoinezanardi/werewolves-assistant-web/issues/57) - VRoller component added if necessary.
+
+### 📚 Documentation
+
+* [#60](https://github.com/antoinezanardi/werewolves-assistant-web/issues/60) - Bad `contributors` anchor link fixed.
+
+### 📦 Packages
+
+* `vue-gtag` installed with version `1.10.0`.
+* `@sentry/browser` updated to version `5.27.3`.
+* `@sentry/integrations` updated to version `5.27.3`.
+* `eslint` updated to version `7.13.0`.
+* `sass-loader` updated to version `10.1.0`.
+* `sweetalert2` updated to version `10.9.1`.
+* `vee-validate` updated to version `3.4.4`.
+* `vue-router` updated to version `3.4.9`.
+
+---
+
 ## 1.0.0-beta.6 (2020-11-03)
 
 ### 🚀 New features

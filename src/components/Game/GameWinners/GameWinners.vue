@@ -67,11 +67,18 @@ export default {
         winnersText() {
             if (this.game.won.by === "werewolves") {
                 return this.$tc("GameWinners.wonByWerewolves", this.winners.length);
+            } else if (this.game.won.by === "villagers") {
+                return this.$tc("GameWinners.wonByVillagers", this.winners.length);
             }
-            return this.$tc("GameWinners.wonByVillagers", this.winners.length);
+            return this.$t("GameWinners.wonByNobody");
         },
         winners() {
-            return this.game.won.by === "werewolves" ? this.game.werewolfPlayers : this.game.villagerPlayers;
+            if (this.game.won.by === "werewolves") {
+                return this.game.werewolfPlayers;
+            } else if (this.game.won.by === "villagers") {
+                return this.game.villagerPlayers;
+            }
+            return [];
         },
     },
     methods: {
@@ -83,6 +90,7 @@ export default {
                 showCancelButton: true,
                 confirmButtonText: this.$t("GameWinners.keepSamePlayers"),
                 cancelButtonText: this.$t("GameWinners.fromScratch"),
+                heightAuto: false,
             });
         },
         async restartGame() {
