@@ -6,6 +6,10 @@
 
 * [#72](https://github.com/antoinezanardi/werewolves-assistant-web/issues/72) - Travis CI linked to Slack.
 
+### 🐛 Bug fixes
+
+* [#70](https://github.com/antoinezanardi/werewolves-assistant-web/issues/70) - Good translations when confirming that a role is picked but chosen anyway.
+
 ### 📦 Packages
 
 * `@sentry/browser` updated to version `5.27.4`.

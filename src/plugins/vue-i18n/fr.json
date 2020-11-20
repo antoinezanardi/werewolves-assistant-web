@@ -124,7 +124,11 @@
         "totalInGame": "0 dans la partie | 1 dans la partie | {total} dans la partie",
         "maxInGameReached": "Maximum atteint pour ce rôle",
         "totalInGameInThisRole": "Total dans la partie avec ce rôle",
-        "selectedPlayerAlreadyHasSelectedRole": "Le joueur sélectionné possède déjà ce rôle"
+        "selectedPlayerAlreadyHasSelectedRole": "Le joueur sélectionné possède déjà ce rôle",
+        "doYouWantToSetItAnyway": "Voulez-vous quand même lui attribuer ce rôle ?",
+        "confirm": "Confirmer",
+        "cancel": "Annuler",
+        "roleWillBeSwitchedWithOtherPlayer": "Les rôles seront échangés avec le joueur possédant actuellement ce rôle."
     },
     "GameLobbyTutorial": {
         "howToUseGameLobby": "Comment composer une équipe ?",
