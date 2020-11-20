@@ -69,17 +69,21 @@
                                 <SubmitButton id="random-repartition-button"
                                               classes="btn btn-dark btn-block text-uppercase font-weight-bold"
                                               :disabled-tooltip-text="$t('GameLobby.fourPlayerRequiredToGetRandomRepartition')"
-                                              :text="`<i class='fas fa-random mr-2'></i>${$t('GameLobby.getRandomRepartition')}`"
                                               :loading="loading.getGameRepartition"
-                                              :disabled="loading.createGame || !game.areThereEnoughPlayers"/>
+                                              :disabled="loading.createGame || !game.areThereEnoughPlayers">
+                                    <i class="fas fa-random mr-2"/>
+                                    <span v-html="$t('GameLobby.getRandomRepartition')"/>
+                                </SubmitButton>
                             </form>
                         </div>
                         <div class="col-lg-4 col-sm-6 mt-lg-0 mt-2 mt-sm-0">
                             <form @submit.prevent="createGame">
                                 <SubmitButton classes="btn btn-primary btn-lg btn-block text-uppercase font-weight-bold"
-                                              :text="`<i class='fa fa-play-circle mr-2'></i>${$t('GameLobby.launchParty')}`"
                                               :disabled-tooltip-text="createGameButtonDisabledText" :loading="loading.createGame"
-                                              :disabled="loading.getGameRepartition || !game.canStartGame"/>
+                                              :disabled="loading.getGameRepartition || !game.canStartGame">
+                                    <i class="fa fa-play-circle mr-2"/>
+                                    <span v-html="$t('GameLobby.launchParty')"/>
+                                </SubmitButton>
                             </form>
                         </div>
                         <div class="col-lg-4 mt-2 mt-lg-0">

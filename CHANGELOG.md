@@ -10,6 +10,10 @@
 
 * [#70](https://github.com/antoinezanardi/werewolves-assistant-web/issues/70) - Good translations when confirming that a role is picked but chosen anyway.
 
+### ♻️ Refactoring
+
+* [#66](https://github.com/antoinezanardi/werewolves-assistant-web/issues/66) - `SubmitButton` component uses default template for button inner text.
+
 ### 📦 Packages
 
 * `@sentry/browser` updated to version `5.27.4`.

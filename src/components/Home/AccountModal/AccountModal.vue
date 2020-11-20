@@ -38,8 +38,9 @@
                                 <i class="fa fa-times mr-2"/>
                                 <span v-html="$t('AccountModal.close')"/>
                             </button>
-                            <SubmitButton classes="btn btn-primary" :loading="loading" :disabled="invalid"
-                                          :text="submitBtnText"/>
+                            <SubmitButton classes="btn btn-primary" :loading="loading" :disabled="invalid">
+                                <span v-html="submitBtnText"/>
+                            </SubmitButton>
                         </div>
                     </form>
                 </ValidationObserver>
@@ -52,7 +53,7 @@
 import Vue from "vue";
 import { mapActions } from "vuex";
 import $ from "jquery";
-import SubmitButton from "../../shared/Forms/SubmitButton";
+import SubmitButton from "@/components/shared/Forms/SubmitButton";
 import LoginPanel from "./LoginPanel";
 import RegisterPanel from "./RegisterPanel";
 import { isAPIError } from "@/helpers/functions/Error";

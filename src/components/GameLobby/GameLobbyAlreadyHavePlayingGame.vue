@@ -30,8 +30,10 @@
             </div>
             <div class="col-lg-4 col-md-6 col-12 mt-md-0 mt-3">
                 <form @submit.prevent="cancelGame">
-                    <SubmitButton :loading="loading" classes="btn btn-block btn-lg btn-dark text-uppercase font-weight-bold"
-                                  :text="`<i class='fa fa-times-circle mr-2'></i>${$t('GameLobbyAlreadyHavePlayingGame.cancelGame')}`"/>
+                    <SubmitButton :loading="loading" classes="btn btn-block btn-lg btn-dark text-uppercase font-weight-bold">
+                        <i class="fa fa-times-circle mr-2"/>
+                        <span v-html="$t('GameLobbyAlreadyHavePlayingGame.cancelGame')"/>
+                    </SubmitButton>
                 </form>
             </div>
         </div>
@@ -40,8 +42,8 @@
 
 <script>
 
-import Game from "../../classes/Game";
-import SubmitButton from "../shared/Forms/SubmitButton";
+import Game from "@/classes/Game";
+import SubmitButton from "@/components/shared/Forms/SubmitButton";
 import Swal from "sweetalert2";
 
 export default {
