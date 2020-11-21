@@ -64,7 +64,7 @@ class Game {
     }
 
     get allPlayersHaveRole() {
-        return !this.players.filter(player => player.role.current === undefined).length;
+        return this.players.length && !this.players.filter(player => player.role.current === undefined).length;
     }
 
     get canStartGame() {

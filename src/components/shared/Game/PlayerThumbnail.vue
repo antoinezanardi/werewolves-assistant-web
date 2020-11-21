@@ -2,6 +2,11 @@
     <span class="player-card-thumbnail" :class="{ 'player-card-thumbnail-lg': size === 'lg', 'dead-player-card': player.isAlive === false }">
         <i v-if="!game._id" v-tooltip="$t('PlayerThumbnail.unsetPlayer')" class="fa fa-times-circle unset-player-button"
            @click="unsetPlayer"/>
+        <transition name="fade" mode="out-in">
+            <img v-if="nominatedImageSource" v-tooltip="nominatedTooltipText"
+                 class="nominated-player animate__animated animate__infinite animate__heartBeat animate__slow"
+                 :src="nominatedImageSource" alt="Nominated Player"/>
+        </transition>
         <VueFlip v-model="flipped" v-tooltip="playerThumbnailTooltip" height="100%" width="100%" @click.native="$emit('player-selected')">
             <template #front>
                 <RoleImage :role="thumbnail.front"/>
@@ -30,6 +35,10 @@ export default {
             type: String,
             default: "md",
         },
+        isNominated: {
+            type: Boolean,
+            default: false,
+        },
     },
     data() {
         return {
@@ -47,6 +56,16 @@ export default {
                 return this.$tc(`Role.${this.player.role.current}`, 1);
             }
             return this.$t("PlayerThumbnail.chooseRole");
+        },
+        nominatedImageSource() {
+            const nominatedImageSources = {
+                "elect-sheriff": require("@/assets/svg/attributes/sheriff.svg"),
+                "vote": require("@/assets/svg/actions/vote.svg"),
+            };
+            return this.isNominated ? nominatedImageSources[this.game.firstWaiting.to] : undefined;
+        },
+        nominatedTooltipText() {
+            return this.isNominated ? this.$t(`PlayerThumbnail.nominated.${this.game.firstWaiting.to}`) : undefined;
         },
     },
     watch: {
@@ -120,5 +139,15 @@ export default {
     position: absolute;
     right: -15px;
     top: -15px;
+}
+
+.nominated-player {
+    cursor: pointer;
+    position: absolute;
+    right: -15px;
+    top: -15px;
+    width: 30px;
+    height: 30px;
+    z-index: 10;
 }
 </style>

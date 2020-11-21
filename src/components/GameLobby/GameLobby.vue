@@ -54,7 +54,7 @@
                             </h3>
                         </div>
                         <transition-group v-else id="players" tag="div" name="fade-list"
-                                          class="row justify-content-center align-items-center flex-grow-1 visible-scrollbar py-2 mx-2ser">
+                                          class="row justify-content-center align-items-center flex-grow-1 visible-scrollbar py-2 mx-2">
                             <PlayerCard v-for="player in game.players" :key="player.name" :game="game" :player="player"
                                         class="player-item col-lg-2 col-4" @choose-role="showRolePickerModal"
                                         @unset-role="unsetRole" @unset-player="unsetPlayer"/>
@@ -62,24 +62,32 @@
                     </transition>
                 </div>
                 <div>
-                    <hr class="bg-dark"/>
+                    <hr class="bg-dark my-2"/>
+                    <div class="row justify-content-center align-items-center my-3">
+                        <div class="col-12 text-center">
+                            <GameLobbyStartConditions :game="game"/>
+                        </div>
+                    </div>
                     <div id="game-lobby-footer" class="row justify-content-between align-items-center">
                         <div class="col-lg-4 col-sm-6">
                             <form @submit.prevent="getGameRepartition">
                                 <SubmitButton id="random-repartition-button"
                                               classes="btn btn-dark btn-block text-uppercase font-weight-bold"
                                               :disabled-tooltip-text="$t('GameLobby.fourPlayerRequiredToGetRandomRepartition')"
-                                              :text="`<i class='fas fa-random mr-2'></i>${$t('GameLobby.getRandomRepartition')}`"
                                               :loading="loading.getGameRepartition"
-                                              :disabled="loading.createGame || !game.areThereEnoughPlayers"/>
+                                              :disabled="loading.createGame || !game.areThereEnoughPlayers">
+                                    <i class="fas fa-random mr-2"/>
+                                    <span v-html="$t('GameLobby.getRandomRepartition')"/>
+                                </SubmitButton>
                             </form>
                         </div>
                         <div class="col-lg-4 col-sm-6 mt-lg-0 mt-2 mt-sm-0">
                             <form @submit.prevent="createGame">
                                 <SubmitButton classes="btn btn-primary btn-lg btn-block text-uppercase font-weight-bold"
-                                              :text="`<i class='fa fa-play-circle mr-2'></i>${$t('GameLobby.launchParty')}`"
-                                              :disabled-tooltip-text="createGameButtonDisabledText" :loading="loading.createGame"
-                                              :disabled="loading.getGameRepartition || !game.canStartGame"/>
+                                              :loading="loading.createGame" :disabled="loading.getGameRepartition || !game.canStartGame">
+                                    <i class="fa fa-play-circle mr-2"/>
+                                    <span v-html="$t('GameLobby.launchParty')"/>
+                                </SubmitButton>
                             </form>
                         </div>
                         <div class="col-lg-4 mt-2 mt-lg-0">
@@ -112,10 +120,12 @@ import GameLobbyTutorial from "@/components/GameLobby/GameLobbyTutorial";
 import PlayerCard from "@/components/shared/Game/PlayerCard";
 import { filterOutHTMLTags } from "@/helpers/functions/String";
 import GameLobbyRolePickerModal from "@/components/GameLobby/GameLobbyRolePickerModal";
+import GameLobbyStartConditions from "@/components/GameLobby/GameLobbyStartConditions";
 
 export default {
     name: "GameLobby",
     components: {
+        GameLobbyStartConditions,
         GameLobbyRolePickerModal,
         PlayerCard,
         GameLobbyTutorial,
@@ -153,19 +163,6 @@ export default {
         },
         playerNameInputPlaceholder() {
             return this.game.isMaxPlayerReached ? this.$t("GameLobby.maxPlayerReached") : this.$t("GameLobby.playerName");
-        },
-        createGameButtonDisabledText() {
-            if (!this.game.areThereEnoughPlayers) {
-                const missingCount = 4 - this.game.players.length;
-                return this.$tc("GameLobby.missingPlayersToStart", missingCount, { missingCount });
-            } else if (!this.game.areThereEnoughWerewolves) {
-                return this.$t("GameLobby.missingOneWerewolfToStart");
-            } else if (!this.game.areThereEnoughVillagers) {
-                return this.$t("GameLobby.missingOneVillagerToStart");
-            } else if (!this.game.allPlayersHaveRole) {
-                return this.$t("GameLobby.allPlayerDontHaveARole");
-            }
-            return "";
         },
         sanitizedPlayerName() {
             return filterOutHTMLTags(this.playerName.trim());
@@ -296,10 +293,11 @@ export default {
 
     #players {
         overflow-y: scroll;
+        overflow-x: hidden !important;
     }
 
     #player-name-input-error {
-        height: 45px;
+        height: 15px;
     }
 
     #game-lobby-players-container {

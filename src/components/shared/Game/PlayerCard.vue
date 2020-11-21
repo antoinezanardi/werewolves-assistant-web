@@ -1,7 +1,7 @@
 <template>
     <div ref="playerCard" class="player-card d-flex flex-column align-items-center w-100"
          :class="{ 'selectable': selectable, 'selected': selected }">
-        <PlayerThumbnail ref="playerThumbnail" :player="player" :size="size"
+        <PlayerThumbnail ref="playerThumbnail" :player="player" :size="size" :is-nominated="isNominated"
                          :class="{ 'player-card-thumbnail-selected': selected }" @unset-player="unsetPlayer"
                          @player-selected="togglePlayerSelected"/>
         <div class="player-card-name text-center" :class="{ 'player-card-name-lg': size === 'lg' }"
@@ -38,6 +38,10 @@ export default {
             default: false,
         },
         selected: {
+            type: Boolean,
+            default: false,
+        },
+        isNominated: {
             type: Boolean,
             default: false,
         },

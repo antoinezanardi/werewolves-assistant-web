@@ -1,7 +1,7 @@
 <template>
     <div id="game-content-play-field">
         <transition name="fade" mode="out-in">
-            <ElectSheriffPlayField v-if="game.firstWaiting.to === 'elect-sheriff'" key="elect-sheriff"
+            <ElectSheriffPlayField v-if="game.firstWaiting.to === 'elect-sheriff'" key="elect-sheriff" :play="play"
                                    class="h-100 container-fluid" @player-votes="playerVotes"/>
             <LookPlayField v-else-if="game.firstWaiting.to === 'look'" key="look" :play="play"
                            class="h-100 container-fluid" @player-selected="playerSelected"/>
@@ -13,7 +13,7 @@
                               class="h-100 container-fluid" @player-selected="playerSelected"/>
             <MarkPlayField v-else-if="game.firstWaiting.to === 'mark'" key="mark" :play="play"
                            class="h-100 container-fluid" @player-selected="playerSelected"/>
-            <VotePlayField v-else-if="game.firstWaiting.to === 'vote'" key="vote"
+            <VotePlayField v-else-if="game.firstWaiting.to === 'vote'" key="vote" :play="play"
                            class="h-100 container-fluid" @player-votes="playerVotes"/>
             <SettleVotesPlayField v-else-if="game.firstWaiting.to === 'settle-votes'" key="settle-votes"
                                   :play="play" class="h-100 container-fluid" @player-selected="playerSelected"/>

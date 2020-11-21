@@ -23,8 +23,10 @@
             <div class="col-lg-4 col-12 order-last order-lg-1">
                 <form @submit.prevent="submitPlay">
                     <SubmitButton id="play-submit-button" classes="btn btn-primary btn-block btn-lg"
-                                  :loading="loading" :disabled="!canSubmitPlay"
-                                  :text="`<i class='fa fa-play-circle mr-2'></i>${$t('GamePlayFieldFooter.next')}`"/>
+                                  :loading="loading" :disabled="!canSubmitPlay">
+                        <i class="fa fa-play-circle mr-2"/>
+                        <span v-html="$t('GamePlayFieldFooter.next')"/>
+                    </SubmitButton>
                 </form>
             </div>
             <div class="col-lg-4 col order-lg-2">
