@@ -1,13 +1,13 @@
 <template>
-    <div id="game-lobby-composition" class="row">
-        <div class="col-md-4 text-center d-none d-md-block">
+    <div id="game-lobby-composition" class="row d-none d-md-flex">
+        <div class="col-md-4 text-center">
             <span v-html="$tc('GameLobbyComposition.villagersCount', game.villagerPlayers.length, { count: game.villagerPlayers.length })"/>
             <div class="text-muted font-italic">
                 <i class="fa mr-2" :class="villagersMinToStartIconClass"/>
                 <span v-html="$t('GameLobbyComposition.minToStart', { min: 1 })"/>
             </div>
         </div>
-        <div class="col-md-4 text-center d-none d-md-block">
+        <div class="col-md-4 text-center">
             <span class="font-weight-bold"
                   v-html="$tc('GameLobbyComposition.playerCount', game.players.length, { count: game.players.length })"/>
             <div class="text-muted font-italic">
@@ -15,7 +15,7 @@
                 <span v-html="$t('GameLobbyComposition.minToStart', { min: 4 })"/>
             </div>
         </div>
-        <div class="col-md-4 text-center d-none d-md-block">
+        <div class="col-md-4 text-center">
             <span v-html="$tc('GameLobbyComposition.werewolvesCount', game.werewolfPlayers.length, { count: game.werewolfPlayers.length })"/>
             <div class="text-muted font-italic">
                 <i class="fa mr-2" :class="werewolvesMinToStartIconClass"/>

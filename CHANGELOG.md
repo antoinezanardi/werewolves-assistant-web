@@ -1,5 +1,40 @@
 # 📈 LIST OF CHANGES FOR WEREWOLVES ASSISTANT WEB
 
+## 1.0.0-beta.8 (2020-11-21)
+
+### 🚀 New features
+
+* [#67](https://github.com/antoinezanardi/werewolves-assistant-web/issues/67) - Little Girl role implemented.
+* [#68](https://github.com/antoinezanardi/werewolves-assistant-web/issues/68) - Villager-Villager role implemented.
+* [#69](https://github.com/antoinezanardi/werewolves-assistant-web/issues/69) - When players have to vote, the nominated player(s) have a mark on their role card.
+* [#72](https://github.com/antoinezanardi/werewolves-assistant-web/issues/72) - Travis CI linked to Slack.
+
+### 🐛 Bug fixes
+
+* [#70](https://github.com/antoinezanardi/werewolves-assistant-web/issues/70) - Good translations when confirming that a role is picked but chosen anyway.
+
+### ♻️ Refactoring
+
+* [#66](https://github.com/antoinezanardi/werewolves-assistant-web/issues/66) - `SubmitButton` component uses default template for button inner text.
+* [#71](https://github.com/antoinezanardi/werewolves-assistant-web/issues/71) - Dedicated popover for explaining game start conditions.
+
+### 📦 Packages
+
+* `@sentry/browser` updated to version `5.27.4`.
+* `@sentry/integrations` updated to version `5.27.4`.
+* `@vue/cli-plugin-e2e-cypress` updated to version `4.5.9`.
+* `@vue/cli-plugin-eslint` updated to version `4.5.9`.
+* `@vue/cli-plugin-router` updated to version `4.5.9`.
+* `@vue/cli-plugin-unit-mocha` updated to version `4.5.9`.
+* `@vue/cli-plugin-vuex` updated to version `4.5.9`.
+* `@vue/cli-service` updated to version `4.5.9`.
+* `eslint` updated to version `7.14.0`.
+* `sweetalert2` updated to version `10.10.1`.
+* `vee-validate` updated to version `3.4.5`.
+* `vee-i18n` updated to version `8.22.2`.
+
+---
+
 ## 1.0.0-beta.7 (2020-11-11)
 
 ### 🚀 New features

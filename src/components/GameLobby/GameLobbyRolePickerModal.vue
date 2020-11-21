@@ -231,21 +231,15 @@ export default {
                 VueScrollTo.scrollTo(".modal-body", 500, { container: "#selected-role-panel" });
             }
         },
-        confirmPickRole(role) {
-            let footer = "";
-            if (role.maxInGame === 1) {
-                footer = this.$t("RolePicker.roleWillBeSwitchedWithOtherPlayer", { roleName: this.roleText });
-            } else {
-                footer = this.$t("RolePicker.roleWillBeSwitchedWithAnotherPlayer", { roleName: this.roleText });
-            }
+        confirmPickRole() {
             return Swal.fire({
-                title: this.$t("RolePicker.maxInGameReached"),
-                text: this.$t("RolePicker.doYouWantToSetItAnyway"),
+                title: this.$t("GameLobbyRolePickerModal.maxInGameReached"),
+                text: this.$t("GameLobbyRolePickerModal.doYouWantToSetItAnyway"),
                 icon: "warning",
                 showCancelButton: true,
-                confirmButtonText: this.$t("RolePicker.confirm"),
-                cancelButtonText: this.$t("RolePicker.cancel"),
-                footer,
+                confirmButtonText: this.$t("GameLobbyRolePickerModal.confirm"),
+                cancelButtonText: this.$t("GameLobbyRolePickerModal.cancel"),
+                footer: this.$t("GameLobbyRolePickerModal.roleWillBeSwitchedWithOtherPlayer"),
                 heightAuto: false,
             });
         },
@@ -255,7 +249,7 @@ export default {
                 return;
             }
             if (selectedRole.maxInGame <= this.game.players.filter(player => player.role.current === selectedRole.name).length) {
-                const { value } = await this.confirmPickRole(selectedRole);
+                const { value } = await this.confirmPickRole();
                 if (value) {
                     this.$emit("role-picked", this.selected);
                     this.hide();

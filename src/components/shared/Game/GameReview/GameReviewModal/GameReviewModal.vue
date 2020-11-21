@@ -71,9 +71,11 @@
                         <div class="row align-items-center w-100">
                             <div class="offset-md-4 col-md-4 offset-1 col-8">
                                 <SubmitButton classes="btn btn-primary btn-lg btn-block"
-                                              :text="`<i class='fa fa-star mr-2'></i>${$t('GameReviewModal.rate')}`"
                                               :loading="loading" :disabled="!rating"
-                                              :disabled-tooltip-text="$t('GameReviewModal.youMustRateFirst')"/>
+                                              :disabled-tooltip-text="$t('GameReviewModal.youMustRateFirst')">
+                                    <i class="fa fa-star mr-2"/>
+                                    <span v-html="$t('GameReviewModal.rate')"/>
+                                </SubmitButton>
                             </div>
                             <div class="col-md-4 col-2 text-right">
                                 <button type="button" class="btn btn-secondary" :disabled="loading" @click="hide">

@@ -4,7 +4,9 @@
                 :disabled="loading || disabled" class="d-flex justify-content-center align-items-center"
                 type="submit" @click="click">
             <transition mode="out-in" name="fade">
-                <span v-if="!loading" key="text" v-html="text"/>
+                <div v-if="!loading" key="text">
+                    <slot/>
+                </div>
                 <HalfCircleSpinner v-else key="loading" :size="24" :animation-duration="1000"/>
             </transition>
         </button>
@@ -24,10 +26,6 @@ export default {
         },
         loading: {
             type: Boolean,
-            required: true,
-        },
-        text: {
-            type: String,
             required: true,
         },
         disabled: {

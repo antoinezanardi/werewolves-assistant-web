@@ -24,7 +24,7 @@ export default {
                 return sheriff;
             } else if (this.role === "werewolves") {
                 fileName = "werewolf";
-            } else if (this.role === "villagers" || this.role === "all") {
+            } else if (this.role === "villagers" || this.role === "all" || this.role === "villager-villager") {
                 fileName = "villager";
             } else {
                 fileName = this.role;

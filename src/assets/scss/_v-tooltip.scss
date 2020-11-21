@@ -86,6 +86,7 @@
         $border-color: rgba(160, 160, 160, 0.56);
         background-color: $border-color;
         border-color: $border-color;
+        max-width: 450px !important;
 
         .popover-inner {
             background: $color;

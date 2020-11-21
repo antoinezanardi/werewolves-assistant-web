@@ -14,17 +14,19 @@ export default {
     computed: {
         roleText() {
             const roleText = {
-                back: "",
-                guard: this.$t("Role.the.guard"),
-                hunter: this.$t("Role.the.hunter"),
-                raven: this.$t("Role.the.raven"),
-                seer: this.$t("Role.the.seer"),
-                villager: this.$t("Role.the.villager"),
-                werewolf: this.$t("Role.the.werewolf"),
-                werewolves: this.$t("Role.the.werewolves"),
-                witch: this.$t("Role.the.witch"),
-                sheriff: this.$t("Role.the.sheriff"),
-                all: this.$t("Role.the.all"),
+                "back": "",
+                "guard": this.$t("Role.the.guard"),
+                "hunter": this.$t("Role.the.hunter"),
+                "raven": this.$t("Role.the.raven"),
+                "seer": this.$t("Role.the.seer"),
+                "villager": this.$t("Role.the.villager"),
+                "werewolf": this.$t("Role.the.werewolf"),
+                "werewolves": this.$t("Role.the.werewolves"),
+                "witch": this.$t("Role.the.witch"),
+                "sheriff": this.$t("Role.the.sheriff"),
+                "little-girl": this.$t("Role.the.little-girl"),
+                "villager-villager": this.$t("Role.the.villager-villager"),
+                "all": this.$t("Role.the.all"),
             };
             return this.role && roleText[this.role] ? roleText[this.role] : this.$t("RoleText.chooseARole");
         },
