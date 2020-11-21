@@ -297,7 +297,11 @@
     },
     "PlayerThumbnail": {
         "chooseRole": "Choisir un rôle",
-        "unsetPlayer": "Retirer le joueur"
+        "unsetPlayer": "Retirer le joueur",
+        "nominated": {
+            "elect-sheriff": "Ce joueur est nominé pour devenir maire",
+            "vote": "Ce joueur est nominé pour la pendaison"
+        }
     },
     "PlayerVote": {
         "voteFor": "Vote pour",

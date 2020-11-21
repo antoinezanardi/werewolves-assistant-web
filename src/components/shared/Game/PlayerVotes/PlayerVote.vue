@@ -1,6 +1,6 @@
 <template>
     <div class="player-vote d-flex flex-column align-items-center p-2">
-        <PlayerCard :player="player"/>
+        <PlayerCard :player="player" :is-nominated="isNominated"/>
         <div class="mb-3 vote-for-text text-center">
             <span class="font-italic" v-html="$t('PlayerVote.voteFor')"/>
         </div>
@@ -8,7 +8,7 @@
                  label="name" @input="playerVotes">
             <template #selected-option="{ role, name }">
                 <RoleImage :role="role.current" class="role-image-option mr-2"/>
-                <span v-html="name"/>
+                <span class="text-truncate" v-html="name"/>
             </template>
             <template #option="{ role, name }">
                 <RoleImage :role="role.current" class="role-image-option mr-2"/>
@@ -27,6 +27,7 @@ import { mapGetters } from "vuex";
 import Player from "@/classes/Player";
 import PlayerCard from "../PlayerCard";
 import RoleImage from "../Role/RoleImage";
+import { getNominatedPlayers } from "@/helpers/functions/Player";
 
 export default {
     name: "PlayerVote",
@@ -36,11 +37,19 @@ export default {
             type: Player,
             required: true,
         },
+        play: {
+            type: Object,
+            required: true,
+        },
     },
     computed: {
         ...mapGetters("game", { game: "game" }),
         targetablePlayers() {
             return this.game.alivePlayers.filter(({ name }) => name !== this.player.name);
+        },
+        isNominated() {
+            const nominatedPlayers = getNominatedPlayers(this.play.votes, this.game, this.game.firstWaiting.to);
+            return nominatedPlayers ? !!nominatedPlayers.find(({ _id }) => _id === this.player._id) : undefined;
         },
     },
     methods: {

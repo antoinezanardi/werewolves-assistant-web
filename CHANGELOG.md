@@ -6,6 +6,7 @@
 
 * [#67](https://github.com/antoinezanardi/werewolves-assistant-web/issues/67) - Little Girl role implemented.
 * [#68](https://github.com/antoinezanardi/werewolves-assistant-web/issues/68) - Villager-Villager role implemented.
+* [#69](https://github.com/antoinezanardi/werewolves-assistant-web/issues/69) - When players have to vote, the nominated player(s) have a mark on their role card.
 * [#72](https://github.com/antoinezanardi/werewolves-assistant-web/issues/72) - Travis CI linked to Slack.
 
 ### 🐛 Bug fixes

@@ -10,12 +10,17 @@ function incrementPlayerVoteCount(votedPlayers, playerId, game, inc = 1) {
 
 export function getNominatedPlayers(votes, game, action) {
     const votedPlayers = [];
+    const sheriffPlayer = game.getPlayerWithAttribute("sheriff");
     for (const vote of votes) {
-        incrementPlayerVoteCount(votedPlayers, vote.for, game);
+        if (action === "vote" && sheriffPlayer && sheriffPlayer._id === vote.from) {
+            incrementPlayerVoteCount(votedPlayers, vote.for, game, 2);
+        } else {
+            incrementPlayerVoteCount(votedPlayers, vote.for, game);
+        }
     }
     if (action === "vote") {
         const ravenMarkedPlayer = game.getPlayerWithAttribute("raven-marked");
-        if (ravenMarkedPlayer.isAlive) {
+        if (ravenMarkedPlayer && ravenMarkedPlayer.isAlive) {
             incrementPlayerVoteCount(votedPlayers, ravenMarkedPlayer._id, game, 2);
         }
     }
