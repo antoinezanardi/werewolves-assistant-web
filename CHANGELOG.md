@@ -5,6 +5,7 @@
 ### 🚀 New features
 
 * [#67](https://github.com/antoinezanardi/werewolves-assistant-web/issues/67) - Little Girl role implemented.
+* [#68](https://github.com/antoinezanardi/werewolves-assistant-web/issues/68) - Villager-Villager role implemented.
 * [#72](https://github.com/antoinezanardi/werewolves-assistant-web/issues/72) - Travis CI linked to Slack.
 
 ### 🐛 Bug fixes
