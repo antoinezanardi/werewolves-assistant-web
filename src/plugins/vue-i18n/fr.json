@@ -111,6 +111,14 @@
         "minToStart": "Minimum {min} pour commencer",
         "minPlayerRequirementsToStart": "Minimum 4 joueurs avec un rôle pour commencer dont 1 loup-garou et 1 villageois"
     },
+    "GameLobbyStartConditions": {
+        "gameCanStart": "La partie peut commencer !",
+        "gameCannotStart": "Toutes les conditions ne sont pas réunies pour commencer une partie",
+        "gameHasMinimumFourPlayers": "La partie possède au minimum 4 joueurs.",
+        "allPlayersMustHaveARole": "Tous les joueurs doivent avoir un rôle.",
+        "gameHasMinimumOneVillager": "La partie possède au minimum 1 joueur dans le camp des villageois.",
+        "gameHasMinimumOneWerewolf": "La partie possède au minimum 1 joueur dans le camp des loups-garous."
+    },
     "GameLobbyRolePickerModal": {
         "noRole": "Aucun rôle",
         "pickRoleFor": "Choisir un rôle pour",

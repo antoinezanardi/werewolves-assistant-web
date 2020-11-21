@@ -13,6 +13,7 @@
 ### ♻️ Refactoring
 
 * [#66](https://github.com/antoinezanardi/werewolves-assistant-web/issues/66) - `SubmitButton` component uses default template for button inner text.
+* [#71](https://github.com/antoinezanardi/werewolves-assistant-web/issues/71) - Dedicated popover for explaining game start conditions.
 
 ### 📦 Packages
 
@@ -24,6 +25,7 @@
 * `@vue/cli-plugin-unit-mocha` updated to version `4.5.9`.
 * `@vue/cli-plugin-vuex` updated to version `4.5.9`.
 * `@vue/cli-service` updated to version `4.5.9`.
+* `eslint` updated to version `7.14.0`.
 * `sweetalert2` updated to version `10.10.1`.
 * `vee-validate` updated to version `3.4.5`.
 * `vee-i18n` updated to version `8.22.2`.
