@@ -12,8 +12,7 @@
 import GamePlayFieldHeader from "./GamePlayFieldHeader/GamePlayFieldHeader";
 import GamePlayFieldFooter from "./GamePlayFieldFooter/GamePlayFieldFooter";
 import GamePlayFieldContent from "./GamePlayFieldContent/GamePlayFieldContent";
-import GamePlayFieldTutorial
-    from "@/components/Game/GameContent/GamePlayField/GamePlayFieldTutorial/GamePlayFieldTutorial";
+import GamePlayFieldTutorial from "@/components/Game/GameContent/GamePlayField/GamePlayFieldTutorial/GamePlayFieldTutorial";
 
 export default {
     name: "GamePlayField",
