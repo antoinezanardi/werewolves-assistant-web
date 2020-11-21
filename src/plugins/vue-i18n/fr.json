@@ -471,7 +471,9 @@
             "witch": "une sorcière",
             "hunter": "un chasseur",
             "guard": "un salvateur",
-            "raven": "un corbeau"
+            "raven": "un corbeau",
+            "little-girl": "une petite fille",
+            "villager-villager": "un villageois-villageois"
         },
         "the": {
             "villager": "le villageois",
@@ -483,7 +485,9 @@
             "guard": "le salvateur",
             "raven": "le corbeau",
             "sheriff": "le maire",
-            "all": "le village"
+            "all": "le village",
+            "little-girl": "la petite fille",
+            "villager-villager": "le villageois-villageois"
         },
         "description": {
             "villager": [
@@ -530,6 +534,20 @@
                 "Cet individu adore faire connaître ses suspicions de culpabilité en marquant, juste avant l'aube, le joueur de son choix. Son impact est certain malgré le manque de courage de notre oiseau !",
                 "Chaque fin de nuit, après que les Loups-Garous se sont rendormis, à l'appel de son rôle le corbeau peut désigner un joueur qu'il suspecte ou passer son tour.",
                 "Le meneur dépose alors le marqueur \"Malédiction du Corbeau\" devant le joueur désigné. Ce joueur aura automatiquement 2 voix de plus contre lui au prochain décompte des votes."
+            ],
+            "little-girl": [
+                "Son but est d'éliminer les Loups-Garous.",
+                "La Petite Fille peut, en entrouvrant les yeux, espionner les Loup-Garous pendant leur réveil.",
+                "Si elle se fait surprendre par un des Loups-Garous, elle pourra être dévorée immédiatement (en silence), à la place de la victime désignée.",
+                "La Petite Fille ne peut espionner que la nuit, durant le tour d'éveil des Loups-Garous. Elle n'a pas le droit de se faire passer pour un Loup-Garou et d'ouvrir grand les yeux."
+            ],
+            "villager-villager": [
+                "Son but est d'éliminer les Loups-Garous.",
+                "Ce personnage possède une âme claire et transparente comme l'eau d'un ruisseau montagnard. Il méritera l'écoute attentive de ses pairs et rendra sa parole décisive dans les moments cruciaux.",
+                "Quel pouvoir peut être aussi grand que d'inspirer aux honnêtes gens une confiance absolue ?",
+                "Les Loups-Garous se rueront-ils pour éliminer cet être sans pouvoir secret ? Préféreront-ils débusquer des villageois aux pouvoirs plus menaçant ?",
+                "Sur ses 2 faces, cette carte poossède l'illustration de Simple Villageois. À la distribution, le village aura donc la certitude absolue que son propriétaire est bel et bien un innocent Simple Villageois.",
+                "Conseil au meneur: ce personnage peut devenir un Capitaine ou un Garde Champêtre de confiance."
             ]
         },
         "villager": "Villageois",
@@ -538,7 +556,9 @@
         "witch": "Sorcière",
         "hunter": "Chasseur",
         "guard": "Salvateur",
-        "raven": "Corbeau"
+        "raven": "Corbeau",
+        "little-girl": "Petite Fille",
+        "villager-villager": "Villageois-Villageois"
     },
     "RoleText": {
         "chooseARole": "Choisir un rôle"
