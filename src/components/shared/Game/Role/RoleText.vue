@@ -26,6 +26,8 @@ export default {
                 "sheriff": this.$t("Role.the.sheriff"),
                 "little-girl": this.$t("Role.the.little-girl"),
                 "villager-villager": this.$t("Role.the.villager-villager"),
+                "cupid": this.$t("Role.the.cupid"),
+                "two-sisters": this.$t("Role.the.two-sisters"),
                 "all": this.$t("Role.the.all"),
             };
             return this.role && roleText[this.role] ? roleText[this.role] : this.$t("RoleText.chooseARole");

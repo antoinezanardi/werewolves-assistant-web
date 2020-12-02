@@ -107,7 +107,7 @@
 
 <script>
 import Swal from "sweetalert2";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import { parse } from "qs";
 import Game from "@/classes/Game";
 import Player from "@/classes/Player";
@@ -155,6 +155,7 @@ export default {
         };
     },
     computed: {
+        ...mapGetters("role", { roles: "roles" }),
         isPlayerNameTaken() {
             return this.game.players.find(({ name }) => name === this.sanitizedPlayerName);
         },
@@ -205,12 +206,14 @@ export default {
                 this.loading.getGameRepartition = true;
                 const players = this.game.players.map(({ name }) => ({ name }));
                 const { data } = await this.$werewolvesAssistantAPI.getGameRepartition({ players });
-                for (const { name, role, group } of data.players) {
-                    const player = this.game.players.find(({ name: playerName }) => playerName === name);
-                    player.role.current = role;
-                    player.role.group = group;
+                for (const { name: playerName, role: roleName } of data.players) {
+                    const player = this.game.players.find(({ name }) => name === playerName);
+                    const role = this.roles.find(({ name }) => name === roleName);
+                    player.role.current = role.name;
+                    player.side.current = role.side;
                 }
             } catch (e) {
+                console.log(e);
                 this.$error.display(e);
             } finally {
                 this.loading.getGameRepartition = false;
@@ -221,10 +224,10 @@ export default {
             if (role.maxInGame <= this.game.players.filter(({ role: playerRole }) => playerRole.current === role.name).length) {
                 const sameRolePlayer = this.game.players.find(({ role: playerRole }) => playerRole.current === role.name);
                 sameRolePlayer.role.current = playerInGame.role.current;
-                sameRolePlayer.role.group = playerInGame.role.group;
+                sameRolePlayer.side.current = playerInGame.side.current;
             }
             playerInGame.role.current = role.name;
-            playerInGame.role.group = role.group;
+            playerInGame.side.current = role.side;
         },
         unsetPlayer(playerName) {
             const idx = this.game.players.findIndex(({ name }) => name === playerName);

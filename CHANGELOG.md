@@ -1,5 +1,22 @@
 # 📈 LIST OF CHANGES FOR WEREWOLVES ASSISTANT WEB
 
+## 1.0.0-beta.9 (2020-12-??)
+
+### 🚀 New features
+
+### 🐛 Bug fixes
+
+### ♻️ Refactoring
+
+### 📦 Packages
+
+* `@sentry/browser` updated to version `5.28.0`.
+* `@sentry/integrations` updated to version `5.28.0`.
+* `sweetalert2` updated to version `10.11.0`.
+* `vuex` updated to version `3.6.0`.
+
+---
+
 ## 1.0.0-beta.8 (2020-11-21)
 
 ### 🚀 New features

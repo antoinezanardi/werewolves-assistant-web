@@ -13,6 +13,12 @@ class Game {
         this.tick = getProp(game, "tick");
         this.waiting = getProp(game, "waiting", [], waiting => waiting.map(waitingEntry => waitingEntry));
         this.status = getProp(game, "status");
+        this.options = {
+            sistersWakingUpInterval: getProp(game, "options.sistersWakingUpInterval"),
+            brothersWakingUpInterval: getProp(game, "options.brothersWakingUpInterval"),
+            isSheriffVoteDoubled: getProp(game, "options.isSheriffVoteDoubled"),
+            isSeerTalkative: getProp(game, "options.isSeerTalkative"),
+        };
         this.history = getProp(game, "history", [], history => history.map(historyEntry => new GameHistory(historyEntry)));
         this.won = {
             by: getProp(game, "won.by"),
@@ -32,19 +38,19 @@ class Game {
     }
 
     get werewolfPlayers() {
-        return this.players.filter(player => player.role.group === "werewolves");
+        return this.players.filter(player => player.side.current === "werewolves");
     }
 
     get aliveWerewolfPlayers() {
-        return this.players.filter(player => player.isAlive && player.role.group === "werewolves");
+        return this.players.filter(player => player.isAlive && player.side.current === "werewolves");
     }
 
     get villagerPlayers() {
-        return this.players.filter(player => player.role.group === "villagers");
+        return this.players.filter(player => player.side.current === "villagers");
     }
 
     get aliveVillagerPlayers() {
-        return this.players.filter(player => player.isAlive && player.role.group === "villagers");
+        return this.players.filter(player => player.isAlive && player.side.current === "villagers");
     }
 
     get isMaxPlayerReached() {
