@@ -8,11 +8,13 @@
 
 ### ♻️ Refactoring
 
+* [#82](https://github.com/antoinezanardi/werewolves-assistant-web/issues/82) - Change `player.role.group` to `player.side`.
+
 ### 📦 Packages
 
 * `@sentry/browser` updated to version `5.28.0`.
 * `@sentry/integrations` updated to version `5.28.0`.
-* `sweetalert2` updated to version `10.11.0`.
+* `sweetalert2` updated to version `10.11.1`.
 * `vuex` updated to version `3.6.0`.
 
 ---

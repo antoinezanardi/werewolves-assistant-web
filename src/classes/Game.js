@@ -150,6 +150,10 @@ class Game {
     get hasWitchUsedDeathPotion() {
         return !!this.history.find(({ play }) => play.action === "use-potion" && !!play.targets.find(({ potion }) => potion.death));
     }
+
+    isRoleInGame(roleName) {
+        return !!this.players.find(({ role }) => role.current === roleName);
+    }
 }
 
 export default Game;

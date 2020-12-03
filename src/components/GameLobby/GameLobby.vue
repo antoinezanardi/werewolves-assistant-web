@@ -119,7 +119,7 @@ import WhatToDoButton from "@/components/shared/Game/WhatToDoButton/WhatToDoButt
 import GameLobbyTutorial from "@/components/GameLobby/GameLobbyTutorial";
 import PlayerCard from "@/components/shared/Game/PlayerCard";
 import { filterOutHTMLTags } from "@/helpers/functions/String";
-import GameLobbyRolePickerModal from "@/components/GameLobby/GameLobbyRolePickerModal";
+import GameLobbyRolePickerModal from "@/components/GameLobby/GameLobbyRolePickerModal/GameLobbyRolePickerModal";
 import GameLobbyStartConditions from "@/components/GameLobby/GameLobbyStartConditions";
 
 export default {

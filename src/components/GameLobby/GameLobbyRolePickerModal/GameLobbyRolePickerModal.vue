@@ -65,15 +65,19 @@
                                                 </div>
                                             </div>
                                             <div class="row mt-2">
-                                                <div class="col-12 text-center">
-                                                    <div>
+                                                <div class="col-12">
+                                                    <div class="mt-2">
                                                         <i class="fa fa-chess-pawn text-info mr-2"/>
                                                         <span v-html="selectedRoleAlreadyTakenText"/>
                                                     </div>
-                                                    <div v-if="selected.role.maxInGame === game.getPlayersWithRole(selected.role.name).length">
+                                                    <div v-if="isRoleCountAlertDisplayed" class="mt-2">
                                                         <i class="fa fa-exclamation-circle animate__animated animate__heartBeat
-                                                                    animate__infinite mr-2"/>
-                                                        <span v-html="$t('GameLobbyRolePickerModal.maxInGameReached')"/>
+                                                                    animate__infinite text-danger mr-2"/>
+                                                        <span v-html="roleCountAlertText"/>
+                                                    </div>
+                                                    <div v-if="selected.role.recommendedMinPlayers" class="mt-2">
+                                                        <i class="fa fa-chess text-info mr-2"/>
+                                                        <span v-html="recommendedMinPlayersText"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -93,28 +97,11 @@
                             </div>
                             <div id="roles-panel" class="col-md-8 col-12 visible-scrollbar">
                                 <div class="row justify-content-center">
-                                    <div class="col-md-2 col-3 text-center p-2" @click="selectRandomRole">
-                                        <div class="role-image-container">
-                                            <RoleImage role="back"/>
-                                        </div>
-                                        <div class="cursor-pointer">
-                                            <i class="fa fa-random mr-1"/>
-                                            <span class="font-italic" v-html="$t('GameLobbyRolePickerModal.random')"/>
-                                        </div>
-                                    </div>
-                                    <div v-for="role in roles" :key="role.name" class="col-md-2 col-3 text-center p-2"
-                                         @click="changeSelectedRole(role)">
-                                        <div class="role-image-container" :class="{ selected: role === selected.role }">
-                                            <div v-if="game.getPlayersWithRole(role.name).length"
-                                                 v-tooltip="$t('GameLobbyRolePickerModal.totalInGameInThisRole')"
-                                                 class="role-count-in-game badge badge-light">
-                                                <i class="fa fa-chess-pawn mr-2"/>
-                                                <span v-html="game.getPlayersWithRole(role.name).length"/>
-                                            </div>
-                                            <RoleImage :role="role.name"/>
-                                        </div>
-                                        <RoleText :role="role.name"/>
-                                    </div>
+                                    <RolePickerRole :game="game" role-name="back" class="col-md-2 col-3 text-center p-2"
+                                                    @click.native="selectRandomRole"/>
+                                    <RolePickerRole v-for="role in roles" :key="role.name" :game="game" :role-name="role.name"
+                                                    :selected="selected.role.name === role.name"
+                                                    class="col-md-2 col-3 text-center p-2" @click.native="changeSelectedRole(role)"/>
                                 </div>
                             </div>
                         </div>
@@ -153,10 +140,11 @@ import Player from "@/classes/Player";
 import Role from "@/classes/Role";
 import RoleImage from "@/components/shared/Game/Role/RoleImage";
 import RoleText from "@/components/shared/Game/Role/RoleText";
+import RolePickerRole from "@/components/GameLobby/GameLobbyRolePickerModal/RolePickerRole";
 
 export default {
     name: "GameLobbyRolePickerModal",
-    components: { RoleText, RoleImage },
+    components: { RolePickerRole, RoleText, RoleImage },
     props: {
         game: {
             type: Game,
@@ -195,6 +183,20 @@ export default {
                 return this.$t("GameLobbyRolePickerModal.selectedPlayerAlreadyHasSelectedRole");
             }
             return "";
+        },
+        recommendedMinPlayersText() {
+            return this.$t("GameLobbyRolePickerModal.recommendedMinPlayers", { count: this.selected.role.recommendedMinPlayers });
+        },
+        isRoleCountAlertDisplayed() {
+            const roleCount = this.game.getPlayersWithRole(this.selected.role.name).length;
+            return !!roleCount && (this.selected.role.maxInGame === roleCount || this.selected.role.minInGame > roleCount);
+        },
+        roleCountAlertText() {
+            const roleCount = this.game.getPlayersWithRole(this.selected.role.name).length;
+            if (this.selected.role.maxInGame === roleCount) {
+                return this.$t("GameLobbyRolePickerModal.maxInGameReached");
+            }
+            return this.$t("GameLobbyRolePickerModal.leftToStartGame", { count: this.selected.role.minInGame - roleCount });
         },
     },
     methods: {
@@ -265,7 +267,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    @import "../../../node_modules/bootstrap/scss/bootstrap-grid";
+    @import "../../../../node_modules/bootstrap/scss/bootstrap-grid";
 
     #game-lobby-role-picker-modal {
         overflow-y: hidden;
@@ -315,35 +317,6 @@ export default {
         height: 55%;
         @include media-breakpoint-up(md) {
             height: 100%;
-        }
-    }
-
-    .role-image-container {
-        border: 3px solid grey;
-        border-radius: 8px;
-        margin: 3px;
-        transition: all 0.25s ease;
-        cursor: pointer;
-
-        .role-count-in-game {
-            position: absolute;
-            right: 2px;
-            top: 2px;
-            opacity: 0.8;
-            transition: all 0.25s ease;
-            z-index: 1;
-
-            &:hover {
-                opacity: 1;
-            }
-        }
-
-        &:hover {
-            border-color: #CACACA;
-        }
-
-        &.selected {
-            border-color: #eeeeee;
         }
     }
 </style>
