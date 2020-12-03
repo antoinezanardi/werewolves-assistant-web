@@ -56,7 +56,7 @@
                         <transition-group v-else id="players" tag="div" name="fade-list"
                                           class="row justify-content-center align-items-center flex-grow-1 visible-scrollbar py-2 mx-2">
                             <PlayerCard v-for="player in game.players" :key="player.name" :game="game" :player="player"
-                                        class="player-item col-lg-2 col-4" @choose-role="showRolePickerModal"
+                                        class="player-item col-lg-2 col-4 mb-2" @choose-role="showRolePickerModal"
                                         @unset-role="unsetRole" @unset-player="unsetPlayer"/>
                         </transition-group>
                     </transition>
@@ -84,7 +84,8 @@
                         <div class="col-lg-4 col-sm-6 mt-lg-0 mt-2 mt-sm-0">
                             <form @submit.prevent="createGame">
                                 <SubmitButton classes="btn btn-primary btn-lg btn-block text-uppercase font-weight-bold"
-                                              :loading="loading.createGame" :disabled="loading.getGameRepartition || !game.canStartGame">
+                                              :loading="loading.createGame"
+                                              :disabled="loading.getGameRepartition || !game.canStartGame(roles)">
                                     <i class="fa fa-play-circle mr-2"/>
                                     <span v-html="$t('GameLobby.launchParty')"/>
                                 </SubmitButton>
@@ -213,7 +214,6 @@ export default {
                     player.side.current = role.side;
                 }
             } catch (e) {
-                console.log(e);
                 this.$error.display(e);
             } finally {
                 this.loading.getGameRepartition = false;

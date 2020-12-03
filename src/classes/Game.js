@@ -69,13 +69,29 @@ class Game {
         return !!this.werewolfPlayers.length;
     }
 
+    get areThereEnoughSisters() {
+        return this.sisterPlayers.length === 2;
+    }
+
+    get areThereEnoughBrothers() {
+        return this.brotherPlayers.length === 3;
+    }
+
     get allPlayersHaveRole() {
         return this.players.length && !this.players.filter(player => player.role.current === undefined).length;
     }
 
-    get canStartGame() {
+    allPlayerRoleMinimumIsReached(roles) {
+        return this.players.length && this.players.every(({ role: playerRole }) => {
+            const role = roles.find(({ name }) => name === playerRole.current);
+            return !role.minInGame || role.minimumReached(this);
+        });
+    }
+
+    canStartGame(roles) {
         return this.areThereEnoughPlayers && this.areThereEnoughVillagers &&
-            this.areThereEnoughWerewolves && this.allPlayersHaveRole;
+            this.areThereEnoughWerewolves && this.allPlayersHaveRole &&
+            this.allPlayerRoleMinimumIsReached(roles);
     }
 
     get firstWaiting() {
@@ -149,6 +165,14 @@ class Game {
 
     get hasWitchUsedDeathPotion() {
         return !!this.history.find(({ play }) => play.action === "use-potion" && !!play.targets.find(({ potion }) => potion.death));
+    }
+
+    get sisterPlayers() {
+        return this.getPlayersWithRole("two-sisters");
+    }
+
+    get brotherPlayers() {
+        return this.getPlayersWithRole("three-brothers");
     }
 
     isRoleInGame(roleName) {

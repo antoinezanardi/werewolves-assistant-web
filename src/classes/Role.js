@@ -8,6 +8,11 @@ class Role {
         this.maxInGame = getProp(role, "maxInGame");
         this.recommendedMinPlayers = getProp(role, "recommendedMinPlayers");
     }
+
+    minimumReached(game) {
+        const roleCount = game.getPlayersWithRole(this.name).length;
+        return !roleCount || this.minInGame <= roleCount;
+    }
 }
 
 export default Role;

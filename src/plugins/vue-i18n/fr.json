@@ -117,7 +117,9 @@
         "gameHasMinimumFourPlayers": "La partie possède au minimum 4 joueurs.",
         "allPlayersMustHaveARole": "Tous les joueurs doivent avoir un rôle.",
         "gameHasMinimumOneVillager": "La partie possède au minimum 1 joueur dans le camp des villageois.",
-        "gameHasMinimumOneWerewolf": "La partie possède au minimum 1 joueur dans le camp des loups-garous."
+        "gameHasMinimumOneWerewolf": "La partie possède au minimum 1 joueur dans le camp des loups-garous.",
+        "gameMustHaveTwoSisters": "Deux joueurs doivent avoir le rôle des deux sœurs s'il y en a une dans la partie.",
+        "gameMustHaveThreeBrothers": "Trois joueurs doivent avoir le rôle des trois frères s'il y en a un dans la partie."
     },
     "GameLobbyRolePickerModal": {
         "noRole": "Aucun rôle",
@@ -141,7 +143,8 @@
     },
     "RolePickerRole": {
         "totalInGameInThisRole": "Total dans la partie avec ce rôle",
-        "random": "Aléatoire"
+        "random": "Aléatoire",
+        "leftToStartGame": "Ce rôle doit encore être distribué {lack} fois pour commencer la partie"
     },
     "GameLobbyTutorial": {
         "howToUseGameLobby": "Comment composer une équipe ?",
@@ -484,7 +487,10 @@
             "little-girl": "une petite fille",
             "villager-villager": "un villageois-villageois",
             "cupid": "un Cupidon",
-            "two-sisters": "une des deux sœurs"
+            "two-sisters": "une des deux sœurs",
+            "three-brothers": "un des trois frères",
+            "wild-child": "un enfant sauvage",
+            "dog-wolf": "un chien-loup"
         },
         "the": {
             "villager": "le villageois",
@@ -500,7 +506,10 @@
             "little-girl": "la petite fille",
             "villager-villager": "le villageois-villageois",
             "cupid": "Cupidon",
-            "two-sisters": "les deux sœurs"
+            "two-sisters": "les deux sœurs",
+            "three-brothers": "les trois frères",
+            "wild-child": "l'enfant sauvage",
+            "dog-wolf": "le chien-loup"
         },
         "description": {
             "villager": [
@@ -576,6 +585,24 @@
                 "En tout cas, les Deux Sœurs s'entendent comme les doigts de la main ou les cheveux d'une même mèche. C'est certes encourageant d'avoir un proche sur qui compter dans ces moments incertains !",
                 "La première nuit, à l'appel du meneur, elles se réveillent ensemble et se reconnaissent. Ensuite, au cours de la partie, une nuit sur deux, elles se réveillent à nouveau et se concertent rapidement et en silence sur les décisions à prendre pour sauver le village.",
                 "Conseil au meneur: particulièrement puissant avec des pratiquants de la langue des signes."
+            ],
+            "three-brothers": [
+                "Leur but est d'éliminer les Loups-Garous.",
+                "Tout le village résonne de leurs joyeux éclats verbaux quand ils regagnent la maison après le travail des champs.",
+                "Pendant les débats, un simple coup d'œil entre eux leur permet de prendre une bonne décision quant à l'avenir du village.",
+                "La première nuit, à l'appel du meneur, ils se réveillent ensemble et se reconnaissent. Ensuite, au cours de la partie, une nuit sur deux, ils se réveillent à nouveau et se concertent rapidement et en silence sur les décisions à prendre pour sauver le village.",
+                "Conseil au meneur: particulièrement puissant avec des pratiquants de la langue des signes. À n'utiliser que dans les grands villages. Si le village est très grand, vous pouvez même y associer les deux sœurs !"
+            ],
+            "wild-child": [
+                "Son but est d'éliminer les Loups-Garous.",
+                "Abandonné dans la forêt par ses parents dans sa plus tendre enfance, il y fut élevé par des loups. Dès qu'il sut marcher à quatre pattes, l'Enfant Sauvage se mit à errer aux abords de Thiercelieux.",
+                "Un beau jour, fasciné par un habitant du village qui marchait debout avec grâce et prestance, il en fit son modèle en secret.",
+                "Il décida alors d'intégrer la communauté de Thiercelieux et pénétra, inquiet, dans le village. La communauté fut émue par sa fragilité, l'adopta et l'accueillit en son sein.",
+                "Que deviendra-t-il : honnête Villageois ou terrible Loup-Garou ? Toute son existence, le cœur de l'Enfant Sauvage balancera entre ces deux alternatives. Puisse son modèle le confirmer dans son humanité nouvelle.",
+                "L'enfant Sauvage est un villageois. La première nuit, à l'appel du meneur, il désigne un joueur modèle. Si durant la partie le joueur désigné est éliminé, l'Enfant Sauvage devient Loup-Garou et se réveillera la nuit suivante avec ses congénères, dévorera avec eux toutes les nuits jusqu'à la fin de la partie.",
+                "En revanche, tant que son modèle est vivant, l'Enfant Sauvage demeure un villageois. Que son modèle s'avère ou non être un Loup-Garou ne change rien à l'affaire ! Rien n'empêche l'Enfant Sauvage de participer à l'élimination de son modèle s'il le désire.",
+                "Si son modèle est vivant lorsque tous les Loups-Garous sont éliminés, il a gagné avec les villageois. Si son modèle est éliminé et que seuls des Loups-Garous survivent avec lui, c'est aussi une victoire pour notre Enfant Sauvage.",
+                "Conseil au meneur: ne pas révéler la véritable nature de l'Enfant Sauvage éliminé par le vote du village peut être amusant. Le doute à propos de sa véritable identité subsiste alors : était-il Villageois ou Loup-Garou avant d'être éliminé ?"
             ]
         },
         "villager": "Villageois",
@@ -588,7 +615,10 @@
         "little-girl": "Petite Fille",
         "villager-villager": "Villageois-Villageois",
         "cupid": "Cupidon",
-        "two-sisters": "Deux Sœurs"
+        "two-sisters": "Deux Sœurs",
+        "three-brothers": "Trois Frères",
+        "wild-child": "Enfant Sauvage",
+        "dog-wolf": "Chien-Loup"
     },
     "RoleText": {
         "chooseARole": "Choisir un rôle"

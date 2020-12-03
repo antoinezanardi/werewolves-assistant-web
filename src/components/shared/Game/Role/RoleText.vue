@@ -14,7 +14,7 @@ export default {
     computed: {
         roleText() {
             const roleText = {
-                "back": "",
+                "back": undefined,
                 "guard": this.$t("Role.the.guard"),
                 "hunter": this.$t("Role.the.hunter"),
                 "raven": this.$t("Role.the.raven"),
@@ -28,6 +28,9 @@ export default {
                 "villager-villager": this.$t("Role.the.villager-villager"),
                 "cupid": this.$t("Role.the.cupid"),
                 "two-sisters": this.$t("Role.the.two-sisters"),
+                "three-brothers": this.$t("Role.the.three-brothers"),
+                "wild-child": this.$t("Role.the.wild-child"),
+                "dog-wolf": this.$t("Role.the.dog-wolf"),
                 "all": this.$t("Role.the.all"),
             };
             return this.role && roleText[this.role] ? roleText[this.role] : this.$t("RoleText.chooseARole");
