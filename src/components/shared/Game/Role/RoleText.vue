@@ -31,6 +31,7 @@ export default {
                 "three-brothers": this.$t("Role.the.three-brothers"),
                 "wild-child": this.$t("Role.the.wild-child"),
                 "dog-wolf": this.$t("Role.the.dog-wolf"),
+                "big-bad-wolf": this.$t("Role.the.big-bad-wolf"),
                 "all": this.$t("Role.the.all"),
             };
             return this.role && roleText[this.role] ? roleText[this.role] : this.$t("RoleText.chooseARole");

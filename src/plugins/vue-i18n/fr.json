@@ -490,7 +490,8 @@
             "two-sisters": "une des deux sœurs",
             "three-brothers": "un des trois frères",
             "wild-child": "un enfant sauvage",
-            "dog-wolf": "un chien-loup"
+            "dog-wolf": "un chien-loup",
+            "big-bad-wolf": "un grand-méchant-loup"
         },
         "the": {
             "villager": "le villageois",
@@ -509,7 +510,8 @@
             "two-sisters": "les deux sœurs",
             "three-brothers": "les trois frères",
             "wild-child": "l'enfant sauvage",
-            "dog-wolf": "le chien-loup"
+            "dog-wolf": "le chien-loup",
+            "big-bad-wolf": "le grand-méchant-loup"
         },
         "description": {
             "villager": [
@@ -594,7 +596,7 @@
                 "Conseil au meneur: particulièrement puissant avec des pratiquants de la langue des signes. À n'utiliser que dans les grands villages. Si le village est très grand, vous pouvez même y associer les deux sœurs !"
             ],
             "wild-child": [
-                "Son but est d'éliminer les Loups-Garous.",
+                "Son but est d'éliminer les Loups-Garous tant que son modèle est vivant.",
                 "Abandonné dans la forêt par ses parents dans sa plus tendre enfance, il y fut élevé par des loups. Dès qu'il sut marcher à quatre pattes, l'Enfant Sauvage se mit à errer aux abords de Thiercelieux.",
                 "Un beau jour, fasciné par un habitant du village qui marchait debout avec grâce et prestance, il en fit son modèle en secret.",
                 "Il décida alors d'intégrer la communauté de Thiercelieux et pénétra, inquiet, dans le village. La communauté fut émue par sa fragilité, l'adopta et l'accueillit en son sein.",
@@ -603,6 +605,21 @@
                 "En revanche, tant que son modèle est vivant, l'Enfant Sauvage demeure un villageois. Que son modèle s'avère ou non être un Loup-Garou ne change rien à l'affaire ! Rien n'empêche l'Enfant Sauvage de participer à l'élimination de son modèle s'il le désire.",
                 "Si son modèle est vivant lorsque tous les Loups-Garous sont éliminés, il a gagné avec les villageois. Si son modèle est éliminé et que seuls des Loups-Garous survivent avec lui, c'est aussi une victoire pour notre Enfant Sauvage.",
                 "Conseil au meneur: ne pas révéler la véritable nature de l'Enfant Sauvage éliminé par le vote du village peut être amusant. Le doute à propos de sa véritable identité subsiste alors : était-il Villageois ou Loup-Garou avant d'être éliminé ?"
+            ],
+            "dog-wolf": [
+                "Son but est d'éliminer les Loups-Garous s'il reste chien ou d'éliminer les Villageois s'il décide de devenir un loup.",
+                "Tous les chiens savent au tréfonds d'eux-mêmes que leurs ancêtres étaient loups et que c'est l'Homme qui les a maintenus dans cet état de compagnons enfantins et craintifs, mais fidèles et généreux.",
+                "En tout cas, seul le Chien-Loup peut décider s'il obéira à son maître humain et civilisé ou s'il écoutera l'appel de la nature sauvage enfouie dans ses entrailles.",
+                "La première nuit, il choisit s'il désire être un Simple Villageois ou Loup-Garou.",
+                "S'il désire être Loup-Garou, il se réveillera avec eux toutes les nuits et participera désormais à la désignation de la victime dévorée. Sinon, il garde les yeux clos et gagnera avec les villageois.",
+                "Ce choix est définitif !",
+                "Conseil au meneur: ne pas révéler la véritable nature du Chien-Loup éliminé par le vote du village peut-être amusant. Le doute à propos de sa véritable identité subsiste alors : était-il Villageois ou Loup-Garou avant d'être éliminé ?"
+            ],
+            "big-bad-wolf": [
+                "Son but est d'éliminer les Villageois.",
+                "À Thiercelieux, les petits cochons ne sont pas les seuls à redouter le Grand-Méchant-Loup. Il est énorme et son appétit est gigantesque. À cause de lui, des villages entiers furent rayés de la carte !",
+                "Chaque nuit, il se réveille et dévore avec les autres Loups-Garous. Mais tant qu'aucun Loup-Garou, Chien-Sauvage devenu loup ou Enfant Sauvage ayant perdu son modèle n'est éliminé, il se réveille seul une deuxième fois et dévore une autre victime.",
+                "Il ne peut pas dévorer de Loup-Garou."
             ]
         },
         "villager": "Villageois",
@@ -618,7 +635,8 @@
         "two-sisters": "Deux Sœurs",
         "three-brothers": "Trois Frères",
         "wild-child": "Enfant Sauvage",
-        "dog-wolf": "Chien-Loup"
+        "dog-wolf": "Chien-Loup",
+        "big-bad-wolf": "Grand-Méchant-Loup"
     },
     "RoleText": {
         "chooseARole": "Choisir un rôle"
