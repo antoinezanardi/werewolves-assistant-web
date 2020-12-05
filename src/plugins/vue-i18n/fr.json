@@ -190,7 +190,7 @@
                 "look": "Au tour de la voyante"
             },
             "werewolves": {
-                "eat": "Au tour des loups garous"
+                "eat": "Au tour des loups-garous"
             },
             "witch": {
                 "use-potion": "Au tour de la sorcière"
@@ -207,6 +207,9 @@
             "sheriff": {
                 "delegate": "Passation de pouvoir du maire",
                 "settle-votes": "Départage des votes"
+            },
+            "dog-wolf": {
+                "choose-side": "Au tour du chien-loup"
             }
         }
     },
@@ -218,7 +221,8 @@
         "minOnePlayerHasToBeTargeted": "Minimum 1 joueur doit être visé",
         "timeForDebating": "Temps pour débattre",
         "debateIsOver": "Le débat est terminé, il est temps de voter !",
-        "tieInVotesForbidden": "L'égalité pour ce vote est interdite"
+        "tieInVotesForbidden": "L'égalité pour ce vote est interdite",
+        "oneSideMustBeChosen": "Un camp doit être choisi"
     },
     "GamePlayFieldTutorial": {
         "elect-sheriff": {
@@ -290,6 +294,14 @@
             "howToPlay": "Comment départager les votes ?",
             "sheriffSettleVotesWhen": "À chaque fois que la village n'arrive pas à se mettre d'accord sur qui pendre, le maire doit trancher.",
             "toValidateSettleVotes": "Pour que le vote soit tranché, le maire doit obligatoirement choisir une cible."
+        },
+        "choose-side": {
+            "howToPlay": "Comment jouer le chien-loup ?",
+            "dogWolfChoosesSideWhen": "Au début de la partie, seulement la première nuit, le chien-loup se réveille.",
+            "dogWolfCanChooseSide": "Le chien-loup choisit le camp qu'il va rejoindre pour le reste de la partie.",
+            "ifItChoosesVillagers": "S'il choisit le camp des Villageois, il reste avec son maître au village et devra éliminer les Loups-Garous.",
+            "ifItChoosesWerewolves": "Si au contraire, il choisit de rejoindre les Loups-Garous, son instinct primaire sauvage se réveillera et devra éliminer les Villageois. Il se réveillera alors avec les autres Loups-Garous pour décider de la victime à dévorer.",
+            "toValidateChooseSide": "Pour passer à la suite, le chien-loup doit choisir obligatoirement un camp."
         }
     },
     "PlayerAttribute": {
@@ -422,11 +434,15 @@
         "choosesToHang": "souhaite pendre",
         "choosesToHangHimself": "souhaite se pendre lui-même",
         "wantsToDelegateTo": "souhaite déléguer son rôle de maire à",
-        "wantsToShoot": "souhaite tirer sur"
+        "wantsToShoot": "souhaite tirer sur",
+        "wantsToChooseSide": "souhaite rejoindre...",
+        "wantsToStayWithVillagers": "souhaite rester avec les Villageois",
+        "wantsToJoinWerewolves": "souhaite rejoindre les Loups-Garous"
     },
-    "CancelPlayerTarget": {
+    "CancelActionButton": {
         "cancel": "Annuler",
-        "cancelTarget": "Annuler cette cible"
+        "cancelTarget": "Annuler cette cible",
+        "cancelSide": "Annuler le choix du camp"
     },
     "GameEventMonitor": {
         "skip": "Passer",
@@ -457,7 +473,8 @@
             "witchStarts": "La sorcière se réveille et va, si elle le souhaite, utiliser ses potions.",
             "guardStarts": "Le salvateur se réveille et va protéger la personne de son choix.",
             "ravenStarts": "Le corbeau se réveille et va, s'il le souhaite, marquer de sa plume un des habitants.",
-            "hunterStarts": "Dans son dernier souffle, le chasseur s'apprête à choisir la cible de sa vengeance."
+            "hunterStarts": "Dans son dernier souffle, le chasseur s'apprête à choisir la cible de sa vengeance.",
+            "dogWolfStarts": "Le chien-loup se réveille et va choisir son camp pour le reste de la partie."
         }
     },
     "Statistics": {
@@ -497,6 +514,7 @@
             "villager": "le villageois",
             "werewolf": "le loup-garou",
             "werewolves": "les loups-garous",
+            "villagers": "les Villageois",
             "seer": "la voyante",
             "witch": "la sorcière",
             "hunter": "le chasseur",

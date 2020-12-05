@@ -14,6 +14,7 @@
 
 * `@sentry/browser` updated to version `5.28.0`.
 * `@sentry/integrations` updated to version `5.28.0`.
+* `eslint-plugin-vue` updated to version `7.2.0`.
 * `sweetalert2` updated to version `10.11.1`.
 * `vuex` updated to version `3.6.0`.
 

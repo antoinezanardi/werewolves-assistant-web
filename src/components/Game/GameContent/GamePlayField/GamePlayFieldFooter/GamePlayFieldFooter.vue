@@ -53,6 +53,12 @@
                             <span class="small" v-html="$t('GamePlayFieldFooter.minOnePlayerHasToBeTargeted')"/>
                         </div>
                     </div>
+                    <div v-else-if="game.isChooseSidePlay" id="choose-side-play-requirements" key="one-target-play-requirements">
+                        <div class="text-muted font-italic">
+                            <i class="fa mr-2" :class="chooseSidePlayRequirementsIconClass"/>
+                            <span class="small" v-html="$t('GamePlayFieldFooter.oneSideMustBeChosen')"/>
+                        </div>
+                    </div>
                 </transition>
             </div>
         </div>
@@ -97,9 +103,15 @@ export default {
         oneTargetPlayRequirementsIconClass() {
             return this.play.targets.length === 1 ? "fa-check text-success" : "fa-times text-danger";
         },
+        isSideChosen() {
+            return this.play.side;
+        },
+        chooseSidePlayRequirementsIconClass() {
+            return this.isSideChosen ? "fa-check text-success" : "fa-times text-danger";
+        },
         canSubmitPlay() {
             return this.game.isVotePlay && !!this.play.votes.length && (!this.game.isForbiddenTieVotePlay || !this.isThereTieInVotes) ||
-                this.game.isOneTargetPlay && this.play.targets.length === 1 ||
+                this.game.isOneTargetPlay && this.play.targets.length === 1 || this.game.isChooseSidePlay && this.isSideChosen ||
                 this.game.firstWaiting.to === "use-potion" || this.game.firstWaiting.to === "mark";
         },
     },

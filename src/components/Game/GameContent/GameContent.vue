@@ -2,7 +2,8 @@
     <div id="game-content" class="d-flex flex-column">
         <transition mode="out-in" name="fade">
             <GameEventMonitor v-if="events.length" key="game-event-monitor" :events="events" @skip-event="removeEvent"/>
-            <GamePlayField v-else key="game-play-field" :play="play" @player-selected="playerSelected" @player-votes="playerVotes"/>
+            <GamePlayField v-else key="game-play-field" :play="play" @player-selected="playerSelected" @player-votes="playerVotes"
+                           @side-selected="sideSelected"/>
         </transition>
     </div>
 </template>
@@ -21,6 +22,7 @@ export default {
             play: {
                 votes: [],
                 targets: [],
+                side: undefined,
             },
             events: [],
         };
@@ -76,6 +78,9 @@ export default {
                 return this.play.targets.push(target);
             }
         },
+        sideSelected(side) {
+            this.play.side = side;
+        },
         resetPlay() {
             this.play.votes = [];
             this.play.targets = [];
@@ -109,12 +114,17 @@ export default {
         },
         generateGameRoleTurnEvents(newGame, oldGame) {
             const roleTurnEvents = {
-                seer: "seer-starts",
-                werewolves: "werewolves-start",
-                witch: "witch-starts",
-                guard: "guard-starts",
-                raven: "raven-starts",
-                hunter: "hunter-starts",
+                "seer": "seer-starts",
+                "werewolves": "werewolves-start",
+                "witch": "witch-starts",
+                "guard": "guard-starts",
+                "raven": "raven-starts",
+                "hunter": "hunter-starts",
+                "dog-wolf": "dog-wolf-starts",
+                "two-sisters": "two-sisters-start",
+                "three-brothers": "three-brothers-start",
+                "wild-child": "wild-child-starts",
+                "big-bad-wolf": "big-bad-wolf-starts",
             };
             if ((!oldGame || newGame.firstWaiting.for !== oldGame.firstWaiting.for && newGame.firstWaiting.to !== oldGame.firstWaiting.to) &&
                 roleTurnEvents[newGame.firstWaiting.for]) {

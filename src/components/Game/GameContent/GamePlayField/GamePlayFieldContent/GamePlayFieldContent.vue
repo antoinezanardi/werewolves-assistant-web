@@ -21,6 +21,8 @@
                                :play="play" class="h-100 container-fluid" @player-selected="playerSelected"/>
             <ShootPlayField v-else-if="game.firstWaiting.to === 'shoot'" key="shoot"
                             :play="play" class="h-100 container-fluid" @player-selected="playerSelected"/>
+            <ChooseSidePlayField v-else-if="game.firstWaiting.to === 'choose-side'" key="choose-side"
+                                 :play="play" class="h-100 container-fluid" @side-selected="sideSelected"/>
             <div v-else key="unknown">
                 ?
             </div>
@@ -40,10 +42,12 @@ import VotePlayField from "./VotePlayField";
 import SettleVotesPlayField from "./SettleVotesPlayField";
 import DelegatePlayField from "./DelegatePlayField";
 import ShootPlayField from "./ShootPlayField";
+import ChooseSidePlayField from "@/components/Game/GameContent/GamePlayField/GamePlayFieldContent/ChooseSidePlayField";
 
 export default {
     name: "GamePlayFieldContent",
     components: {
+        ChooseSidePlayField,
         ShootPlayField, DelegatePlayField, SettleVotesPlayField, VotePlayField, MarkPlayField, ProtectPlayField, UsePotionPlayField,
         EatPlayField, LookPlayField, ElectSheriffPlayField,
     },
@@ -60,6 +64,9 @@ export default {
         },
         playerSelected(payload) {
             this.$emit("player-selected", payload);
+        },
+        sideSelected(payload) {
+            this.$emit("side-selected", payload);
         },
     },
 };

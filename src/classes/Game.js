@@ -119,6 +119,11 @@ class Game {
         return waiting.to === "elect-sheriff" || waiting.to === "vote";
     }
 
+    get isChooseSidePlay() {
+        const waiting = this.firstWaiting;
+        return waiting.to === "choose-side";
+    }
+
     getPlayersWithRole(role) {
         return this.players.filter(player => player.currentRole === role);
     }
@@ -165,6 +170,10 @@ class Game {
 
     get hasWitchUsedDeathPotion() {
         return !!this.history.find(({ play }) => play.action === "use-potion" && !!play.targets.find(({ potion }) => potion.death));
+    }
+
+    get dogWolfPlayer() {
+        return this.getPlayerWithRole("dog-wolf");
     }
 
     get sisterPlayers() {

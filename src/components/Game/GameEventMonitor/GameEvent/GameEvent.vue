@@ -114,6 +114,7 @@ export default {
                 "guard-starts": { messages: [i18n.t("GameEvent.messages.guardStarts")] },
                 "raven-starts": { messages: [i18n.t("GameEvent.messages.ravenStarts")] },
                 "hunter-starts": { messages: [i18n.t("GameEvent.messages.hunterStarts")] },
+                "dog-wolf-starts": { messages: [i18n.t("GameEvent.messages.dogWolfStarts")] },
             };
         },
         hasGameEventTarget() {

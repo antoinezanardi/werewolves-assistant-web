@@ -5,8 +5,8 @@
                 <h3 id="play-field-action-text" :key="actionText" v-html="actionText"/>
             </transition>
             <div id="cancel-player-target-container" class="d-flex align-items-center justify-content-center">
-                <CancelPlayerTarget :attribute="attribute" :targeted-player="targetedPlayer"
-                                    @player-selected="playerSelected"/>
+                <CancelActionButton :attribute="attribute" :targeted-player="targetedPlayer" :play="play"
+                                    @player-selected="playerSelected" @side-selected="sideSelected"/>
             </div>
         </div>
     </div>
@@ -14,11 +14,11 @@
 
 <script>
 import { mapGetters } from "vuex";
-import CancelPlayerTarget from "./CancelPlayerTarget";
+import CancelActionButton from "./CancelActionButton";
 
 export default {
     name: "PlayFieldActionText",
-    components: { CancelPlayerTarget },
+    components: { CancelActionButton },
     props: {
         play: {
             type: Object,
@@ -75,6 +75,11 @@ export default {
                     notTargeted: `${this.$t("PlayFieldActionText.wantsToShoot")} ...`,
                     targeted: this.$t("PlayFieldActionText.wantsToShoot"),
                 },
+                "choose-side": {
+                    notTargeted: this.$t("PlayFieldActionText.wantsToChooseSide"),
+                    villagers: this.$t("PlayFieldActionText.wantsToStayWithVillagers"),
+                    werewolves: this.$t("PlayFieldActionText.wantsToJoinWerewolves"),
+                },
             };
         },
         isPlayerTargetingHimself() {
@@ -92,7 +97,9 @@ export default {
             return null;
         },
         actionText() {
-            if (this.targetedPlayer) {
+            if (this.attribute === "choose-side") {
+                return !this.play.side ? this.attributeTexts["choose-side"].notTargeted : this.attributeTexts["choose-side"][this.play.side];
+            } else if (this.targetedPlayer) {
                 if (this.isPlayerTargetingHimself) {
                     return this.$t(this.attributeTexts[this.attribute].selfTargeted);
                 }
@@ -104,6 +111,9 @@ export default {
     methods: {
         playerSelected(payload) {
             this.$emit("player-selected", payload);
+        },
+        sideSelected(payload) {
+            this.$emit("side-selected", payload);
         },
     },
 };

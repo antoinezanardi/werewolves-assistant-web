@@ -82,6 +82,13 @@ export default {
                     { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.settle-votes.sheriffSettleVotesWhen") },
                     { header, target: "#one-target-play-requirements", content: this.$t("GamePlayFieldTutorial.settle-votes.toValidateSettleVotes") },
                 ],
+                "choose-side": [
+                    { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.choose-side.dogWolfChoosesSideWhen") },
+                    { header, target: "#sides", content: this.$t("GamePlayFieldTutorial.choose-side.dogWolfCanChooseSide") },
+                    { header, target: "#play-field-villagers-side", content: this.$t("GamePlayFieldTutorial.choose-side.ifItChoosesVillagers") },
+                    { header, target: "#play-field-werewolves-side", content: this.$t("GamePlayFieldTutorial.choose-side.ifItChoosesWerewolves") },
+                    { header, target: "#choose-side-play-requirements", content: this.$t("GamePlayFieldTutorial.choose-side.toValidateChooseSide") },
+                ],
             };
             return steps[this.game.firstWaiting.to];
         },

@@ -32,6 +32,8 @@
 
 <script>
 import { mapGetters } from "vuex";
+import WhatToDoButton from "@/components/shared/Game/WhatToDoButton/WhatToDoButton";
+import RoleImage from "@/components/shared/Game/Role/RoleImage";
 import sheriffSVG from "@/assets/svg/attributes/sheriff.svg";
 import eatenSVG from "@/assets/svg/attributes/eaten.svg";
 import drankDeathPotionSVG from "@/assets/svg/attributes/drank-death-potion.svg";
@@ -41,8 +43,7 @@ import voteSVG from "@/assets/svg/actions/vote.svg";
 import settleVotesSVG from "@/assets/svg/actions/settle-votes.svg";
 import protectedSVG from "@/assets/svg/attributes/protected.svg";
 import ravenMarkedSVG from "@/assets/svg/attributes/raven-marked.svg";
-import WhatToDoButton from "@/components/shared/Game/WhatToDoButton/WhatToDoButton";
-import RoleImage from "@/components/shared/Game/Role/RoleImage";
+import chooseSideSVG from "@/assets/svg/actions/choose-side.svg";
 
 export default {
     name: "GamePlayFieldHeader",
@@ -90,6 +91,10 @@ export default {
                 "settle-votes": {
                     icon: settleVotesSVG,
                     role: "sheriff",
+                },
+                "choose-side": {
+                    icon: chooseSideSVG,
+                    role: "dog-wolf",
                 },
             },
         };

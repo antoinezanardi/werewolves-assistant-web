@@ -20,7 +20,7 @@
         <div v-else-if="isEffectGameEvent"
              class="d-flex flex-grow-1 justify-content-center align-items-center flex-column w-100">
             <div id="role-effect-container">
-                <RoleImage class="animate__animated animate__flipInY animate__fast role-image"
+                <RoleImage class="role-image"
                            :role="event.targets[0].player.role.current"
                            :class="{ 'dead-player': event.type === 'player-dies' }"/>
                 <img id="effect-image" :src="effectImageSource"
@@ -29,7 +29,7 @@
             <h3 class="text-center mt-2 w-100 text-truncate" v-html="event.targets[0].player.name"/>
         </div>
         <div v-else class="d-flex flex-grow-1 justify-content-center align-items-center flex-column">
-            <RoleImage class="animate__animated animate__flipInY animate__fast role-image" :role="game.firstWaiting.for"/>
+            <RoleImage class="role-image" :role="game.firstWaiting.for"/>
         </div>
     </div>
 </template>
