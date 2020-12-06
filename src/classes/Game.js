@@ -127,7 +127,17 @@ class Game {
 
     get isTimedPlay() {
         const { to } = this.firstWaiting;
-        return to === "elect-sheriff" || to === "vote";
+        return to === "elect-sheriff" || to === "vote" || to === "meet-each-other";
+    }
+
+    get maxTimeToPlay() {
+        const { to } = this.firstWaiting;
+        if (to === "elect-sheriff" || to === "vote") {
+            return 5 * 60 * 1000;
+        } else if (to === "meet-each-other") {
+            return 20 * 1000;
+        }
+        return 0;
     }
 
     get isChooseSidePlay() {
@@ -137,7 +147,7 @@ class Game {
 
     get isSkippablePlay() {
         const { to } = this.firstWaiting;
-        return to === "use-potion" || to === "mark";
+        return to === "use-potion" || to === "mark" || to === "meet-each-other";
     }
 
     getPlayersWithRole(role) {
@@ -169,7 +179,11 @@ class Game {
     }
 
     getPlayerWithAttribute(attributeName) {
-        return this.players.find(({ attributes }) => attributes.find(({ attribute }) => attribute === attributeName));
+        return this.players.find(player => player.hasAttribute(attributeName));
+    }
+
+    getPlayersWithAttribute(attributeName) {
+        return this.players.filter(player => player.hasAttribute(attributeName));
     }
 
     get sheriffPlayer() {
@@ -202,6 +216,10 @@ class Game {
 
     get brotherPlayers() {
         return this.getPlayersWithRole("three-brothers");
+    }
+
+    get inLovePlayers() {
+        return this.getPlayersWithAttribute("in-love");
     }
 
     isRoleInGame(roleName) {

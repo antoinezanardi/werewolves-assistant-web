@@ -20,8 +20,7 @@
         <div v-else-if="isEffectGameEvent"
              class="d-flex flex-grow-1 justify-content-center align-items-center flex-column w-100">
             <div id="role-effect-container">
-                <RoleImage class="role-image"
-                           :role="event.targets[0].player.role.current"
+                <RoleImage class="role-image" :role="event.targets[0].player.role.current"
                            :class="{ 'dead-player': event.type === 'player-dies' }"/>
                 <img id="effect-image" :src="effectImageSource"
                      class="animate__animated animate__bounceIn animate__delay-1s" alt="Effect Image"/>

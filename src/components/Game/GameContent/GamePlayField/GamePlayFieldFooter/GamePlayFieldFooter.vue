@@ -3,7 +3,7 @@
         <hr class="bg-dark my-1"/>
         <div class="row justify-content-center align-items-center">
             <div class="col-lg-4 col-12 text-center order-lg-0">
-                <VCountdown v-if="game.isTimedPlay" :time="5 * 60 * 1000" @end="countdown.ended = true">
+                <VCountdown v-if="game.isTimedPlay" :time="game.maxTimeToPlay" @end="countdown.ended = true">
                     <template #default="{ minutes, seconds }">
                         <transition name="fade" mode="out-in">
                             <div v-if="!countdown.ended" id="countdown-running" key="countdown-running" class="countdown">

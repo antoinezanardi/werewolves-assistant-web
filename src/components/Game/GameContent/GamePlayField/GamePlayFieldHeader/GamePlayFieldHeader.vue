@@ -45,6 +45,7 @@ import protectedSVG from "@/assets/svg/attributes/protected.svg";
 import ravenMarkedSVG from "@/assets/svg/attributes/raven-marked.svg";
 import chooseSideSVG from "@/assets/svg/actions/choose-side.svg";
 import charmSVG from "@/assets/svg/actions/charm.svg";
+import inLoveSVG from "@/assets/svg/attributes/in-love.svg";
 
 export default {
     name: "GamePlayFieldHeader",
@@ -101,6 +102,12 @@ export default {
                     icon: charmSVG,
                     role: "cupid",
                 },
+                "meet-each-other": {
+                    lovers: {
+                        icon: inLoveSVG,
+                        role: "cupid",
+                    },
+                },
             },
         };
     },
@@ -121,11 +128,11 @@ export default {
         },
         gameWaitingIcon() {
             const { firstWaiting } = this.game;
-            return this.actions[firstWaiting.to].icon;
+            return this.actions[firstWaiting.to][firstWaiting.for].icon;
         },
         gameWaitingRole() {
             const { firstWaiting } = this.game;
-            return this.actions[firstWaiting.to].role;
+            return this.actions[firstWaiting.to][firstWaiting.for].role;
         },
     },
 };

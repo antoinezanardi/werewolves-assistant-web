@@ -126,6 +126,7 @@ export default {
                 "hunter": "hunter-starts",
                 "dog-wolf": "dog-wolf-starts",
                 "cupid": "cupid-starts",
+                "lovers": "lovers-start",
                 "two-sisters": "two-sisters-start",
                 "three-brothers": "three-brothers-start",
                 "wild-child": "wild-child-starts",

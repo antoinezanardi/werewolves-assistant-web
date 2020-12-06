@@ -25,6 +25,7 @@
                                  :play="play" class="h-100 container-fluid" @side-selected="sideSelected"/>
             <CharmPlayField v-else-if="game.firstWaiting.to === 'charm'" key="charm"
                             :play="play" class="h-100 container-fluid" @player-selected="playerSelected"/>
+            <MeetEachOtherPlayField v-else-if="game.firstWaiting.to === 'meet-each-other'" key="meet-each-other" class="h-100 container-fluid"/>
             <div v-else key="unknown">
                 ?
             </div>
@@ -46,10 +47,13 @@ import DelegatePlayField from "./DelegatePlayField";
 import ShootPlayField from "./ShootPlayField";
 import ChooseSidePlayField from "@/components/Game/GameContent/GamePlayField/GamePlayFieldContent/ChooseSidePlayField";
 import CharmPlayField from "@/components/Game/GameContent/GamePlayField/GamePlayFieldContent/CharmPlayField";
+import MeetEachOtherPlayField
+    from "@/components/Game/GameContent/GamePlayField/GamePlayFieldContent/MeetEachOtherPlayField";
 
 export default {
     name: "GamePlayFieldContent",
     components: {
+        MeetEachOtherPlayField,
         CharmPlayField,
         ChooseSidePlayField,
         ShootPlayField, DelegatePlayField, SettleVotesPlayField, VotePlayField, MarkPlayField, ProtectPlayField, UsePotionPlayField,
