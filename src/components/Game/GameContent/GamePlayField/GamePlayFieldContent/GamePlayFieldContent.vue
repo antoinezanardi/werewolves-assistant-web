@@ -23,6 +23,8 @@
                             :play="play" class="h-100 container-fluid" @player-selected="playerSelected"/>
             <ChooseSidePlayField v-else-if="game.firstWaiting.to === 'choose-side'" key="choose-side"
                                  :play="play" class="h-100 container-fluid" @side-selected="sideSelected"/>
+            <CharmPlayField v-else-if="game.firstWaiting.to === 'charm'" key="charm"
+                            :play="play" class="h-100 container-fluid" @player-selected="playerSelected"/>
             <div v-else key="unknown">
                 ?
             </div>
@@ -43,10 +45,12 @@ import SettleVotesPlayField from "./SettleVotesPlayField";
 import DelegatePlayField from "./DelegatePlayField";
 import ShootPlayField from "./ShootPlayField";
 import ChooseSidePlayField from "@/components/Game/GameContent/GamePlayField/GamePlayFieldContent/ChooseSidePlayField";
+import CharmPlayField from "@/components/Game/GameContent/GamePlayField/GamePlayFieldContent/CharmPlayField";
 
 export default {
     name: "GamePlayFieldContent",
     components: {
+        CharmPlayField,
         ChooseSidePlayField,
         ShootPlayField, DelegatePlayField, SettleVotesPlayField, VotePlayField, MarkPlayField, ProtectPlayField, UsePotionPlayField,
         EatPlayField, LookPlayField, ElectSheriffPlayField,

@@ -12,7 +12,8 @@
 import { mapGetters } from "vuex";
 import GamePlayField from "./GamePlayField/GamePlayField";
 import GameEvent from "@/classes/GameEvent";
-import GameEventMonitor from "../GameEventMonitor/GameEventMonitor";
+import GameEventMonitor from "@/components/Game/GameEventMonitor/GameEventMonitor";
+import { maxTargetLengthForPlayerAttribute } from "@/helpers/functions/Player";
 
 export default {
     name: "GameContent",
@@ -65,17 +66,20 @@ export default {
             } else if (target.attribute === "drank-death-potion") {
                 target.potion = { death: true };
             }
-            if (payload.selected) {
-                const idx = this.play.targets.findIndex(({ attribute }) => attribute === target.attribute);
-                if (idx !== -1) {
-                    this.play.targets.splice(idx, 1);
+            const maxTargetLength = maxTargetLengthForPlayerAttribute(payload.attribute);
+            const targetIdx = this.play.targets.findIndex(({ player }) => player === target.player);
+            if (!payload.selected) {
+                if (targetIdx !== -1) {
+                    this.play.targets.splice(targetIdx, 1);
                 }
-            }
-            const idx = this.play.targets.findIndex(({ player, attribute }) => player === target.player && attribute === target.attribute);
-            if (idx !== -1) {
-                return payload.selected ? this.play.targets.splice(idx, 1, target) : this.play.targets.splice(idx, 1);
-            } else if (payload.selected) {
-                return this.play.targets.push(target);
+            } else if (targetIdx !== -1) {
+                this.play.targets.splice(targetIdx, 1, target);
+            } else {
+                this.play.targets.push(target);
+                const targetsWithAttribute = this.play.targets.filter(({ attribute }) => attribute === payload.attribute);
+                if (maxTargetLength < targetsWithAttribute.length) {
+                    this.play.targets.shift();
+                }
             }
         },
         sideSelected(side) {
@@ -121,6 +125,7 @@ export default {
                 "raven": "raven-starts",
                 "hunter": "hunter-starts",
                 "dog-wolf": "dog-wolf-starts",
+                "cupid": "cupid-starts",
                 "two-sisters": "two-sisters-start",
                 "three-brothers": "three-brothers-start",
                 "wild-child": "wild-child-starts",

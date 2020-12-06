@@ -27,3 +27,12 @@ export function getNominatedPlayers(votes, game, action) {
     const maxVotes = Math.max(...votedPlayers.map(player => player.vote));
     return votedPlayers.filter(player => player.vote === maxVotes);
 }
+
+export function maxTargetLengthForPlayerAttribute(attribute) {
+    if (attribute === "seen" || attribute === "eaten" || attribute === "drank-life-potion" || attribute === "protected" ||
+        attribute === "raven-marked" || attribute === "worshiped") {
+        return 1;
+    } else if (attribute === "in-love") {
+        return 2;
+    }
+}

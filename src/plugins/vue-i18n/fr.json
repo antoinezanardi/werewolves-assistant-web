@@ -210,6 +210,9 @@
             },
             "dog-wolf": {
                 "choose-side": "Au tour du chien-loup"
+            },
+            "cupid": {
+                "charm": "Au tour de Cupidon"
             }
         }
     },
@@ -474,7 +477,8 @@
             "guardStarts": "Le salvateur se réveille et va protéger la personne de son choix.",
             "ravenStarts": "Le corbeau se réveille et va, s'il le souhaite, marquer de sa plume un des habitants.",
             "hunterStarts": "Dans son dernier souffle, le chasseur s'apprête à choisir la cible de sa vengeance.",
-            "dogWolfStarts": "Le chien-loup se réveille et va choisir son camp pour le reste de la partie."
+            "dogWolfStarts": "Le chien-loup se réveille et va choisir son camp pour le reste de la partie.",
+            "cupidStarts": "Cupidon se réveille et va rendre inséparables deux personnes grâce à ses flêches de l'Amour."
         }
     },
     "Statistics": {

@@ -176,6 +176,10 @@ class Game {
         return this.getPlayerWithRole("dog-wolf");
     }
 
+    get cupidPlayer() {
+        return this.getPlayerWithRole("cupid");
+    }
+
     get sisterPlayers() {
         return this.getPlayersWithRole("two-sisters");
     }

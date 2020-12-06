@@ -44,6 +44,7 @@ import settleVotesSVG from "@/assets/svg/actions/settle-votes.svg";
 import protectedSVG from "@/assets/svg/attributes/protected.svg";
 import ravenMarkedSVG from "@/assets/svg/attributes/raven-marked.svg";
 import chooseSideSVG from "@/assets/svg/actions/choose-side.svg";
+import charmSVG from "@/assets/svg/actions/charm.svg";
 
 export default {
     name: "GamePlayFieldHeader",
@@ -95,6 +96,10 @@ export default {
                 "choose-side": {
                     icon: chooseSideSVG,
                     role: "dog-wolf",
+                },
+                "charm": {
+                    icon: charmSVG,
+                    role: "cupid",
                 },
             },
         };
