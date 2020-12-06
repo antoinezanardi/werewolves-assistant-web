@@ -3,13 +3,14 @@
 </template>
 
 <script>
-import sheriffSVG from "../../../../assets/svg/attributes/sheriff.svg";
-import seenSVG from "../../../../assets/svg/actions/look.svg";
-import eatenSVG from "../../../../assets/svg/attributes/eaten.svg";
-import drankLifePotionSVG from "../../../../assets/svg/attributes/drank-life-potion.svg";
-import drankDeathPotionSVG from "../../../../assets/svg/attributes/drank-death-potion.svg";
-import protectedSVG from "../../../../assets/svg/attributes/protected.svg";
-import ravenMarkedSVG from "../../../../assets/svg/attributes/raven-marked.svg";
+import sheriffSVG from "@/assets/svg/attributes/sheriff.svg";
+import seenSVG from "@/assets/svg/actions/look.svg";
+import eatenSVG from "@/assets/svg/attributes/eaten.svg";
+import drankLifePotionSVG from "@/assets/svg/attributes/drank-life-potion.svg";
+import drankDeathPotionSVG from "@/assets/svg/attributes/drank-death-potion.svg";
+import protectedSVG from "@/assets/svg/attributes/protected.svg";
+import ravenMarkedSVG from "@/assets/svg/attributes/raven-marked.svg";
+import inLoveSVG from "@/assets/svg/attributes/in-love.svg";
 
 export default {
     name: "PlayerAttribute",
@@ -28,32 +29,36 @@ export default {
         return {
             attributes: {
                 "sheriff": {
-                    name: this.$t("PlayerAttribute.attributes.sheriff"),
+                    tooltip: this.$t("PlayerAttribute.attributes.sheriff"),
                     SVG: sheriffSVG,
                 },
                 "seen": {
-                    name: this.$t("PlayerAttribute.attributes.seen"),
+                    tooltip: this.$t("PlayerAttribute.attributes.seen"),
                     SVG: seenSVG,
                 },
                 "eaten": {
-                    name: this.$t("PlayerAttribute.attributes.eaten"),
+                    tooltip: this.$t("PlayerAttribute.attributes.eaten"),
                     SVG: eatenSVG,
                 },
                 "drank-life-potion": {
-                    name: this.$t("PlayerAttribute.attributes.drankLifePotion"),
+                    tooltip: this.$t("PlayerAttribute.attributes.drankLifePotion"),
                     SVG: drankLifePotionSVG,
                 },
                 "drank-death-potion": {
-                    name: this.$t("PlayerAttribute.attributes.drankDeathPotion"),
+                    tooltip: this.$t("PlayerAttribute.attributes.drankDeathPotion"),
                     SVG: drankDeathPotionSVG,
                 },
                 "protected": {
-                    name: this.$t("PlayerAttribute.attributes.protected"),
+                    tooltip: this.$t("PlayerAttribute.attributes.protected"),
                     SVG: protectedSVG,
                 },
                 "raven-marked": {
-                    name: this.$t("PlayerAttribute.attributes.ravenMarked"),
+                    tooltip: this.$t("PlayerAttribute.attributes.ravenMarked"),
                     SVG: ravenMarkedSVG,
+                },
+                "in-love": {
+                    tooltip: this.$t("PlayerAttribute.attributes.inLove"),
+                    SVG: inLoveSVG,
                 },
             },
         };
@@ -62,7 +67,7 @@ export default {
         tooltip() {
             return {
                 content: `<div class="mb-2">
-                                ${this.attributes[this.attribute].name}
+                                ${this.attributes[this.attribute].tooltip}
                           </div>
                           <img width="50" src="${this.attributes[this.attribute].SVG}"/>`,
             };

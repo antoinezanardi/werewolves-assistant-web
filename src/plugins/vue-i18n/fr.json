@@ -219,9 +219,9 @@
     "GamePlayFieldFooter": {
         "next": "Suivant",
         "playersHaveVoted": "joueurs ont voté",
-        "playerTargeted": "joueur visé",
+        "playerTargeted": "joueur visé | joueurs visés",
         "minOnePlayerHasToVote": "Minimum 1 joueur doit voter",
-        "minOnePlayerHasToBeTargeted": "Minimum 1 joueur doit être visé",
+        "minPlayerHasToBeTargeted": "Minimum {min} joueur doit être visé | Minimum {min} joueurs doivent être visés",
         "timeForDebating": "Temps pour débattre",
         "debateIsOver": "Le débat est terminé, il est temps de voter !",
         "tieInVotesForbidden": "L'égalité pour ce vote est interdite",
@@ -305,6 +305,12 @@
             "ifItChoosesVillagers": "S'il choisit le camp des Villageois, il reste avec son maître au village et devra éliminer les Loups-Garous.",
             "ifItChoosesWerewolves": "Si au contraire, il choisit de rejoindre les Loups-Garous, son instinct primaire sauvage se réveillera et devra éliminer les Villageois. Il se réveillera alors avec les autres Loups-Garous pour décider de la victime à dévorer.",
             "toValidateChooseSide": "Pour passer à la suite, le chien-loup doit choisir obligatoirement un camp."
+        },
+        "charm": {
+            "howToPlay": "Comment jouer Cupidon ?",
+            "cupidCharmsWhen": "Au début de la partie, seulement la première nuit, Cupidon se réveille.",
+            "cupidCanCharm": "Cupidon peut rendre amoureux deux joueurs grâce à son arc et ses flêches d'Amour. Il peut se désigner lui-même avec une autre personne. Le maître du jeu devra, en silence et le plus discrètement possible, tapoter le dos des joueurs amoureux une fois le choix de Cupidon fait.",
+            "toValidateCharm": "Pour que Cupidon puisse charmer de ses flêches, il doit obligatoirement choisir deux cibles."
         }
     },
     "PlayerAttribute": {
@@ -315,7 +321,8 @@
             "drankLifePotion": "Ce joueur a bu la potion de vie",
             "drankDeathPotion": "Ce joueur a bu la potion de mort",
             "protected": "Ce joueur est protégé",
-            "ravenMarked": "Ce joueur est marqué par le corbeau"
+            "ravenMarked": "Ce joueur est marqué par le corbeau",
+            "inLove": "Ce joueur est amoureux à en mourir d'un autre"
         }
     },
     "PlayerThumbnail": {
@@ -421,6 +428,7 @@
         "skipTurn": "a passé son tour"
     },
     "PlayFieldActionText": {
+        "and": "et",
         "wantsToLook": "souhaite voir le rôle de",
         "wantToEat": "souhaite manger | souhaite manger | souhaitent manger",
         "doesntWantToUseLifePotion": "ne souhaite pas utiliser sa potion de vie",
@@ -438,9 +446,15 @@
         "choosesToHangHimself": "souhaite se pendre lui-même",
         "wantsToDelegateTo": "souhaite déléguer son rôle de maire à",
         "wantsToShoot": "souhaite tirer sur",
-        "wantsToChooseSide": "souhaite rejoindre...",
-        "wantsToStayWithVillagers": "souhaite rester avec les Villageois",
-        "wantsToJoinWerewolves": "souhaite rejoindre les Loups-Garous"
+        "dog-wolf": {
+            "wantsToChooseSide": "souhaite rejoindre...",
+            "villagers": "souhaite rester avec les Villageois",
+            "werewolves": "souhaite rejoindre les Loups-Garous"
+        },
+        "cupid": {
+            "in-love": "souhaite charmer",
+            "selfTargeting": "lui-même"
+        }
     },
     "CancelActionButton": {
         "cancel": "Annuler",

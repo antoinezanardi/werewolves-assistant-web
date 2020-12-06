@@ -116,6 +116,7 @@ export default {
                 "hunter-starts": { messages: [i18n.t("GameEvent.messages.hunterStarts")] },
                 "dog-wolf-starts": { messages: [i18n.t("GameEvent.messages.dogWolfStarts")] },
                 "cupid-starts": { messages: [i18n.t("GameEvent.messages.cupidStarts")] },
+                "lovers-starts": { messages: [i18n.t("GameEvent.messages.loversStart")] },
             };
         },
         hasGameEventTarget() {

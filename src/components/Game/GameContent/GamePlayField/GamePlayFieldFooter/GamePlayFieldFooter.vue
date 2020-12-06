@@ -44,16 +44,16 @@
                             <span class="small" v-html="$t('GamePlayFieldFooter.tieInVotesForbidden')"/>
                         </div>
                     </div>
-                    <div v-else-if="game.isOneTargetPlay" id="one-target-play-requirements" key="one-target-play-requirements"
+                    <div v-else-if="game.isTargetPlay" id="target-play-requirements" key="target-play-requirements"
                          class="text-center">
-                        <VRoller :text="`${play.targets.length}/1`" class="d-inline-flex mr-1"/>
-                        <span v-html="$t('GamePlayFieldFooter.playerTargeted')"/>
+                        <VRoller :text="`${play.targets.length}/${game.expectedTargetsLength}`" class="d-inline-flex mr-1"/>
+                        <span v-html="$tc('GamePlayFieldFooter.playerTargeted', game.expectedTargetsLength)"/>
                         <div class="text-muted font-italic">
-                            <i class="fa mr-2" :class="oneTargetPlayRequirementsIconClass"/>
-                            <span class="small" v-html="$t('GamePlayFieldFooter.minOnePlayerHasToBeTargeted')"/>
+                            <i class="fa mr-2" :class="targetPlayRequirementsIconClass"/>
+                            <span class="small" v-html="targetPlayRequirementsText"/>
                         </div>
                     </div>
-                    <div v-else-if="game.isChooseSidePlay" id="choose-side-play-requirements" key="one-target-play-requirements">
+                    <div v-else-if="game.isChooseSidePlay" id="choose-side-play-requirements" key="choose-side-play-requirements">
                         <div class="text-muted font-italic">
                             <i class="fa mr-2" :class="chooseSidePlayRequirementsIconClass"/>
                             <span class="small" v-html="$t('GamePlayFieldFooter.oneSideMustBeChosen')"/>
@@ -100,8 +100,12 @@ export default {
         votePlayRequirementsIconClass() {
             return this.play.votes.length ? "fa-check text-success" : "fa-times text-danger";
         },
-        oneTargetPlayRequirementsIconClass() {
-            return this.play.targets.length === 1 ? "fa-check text-success" : "fa-times text-danger";
+        targetPlayRequirementsIconClass() {
+            return this.play.targets.length === this.game.expectedTargetsLength ? "fa-check text-success" : "fa-times text-danger";
+        },
+        targetPlayRequirementsText() {
+            const expectedTargetsLength = this.game.expectedTargetsLength;
+            return this.$tc("GamePlayFieldFooter.minPlayerHasToBeTargeted", expectedTargetsLength, { min: expectedTargetsLength });
         },
         isSideChosen() {
             return this.play.side;
@@ -111,8 +115,8 @@ export default {
         },
         canSubmitPlay() {
             return this.game.isVotePlay && !!this.play.votes.length && (!this.game.isForbiddenTieVotePlay || !this.isThereTieInVotes) ||
-                this.game.isOneTargetPlay && this.play.targets.length === 1 || this.game.isChooseSidePlay && this.isSideChosen ||
-                this.game.firstWaiting.to === "use-potion" || this.game.firstWaiting.to === "mark";
+                this.game.isTargetPlay && this.play.targets.length === this.game.expectedTargetsLength ||
+                this.game.isChooseSidePlay && this.isSideChosen || this.game.isSkippablePlay;
         },
     },
     methods: {

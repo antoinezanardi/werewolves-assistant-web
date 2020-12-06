@@ -108,20 +108,36 @@ class Game {
         return waiting.to === "elect-sheriff";
     }
 
-    get isOneTargetPlay() {
-        const waiting = this.firstWaiting;
-        return waiting.to === "look" || waiting.to === "eat" || waiting.to === "protect" ||
-            waiting.to === "shoot" || waiting.to === "settle-votes" || waiting.to === "delegate";
+    get isTargetPlay() {
+        const { to } = this.firstWaiting;
+        return to === "look" || to === "eat" || to === "protect" ||
+            to === "shoot" || to === "settle-votes" || to === "delegate" ||
+            to === "charm";
+    }
+
+    get expectedTargetsLength() {
+        const { to } = this.firstWaiting;
+        if (to === "look" || to === "eat" || to === "protect" || to === "shoot" || to === "settle-votes" || to === "delegate") {
+            return 1;
+        } else if (to === "charm") {
+            return 2;
+        }
+        return 0;
     }
 
     get isTimedPlay() {
-        const waiting = this.firstWaiting;
-        return waiting.to === "elect-sheriff" || waiting.to === "vote";
+        const { to } = this.firstWaiting;
+        return to === "elect-sheriff" || to === "vote";
     }
 
     get isChooseSidePlay() {
-        const waiting = this.firstWaiting;
-        return waiting.to === "choose-side";
+        const { to } = this.firstWaiting;
+        return to === "choose-side";
+    }
+
+    get isSkippablePlay() {
+        const { to } = this.firstWaiting;
+        return to === "use-potion" || to === "mark";
     }
 
     getPlayersWithRole(role) {
@@ -190,6 +206,10 @@ class Game {
 
     isRoleInGame(roleName) {
         return !!this.players.find(({ role }) => role.current === roleName);
+    }
+
+    getPlayerWithId(playerId) {
+        return this.players.find(({ _id }) => _id.toString() === playerId);
     }
 }
 

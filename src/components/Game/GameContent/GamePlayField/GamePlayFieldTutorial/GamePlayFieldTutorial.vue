@@ -32,13 +32,13 @@ export default {
                     { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.look.seerLooksWhen") },
                     { header, target: "#player-targets", content: this.$t("GamePlayFieldTutorial.look.seerCanLook") },
                     { header, target: "#seer-player-card", content: this.$t("GamePlayFieldTutorial.look.seerPointsAtTarget") },
-                    { header, target: "#one-target-play-requirements", content: this.$t("GamePlayFieldTutorial.look.toValidateLook") },
+                    { header, target: "#target-play-requirements", content: this.$t("GamePlayFieldTutorial.look.toValidateLook") },
                 ],
                 "eat": [
                     { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.eat.werewolvesEatWhen") },
                     { header, target: "#player-targets", content: this.$t("GamePlayFieldTutorial.eat.werewolvesEatAVictim") },
                     { header, target: "#werewolf-players", content: this.$t("GamePlayFieldTutorial.eat.werewolvesPointAtVictim") },
-                    { header, target: "#one-target-play-requirements", content: this.$t("GamePlayFieldTutorial.eat.toValidateEat") },
+                    { header, target: "#target-play-requirements", content: this.$t("GamePlayFieldTutorial.eat.toValidateEat") },
                 ],
                 "use-potion": [
                     { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.use-potion.witchUsesPotionWhen") },
@@ -53,7 +53,7 @@ export default {
                     { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.protect.guardProtectsWhen") },
                     { header, target: "#player-targets", content: this.$t("GamePlayFieldTutorial.protect.guardCanProtect") },
                     { header, target: "#guard-player-card", content: this.$t("GamePlayFieldTutorial.protect.guardPointsAtTarget") },
-                    { header, target: "#one-target-play-requirements", content: this.$t("GamePlayFieldTutorial.protect.toValidateProtect") },
+                    { header, target: "#target-play-requirements", content: this.$t("GamePlayFieldTutorial.protect.toValidateProtect") },
                 ],
                 "mark": [
                     { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.mark.ravenMarksWhen") },
@@ -71,16 +71,16 @@ export default {
                 "delegate": [
                     { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.delegate.sheriffDelegatesWhen") },
                     { header, target: "#player-targets", content: this.$t("GamePlayFieldTutorial.delegate.noDemocracyHere") },
-                    { header, target: "#one-target-play-requirements", content: this.$t("GamePlayFieldTutorial.delegate.toValidateDelegation") },
+                    { header, target: "#target-play-requirements", content: this.$t("GamePlayFieldTutorial.delegate.toValidateDelegation") },
                 ],
                 "shoot": [
                     { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.shoot.hunterShootsWhen") },
                     { header, target: "#player-targets", content: this.$t("GamePlayFieldTutorial.shoot.hunterCanShoot") },
-                    { header, target: "#one-target-play-requirements", content: this.$t("GamePlayFieldTutorial.shoot.toValidateShoot") },
+                    { header, target: "#target-play-requirements", content: this.$t("GamePlayFieldTutorial.shoot.toValidateShoot") },
                 ],
                 "settle-votes": [
                     { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.settle-votes.sheriffSettleVotesWhen") },
-                    { header, target: "#one-target-play-requirements", content: this.$t("GamePlayFieldTutorial.settle-votes.toValidateSettleVotes") },
+                    { header, target: "#target-play-requirements", content: this.$t("GamePlayFieldTutorial.settle-votes.toValidateSettleVotes") },
                 ],
                 "choose-side": [
                     { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.choose-side.dogWolfChoosesSideWhen") },
@@ -88,6 +88,11 @@ export default {
                     { header, target: "#play-field-villagers-side", content: this.$t("GamePlayFieldTutorial.choose-side.ifItChoosesVillagers") },
                     { header, target: "#play-field-werewolves-side", content: this.$t("GamePlayFieldTutorial.choose-side.ifItChoosesWerewolves") },
                     { header, target: "#choose-side-play-requirements", content: this.$t("GamePlayFieldTutorial.choose-side.toValidateChooseSide") },
+                ],
+                "charm": [
+                    { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.charm.cupidCharmsWhen") },
+                    { header, target: "#player-targets", content: this.$t("GamePlayFieldTutorial.charm.cupidCanCharm") },
+                    { header, target: "#target-play-requirements", content: this.$t("GamePlayFieldTutorial.charm.toValidateCharm") },
                 ],
             };
             return steps[this.game.firstWaiting.to];
