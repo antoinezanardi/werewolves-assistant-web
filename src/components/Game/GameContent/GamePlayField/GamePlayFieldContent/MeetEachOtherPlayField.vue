@@ -1,7 +1,7 @@
 <template>
     <div id="meet-each-other-field" class="d-flex flex-column">
-        <div class="d-flex justify-content-center">
-            <span v-for="player of wakingUpPlayers" :key="player._id">
+        <div id="meeting-each-other-players" class="d-flex justify-content-center">
+            <span v-for="player of meetingEachOtherPlayers" :key="player._id">
                 <PlayerCard :player="player" size="lg"/>
             </span>
         </div>
@@ -24,7 +24,7 @@ export default {
     components: { NoActionExpected, PlayerCard },
     computed: {
         ...mapGetters("game", { game: "game" }),
-        wakingUpPlayers() {
+        meetingEachOtherPlayers() {
             if (this.game.firstWaiting.for === "lovers") {
                 return this.game.inLovePlayers;
             }

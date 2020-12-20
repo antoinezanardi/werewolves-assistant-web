@@ -2,25 +2,10 @@
     <div id="game-content-footer">
         <hr class="bg-dark my-1"/>
         <div class="row justify-content-center align-items-center">
-            <div class="col-lg-4 col-12 text-center order-lg-0">
-                <VCountdown v-if="game.isTimedPlay" :time="game.maxTimeToPlay" @end="countdown.ended = true">
-                    <template #default="{ minutes, seconds }">
-                        <transition name="fade" mode="out-in">
-                            <div v-if="!countdown.ended" id="countdown-running" key="countdown-running" class="countdown">
-                                <i class="fa fa-stopwatch mr-2"/>
-                                <span v-html="`${$t('GamePlayFieldFooter.timeForDebating')}:`"/>
-                                <VRoller class="ml-2 d-inline-flex" :text="`${minutes}:${seconds.toString().padStart(2, '0')}`"/>
-                            </div>
-                            <div v-else id="countdown-ended" key="countdown-ended"
-                                 class="animate__animated animate__pulse animate__infinite countdown">
-                                <i class="fa fa-stopwatch mr-2 text-danger"/>
-                                <span v-html="`${$t('GamePlayFieldFooter.debateIsOver')}`"/>
-                            </div>
-                        </transition>
-                    </template>
-                </VCountdown>
+            <div class="col-md-4 col-12 text-center order-md-0 mb-2 mb-md-0">
+                <GamePlayFieldCountdownFooter v-if="game.isTimedPlay"/>
             </div>
-            <div class="col-lg-4 col-12 order-last order-lg-1">
+            <div class="col-md-4 col-12 order-last order-md-1">
                 <form @submit.prevent="submitPlay">
                     <SubmitButton id="play-submit-button" classes="btn btn-primary btn-block btn-lg"
                                   :loading="loading" :disabled="!canSubmitPlay">
@@ -29,7 +14,7 @@
                     </SubmitButton>
                 </form>
             </div>
-            <div class="col-lg-4 col order-lg-2">
+            <div class="col-md-4 col order-md-2">
                 <transition name="fade" mode="out-in">
                     <div v-if="game.isVotePlay" id="vote-play-requirements" key="vote-play-requirements"
                          class="text-center">
@@ -69,10 +54,11 @@
 import { mapActions, mapGetters } from "vuex";
 import SubmitButton from "@/components/shared/Forms/SubmitButton";
 import { getNominatedPlayers } from "@/helpers/functions/Player";
+import GamePlayFieldCountdownFooter from "@/components/Game/GameContent/GamePlayField/GamePlayFieldFooter/GamePlayFieldCountdownFooter";
 
 export default {
     name: "GamePlayFieldFooter",
-    components: { SubmitButton },
+    components: { GamePlayFieldCountdownFooter, SubmitButton },
     props: {
         play: {
             type: Object,
@@ -80,10 +66,7 @@ export default {
         },
     },
     data() {
-        return {
-            loading: false,
-            countdown: { ended: false },
-        };
+        return { loading: false };
     },
     computed: {
         ...mapGetters("game", { game: "game" }),

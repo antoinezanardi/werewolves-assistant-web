@@ -230,6 +230,18 @@
         "tieInVotesForbidden": "L'égalité pour ce vote est interdite",
         "oneSideMustBeChosen": "Un camp doit être choisi"
     },
+    "GamePlayFieldCountdownFooter": {
+        "timeFor": {
+            "meet-each-other": {
+                "lovers": "Temps pour la rencontre des Amoureux"
+            }
+        },
+        "timeIsUpFor": {
+            "meet-each-other": {
+                "lovers": "Il est temps pour les Amoureux de se rendormir"
+            }
+        }
+    },
     "GamePlayFieldTutorial": {
         "elect-sheriff": {
             "howToPlay": "Comment élire le maire ?",
@@ -314,6 +326,15 @@
             "cupidCharmsWhen": "Au début de la partie, seulement la première nuit, Cupidon se réveille.",
             "cupidCanCharm": "Cupidon peut rendre amoureux deux joueurs grâce à son arc et ses flêches d'Amour. Il peut se désigner lui-même avec une autre personne. Le maître du jeu devra, en silence et le plus discrètement possible, tapoter le dos des joueurs amoureux une fois le choix de Cupidon fait.",
             "toValidateCharm": "Pour que Cupidon puisse charmer de ses flêches, il doit obligatoirement choisir deux cibles."
+        },
+        "lovers": {
+            "meet-each-other": {
+                "howToPlay": "Comment jouer les Amoureux ?",
+                "loversMeetEachOtherWhen": "Au début de la partie, seulement la première nuit après que Cupidon les ait charmé, les Amoureux se réveillent.",
+                "loversMustWinTogether": "Les Amoureux se découvrent pour la première fois en se réveillant et devront finir la partie ensemble, quel que soit leur rôle ou camps. Si l'un des deux meurt, l'autre mourra instantanément de chagrin.",
+                "loversHave20s": "Les Amoureux ont environ 20 secondes pendant leur tour, ce qui est suffisant pour se découvrir et avoir un coup de foudre.",
+                "noActionRequiredToValidate": "Aucune action n'est requise pour passer à la suite."
+            }
         }
     },
     "PlayerAttribute": {

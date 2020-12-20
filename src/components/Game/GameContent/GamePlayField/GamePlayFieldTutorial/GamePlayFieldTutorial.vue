@@ -20,7 +20,9 @@ export default {
         ...mapGetters("game", { game: "game" }),
         // eslint-disable-next-line max-lines-per-function
         steps() {
-            const header = { title: this.$t(`GamePlayFieldTutorial.${this.game.firstWaiting.to}.howToPlay`) };
+            const { firstWaiting } = this.game;
+            const action = `${firstWaiting.for}.${firstWaiting.to}`;
+            const header = { title: this.$t(`GamePlayFieldTutorial.${action}.howToPlay`) };
             const steps = {
                 "elect-sheriff": [
                     { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.elect-sheriff.sheriffIsElectedWhen") },
@@ -94,8 +96,16 @@ export default {
                     { header, target: "#player-targets", content: this.$t("GamePlayFieldTutorial.charm.cupidCanCharm") },
                     { header, target: "#target-play-requirements", content: this.$t("GamePlayFieldTutorial.charm.toValidateCharm") },
                 ],
+                "lovers": {
+                    "meet-each-other": [
+                        { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.${action}.loversMeetEachOtherWhen`) },
+                        { header, target: "#meeting-each-other-players", content: this.$t(`GamePlayFieldTutorial.${action}.loversMustWinTogether`) },
+                        { header, target: ".countdown", content: this.$t(`GamePlayFieldTutorial.${action}.loversHave20s`) },
+                        { header, target: "#play-submit-button", content: this.$t(`GamePlayFieldTutorial.${action}.noActionRequiredToValidate`) },
+                    ],
+                },
             };
-            return steps[this.game.firstWaiting.to];
+            return steps[firstWaiting.for] && steps[firstWaiting.for][firstWaiting.to] ? steps[firstWaiting.for][firstWaiting.to] : [];
         },
         options() {
             return {

@@ -12,11 +12,14 @@
 
 ### 📦 Packages
 
-* `@sentry/browser` updated to version `5.28.0`.
-* `@sentry/integrations` updated to version `5.28.0`.
-* `eslint` updated to version `7.15.0`.
-* `eslint-plugin-vue` updated to version `7.2.0`.
-* `sweetalert2` updated to version `10.11.1`.
+* `@sentry/browser` updated to version `5.29.2`.
+* `@sentry/integrations` updated to version `5.29.2`.
+* `@vue/eslint-config-airbnb` updated to version `5.3.0`.
+* `@vue/test-utils` updated to version `1.1.2`.
+* `eslint` updated to version `7.16.0`.
+* `eslint-plugin-vue` updated to version `7.3.0`.
+* `sweetalert2` updated to version `10.12.5`.
+* `vue-select` updated to version `3.11.2`.
 * `vuex` updated to version `3.6.0`.
 
 ---
