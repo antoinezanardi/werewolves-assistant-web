@@ -33,7 +33,6 @@ export default {
         game: {
             handler(newGame, oldGame) {
                 this.resetPlay();
-                // this.events.push(new GameEvent({ type: "player-dies", targets: [{ player: this.game.players[1] }] }));
                 if (newGame.tick === 1) {
                     this.events.push(new GameEvent({ type: "game-starts" }));
                 }
@@ -117,24 +116,8 @@ export default {
             }
         },
         generateGameRoleTurnEvents(newGame, oldGame) {
-            const roleTurnEvents = {
-                "seer": "seer-starts",
-                "werewolves": "werewolves-start",
-                "witch": "witch-starts",
-                "guard": "guard-starts",
-                "raven": "raven-starts",
-                "hunter": "hunter-starts",
-                "dog-wolf": "dog-wolf-starts",
-                "cupid": "cupid-starts",
-                "lovers": "lovers-start",
-                "two-sisters": "two-sisters-start",
-                "three-brothers": "three-brothers-start",
-                "wild-child": "wild-child-starts",
-                "big-bad-wolf": "big-bad-wolf-starts",
-            };
-            if ((!oldGame || newGame.firstWaiting.for !== oldGame.firstWaiting.for && newGame.firstWaiting.to !== oldGame.firstWaiting.to) &&
-                roleTurnEvents[newGame.firstWaiting.for]) {
-                this.events.push(new GameEvent({ type: roleTurnEvents[newGame.firstWaiting.for] }));
+            if (!oldGame || newGame.firstWaiting.for !== oldGame.firstWaiting.for && newGame.firstWaiting.to !== oldGame.firstWaiting.to) {
+                this.events.push(new GameEvent({ type: `${newGame.firstWaiting.for}-turn` }));
             }
         },
         removeEvent(event) {

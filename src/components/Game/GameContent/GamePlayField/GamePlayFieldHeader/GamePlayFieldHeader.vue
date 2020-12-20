@@ -54,6 +54,12 @@ export default {
     data() {
         return {
             actions: {
+                "seer": {
+                    look: {
+                        icon: lookSVG,
+                        role: "seer",
+                    },
+                },
                 "eat": {
                     icon: eatenSVG,
                     role: "werewolf",
@@ -61,10 +67,6 @@ export default {
                 "use-potion": {
                     icon: drankDeathPotionSVG,
                     role: "witch",
-                },
-                "look": {
-                    icon: lookSVG,
-                    role: "seer",
                 },
                 "protect": {
                     icon: protectedSVG,
@@ -102,8 +104,8 @@ export default {
                     icon: charmSVG,
                     role: "cupid",
                 },
-                "meet-each-other": {
-                    lovers: {
+                "lovers": {
+                    "meet-each-other": {
                         icon: inLoveSVG,
                         role: "cupid",
                     },
@@ -128,11 +130,17 @@ export default {
         },
         gameWaitingIcon() {
             const { firstWaiting } = this.game;
-            return this.actions[firstWaiting.to][firstWaiting.for].icon;
+            if (this.actions[firstWaiting.for] && this.actions[firstWaiting.for][firstWaiting.to]) {
+                return this.actions[firstWaiting.for][firstWaiting.to].icon;
+            }
+            return null;
         },
         gameWaitingRole() {
             const { firstWaiting } = this.game;
-            return this.actions[firstWaiting.to][firstWaiting.for].role;
+            if (this.actions[firstWaiting.for] && this.actions[firstWaiting.for][firstWaiting.to]) {
+                return this.actions[firstWaiting.for][firstWaiting.to].role;
+            }
+            return null;
         },
     },
 };

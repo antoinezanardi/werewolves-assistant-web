@@ -30,12 +30,14 @@ export default {
                     { header, target: "#player-votes", content: this.$t("GamePlayFieldTutorial.elect-sheriff.eachPlayerVoteForSheriff") },
                     { header, target: "#vote-play-requirements", content: this.$t("GamePlayFieldTutorial.elect-sheriff.toValidateAnElection") },
                 ],
-                "look": [
-                    { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.look.seerLooksWhen") },
-                    { header, target: "#player-targets", content: this.$t("GamePlayFieldTutorial.look.seerCanLook") },
-                    { header, target: "#seer-player-card", content: this.$t("GamePlayFieldTutorial.look.seerPointsAtTarget") },
-                    { header, target: "#target-play-requirements", content: this.$t("GamePlayFieldTutorial.look.toValidateLook") },
-                ],
+                "seer": {
+                    look: [
+                        { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.${action}.seerLooksWhen`) },
+                        { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.${action}.seerCanLook`) },
+                        { header, target: "#seer-player-card", content: this.$t(`GamePlayFieldTutorial.${action}.seerPointsAtTarget`) },
+                        { header, target: "#target-play-requirements", content: this.$t(`GamePlayFieldTutorial.${action}.toValidateLook`) },
+                    ],
+                },
                 "eat": [
                     { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.eat.werewolvesEatWhen") },
                     { header, target: "#player-targets", content: this.$t("GamePlayFieldTutorial.eat.werewolvesEatAVictim") },

@@ -250,12 +250,14 @@
             "eachPlayerVoteForSheriff": "Chaque joueur a donc une voix à donner pour l'élection, mais ne peut voter pour lui-même. Il peut néanmoins voter blanc. Le maître du jeu demande le vote de chacun à tour de rôle.",
             "toValidateAnElection": "Pour que le maire soit élu, au moins un joueur doit avoir voté et une égalité dans les votes est impossible."
         },
-        "look": {
-            "howToPlay": "Comment jouer la voyante ?",
-            "seerLooksWhen": "Chaque nuit, si elle est vivante, la voyante se réveille.",
-            "seerCanLook": "Grâce à son don, la voyante voit le rôle de n'importe quel joueur vivant.",
-            "seerPointsAtTarget": "La voyante doit pointer du doigt sa cible et le maître du jeu révelera à haute voix le rôle de cette dernière.",
-            "toValidateLook": "Pour que la voyante puisse révéler un rôle, elle doit obligatoirement choisir une cible."
+        "seer": {
+            "look": {
+                "howToPlay": "Comment jouer la voyante ?",
+                "seerLooksWhen": "Chaque nuit, si elle est vivante, la voyante se réveille.",
+                "seerCanLook": "Grâce à son don, la voyante voit le rôle de n'importe quel joueur vivant.",
+                "seerPointsAtTarget": "La voyante doit pointer du doigt sa cible et le maître du jeu révelera à haute voix le rôle de cette dernière.",
+                "toValidateLook": "Pour que la voyante puisse révéler un rôle, elle doit obligatoirement choisir une cible."
+            }
         },
         "eat": {
             "howToPlay": "Comment jouer les loups-garous ?",
@@ -453,7 +455,6 @@
     },
     "PlayFieldActionText": {
         "and": "et",
-        "wantsToLook": "souhaite voir le rôle de",
         "wantToEat": "souhaite manger | souhaite manger | souhaitent manger",
         "doesntWantToUseLifePotion": "ne souhaite pas utiliser sa potion de vie",
         "doesntWantToUseDeathPotion": "ne souhaite pas utiliser sa potion de mort",
@@ -470,6 +471,9 @@
         "choosesToHangHimself": "souhaite se pendre lui-même",
         "wantsToDelegateTo": "souhaite déléguer son rôle de maire à",
         "wantsToShoot": "souhaite tirer sur",
+        "seer": {
+            "seen": "souhaite voir le rôle de"
+        },
         "dog-wolf": {
             "wantsToChooseSide": "souhaite rejoindre...",
             "villagers": "souhaite rester avec les Villageois",
@@ -523,7 +527,9 @@
             "hunterStarts": "Dans son dernier souffle, le chasseur s'apprête à choisir la cible de sa vengeance.",
             "dogWolfStarts": "Le chien-loup se réveille et va choisir son camp pour le reste de la partie.",
             "cupidStarts": "Cupidon se réveille et va rendre inséparables deux personnes grâce à ses flêches de l'Amour.",
-            "loversStart": "Les Amoureux se réveillent et vont se rencontrer pour la première fois."
+            "loversStart": "Les Amoureux se réveillent et vont se rencontrer pour la première fois.",
+            "twoSistersMeetEachOther": "Les deux sœurs se réveillent et vont se rencontrer pour la première fois.",
+            "twoSistersWakeUpToTalk": "Les deux sœurs se réveillent et vont se concerter discrètement."
         }
     },
     "Statistics": {
