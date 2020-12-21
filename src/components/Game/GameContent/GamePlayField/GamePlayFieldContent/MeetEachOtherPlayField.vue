@@ -25,16 +25,19 @@ export default {
     computed: {
         ...mapGetters("game", { game: "game" }),
         meetingEachOtherPlayers() {
-            if (this.game.firstWaiting.for === "lovers") {
-                return this.game.inLovePlayers;
-            }
-            return [];
+            const { firstWaiting } = this.game;
+            const meetingEachOtherPlayers = {
+                "lovers": this.game.inLovePlayers,
+                "two-sisters": this.game.sisterPlayers,
+                "three-brothers": this.game.brotherPlayers,
+            };
+            return meetingEachOtherPlayers[firstWaiting.for] ? meetingEachOtherPlayers[firstWaiting.for] : [];
         },
         meetEachOtherText() {
-            if (this.game.firstWaiting.for === "lovers") {
+            if (this.game.turn === 1) {
                 return this.$t("MeetEachOtherPlayField.meetEachOtherTheFirstTime");
             }
-            return "";
+            return this.$t("MeetEachOtherPlayField.meetEachOtherForTalking");
         },
     },
 };

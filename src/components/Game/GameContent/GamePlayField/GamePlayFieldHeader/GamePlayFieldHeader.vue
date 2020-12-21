@@ -46,6 +46,7 @@ import ravenMarkedSVG from "@/assets/svg/attributes/raven-marked.svg";
 import chooseSideSVG from "@/assets/svg/actions/choose-side.svg";
 import charmSVG from "@/assets/svg/actions/charm.svg";
 import inLoveSVG from "@/assets/svg/attributes/in-love.svg";
+import twoSistersSVG from "@/assets/svg/roles/two-sisters.svg";
 
 export default {
     name: "GamePlayFieldHeader",
@@ -108,6 +109,12 @@ export default {
                     "meet-each-other": {
                         icon: inLoveSVG,
                         role: "cupid",
+                    },
+                },
+                "two-sisters": {
+                    "meet-each-other": {
+                        icon: twoSistersSVG,
+                        role: "two-sisters",
                     },
                 },
             },

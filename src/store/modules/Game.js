@@ -8,6 +8,9 @@ export default {
         game(state) {
             return state.game;
         },
+        gameOptions(state) {
+            return state.game.options;
+        },
     },
     mutations: {
         setGame(state, game) {

@@ -29,11 +29,11 @@ export default {
         ...mapGetters("game", { game: "game" }),
         timeForActionText() {
             const { firstWaiting } = this.game;
-            return this.$t(`GamePlayFieldCountdownFooter.timeFor.${firstWaiting.to}.${firstWaiting.for}`);
+            return this.$t(`GamePlayFieldCountdownFooter.timeFor.${firstWaiting.for}.${firstWaiting.to}`);
         },
         timeIsUpForActionText() {
             const { firstWaiting } = this.game;
-            return this.$t(`GamePlayFieldCountdownFooter.timeIsUpFor.${firstWaiting.to}.${firstWaiting.for}`);
+            return this.$t(`GamePlayFieldCountdownFooter.timeIsUpFor.${firstWaiting.for}.${firstWaiting.to}`);
         },
     },
     methods: {

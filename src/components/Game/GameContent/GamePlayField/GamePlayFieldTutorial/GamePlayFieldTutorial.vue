@@ -17,10 +17,14 @@ import { mapGetters } from "vuex";
 export default {
     name: "GamePlayFieldTutorial",
     computed: {
-        ...mapGetters("game", { game: "game" }),
+        ...mapGetters("game", {
+            game: "game",
+            gameOptions: "gameOptions",
+        }),
         // eslint-disable-next-line max-lines-per-function
         steps() {
             const { firstWaiting } = this.game;
+            const { sistersWakingUpInterval } = this.gameOptions;
             const action = `${firstWaiting.for}.${firstWaiting.to}`;
             const header = { title: this.$t(`GamePlayFieldTutorial.${action}.howToPlay`) };
             const steps = {
@@ -103,6 +107,19 @@ export default {
                         { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.${action}.loversMeetEachOtherWhen`) },
                         { header, target: "#meeting-each-other-players", content: this.$t(`GamePlayFieldTutorial.${action}.loversMustWinTogether`) },
                         { header, target: ".countdown", content: this.$t(`GamePlayFieldTutorial.${action}.loversHave20s`) },
+                        { header, target: "#play-submit-button", content: this.$t(`GamePlayFieldTutorial.${action}.noActionRequiredToValidate`) },
+                    ],
+                },
+                "two-sisters": {
+                    "meet-each-other": [
+                        {
+                            header,
+                            target: "#game-waiting-label",
+                            // eslint-disable-next-line max-len,vue/max-len
+                            content: this.$tc(`GamePlayFieldTutorial.${action}.twoSistersMeetEachOtherWhen`, sistersWakingUpInterval, { sistersWakingUpInterval }),
+                        },
+                        { header, target: "#meeting-each-other-players", content: this.$t(`GamePlayFieldTutorial.${action}.twoSistersTalk`) },
+                        { header, target: ".countdown", content: this.$t(`GamePlayFieldTutorial.${action}.twoSistersHave20s`) },
                         { header, target: "#play-submit-button", content: this.$t(`GamePlayFieldTutorial.${action}.noActionRequiredToValidate`) },
                     ],
                 },

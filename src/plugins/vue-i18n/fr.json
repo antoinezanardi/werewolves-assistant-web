@@ -216,6 +216,9 @@
             },
             "lovers": {
                 "meet-each-other": "Au tour des amoureux"
+            },
+            "two-sisters": {
+                "meet-each-other": "Au tour des deux sœurs"
             }
         }
     },
@@ -232,13 +235,19 @@
     },
     "GamePlayFieldCountdownFooter": {
         "timeFor": {
-            "meet-each-other": {
-                "lovers": "Temps pour la rencontre des Amoureux"
+            "lovers": {
+                "meet-each-other": "Temps pour la rencontre des Amoureux"
+            },
+            "two-sisters": {
+                "meet-each-other": "Temps pour la concertation des sœurs"
             }
         },
         "timeIsUpFor": {
-            "meet-each-other": {
-                "lovers": "Il est temps pour les Amoureux de se rendormir"
+            "lovers": {
+                "meet-each-other": "Il est temps pour les Amoureux de se rendormir"
+            },
+            "two-sisters": {
+                "meet-each-other": "Il est temps pour les sœurs de se rendormir"
             }
         }
     },
@@ -335,6 +344,15 @@
                 "loversMeetEachOtherWhen": "Au début de la partie, seulement la première nuit après que Cupidon les ait charmé, les Amoureux se réveillent.",
                 "loversMustWinTogether": "Les Amoureux se découvrent pour la première fois en se réveillant et devront finir la partie ensemble, quel que soit leur rôle ou camps. Si l'un des deux meurt, l'autre mourra instantanément de chagrin.",
                 "loversHave20s": "Les Amoureux ont environ 20 secondes pendant leur tour, ce qui est suffisant pour se découvrir et avoir un coup de foudre.",
+                "noActionRequiredToValidate": "Aucune action n'est requise pour passer à la suite."
+            }
+        },
+        "two-sisters": {
+            "meet-each-other": {
+                "howToPlay": "Comment jouer les deux sœurs ?",
+                "twoSistersMeetEachOtherWhen": "Tant que les deux sœurs sont vivantes, elles se réveillent toutes les nuits. | Tant que les deux sœurs sont vivantes, elles se réveillent toutes les {sistersWakingUpInterval} nuits.",
+                "twoSistersTalk": "Les deux sœurs peuvent se faire confiance : elles connaissent toutes les deux le rôle de l'autre ! Pendant leur tour, elles peuvent se concerter rapidement et en silence sur les décisions à prendre pour sauver le village.",
+                "twoSistersHave20s": "Les deux sœurs ont environ 20 secondes pendant leur tour pour discuter grâce à un habile langage des signes.",
                 "noActionRequiredToValidate": "Aucune action n'est requise pour passer à la suite."
             }
         }
