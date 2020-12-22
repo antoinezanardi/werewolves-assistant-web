@@ -99,27 +99,30 @@ class Game {
     }
 
     get isVotePlay() {
-        const waiting = this.firstWaiting;
-        return waiting.to === "elect-sheriff" || waiting.to === "vote";
+        const { to } = this.firstWaiting;
+        const voteActions = ["elect-sheriff", "vote"];
+        return voteActions.includes(to);
     }
 
     get isForbiddenTieVotePlay() {
-        const waiting = this.firstWaiting;
-        return waiting.to === "elect-sheriff";
+        const { to } = this.firstWaiting;
+        const forbiddenTieVoteActions = ["elect-sheriff"];
+        return forbiddenTieVoteActions.includes(to);
     }
 
     get isTargetPlay() {
         const { to } = this.firstWaiting;
-        return to === "look" || to === "eat" || to === "protect" ||
-            to === "shoot" || to === "settle-votes" || to === "delegate" ||
-            to === "charm";
+        const targetActions = ["look", "eat", "protect", "shoot", "settle-votes", "delegate", "charm", "choose-model"];
+        return targetActions.includes(to);
     }
 
     get expectedTargetsLength() {
         const { to } = this.firstWaiting;
-        if (to === "look" || to === "eat" || to === "protect" || to === "shoot" || to === "settle-votes" || to === "delegate") {
+        const oneTargetActions = ["look", "eat", "protect", "shoot", "settle-votes", "delegate", "choose-model"];
+        const twoTargetsActions = ["charm"];
+        if (oneTargetActions.includes(to)) {
             return 1;
-        } else if (to === "charm") {
+        } else if (twoTargetsActions.includes(to)) {
             return 2;
         }
         return 0;
@@ -127,7 +130,8 @@ class Game {
 
     get isTimedPlay() {
         const { to } = this.firstWaiting;
-        return to === "elect-sheriff" || to === "vote" || to === "meet-each-other";
+        const timedActions = ["elect-sheriff", "vote", "meet-each-other"];
+        return timedActions.includes(to);
     }
 
     get maxTimeToPlay() {
@@ -147,7 +151,8 @@ class Game {
 
     get isSkippablePlay() {
         const { to } = this.firstWaiting;
-        return to === "use-potion" || to === "mark" || to === "meet-each-other";
+        const skippableActions = ["use-potion", "mark", "meet-each-other"];
+        return skippableActions.includes(to);
     }
 
     getPlayersWithRole(role) {
@@ -208,6 +213,10 @@ class Game {
 
     get cupidPlayer() {
         return this.getPlayerWithRole("cupid");
+    }
+
+    get wildChildPlayer() {
+        return this.getPlayerWithRole("wild-child");
     }
 
     get sisterPlayers() {

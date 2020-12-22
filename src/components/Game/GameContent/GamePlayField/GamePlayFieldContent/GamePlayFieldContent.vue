@@ -26,6 +26,8 @@
             <CharmPlayField v-else-if="game.firstWaiting.to === 'charm'" key="charm"
                             :play="play" class="h-100 container-fluid" @player-selected="playerSelected"/>
             <MeetEachOtherPlayField v-else-if="game.firstWaiting.to === 'meet-each-other'" key="meet-each-other" class="h-100 container-fluid"/>
+            <ChooseModelPlayField v-else-if="game.firstWaiting.to === 'choose-model'" key="choose-model" :play="play" class="h-100 container-fluid"
+                                  @player-selected="playerSelected"/>
             <div v-else key="unknown">
                 ?
             </div>
@@ -49,10 +51,13 @@ import ChooseSidePlayField from "@/components/Game/GameContent/GamePlayField/Gam
 import CharmPlayField from "@/components/Game/GameContent/GamePlayField/GamePlayFieldContent/CharmPlayField";
 import MeetEachOtherPlayField
     from "@/components/Game/GameContent/GamePlayField/GamePlayFieldContent/MeetEachOtherPlayField";
+import ChooseModelPlayField
+    from "@/components/Game/GameContent/GamePlayField/GamePlayFieldContent/ChooseModelPlayField";
 
 export default {
     name: "GamePlayFieldContent",
     components: {
+        ChooseModelPlayField,
         MeetEachOtherPlayField,
         CharmPlayField,
         ChooseSidePlayField,

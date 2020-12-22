@@ -136,6 +136,13 @@ export default {
                         { header, target: "#play-submit-button", content: this.$t(`GamePlayFieldTutorial.${action}.noActionRequiredToValidate`) },
                     ],
                 },
+                "wild-child": {
+                    "choose-model": [
+                        { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.${action}.wildChildChooseModelWhen`) },
+                        { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.${action}.wildChildCanChooseModel`) },
+                        { header, target: "#target-play-requirements", content: this.$t(`GamePlayFieldTutorial.${action}.toValidateChooseModel`) },
+                    ],
+                },
             };
             return steps[firstWaiting.for] && steps[firstWaiting.for][firstWaiting.to] ? steps[firstWaiting.for][firstWaiting.to] : [];
         },

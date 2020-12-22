@@ -48,6 +48,7 @@ import charmSVG from "@/assets/svg/actions/charm.svg";
 import inLoveSVG from "@/assets/svg/attributes/in-love.svg";
 import twoSistersSVG from "@/assets/svg/roles/two-sisters.svg";
 import threeBrothersPNG from "@/assets/img/roles/three-brothers.png";
+import worshipedSVG from "@/assets/svg/attributes/worshiped.svg";
 
 export default {
     name: "GamePlayFieldHeader",
@@ -78,9 +79,11 @@ export default {
                     icon: shootSVG,
                     role: "hunter",
                 },
-                "mark": {
-                    icon: ravenMarkedSVG,
-                    role: "raven",
+                "raven": {
+                    mark: {
+                        icon: ravenMarkedSVG,
+                        role: "raven",
+                    },
                 },
                 "elect-sheriff": {
                     icon: sheriffSVG,
@@ -122,6 +125,12 @@ export default {
                     "meet-each-other": {
                         icon: threeBrothersPNG,
                         role: "three-brothers",
+                    },
+                },
+                "wild-child": {
+                    "choose-model": {
+                        icon: worshipedSVG,
+                        role: "wild-child",
                     },
                 },
             },

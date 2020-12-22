@@ -222,6 +222,9 @@
             },
             "three-brothers": {
                 "meet-each-other": "Au tour des trois frères"
+            },
+            "wild-child": {
+                "choose-model": "Au tour de l'enfant sauvage"
             }
         }
     },
@@ -301,13 +304,15 @@
             "guardPointsAtTarget": "Le salvateur doit pointer du doigt sans bruit la personne qu'il souhaite protéger.",
             "toValidateProtect": "Pour que le salvateur puisse protéger une personne de la mort, il doit obligatoirement choisir une cible."
         },
-        "mark": {
-            "howToPlay": "Comment joueur le corbeau ?",
-            "ravenMarksWhen": "Chaque nuit, s'il est vivant, le corbeau se réveille.",
-            "ravenCanMark": "Le corbeau peut, s'il le souhaite, marquer de sa plume n'importe quel joueur qui lui semble suspect. La personne visée par sa marque se verra attribuer 2 voix supplémentaires lors du prochain vote du village la journée. Il peut se désigner lui-même.",
-            "ravenPointsAtTarget": "S'il souhaite marquer un joueur, le corbeau doit pointer du doigt sans bruit sa cible.",
-            "gameMasterWillDropMarkCard": "Le maître du jeu déposera alors la marque du corbeau devant la personne choisie.",
-            "toValidateMark": "Durant son tour, le corbeau peut désigner une cible ou passer son tour."
+        "raven": {
+            "mark": {
+                "howToPlay": "Comment joueur le corbeau ?",
+                "ravenMarksWhen": "Chaque nuit, s'il est vivant, le corbeau se réveille.",
+                "ravenCanMark": "Le corbeau peut, s'il le souhaite, marquer de sa plume n'importe quel joueur qui lui semble suspect. La personne visée par sa marque se verra attribuer 2 voix supplémentaires lors du prochain vote du village la journée. Il peut se désigner lui-même.",
+                "ravenPointsAtTarget": "S'il souhaite marquer un joueur, le corbeau doit pointer du doigt sans bruit sa cible.",
+                "gameMasterWillDropMarkCard": "Le maître du jeu déposera alors la marque du corbeau devant la personne choisie.",
+                "toValidateMark": "Durant son tour, le corbeau peut désigner une cible ou passer son tour."
+            }
         },
         "vote": {
             "howToPlay": "Comment procéder au vote ?",
@@ -373,6 +378,14 @@
                 "threeBrothersHave20s": "Les trois frères ont environ 20 secondes pendant leur tour pour discuter grâce à un habile langage des signes.",
                 "noActionRequiredToValidate": "Aucune action n'est requise pour passer à la suite."
             }
+        },
+        "wild-child": {
+            "choose-model": {
+                "howToPlay": "Comment jouer l'enfant sauvage ?",
+                "wildChildChooseModelWhen": "Au début de la partie, seulement la première nuit, l'enfant sauvage se réveille.",
+                "wildChildCanChooseModel": "L'enfant sauvage choisit son modèle pour le reste de la partie. Si ce dernier meurt, l'enfant sauvage passera dans le camp des Loups-Garous. Sinon, il fait parti du camp des Villageois.",
+                "toValidateChooseModel": "Pour passer à la suite, l'enfant sauvage doit obligatoirement choisir un modèle."
+            }
         }
     },
     "PlayerAttribute": {
@@ -384,7 +397,8 @@
             "drankDeathPotion": "Ce joueur a bu la potion de mort",
             "protected": "Ce joueur est protégé",
             "ravenMarked": "Ce joueur est marqué par le corbeau",
-            "inLove": "Ce joueur est amoureux à en mourir d'un autre"
+            "inLove": "Ce joueur est amoureux à en mourir d'un autre",
+            "worshiped": "Ce joueur est le modèle de l'enfant sauvage"
         }
     },
     "PlayerThumbnail": {
@@ -500,9 +514,6 @@
         "wantsToUseDeathPotionOnHerself": "souhaite utiliser sa potion de mort sur elle-même",
         "wantsToProtect": "souhaite protéger",
         "wantsToProtectHimself": "souhaite se protéger lui-même",
-        "doesntWantToRavenMark": "ne souhaite marquer personne",
-        "wantsToRavenMark": "souhaite marquer",
-        "wantsToRavenMarkHimself": "souhaite se marquer lui-même",
         "choosesToHang": "souhaite pendre",
         "choosesToHangHimself": "souhaite se pendre lui-même",
         "wantsToDelegateTo": "souhaite déléguer son rôle de maire à",
@@ -517,6 +528,14 @@
         },
         "cupid": {
             "in-love": "souhaite charmer",
+            "selfTargeting": "lui-même"
+        },
+        "wild-child": {
+            "worshiped": "souhaite choisir comme modèle"
+        },
+        "raven": {
+            "doesntWantToRavenMark": "ne souhaite marquer personne",
+            "raven-marked": "souhaite marquer",
             "selfTargeting": "lui-même"
         }
     },
@@ -567,7 +586,8 @@
             "twoSistersMeetEachOther": "Les deux sœurs se réveillent et vont se rencontrer pour la première fois.",
             "twoSistersWakeUpToTalk": "Les deux sœurs se réveillent et vont se concerter discrètement.",
             "threeBrothersMeetEachOther": "Les trois frères se réveillent et vont se rencontrer pour la première fois.",
-            "threeBrothersWakeUpToTalk": "Les trois frères se réveillent et vont se concerter discrètement."
+            "threeBrothersWakeUpToTalk": "Les trois frères se réveillent et vont se concerter discrètement.",
+            "wildChildStarts": "L'enfant sauvage se réveille pour choisir son modèle parmi les habitants."
         }
     },
     "Statistics": {

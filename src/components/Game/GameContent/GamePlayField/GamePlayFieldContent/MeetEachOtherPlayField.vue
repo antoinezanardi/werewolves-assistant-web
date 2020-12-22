@@ -29,7 +29,7 @@ export default {
             const meetingEachOtherPlayers = {
                 "lovers": this.game.inLovePlayers,
                 "two-sisters": this.game.sisterPlayers,
-                "three-brothers": this.game.brotherPlayers,
+                "three-brothers": this.game.brotherPlayers.filter(({ isAlive }) => isAlive),
             };
             return meetingEachOtherPlayers[firstWaiting.for] ? meetingEachOtherPlayers[firstWaiting.for] : [];
         },

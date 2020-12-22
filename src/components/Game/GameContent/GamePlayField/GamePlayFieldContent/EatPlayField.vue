@@ -28,7 +28,7 @@ export default {
     computed: {
         ...mapGetters("game", { game: "game" }),
         alivePlayersExceptWerewolves() {
-            return this.game.alivePlayers.filter(player => player.role.group !== "werewolves");
+            return this.game.alivePlayers.filter(player => player.side.current !== "werewolves");
         },
     },
     methods: {

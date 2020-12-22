@@ -129,6 +129,7 @@ export default {
                         ...insertIf(this.game.turn !== 1, i18n.t("GameEvent.messages.threeBrothersWakeUpToTalk")),
                     ],
                 },
+                "wild-child-turn": { messages: [i18n.t("GameEvent.messages.wildChildStarts")] },
             };
         },
         hasGameEventTarget() {
