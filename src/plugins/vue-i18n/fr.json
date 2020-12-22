@@ -297,12 +297,14 @@
             "ifDeathPotionHasBeenUsed": "Si la potion de mort a déjà été utilisée, le maître du jeu doit quand même demander le choix de la sorcière. Ceci permet de ne pas révéler que la potion de mort a été utilisée.",
             "toValidateUsePotion": "Durant son tour, la sorcière peut utiliser les deux potions, une seule, ou passer son tour."
         },
-        "protect": {
-            "howToPlay": "Comment jouer le salvateur ?",
-            "guardProtectsWhen": "Chaque nuit, s'il est vivant, le salvateur se réveille.",
-            "guardCanProtect": "Le salvateur protège la personne de son choix et cette dernière ne pourra pas mourir durant cette nuit. Le salvateur peut se protéger lui-même mais ne peut pas choisir deux nuits de suite la même personne.",
-            "guardPointsAtTarget": "Le salvateur doit pointer du doigt sans bruit la personne qu'il souhaite protéger.",
-            "toValidateProtect": "Pour que le salvateur puisse protéger une personne de la mort, il doit obligatoirement choisir une cible."
+        "guard": {
+            "protect": {
+                "howToPlay": "Comment jouer le salvateur ?",
+                "guardProtectsWhen": "Chaque nuit, s'il est vivant, le salvateur se réveille.",
+                "guardCanProtect": "Le salvateur protège la personne de son choix et cette dernière ne pourra pas mourir durant cette nuit. Le salvateur peut se protéger lui-même mais ne peut pas choisir deux nuits de suite la même personne.",
+                "guardPointsAtTarget": "Le salvateur doit pointer du doigt sans bruit la personne qu'il souhaite protéger.",
+                "toValidateProtect": "Pour passer à la suite, le salvateur doit obligatoirement choisir une personne à protéger."
+            }
         },
         "raven": {
             "mark": {
@@ -512,7 +514,6 @@
         "wantsToUseDeathPotionOn": "souhaite utiliser sa potion de mort sur",
         "wantsToUseLifePotionOnHerself": "souhaite utiliser sa potion de vie sur elle-même",
         "wantsToUseDeathPotionOnHerself": "souhaite utiliser sa potion de mort sur elle-même",
-        "wantsToProtect": "souhaite protéger",
         "wantsToProtectHimself": "souhaite se protéger lui-même",
         "choosesToHang": "souhaite pendre",
         "choosesToHangHimself": "souhaite se pendre lui-même",
@@ -534,8 +535,12 @@
             "worshiped": "souhaite choisir comme modèle"
         },
         "raven": {
-            "doesntWantToRavenMark": "ne souhaite marquer personne",
+            "noTarget": "ne souhaite marquer personne",
             "raven-marked": "souhaite marquer",
+            "selfTargeting": "lui-même"
+        },
+        "guard": {
+            "protected": "souhaite protéger",
             "selfTargeting": "lui-même"
         }
     },

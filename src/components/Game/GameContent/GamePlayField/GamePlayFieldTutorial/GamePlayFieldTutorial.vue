@@ -57,19 +57,23 @@ export default {
                     { header, target: "#death-potion-tab", content: this.$t("GamePlayFieldTutorial.use-potion.ifDeathPotionHasBeenUsed") },
                     { header, target: "#play-submit-button", content: this.$t("GamePlayFieldTutorial.use-potion.toValidateUsePotion") },
                 ],
-                "protect": [
-                    { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.protect.guardProtectsWhen") },
-                    { header, target: "#player-targets", content: this.$t("GamePlayFieldTutorial.protect.guardCanProtect") },
-                    { header, target: "#guard-player-card", content: this.$t("GamePlayFieldTutorial.protect.guardPointsAtTarget") },
-                    { header, target: "#target-play-requirements", content: this.$t("GamePlayFieldTutorial.protect.toValidateProtect") },
-                ],
-                "mark": [
-                    { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.mark.ravenMarksWhen") },
-                    { header, target: "#player-targets", content: this.$t("GamePlayFieldTutorial.mark.ravenCanMark") },
-                    { header, target: "#raven-player-card", content: this.$t("GamePlayFieldTutorial.mark.ravenPointsAtTarget") },
-                    { header, target: "#player-targets", content: this.$t("GamePlayFieldTutorial.mark.gameMasterWillDropMarkCard") },
-                    { header, target: "#play-submit-button", content: this.$t("GamePlayFieldTutorial.mark.toValidateMark") },
-                ],
+                "guard": {
+                    protect: [
+                        { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.${action}.guardProtectsWhen`) },
+                        { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.${action}.guardCanProtect`) },
+                        { header, target: "#guard-player-card", content: this.$t(`GamePlayFieldTutorial.${action}.guardPointsAtTarget`) },
+                        { header, target: "#target-play-requirements", content: this.$t(`GamePlayFieldTutorial.${action}.toValidateProtect`) },
+                    ],
+                },
+                "raven": {
+                    mark: [
+                        { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.${action}.ravenMarksWhen`) },
+                        { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.${action}.ravenCanMark`) },
+                        { header, target: "#raven-player-card", content: this.$t(`GamePlayFieldTutorial.${action}.ravenPointsAtTarget`) },
+                        { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.${action}.gameMasterWillDropMarkCard`) },
+                        { header, target: "#play-submit-button", content: this.$t(`GamePlayFieldTutorial.${action}.toValidateMark`) },
+                    ],
+                },
                 "vote": [
                     { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.vote.allVoteWhen") },
                     { header, target: ".countdown", content: this.$t("GamePlayFieldTutorial.vote.playersHave5Min") },

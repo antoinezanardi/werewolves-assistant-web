@@ -71,9 +71,11 @@ export default {
                     icon: drankDeathPotionSVG,
                     role: "witch",
                 },
-                "protect": {
-                    icon: protectedSVG,
-                    role: "guard",
+                "guard": {
+                    protect: {
+                        icon: protectedSVG,
+                        role: "guard",
+                    },
                 },
                 "shoot": {
                     icon: shootSVG,

@@ -37,27 +37,15 @@ export default {
         actionText() {
             const { firstWaiting } = this.game;
             let actionText = this.$t(`PlayFieldActionText.${firstWaiting.for}.${this.attribute}`);
-            if (firstWaiting.to === "choose-side") {
+            if (this.game.isSkippablePlay && !this.play.targets.length) {
+                return this.$t(`PlayFieldActionText.${firstWaiting.for}.noTarget`);
+            } else if (firstWaiting.to === "choose-side") {
                 if (!this.play.side) {
                     return this.$t("PlayFieldActionText.dog-wolf.wantsToChooseSide");
                 }
                 return this.$t(`PlayFieldActionText.dog-wolf.${this.play.side}`);
             } else if (this.targetedPlayersForAttribute && this.targetedPlayersForAttribute.length) {
-                for (let i = 0; i < this.targetedPlayersForAttribute.length; i++) {
-                    const player = this.game.getPlayerWithId(this.targetedPlayersForAttribute[i].player);
-                    if (player) {
-                        if (this.isPlayerTargetingHimself(player)) {
-                            actionText += ` ${this.$t(`PlayFieldActionText.${firstWaiting.for}.selfTargeting`)}`;
-                        } else {
-                            actionText += ` ${player.name}`;
-                        }
-                        if (i + 2 < this.targetedPlayersForAttribute.length) {
-                            actionText += ",";
-                        } else if (i + 2 === this.targetedPlayersForAttribute.length) {
-                            actionText += ` ${this.$t("PlayFieldActionText.and")}`;
-                        }
-                    }
-                }
+                actionText += this.getActionTextDependingOnTargets();
             } else {
                 actionText += "...";
             }
@@ -70,6 +58,26 @@ export default {
             return (this.attribute === "drank-life-potion" || this.attribute === "drank-death-potion") && role === "witch" ||
                 this.attribute === "protected" && role === "guard" || this.attribute === "raven-marked" && role === "raven" ||
                 this.attribute === "in-love" && role === "cupid" || this.attribute === "chosen-for-vote" && player.hasAttribute("sheriff");
+        },
+        getActionTextDependingOnTargets() {
+            let actionText = "";
+            const { firstWaiting } = this.game;
+            for (let i = 0; i < this.targetedPlayersForAttribute.length; i++) {
+                const player = this.game.getPlayerWithId(this.targetedPlayersForAttribute[i].player);
+                if (player) {
+                    if (this.isPlayerTargetingHimself(player)) {
+                        actionText += ` ${this.$t(`PlayFieldActionText.${firstWaiting.for}.selfTargeting`)}`;
+                    } else {
+                        actionText += ` ${player.name}`;
+                    }
+                    if (i + 2 < this.targetedPlayersForAttribute.length) {
+                        actionText += ",";
+                    } else if (i + 2 === this.targetedPlayersForAttribute.length) {
+                        actionText += ` ${this.$t("PlayFieldActionText.and")}`;
+                    }
+                }
+            }
+            return actionText;
         },
         playerSelected(payload) {
             this.$emit("player-selected", payload);
