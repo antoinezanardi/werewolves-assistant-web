@@ -16,6 +16,7 @@
 * `@sentry/integrations` updated to version `5.29.2`.
 * `@vue/eslint-config-airbnb` updated to version `5.3.0`.
 * `@vue/test-utils` updated to version `1.1.2`.
+* `axios` updated to version `0.21.1`.
 * `eslint` updated to version `7.16.0`.
 * `eslint-plugin-vue` updated to version `7.3.0`.
 * `sweetalert2` updated to version `10.12.5`.

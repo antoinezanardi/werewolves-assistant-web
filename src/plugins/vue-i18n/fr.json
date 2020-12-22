@@ -219,6 +219,9 @@
             },
             "two-sisters": {
                 "meet-each-other": "Au tour des deux sœurs"
+            },
+            "three-brothers": {
+                "meet-each-other": "Au tour des trois frères"
             }
         }
     },
@@ -240,6 +243,9 @@
             },
             "two-sisters": {
                 "meet-each-other": "Temps pour la concertation des sœurs"
+            },
+            "three-brothers": {
+                "meet-each-other": "Temps pour la concertation des frères"
             }
         },
         "timeIsUpFor": {
@@ -248,6 +254,9 @@
             },
             "two-sisters": {
                 "meet-each-other": "Il est temps pour les sœurs de se rendormir"
+            },
+            "three-brothers": {
+                "meet-each-other": "Il est temps pour les frères de se rendormir"
             }
         }
     },
@@ -353,6 +362,15 @@
                 "twoSistersMeetEachOtherWhen": "Tant que les deux sœurs sont vivantes, elles se réveillent toutes les nuits. | Tant que les deux sœurs sont vivantes, elles se réveillent toutes les {sistersWakingUpInterval} nuits.",
                 "twoSistersTalk": "Les deux sœurs peuvent se faire confiance : elles connaissent toutes les deux le rôle de l'autre ! Pendant leur tour, elles peuvent se concerter rapidement et en silence sur les décisions à prendre pour sauver le village.",
                 "twoSistersHave20s": "Les deux sœurs ont environ 20 secondes pendant leur tour pour discuter grâce à un habile langage des signes.",
+                "noActionRequiredToValidate": "Aucune action n'est requise pour passer à la suite."
+            }
+        },
+        "three-brothers": {
+            "meet-each-other": {
+                "howToPlay": "Comment jouer les trois frères ?",
+                "threeBrothersMeetEachOtherWhen": "Tant qu'au moins deux des trois frères sont vivants, ils se réveillent toutes les nuits. | Tant qu'au moins deux des trois frères sont vivants, ils se réveillent toutes les {brothersWakingUpInterval} nuits.",
+                "threeBrothersTalk": "Les trois frères peuvent se faire confiance : ils connaissent tous les trois leur rôle respectif ! Pendant leur tour, ils peuvent se concerter rapidement et en silence sur les décisions à prendre pour sauver le village.",
+                "threeBrothersHave20s": "Les trois frères ont environ 20 secondes pendant leur tour pour discuter grâce à un habile langage des signes.",
                 "noActionRequiredToValidate": "Aucune action n'est requise pour passer à la suite."
             }
         }
@@ -547,7 +565,9 @@
             "cupidStarts": "Cupidon se réveille et va rendre inséparables deux personnes grâce à ses flêches de l'Amour.",
             "loversStart": "Les Amoureux se réveillent et vont se rencontrer pour la première fois.",
             "twoSistersMeetEachOther": "Les deux sœurs se réveillent et vont se rencontrer pour la première fois.",
-            "twoSistersWakeUpToTalk": "Les deux sœurs se réveillent et vont se concerter discrètement."
+            "twoSistersWakeUpToTalk": "Les deux sœurs se réveillent et vont se concerter discrètement.",
+            "threeBrothersMeetEachOther": "Les trois frères se réveillent et vont se rencontrer pour la première fois.",
+            "threeBrothersWakeUpToTalk": "Les trois frères se réveillent et vont se concerter discrètement."
         }
     },
     "Statistics": {

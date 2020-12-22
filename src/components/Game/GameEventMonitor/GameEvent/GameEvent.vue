@@ -123,6 +123,12 @@ export default {
                         ...insertIf(this.game.turn !== 1, i18n.t("GameEvent.messages.twoSistersWakeUpToTalk")),
                     ],
                 },
+                "three-brothers-turn": {
+                    messages: [
+                        ...insertIf(this.game.turn === 1, i18n.t("GameEvent.messages.threeBrothersMeetEachOther")),
+                        ...insertIf(this.game.turn !== 1, i18n.t("GameEvent.messages.threeBrothersWakeUpToTalk")),
+                    ],
+                },
             };
         },
         hasGameEventTarget() {

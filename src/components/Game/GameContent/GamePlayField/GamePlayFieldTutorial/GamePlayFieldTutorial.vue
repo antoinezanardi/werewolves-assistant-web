@@ -24,7 +24,7 @@ export default {
         // eslint-disable-next-line max-lines-per-function
         steps() {
             const { firstWaiting } = this.game;
-            const { sistersWakingUpInterval } = this.gameOptions;
+            const { sistersWakingUpInterval, brothersWakingUpInterval } = this.gameOptions;
             const action = `${firstWaiting.for}.${firstWaiting.to}`;
             const header = { title: this.$t(`GamePlayFieldTutorial.${action}.howToPlay`) };
             const steps = {
@@ -120,6 +120,19 @@ export default {
                         },
                         { header, target: "#meeting-each-other-players", content: this.$t(`GamePlayFieldTutorial.${action}.twoSistersTalk`) },
                         { header, target: ".countdown", content: this.$t(`GamePlayFieldTutorial.${action}.twoSistersHave20s`) },
+                        { header, target: "#play-submit-button", content: this.$t(`GamePlayFieldTutorial.${action}.noActionRequiredToValidate`) },
+                    ],
+                },
+                "three-brothers": {
+                    "meet-each-other": [
+                        {
+                            header,
+                            target: "#game-waiting-label",
+                            // eslint-disable-next-line max-len,vue/max-len
+                            content: this.$tc(`GamePlayFieldTutorial.${action}.threeBrothersMeetEachOtherWhen`, brothersWakingUpInterval, { brothersWakingUpInterval }),
+                        },
+                        { header, target: "#meeting-each-other-players", content: this.$t(`GamePlayFieldTutorial.${action}.threeBrothersTalk`) },
+                        { header, target: ".countdown", content: this.$t(`GamePlayFieldTutorial.${action}.threeBrothersHave20s`) },
                         { header, target: "#play-submit-button", content: this.$t(`GamePlayFieldTutorial.${action}.noActionRequiredToValidate`) },
                     ],
                 },
