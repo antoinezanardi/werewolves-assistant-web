@@ -42,12 +42,14 @@ export default {
                         { header, target: "#target-play-requirements", content: this.$t(`GamePlayFieldTutorial.${action}.toValidateLook`) },
                     ],
                 },
-                "eat": [
-                    { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.eat.werewolvesEatWhen") },
-                    { header, target: "#player-targets", content: this.$t("GamePlayFieldTutorial.eat.werewolvesEatAVictim") },
-                    { header, target: "#werewolf-players", content: this.$t("GamePlayFieldTutorial.eat.werewolvesPointAtVictim") },
-                    { header, target: "#target-play-requirements", content: this.$t("GamePlayFieldTutorial.eat.toValidateEat") },
-                ],
+                "werewolves": {
+                    eat: [
+                        { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.${action}.werewolvesEatWhen`) },
+                        { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.${action}.werewolvesEatAVictim`) },
+                        { header, target: "#werewolf-players", content: this.$t(`GamePlayFieldTutorial.${action}.werewolvesPointAtVictim`) },
+                        { header, target: "#target-play-requirements", content: this.$t(`GamePlayFieldTutorial.${action}.toValidateEat`) },
+                    ],
+                },
                 "use-potion": [
                     { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.use-potion.witchUsesPotionWhen") },
                     { header, target: "#potion-tabs", content: this.$t("GamePlayFieldTutorial.use-potion.witchCanUsePotions") },

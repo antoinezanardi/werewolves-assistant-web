@@ -280,12 +280,14 @@
                 "toValidateLook": "Pour que la voyante puisse révéler un rôle, elle doit obligatoirement choisir une cible."
             }
         },
-        "eat": {
-            "howToPlay": "Comment jouer les loups-garous ?",
-            "werewolvesEatWhen": "Chaque nuit, les loups-garous se réveillent.",
-            "werewolvesEatAVictim": "Les loups-garous choisissent leur victime parmis les joueurs vivants qui mourra le matin suivant s'il ne reçoit pas de protection.",
-            "werewolvesPointAtVictim": "Les loups-garous se mettent d'accord sans bruit et pointent du doigt leur victime.",
-            "toValidateEat": "Pour que les loups-garous puissent choisir leur prochain repas, ils doivent obligatoirement choisir une cible."
+        "werewolves": {
+            "eat": {
+                "howToPlay": "Comment jouer les loups-garous ?",
+                "werewolvesEatWhen": "Chaque nuit, les loups-garous se réveillent.",
+                "werewolvesEatAVictim": "Les loups-garous choisissent leur victime parmis les joueurs vivants qui mourra le matin suivant s'il ne reçoit pas de protection.",
+                "werewolvesPointAtVictim": "Les loups-garous se mettent d'accord sans bruit et pointent du doigt leur victime.",
+                "toValidateEat": "Pour que les loups-garous puissent choisir leur prochain repas, ils doivent obligatoirement choisir une cible."
+            }
         },
         "use-potion": {
             "howToPlay": "Comment jouer la sorcière ?",
@@ -507,7 +509,6 @@
     },
     "PlayFieldActionText": {
         "and": "et",
-        "wantToEat": "souhaite manger | souhaite manger | souhaitent manger",
         "doesntWantToUseLifePotion": "ne souhaite pas utiliser sa potion de vie",
         "doesntWantToUseDeathPotion": "ne souhaite pas utiliser sa potion de mort",
         "wantsToUseLifePotionOn": "souhaite utiliser sa potion de vie sur",
@@ -542,6 +543,9 @@
         "guard": {
             "protected": "souhaite protéger",
             "selfTargeting": "lui-même"
+        },
+        "werewolves": {
+            "eaten": "souhaite manger | souhaitent manger"
         }
     },
     "CancelActionButton": {

@@ -238,6 +238,18 @@ class Game {
     getPlayerWithId(playerId) {
         return this.players.find(({ _id }) => _id.toString() === playerId);
     }
+
+    get alivePlayersExpectedToPlay() {
+        const { for: source } = this.firstWaiting;
+        const waitingForGroups = {
+            all: this.alivePlayers,
+            sheriff: this.getPlayersWithAttribute("sheriff").filter(({ isAlive }) => isAlive),
+            lovers: this.getPlayersWithAttribute("lovers").filter(({ isAlive }) => isAlive),
+            villagers: this.aliveVillagerPlayers,
+            werewolves: this.aliveWerewolfPlayers,
+        };
+        return waitingForGroups[source] ? waitingForGroups[source] : this.getPlayersWithRole(source);
+    }
 }
 
 export default Game;

@@ -63,9 +63,11 @@ export default {
                         role: "seer",
                     },
                 },
-                "eat": {
-                    icon: eatenSVG,
-                    role: "werewolf",
+                "werewolves": {
+                    eat: {
+                        icon: eatenSVG,
+                        role: "werewolf",
+                    },
                 },
                 "use-potion": {
                     icon: drankDeathPotionSVG,

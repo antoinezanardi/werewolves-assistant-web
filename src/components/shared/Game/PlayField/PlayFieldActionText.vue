@@ -36,7 +36,7 @@ export default {
         },
         actionText() {
             const { firstWaiting } = this.game;
-            let actionText = this.$t(`PlayFieldActionText.${firstWaiting.for}.${this.attribute}`);
+            let actionText = this.$tc(`PlayFieldActionText.${firstWaiting.for}.${this.attribute}`, this.game.alivePlayersExpectedToPlay.length);
             if (this.game.isSkippablePlay && !this.play.targets.length) {
                 return this.$t(`PlayFieldActionText.${firstWaiting.for}.noTarget`);
             } else if (firstWaiting.to === "choose-side") {
