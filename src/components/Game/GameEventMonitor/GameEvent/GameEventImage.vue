@@ -1,15 +1,6 @@
 <template>
     <div id="game-event-image" class="d-flex flex-grow-1 justify-content-center align-items-center visible-scrollbar">
-        <VueFlip v-if="event.type === 'game-starts'" id="game-starts-image" v-model="gameStartsEvent.flipped"
-                 transition="0.75s" height="30vh" width="30vh">
-            <template #front>
-                <RoleImage class="h-100 rounded" :role="gameStartsEvent.thumbnail.front"/>
-            </template>
-            <template #back>
-                <RoleImage class="h-100 rounded" :role="gameStartsEvent.thumbnail.back"/>
-            </template>
-        </VueFlip>
-        <div v-else-if="isPhaseGameEvent" class="w-100 text-center">
+        <div v-if="isPhaseGameEvent" class="w-100 text-center">
             <transition mode="out-in" name="phase-transition">
                 <i v-if="displayedPhase === 'day'" key="day" class="phase-icon fa fa-sun sun-color"
                    :class="{ 'fa-spin': phaseTransition.ended }"/>
@@ -27,13 +18,14 @@
             </div>
             <h3 class="text-center mt-2 w-100 text-truncate" v-html="event.targets[0].player.name"/>
         </div>
-        <div v-else class="d-flex flex-grow-1 justify-content-center align-items-center mt-3">
-            <div class="row justify-content-center align-content-between w-100">
-                <div v-for="player in game.alivePlayersExpectedToPlay" :key="player._id" class="col text-center mb-2">
-                    <RoleImage class="role-image" :role="player.role.current"/>
-                </div>
-            </div>
-        </div>
+        <VueFlip v-else id="game-starts-image" v-model="gameStartsEvent.flipped" transition="0.75s" height="30vh" width="30vh">
+            <template #front>
+                <RoleImage class="h-100 rounded role-image" :role="gameStartsEvent.thumbnail.front"/>
+            </template>
+            <template #back>
+                <RoleImage class="h-100 rounded role-image" :role="gameStartsEvent.thumbnail.back"/>
+            </template>
+        </VueFlip>
     </div>
 </template>
 
@@ -95,30 +87,33 @@ export default {
         },
     },
     created() {
-        if (this.event.type === "game-starts") {
-            this.setGameStartsInterval();
-        } else if (this.event.type === "night-falls" || this.event.type === "day-rises") {
+        if (this.isPhaseGameEvent) {
             this.triggerPhaseTransition();
+        } else if (!this.isEffectGameEvent) {
+            this.setPlayersExpectedToPlayFlip();
         }
     },
     methods: {
-        setGameStartsInterval() {
-            this.gameStartsEvent.thumbnail.back = this.game.players[0].role.current;
-            setInterval(() => {
-                if (this.gameStartsEvent.playerIdx + 1 === this.game.players.length) {
-                    this.gameStartsEvent.playerIdx = 0;
-                } else {
-                    this.gameStartsEvent.playerIdx += 1;
-                }
-                const player = this.game.players[this.gameStartsEvent.playerIdx];
-                if (!this.gameStartsEvent.flipped) {
-                    this.gameStartsEvent.thumbnail.back = player.role.current;
-                    this.gameStartsEvent.flipped = true;
-                } else {
-                    this.gameStartsEvent.thumbnail.front = player.role.current;
-                    this.gameStartsEvent.flipped = false;
-                }
-            }, 1500);
+        setPlayersExpectedToPlayFlip() {
+            const players = this.game.alivePlayersExpectedToPlay;
+            this.gameStartsEvent.thumbnail.front = players[0].role.current;
+            if (players.length > 2) {
+                setInterval(() => {
+                    if (this.gameStartsEvent.playerIdx + 1 === players.length) {
+                        this.gameStartsEvent.playerIdx = 0;
+                    } else {
+                        this.gameStartsEvent.playerIdx += 1;
+                    }
+                    const player = players[this.gameStartsEvent.playerIdx];
+                    if (!this.gameStartsEvent.flipped) {
+                        this.gameStartsEvent.thumbnail.back = player.role.current;
+                        this.gameStartsEvent.flipped = true;
+                    } else {
+                        this.gameStartsEvent.thumbnail.front = player.role.current;
+                        this.gameStartsEvent.flipped = false;
+                    }
+                }, 1000);
+            }
         },
         triggerPhaseTransition() {
             setTimeout(() => {
@@ -167,12 +162,6 @@ export default {
     .role-image {
         border: 5px solid #303030;
         border-radius: 5px;
-        height: 15vh;
-        width: 15vh;
-        @include media-breakpoint-up(md) {
-            height: 20vh;
-            width: 20vh;
-        }
     }
 
     #role-effect-container {

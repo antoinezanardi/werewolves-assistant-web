@@ -252,6 +252,9 @@
             },
             "three-brothers": {
                 "meet-each-other": "Temps pour la concertation des frères"
+            },
+            "all": {
+                "vote": "Temps pour le débat du village"
             }
         },
         "timeIsUpFor": {
@@ -263,6 +266,9 @@
             },
             "three-brothers": {
                 "meet-each-other": "Il est temps pour les frères de se rendormir"
+            },
+            "all": {
+                "vote": "Il est temps pour le village de voter"
             }
         }
     },
@@ -292,15 +298,17 @@
                 "toValidateEat": "Pour passer à la suite, les loups-garous doivent obligatoirement choisir une victime."
             }
         },
-        "use-potion": {
-            "howToPlay": "Comment jouer la sorcière ?",
-            "witchUsesPotionWhen": "Chaque nuit, si elle est vivante, la sorcière se réveille même si elle n'a plus de potion à utiliser.",
-            "witchCanUsePotions": "La sorcière possède une potion de vie et une potion de mort. Elle peut utiliser chacune d'elle UNE SEULE FOIS pendant la partie. Le maître du jeu va demander pour chaque potion le choix de la sorcière.",
-            "lifePotionProtects": "La potion de vie, utilisable qu'une fois pendant la partie, permet de sauver la victime des loups-garous de la mort. Le maître du jeu désigne la victime des loups-garous et la sorcière doit sans bruit acquiescer ou refuser d'utiliser sa potion.",
-            "ifLifePotionHasBeenUsed": "Si la potion de vie a déjà été utilisée, le maître du jeu doit quand même demander le choix de la sorcière, mais sans pointer du doigt la victime des loups-garous. Ceci permet de ne pas révéler que la potion de vie a été utilisée.",
-            "deathPotionKills": "La potion de mort, utilisable qu'une fois pendant la partie, permet d'empoisonner une victime qui mourra le matin suivant. La sorcière doit sans bruit acquiescer ou refuser d'utiliser sa potion en pointant sa victime le cas échéant.",
-            "ifDeathPotionHasBeenUsed": "Si la potion de mort a déjà été utilisée, le maître du jeu doit quand même demander le choix de la sorcière. Ceci permet de ne pas révéler que la potion de mort a été utilisée.",
-            "toValidateUsePotion": "Durant son tour, la sorcière peut utiliser les deux potions, une seule, ou passer son tour."
+        "witch": {
+            "use-potion": {
+                "howToPlay": "Comment jouer la sorcière ?",
+                "witchUsesPotionWhen": "Chaque nuit, si elle est vivante, la sorcière se réveille même si elle n'a plus de potion à utiliser.",
+                "witchCanUsePotions": "La sorcière possède une potion de vie et une potion de mort. Elle peut utiliser chacune d'elle UNE SEULE FOIS pendant la partie. Le maître du jeu va demander pour chaque potion le choix de la sorcière.",
+                "lifePotionProtects": "La potion de vie, utilisable qu'une fois pendant la partie, permet de sauver la victime des loups-garous de la mort. Le maître du jeu désigne la victime des loups-garous et la sorcière doit sans bruit acquiescer ou refuser d'utiliser sa potion.",
+                "ifLifePotionHasBeenUsed": "Si la potion de vie a déjà été utilisée, le maître du jeu doit quand même demander le choix de la sorcière, mais sans pointer du doigt la victime des loups-garous. Ceci permet de ne pas révéler que la potion de vie a été utilisée.",
+                "deathPotionKills": "La potion de mort, utilisable qu'une fois pendant la partie, permet d'empoisonner une victime qui mourra le matin suivant. La sorcière doit sans bruit acquiescer ou refuser d'utiliser sa potion en pointant sa victime le cas échéant.",
+                "ifDeathPotionHasBeenUsed": "Si la potion de mort a déjà été utilisée, le maître du jeu doit quand même demander le choix de la sorcière. Ceci permet de ne pas révéler que la potion de mort a été utilisée.",
+                "toValidateUsePotion": "Durant son tour, la sorcière peut utiliser les deux potions, une seule, ou passer son tour."
+            }
         },
         "guard": {
             "protect": {
@@ -321,12 +329,14 @@
                 "toValidateMark": "Durant son tour, le corbeau peut désigner une cible ou passer son tour."
             }
         },
-        "vote": {
-            "howToPlay": "Comment procéder au vote ?",
-            "allVoteWhen": "Chaque fois que le jour se lève, les habitants débattent pour mettre à mort l'un des leurs en espérant trouver un loup-garou.",
-            "playersHave5Min": "Les joueurs ont 5 minutes pour se mettre d'accord sur qui sera pendu. À la fin du temps, le maître du jeu doit stopper les discussions et procéder au vote.",
-            "eachPlayerVote": "Chaque joueur a donc une voix à donner pour le vote, mais ne peut voter pour lui-même. Il peut néanmoins voter blanc. Le maître du jeu demande le vote de chacun à tour de rôle.",
-            "toValidateAVote": "Pour que la pendaison ait lieu, au moins un joueur doit avoir voté."
+        "all": {
+            "vote": {
+                "howToPlay": "Comment procéder au vote ?",
+                "allVoteWhen": "Chaque fois que le jour se lève, les habitants débattent pour mettre à mort l'un des leurs en espérant trouver un loup-garou.",
+                "playersHave5Min": "Les joueurs ont 5 minutes pour se mettre d'accord sur qui sera pendu. À la fin du temps, le maître du jeu doit stopper les discussions et procéder au vote.",
+                "eachPlayerVote": "Chaque joueur a donc une voix à donner pour le vote, mais ne peut voter pour lui-même. Il peut néanmoins voter blanc. Le maître du jeu demande le vote de chacun à tour de rôle.",
+                "toValidateAVote": "Pour passer à la suite, au moins un joueur doit avoir voté."
+            }
         },
         "delegate": {
             "howToPlay": "Comment déléguer le rôle de maire ?",
@@ -408,7 +418,8 @@
         "attributes": {
             "sheriff": "Ce joueur est maire",
             "seen": "Ce joueur a été vu par la voyante",
-            "eaten": "Ce joueur est la cible des loups garous",
+            "eatenByWerewolves": "Ce joueur est la cible des loups garous",
+            "eatenByBigBadWolf": "Ce joueur est la cible du grand-méchant-loup",
             "drankLifePotion": "Ce joueur a bu la potion de vie",
             "drankDeathPotion": "Ce joueur a bu la potion de mort",
             "protected": "Ce joueur est protégé",
@@ -521,10 +532,6 @@
     },
     "PlayFieldActionText": {
         "and": "et",
-        "doesntWantToUseLifePotion": "ne souhaite pas utiliser sa potion de vie",
-        "doesntWantToUseDeathPotion": "ne souhaite pas utiliser sa potion de mort",
-        "wantsToUseLifePotionOn": "souhaite utiliser sa potion de vie sur",
-        "wantsToUseDeathPotionOn": "souhaite utiliser sa potion de mort sur",
         "wantsToUseLifePotionOnHerself": "souhaite utiliser sa potion de vie sur elle-même",
         "wantsToUseDeathPotionOnHerself": "souhaite utiliser sa potion de mort sur elle-même",
         "wantsToProtectHimself": "souhaite se protéger lui-même",
@@ -548,7 +555,7 @@
             "worshiped": "souhaite choisir comme modèle"
         },
         "raven": {
-            "noTarget": "ne souhaite marquer personne",
+            "no-raven-marked": "ne souhaite marquer personne",
             "raven-marked": "souhaite marquer",
             "selfTargeting": "lui-même"
         },
@@ -561,6 +568,12 @@
         },
         "big-bad-wolf": {
             "eaten": "souhaite manger"
+        },
+        "witch": {
+            "no-drank-life-potion": "ne souhaite pas utiliser sa potion de vie",
+            "no-drank-death-potion": "ne souhaite pas utiliser sa potion de mort",
+            "drank-life-potion": "souhaite utiliser sa potion de vie sur",
+            "drank-death-potion": "souhaite utiliser sa potion de mort sur"
         }
     },
     "CancelActionButton": {
@@ -597,6 +610,7 @@
             "nightFalls": "La nuit tombe sur le village de Thiercelieux...",
             "inhabitantsFallAsleep": "Les habitants du village s'endorment.",
             "dayRises": "Le jour se lève sur le village de Thiercelieux.",
+            "allVote": "Les habitants du village vont maintenant voter pour pendre l'un des leurs et espérer débusquer un loup-garou.",
             "seerStarts": "La voyante se réveille et va découvrir dans sa boule de cristal le rôle d'un habitant.",
             "seerHasSeen": "La voyante a vu",
             "werewolvesStart": "Le loup-garou se réveille et va choisir son dîner de ce soir. | Les loups-garous se réveillent et vont choisir leur dîner de ce soir.",

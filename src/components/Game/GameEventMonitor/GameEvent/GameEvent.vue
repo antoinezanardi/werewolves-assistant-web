@@ -106,6 +106,13 @@ export default {
                     ],
                 },
                 "night-falls": { messages: [i18n.t("GameEvent.messages.nightFalls"), i18n.t("GameEvent.messages.inhabitantsFallAsleep")] },
+                "all-turn": { messages: [...insertIf(this.game.firstWaiting.to === "vote", i18n.t("GameEvent.messages.allVote"))] },
+                "sheriff-turn": {
+                    messages: [
+                        ...insertIf(this.game.firstWaiting.to === "settle-votes", i18n.t("GameEvent.messages.sheriffSettlesVote")),
+                        ...insertIf(this.game.firstWaiting.to === "delegates", i18n.t("GameEvent.messages.sheriffDelegates")),
+                    ],
+                },
                 "day-rises": { messages: [i18n.t("GameEvent.messages.dayRises")] },
                 "seer-turn": { messages: [i18n.t("GameEvent.messages.seerStarts")] },
                 "seer-looks": { messages: [`${i18n.t("GameEvent.messages.seerHasSeen")} ${gameEventTargetRole} !`] },

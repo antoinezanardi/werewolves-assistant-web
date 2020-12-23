@@ -32,13 +32,13 @@ export default {
     computed: {
         ...mapGetters("game", { game: "game" }),
         targetedPlayersForAttribute() {
-            return this.play.targets.length ? this.play.targets.filter(target => target.attribute === this.attribute) : null;
+            return this.play.targets.length ? this.play.targets.filter(target => target.attribute === this.attribute) : [];
         },
         actionText() {
             const { firstWaiting } = this.game;
             let actionText = this.$tc(`PlayFieldActionText.${firstWaiting.for}.${this.attribute}`, this.game.alivePlayersExpectedToPlay.length);
-            if (this.game.isSkippablePlay && !this.play.targets.length) {
-                return this.$t(`PlayFieldActionText.${firstWaiting.for}.noTarget`);
+            if (this.game.isSkippablePlay && !this.targetedPlayersForAttribute.length) {
+                return this.$t(`PlayFieldActionText.${firstWaiting.for}.no-${this.attribute}`);
             } else if (firstWaiting.to === "choose-side") {
                 if (!this.play.side) {
                     return this.$t("PlayFieldActionText.dog-wolf.wantsToChooseSide");

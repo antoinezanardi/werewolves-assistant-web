@@ -2,7 +2,7 @@
     <div id="game-content-footer">
         <hr class="bg-dark my-1"/>
         <div class="row justify-content-center align-items-center">
-            <div class="col-md-4 col-12 text-center order-md-0 mb-2 mb-md-0">
+            <div class="col-md-4 col-12 text-center order-md-0 mb-1 mb-md-0">
                 <GamePlayFieldCountdownFooter v-if="game.isTimedPlay"/>
             </div>
             <div class="col-md-4 col-12 order-last order-md-1">
@@ -16,8 +16,7 @@
             </div>
             <div class="col-md-4 col order-md-2">
                 <transition name="fade" mode="out-in">
-                    <div v-if="game.isVotePlay" id="vote-play-requirements" key="vote-play-requirements"
-                         class="text-center">
+                    <div v-if="game.isVotePlay" id="vote-play-requirements" key="vote-play-requirements" class="text-center">
                         <VRoller :text="`${play.votes.length}/${game.alivePlayers.length}`" class="d-inline-flex mr-1"/>
                         <span v-html="$t('GamePlayFieldFooter.playersHaveVoted')"/>
                         <div class="text-muted font-italic">

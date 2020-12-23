@@ -199,6 +199,10 @@ class Game {
         return this.getPlayerWithAttribute("eaten");
     }
 
+    get eatenPlayers() {
+        return this.getPlayersWithAttribute("eaten");
+    }
+
     get hasWitchUsedLifePotion() {
         return !!this.history.find(({ play }) => play.action === "use-potion" && !!play.targets.find(({ potion }) => potion.life));
     }

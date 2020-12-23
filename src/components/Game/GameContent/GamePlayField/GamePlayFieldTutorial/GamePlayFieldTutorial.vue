@@ -50,15 +50,17 @@ export default {
                         { header, target: "#target-play-requirements", content: this.$t(`GamePlayFieldTutorial.werewolves.eat.toValidateEat`) },
                     ],
                 },
-                "use-potion": [
-                    { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.use-potion.witchUsesPotionWhen") },
-                    { header, target: "#potion-tabs", content: this.$t("GamePlayFieldTutorial.use-potion.witchCanUsePotions") },
-                    { header, target: "#life-potion-tab", content: this.$t("GamePlayFieldTutorial.use-potion.lifePotionProtects") },
-                    { header, target: "#life-potion-tab", content: this.$t("GamePlayFieldTutorial.use-potion.ifLifePotionHasBeenUsed") },
-                    { header, target: "#death-potion-tab", content: this.$t("GamePlayFieldTutorial.use-potion.deathPotionKills") },
-                    { header, target: "#death-potion-tab", content: this.$t("GamePlayFieldTutorial.use-potion.ifDeathPotionHasBeenUsed") },
-                    { header, target: "#play-submit-button", content: this.$t("GamePlayFieldTutorial.use-potion.toValidateUsePotion") },
-                ],
+                "witch": {
+                    "use-potion": [
+                        { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.witch.use-potion.witchUsesPotionWhen") },
+                        { header, target: "#potion-tabs", content: this.$t("GamePlayFieldTutorial.witch.use-potion.witchCanUsePotions") },
+                        { header, target: "#life-potion-tab", content: this.$t("GamePlayFieldTutorial.witch.use-potion.lifePotionProtects") },
+                        { header, target: "#life-potion-tab", content: this.$t("GamePlayFieldTutorial.witch.use-potion.ifLifePotionHasBeenUsed") },
+                        { header, target: "#death-potion-tab", content: this.$t("GamePlayFieldTutorial.witch.use-potion.deathPotionKills") },
+                        { header, target: "#death-potion-tab", content: this.$t("GamePlayFieldTutorial.witch.use-potion.ifDeathPotionHasBeenUsed") },
+                        { header, target: "#play-submit-button", content: this.$t("GamePlayFieldTutorial.witch.use-potion.toValidateUsePotion") },
+                    ],
+                },
                 "guard": {
                     protect: [
                         { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.guard.protect.guardProtectsWhen`) },
@@ -76,12 +78,14 @@ export default {
                         { header, target: "#play-submit-button", content: this.$t(`GamePlayFieldTutorial.raven.mark.toValidateMark`) },
                     ],
                 },
-                "vote": [
-                    { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.vote.allVoteWhen") },
-                    { header, target: ".countdown", content: this.$t("GamePlayFieldTutorial.vote.playersHave5Min") },
-                    { header, target: "#player-votes", content: this.$t("GamePlayFieldTutorial.vote.eachPlayerVote") },
-                    { header, target: "#vote-play-requirements", content: this.$t("GamePlayFieldTutorial.vote.toValidateAVote") },
-                ],
+                "all": {
+                    vote: [
+                        { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.all.vote.allVoteWhen") },
+                        { header, target: ".countdown", content: this.$t("GamePlayFieldTutorial.all.vote.playersHave5Min") },
+                        { header, target: "#player-votes", content: this.$t("GamePlayFieldTutorial.all.vote.eachPlayerVote") },
+                        { header, target: "#vote-play-requirements", content: this.$t("GamePlayFieldTutorial.all.vote.toValidateAVote") },
+                    ],
+                },
                 "delegate": [
                     { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.delegate.sheriffDelegatesWhen") },
                     { header, target: "#player-targets", content: this.$t("GamePlayFieldTutorial.delegate.noDemocracyHere") },

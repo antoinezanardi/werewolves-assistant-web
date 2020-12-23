@@ -33,7 +33,7 @@
             <div class="col-12">
                 <transition mode="out-in" name="translate-down-fade">
                     <div v-if="panel === 'life-potion'" id="use-life-potion-content" key="life-potion-panel" class="h-100">
-                        <PlayerTargets :targets="[game.eatenPlayer]" :play="play" attribute="drank-life-potion"
+                        <PlayerTargets :targets="game.eatenPlayers" :play="play" attribute="drank-life-potion"
                                        class="h-100" @player-selected="playerSelected"/>
                     </div>
                     <div v-else-if="panel === 'death-potion'" id="use-death-potion-content" key="death-potion-panel"

@@ -70,9 +70,11 @@ export default {
                         role: "werewolf",
                     },
                 },
-                "use-potion": {
-                    icon: drankDeathPotionSVG,
-                    role: "witch",
+                "witch": {
+                    "use-potion": {
+                        icon: drankDeathPotionSVG,
+                        role: "witch",
+                    },
                 },
                 "guard": {
                     protect: {
@@ -94,9 +96,11 @@ export default {
                     icon: sheriffSVG,
                     role: "villager",
                 },
-                "vote": {
-                    icon: voteSVG,
-                    role: "villager",
+                "all": {
+                    vote: {
+                        icon: voteSVG,
+                        role: "villager",
+                    },
                 },
                 "delegate": {
                     icon: sheriffSVG,
