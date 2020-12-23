@@ -289,7 +289,7 @@
                 "werewolvesEatWhen": "Chaque nuit, les loups-garous se réveillent.",
                 "werewolvesEatAVictim": "Les loups-garous choisissent leur victime parmis les joueurs vivants qui mourra le matin suivant s'il ne reçoit pas de protection.",
                 "werewolvesPointAtVictim": "Les loups-garous se mettent d'accord sans bruit et pointent du doigt leur victime.",
-                "toValidateEat": "Pour que les loups-garous puissent choisir leur prochain repas, ils doivent obligatoirement choisir une cible."
+                "toValidateEat": "Pour passer à la suite, les loups-garous doivent obligatoirement choisir une victime."
             }
         },
         "use-potion": {
@@ -392,6 +392,15 @@
                 "wildChildChooseModelWhen": "Au début de la partie, seulement la première nuit, l'enfant sauvage se réveille.",
                 "wildChildCanChooseModel": "L'enfant sauvage choisit son modèle pour le reste de la partie. Si ce dernier meurt, l'enfant sauvage passera dans le camp des Loups-Garous. Sinon, il fait parti du camp des Villageois.",
                 "toValidateChooseModel": "Pour passer à la suite, l'enfant sauvage doit obligatoirement choisir un modèle."
+            }
+        },
+        "big-bad-wolf": {
+            "eat": {
+                "howToPlay": "Comment jouer le grand-méchant-loup ?",
+                "bigBadWolfEatsWhen": "Chaque nuit, tant qu'aucun joueur du camp des Loups-Garous n'est mort, le grand-méchant-loup se réveille.",
+                "bigBadWolfEatsAVictim": "Comme les loups-garous, le grand-méchant-loup choisit sa victime parmis les joueurs vivants qui mourra le matin suivant s'il ne reçoit pas de protection. Son choix ne peut être le même que celui de ses congénères.",
+                "bigBadWolfPointsAtVictim": "Le grand-méchant-loup doit pointer du doigt sa victime.",
+                "toValidateEat": "Pour passer à la suite, le grand-méchant-loup doit obligatoirement choisir une victime."
             }
         }
     },
@@ -551,7 +560,7 @@
             "eaten": "souhaite manger | souhaitent manger"
         },
         "big-bad-wolf": {
-            "eaten": "souhaite manger en plus"
+            "eaten": "souhaite manger"
         }
     },
     "CancelActionButton": {

@@ -201,6 +201,14 @@ export default {
                         },
                     ],
                 },
+                "big-bad-wolf": {
+                    eat: [
+                        { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.big-bad-wolf.eat.bigBadWolfEatsWhen`) },
+                        { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.big-bad-wolf.eat.bigBadWolfEatsAVictim`) },
+                        { header, target: "#werewolf-players", content: this.$t(`GamePlayFieldTutorial.big-bad-wolf.eat.bigBadWolfPointsAtVictim`) },
+                        { header, target: "#target-play-requirements", content: this.$t(`GamePlayFieldTutorial.big-bad-wolf.eat.toValidateEat`) },
+                    ],
+                },
             };
             return steps[firstWaiting.for] && steps[firstWaiting.for][firstWaiting.to] ? steps[firstWaiting.for][firstWaiting.to] : [];
         },
