@@ -29,7 +29,7 @@
         </div>
         <div v-else class="d-flex flex-grow-1 justify-content-center align-items-center mt-3">
             <div class="row justify-content-center align-content-between w-100">
-                <div v-for="player in game.alivePlayersExpectedToPlay" :key="player._id" class="col-md-3 col-6 text-center mb-2">
+                <div v-for="player in game.alivePlayersExpectedToPlay" :key="player._id" class="col text-center mb-2">
                     <RoleImage class="role-image" :role="player.role.current"/>
                 </div>
             </div>

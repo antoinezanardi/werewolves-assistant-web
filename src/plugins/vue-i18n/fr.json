@@ -225,6 +225,9 @@
             },
             "wild-child": {
                 "choose-model": "Au tour de l'enfant sauvage"
+            },
+            "big-bad-wolf": {
+                "eat": "Au tour du grand-méchant-loup"
             }
         }
     },
@@ -546,6 +549,9 @@
         },
         "werewolves": {
             "eaten": "souhaite manger | souhaitent manger"
+        },
+        "big-bad-wolf": {
+            "eaten": "souhaite manger en plus"
         }
     },
     "CancelActionButton": {
@@ -596,7 +602,8 @@
             "twoSistersWakeUpToTalk": "Les deux sœurs se réveillent et vont se concerter discrètement.",
             "threeBrothersMeetEachOther": "Les trois frères se réveillent et vont se rencontrer pour la première fois.",
             "threeBrothersWakeUpToTalk": "Les trois frères se réveillent et vont se concerter discrètement.",
-            "wildChildStarts": "L'enfant sauvage se réveille pour choisir son modèle parmi les habitants."
+            "wildChildStarts": "L'enfant sauvage se réveille pour choisir son modèle parmi les habitants.",
+            "bigBadWolfStarts": "Le grand-méchant-loup se réveille pour choisir la seconde victime des loups-garous."
         }
     },
     "Statistics": {

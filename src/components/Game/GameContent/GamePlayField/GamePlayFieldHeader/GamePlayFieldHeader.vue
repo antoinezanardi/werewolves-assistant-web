@@ -49,6 +49,7 @@ import inLoveSVG from "@/assets/svg/attributes/in-love.svg";
 import twoSistersSVG from "@/assets/svg/roles/two-sisters.svg";
 import threeBrothersPNG from "@/assets/img/roles/three-brothers.png";
 import worshipedSVG from "@/assets/svg/attributes/worshiped.svg";
+import bigBadWolfSVG from "@/assets/svg/roles/big-bad-wolf.svg";
 
 export default {
     name: "GamePlayFieldHeader",
@@ -135,6 +136,12 @@ export default {
                     "choose-model": {
                         icon: worshipedSVG,
                         role: "wild-child",
+                    },
+                },
+                "big-bad-wolf": {
+                    eat: {
+                        icon: bigBadWolfSVG,
+                        role: "big-bad-wolf",
                     },
                 },
             },

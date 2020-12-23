@@ -130,6 +130,7 @@ export default {
                     ],
                 },
                 "wild-child-turn": { messages: [i18n.t("GameEvent.messages.wildChildStarts")] },
+                "big-bad-wolf-turn": { messages: [i18n.t("GameEvent.messages.bigBadWolfStarts")] },
             };
         },
         hasGameEventTarget() {
