@@ -1,7 +1,8 @@
 <template>
     <div id="eat-play-field" class="d-flex flex-column">
-        <div id="werewolf-players" class="d-flex justify-content-center">
-            <PlayerCard v-for="player of game.aliveWerewolfPlayers" :key="player.name" :player="player" size="lg"/>
+        <div id="werewolf-players" class="row justify-content-center align-items-center">
+            <PlayerCard v-for="player of game.aliveWerewolfPlayers" :key="player.name" :player="player" size="lg"
+                        class="col-4 col-md-2"/>
         </div>
         <PlayFieldActionText :play="play" attribute="eaten" @player-selected="playerSelected"/>
         <PlayerTargets :targets="alivePlayersExceptWerewolves" :play="play" attribute="eaten" class="flex-grow-1"

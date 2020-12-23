@@ -36,18 +36,18 @@ export default {
                 ],
                 "seer": {
                     look: [
-                        { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.${action}.seerLooksWhen`) },
-                        { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.${action}.seerCanLook`) },
-                        { header, target: "#seer-player-card", content: this.$t(`GamePlayFieldTutorial.${action}.seerPointsAtTarget`) },
-                        { header, target: "#target-play-requirements", content: this.$t(`GamePlayFieldTutorial.${action}.toValidateLook`) },
+                        { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.seer.look.seerLooksWhen`) },
+                        { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.seer.look.seerCanLook`) },
+                        { header, target: "#seer-player-card", content: this.$t(`GamePlayFieldTutorial.seer.look.seerPointsAtTarget`) },
+                        { header, target: "#target-play-requirements", content: this.$t(`GamePlayFieldTutorial.seer.look.toValidateLook`) },
                     ],
                 },
                 "werewolves": {
                     eat: [
-                        { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.${action}.werewolvesEatWhen`) },
-                        { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.${action}.werewolvesEatAVictim`) },
-                        { header, target: "#werewolf-players", content: this.$t(`GamePlayFieldTutorial.${action}.werewolvesPointAtVictim`) },
-                        { header, target: "#target-play-requirements", content: this.$t(`GamePlayFieldTutorial.${action}.toValidateEat`) },
+                        { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.werewolves.eat.werewolvesEatWhen`) },
+                        { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.werewolves.eat.werewolvesEatAVictim`) },
+                        { header, target: "#werewolf-players", content: this.$t(`GamePlayFieldTutorial.werewolves.eat.werewolvesPointAtVictim`) },
+                        { header, target: "#target-play-requirements", content: this.$t(`GamePlayFieldTutorial.werewolves.eat.toValidateEat`) },
                     ],
                 },
                 "use-potion": [
@@ -61,19 +61,19 @@ export default {
                 ],
                 "guard": {
                     protect: [
-                        { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.${action}.guardProtectsWhen`) },
-                        { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.${action}.guardCanProtect`) },
-                        { header, target: "#guard-player-card", content: this.$t(`GamePlayFieldTutorial.${action}.guardPointsAtTarget`) },
-                        { header, target: "#target-play-requirements", content: this.$t(`GamePlayFieldTutorial.${action}.toValidateProtect`) },
+                        { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.guard.protect.guardProtectsWhen`) },
+                        { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.guard.protect.guardCanProtect`) },
+                        { header, target: "#guard-player-card", content: this.$t(`GamePlayFieldTutorial.guard.protect.guardPointsAtTarget`) },
+                        { header, target: "#target-play-requirements", content: this.$t(`GamePlayFieldTutorial.guard.protect.toValidateProtect`) },
                     ],
                 },
                 "raven": {
                     mark: [
-                        { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.${action}.ravenMarksWhen`) },
-                        { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.${action}.ravenCanMark`) },
-                        { header, target: "#raven-player-card", content: this.$t(`GamePlayFieldTutorial.${action}.ravenPointsAtTarget`) },
-                        { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.${action}.gameMasterWillDropMarkCard`) },
-                        { header, target: "#play-submit-button", content: this.$t(`GamePlayFieldTutorial.${action}.toValidateMark`) },
+                        { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.raven.mark.ravenMarksWhen`) },
+                        { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.raven.mark.ravenCanMark`) },
+                        { header, target: "#raven-player-card", content: this.$t(`GamePlayFieldTutorial.raven.mark.ravenPointsAtTarget`) },
+                        { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.raven.mark.gameMasterWillDropMarkCard`) },
+                        { header, target: "#play-submit-button", content: this.$t(`GamePlayFieldTutorial.raven.mark.toValidateMark`) },
                     ],
                 },
                 "vote": [
@@ -110,10 +110,26 @@ export default {
                 ],
                 "lovers": {
                     "meet-each-other": [
-                        { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.${action}.loversMeetEachOtherWhen`) },
-                        { header, target: "#meeting-each-other-players", content: this.$t(`GamePlayFieldTutorial.${action}.loversMustWinTogether`) },
-                        { header, target: ".countdown", content: this.$t(`GamePlayFieldTutorial.${action}.loversHave20s`) },
-                        { header, target: "#play-submit-button", content: this.$t(`GamePlayFieldTutorial.${action}.noActionRequiredToValidate`) },
+                        {
+                            header,
+                            target: "#game-waiting-label",
+                            content: this.$t(`GamePlayFieldTutorial.lovers.meet-each-other.loversMeetEachOtherWhen`),
+                        },
+                        {
+                            header,
+                            target: "#meeting-each-other-players",
+                            content: this.$t(`GamePlayFieldTutorial.lovers.meet-each-other.loversMustWinTogether`),
+                        },
+                        {
+                            header,
+                            target: ".countdown",
+                            content: this.$t(`GamePlayFieldTutorial.lovers.meet-each-other.loversHave20s`),
+                        },
+                        {
+                            header,
+                            target: "#play-submit-button",
+                            content: this.$t(`GamePlayFieldTutorial.lovers.meet-each-other.noActionRequiredToValidate`),
+                        },
                     ],
                 },
                 "two-sisters": {
@@ -122,11 +138,23 @@ export default {
                             header,
                             target: "#game-waiting-label",
                             // eslint-disable-next-line max-len,vue/max-len
-                            content: this.$tc(`GamePlayFieldTutorial.${action}.twoSistersMeetEachOtherWhen`, sistersWakingUpInterval, { sistersWakingUpInterval }),
+                            content: this.$tc(`GamePlayFieldTutorial.two-sisters.meet-each-other.twoSistersMeetEachOtherWhen`, sistersWakingUpInterval, { sistersWakingUpInterval }),
                         },
-                        { header, target: "#meeting-each-other-players", content: this.$t(`GamePlayFieldTutorial.${action}.twoSistersTalk`) },
-                        { header, target: ".countdown", content: this.$t(`GamePlayFieldTutorial.${action}.twoSistersHave20s`) },
-                        { header, target: "#play-submit-button", content: this.$t(`GamePlayFieldTutorial.${action}.noActionRequiredToValidate`) },
+                        {
+                            header,
+                            target: "#meeting-each-other-players",
+                            content: this.$t(`GamePlayFieldTutorial.two-sisters.meet-each-other.twoSistersTalk`),
+                        },
+                        {
+                            header,
+                            target: ".countdown",
+                            content: this.$t(`GamePlayFieldTutorial.two-sisters.meet-each-other.twoSistersHave20s`),
+                        },
+                        {
+                            header,
+                            target: "#play-submit-button",
+                            content: this.$t(`GamePlayFieldTutorial.two-sisters.meet-each-other.noActionRequiredToValidate`),
+                        },
                     ],
                 },
                 "three-brothers": {
@@ -135,18 +163,42 @@ export default {
                             header,
                             target: "#game-waiting-label",
                             // eslint-disable-next-line max-len,vue/max-len
-                            content: this.$tc(`GamePlayFieldTutorial.${action}.threeBrothersMeetEachOtherWhen`, brothersWakingUpInterval, { brothersWakingUpInterval }),
+                            content: this.$tc(`GamePlayFieldTutorial.three-brothers.meet-each-other.threeBrothersMeetEachOtherWhen`, brothersWakingUpInterval, { brothersWakingUpInterval }),
                         },
-                        { header, target: "#meeting-each-other-players", content: this.$t(`GamePlayFieldTutorial.${action}.threeBrothersTalk`) },
-                        { header, target: ".countdown", content: this.$t(`GamePlayFieldTutorial.${action}.threeBrothersHave20s`) },
-                        { header, target: "#play-submit-button", content: this.$t(`GamePlayFieldTutorial.${action}.noActionRequiredToValidate`) },
+                        {
+                            header,
+                            target: "#meeting-each-other-players",
+                            content: this.$t(`GamePlayFieldTutorial.three-brothers.meet-each-other.threeBrothersTalk`),
+                        },
+                        {
+                            header,
+                            target: ".countdown",
+                            content: this.$t(`GamePlayFieldTutorial.three-brothers.meet-each-other.threeBrothersHave20s`),
+                        },
+                        {
+                            header,
+                            target: "#play-submit-button",
+                            content: this.$t(`GamePlayFieldTutorial.three-brothers.meet-each-other.noActionRequiredToValidate`),
+                        },
                     ],
                 },
                 "wild-child": {
                     "choose-model": [
-                        { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.${action}.wildChildChooseModelWhen`) },
-                        { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.${action}.wildChildCanChooseModel`) },
-                        { header, target: "#target-play-requirements", content: this.$t(`GamePlayFieldTutorial.${action}.toValidateChooseModel`) },
+                        {
+                            header,
+                            target: "#game-waiting-label",
+                            content: this.$t(`GamePlayFieldTutorial.wild-child.choose-model.wildChildChooseModelWhen`),
+                        },
+                        {
+                            header,
+                            target: "#player-targets",
+                            content: this.$t(`GamePlayFieldTutorial.wild-child.choose-model.wildChildCanChooseModel`),
+                        },
+                        {
+                            header,
+                            target: "#target-play-requirements",
+                            content: this.$t(`GamePlayFieldTutorial.wild-child.choose-model.toValidateChooseModel`),
+                        },
                     ],
                 },
             };

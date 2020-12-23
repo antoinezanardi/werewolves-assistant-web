@@ -174,11 +174,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    @import "../../../../../../node_modules/bootstrap/scss/bootstrap-grid";
     @import "../../../../../../node_modules/bootstrap/scss/bootstrap";
     @import "../../../../../assets/scss/variables";
 
     #game-waiting-label {
-        @include font-size(1.5rem);
+        font-size: 1rem;
+        @include media-breakpoint-up(md) {
+            font-size: 1.5rem;
+        }
     }
 
     #game-phase {

@@ -2,7 +2,7 @@
     <div id="game-event" class="container-fluid d-flex flex-grow-1 flex-column">
         <Keypress key-event="keyup" :key-code="37" @success="previousGameEventMessage"/>
         <Keypress key-event="keyup" :key-code="39" @success="nextGameEventMessage"/>
-        <div id="game-event-image-container" class="d-flex justify-content-center align-items-center w-100">
+        <div id="game-event-image-container" class="d-flex justify-content-center align-items-center w-100 visible-scrollbar">
             <div class="d-flex justify-content-center flex-grow-1 w-100">
                 <GameEventImage class="w-100" :event="event"/>
             </div>
@@ -189,11 +189,12 @@ export default {
     @import "../../../../assets/scss/variables";
 
     #game-event-image-container {
-        height: 50%;
+        height: 60%;
+        overflow-y: auto;
     }
 
     #game-event-message-container {
-        height: 50%;
+        height: 40%;
 
         #game-event-message {
             @include font-size(1.25rem);

@@ -1,5 +1,5 @@
 <template>
-    <div id="game-event-image" class="d-flex flex-grow-1 justify-content-center align-items-center">
+    <div id="game-event-image" class="d-flex flex-grow-1 justify-content-center align-items-center visible-scrollbar">
         <VueFlip v-if="event.type === 'game-starts'" id="game-starts-image" v-model="gameStartsEvent.flipped"
                  transition="0.75s" height="30vh" width="30vh">
             <template #front>
@@ -27,8 +27,12 @@
             </div>
             <h3 class="text-center mt-2 w-100 text-truncate" v-html="event.targets[0].player.name"/>
         </div>
-        <div v-else class="d-flex flex-grow-1 justify-content-center align-items-center flex-column">
-            <RoleImage class="role-image" :role="game.firstWaiting.for"/>
+        <div v-else class="d-flex flex-grow-1 justify-content-center align-items-center mt-3">
+            <div class="row justify-content-center align-content-between w-100">
+                <div v-for="player in game.alivePlayersExpectedToPlay" :key="player._id" class="col-md-3 col-6 text-center mb-2">
+                    <RoleImage class="role-image" :role="player.role.current"/>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -129,6 +133,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    @import "../../../../../node_modules/bootstrap/scss/bootstrap-grid";
+
     .phase-icon {
         font-size: 7rem;
     }
@@ -161,7 +167,12 @@ export default {
     .role-image {
         border: 5px solid #303030;
         border-radius: 5px;
-        height: 20vh;
+        height: 15vh;
+        width: 15vh;
+        @include media-breakpoint-up(md) {
+            height: 20vh;
+            width: 20vh;
+        }
     }
 
     #role-effect-container {
