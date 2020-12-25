@@ -532,11 +532,6 @@
     },
     "PlayFieldActionText": {
         "and": "et",
-        "wantsToUseLifePotionOnHerself": "souhaite utiliser sa potion de vie sur elle-même",
-        "wantsToUseDeathPotionOnHerself": "souhaite utiliser sa potion de mort sur elle-même",
-        "wantsToProtectHimself": "souhaite se protéger lui-même",
-        "choosesToHang": "souhaite pendre",
-        "choosesToHangHimself": "souhaite se pendre lui-même",
         "wantsToDelegateTo": "souhaite déléguer son rôle de maire à",
         "wantsToShoot": "souhaite tirer sur",
         "seer": {
@@ -549,7 +544,7 @@
         },
         "cupid": {
             "in-love": "souhaite charmer",
-            "selfTargeting": "lui-même"
+            "self-targeting-in-love": "lui-même"
         },
         "wild-child": {
             "worshiped": "souhaite choisir comme modèle"
@@ -557,11 +552,11 @@
         "raven": {
             "no-raven-marked": "ne souhaite marquer personne",
             "raven-marked": "souhaite marquer",
-            "selfTargeting": "lui-même"
+            "self-targeting-raven-marked": "souhaite se marquer lui-même"
         },
         "guard": {
             "protected": "souhaite protéger",
-            "selfTargeting": "lui-même"
+            "selfTargeting": "souhaite se protéger lui-même"
         },
         "werewolves": {
             "eaten": "souhaite manger | souhaitent manger"
@@ -572,8 +567,14 @@
         "witch": {
             "no-drank-life-potion": "ne souhaite pas utiliser sa potion de vie",
             "no-drank-death-potion": "ne souhaite pas utiliser sa potion de mort",
+            "self-targeting-drank-life-potion": "souhaite utiliser sa potion de vie sur elle-même",
+            "self-targeting-drank-death-potion": "souhaite utiliser sa potion de mort sur elle-même",
             "drank-life-potion": "souhaite utiliser sa potion de vie sur",
             "drank-death-potion": "souhaite utiliser sa potion de mort sur"
+        },
+        "sheriff": {
+            "chosen-for-vote": "souhaite pendre",
+            "self-targeting-chosen-for-vote": "souhaite se pendre lui-même"
         }
     },
     "CancelActionButton": {
@@ -626,7 +627,8 @@
             "threeBrothersMeetEachOther": "Les trois frères se réveillent et vont se rencontrer pour la première fois.",
             "threeBrothersWakeUpToTalk": "Les trois frères se réveillent et vont se concerter discrètement.",
             "wildChildStarts": "L'enfant sauvage se réveille pour choisir son modèle parmi les habitants.",
-            "bigBadWolfStarts": "Le grand-méchant-loup se réveille pour choisir la seconde victime des loups-garous."
+            "bigBadWolfStarts": "Le grand-méchant-loup se réveille pour choisir la seconde victime des loups-garous.",
+            "sheriffSettlesVote": "Le maire va départager pour régler l'égalité des votes sur la pendaison."
         }
     },
     "Statistics": {

@@ -27,7 +27,7 @@
         "popper.js": "^1.16.1",
         "qs": "^6.9.4",
         "sass-loader": "^10.1.0",
-        "sweetalert2": "^10.12.5",
+        "sweetalert2": "^10.12.6",
         "uniqid": "^5.2.0",
         "v-tooltip": "^2.0.3",
         "vee-validate": "^3.4.5",

@@ -29,10 +29,22 @@ export function getNominatedPlayers(votes, game, action) {
 }
 
 export function maxTargetLengthForPlayerAttribute(attribute) {
-    if (attribute === "seen" || attribute === "eaten" || attribute === "drank-life-potion" || attribute === "protected" ||
-        attribute === "raven-marked" || attribute === "worshiped") {
+    const oneTargetAttributes = [
+        "seen",
+        "eaten",
+        "drank-life-potion",
+        "drank-death-potion",
+        "protected",
+        "raven-marked",
+        "worshiped",
+        "chosen-for-vote",
+        "delegate",
+    ];
+    const twoTargetsAttributes = ["in-love"];
+    if (oneTargetAttributes.includes(attribute)) {
         return 1;
-    } else if (attribute === "in-love") {
+    } else if (twoTargetsAttributes.includes(attribute)) {
         return 2;
     }
+    return 0;
 }

@@ -118,7 +118,7 @@ class Game {
 
     get expectedTargetsLength() {
         const { to } = this.firstWaiting;
-        const oneTargetActions = ["look", "eat", "protect", "shoot", "settle-votes", "delegate", "choose-model"];
+        const oneTargetActions = ["look", "eat", "protect", "shoot", "settle-votes", "delegate", "choose-model", "use-potion"];
         const twoTargetsActions = ["charm"];
         if (oneTargetActions.includes(to)) {
             return 1;

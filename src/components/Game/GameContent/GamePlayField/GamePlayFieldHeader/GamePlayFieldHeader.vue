@@ -102,13 +102,15 @@ export default {
                         role: "villager",
                     },
                 },
-                "delegate": {
-                    icon: sheriffSVG,
-                    role: "sheriff",
-                },
-                "settle-votes": {
-                    icon: settleVotesSVG,
-                    role: "sheriff",
+                "sheriff": {
+                    "delegate": {
+                        icon: sheriffSVG,
+                        role: "sheriff",
+                    },
+                    "settle-votes": {
+                        icon: settleVotesSVG,
+                        role: "sheriff",
+                    },
                 },
                 "choose-side": {
                     icon: chooseSideSVG,

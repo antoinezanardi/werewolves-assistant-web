@@ -19,7 +19,7 @@
 * `axios` updated to version `0.21.1`.
 * `eslint` updated to version `7.16.0`.
 * `eslint-plugin-vue` updated to version `7.3.0`.
-* `sweetalert2` updated to version `10.12.5`.
+* `sweetalert2` updated to version `10.12.6`.
 * `vue-select` updated to version `3.11.2`.
 * `vuex` updated to version `3.6.0`.
 
