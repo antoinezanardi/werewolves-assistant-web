@@ -46,6 +46,7 @@ import charmSVG from "@/assets/svg/actions/charm.svg";
 import inLoveSVG from "@/assets/svg/attributes/in-love.svg";
 import twoSistersSVG from "@/assets/svg/roles/two-sisters.svg";
 import threeBrothersPNG from "@/assets/img/roles/three-brothers.png";
+import worshipedSVG from "@/assets/svg/attributes/worshiped.svg";
 import RoleImage from "@/components/shared/Game/Role/RoleImage";
 import RoleText from "@/components/shared/Game/Role/RoleText";
 
@@ -91,6 +92,7 @@ export default {
                 "lovers": { "meet-each-other": inLoveSVG },
                 "two-sisters": { "meet-each-other": twoSistersSVG },
                 "three-brothers": { "meet-each-other": threeBrothersPNG },
+                "wild-child": { "choose-model": worshipedSVG },
             };
             return actionImageSource[play.source] ? actionImageSource[play.source][play.action] : undefined;
         },

@@ -537,7 +537,8 @@
             "settle-votes": "a tranché pour pendre",
             "choose-side": "a choisi comme camp",
             "charm": "a rendu amoureux",
-            "meet-each-other": "se sont concertés"
+            "meet-each-other": "se sont concertés",
+            "choose-model": "a choisi comme modèle"
         },
         "skipTurn": "a passé son tour"
     },

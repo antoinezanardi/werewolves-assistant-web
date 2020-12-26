@@ -6,6 +6,7 @@
 
 * [#76](https://github.com/antoinezanardi/werewolves-assistant-web/issues/76) - Two Sisters role implemented.
 * [#77](https://github.com/antoinezanardi/werewolves-assistant-web/issues/77) - Three Brothers role implemented.
+* [#78](https://github.com/antoinezanardi/werewolves-assistant-web/issues/78) - Wild Child role implemented.
 
 ### 🐛 Bug fixes
 
