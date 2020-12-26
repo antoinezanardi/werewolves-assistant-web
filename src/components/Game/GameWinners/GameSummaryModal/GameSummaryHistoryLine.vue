@@ -113,11 +113,11 @@ export default {
                 return this.$t(`GameSummaryHistoryLine.skipTurn`);
             } else if (this.gameHistoryEntry.play.action === "use-potion") {
                 if (targets.length === 2) {
-                    return this.$t(`GameSummaryHistoryLine.actions.use-potion.both`);
+                    return this.$t(`GameSummaryHistoryLine.actions.witch.use-potion.both`);
                 } else if (targets[0].potion.life) {
-                    return this.$t(`GameSummaryHistoryLine.actions.use-potion.life`);
+                    return this.$t(`GameSummaryHistoryLine.actions.witch.use-potion.life`);
                 }
-                return this.$t(`GameSummaryHistoryLine.actions.use-potion.death`);
+                return this.$t(`GameSummaryHistoryLine.actions.witch.use-potion.death`);
             }
             return this.$t(`GameSummaryHistoryLine.actions.${source}.${action}`);
         },

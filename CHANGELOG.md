@@ -7,6 +7,7 @@
 * [#76](https://github.com/antoinezanardi/werewolves-assistant-web/issues/76) - Two Sisters role implemented.
 * [#77](https://github.com/antoinezanardi/werewolves-assistant-web/issues/77) - Three Brothers role implemented.
 * [#78](https://github.com/antoinezanardi/werewolves-assistant-web/issues/78) - Wild Child role implemented.
+* [#79](https://github.com/antoinezanardi/werewolves-assistant-web/issues/79) - Dog-Wolf role implemented.
 * [#80](https://github.com/antoinezanardi/werewolves-assistant-web/issues/80) - Big-Bad-Wolf role implemented.
 
 ### 🐛 Bug fixes
