@@ -521,24 +521,57 @@
         "day": "Jour",
         "night": "Nuit",
         "actions": {
-            "eat": "ont décidé de manger",
-            "use-potion": {
-                "life": "a utilisé sa potion de vie sur",
-                "death": "a utilisé sa potion de mort sur",
-                "both": "a utilisé ses potions sur"
+            "werewolves": {
+                "eat": "ont décidé de manger"
             },
-            "look": "a vu le rôle de",
-            "shoot": "a tiré sur",
-            "protect": "a protégé",
-            "mark": "a marqué",
-            "elect-sheriff": "a élu comme maire",
-            "vote": "a décidé de pendre",
-            "delegate": "a légué son rôle de maire à",
-            "settle-votes": "a tranché pour pendre",
-            "choose-side": "a choisi comme camp",
-            "charm": "a rendu amoureux",
-            "meet-each-other": "se sont concertés",
-            "choose-model": "a choisi comme modèle"
+            "big-bad-wolf": {
+                "eat": "a décidé de manger"
+            },
+            "witch": {
+                "use-potion": {
+                    "life": "a utilisé sa potion de vie sur",
+                    "death": "a utilisé sa potion de mort sur",
+                    "both": "a utilisé ses potions sur"
+                }
+            },
+            "seer": {
+                "look": "a vu le rôle de"
+            },
+            "hunter": {
+                "shoot": "a tiré sur"
+            },
+            "guard": {
+                "protect": "a protégé"
+            },
+            "raven": {
+                "mark": "a marqué"
+            },
+            "all": {
+                "elect-sheriff": "a élu comme maire",
+                "vote": "a décidé de pendre"
+            },
+            "sheriff": {
+                "delegate": "a légué son rôle de maire à",
+                "settle-votes": "a tranché pour pendre"
+            },
+            "dog-wolf": {
+                "choose-side": "a choisi comme camp"
+            },
+            "cupid": {
+                "charm": "a rendu amoureux"
+            },
+            "two-sisters": {
+                "meet-each-other": "se sont concertés"
+            },
+            "three-brothers": {
+                "meet-each-other": "se sont concertés"
+            },
+            "lovers": {
+                "meet-each-other": "se sont rencontrés et ont eu le coup de foudre"
+            },
+            "wild-child": {
+                "choose-model": "a choisi comme modèle"
+            }
         },
         "skipTurn": "a passé son tour"
     },

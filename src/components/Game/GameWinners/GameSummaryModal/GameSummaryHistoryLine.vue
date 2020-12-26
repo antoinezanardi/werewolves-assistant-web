@@ -47,6 +47,7 @@ import inLoveSVG from "@/assets/svg/attributes/in-love.svg";
 import twoSistersSVG from "@/assets/svg/roles/two-sisters.svg";
 import threeBrothersPNG from "@/assets/img/roles/three-brothers.png";
 import worshipedSVG from "@/assets/svg/attributes/worshiped.svg";
+import bigBadWolfSVG from "@/assets/svg/roles/big-bad-wolf.svg";
 import RoleImage from "@/components/shared/Game/Role/RoleImage";
 import RoleText from "@/components/shared/Game/Role/RoleText";
 
@@ -93,20 +94,21 @@ export default {
                 "two-sisters": { "meet-each-other": twoSistersSVG },
                 "three-brothers": { "meet-each-other": threeBrothersPNG },
                 "wild-child": { "choose-model": worshipedSVG },
+                "big-bad-wolf": { eat: bigBadWolfSVG },
             };
             return actionImageSource[play.source] ? actionImageSource[play.source][play.action] : undefined;
         },
         actionIconClass() {
-            const { targets, votes, side, action } = this.gameHistoryEntry.play;
+            const { targets, votes, side, action, source } = this.gameHistoryEntry.play;
             if (action === "meet-each-other") {
-                return "fa-comments";
+                return source === "lovers" ? "fa-grin-hearts" : "fa-comments";
             } else if (targets && targets.length || votes && votes.length || side) {
                 return "fa-arrow-right";
             }
             return "fa-ban";
         },
         actionText() {
-            const { targets, votes, side, action } = this.gameHistoryEntry.play;
+            const { targets, votes, side, action, source } = this.gameHistoryEntry.play;
             if (action !== "meet-each-other" && (!targets || !targets.length) && (!votes || !votes.length) && !side) {
                 return this.$t(`GameSummaryHistoryLine.skipTurn`);
             } else if (this.gameHistoryEntry.play.action === "use-potion") {
@@ -117,7 +119,7 @@ export default {
                 }
                 return this.$t(`GameSummaryHistoryLine.actions.use-potion.death`);
             }
-            return this.$t(`GameSummaryHistoryLine.actions.${this.gameHistoryEntry.play.action}`);
+            return this.$t(`GameSummaryHistoryLine.actions.${source}.${action}`);
         },
     },
 };
