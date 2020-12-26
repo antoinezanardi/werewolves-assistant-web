@@ -1,10 +1,11 @@
 # 📈 LIST OF CHANGES FOR WEREWOLVES ASSISTANT WEB
 
-## 1.0.0-beta.9 (2020-12-??)
+## 1.0.0-beta.9 (2021-01-??)
 
 ### 🚀 New features
 
 * [#76](https://github.com/antoinezanardi/werewolves-assistant-web/issues/76) - Two Sisters role implemented.
+* [#77](https://github.com/antoinezanardi/werewolves-assistant-web/issues/77) - Three Brothers role implemented.
 
 ### 🐛 Bug fixes
 
