@@ -3,6 +3,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
     name: "RoleText",
     props: {
@@ -12,8 +14,19 @@ export default {
         },
     },
     computed: {
+        ...mapGetters("game", { game: "game" }),
         roleText() {
-            return !this.role ? this.$t("RoleText.chooseARole") : this.$t(`Role.the.${this.role}`);
+            if (!this.role) {
+                return this.$t("RoleText.chooseARole");
+            }
+            let prefix;
+            const groups = ["all", "villagers", "werewolves", "lovers"];
+            if (groups.includes(this.role) || this.role === "sheriff") {
+                prefix = "the";
+            } else {
+                prefix = this.game.getPlayersWithRole(this.role).length === 1 ? "the" : "a";
+            }
+            return this.$t(`Role.${prefix}.${this.role}`);
         },
         roleTextClasses() {
             if (this.role) {

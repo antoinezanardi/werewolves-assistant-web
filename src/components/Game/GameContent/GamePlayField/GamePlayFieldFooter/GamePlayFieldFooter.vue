@@ -3,7 +3,7 @@
         <hr class="bg-dark my-1"/>
         <div class="row justify-content-center align-items-center">
             <div class="col-md-4 col-12 text-center order-md-0 mb-1 mb-md-0">
-                <GamePlayFieldCountdownFooter v-if="game.isTimedPlay"/>
+                <GamePlayFieldCountdownFooter v-if="game.isFirstWaitingTimedAction"/>
             </div>
             <div class="col-md-4 col-12 order-last order-md-1">
                 <form @submit.prevent="submitPlay">
@@ -16,19 +16,19 @@
             </div>
             <div class="col-md-4 col order-md-2">
                 <transition name="fade" mode="out-in">
-                    <div v-if="game.isVotePlay" id="vote-play-requirements" key="vote-play-requirements" class="text-center">
+                    <div v-if="game.isFirstWaitingVoteAction" id="vote-play-requirements" key="vote-play-requirements" class="text-center">
                         <VRoller :text="`${play.votes.length}/${game.alivePlayers.length}`" class="d-inline-flex mr-1"/>
                         <span v-html="$t('GamePlayFieldFooter.playersHaveVoted')"/>
                         <div class="text-muted font-italic">
                             <i class="fa mr-2" :class="votePlayRequirementsIconClass"/>
                             <span class="small" v-html="$t('GamePlayFieldFooter.minOnePlayerHasToVote')"/>
                         </div>
-                        <div v-if="game.isForbiddenTieVotePlay" class="text-muted font-italic">
+                        <div v-if="game.isFirstWaitingForbiddenTieVoteAction" class="text-muted font-italic">
                             <i class="fa mr-2" :class="tieInVotesForbiddenIconClass"/>
                             <span class="small" v-html="$t('GamePlayFieldFooter.tieInVotesForbidden')"/>
                         </div>
                     </div>
-                    <div v-else-if="game.isTargetPlay" id="target-play-requirements" key="target-play-requirements"
+                    <div v-else-if="game.isFirstWaitingTargetAction" id="target-play-requirements" key="target-play-requirements"
                          class="text-center">
                         <VRoller :text="`${play.targets.length}/${game.expectedTargetsLength}`" class="d-inline-flex mr-1"/>
                         <span v-html="$tc('GamePlayFieldFooter.playerTargeted', game.expectedTargetsLength)"/>
@@ -37,7 +37,7 @@
                             <span class="small" v-html="targetPlayRequirementsText"/>
                         </div>
                     </div>
-                    <div v-else-if="game.isChooseSidePlay" id="choose-side-play-requirements" key="choose-side-play-requirements">
+                    <div v-else-if="game.isFirstWaitingChooseSideAction" id="choose-side-play-requirements" key="choose-side-play-requirements">
                         <div class="text-muted font-italic">
                             <i class="fa mr-2" :class="chooseSidePlayRequirementsIconClass"/>
                             <span class="small" v-html="$t('GamePlayFieldFooter.oneSideMustBeChosen')"/>
@@ -96,9 +96,10 @@ export default {
             return this.isSideChosen ? "fa-check text-success" : "fa-times text-danger";
         },
         canSubmitPlay() {
-            return this.game.isVotePlay && !!this.play.votes.length && (!this.game.isForbiddenTieVotePlay || !this.isThereTieInVotes) ||
-                this.game.isTargetPlay && this.play.targets.length === this.game.expectedTargetsLength ||
-                this.game.isChooseSidePlay && this.isSideChosen || this.game.isSkippablePlay;
+            return this.game.isFirstWaitingVoteAction && !!this.play.votes.length &&
+                (!this.game.isFirstWaitingForbiddenTieVoteAction || !this.isThereTieInVotes) ||
+                this.game.isFirstWaitingTargetAction && this.play.targets.length === this.game.expectedTargetsLength ||
+                this.game.isFirstWaitingChooseSideAction && this.isSideChosen || this.game.isFirstWaitingSkippableAction;
         },
     },
     methods: {

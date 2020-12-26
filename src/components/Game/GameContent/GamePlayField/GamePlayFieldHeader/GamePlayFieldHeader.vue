@@ -82,9 +82,11 @@ export default {
                         role: "guard",
                     },
                 },
-                "shoot": {
-                    icon: shootSVG,
-                    role: "hunter",
+                "hunter": {
+                    shoot: {
+                        icon: shootSVG,
+                        role: "hunter",
+                    },
                 },
                 "raven": {
                     mark: {
@@ -92,13 +94,13 @@ export default {
                         role: "raven",
                     },
                 },
-                "elect-sheriff": {
-                    icon: sheriffSVG,
-                    role: "villager",
-                },
                 "all": {
-                    vote: {
+                    "vote": {
                         icon: voteSVG,
+                        role: "villager",
+                    },
+                    "elect-sheriff": {
+                        icon: sheriffSVG,
                         role: "villager",
                     },
                 },
@@ -112,13 +114,17 @@ export default {
                         role: "sheriff",
                     },
                 },
-                "choose-side": {
-                    icon: chooseSideSVG,
-                    role: "dog-wolf",
+                "dog-wolf": {
+                    "choose-side": {
+                        icon: chooseSideSVG,
+                        role: "dog-wolf",
+                    },
                 },
-                "charm": {
-                    icon: charmSVG,
-                    role: "cupid",
+                "cupid": {
+                    charm: {
+                        icon: charmSVG,
+                        role: "cupid",
+                    },
                 },
                 "lovers": {
                     "meet-each-other": {

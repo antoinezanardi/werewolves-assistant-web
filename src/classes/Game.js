@@ -2,6 +2,7 @@ import { getProp } from "@/helpers/functions/Class";
 import User from "./User";
 import Player from "./Player";
 import GameHistory from "./GameHistory";
+import { isForbiddenTieVoteAction, isSkippableAction, isTargetAction, isTimedAction, isVoteAction } from "@/helpers/functions/Game";
 
 class Game {
     constructor(game = null) {
@@ -98,22 +99,19 @@ class Game {
         return this.waiting[0];
     }
 
-    get isVotePlay() {
+    get isFirstWaitingVoteAction() {
         const { to } = this.firstWaiting;
-        const voteActions = ["elect-sheriff", "vote"];
-        return voteActions.includes(to);
+        return isVoteAction(to);
     }
 
-    get isForbiddenTieVotePlay() {
+    get isFirstWaitingForbiddenTieVoteAction() {
         const { to } = this.firstWaiting;
-        const forbiddenTieVoteActions = ["elect-sheriff"];
-        return forbiddenTieVoteActions.includes(to);
+        return isForbiddenTieVoteAction(to);
     }
 
-    get isTargetPlay() {
+    get isFirstWaitingTargetAction() {
         const { to } = this.firstWaiting;
-        const targetActions = ["look", "eat", "protect", "shoot", "settle-votes", "delegate", "charm", "choose-model"];
-        return targetActions.includes(to);
+        return isTargetAction(to);
     }
 
     get expectedTargetsLength() {
@@ -128,10 +126,9 @@ class Game {
         return 0;
     }
 
-    get isTimedPlay() {
+    get isFirstWaitingTimedAction() {
         const { to } = this.firstWaiting;
-        const timedActions = ["elect-sheriff", "vote", "meet-each-other"];
-        return timedActions.includes(to);
+        return isTimedAction(to);
     }
 
     get maxTimeToPlay() {
@@ -144,15 +141,14 @@ class Game {
         return 0;
     }
 
-    get isChooseSidePlay() {
+    get isFirstWaitingChooseSideAction() {
         const { to } = this.firstWaiting;
         return to === "choose-side";
     }
 
-    get isSkippablePlay() {
+    get isFirstWaitingSkippableAction() {
         const { to } = this.firstWaiting;
-        const skippableActions = ["use-potion", "mark", "meet-each-other"];
-        return skippableActions.includes(to);
+        return isSkippableAction(to);
     }
 
     getPlayersWithRole(role) {
@@ -243,16 +239,20 @@ class Game {
         return this.players.find(({ _id }) => _id.toString() === playerId);
     }
 
-    get alivePlayersExpectedToPlay() {
+    get playersExpectedToPlay() {
         const { for: source } = this.firstWaiting;
         const waitingForGroups = {
-            all: this.alivePlayers,
-            sheriff: this.getPlayersWithAttribute("sheriff").filter(({ isAlive }) => isAlive),
-            lovers: this.getPlayersWithAttribute("lovers").filter(({ isAlive }) => isAlive),
-            villagers: this.aliveVillagerPlayers,
-            werewolves: this.aliveWerewolfPlayers,
+            all: this.players,
+            sheriff: this.getPlayersWithAttribute("sheriff"),
+            lovers: this.getPlayersWithAttribute("lovers"),
+            villagers: this.villagerPlayers,
+            werewolves: this.werewolfPlayers,
         };
         return waitingForGroups[source] ? waitingForGroups[source] : this.getPlayersWithRole(source);
+    }
+
+    get alivePlayersExpectedToPlay() {
+        return this.playersExpectedToPlay.filter(({ isAlive }) => isAlive);
     }
 }
 

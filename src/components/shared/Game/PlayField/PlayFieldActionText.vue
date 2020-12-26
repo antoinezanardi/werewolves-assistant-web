@@ -42,7 +42,7 @@ export default {
                     return this.$t("PlayFieldActionText.dog-wolf.wantsToChooseSide");
                 }
                 return this.$t(`PlayFieldActionText.dog-wolf.${this.play.side}`);
-            } else if (this.game.isSkippablePlay && !this.targetedPlayersForAttribute.length) {
+            } else if (this.game.isFirstWaitingSkippableAction && !this.targetedPlayersForAttribute.length) {
                 return this.$t(`PlayFieldActionText.${firstWaiting.for}.no-${this.attribute}`);
             } else if (this.isOneTargetPlayAndTargetingHimself) {
                 return this.$t(`PlayFieldActionText.${firstWaiting.for}.self-targeting-${this.attribute}`);

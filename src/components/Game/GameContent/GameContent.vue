@@ -116,7 +116,7 @@ export default {
             }
         },
         generateGameRoleTurnEvents(newGame, oldGame) {
-            if (!oldGame || newGame.firstWaiting.for !== oldGame.firstWaiting.for && newGame.firstWaiting.to !== oldGame.firstWaiting.to) {
+            if (!oldGame || newGame.firstWaiting.for !== oldGame.firstWaiting.for || newGame.firstWaiting.to !== oldGame.firstWaiting.to) {
                 this.events.push(new GameEvent({ type: `${newGame.firstWaiting.for}-turn` }));
             }
         },

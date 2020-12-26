@@ -110,7 +110,7 @@ export default {
                 "sheriff-turn": {
                     messages: [
                         ...insertIf(this.game.firstWaiting.to === "settle-votes", i18n.t("GameEvent.messages.sheriffSettlesVote")),
-                        ...insertIf(this.game.firstWaiting.to === "delegates", i18n.t("GameEvent.messages.sheriffDelegates")),
+                        ...insertIf(this.game.firstWaiting.to === "delegate", i18n.t("GameEvent.messages.sheriffDelegates")),
                     ],
                 },
                 "day-rises": { messages: [i18n.t("GameEvent.messages.dayRises")] },

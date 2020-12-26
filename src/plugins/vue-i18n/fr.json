@@ -273,20 +273,13 @@
         }
     },
     "GamePlayFieldTutorial": {
-        "elect-sheriff": {
-            "howToPlay": "Comment élire le maire ?",
-            "sheriffIsElectedWhen": "Au début de la partie, un maire doit être élu par tous les joueurs vivants.",
-            "playersHave5Min": "Les joueurs ont 5 minutes pour se mettre d'accord sur qui sera leur prochain maire. À la fin du temps, le maître du jeu doit stopper les discussions et procéder à l'élection.",
-            "eachPlayerVoteForSheriff": "Chaque joueur a donc une voix à donner pour l'élection, mais ne peut voter pour lui-même. Il peut néanmoins voter blanc. Le maître du jeu demande le vote de chacun à tour de rôle.",
-            "toValidateAnElection": "Pour que le maire soit élu, au moins un joueur doit avoir voté et une égalité dans les votes est impossible."
-        },
         "seer": {
             "look": {
                 "howToPlay": "Comment jouer la voyante ?",
                 "seerLooksWhen": "Chaque nuit, si elle est vivante, la voyante se réveille.",
                 "seerCanLook": "Grâce à son don, la voyante voit le rôle de n'importe quel joueur vivant.",
                 "seerPointsAtTarget": "La voyante doit pointer du doigt sa cible et le maître du jeu révelera à haute voix le rôle de cette dernière.",
-                "toValidateLook": "Pour que la voyante puisse révéler un rôle, elle doit obligatoirement choisir une cible."
+                "toValidateLook": "Pour passer à la suite, la voyante doit obligatoirement voir le rôle d'un habitant."
             }
         },
         "werewolves": {
@@ -336,38 +329,53 @@
                 "playersHave5Min": "Les joueurs ont 5 minutes pour se mettre d'accord sur qui sera pendu. À la fin du temps, le maître du jeu doit stopper les discussions et procéder au vote.",
                 "eachPlayerVote": "Chaque joueur a donc une voix à donner pour le vote, mais ne peut voter pour lui-même. Il peut néanmoins voter blanc. Le maître du jeu demande le vote de chacun à tour de rôle.",
                 "toValidateAVote": "Pour passer à la suite, au moins un joueur doit avoir voté."
+            },
+            "elect-sheriff": {
+                "howToPlay": "Comment élire le maire ?",
+                "sheriffIsElectedWhen": "Au début de la partie, un maire doit être élu par tous les joueurs vivants.",
+                "playersHave5Min": "Les joueurs ont 5 minutes pour se mettre d'accord sur qui sera leur prochain maire. À la fin du temps, le maître du jeu doit stopper les discussions et procéder à l'élection.",
+                "eachPlayerVoteForSheriff": "Chaque joueur a donc une voix à donner pour l'élection, mais ne peut voter pour lui-même. Il peut néanmoins voter blanc. Le maître du jeu demande le vote de chacun à tour de rôle.",
+                "toValidateAnElection": "Pour que le maire soit élu, au moins un joueur doit avoir voté et une égalité dans les votes est impossible."
             }
         },
-        "delegate": {
-            "howToPlay": "Comment déléguer le rôle de maire ?",
-            "sheriffDelegatesWhen": "À chaque fois que le maire meurt, il doit déléguer son rôle à l'un des survivants.",
-            "noDemocracyHere": "Aucune démocratie ici, le maire mourrant choisi arbitrairement son successeur en le pointant du doigt.",
-            "toValidateDelegation": "Pour que le maire délègue son pouvoir, il doit obligatoirement choisir une cible."
+        "hunter": {
+            "shoot": {
+                "howToPlay": "Comment jouer le chasseur ?",
+                "hunterShootsWhen": "Quand le chasseur meurt, il prend son fusil pour se venger dans son dernier souffle.",
+                "hunterCanShoot": "Le chasseur mourrant choisi arbitrairement sa victime en la pointant du doigt. Elle mourra instantanément du coup fatal.",
+                "toValidateShoot": "Pour que le chasseur prenne sa revanche, il doit obligatoirement choisir une cible."
+            }
         },
-        "shoot": {
-            "howToPlay": "Comment jouer le chasseur ?",
-            "hunterShootsWhen": "Quand le chasseur meurt, il prend son fusil pour se venger dans son dernier souffle.",
-            "hunterCanShoot": "Le chasseur mourrant choisi arbitrairement sa victime en la pointant du doigt. Elle mourra instantanément du coup fatal.",
-            "toValidateShoot": "Pour que le chasseur prenne sa revanche, il doit obligatoirement choisir une cible."
+        "sheriff": {
+            "settle-votes": {
+                "howToPlay": "Comment départager les votes ?",
+                "sheriffSettleVotesWhen": "À chaque fois que la village n'arrive pas à se mettre d'accord sur qui pendre, le maire doit trancher.",
+                "toValidateSettleVotes": "Pour passer à la suite, le maire doit obligatoirement choisir la personne qui sera pendue."
+            },
+            "delegate": {
+                "howToPlay": "Comment déléguer le rôle de maire ?",
+                "sheriffDelegatesWhen": "À chaque fois que le maire meurt, il doit déléguer son rôle à l'un des survivants.",
+                "noDemocracyHere": "Aucune démocratie ici, le maire mourrant choisi arbitrairement son successeur en le pointant du doigt.",
+                "toValidateDelegation": "Pour passer à la suite, le maire doit obligatoirement choisir une successeur."
+            }
         },
-        "settle-votes": {
-            "howToPlay": "Comment départager les votes ?",
-            "sheriffSettleVotesWhen": "À chaque fois que la village n'arrive pas à se mettre d'accord sur qui pendre, le maire doit trancher.",
-            "toValidateSettleVotes": "Pour que le vote soit tranché, le maire doit obligatoirement choisir une cible."
+        "dog-wolf": {
+            "choose-side": {
+                "howToPlay": "Comment jouer le chien-loup ?",
+                "dogWolfChoosesSideWhen": "Au début de la partie, seulement la première nuit, le chien-loup se réveille.",
+                "dogWolfCanChooseSide": "Le chien-loup choisit le camp qu'il va rejoindre pour le reste de la partie.",
+                "ifItChoosesVillagers": "S'il choisit le camp des Villageois, il reste avec son maître au village et devra éliminer les Loups-Garous.",
+                "ifItChoosesWerewolves": "Si au contraire, il choisit de rejoindre les Loups-Garous, son instinct primaire sauvage se réveillera et devra éliminer les Villageois. Il se réveillera alors avec les autres Loups-Garous pour décider de la victime à dévorer.",
+                "toValidateChooseSide": "Pour passer à la suite, le chien-loup doit choisir obligatoirement un camp."
+            }
         },
-        "choose-side": {
-            "howToPlay": "Comment jouer le chien-loup ?",
-            "dogWolfChoosesSideWhen": "Au début de la partie, seulement la première nuit, le chien-loup se réveille.",
-            "dogWolfCanChooseSide": "Le chien-loup choisit le camp qu'il va rejoindre pour le reste de la partie.",
-            "ifItChoosesVillagers": "S'il choisit le camp des Villageois, il reste avec son maître au village et devra éliminer les Loups-Garous.",
-            "ifItChoosesWerewolves": "Si au contraire, il choisit de rejoindre les Loups-Garous, son instinct primaire sauvage se réveillera et devra éliminer les Villageois. Il se réveillera alors avec les autres Loups-Garous pour décider de la victime à dévorer.",
-            "toValidateChooseSide": "Pour passer à la suite, le chien-loup doit choisir obligatoirement un camp."
-        },
-        "charm": {
-            "howToPlay": "Comment jouer Cupidon ?",
-            "cupidCharmsWhen": "Au début de la partie, seulement la première nuit, Cupidon se réveille.",
-            "cupidCanCharm": "Cupidon peut rendre amoureux deux joueurs grâce à son arc et ses flêches d'Amour. Il peut se désigner lui-même avec une autre personne. Le maître du jeu devra, en silence et le plus discrètement possible, tapoter le dos des joueurs amoureux une fois le choix de Cupidon fait.",
-            "toValidateCharm": "Pour que Cupidon puisse charmer de ses flêches, il doit obligatoirement choisir deux cibles."
+        "cupid": {
+            "charm": {
+                "howToPlay": "Comment jouer Cupidon ?",
+                "cupidCharmsWhen": "Au début de la partie, seulement la première nuit, Cupidon se réveille.",
+                "cupidCanCharm": "Cupidon peut rendre amoureux deux joueurs grâce à son arc et ses flêches d'Amour. Il peut se désigner lui-même avec une autre personne. Le maître du jeu devra, en silence et le plus discrètement possible, tapoter le dos des joueurs amoureux une fois le choix de Cupidon fait.",
+                "toValidateCharm": "Pour que Cupidon puisse charmer de ses flêches, il doit obligatoirement choisir deux cibles."
+            }
         },
         "lovers": {
             "meet-each-other": {
@@ -526,14 +534,14 @@
             "elect-sheriff": "a élu comme maire",
             "vote": "a décidé de pendre",
             "delegate": "a légué son rôle de maire à",
-            "settle-votes": "a tranché pour pendre"
+            "settle-votes": "a tranché pour pendre",
+            "choose-side": "a choisi comme camp",
+            "charm": "a charmé"
         },
         "skipTurn": "a passé son tour"
     },
     "PlayFieldActionText": {
         "and": "et",
-        "wantsToDelegateTo": "souhaite déléguer son rôle de maire à",
-        "wantsToShoot": "souhaite tirer sur",
         "seer": {
             "seen": "souhaite voir le rôle de"
         },
@@ -556,7 +564,7 @@
         },
         "guard": {
             "protected": "souhaite protéger",
-            "selfTargeting": "souhaite se protéger lui-même"
+            "self-targeting-protected": "souhaite se protéger lui-même"
         },
         "werewolves": {
             "eaten": "souhaite manger | souhaitent manger"
@@ -574,7 +582,11 @@
         },
         "sheriff": {
             "chosen-for-vote": "souhaite pendre",
-            "self-targeting-chosen-for-vote": "souhaite se pendre lui-même"
+            "self-targeting-chosen-for-vote": "souhaite se pendre lui-même",
+            "delegate": "souhaite déléguer son rôle de maire à"
+        },
+        "hunter": {
+            "shoot": "souhaite tirer sur"
         }
     },
     "CancelActionButton": {
@@ -583,7 +595,8 @@
         "cancelSide": "Annuler le choix du camp"
     },
     "MeetEachOtherPlayField": {
-        "meetEachOtherTheFirstTime": "se rencontrent pour la première fois"
+        "meetEachOtherTheFirstTime": "se rencontrent pour la première fois",
+        "meetEachOtherForTalking": "se concertent discrètement"
     },
     "NoActionExpected": {
         "noActionExpected": "Aucune action requise"
@@ -628,7 +641,8 @@
             "threeBrothersWakeUpToTalk": "Les trois frères se réveillent et vont se concerter discrètement.",
             "wildChildStarts": "L'enfant sauvage se réveille pour choisir son modèle parmi les habitants.",
             "bigBadWolfStarts": "Le grand-méchant-loup se réveille pour choisir la seconde victime des loups-garous.",
-            "sheriffSettlesVote": "Le maire va départager pour régler l'égalité des votes sur la pendaison."
+            "sheriffSettlesVote": "Le maire va départager pour régler l'égalité des votes sur la pendaison.",
+            "sheriffDelegates": "Dans son dernier souffle, le maire va déléguer son rôle à l'un des survivants."
         }
     },
     "Statistics": {
@@ -648,6 +662,7 @@
     },
     "Role": {
         "a": {
+            "all": "le village",
             "villager": "un villageois",
             "werewolf": "un loup-garou",
             "seer": "une voyante",
@@ -657,7 +672,7 @@
             "raven": "un corbeau",
             "little-girl": "une petite fille",
             "villager-villager": "un villageois-villageois",
-            "cupid": "un Cupidon",
+            "cupid": "Cupidon",
             "two-sisters": "une des deux sœurs",
             "three-brothers": "un des trois frères",
             "wild-child": "un enfant sauvage",
@@ -683,7 +698,8 @@
             "three-brothers": "les trois frères",
             "wild-child": "l'enfant sauvage",
             "dog-wolf": "le chien-loup",
-            "big-bad-wolf": "le grand-méchant-loup"
+            "big-bad-wolf": "le grand-méchant-loup",
+            "lovers": "les amoureux"
         },
         "description": {
             "villager": [

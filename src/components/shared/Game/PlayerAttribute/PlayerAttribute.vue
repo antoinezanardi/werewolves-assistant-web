@@ -35,6 +35,10 @@ export default {
                         tooltip: this.$t("PlayerAttribute.attributes.sheriff"),
                         SVG: sheriffSVG,
                     },
+                    sheriff: {
+                        tooltip: this.$t("PlayerAttribute.attributes.sheriff"),
+                        SVG: sheriffSVG,
+                    },
                 },
                 "seen": {
                     seer: {

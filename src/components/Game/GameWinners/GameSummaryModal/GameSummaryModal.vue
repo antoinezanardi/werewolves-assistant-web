@@ -10,7 +10,7 @@
                         </span>
                     </button>
                 </div>
-                <div class="modal-body d-flex flex-column h-100">
+                <div class="modal-body d-flex flex-column h-100 visible-scrollbar">
                     <div id="game-summary-results">
                         <h4 class="text-center mt-2">
                             <i class="fa fa-trophy text-warning mr-2"/>

@@ -95,7 +95,8 @@ export default {
     },
     methods: {
         setPlayersExpectedToPlayFlip() {
-            const players = this.game.alivePlayersExpectedToPlay;
+            const { firstWaiting, alivePlayersExpectedToPlay, playersExpectedToPlay } = this.game;
+            const players = firstWaiting.to === "delegate" || firstWaiting.to === "shoot" ? playersExpectedToPlay : alivePlayersExpectedToPlay;
             this.gameStartsEvent.thumbnail.front = players[0].role.current;
             if (players.length > 2) {
                 setInterval(() => {
@@ -162,6 +163,8 @@ export default {
     .role-image {
         border: 5px solid #303030;
         border-radius: 5px;
+        height: 30vh;
+        width: 30vh;
     }
 
     #role-effect-container {
