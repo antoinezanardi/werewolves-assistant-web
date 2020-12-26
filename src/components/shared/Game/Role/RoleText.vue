@@ -12,6 +12,10 @@ export default {
             type: String,
             default: "",
         },
+        prefix: {
+            type: String,
+            default: undefined,
+        },
     },
     computed: {
         ...mapGetters("game", { game: "game" }),
@@ -21,7 +25,9 @@ export default {
             }
             let prefix;
             const groups = ["all", "villagers", "werewolves", "lovers"];
-            if (groups.includes(this.role) || this.role === "sheriff") {
+            if (this.prefix) {
+                prefix = this.prefix;
+            } else if (groups.includes(this.role) || this.role === "sheriff") {
                 prefix = "the";
             } else {
                 prefix = this.game.getPlayersWithRole(this.role).length === 1 ? "the" : "a";

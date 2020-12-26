@@ -4,6 +4,8 @@
 
 ### 🚀 New features
 
+* [#76](https://github.com/antoinezanardi/werewolves-assistant-web/issues/76) - Two Sisters role implemented.
+
 ### 🐛 Bug fixes
 
 ### ♻️ Refactoring

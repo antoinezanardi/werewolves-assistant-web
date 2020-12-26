@@ -9,7 +9,7 @@
         </td>
         <td class="col-3 d-flex flex-column align-items-center justify-content-center">
             <RoleImage width="30" :role="gameHistoryEntry.play.source"/>
-            <RoleText class="text-center" :role="gameHistoryEntry.play.source"/>
+            <RoleText class="text-center" :role="gameHistoryEntry.play.source" prefix="the"/>
         </td>
         <td class="col-4 col-md-3 d-flex flex-column align-items-center justify-content-center">
             <i class="fa fa-2x" :class="actionIconClass"/>
@@ -44,6 +44,7 @@ import sheriffSVG from "@/assets/svg/attributes/sheriff.svg";
 import chooseSideSVG from "@/assets/svg/actions/choose-side.svg";
 import charmSVG from "@/assets/svg/actions/charm.svg";
 import inLoveSVG from "@/assets/svg/attributes/in-love.svg";
+import twoSistersSVG from "@/assets/svg/roles/two-sisters.svg";
 import RoleImage from "@/components/shared/Game/Role/RoleImage";
 import RoleText from "@/components/shared/Game/Role/RoleText";
 
@@ -87,16 +88,22 @@ export default {
                 "dog-wolf": { "choose-side": chooseSideSVG },
                 "cupid": { charm: charmSVG },
                 "lovers": { "meet-each-other": inLoveSVG },
+                "two-sisters": { "meet-each-other": twoSistersSVG },
             };
             return actionImageSource[play.source] ? actionImageSource[play.source][play.action] : undefined;
         },
         actionIconClass() {
-            const { targets, votes, side } = this.gameHistoryEntry.play;
-            return targets && targets.length || votes && votes.length || side ? "fa-arrow-right" : "fa-ban";
+            const { targets, votes, side, action } = this.gameHistoryEntry.play;
+            if (action === "meet-each-other") {
+                return "fa-comments";
+            } else if (targets && targets.length || votes && votes.length || side) {
+                return "fa-arrow-right";
+            }
+            return "fa-ban";
         },
         actionText() {
-            const { targets, votes, side } = this.gameHistoryEntry.play;
-            if ((!targets || !targets.length) && (!votes || !votes.length) && !side) {
+            const { targets, votes, side, action } = this.gameHistoryEntry.play;
+            if (action !== "meet-each-other" && (!targets || !targets.length) && (!votes || !votes.length) && !side) {
                 return this.$t(`GameSummaryHistoryLine.skipTurn`);
             } else if (this.gameHistoryEntry.play.action === "use-potion") {
                 if (targets.length === 2) {
