@@ -14,6 +14,7 @@
             </div>
             <div class="row mt-2">
                 <div class="col-12 text-center">
+                    <GameSummaryButton class="mb-2 mb-md-0 mr-md-2" @show-game-summary-modal="showGameSummaryModal"/>
                     <GameReviewButton @show-game-review-modal="showGameReviewModal"/>
                 </div>
             </div>
@@ -22,19 +23,13 @@
             </div>
         </div>
         <div class="row justify-content-between align-items-center">
-            <div class="col-lg-4">
-                <button class="btn btn-primary btn-block" @click="showGameSummaryModal">
-                    <i class="fa fa-list mr-2"/>
-                    <span v-html="$t('GameWinners.seeGameSummary')"/>
-                </button>
-            </div>
-            <div class="col-lg-4 mt-2 mt-lg-0">
+            <div class="col-md-8">
                 <button class="btn btn-primary btn-block btn-lg" @click="restartGame">
                     <i class="fa fa-redo mr-2"/>
                     <span v-html="$t('GameWinners.restartGame')"/>
                 </button>
             </div>
-            <div class="col-lg-4 mt-2 mt-lg-0">
+            <div class="col-md-4 mt-2 mt-md-0">
                 <router-link class="btn btn-secondary btn-block" to="/">
                     <i class="fa fa-sign-out-alt mr-2"/>
                     <span v-html="$t('GameWinners.quit')"/>
@@ -52,13 +47,14 @@ import Swal from "sweetalert2";
 import { stringify } from "qs";
 import trophy from "@/assets/svg/game/trophy.svg";
 import PlayerCard from "../../shared/Game/PlayerCard";
-import GameSummaryModal from "@/components/Game/GameWinners/GameSummaryModal/GameSummaryModal";
+import GameSummaryModal from "@/components/shared/Game/GameSummary/GameSummaryModal/GameSummaryModal";
 import GameReviewModal from "@/components/shared/Game/GameReview/GameReviewModal/GameReviewModal";
 import GameReviewButton from "@/components/shared/Game/GameReview/GameReviewButton/GameReviewButton";
+import GameSummaryButton from "@/components/shared/Game/GameSummary/GameSummaryButton/GameSummaryButton";
 
 export default {
     name: "GameWinners",
-    components: { GameReviewButton, GameReviewModal, GameSummaryModal, PlayerCard },
+    components: { GameSummaryButton, GameReviewButton, GameReviewModal, GameSummaryModal, PlayerCard },
     data() {
         return { SVGs: { trophy } };
     },

@@ -69,7 +69,7 @@
 <script>
 import { mapGetters } from "vuex";
 import $ from "jquery";
-import GameSummaryHistoryLine from "@/components/Game/GameWinners/GameSummaryModal/GameSummaryHistoryLine";
+import GameSummaryHistoryLine from "@/components/shared/Game/GameSummary/GameSummaryModal/GameSummaryHistoryLine";
 import AliveVillagers from "@/components/shared/Game/Sides/AliveVillagers";
 import AliveWerewolves from "@/components/shared/Game/Sides/AliveWerewolves";
 import trophy from "@/assets/svg/game/trophy.svg";

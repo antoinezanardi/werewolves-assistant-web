@@ -474,7 +474,6 @@
         "doYouWantToKeepSamePlayers": "Voulez-vous rejouer avec les mêmes joueurs ?",
         "keepSamePlayers": "Garder les mêmes joueurs",
         "fromScratch": "Recommencer du début",
-        "seeGameSummary": "Voir le récapitulatif de partie",
         "rateThisGame": "Noter la partie"
     },
     "GameCanceled": {
@@ -485,7 +484,10 @@
         "doYouWantToKeepSamePlayers": "Voulez-vous rejouer avec les mêmes joueurs ?",
         "keepSamePlayers": "Garder les mêmes joueurs",
         "fromScratch": "Recommencer du début"
-        },
+    },
+    "GameSummaryButton": {
+        "seeGameSummary": "Voir le récapitulatif de partie"
+    },
     "GameSummaryModal": {
         "gameSummary": "Récapitulatif de la partie",
         "gameResults": "Résultats de la partie",

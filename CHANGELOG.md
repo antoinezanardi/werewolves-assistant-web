@@ -10,11 +10,10 @@
 * [#79](https://github.com/antoinezanardi/werewolves-assistant-web/issues/79) - Dog-Wolf role implemented.
 * [#80](https://github.com/antoinezanardi/werewolves-assistant-web/issues/80) - Big-Bad-Wolf role implemented.
 
-### 🐛 Bug fixes
-
 ### ♻️ Refactoring
 
 * [#82](https://github.com/antoinezanardi/werewolves-assistant-web/issues/82) - Change `player.role.group` to `player.side`.
+* [#83](https://github.com/antoinezanardi/werewolves-assistant-web/issues/83) - Game summary button moved from bottom to right after the game review button to make it more visible.
 
 ### 📦 Packages
 
