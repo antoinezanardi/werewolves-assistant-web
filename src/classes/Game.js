@@ -244,7 +244,7 @@ class Game {
         const waitingForGroups = {
             all: this.players,
             sheriff: this.getPlayersWithAttribute("sheriff"),
-            lovers: this.getPlayersWithAttribute("lovers"),
+            lovers: this.getPlayersWithAttribute("in-love"),
             villagers: this.villagerPlayers,
             werewolves: this.werewolfPlayers,
         };

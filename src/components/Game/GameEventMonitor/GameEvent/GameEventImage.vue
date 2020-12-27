@@ -8,22 +8,28 @@
                    :class="{ 'swing': phaseTransition.ended }"/>
             </transition>
         </div>
-        <div v-else-if="isEffectGameEvent"
-             class="d-flex flex-grow-1 justify-content-center align-items-center flex-column w-100">
-            <div id="role-effect-container">
-                <RoleImage class="role-image" :role="event.targets[0].player.role.current"
-                           :class="{ 'dead-player': event.type === 'player-dies' }"/>
-                <img id="effect-image" :src="effectImageSource"
-                     class="animate__animated animate__bounceIn animate__delay-1s" alt="Effect Image"/>
-            </div>
-            <h3 class="text-center mt-2 w-100 text-truncate" v-html="event.targets[0].player.name"/>
-        </div>
-        <VueFlip v-else id="game-starts-image" v-model="gameStartsEvent.flipped" transition="0.75s" height="30vh" width="30vh">
+        <VueFlip v-else v-model="playersEvent.flipped" transition="0.75s" height="30vh" width="30vh">
             <template #front>
-                <RoleImage class="h-100 rounded role-image" :role="gameStartsEvent.thumbnail.front"/>
+                <div class="h-100 w-100">
+                    <div class="role-effect-container">
+                        <RoleImage class="h-100 rounded role-image" :role="playersEvent.thumbnail.front.role.current"
+                                   :class="{ 'dead-player': event.type === 'player-dies' }"/>
+                        <img v-if="isEffectGameEvent" :src="effectImageSource" class="effect-image"
+                             :class="{ 'animate__animated animate__bounceIn animate__delay-1s': gameEventPlayers.length === 1 }" alt="Effect Image"/>
+                    </div>
+                    <h3 class="text-center mt-2 w-100 text-truncate" v-html="playersEvent.thumbnail.front.name"/>
+                </div>
             </template>
             <template #back>
-                <RoleImage class="h-100 rounded role-image" :role="gameStartsEvent.thumbnail.back"/>
+                <div class="h-100 w-100">
+                    <div class="role-effect-container">
+                        <RoleImage class="h-100 rounded role-image" :role="playersEvent.thumbnail.back.role.current"
+                                   :class="{ 'dead-player': event.type === 'player-dies' }"/>
+                        <img v-if="isEffectGameEvent" :src="effectImageSource" class="effect-image"
+                             :class="{ 'animate__animated animate__bounceIn animate__delay-1s': gameEventPlayers.length === 1 }" alt="Effect Image"/>
+                    </div>
+                    <h3 class="text-center mt-2 w-100 text-truncate" v-html="playersEvent.thumbnail.back.name"/>
+                </div>
             </template>
         </VueFlip>
     </div>
@@ -36,6 +42,8 @@ import RoleImage from "@/components/shared/Game/Role/RoleImage";
 import sheriffSVG from "@/assets/svg/attributes/sheriff.svg";
 import deadSVG from "@/assets/svg/attributes/dead.svg";
 import seenSVG from "@/assets/svg/actions/look.svg";
+import inLoveSVG from "@/assets/svg/attributes/in-love.svg";
+import Player from "@/classes/Player";
 
 export default {
     name: "GameEventImage",
@@ -48,12 +56,12 @@ export default {
     },
     data() {
         return {
-            gameStartsEvent: {
+            playersEvent: {
                 playerIdx: 0,
                 flipped: false,
                 thumbnail: {
-                    front: undefined,
-                    back: undefined,
+                    front: new Player(),
+                    back: new Player(),
                 },
             },
             phaseTransition: {
@@ -65,7 +73,7 @@ export default {
     computed: {
         ...mapGetters("game", { game: "game" }),
         isEffectGameEvent() {
-            const effectGameEventTypes = ["sheriff-elected", "player-dies", "seer-looks"];
+            const effectGameEventTypes = ["sheriff-elected", "player-dies", "seer-looks", "cupid-charms"];
             return effectGameEventTypes.includes(this.event.type);
         },
         isPhaseGameEvent() {
@@ -76,6 +84,7 @@ export default {
                 "sheriff-elected": sheriffSVG,
                 "player-dies": deadSVG,
                 "seer-looks": seenSVG,
+                "cupid-charms": inLoveSVG,
             };
             return effectGameEventTypeImageSource[this.event.type];
         },
@@ -85,33 +94,41 @@ export default {
             }
             return this.phaseTransition.started ? "day" : "night";
         },
+        gameEventPlayers() {
+            if (this.isPhaseGameEvent) {
+                return [];
+            }
+            const { firstWaiting, alivePlayersExpectedToPlay, playersExpectedToPlay } = this.game;
+            if (this.isEffectGameEvent) {
+                return this.event.targets.map(({ player }) => player);
+            }
+            return firstWaiting.to === "delegate" || firstWaiting.to === "shoot" ? playersExpectedToPlay : alivePlayersExpectedToPlay;
+        },
     },
     created() {
         if (this.isPhaseGameEvent) {
             this.triggerPhaseTransition();
-        } else if (!this.isEffectGameEvent) {
+        } else {
             this.setPlayersExpectedToPlayFlip();
         }
     },
     methods: {
         setPlayersExpectedToPlayFlip() {
-            const { firstWaiting, alivePlayersExpectedToPlay, playersExpectedToPlay } = this.game;
-            const players = firstWaiting.to === "delegate" || firstWaiting.to === "shoot" ? playersExpectedToPlay : alivePlayersExpectedToPlay;
-            this.gameStartsEvent.thumbnail.front = players[0].role.current;
-            if (players.length > 2) {
+            this.playersEvent.thumbnail.front = this.gameEventPlayers[0];
+            if (this.gameEventPlayers.length > 1) {
                 setInterval(() => {
-                    if (this.gameStartsEvent.playerIdx + 1 === players.length) {
-                        this.gameStartsEvent.playerIdx = 0;
+                    if (this.playersEvent.playerIdx + 1 === this.gameEventPlayers.length) {
+                        this.playersEvent.playerIdx = 0;
                     } else {
-                        this.gameStartsEvent.playerIdx += 1;
+                        this.playersEvent.playerIdx += 1;
                     }
-                    const player = players[this.gameStartsEvent.playerIdx];
-                    if (!this.gameStartsEvent.flipped) {
-                        this.gameStartsEvent.thumbnail.back = player.role.current;
-                        this.gameStartsEvent.flipped = true;
+                    const player = this.gameEventPlayers[this.playersEvent.playerIdx];
+                    if (!this.playersEvent.flipped) {
+                        this.playersEvent.thumbnail.back = player;
+                        this.playersEvent.flipped = true;
                     } else {
-                        this.gameStartsEvent.thumbnail.front = player.role.current;
-                        this.gameStartsEvent.flipped = false;
+                        this.playersEvent.thumbnail.front = player;
+                        this.playersEvent.flipped = false;
                     }
                 }, 1000);
             }
@@ -167,14 +184,14 @@ export default {
         width: 30vh;
     }
 
-    #role-effect-container {
+    .role-effect-container {
         position: relative;
 
         img.dead-player {
             filter: grayscale(1);
         }
 
-        #effect-image {
+        .effect-image {
             position: absolute;
             height: 40%;
             bottom: 5%;

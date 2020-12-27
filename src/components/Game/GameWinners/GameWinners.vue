@@ -61,20 +61,16 @@ export default {
     computed: {
         ...mapGetters("game", { game: "game" }),
         winnersText() {
-            if (this.game.won.by === "werewolves") {
-                return this.$tc("GameWinners.wonByWerewolves", this.winners.length);
-            } else if (this.game.won.by === "villagers") {
-                return this.$tc("GameWinners.wonByVillagers", this.winners.length);
-            }
-            return this.$t("GameWinners.wonByNobody");
+            const winners = this.game.won.by ? this.game.won.by : "nobody";
+            return this.$tc(`GameWinners.wonBy.${winners}`, this.winners.length);
         },
         winners() {
-            if (this.game.won.by === "werewolves") {
-                return this.game.werewolfPlayers;
-            } else if (this.game.won.by === "villagers") {
-                return this.game.villagerPlayers;
-            }
-            return [];
+            const winners = {
+                werewolves: this.game.werewolfPlayers,
+                villagers: this.game.villagerPlayers,
+                lovers: this.game.inLovePlayers,
+            };
+            return winners[this.game.won.by] ? winners[this.game.won.by] : [];
         },
     },
     methods: {

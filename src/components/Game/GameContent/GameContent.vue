@@ -93,6 +93,8 @@ export default {
                     this.events.push(new GameEvent({ type: "seer-looks", targets: lastGameHistoryEntry.play.targets }));
                 } else if (lastGameHistoryEntry.play.action === "elect-sheriff" || lastGameHistoryEntry.play.action === "delegate") {
                     this.events.push(new GameEvent({ type: "sheriff-elected", targets: lastGameHistoryEntry.play.targets }));
+                } else if (lastGameHistoryEntry.play.action === "charm") {
+                    this.events.push(new GameEvent({ type: "cupid-charms", targets: lastGameHistoryEntry.play.targets }));
                 }
             }
         },

@@ -102,11 +102,16 @@ export default {
                 "sheriff-elected": {
                     messages: [
                         i18n.t("GameEvent.messages.playerHasBeenPromotedSheriff", { gameEventTargetName }),
-                        ...insertIf(this.game.tick === 1, i18n.t("GameEvent.messages.sheriffCanMakeASpeech")),
+                        ...insertIf(this.game.turn === 1, i18n.t("GameEvent.messages.sheriffCanMakeASpeech")),
                     ],
                 },
                 "night-falls": { messages: [i18n.t("GameEvent.messages.nightFalls"), i18n.t("GameEvent.messages.inhabitantsFallAsleep")] },
-                "all-turn": { messages: [...insertIf(this.game.firstWaiting.to === "vote", i18n.t("GameEvent.messages.allVote"))] },
+                "all-turn": {
+                    messages: [
+                        ...insertIf(this.game.firstWaiting.to === "vote", i18n.t("GameEvent.messages.allVote")),
+                        ...insertIf(this.game.firstWaiting.to === "elect-sheriff", i18n.t("GameEvent.messages.allElectSheriff")),
+                    ],
+                },
                 "sheriff-turn": {
                     messages: [
                         ...insertIf(this.game.firstWaiting.to === "settle-votes", i18n.t("GameEvent.messages.sheriffSettlesVote")),
@@ -123,6 +128,12 @@ export default {
                 "hunter-turn": { messages: [i18n.t("GameEvent.messages.hunterStarts")] },
                 "dog-wolf-turn": { messages: [i18n.t("GameEvent.messages.dogWolfStarts")] },
                 "cupid-turn": { messages: [i18n.t("GameEvent.messages.cupidStarts")] },
+                "cupid-charms": {
+                    messages: [
+                        i18n.t("GameEvent.messages.cupidCharmedTwoPlayers"),
+                        i18n.t("GameEvent.messages.gameMasterWillTouchLovers"),
+                    ],
+                },
                 "lovers-turn": { messages: [i18n.t("GameEvent.messages.loversStart")] },
                 "two-sisters-turn": {
                     messages: [

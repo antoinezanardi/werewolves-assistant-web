@@ -254,7 +254,8 @@
                 "meet-each-other": "Temps pour la concertation des frères"
             },
             "all": {
-                "vote": "Temps pour le débat du village"
+                "vote": "Temps pour le débat du village",
+                "elect-sheriff": "Temps pour l'élection du maire"
             }
         },
         "timeIsUpFor": {
@@ -335,7 +336,7 @@
                 "sheriffIsElectedWhen": "Au début de la partie, un maire doit être élu par tous les joueurs vivants.",
                 "playersHave5Min": "Les joueurs ont 5 minutes pour se mettre d'accord sur qui sera leur prochain maire. À la fin du temps, le maître du jeu doit stopper les discussions et procéder à l'élection.",
                 "eachPlayerVoteForSheriff": "Chaque joueur a donc une voix à donner pour l'élection, mais ne peut voter pour lui-même. Il peut néanmoins voter blanc. Le maître du jeu demande le vote de chacun à tour de rôle.",
-                "toValidateAnElection": "Pour que le maire soit élu, au moins un joueur doit avoir voté et une égalité dans les votes est impossible."
+                "toValidateAnElection": "Pour passer à la suite, au moins un joueur doit avoir voté et l'égalité dans les votes est impossible."
             }
         },
         "hunter": {
@@ -343,7 +344,7 @@
                 "howToPlay": "Comment jouer le chasseur ?",
                 "hunterShootsWhen": "Quand le chasseur meurt, il prend son fusil pour se venger dans son dernier souffle.",
                 "hunterCanShoot": "Le chasseur mourrant choisi arbitrairement sa victime en la pointant du doigt. Elle mourra instantanément du coup fatal.",
-                "toValidateShoot": "Pour que le chasseur prenne sa revanche, il doit obligatoirement choisir une cible."
+                "toValidateShoot": "Pour passer à la suite, le chasseur doit obligatoirement choisir une cible."
             }
         },
         "sheriff": {
@@ -373,8 +374,8 @@
             "charm": {
                 "howToPlay": "Comment jouer Cupidon ?",
                 "cupidCharmsWhen": "Au début de la partie, seulement la première nuit, Cupidon se réveille.",
-                "cupidCanCharm": "Cupidon peut rendre amoureux deux joueurs grâce à son arc et ses flêches d'Amour. Il peut se désigner lui-même avec une autre personne. Le maître du jeu devra, en silence et le plus discrètement possible, tapoter le dos des joueurs amoureux une fois le choix de Cupidon fait.",
-                "toValidateCharm": "Pour que Cupidon puisse charmer de ses flêches, il doit obligatoirement choisir deux cibles."
+                "cupidCanCharm": "Cupidon peut rendre amoureux deux joueurs grâce à son arc et ses flèches d'Amour. Il peut se désigner lui-même avec une autre personne. Le maître du jeu devra, en silence et le plus discrètement possible, tapoter le dos des joueurs amoureux une fois le choix de Cupidon fait.",
+                "toValidateCharm": "Pour passer à la suite, Cupidon doit obligatoirement choisir deux cibles."
             }
         },
         "lovers": {
@@ -465,9 +466,12 @@
         "useDeathPotionOn": "Utiliser la potion de mort sur ..."
     },
     "GameWinners": {
-        "wonByWerewolves": "Partie gagnée par le seul loup-garou | Partie gagnée par les loups-garous",
-        "wonByVillagers": "Partie gagnée par le seul villageois | Partie gagnée par les villageois",
-        "wonByNobody": "Match nul ! Aucun survivant dans le village...",
+        "wonBy": {
+            "werewolves": "Partie gagnée par le seul loup-garou | Partie gagnée par les loups-garous",
+            "villagers": "Partie gagnée par le seul villageois | Partie gagnée par les villageois",
+            "lovers": "Partie gagnée par les Amoureux",
+            "nobody": "Match nul ! Aucun survivant dans le village..."
+        },
         "restartGame": "Recommencer une partie",
         "quit": "Quitter",
         "newGame": "Nouvelle partie",
@@ -654,6 +658,7 @@
             "looksLifeSomeWerewolvesIntroducedThemselves": "Il semblerait qu'un ou plusieurs loups-garous se soient faufilés dans le village...",
             "villagersMurderWerewolves": "Villageois, prenez les fourches et nettoyez votre village de ces canidés !",
             "beforeStartingLetsElectSheriff": "Mais avant de vous entretuer, il faut élire le maire de ce village.",
+            "allElectSheriff": "Le débat va commencer pour élire le premier maire du village.",
             "playerDies": "{player} est mort ! Quelle tragédie...",
             "playerRevealsRole": "Il ou elle révèle son rôle aux survivants.",
             "playerHasBeenPromotedSheriff": "{player} a été élu maire !",
@@ -670,7 +675,9 @@
             "ravenStarts": "Le corbeau se réveille et va, s'il le souhaite, marquer de sa plume un des habitants.",
             "hunterStarts": "Dans son dernier souffle, le chasseur s'apprête à choisir la cible de sa vengeance.",
             "dogWolfStarts": "Le chien-loup se réveille et va choisir son camp pour le reste de la partie.",
-            "cupidStarts": "Cupidon se réveille et va rendre inséparables deux personnes grâce à ses flêches de l'Amour.",
+            "cupidStarts": "Cupidon se réveille et va rendre inséparables deux personnes grâce à ses flèches de l'Amour.",
+            "cupidCharmedTwoPlayers": "Cupidon a rendu inséparable deux personnes qui devront maintenant terminer la partie ensemble.",
+            "gameMasterWillTouchLovers": "Le maître du jeu va faire le tour des habitants et toucher dans le dos les deux Amoureux.",
             "loversStart": "Les Amoureux se réveillent et vont se rencontrer pour la première fois.",
             "twoSistersMeetEachOther": "Les deux sœurs se réveillent et vont se rencontrer pour la première fois.",
             "twoSistersWakeUpToTalk": "Les deux sœurs se réveillent et vont se concerter discrètement.",
