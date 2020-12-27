@@ -44,9 +44,17 @@ Two versions are available for testing this project:
 
 **Sandbox version** may contains some bugs and unexpected behaviors as its purpose is to test new features before deploying on **main version**.
 
+Both versions are running on a server with the following configuration:
+- **OS**: `Debian GNU/Linux 10 (buster)`
+- **NodeJS**: `v14.15.1`
+- **NPM**: `v6.14.9`
+- **MongoDB shell version**: `v4.4.2`
+
+The MongoDB database is protected under username and password authentication.
+
 ## <a name="roles-available">🃏 Roles available</a>
 
-On this current version [![GitHub release](https://img.shields.io/github/release/antoinezanardi/werewolves-assistant-web.svg)](https://GitHub.com/antoinezanardi/werewolves-assistant-web/releases/), **13 different roles** are available to play:
+On this current version [![GitHub release](https://img.shields.io/github/release/antoinezanardi/werewolves-assistant-web.svg)](https://GitHub.com/antoinezanardi/werewolves-assistant-web/releases/), **14 different roles** are available to play:
 
 - **<img src="https://werewolves-assistant-api.antoinezanardi.fr/img/roles/werewolf.png" width="25"/> The Werewolf**
 - **<img src="https://werewolves-assistant-api.antoinezanardi.fr/img/roles/big-bad-wolf.png" width="25"/> The Big-Bad-Wolf**

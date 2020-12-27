@@ -15,6 +15,10 @@
 * [#82](https://github.com/antoinezanardi/werewolves-assistant-web/issues/82) - Change `player.role.group` to `player.side`.
 * [#83](https://github.com/antoinezanardi/werewolves-assistant-web/issues/83) - Game summary button moved from bottom to right after the game review button to make it more visible.
 
+### 📚 Documentation
+
+* [#81](https://github.com/antoinezanardi/werewolves-assistant-web/issues/81) - Server configuration added.
+
 ### 📦 Packages
 
 * `@sentry/browser` updated to version `5.29.2`.
