@@ -8,7 +8,8 @@
         "thisCantBeUndo": "Vous ne pourrez plus intéragir avec cette partie et cette action est irréversible.",
         "confirm": "Confirmer",
         "cancel": "Annuler",
-        "gameCanceled": "Partie annulée"
+        "gameCanceled": "Partie annulée",
+        "gameOptions": "Options de la partie"
     },
     "Home": {
         "werewolvesAssistant": "Assistant Loups-Garous",
