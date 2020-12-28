@@ -61,6 +61,7 @@ On this current version [![GitHub release](https://img.shields.io/github/release
 - **<img src="https://werewolves-assistant-api.antoinezanardi.fr/img/roles/villager.png" width="25"/> The Villager**
 - **<img src="https://werewolves-assistant-api.antoinezanardi.fr/img/roles/villager.png" width="25"/> The Villager-Villager**
 - **<img src="https://werewolves-assistant-api.antoinezanardi.fr/img/roles/seer.png" width="25"/> The Seer**
+- **<img src="https://werewolves-assistant-api.antoinezanardi.fr/img/roles/cupid.png" width="25"/> The Cupid**
 - **<img src="https://werewolves-assistant-api.antoinezanardi.fr/img/roles/witch.png" width="25"/> The Witch**
 - **<img src="https://werewolves-assistant-api.antoinezanardi.fr/img/roles/hunter.png" width="25"/> The Hunter**
 - **<img src="https://werewolves-assistant-api.antoinezanardi.fr/img/roles/little-girl.png" width="25"/> The Little Girl**

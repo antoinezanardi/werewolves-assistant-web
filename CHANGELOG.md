@@ -4,6 +4,7 @@
 
 ### 🚀 New features
 
+* [#75](https://github.com/antoinezanardi/werewolves-assistant-web/issues/75) - Cupid role implemented.
 * [#76](https://github.com/antoinezanardi/werewolves-assistant-web/issues/76) - Two Sisters role implemented.
 * [#77](https://github.com/antoinezanardi/werewolves-assistant-web/issues/77) - Three Brothers role implemented.
 * [#78](https://github.com/antoinezanardi/werewolves-assistant-web/issues/78) - Wild Child role implemented.
@@ -27,7 +28,7 @@
 * `@vue/test-utils` updated to version `1.1.2`.
 * `axios` updated to version `0.21.1`.
 * `eslint` updated to version `7.16.0`.
-* `eslint-plugin-vue` updated to version `7.3.0`.
+* `eslint-plugin-vue` updated to version `7.4.0`.
 * `sweetalert2` updated to version `10.12.6`.
 * `vue-select` updated to version `3.11.2`.
 * `vuex` updated to version `3.6.0`.

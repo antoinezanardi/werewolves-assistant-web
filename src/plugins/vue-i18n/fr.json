@@ -466,12 +466,6 @@
         "useDeathPotionOn": "Utiliser la potion de mort sur ..."
     },
     "GameWinners": {
-        "wonBy": {
-            "werewolves": "Partie gagnée par le seul loup-garou | Partie gagnée par les loups-garous",
-            "villagers": "Partie gagnée par le seul villageois | Partie gagnée par les villageois",
-            "lovers": "Partie gagnée par les Amoureux",
-            "nobody": "Match nul ! Aucun survivant dans le village..."
-        },
         "restartGame": "Recommencer une partie",
         "quit": "Quitter",
         "newGame": "Nouvelle partie",
@@ -479,6 +473,14 @@
         "keepSamePlayers": "Garder les mêmes joueurs",
         "fromScratch": "Recommencer du début",
         "rateThisGame": "Noter la partie"
+    },
+    "GameResult": {
+        "wonBy": {
+            "werewolves": "Partie gagnée par le seul Loup-Garou | Partie gagnée par les Loups-Garous",
+            "villagers": "Partie gagnée par le seul Villageois | Partie gagnée par les Villageois",
+            "lovers": "Partie gagnée par les Amoureux",
+            "nobody": "Match nul ! Aucun survivant dans le village..."
+        }
     },
     "GameCanceled": {
         "gameCanceled": "Partie annulée (Oooh ...)",
