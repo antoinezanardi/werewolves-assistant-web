@@ -10,6 +10,7 @@
 * [#78](https://github.com/antoinezanardi/werewolves-assistant-web/issues/78) - Wild Child role implemented.
 * [#79](https://github.com/antoinezanardi/werewolves-assistant-web/issues/79) - Dog-Wolf role implemented.
 * [#80](https://github.com/antoinezanardi/werewolves-assistant-web/issues/80) - Big-Bad-Wolf role implemented.
+* [#87](https://github.com/antoinezanardi/werewolves-assistant-web/issues/87) - Pre-render plugin added during build step.
 
 ### ♻️ Refactoring
 
@@ -22,6 +23,7 @@
 
 ### 📦 Packages
 
+* `prerender-spa-plugin` installed with version `3.4.0`.
 * `@sentry/browser` updated to version `5.29.2`.
 * `@sentry/integrations` updated to version `5.29.2`.
 * `@vue/eslint-config-airbnb` updated to version `5.3.0`.

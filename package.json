@@ -25,6 +25,7 @@
         "jsonwebtoken": "^8.5.1",
         "node-sass": "^5.0.0",
         "popper.js": "^1.16.1",
+        "prerender-spa-plugin": "^3.4.0",
         "qs": "^6.9.4",
         "sass-loader": "^10.1.0",
         "sweetalert2": "^10.12.6",
