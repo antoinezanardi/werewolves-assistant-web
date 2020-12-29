@@ -14,12 +14,32 @@
     "GameOptionsModal": {
         "gameOptions": "Options de la partie",
         "close": "Fermer",
+        "sheriff": "Maire",
+        "isSheriffVoteDoubled": {
+            "label": "Le vote du maire compte double",
+            "description": {
+                "sheriffVoteIsDoubled": "Lors du vote du village pour décider qui sera pendu, la voix du maire compte double.",
+                "sheriffVoteIsNotDoubled": "Lors du vote du village pour décider qui sera pendu, la voix du maire n'a pas plus de valeur qu'un autre."
+            }
+        },
+        "seer": "Voyante",
+        "isSeerTalkative": {
+            "label": "La voyante est bavarde",
+            "description": {
+                "seerIsTalkative": "Lorsque la voyante voit le rôle d'un joueur, le maître du jeu révèlera ce rôle (et seulement le rôle) à voix haute.",
+                "seerIsNotTalkative": "Lorsque la voyante voit le rôle d'un joueur, le maître du jeu devra mimer le rôle découvert à la voyante."
+            }
+        },
         "twoSisters": "Deux Sœurs",
         "sistersWakingUpInterval": {
             "label": "Nombre de nuits entre deux réveils des Deux Sœurs",
             "description": "Les Deux Sœurs ne se réveillent que la première nuit. | Les Deux Sœurs se réveillent toutes les nuits. | Les Deux Sœurs se réveillent toutes les {sistersWakingUpInterval} nuits."
         },
-        "threeBrothers": "Trois Frères"
+        "threeBrothers": "Trois Frères",
+        "brothersWakingUpInterval": {
+            "label": "Nombre de nuits entre deux réveils des Trois Frères",
+            "description": "Les Trois Frères ne se réveillent que la première nuit. | Les Trois Frères se réveillent toutes les nuits. | Les Trois Frères se réveillent toutes les {brothersWakingUpInterval} nuits."
+        }
     },
     "Home": {
         "werewolvesAssistant": "Assistant Loups-Garous",
@@ -911,6 +931,12 @@
         "TOO_MANY_REQUESTS": "Trop de requêtes d'un coup... Calm down !",
         "yourSessionHasExpired": "Votre session a expirée, veuillez vous reconnecter",
         "unknownError": "Erreur inconnue"
+    },
+    "VueToggleButton": {
+        "yesNo": {
+            "checked": "Oui",
+            "unchecked": "Non"
+        }
     },
     "VeeValidate": {
         "required": "Ce champ est requis",

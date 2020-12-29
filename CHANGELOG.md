@@ -24,6 +24,7 @@
 ### 📦 Packages
 
 * `prerender-spa-plugin` installed with version `3.4.0`.
+* `vue-js-toggle-button` installed with version `1.3.3`.
 * `@sentry/browser` updated to version `5.29.2`.
 * `@sentry/integrations` updated to version `5.29.2`.
 * `@vue/eslint-config-airbnb` updated to version `5.3.0`.

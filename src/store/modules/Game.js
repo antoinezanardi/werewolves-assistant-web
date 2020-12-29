@@ -16,8 +16,17 @@ export default {
         setGame(state, game) {
             state.game = new Game(game);
         },
+        setGameOptionIsSheriffVoteDoubled(state, isSheriffVoteDoubled) {
+            state.game.options.isSheriffVoteDoubled = isSheriffVoteDoubled;
+        },
         setGameOptionSistersWakingUpInterval(state, sistersWakingUpInterval) {
             state.game.options.sistersWakingUpInterval = sistersWakingUpInterval;
+        },
+        setGameOptionBrothersWakingUpInterval(state, brothersWakingUpInterval) {
+            state.game.options.brothersWakingUpInterval = brothersWakingUpInterval;
+        },
+        setGameOptionIsSeerTalkative(state, isSeerTalkative) {
+            state.game.options.isSeerTalkative = isSeerTalkative;
         },
     },
     actions: {
@@ -28,8 +37,17 @@ export default {
         setGame({ commit }, game) {
             commit("setGame", game);
         },
+        setGameOptionIsSheriffVoteDoubled({ commit }, isSheriffVoteDoubled) {
+            commit("setGameOptionIsSheriffVoteDoubled", isSheriffVoteDoubled);
+        },
         setGameOptionSistersWakingUpInterval({ commit }, sistersWakingUpInterval) {
             commit("setGameOptionSistersWakingUpInterval", sistersWakingUpInterval);
+        },
+        setGameOptionBrothersWakingUpInterval({ commit }, brothersWakingUpInterval) {
+            commit("setGameOptionBrothersWakingUpInterval", brothersWakingUpInterval);
+        },
+        setGameOptionIsSeerTalkative({ commit }, isSeerTalkative) {
+            commit("setGameOptionIsSeerTalkative", isSeerTalkative);
         },
     },
 };
