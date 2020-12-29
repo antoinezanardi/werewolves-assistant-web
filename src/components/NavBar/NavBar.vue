@@ -1,7 +1,7 @@
 <template>
     <nav id="nav-bar" class="navbar navbar-expand navbar-dark bg-dark">
         <a class="navbar-brand" href="#" @click.prevent="backToHomePage">
-            <img id="wolf-emoji" src="../../assets/img/wolf.png" alt="Wolf" class="mr-md-2 mr-0"/>
+            <img id="wolf-emoji" src="@/assets/img/wolf.png" alt="Wolf" class="mr-md-2 mr-0"/>
             <span class="d-none d-md-inline-block" v-html="$t('NavBar.werewolvesAssistant')"/>
         </a>
         <div class="navbar-nav d-flex w-100 justify-content-end">

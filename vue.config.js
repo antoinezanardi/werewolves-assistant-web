@@ -13,7 +13,7 @@ module.exports = {
         },
     },
     configureWebpack: () => {
-        if (process.env.NODE_ENV === "production") {
+        if (process.env.NODE_ENV === "production" && process.env.CI !== "true") {
             return {
                 plugins: [
                     new PrerenderSPAPlugin({
