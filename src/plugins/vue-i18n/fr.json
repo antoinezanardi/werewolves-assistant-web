@@ -11,6 +11,16 @@
         "gameCanceled": "Partie annulée",
         "gameOptions": "Options de la partie"
     },
+    "GameOptionsModal": {
+        "gameOptions": "Options de la partie",
+        "close": "Fermer",
+        "twoSisters": "Deux Sœurs",
+        "sistersWakingUpInterval": {
+            "label": "Nombre de nuits entre deux réveils des Deux Sœurs",
+            "description": "Les Deux Sœurs ne se réveillent que la première nuit. | Les Deux Sœurs se réveillent toutes les nuits. | Les Deux Sœurs se réveillent toutes les {sistersWakingUpInterval} nuits."
+        },
+        "threeBrothers": "Trois Frères"
+    },
     "Home": {
         "werewolvesAssistant": "Assistant Loups-Garous",
         "play": "Jouer",

@@ -15,10 +15,10 @@ class Game {
         this.waiting = getProp(game, "waiting", [], waiting => waiting.map(waitingEntry => waitingEntry));
         this.status = getProp(game, "status");
         this.options = {
-            sistersWakingUpInterval: getProp(game, "options.sistersWakingUpInterval"),
-            brothersWakingUpInterval: getProp(game, "options.brothersWakingUpInterval"),
-            isSheriffVoteDoubled: getProp(game, "options.isSheriffVoteDoubled"),
-            isSeerTalkative: getProp(game, "options.isSeerTalkative"),
+            sistersWakingUpInterval: getProp(game, "options.sistersWakingUpInterval", 2),
+            brothersWakingUpInterval: getProp(game, "options.brothersWakingUpInterval", 2),
+            isSheriffVoteDoubled: getProp(game, "options.isSheriffVoteDoubled", true),
+            isSeerTalkative: getProp(game, "options.isSeerTalkative", true),
         };
         this.history = getProp(game, "history", [], history => history.map(historyEntry => new GameHistory(historyEntry)));
         this.won = {
