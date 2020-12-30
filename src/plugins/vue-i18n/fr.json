@@ -303,7 +303,8 @@
                 "meet-each-other": "Il est temps pour les frères de se rendormir"
             },
             "all": {
-                "vote": "Il est temps pour le village de voter"
+                "vote": "Il est temps pour le village de voter",
+                "elect-sheriff": "Il est temps pour le village d'élire son maire"
             }
         }
     },
@@ -313,7 +314,7 @@
                 "howToPlay": "Comment jouer la voyante ?",
                 "seerLooksWhen": "Chaque nuit, si elle est vivante, la voyante se réveille.",
                 "seerCanLook": "Grâce à son don, la voyante voit le rôle de n'importe quel joueur vivant.",
-                "seerPointsAtTarget": "La voyante doit pointer du doigt sa cible et le maître du jeu révelera à haute voix le rôle de cette dernière.",
+                "seerPointsAtTarget": "La voyante doit pointer du doigt sa cible. Si la voyante est bavarde, le maître du jeu révelera à haute voix le rôle de la cible, sinon il devra le mimer. Ceci peut être changé dans les options de la partie.",
                 "toValidateLook": "Pour passer à la suite, la voyante doit obligatoirement voir le rôle d'un habitant."
             }
         },
@@ -368,6 +369,7 @@
             "elect-sheriff": {
                 "howToPlay": "Comment élire le maire ?",
                 "sheriffIsElectedWhen": "Au début de la partie, un maire doit être élu par tous les joueurs vivants.",
+                "sheriffSettlesVotes": "Être le maire possède deux avantages: départager une éventuelle égalité des votes lors de la pendaison et avoir un vote comptant double durant cette dernière ! Le double vote peut être annulé dans les options de la partie.",
                 "playersHave5Min": "Les joueurs ont 5 minutes pour se mettre d'accord sur qui sera leur prochain maire. À la fin du temps, le maître du jeu doit stopper les discussions et procéder à l'élection.",
                 "eachPlayerVoteForSheriff": "Chaque joueur a donc une voix à donner pour l'élection, mais ne peut voter pour lui-même. Il peut néanmoins voter blanc. Le maître du jeu demande le vote de chacun à tour de rôle.",
                 "toValidateAnElection": "Pour passer à la suite, au moins un joueur doit avoir voté et l'égalité dans les votes est impossible."
@@ -424,7 +426,8 @@
         "two-sisters": {
             "meet-each-other": {
                 "howToPlay": "Comment jouer les deux sœurs ?",
-                "twoSistersMeetEachOtherWhen": "Tant que les deux sœurs sont vivantes, elles se réveillent toutes les nuits. | Tant que les deux sœurs sont vivantes, elles se réveillent toutes les {sistersWakingUpInterval} nuits.",
+                "twoSistersMeetEachOtherWhen": "Les deux sœurs ne se réveillent que la première nuit. | Tant que les deux sœurs sont vivantes, elles se réveillent toutes les nuits. | Tant que les deux sœurs sont vivantes, elles se réveillent toutes les {sistersWakingUpInterval} nuits.",
+                "intervalCanBeChanged": "Le nombre de nuits entre deux réveils des deux sœurs peut être changé dans les options de la partie.",
                 "twoSistersTalk": "Les deux sœurs peuvent se faire confiance : elles connaissent toutes les deux le rôle de l'autre ! Pendant leur tour, elles peuvent se concerter rapidement et en silence sur les décisions à prendre pour sauver le village.",
                 "twoSistersHave20s": "Les deux sœurs ont environ 20 secondes pendant leur tour pour discuter grâce à un habile langage des signes.",
                 "noActionRequiredToValidate": "Aucune action n'est requise pour passer à la suite."
@@ -433,7 +436,8 @@
         "three-brothers": {
             "meet-each-other": {
                 "howToPlay": "Comment jouer les trois frères ?",
-                "threeBrothersMeetEachOtherWhen": "Tant qu'au moins deux des trois frères sont vivants, ils se réveillent toutes les nuits. | Tant qu'au moins deux des trois frères sont vivants, ils se réveillent toutes les {brothersWakingUpInterval} nuits.",
+                "threeBrothersMeetEachOtherWhen": "Les trois frères ne se réveillent que la première nuit. | Tant qu'au moins deux des trois frères sont vivants, ils se réveillent toutes les nuits. | Tant qu'au moins deux des trois frères sont vivants, ils se réveillent toutes les {brothersWakingUpInterval} nuits.",
+                "intervalCanBeChanged": "Le nombre de nuits entre deux réveils des trois frères peut être changé dans les options de la partie.",
                 "threeBrothersTalk": "Les trois frères peuvent se faire confiance : ils connaissent tous les trois leur rôle respectif ! Pendant leur tour, ils peuvent se concerter rapidement et en silence sur les décisions à prendre pour sauver le village.",
                 "threeBrothersHave20s": "Les trois frères ont environ 20 secondes pendant leur tour pour discuter grâce à un habile langage des signes.",
                 "noActionRequiredToValidate": "Aucune action n'est requise pour passer à la suite."
@@ -702,8 +706,10 @@
             "nightFalls": "La nuit tombe sur le village de Thiercelieux...",
             "inhabitantsFallAsleep": "Les habitants du village s'endorment.",
             "dayRises": "Le jour se lève sur le village de Thiercelieux.",
+            "noDeathDuringNight": "À la surprise générale, personne n'est mort pendant la nuit !",
             "allVote": "Les habitants du village vont maintenant voter pour pendre l'un des leurs et espérer débusquer un loup-garou.",
             "seerStarts": "La voyante se réveille et va découvrir dans sa boule de cristal le rôle d'un habitant.",
+            "followingMessageMustBeMimed": "La phrase suivante devra être mimée à la voyante car cette dernière n'est pas très bavarde...",
             "seerHasSeen": "La voyante a vu",
             "werewolvesStart": "Le loup-garou se réveille et va choisir son dîner de ce soir. | Les loups-garous se réveillent et vont choisir leur dîner de ce soir.",
             "witchStarts": "La sorcière se réveille et va, si elle le souhaite, utiliser ses potions.",

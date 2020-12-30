@@ -10,6 +10,7 @@
 * [#78](https://github.com/antoinezanardi/werewolves-assistant-web/issues/78) - Wild Child role implemented.
 * [#79](https://github.com/antoinezanardi/werewolves-assistant-web/issues/79) - Dog-Wolf role implemented.
 * [#80](https://github.com/antoinezanardi/werewolves-assistant-web/issues/80) - Big-Bad-Wolf role implemented.
+* [#84](https://github.com/antoinezanardi/werewolves-assistant-web/issues/84) - Game options for different roles.
 * [#87](https://github.com/antoinezanardi/werewolves-assistant-web/issues/87) - Pre-render plugin added during build step.
 
 ### ♻️ Refactoring

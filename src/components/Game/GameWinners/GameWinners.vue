@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="row flex-grow-1 align-items-center justify-content-center mt-4">
-                    <PlayerCard v-for="player in game.won.players" :key="player.name" :player="player" size="lg" class="col-md-2 col-6"/>
+                    <PlayerCard v-for="player in game.won.players" :key="player.name" :player="player" size="lg" class="col-md-3 col-6"/>
                 </div>
             </div>
         </div>

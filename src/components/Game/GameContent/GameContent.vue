@@ -87,6 +87,7 @@ export default {
         resetPlay() {
             this.play.votes = [];
             this.play.targets = [];
+            this.play.side = undefined;
             if (this.game.history.length) {
                 const lastGameHistoryEntry = this.game.history[0];
                 if (lastGameHistoryEntry.play.action === "look") {
@@ -115,6 +116,9 @@ export default {
                 if (!newPlayer.isAlive && oldPlayer.isAlive) {
                     this.events.push(new GameEvent({ type: "player-dies", targets: [{ player: newPlayer }] }));
                 }
+            }
+            if (newGame.phase === "day" && !this.events.find(({ type }) => type === "player-dies")) {
+                this.events.push(new GameEvent({ type: "no-death-during-night" }));
             }
         },
         generateGameRoleTurnEvents(newGame, oldGame) {

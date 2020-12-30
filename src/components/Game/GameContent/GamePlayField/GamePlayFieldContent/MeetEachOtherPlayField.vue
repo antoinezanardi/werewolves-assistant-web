@@ -1,9 +1,7 @@
 <template>
     <div id="meet-each-other-field" class="d-flex flex-column">
-        <div id="meeting-each-other-players" class="d-flex justify-content-center">
-            <span v-for="player of meetingEachOtherPlayers" :key="player._id">
-                <PlayerCard :player="player" size="lg"/>
-            </span>
+        <div id="meeting-each-other-players" class="row justify-content-center align-items-center">
+            <PlayerCard v-for="player of meetingEachOtherPlayers" :key="player.name" :player="player" size="lg" class="col-6 col-md-3"/>
         </div>
         <div class="row">
             <div class="col-12">

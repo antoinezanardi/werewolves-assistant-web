@@ -81,6 +81,7 @@ export default {
                     ],
                     "elect-sheriff": [
                         { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.all.elect-sheriff.sheriffIsElectedWhen") },
+                        { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.all.elect-sheriff.sheriffSettlesVotes") },
                         { header, target: ".countdown", content: this.$t("GamePlayFieldTutorial.all.elect-sheriff.playersHave5Min") },
                         { header, target: "#player-votes", content: this.$t("GamePlayFieldTutorial.all.elect-sheriff.eachPlayerVoteForSheriff") },
                         {
@@ -182,7 +183,7 @@ export default {
                             header,
                             target: "#game-waiting-label",
                             // eslint-disable-next-line max-len,vue/max-len
-                            content: this.$tc(`GamePlayFieldTutorial.two-sisters.meet-each-other.twoSistersMeetEachOtherWhen`, sistersWakingUpInterval, { sistersWakingUpInterval }),
+                            content: `${this.$tc(`GamePlayFieldTutorial.two-sisters.meet-each-other.twoSistersMeetEachOtherWhen`, sistersWakingUpInterval, { sistersWakingUpInterval })} ${this.$t("GamePlayFieldTutorial.two-sisters.meet-each-other.intervalCanBeChanged")}`,
                         },
                         {
                             header,
@@ -207,7 +208,7 @@ export default {
                             header,
                             target: "#game-waiting-label",
                             // eslint-disable-next-line max-len,vue/max-len
-                            content: this.$tc(`GamePlayFieldTutorial.three-brothers.meet-each-other.threeBrothersMeetEachOtherWhen`, brothersWakingUpInterval, { brothersWakingUpInterval }),
+                            content: `${this.$tc(`GamePlayFieldTutorial.three-brothers.meet-each-other.threeBrothersMeetEachOtherWhen`, brothersWakingUpInterval, { brothersWakingUpInterval })} ${this.$t("GamePlayFieldTutorial.three-brothers.meet-each-other.intervalCanBeChanged")}`,
                         },
                         {
                             header,

@@ -78,7 +78,10 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("game", { game: "game" }),
+        ...mapGetters("game", {
+            game: "game",
+            gameOptions: "gameOptions",
+        }),
         // eslint-disable-next-line max-lines-per-function
         gameEventMetadata() {
             const gameEventTargetName = this.hasGameEventTarget ? this.event.targets[0].player.name : null;
@@ -119,8 +122,14 @@ export default {
                     ],
                 },
                 "day-rises": { messages: [i18n.t("GameEvent.messages.dayRises")] },
+                "no-death-during-night": { messages: [i18n.t("GameEvent.messages.noDeathDuringNight")] },
                 "seer-turn": { messages: [i18n.t("GameEvent.messages.seerStarts")] },
-                "seer-looks": { messages: [`${i18n.t("GameEvent.messages.seerHasSeen")} ${gameEventTargetRole} !`] },
+                "seer-looks": {
+                    messages: [
+                        ...insertIf(!this.gameOptions.isSeerTalkative, i18n.t("GameEvent.messages.followingMessageMustBeMimed")),
+                        `${i18n.t("GameEvent.messages.seerHasSeen")} ${gameEventTargetRole} !`,
+                    ],
+                },
                 "werewolves-turn": { messages: [i18n.tc("GameEvent.messages.werewolvesStart", this.game.aliveWerewolfPlayers.length)] },
                 "witch-turn": { messages: [i18n.t("GameEvent.messages.witchStarts")] },
                 "guard-turn": { messages: [i18n.t("GameEvent.messages.guardStarts")] },

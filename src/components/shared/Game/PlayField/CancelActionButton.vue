@@ -1,6 +1,6 @@
 <template>
     <transition mode="out-in" name="translate-down-fade">
-        <span v-if="!!targetedPlayer || play.side" key="cancel-player-target"
+        <span v-if="targetedPlayersForAttribute.length || play.side" key="cancel-player-target"
               v-tooltip="cancelTooltipText" class="cancel-action-button badge-pill badge-dark"
               @click="cancelAction">
             <span v-html="$t('CancelActionButton.cancel')"/>
@@ -10,17 +10,11 @@
 </template>
 
 <script>
-import Player from "@/classes/Player";
-
 export default {
     name: "CancelActionButton",
     props: {
         attribute: {
             type: String,
-            required: true,
-        },
-        targetedPlayer: {
-            validator: value => value instanceof Player || value === null,
             required: true,
         },
         play: {
@@ -29,8 +23,11 @@ export default {
         },
     },
     computed: {
+        targetedPlayersForAttribute() {
+            return this.play.targets.length ? this.play.targets.filter(target => target.attribute === this.attribute) : [];
+        },
         cancelTooltipText() {
-            if (this.targetedPlayer) {
+            if (this.targetedPlayersForAttribute.length) {
                 return this.$t("CancelActionButton.cancelTarget");
             } else if (this.play.side) {
                 return this.$t("CancelActionButton.cancelSide");
@@ -40,8 +37,10 @@ export default {
     },
     methods: {
         cancelAction() {
-            if (this.targetedPlayer) {
-                this.$emit("player-selected", { player: { _id: this.targetedPlayer._id }, selected: false, attribute: this.attribute });
+            if (this.targetedPlayersForAttribute.length) {
+                for (const targetedPlayer of this.targetedPlayersForAttribute) {
+                    this.$emit("player-selected", { player: { _id: targetedPlayer.player }, selected: false, attribute: this.attribute });
+                }
             } else if (this.play.side) {
                 this.$emit("side-selected", undefined);
             }

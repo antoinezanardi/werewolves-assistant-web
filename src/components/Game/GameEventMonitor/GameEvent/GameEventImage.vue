@@ -99,7 +99,9 @@ export default {
                 return [];
             }
             const { firstWaiting, alivePlayersExpectedToPlay, playersExpectedToPlay } = this.game;
-            if (this.isEffectGameEvent) {
+            if (this.event.type === "no-death-during-night") {
+                return this.game.alivePlayers;
+            } else if (this.isEffectGameEvent) {
                 return this.event.targets.map(({ player }) => player);
             }
             return firstWaiting.to === "delegate" || firstWaiting.to === "shoot" ? playersExpectedToPlay : alivePlayersExpectedToPlay;
