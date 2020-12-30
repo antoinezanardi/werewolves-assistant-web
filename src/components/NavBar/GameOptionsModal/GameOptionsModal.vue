@@ -14,6 +14,15 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <div>
+                        <div class="row">
+                            <div class="col-12 text-warning d-flex align-items-center">
+                                <i class="fa fa-exclamation-triangle fa-2x mr-3 mb-1"/>
+                                <span v-html="$t('GameOptionsModal.gameOptionsCantBeUpdated')"/>
+                            </div>
+                        </div>
+                        <hr class="bg-dark mt-1 mb-2"/>
+                    </div>
                     <div class="row">
                         <div class="option-section col-12 d-flex justify-content-center align-items-center">
                             <img :src="SVGs['sheriff']" class="mr-2" alt="Sheriff" width="50"/>
@@ -27,7 +36,7 @@
                                    v-html="$t('GameOptionsModal.isSheriffVoteDoubled.label')"/>
                         </div>
                         <div class="col-4 text-center">
-                            <toggle-button id="is-sheriff-vote-doubled-option" v-model="isSheriffVoteDoubled"
+                            <toggle-button id="is-sheriff-vote-doubled-option" v-model="isSheriffVoteDoubled" :disabled="!game.canUpdateOptions"
                                            :labels="$t('VueToggleButton.yesNo')" :height="25" :width="60" :sync="true"/>
                         </div>
                         <div class="col-12 text-muted font-italic" v-html="isSheriffVoteDoubledText"/>
@@ -45,7 +54,7 @@
                                    v-html="$t('GameOptionsModal.isSeerTalkative.label')"/>
                         </div>
                         <div class="col-4 text-center">
-                            <toggle-button id="is-seer-talkative-option" v-model="isSeerTalkative"
+                            <toggle-button id="is-seer-talkative-option" v-model="isSeerTalkative" :disabled="!game.canUpdateOptions"
                                            :labels="$t('VueToggleButton.yesNo')" :height="25" :width="60" :sync="true"/>
                         </div>
                         <div class="col-12 text-muted font-italic" v-html="isSeerTalkativeText"/>
@@ -64,7 +73,7 @@
                         </div>
                         <div class="col-4 text-right">
                             <input id="sisters-waking-up-interval-option" v-model.number="sistersWakingUpInterval" class="form-control" type="number"
-                                   min="0" max="100"/>
+                                   min="0" max="100" :disabled="!game.canUpdateOptions"/>
                         </div>
                         <div class="col-12 text-muted font-italic" v-html="sistersWakingUpIntervalText"/>
                     </div>
@@ -82,7 +91,7 @@
                         </div>
                         <div class="col-4 text-right">
                             <input id="brothers-waking-up-interval-option" v-model.number="brothersWakingUpInterval" class="form-control"
-                                   type="number" min="0" max="100"/>
+                                   type="number" min="0" max="100" :disabled="!game.canUpdateOptions"/>
                         </div>
                         <div class="col-12 text-muted font-italic" v-html="brothersWakingUpIntervalText"/>
                     </div>
@@ -110,6 +119,7 @@ export default {
         return {
             SVGs: { "two-sisters": twoSistersSVG, "sheriff": sheriffSVG, "seer": lookSVG },
             PNGs: { "three-brothers": threeBrothersPNG },
+            optionsUpdated: false,
         };
     },
     computed: {
@@ -120,6 +130,7 @@ export default {
             },
             set(isSheriffVoteDoubled) {
                 this.setGameOptionIsSheriffVoteDoubled(isSheriffVoteDoubled);
+                this.optionsUpdated = true;
             },
         },
         sistersWakingUpInterval: {
@@ -129,6 +140,7 @@ export default {
             set(newSistersWakingUpInterval) {
                 newSistersWakingUpInterval = adjustNumber(newSistersWakingUpInterval, { min: 0, max: 100 });
                 this.setGameOptionSistersWakingUpInterval(newSistersWakingUpInterval);
+                this.optionsUpdated = true;
             },
         },
         brothersWakingUpInterval: {
@@ -138,6 +150,7 @@ export default {
             set(newBrothersWakingUpInterval) {
                 newBrothersWakingUpInterval = adjustNumber(newBrothersWakingUpInterval, { min: 0, max: 100 });
                 this.setGameOptionBrothersWakingUpInterval(newBrothersWakingUpInterval);
+                this.optionsUpdated = true;
             },
         },
         isSeerTalkative: {
@@ -146,6 +159,7 @@ export default {
             },
             set(isSeerTalkative) {
                 this.setGameOptionIsSeerTalkative(isSeerTalkative);
+                this.optionsUpdated = true;
             },
         },
         sistersWakingUpIntervalText() {
@@ -163,6 +177,13 @@ export default {
         isSeerTalkativeText() {
             const description = this.isSeerTalkative ? "seerIsTalkative" : "seerIsNotTalkative";
             return this.$t(`GameOptionsModal.isSeerTalkative.description.${description}`);
+        },
+    },
+    watch: {
+        optionsUpdated(newValue, oldValue) {
+            if (newValue && !oldValue) {
+                this.$toasted.success(this.$t("GameOptionsModal.optionsAreSaved"), { icon: "check", duration: 5000 });
+            }
         },
     },
     methods: {

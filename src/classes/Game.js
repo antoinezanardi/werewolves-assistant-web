@@ -95,6 +95,10 @@ class Game {
             this.allPlayerRoleMinimumIsReached(roles);
     }
 
+    get canUpdateOptions() {
+        return !this._id;
+    }
+
     get firstWaiting() {
         return this.waiting[0];
     }
@@ -237,6 +241,10 @@ class Game {
 
     getPlayerWithId(playerId) {
         return this.players.find(({ _id }) => _id.toString() === playerId);
+    }
+
+    getPlayerWithName(playerName) {
+        return this.players.find(({ name }) => name === playerName);
     }
 
     get playersExpectedToPlay() {

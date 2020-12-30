@@ -14,12 +14,14 @@
     "GameOptionsModal": {
         "gameOptions": "Options de la partie",
         "close": "Fermer",
+        "optionsAreSaved": "Les options de la partie sont enregistrées automatiquement après chaque changement",
+        "gameOptionsCantBeUpdated": "Les options de la partie ne peuvent être modifiée en dehors de l'écran de composition de la partie.",
         "sheriff": "Maire",
         "isSheriffVoteDoubled": {
             "label": "Le vote du maire compte double",
             "description": {
                 "sheriffVoteIsDoubled": "Lors du vote du village pour décider qui sera pendu, la voix du maire compte double.",
-                "sheriffVoteIsNotDoubled": "Lors du vote du village pour décider qui sera pendu, la voix du maire n'a pas plus de valeur qu'un autre."
+                "sheriffVoteIsNotDoubled": "Lors du vote du village pour décider qui sera pendu, la voix du maire n'a pas plus de valeur qu'un autre habitant."
             }
         },
         "seer": "Voyante",
@@ -116,6 +118,7 @@
     "GameLobby": {
         "loading": "Recherche d'une partie en cours",
         "gameComposition": "Composition de la partie",
+        "gameOptions": "Options de la partie",
         "add": "Ajouter",
         "maxPlayerReached": "Maximum de joueurs atteint",
         "playerName": "Nom du joueur",

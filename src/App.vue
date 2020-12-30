@@ -5,9 +5,9 @@
             <NotAvailable v-else-if="unavailableAPI"/>
             <div v-else id="werewolves-assistant" key="werewolves-assistant" class="d-flex flex-column">
                 <transition name="fade-in">
-                    <NavBar v-if="$route.name !== 'Home'"/>
+                    <NavBar v-if="$route.name !== 'Home'" ref="navBar"/>
                 </transition>
-                <router-view class="fade-in flex-grow-1"/>
+                <router-view class="fade-in flex-grow-1" @show-game-options-modal="showGameOptionsModal"/>
             </div>
         </transition>
     </div>
@@ -49,6 +49,11 @@ export default {
                     await this.logOutUser({ toasted: false });
                 }
                 this.$error.display(err);
+            }
+        },
+        showGameOptionsModal() {
+            if (this.$refs.navBar) {
+                this.$refs.navBar.showGameOptionsModal();
             }
         },
     },

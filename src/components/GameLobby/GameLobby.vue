@@ -39,6 +39,14 @@
                             </form>
                         </div>
                     </div>
+                    <div class="row my-2">
+                        <div class="col-12 text-center">
+                            <button class="btn btn-outline-primary btn-sm" @click.prevent="$emit('show-game-options-modal')">
+                                <i class="fa fa-dice mr-2"/>
+                                <span v-html="$t('GameLobby.gameOptions')"/>
+                            </button>
+                        </div>
+                    </div>
                     <GameLobbyComposition :game="game"/>
                     <div>
                         <hr class="bg-dark mt-3 mb-2"/>
@@ -100,7 +108,7 @@
                     </div>
                 </div>
                 <GameLobbyTutorial ref="gameLobbyTutorial"/>
-                <GameLobbyRolePickerModal ref="gameLobbyRolePickerModal" :game="game" @role-picked="rolePicked"/>
+                <GameLobbyRolePickerModal ref="gameLobbyRolePickerModal"/>
             </div>
         </transition>
     </div>
@@ -151,12 +159,12 @@ export default {
                 createGame: false,
                 getGameRepartition: false,
             },
-            game: new Game(),
             playerName: "",
         };
     },
     computed: {
         ...mapGetters("role", { roles: "roles" }),
+        ...mapGetters("game", { game: "game" }),
         isPlayerNameTaken() {
             return this.game.players.find(({ name }) => name === this.sanitizedPlayerName);
         },
@@ -180,7 +188,7 @@ export default {
             }
             if (Object.keys(this.$route.query).length !== 0) {
                 const query = parse(this.$route.query);
-                this.game.players.push(...query.players.map(player => new Player(player)));
+                this.setGamePlayers(query.players.map(player => new Player(player)));
             }
         } catch (err) {
             this.$error.display(err);
@@ -190,12 +198,20 @@ export default {
     },
     methods: {
         ...mapActions("user", { checkUserAuthentication: "checkUserAuthentication" }),
-        ...mapActions("game", { setGame: "setGame" }),
+        ...mapActions("game", {
+            setGame: "setGame",
+            setGamePlayers: "setGamePlayers",
+            addGamePlayer: "addGamePlayer",
+            setCurrentRoleForPlayerWithName: "setCurrentRoleForPlayerWithName",
+            setCurrentSideForPlayerWithName: "setCurrentSideForPlayerWithName",
+            unsetPlayerWithName: "unsetPlayerWithName",
+            unsetRoleForPlayerWithName: "unsetRoleForPlayerWithName",
+        }),
         addPlayer() {
             if (!this.sanitizedPlayerName || !this.canAddPlayer) {
                 this.playerName = "";
             } else {
-                this.game.players.push(new Player({ name: this.sanitizedPlayerName }));
+                this.addGamePlayer(new Player({ name: this.sanitizedPlayerName }));
                 this.playerName = "";
             }
         },
@@ -208,10 +224,11 @@ export default {
                 const players = this.game.players.map(({ name }) => ({ name }));
                 const { data } = await this.$werewolvesAssistantAPI.getGameRepartition({ players });
                 for (const { name: playerName, role: roleName } of data.players) {
-                    const player = this.game.players.find(({ name }) => name === playerName);
                     const role = this.roles.find(({ name }) => name === roleName);
-                    player.role.current = role.name;
-                    player.side.current = role.side;
+                    if (role) {
+                        this.setCurrentRoleForPlayerWithName({ name: playerName, role: role.name });
+                        this.setCurrentSideForPlayerWithName({ name: playerName, side: role.side });
+                    }
                 }
             } catch (e) {
                 this.$error.display(e);
@@ -219,36 +236,18 @@ export default {
                 this.loading.getGameRepartition = false;
             }
         },
-        rolePicked({ player, role }) {
-            const playerInGame = this.game.players.find(({ name }) => name === player.name);
-            if (role.maxInGame <= this.game.players.filter(({ role: playerRole }) => playerRole.current === role.name).length) {
-                const sameRolePlayer = this.game.players.find(({ role: playerRole }) => playerRole.current === role.name);
-                sameRolePlayer.role.current = playerInGame.role.current;
-                sameRolePlayer.side.current = playerInGame.side.current;
-            }
-            playerInGame.role.current = role.name;
-            playerInGame.side.current = role.side;
-        },
         unsetPlayer(playerName) {
-            const idx = this.game.players.findIndex(({ name }) => name === playerName);
-            if (idx !== -1) {
-                this.game.players.splice(idx, 1);
-            }
+            this.unsetPlayerWithName(playerName);
         },
         unsetRole(playerName) {
-            for (const player of this.game.players) {
-                if (playerName === player.name) {
-                    player.role.current = undefined;
-                    player.role.group = undefined;
-                    break;
-                }
-            }
+            this.unsetRoleForPlayerWithName(playerName);
         },
         async createGame() {
             try {
                 this.loading.createGame = true;
                 const players = this.game.players.map(({ name, role }) => ({ name, role: role.current }));
-                const { data } = await this.$werewolvesAssistantAPI.createGame({ players });
+                const { options } = this.game;
+                const { data } = await this.$werewolvesAssistantAPI.createGame({ players, options });
                 this.$toasted.success(this.$t("GameLobby.gameCreated"), { icon: "gamepad" });
                 await this.$router.push(`/game/${data._id}`);
             } catch (e) {
@@ -287,7 +286,7 @@ export default {
 
     #game-lobby-title {
         @include font-size(2.2rem);
-        padding: 10px;
+        padding: 10px 10px 0;
     }
 
     #no-player-text {

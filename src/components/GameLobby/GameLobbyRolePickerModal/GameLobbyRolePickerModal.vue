@@ -131,11 +131,10 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import Swal from "sweetalert2";
 import $ from "jquery";
 import VueScrollTo from "vue-scrollto";
-import Game from "@/classes/Game";
 import Player from "@/classes/Player";
 import Role from "@/classes/Role";
 import RoleImage from "@/components/shared/Game/Role/RoleImage";
@@ -145,12 +144,6 @@ import RolePickerRole from "@/components/GameLobby/GameLobbyRolePickerModal/Role
 export default {
     name: "GameLobbyRolePickerModal",
     components: { RolePickerRole, RoleText, RoleImage },
-    props: {
-        game: {
-            type: Game,
-            required: true,
-        },
-    },
     data() {
         return {
             selected: {
@@ -166,6 +159,7 @@ export default {
     },
     computed: {
         ...mapGetters("role", { roles: "roles" }),
+        ...mapGetters("game", { game: "game" }),
         isRolePicked() {
             return this.selected.role.name;
         },
@@ -200,6 +194,10 @@ export default {
         },
     },
     methods: {
+        ...mapActions("game", {
+            setCurrentRoleForPlayerWithName: "setCurrentRoleForPlayerWithName",
+            setCurrentSideForPlayerWithName: "setCurrentSideForPlayerWithName",
+        }),
         show(selectedPlayer) {
             this.selectedRoleThumbnail = {
                 front: undefined,
@@ -254,13 +252,22 @@ export default {
             if (selectedRole.maxInGame <= this.game.players.filter(player => player.role.current === selectedRole.name).length) {
                 const { value } = await this.confirmPickRole();
                 if (value) {
-                    this.$emit("role-picked", this.selected);
+                    this.rolePicked(this.selected.role);
                     this.hide();
                 }
             } else {
-                this.$emit("role-picked", this.selected);
+                this.rolePicked(this.selected.role);
                 this.hide();
             }
+        },
+        rolePicked(role) {
+            if (role.maxInGame <= this.game.players.filter(({ role: playerRole }) => playerRole.current === role.name).length) {
+                const sameRolePlayer = this.game.getPlayerWithRole(role.name);
+                this.setCurrentRoleForPlayerWithName({ name: sameRolePlayer.name, role: this.selected.player.role.current });
+                this.setCurrentSideForPlayerWithName({ name: sameRolePlayer.name, side: this.selected.player.side.current });
+            }
+            this.setCurrentRoleForPlayerWithName({ name: this.selected.player.name, role: this.selected.role.name });
+            this.setCurrentSideForPlayerWithName({ name: this.selected.player.name, side: this.selected.role.side });
         },
     },
 };
