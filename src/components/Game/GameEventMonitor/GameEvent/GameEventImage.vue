@@ -1,15 +1,6 @@
 <template>
-    <div id="game-event-image" class="d-flex flex-grow-1 justify-content-center align-items-center">
-        <VueFlip v-if="event.type === 'game-starts'" id="game-starts-image" v-model="gameStartsEvent.flipped"
-                 transition="0.75s" height="30vh" width="30vh">
-            <template #front>
-                <RoleImage class="h-100 rounded" :role="gameStartsEvent.thumbnail.front"/>
-            </template>
-            <template #back>
-                <RoleImage class="h-100 rounded" :role="gameStartsEvent.thumbnail.back"/>
-            </template>
-        </VueFlip>
-        <div v-else-if="isPhaseGameEvent" class="w-100 text-center">
+    <div id="game-event-image" class="d-flex flex-grow-1 justify-content-center align-items-center visible-scrollbar">
+        <div v-if="isPhaseGameEvent" class="w-100 text-center">
             <transition mode="out-in" name="phase-transition">
                 <i v-if="displayedPhase === 'day'" key="day" class="phase-icon fa fa-sun sun-color"
                    :class="{ 'fa-spin': phaseTransition.ended }"/>
@@ -17,20 +8,30 @@
                    :class="{ 'swing': phaseTransition.ended }"/>
             </transition>
         </div>
-        <div v-else-if="isEffectGameEvent"
-             class="d-flex flex-grow-1 justify-content-center align-items-center flex-column w-100">
-            <div id="role-effect-container">
-                <RoleImage class="animate__animated animate__flipInY animate__fast role-image"
-                           :role="event.targets[0].player.role.current"
-                           :class="{ 'dead-player': event.type === 'player-dies' }"/>
-                <img id="effect-image" :src="effectImageSource"
-                     class="animate__animated animate__bounceIn animate__delay-1s" alt="Effect Image"/>
-            </div>
-            <h3 class="text-center mt-2 w-100 text-truncate" v-html="event.targets[0].player.name"/>
-        </div>
-        <div v-else class="d-flex flex-grow-1 justify-content-center align-items-center flex-column">
-            <RoleImage class="animate__animated animate__flipInY animate__fast role-image" :role="game.firstWaiting.for"/>
-        </div>
+        <VueFlip v-else v-model="playersEvent.flipped" transition="0.75s" height="30vh" width="30vh">
+            <template #front>
+                <div class="h-100 w-100">
+                    <div class="role-effect-container">
+                        <RoleImage class="h-100 rounded role-image" :role="playersEvent.thumbnail.front.role.current"
+                                   :class="{ 'dead-player': event.type === 'player-dies' }"/>
+                        <img v-if="isEffectGameEvent" :src="effectImageSource" class="effect-image"
+                             :class="{ 'animate__animated animate__bounceIn animate__delay-1s': gameEventPlayers.length === 1 }" alt="Effect Image"/>
+                    </div>
+                    <h3 class="text-center mt-2 w-100 text-truncate" v-html="playersEvent.thumbnail.front.name"/>
+                </div>
+            </template>
+            <template #back>
+                <div class="h-100 w-100">
+                    <div class="role-effect-container">
+                        <RoleImage class="h-100 rounded role-image" :role="playersEvent.thumbnail.back.role.current"
+                                   :class="{ 'dead-player': event.type === 'player-dies' }"/>
+                        <img v-if="isEffectGameEvent" :src="effectImageSource" class="effect-image"
+                             :class="{ 'animate__animated animate__bounceIn animate__delay-1s': gameEventPlayers.length === 1 }" alt="Effect Image"/>
+                    </div>
+                    <h3 class="text-center mt-2 w-100 text-truncate" v-html="playersEvent.thumbnail.back.name"/>
+                </div>
+            </template>
+        </VueFlip>
     </div>
 </template>
 
@@ -41,6 +42,8 @@ import RoleImage from "@/components/shared/Game/Role/RoleImage";
 import sheriffSVG from "@/assets/svg/attributes/sheriff.svg";
 import deadSVG from "@/assets/svg/attributes/dead.svg";
 import seenSVG from "@/assets/svg/actions/look.svg";
+import inLoveSVG from "@/assets/svg/attributes/in-love.svg";
+import Player from "@/classes/Player";
 
 export default {
     name: "GameEventImage",
@@ -53,12 +56,12 @@ export default {
     },
     data() {
         return {
-            gameStartsEvent: {
+            playersEvent: {
                 playerIdx: 0,
                 flipped: false,
                 thumbnail: {
-                    front: undefined,
-                    back: undefined,
+                    front: new Player(),
+                    back: new Player(),
                 },
             },
             phaseTransition: {
@@ -70,7 +73,7 @@ export default {
     computed: {
         ...mapGetters("game", { game: "game" }),
         isEffectGameEvent() {
-            const effectGameEventTypes = ["sheriff-elected", "player-dies", "seer-looks"];
+            const effectGameEventTypes = ["sheriff-elected", "player-dies", "seer-looks", "cupid-charms"];
             return effectGameEventTypes.includes(this.event.type);
         },
         isPhaseGameEvent() {
@@ -81,6 +84,7 @@ export default {
                 "sheriff-elected": sheriffSVG,
                 "player-dies": deadSVG,
                 "seer-looks": seenSVG,
+                "cupid-charms": inLoveSVG,
             };
             return effectGameEventTypeImageSource[this.event.type];
         },
@@ -90,32 +94,46 @@ export default {
             }
             return this.phaseTransition.started ? "day" : "night";
         },
+        gameEventPlayers() {
+            if (this.isPhaseGameEvent) {
+                return [];
+            }
+            const { firstWaiting, alivePlayersExpectedToPlay, playersExpectedToPlay } = this.game;
+            if (this.event.type === "no-death-during-night") {
+                return this.game.alivePlayers;
+            } else if (this.isEffectGameEvent) {
+                return this.event.targets.map(({ player }) => player);
+            }
+            return firstWaiting.to === "delegate" || firstWaiting.to === "shoot" ? playersExpectedToPlay : alivePlayersExpectedToPlay;
+        },
     },
     created() {
-        if (this.event.type === "game-starts") {
-            this.setGameStartsInterval();
-        } else if (this.event.type === "night-falls" || this.event.type === "day-rises") {
+        if (this.isPhaseGameEvent) {
             this.triggerPhaseTransition();
+        } else {
+            this.setPlayersExpectedToPlayFlip();
         }
     },
     methods: {
-        setGameStartsInterval() {
-            this.gameStartsEvent.thumbnail.back = this.game.players[0].role.current;
-            setInterval(() => {
-                if (this.gameStartsEvent.playerIdx + 1 === this.game.players.length) {
-                    this.gameStartsEvent.playerIdx = 0;
-                } else {
-                    this.gameStartsEvent.playerIdx += 1;
-                }
-                const player = this.game.players[this.gameStartsEvent.playerIdx];
-                if (!this.gameStartsEvent.flipped) {
-                    this.gameStartsEvent.thumbnail.back = player.role.current;
-                    this.gameStartsEvent.flipped = true;
-                } else {
-                    this.gameStartsEvent.thumbnail.front = player.role.current;
-                    this.gameStartsEvent.flipped = false;
-                }
-            }, 1500);
+        setPlayersExpectedToPlayFlip() {
+            this.playersEvent.thumbnail.front = this.gameEventPlayers[0];
+            if (this.gameEventPlayers.length > 1) {
+                setInterval(() => {
+                    if (this.playersEvent.playerIdx + 1 === this.gameEventPlayers.length) {
+                        this.playersEvent.playerIdx = 0;
+                    } else {
+                        this.playersEvent.playerIdx += 1;
+                    }
+                    const player = this.gameEventPlayers[this.playersEvent.playerIdx];
+                    if (!this.playersEvent.flipped) {
+                        this.playersEvent.thumbnail.back = player;
+                        this.playersEvent.flipped = true;
+                    } else {
+                        this.playersEvent.thumbnail.front = player;
+                        this.playersEvent.flipped = false;
+                    }
+                }, 1000);
+            }
         },
         triggerPhaseTransition() {
             setTimeout(() => {
@@ -130,6 +148,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    @import "../../../../../node_modules/bootstrap/scss/bootstrap-grid";
+
     .phase-icon {
         font-size: 7rem;
     }
@@ -162,17 +182,18 @@ export default {
     .role-image {
         border: 5px solid #303030;
         border-radius: 5px;
-        height: 20vh;
+        height: 30vh;
+        width: 30vh;
     }
 
-    #role-effect-container {
+    .role-effect-container {
         position: relative;
 
         img.dead-player {
             filter: grayscale(1);
         }
 
-        #effect-image {
+        .effect-image {
             position: absolute;
             height: 40%;
             bottom: 5%;

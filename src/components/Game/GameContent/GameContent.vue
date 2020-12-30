@@ -2,7 +2,8 @@
     <div id="game-content" class="d-flex flex-column">
         <transition mode="out-in" name="fade">
             <GameEventMonitor v-if="events.length" key="game-event-monitor" :events="events" @skip-event="removeEvent"/>
-            <GamePlayField v-else key="game-play-field" :play="play" @player-selected="playerSelected" @player-votes="playerVotes"/>
+            <GamePlayField v-else key="game-play-field" :play="play" @player-selected="playerSelected" @player-votes="playerVotes"
+                           @side-selected="sideSelected"/>
         </transition>
     </div>
 </template>
@@ -11,7 +12,8 @@
 import { mapGetters } from "vuex";
 import GamePlayField from "./GamePlayField/GamePlayField";
 import GameEvent from "@/classes/GameEvent";
-import GameEventMonitor from "../GameEventMonitor/GameEventMonitor";
+import GameEventMonitor from "@/components/Game/GameEventMonitor/GameEventMonitor";
+import { maxTargetLengthForPlayerAttribute } from "@/helpers/functions/Player";
 
 export default {
     name: "GameContent",
@@ -21,6 +23,7 @@ export default {
             play: {
                 votes: [],
                 targets: [],
+                side: undefined,
             },
             events: [],
         };
@@ -30,7 +33,6 @@ export default {
         game: {
             handler(newGame, oldGame) {
                 this.resetPlay();
-                // this.events.push(new GameEvent({ type: "player-dies", targets: [{ player: this.game.players[1] }] }));
                 if (newGame.tick === 1) {
                     this.events.push(new GameEvent({ type: "game-starts" }));
                 }
@@ -63,28 +65,37 @@ export default {
             } else if (target.attribute === "drank-death-potion") {
                 target.potion = { death: true };
             }
-            if (payload.selected) {
-                const idx = this.play.targets.findIndex(({ attribute }) => attribute === target.attribute);
-                if (idx !== -1) {
-                    this.play.targets.splice(idx, 1);
+            const maxTargetLength = maxTargetLengthForPlayerAttribute(payload.attribute);
+            const targetIdx = this.play.targets.findIndex(({ player }) => player === target.player);
+            if (!payload.selected) {
+                if (targetIdx !== -1) {
+                    this.play.targets.splice(targetIdx, 1);
+                }
+            } else if (targetIdx !== -1) {
+                this.play.targets.splice(targetIdx, 1, target);
+            } else {
+                this.play.targets.push(target);
+                const targetsWithAttribute = this.play.targets.filter(({ attribute }) => attribute === payload.attribute);
+                if (maxTargetLength < targetsWithAttribute.length) {
+                    this.play.targets.shift();
                 }
             }
-            const idx = this.play.targets.findIndex(({ player, attribute }) => player === target.player && attribute === target.attribute);
-            if (idx !== -1) {
-                return payload.selected ? this.play.targets.splice(idx, 1, target) : this.play.targets.splice(idx, 1);
-            } else if (payload.selected) {
-                return this.play.targets.push(target);
-            }
+        },
+        sideSelected(side) {
+            this.play.side = side;
         },
         resetPlay() {
             this.play.votes = [];
             this.play.targets = [];
+            this.play.side = undefined;
             if (this.game.history.length) {
                 const lastGameHistoryEntry = this.game.history[0];
                 if (lastGameHistoryEntry.play.action === "look") {
                     this.events.push(new GameEvent({ type: "seer-looks", targets: lastGameHistoryEntry.play.targets }));
                 } else if (lastGameHistoryEntry.play.action === "elect-sheriff" || lastGameHistoryEntry.play.action === "delegate") {
                     this.events.push(new GameEvent({ type: "sheriff-elected", targets: lastGameHistoryEntry.play.targets }));
+                } else if (lastGameHistoryEntry.play.action === "charm") {
+                    this.events.push(new GameEvent({ type: "cupid-charms", targets: lastGameHistoryEntry.play.targets }));
                 }
             }
         },
@@ -106,19 +117,13 @@ export default {
                     this.events.push(new GameEvent({ type: "player-dies", targets: [{ player: newPlayer }] }));
                 }
             }
+            if (newGame.phase === "day" && !this.events.find(({ type }) => type === "player-dies")) {
+                this.events.push(new GameEvent({ type: "no-death-during-night" }));
+            }
         },
         generateGameRoleTurnEvents(newGame, oldGame) {
-            const roleTurnEvents = {
-                seer: "seer-starts",
-                werewolves: "werewolves-start",
-                witch: "witch-starts",
-                guard: "guard-starts",
-                raven: "raven-starts",
-                hunter: "hunter-starts",
-            };
-            if ((!oldGame || newGame.firstWaiting.for !== oldGame.firstWaiting.for && newGame.firstWaiting.to !== oldGame.firstWaiting.to) &&
-                roleTurnEvents[newGame.firstWaiting.for]) {
-                this.events.push(new GameEvent({ type: roleTurnEvents[newGame.firstWaiting.for] }));
+            if (!oldGame || newGame.firstWaiting.for !== oldGame.firstWaiting.for || newGame.firstWaiting.to !== oldGame.firstWaiting.to) {
+                this.events.push(new GameEvent({ type: `${newGame.firstWaiting.for}-turn` }));
             }
         },
         removeEvent(event) {

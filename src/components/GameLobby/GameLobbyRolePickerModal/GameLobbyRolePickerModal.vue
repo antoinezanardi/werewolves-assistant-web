@@ -6,6 +6,7 @@
                     <div class="container-fluid">
                         <div class="row align-items-center">
                             <div class="offset-md-0 col-md-2 order-md-0 offset-2 col-8 order-0 text-center">
+                                <div class="font-italic small text-secondary" v-html="$t('GameLobbyRolePickerModal.actualRole')"/>
                                 <RoleImage id="selected-player-current-role-image" :role="selected.player.role.current"/>
                                 <RoleText v-if="selected.player.role.current" :role="selected.player.role.current"/>
                                 <div v-else v-html="$t('GameLobbyRolePickerModal.noRole')"/>
@@ -60,19 +61,23 @@
                                                 </div>
                                                 <div class="col-6 d-flex justify-content-center align-items-center">
                                                     <span class="font-weight-bold mr-2" v-html="`${$t('GameLobbyRolePickerModal.side')}: `"/>
-                                                    <RoleImage id="selected-role-side-image" :role="selected.role.group"/>
+                                                    <RoleImage id="selected-role-side-image" :role="selected.role.side"/>
                                                 </div>
                                             </div>
                                             <div class="row mt-2">
-                                                <div class="col-12 text-center">
-                                                    <div>
+                                                <div class="col-12">
+                                                    <div class="mt-2">
                                                         <i class="fa fa-chess-pawn text-info mr-2"/>
                                                         <span v-html="selectedRoleAlreadyTakenText"/>
                                                     </div>
-                                                    <div v-if="selected.role.maxInGame === game.getPlayersWithRole(selected.role.name).length">
+                                                    <div v-if="isRoleCountAlertDisplayed" class="mt-2">
                                                         <i class="fa fa-exclamation-circle animate__animated animate__heartBeat
-                                                                    animate__infinite mr-2"/>
-                                                        <span v-html="$t('GameLobbyRolePickerModal.maxInGameReached')"/>
+                                                                    animate__infinite text-danger mr-2"/>
+                                                        <span v-html="roleCountAlertText"/>
+                                                    </div>
+                                                    <div v-if="selected.role.recommendedMinPlayers" class="mt-2">
+                                                        <i class="fa fa-chess text-info mr-2"/>
+                                                        <span v-html="recommendedMinPlayersText"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -92,28 +97,11 @@
                             </div>
                             <div id="roles-panel" class="col-md-8 col-12 visible-scrollbar">
                                 <div class="row justify-content-center">
-                                    <div class="col-md-2 col-3 text-center p-2" @click="selectRandomRole">
-                                        <div class="role-image-container">
-                                            <RoleImage role="back"/>
-                                        </div>
-                                        <div class="cursor-pointer">
-                                            <i class="fa fa-random mr-1"/>
-                                            <span class="font-italic" v-html="$t('GameLobbyRolePickerModal.random')"/>
-                                        </div>
-                                    </div>
-                                    <div v-for="role in roles" :key="role.name" class="col-md-2 col-3 text-center p-2"
-                                         @click="changeSelectedRole(role)">
-                                        <div class="role-image-container" :class="{ selected: role === selected.role }">
-                                            <div v-if="game.getPlayersWithRole(role.name).length"
-                                                 v-tooltip="$t('GameLobbyRolePickerModal.totalInGameInThisRole')"
-                                                 class="role-count-in-game badge badge-light">
-                                                <i class="fa fa-chess-pawn mr-2"/>
-                                                <span v-html="game.getPlayersWithRole(role.name).length"/>
-                                            </div>
-                                            <RoleImage :role="role.name"/>
-                                        </div>
-                                        <RoleText :role="role.name"/>
-                                    </div>
+                                    <RolePickerRole :game="game" class="col-md-2 col-3 text-center p-2"
+                                                    @click.native="selectRandomRole"/>
+                                    <RolePickerRole v-for="role in roles" :key="role.name" :game="game" :role="role"
+                                                    :selected="selected.role.name === role.name"
+                                                    class="col-md-2 col-3 text-center p-2" @click.native="changeSelectedRole(role)"/>
                                 </div>
                             </div>
                         </div>
@@ -143,25 +131,19 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import Swal from "sweetalert2";
 import $ from "jquery";
 import VueScrollTo from "vue-scrollto";
-import Game from "@/classes/Game";
 import Player from "@/classes/Player";
 import Role from "@/classes/Role";
 import RoleImage from "@/components/shared/Game/Role/RoleImage";
 import RoleText from "@/components/shared/Game/Role/RoleText";
+import RolePickerRole from "@/components/GameLobby/GameLobbyRolePickerModal/RolePickerRole";
 
 export default {
     name: "GameLobbyRolePickerModal",
-    components: { RoleText, RoleImage },
-    props: {
-        game: {
-            type: Game,
-            required: true,
-        },
-    },
+    components: { RolePickerRole, RoleText, RoleImage },
     data() {
         return {
             selected: {
@@ -177,6 +159,7 @@ export default {
     },
     computed: {
         ...mapGetters("role", { roles: "roles" }),
+        ...mapGetters("game", { game: "game" }),
         isRolePicked() {
             return this.selected.role.name;
         },
@@ -195,8 +178,26 @@ export default {
             }
             return "";
         },
+        recommendedMinPlayersText() {
+            return this.$t("GameLobbyRolePickerModal.recommendedMinPlayers", { count: this.selected.role.recommendedMinPlayers });
+        },
+        isRoleCountAlertDisplayed() {
+            const roleCount = this.game.getPlayersWithRole(this.selected.role.name).length;
+            return !!roleCount && (this.selected.role.maxInGame === roleCount || this.selected.role.minInGame > roleCount);
+        },
+        roleCountAlertText() {
+            const roleCount = this.game.getPlayersWithRole(this.selected.role.name).length;
+            if (this.selected.role.maxInGame === roleCount) {
+                return this.$t("GameLobbyRolePickerModal.maxInGameReached");
+            }
+            return this.$t("GameLobbyRolePickerModal.leftToStartGame", { count: this.selected.role.minInGame - roleCount });
+        },
     },
     methods: {
+        ...mapActions("game", {
+            setCurrentRoleForPlayerWithName: "setCurrentRoleForPlayerWithName",
+            setCurrentSideForPlayerWithName: "setCurrentSideForPlayerWithName",
+        }),
         show(selectedPlayer) {
             this.selectedRoleThumbnail = {
                 front: undefined,
@@ -251,20 +252,29 @@ export default {
             if (selectedRole.maxInGame <= this.game.players.filter(player => player.role.current === selectedRole.name).length) {
                 const { value } = await this.confirmPickRole();
                 if (value) {
-                    this.$emit("role-picked", this.selected);
+                    this.rolePicked(this.selected.role);
                     this.hide();
                 }
             } else {
-                this.$emit("role-picked", this.selected);
+                this.rolePicked(this.selected.role);
                 this.hide();
             }
+        },
+        rolePicked(role) {
+            if (role.maxInGame <= this.game.players.filter(({ role: playerRole }) => playerRole.current === role.name).length) {
+                const sameRolePlayer = this.game.getPlayerWithRole(role.name);
+                this.setCurrentRoleForPlayerWithName({ name: sameRolePlayer.name, role: this.selected.player.role.current });
+                this.setCurrentSideForPlayerWithName({ name: sameRolePlayer.name, side: this.selected.player.side.current });
+            }
+            this.setCurrentRoleForPlayerWithName({ name: this.selected.player.name, role: this.selected.role.name });
+            this.setCurrentSideForPlayerWithName({ name: this.selected.player.name, side: this.selected.role.side });
         },
     },
 };
 </script>
 
 <style lang="scss" scoped>
-    @import "../../../node_modules/bootstrap/scss/bootstrap-grid";
+    @import "../../../../node_modules/bootstrap/scss/bootstrap-grid";
 
     #game-lobby-role-picker-modal {
         overflow-y: hidden;
@@ -314,35 +324,6 @@ export default {
         height: 55%;
         @include media-breakpoint-up(md) {
             height: 100%;
-        }
-    }
-
-    .role-image-container {
-        border: 3px solid grey;
-        border-radius: 8px;
-        margin: 3px;
-        transition: all 0.25s ease;
-        cursor: pointer;
-
-        .role-count-in-game {
-            position: absolute;
-            right: 2px;
-            top: 2px;
-            opacity: 0.8;
-            transition: all 0.25s ease;
-            z-index: 1;
-
-            &:hover {
-                opacity: 1;
-            }
-        }
-
-        &:hover {
-            border-color: #CACACA;
-        }
-
-        &.selected {
-            border-color: #eeeeee;
         }
     }
 </style>

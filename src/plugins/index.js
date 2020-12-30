@@ -10,6 +10,7 @@ import "./vue-flip";
 import "./vue-github-buttons";
 import "./vue-gtag";
 import i18n from "./vue-i18n";
+import "./vue-js-toggle-button";
 import "./vue-keypress";
 import "./vue-lazyload";
 import "./vue-roller";

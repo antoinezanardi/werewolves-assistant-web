@@ -1,11 +1,10 @@
 <template>
     <div id="eat-play-field" class="d-flex flex-column">
         <div id="werewolf-players" class="row justify-content-center align-items-center">
-            <PlayerCard v-for="player of game.aliveWerewolfPlayers" :key="player.name" :player="player" size="lg"
-                        class="col-6 col-lg-3"/>
+            <PlayerCard v-for="player of eatingPlayers" :key="player.name" :player="player" size="lg" class="col-6 col-md-4 col-lg-3"/>
         </div>
         <PlayFieldActionText :play="play" attribute="eaten" @player-selected="playerSelected"/>
-        <PlayerTargets :targets="alivePlayersExceptWerewolves" :play="play" attribute="eaten" class="flex-grow-1"
+        <PlayerTargets :targets="eatablePlayers" :play="play" attribute="eaten" class="flex-grow-1"
                        @player-selected="playerSelected"/>
     </div>
 </template>
@@ -27,8 +26,16 @@ export default {
     },
     computed: {
         ...mapGetters("game", { game: "game" }),
-        alivePlayersExceptWerewolves() {
-            return this.game.alivePlayers.filter(player => player.role.group !== "werewolves");
+        eatablePlayers() {
+            return this.game.alivePlayers.filter(player => player.side.current !== "werewolves" && !player.hasAttribute("eaten"));
+        },
+        eatingPlayers() {
+            const { firstWaiting } = this.game;
+            const eatingPlayers = {
+                "werewolves": this.game.aliveWerewolfPlayers,
+                "big-bad-wolf": this.game.getPlayersWithRole("big-bad-wolf"),
+            };
+            return eatingPlayers[firstWaiting.for] ? eatingPlayers[firstWaiting.for] : [];
         },
     },
     methods: {

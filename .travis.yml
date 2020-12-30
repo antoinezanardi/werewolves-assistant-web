@@ -2,6 +2,8 @@ os: linux
 dist: xenial
 language: node_js
 node_js: 14
+env:
+    - CI=true
 install:
 - npm install
 - npm run lint

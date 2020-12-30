@@ -3,6 +3,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
     name: "RoleText",
     props: {
@@ -10,25 +12,27 @@ export default {
             type: String,
             default: "",
         },
+        prefix: {
+            type: String,
+            default: undefined,
+        },
     },
     computed: {
+        ...mapGetters("game", { game: "game" }),
         roleText() {
-            const roleText = {
-                "back": "",
-                "guard": this.$t("Role.the.guard"),
-                "hunter": this.$t("Role.the.hunter"),
-                "raven": this.$t("Role.the.raven"),
-                "seer": this.$t("Role.the.seer"),
-                "villager": this.$t("Role.the.villager"),
-                "werewolf": this.$t("Role.the.werewolf"),
-                "werewolves": this.$t("Role.the.werewolves"),
-                "witch": this.$t("Role.the.witch"),
-                "sheriff": this.$t("Role.the.sheriff"),
-                "little-girl": this.$t("Role.the.little-girl"),
-                "villager-villager": this.$t("Role.the.villager-villager"),
-                "all": this.$t("Role.the.all"),
-            };
-            return this.role && roleText[this.role] ? roleText[this.role] : this.$t("RoleText.chooseARole");
+            if (!this.role) {
+                return this.$t("RoleText.chooseARole");
+            }
+            let prefix;
+            const groups = ["all", "villagers", "werewolves", "lovers"];
+            if (this.prefix) {
+                prefix = this.prefix;
+            } else if (groups.includes(this.role) || this.role === "sheriff") {
+                prefix = "the";
+            } else {
+                prefix = this.game.getPlayersWithRole(this.role).length === 1 ? "the" : "a";
+            }
+            return this.$t(`Role.${prefix}.${this.role}`);
         },
         roleTextClasses() {
             if (this.role) {

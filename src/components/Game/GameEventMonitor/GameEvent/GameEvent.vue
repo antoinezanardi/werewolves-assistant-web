@@ -2,7 +2,7 @@
     <div id="game-event" class="container-fluid d-flex flex-grow-1 flex-column">
         <Keypress key-event="keyup" :key-code="37" @success="previousGameEventMessage"/>
         <Keypress key-event="keyup" :key-code="39" @success="nextGameEventMessage"/>
-        <div id="game-event-image-container" class="d-flex justify-content-center align-items-center w-100">
+        <div id="game-event-image-container" class="d-flex justify-content-center align-items-center w-100 visible-scrollbar">
             <div class="d-flex justify-content-center flex-grow-1 w-100">
                 <GameEventImage class="w-100" :event="event"/>
             </div>
@@ -78,7 +78,10 @@ export default {
         };
     },
     computed: {
-        ...mapGetters("game", { game: "game" }),
+        ...mapGetters("game", {
+            game: "game",
+            gameOptions: "gameOptions",
+        }),
         // eslint-disable-next-line max-lines-per-function
         gameEventMetadata() {
             const gameEventTargetName = this.hasGameEventTarget ? this.event.targets[0].player.name : null;
@@ -102,18 +105,59 @@ export default {
                 "sheriff-elected": {
                     messages: [
                         i18n.t("GameEvent.messages.playerHasBeenPromotedSheriff", { gameEventTargetName }),
-                        ...insertIf(this.game.tick === 1, i18n.t("GameEvent.messages.sheriffCanMakeASpeech")),
+                        ...insertIf(this.game.turn === 1, i18n.t("GameEvent.messages.sheriffCanMakeASpeech")),
                     ],
                 },
                 "night-falls": { messages: [i18n.t("GameEvent.messages.nightFalls"), i18n.t("GameEvent.messages.inhabitantsFallAsleep")] },
+                "all-turn": {
+                    messages: [
+                        ...insertIf(this.game.firstWaiting.to === "vote", i18n.t("GameEvent.messages.allVote")),
+                        ...insertIf(this.game.firstWaiting.to === "elect-sheriff", i18n.t("GameEvent.messages.allElectSheriff")),
+                    ],
+                },
+                "sheriff-turn": {
+                    messages: [
+                        ...insertIf(this.game.firstWaiting.to === "settle-votes", i18n.t("GameEvent.messages.sheriffSettlesVote")),
+                        ...insertIf(this.game.firstWaiting.to === "delegate", i18n.t("GameEvent.messages.sheriffDelegates")),
+                    ],
+                },
                 "day-rises": { messages: [i18n.t("GameEvent.messages.dayRises")] },
-                "seer-starts": { messages: [i18n.t("GameEvent.messages.seerStarts")] },
-                "seer-looks": { messages: [`${i18n.t("GameEvent.messages.seerHasSeen")} ${gameEventTargetRole} !`] },
-                "werewolves-start": { messages: [i18n.tc("GameEvent.messages.werewolvesStart", this.game.aliveWerewolfPlayers.length)] },
-                "witch-starts": { messages: [i18n.t("GameEvent.messages.witchStarts")] },
-                "guard-starts": { messages: [i18n.t("GameEvent.messages.guardStarts")] },
-                "raven-starts": { messages: [i18n.t("GameEvent.messages.ravenStarts")] },
-                "hunter-starts": { messages: [i18n.t("GameEvent.messages.hunterStarts")] },
+                "no-death-during-night": { messages: [i18n.t("GameEvent.messages.noDeathDuringNight")] },
+                "seer-turn": { messages: [i18n.t("GameEvent.messages.seerStarts")] },
+                "seer-looks": {
+                    messages: [
+                        ...insertIf(!this.gameOptions.isSeerTalkative, i18n.t("GameEvent.messages.followingMessageMustBeMimed")),
+                        `${i18n.t("GameEvent.messages.seerHasSeen")} ${gameEventTargetRole} !`,
+                    ],
+                },
+                "werewolves-turn": { messages: [i18n.tc("GameEvent.messages.werewolvesStart", this.game.aliveWerewolfPlayers.length)] },
+                "witch-turn": { messages: [i18n.t("GameEvent.messages.witchStarts")] },
+                "guard-turn": { messages: [i18n.t("GameEvent.messages.guardStarts")] },
+                "raven-turn": { messages: [i18n.t("GameEvent.messages.ravenStarts")] },
+                "hunter-turn": { messages: [i18n.t("GameEvent.messages.hunterStarts")] },
+                "dog-wolf-turn": { messages: [i18n.t("GameEvent.messages.dogWolfStarts")] },
+                "cupid-turn": { messages: [i18n.t("GameEvent.messages.cupidStarts")] },
+                "cupid-charms": {
+                    messages: [
+                        i18n.t("GameEvent.messages.cupidCharmedTwoPlayers"),
+                        i18n.t("GameEvent.messages.gameMasterWillTouchLovers"),
+                    ],
+                },
+                "lovers-turn": { messages: [i18n.t("GameEvent.messages.loversStart")] },
+                "two-sisters-turn": {
+                    messages: [
+                        ...insertIf(this.game.turn === 1, i18n.t("GameEvent.messages.twoSistersMeetEachOther")),
+                        ...insertIf(this.game.turn !== 1, i18n.t("GameEvent.messages.twoSistersWakeUpToTalk")),
+                    ],
+                },
+                "three-brothers-turn": {
+                    messages: [
+                        ...insertIf(this.game.turn === 1, i18n.t("GameEvent.messages.threeBrothersMeetEachOther")),
+                        ...insertIf(this.game.turn !== 1, i18n.t("GameEvent.messages.threeBrothersWakeUpToTalk")),
+                    ],
+                },
+                "wild-child-turn": { messages: [i18n.t("GameEvent.messages.wildChildStarts")] },
+                "big-bad-wolf-turn": { messages: [i18n.t("GameEvent.messages.bigBadWolfStarts")] },
             };
         },
         hasGameEventTarget() {
@@ -173,11 +217,12 @@ export default {
     @import "../../../../assets/scss/variables";
 
     #game-event-image-container {
-        height: 50%;
+        height: 60%;
+        overflow-y: auto;
     }
 
     #game-event-message-container {
-        height: 50%;
+        height: 40%;
 
         #game-event-message {
             @include font-size(1.25rem);

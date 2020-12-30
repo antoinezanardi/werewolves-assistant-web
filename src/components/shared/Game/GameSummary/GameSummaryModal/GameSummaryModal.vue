@@ -10,12 +10,18 @@
                         </span>
                     </button>
                 </div>
-                <div class="modal-body d-flex flex-column h-100">
+                <div class="modal-body d-flex flex-column h-100 visible-scrollbar">
                     <div id="game-summary-results">
                         <h4 class="text-center mt-2">
                             <i class="fa fa-trophy text-warning mr-2"/>
                             <span v-html="$t('GameSummaryModal.gameResults')"/>
                         </h4>
+                        <hr class="bg-dark"/>
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <GameResult/>
+                            </div>
+                        </div>
                         <hr class="bg-dark"/>
                         <div class="row justify-content-around">
                             <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center text-center">
@@ -69,15 +75,16 @@
 <script>
 import { mapGetters } from "vuex";
 import $ from "jquery";
-import GameSummaryHistoryLine from "@/components/Game/GameWinners/GameSummaryModal/GameSummaryHistoryLine";
+import GameSummaryHistoryLine from "@/components/shared/Game/GameSummary/GameSummaryModal/GameSummaryHistoryLine";
 import AliveVillagers from "@/components/shared/Game/Sides/AliveVillagers";
 import AliveWerewolves from "@/components/shared/Game/Sides/AliveWerewolves";
 import trophy from "@/assets/svg/game/trophy.svg";
 import dead from "@/assets/svg/attributes/dead.svg";
+import GameResult from "@/components/shared/Game/GameResult/GameResult";
 
 export default {
     name: "GameSummaryModal",
-    components: { AliveWerewolves, AliveVillagers, GameSummaryHistoryLine },
+    components: { GameResult, AliveWerewolves, AliveVillagers, GameSummaryHistoryLine },
     data() {
         return { SVGs: { trophy, dead } };
     },

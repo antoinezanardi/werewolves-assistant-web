@@ -21,6 +21,13 @@
                                :play="play" class="h-100 container-fluid" @player-selected="playerSelected"/>
             <ShootPlayField v-else-if="game.firstWaiting.to === 'shoot'" key="shoot"
                             :play="play" class="h-100 container-fluid" @player-selected="playerSelected"/>
+            <ChooseSidePlayField v-else-if="game.firstWaiting.to === 'choose-side'" key="choose-side"
+                                 :play="play" class="h-100 container-fluid" @side-selected="sideSelected"/>
+            <CharmPlayField v-else-if="game.firstWaiting.to === 'charm'" key="charm"
+                            :play="play" class="h-100 container-fluid" @player-selected="playerSelected"/>
+            <MeetEachOtherPlayField v-else-if="game.firstWaiting.to === 'meet-each-other'" key="meet-each-other" class="h-100 container-fluid"/>
+            <ChooseModelPlayField v-else-if="game.firstWaiting.to === 'choose-model'" key="choose-model" :play="play" class="h-100 container-fluid"
+                                  @player-selected="playerSelected"/>
             <div v-else key="unknown">
                 ?
             </div>
@@ -40,10 +47,20 @@ import VotePlayField from "./VotePlayField";
 import SettleVotesPlayField from "./SettleVotesPlayField";
 import DelegatePlayField from "./DelegatePlayField";
 import ShootPlayField from "./ShootPlayField";
+import ChooseSidePlayField from "@/components/Game/GameContent/GamePlayField/GamePlayFieldContent/ChooseSidePlayField";
+import CharmPlayField from "@/components/Game/GameContent/GamePlayField/GamePlayFieldContent/CharmPlayField";
+import MeetEachOtherPlayField
+    from "@/components/Game/GameContent/GamePlayField/GamePlayFieldContent/MeetEachOtherPlayField";
+import ChooseModelPlayField
+    from "@/components/Game/GameContent/GamePlayField/GamePlayFieldContent/ChooseModelPlayField";
 
 export default {
     name: "GamePlayFieldContent",
     components: {
+        ChooseModelPlayField,
+        MeetEachOtherPlayField,
+        CharmPlayField,
+        ChooseSidePlayField,
         ShootPlayField, DelegatePlayField, SettleVotesPlayField, VotePlayField, MarkPlayField, ProtectPlayField, UsePotionPlayField,
         EatPlayField, LookPlayField, ElectSheriffPlayField,
     },
@@ -60,6 +77,9 @@ export default {
         },
         playerSelected(payload) {
             this.$emit("player-selected", payload);
+        },
+        sideSelected(payload) {
+            this.$emit("side-selected", payload);
         },
     },
 };

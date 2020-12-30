@@ -7,7 +7,10 @@ class Player {
         this.role = {
             original: getProp(player, "role.original"),
             current: getProp(player, "role.current"),
-            group: getProp(player, "role.group"),
+        };
+        this.side = {
+            original: getProp(player, "side.original"),
+            current: getProp(player, "side.current"),
         };
         this.attributes = getProp(player, "attributes", [], attributes => attributes.map(attribute => attribute));
         this.isAlive = getProp(player, "isAlive");

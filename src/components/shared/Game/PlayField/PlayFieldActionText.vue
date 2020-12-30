@@ -5,8 +5,7 @@
                 <h3 id="play-field-action-text" :key="actionText" v-html="actionText"/>
             </transition>
             <div id="cancel-player-target-container" class="d-flex align-items-center justify-content-center">
-                <CancelPlayerTarget :attribute="attribute" :targeted-player="targetedPlayer"
-                                    @player-selected="playerSelected"/>
+                <CancelActionButton :attribute="attribute" :play="play" @player-selected="playerSelected" @side-selected="sideSelected"/>
             </div>
         </div>
     </div>
@@ -14,11 +13,11 @@
 
 <script>
 import { mapGetters } from "vuex";
-import CancelPlayerTarget from "./CancelPlayerTarget";
+import CancelActionButton from "./CancelActionButton";
 
 export default {
     name: "PlayFieldActionText",
-    components: { CancelPlayerTarget },
+    components: { CancelActionButton },
     props: {
         play: {
             type: Object,
@@ -31,79 +30,67 @@ export default {
     },
     computed: {
         ...mapGetters("game", { game: "game" }),
-        // eslint-disable-next-line max-lines-per-function
-        attributeTexts() {
-            return {
-                "seen": {
-                    notTargeted: `${this.$t("PlayFieldActionText.wantsToLook")} ...`,
-                    targeted: this.$t("PlayFieldActionText.wantsToLook"),
-                },
-                "eaten": {
-                    notTargeted: `${this.$tc("PlayFieldActionText.wantToEat", this.game.aliveWerewolfPlayers.length)} ...`,
-                    targeted: this.$tc("PlayFieldActionText.wantToEat", this.game.aliveWerewolfPlayers.length),
-                },
-                "drank-life-potion": {
-                    notTargeted: this.$t("PlayFieldActionText.doesntWantToUseLifePotion"),
-                    targeted: this.$t("PlayFieldActionText.wantsToUseLifePotionOn"),
-                    selfTargeted: this.$t("PlayFieldActionText.wantsToUseLifePotionOnHerself"),
-                },
-                "drank-death-potion": {
-                    notTargeted: this.$t("PlayFieldActionText.doesntWantToUseDeathPotion"),
-                    targeted: this.$t("PlayFieldActionText.wantsToUseDeathPotionOn"),
-                    selfTargeted: this.$t("PlayFieldActionText.wantsToUseDeathPotionOnHerself"),
-                },
-                "protected": {
-                    notTargeted: `${this.$t("PlayFieldActionText.wantsToProtect")} ...`,
-                    targeted: this.$t("PlayFieldActionText.wantsToProtect"),
-                    selfTargeted: this.$t("PlayFieldActionText.wantsToProtectHimself"),
-                },
-                "raven-marked": {
-                    notTargeted: this.$t("PlayFieldActionText.doesntWantToRavenMark"),
-                    targeted: this.$t("PlayFieldActionText.wantsToRavenMark"),
-                    selfTargeted: this.$t("PlayFieldActionText.wantsToRavenMarkHimself"),
-                },
-                "chosen-for-vote": {
-                    notTargeted: `${this.$t("PlayFieldActionText.choosesToHang")} ...`,
-                    targeted: this.$t("PlayFieldActionText.choosesToHang"),
-                    selfTargeted: this.$t("PlayFieldActionText.choosesToHangHimself"),
-                },
-                "delegate": {
-                    notTargeted: `${this.$t("PlayFieldActionText.wantsToDelegateTo")} ...`,
-                    targeted: this.$t("PlayFieldActionText.wantsToDelegateTo"),
-                },
-                "shoot": {
-                    notTargeted: `${this.$t("PlayFieldActionText.wantsToShoot")} ...`,
-                    targeted: this.$t("PlayFieldActionText.wantsToShoot"),
-                },
-            };
-        },
-        isPlayerTargetingHimself() {
-            return this.targetedPlayer &&
-                (this.attribute === "drank-life-potion" || this.attribute === "drank-death-potion") && this.targetedPlayer.role.current === "witch" ||
-                this.attribute === "protected" && this.targetedPlayer.role.current === "guard" ||
-                this.attribute === "raven-marked" && this.targetedPlayer.role.current === "raven" ||
-                this.attribute === "chosen-for-vote" && this.targetedPlayer.hasAttribute("sheriff");
-        },
-        targetedPlayer() {
-            if (this.play.targets.length) {
-                const targetedPlayer = this.play.targets.find(target => target.attribute === this.attribute);
-                return targetedPlayer ? this.game.players.find(player => player._id === targetedPlayer.player) : null;
-            }
-            return null;
+        targetedPlayersForAttribute() {
+            return this.play.targets.length ? this.play.targets.filter(target => target.attribute === this.attribute) : [];
         },
         actionText() {
-            if (this.targetedPlayer) {
-                if (this.isPlayerTargetingHimself) {
-                    return this.$t(this.attributeTexts[this.attribute].selfTargeted);
+            const { firstWaiting } = this.game;
+            if (firstWaiting.to === "choose-side") {
+                if (!this.play.side) {
+                    return this.$t("PlayFieldActionText.dog-wolf.wantsToChooseSide");
                 }
-                return `${this.attributeTexts[this.attribute].targeted} ${this.targetedPlayer.name}`;
+                return this.$t(`PlayFieldActionText.dog-wolf.${this.play.side}`);
             }
-            return this.attributeTexts[this.attribute].notTargeted;
+            const baseActionText = this.$tc(`PlayFieldActionText.${firstWaiting.for}.${this.attribute}`, this.game.alivePlayersExpectedToPlay.length);
+            if (this.game.isFirstWaitingSkippableAction && !this.targetedPlayersForAttribute.length) {
+                return this.$t(`PlayFieldActionText.${firstWaiting.for}.no-${this.attribute}`);
+            } else if (this.isOneTargetPlayAndTargetingHimself) {
+                return this.$t(`PlayFieldActionText.${firstWaiting.for}.self-targeting-${this.attribute}`);
+            } else if (this.targetedPlayersForAttribute && this.targetedPlayersForAttribute.length) {
+                return baseActionText + this.getActionTextDependingOnTargets();
+            }
+            return `${baseActionText}...`;
+        },
+        isOneTargetPlayAndTargetingHimself() {
+            if (this.game.expectedTargetsLength !== 1 || this.targetedPlayersForAttribute.length !== 1) {
+                return false;
+            }
+            const player = this.game.getPlayerWithId(this.targetedPlayersForAttribute[0].player);
+            return player && this.isPlayerTargetingHimself(player);
         },
     },
     methods: {
+        isPlayerTargetingHimself(player) {
+            const role = player.role.current;
+            return (this.attribute === "drank-life-potion" || this.attribute === "drank-death-potion") && role === "witch" ||
+                this.attribute === "protected" && role === "guard" || this.attribute === "raven-marked" && role === "raven" ||
+                this.attribute === "in-love" && role === "cupid" || this.attribute === "chosen-for-vote" && player.hasAttribute("sheriff");
+        },
+        getActionTextDependingOnTargets() {
+            let actionText = "";
+            const { firstWaiting } = this.game;
+            for (let i = 0; i < this.targetedPlayersForAttribute.length; i++) {
+                const player = this.game.getPlayerWithId(this.targetedPlayersForAttribute[i].player);
+                if (player) {
+                    if (this.isPlayerTargetingHimself(player)) {
+                        actionText += ` ${this.$t(`PlayFieldActionText.${firstWaiting.for}.self-targeting-${this.attribute}`)}`;
+                    } else {
+                        actionText += ` ${player.name}`;
+                    }
+                    if (i + 2 < this.targetedPlayersForAttribute.length) {
+                        actionText += ",";
+                    } else if (i + 2 === this.targetedPlayersForAttribute.length) {
+                        actionText += ` ${this.$t("PlayFieldActionText.and")}`;
+                    }
+                }
+            }
+            return actionText;
+        },
         playerSelected(payload) {
             this.$emit("player-selected", payload);
+        },
+        sideSelected(payload) {
+            this.$emit("side-selected", payload);
         },
     },
 };
