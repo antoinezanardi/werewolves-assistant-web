@@ -1,6 +1,6 @@
 # 📈 LIST OF CHANGES FOR WEREWOLVES ASSISTANT WEB
 
-## 1.0.0-beta.9 (2021-01-??)
+## 1.0.0-beta.9 (2020-12-30)
 
 ### 🚀 New features
 
