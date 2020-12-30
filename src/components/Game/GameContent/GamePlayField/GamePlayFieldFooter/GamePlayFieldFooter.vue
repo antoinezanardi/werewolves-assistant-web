@@ -23,7 +23,7 @@
                             <i class="fa mr-2" :class="votePlayRequirementsIconClass"/>
                             <span class="small" v-html="$t('GamePlayFieldFooter.minOnePlayerHasToVote')"/>
                         </div>
-                        <div v-if="game.isFirstWaitingForbiddenTieVoteAction" class="text-muted font-italic">
+                        <div v-if="game.isFirstWaitingForbiddenTieVoteAction" class="text-muted font-italic text-center">
                             <i class="fa mr-2" :class="tieInVotesForbiddenIconClass"/>
                             <span class="small" v-html="$t('GamePlayFieldFooter.tieInVotesForbidden')"/>
                         </div>
@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     <div v-else-if="game.isFirstWaitingChooseSideAction" id="choose-side-play-requirements" key="choose-side-play-requirements">
-                        <div class="text-muted font-italic">
+                        <div class="text-muted font-italic text-center">
                             <i class="fa mr-2" :class="chooseSidePlayRequirementsIconClass"/>
                             <span class="small" v-html="$t('GamePlayFieldFooter.oneSideMustBeChosen')"/>
                         </div>

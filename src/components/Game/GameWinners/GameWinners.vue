@@ -8,15 +8,17 @@
                             <GameResult/>
                         </div>
                     </div>
-                    <div class="row mt-2">
-                        <div class="col-12 text-center">
-                            <GameSummaryButton class="mb-2 mb-md-0 mr-md-2" @show-game-summary-modal="showGameSummaryModal"/>
-                            <GameReviewButton @show-game-review-modal="showGameReviewModal"/>
+                    <div class="row mt-2 text-center justify-content-center">
+                        <div class="col-12 col-lg-6">
+                            <GameSummaryButton class="mb-2 mb-lg-0 mr-lg-2 btn-block" @show-game-summary-modal="showGameSummaryModal"/>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <GameReviewButton class="btn-block" @show-game-review-modal="showGameReviewModal"/>
                         </div>
                     </div>
                 </div>
                 <div class="row flex-grow-1 align-items-center justify-content-center mt-4">
-                    <PlayerCard v-for="player in game.won.players" :key="player.name" :player="player" size="lg" class="col-md-3 col-6"/>
+                    <PlayerCard v-for="player in game.won.players" :key="player.name" :player="player" size="lg" class="col-lg-3 col-md-4 col-6"/>
                 </div>
             </div>
         </div>

@@ -35,13 +35,14 @@ export default {
         },
         actionText() {
             const { firstWaiting } = this.game;
-            const baseActionText = this.$tc(`PlayFieldActionText.${firstWaiting.for}.${this.attribute}`, this.game.alivePlayersExpectedToPlay.length);
             if (firstWaiting.to === "choose-side") {
                 if (!this.play.side) {
                     return this.$t("PlayFieldActionText.dog-wolf.wantsToChooseSide");
                 }
                 return this.$t(`PlayFieldActionText.dog-wolf.${this.play.side}`);
-            } else if (this.game.isFirstWaitingSkippableAction && !this.targetedPlayersForAttribute.length) {
+            }
+            const baseActionText = this.$tc(`PlayFieldActionText.${firstWaiting.for}.${this.attribute}`, this.game.alivePlayersExpectedToPlay.length);
+            if (this.game.isFirstWaitingSkippableAction && !this.targetedPlayersForAttribute.length) {
                 return this.$t(`PlayFieldActionText.${firstWaiting.for}.no-${this.attribute}`);
             } else if (this.isOneTargetPlayAndTargetingHimself) {
                 return this.$t(`PlayFieldActionText.${firstWaiting.for}.self-targeting-${this.attribute}`);
