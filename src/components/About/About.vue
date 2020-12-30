@@ -154,9 +154,9 @@
                 <hr class="bg-dark"/>
             </div>
         </div>
-        <div class="row mb-5 justify-content-center">
+        <div class="row justify-content-center">
             <div class="col-12 col-lg-4">
-                <router-link class="btn btn-secondary btn-block" to="/">
+                <router-link class="btn btn-secondary btn-block mb-3" to="/">
                     <i class="fa fa-sign-out-alt mr-2"/>
                     <span v-html="$t('Statistics.backToHome')"/>
                 </router-link>

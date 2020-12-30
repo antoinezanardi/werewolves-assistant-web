@@ -2,11 +2,11 @@
     <transition name="fade" mode="out-in">
         <div id="game-lobby-start-conditions" :key="canStartGameText">
             <div class="animate__animated animate__pulse animate__repeat-2 d-flex justify-content-center align-items-center">
-                <i :class="conditionIcon(game.canStartGame)" class="mr-2"/>
+                <i :class="conditionIcon(game.canStartGame(roles))" class="mr-2"/>
                 <div class="mr-2 font-weight-bold" v-html="canStartGameText"/>
                 <div>
-                    <v-popover class="d-inline" :disabled="game.canStartGame">
-                        <WhatToDoButton v-if="!game.canStartGame"/>
+                    <v-popover class="d-inline" :disabled="game.canStartGame(roles)">
+                        <WhatToDoButton v-if="!game.canStartGame(roles)"/>
                         <template #popover>
                             <div v-for="(condition, index) in conditions" :key="condition.text">
                                 <div class="d-flex align-items-center">
@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import Game from "@/classes/Game";
 import WhatToDoButton from "@/components/shared/Game/WhatToDoButton/WhatToDoButton";
 
@@ -37,16 +38,27 @@ export default {
         },
     },
     computed: {
+        ...mapGetters("role", { roles: "roles" }),
         canStartGameText() {
-            return this.game.canStartGame ? this.$t("GameLobbyStartConditions.gameCanStart") : this.$t("GameLobbyStartConditions.gameCannotStart");
+            if (this.game.canStartGame(this.roles)) {
+                return this.$t("GameLobbyStartConditions.gameCanStart");
+            }
+            return this.$t("GameLobbyStartConditions.gameCannotStart");
         },
         conditions() {
-            return [
+            const conditions = [
                 { text: this.$t("GameLobbyStartConditions.gameHasMinimumFourPlayers"), isMet: this.game.areThereEnoughPlayers },
                 { text: this.$t("GameLobbyStartConditions.allPlayersMustHaveARole"), isMet: this.game.allPlayersHaveRole },
                 { text: this.$t("GameLobbyStartConditions.gameHasMinimumOneVillager"), isMet: this.game.areThereEnoughVillagers },
                 { text: this.$t("GameLobbyStartConditions.gameHasMinimumOneWerewolf"), isMet: this.game.areThereEnoughWerewolves },
             ];
+            if (this.game.getPlayersWithRole("two-sisters").length) {
+                conditions.push({ text: this.$t("GameLobbyStartConditions.gameMustHaveTwoSisters"), isMet: this.game.areThereEnoughSisters });
+            }
+            if (this.game.getPlayersWithRole("three-brothers").length) {
+                conditions.push({ text: this.$t("GameLobbyStartConditions.gameMustHaveThreeBrothers"), isMet: this.game.areThereEnoughBrothers });
+            }
+            return conditions;
         },
     },
     methods: {

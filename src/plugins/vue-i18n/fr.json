@@ -8,7 +8,40 @@
         "thisCantBeUndo": "Vous ne pourrez plus intéragir avec cette partie et cette action est irréversible.",
         "confirm": "Confirmer",
         "cancel": "Annuler",
-        "gameCanceled": "Partie annulée"
+        "gameCanceled": "Partie annulée",
+        "gameOptions": "Options de la partie"
+    },
+    "GameOptionsModal": {
+        "gameOptions": "Options de la partie",
+        "close": "Fermer",
+        "optionsAreSaved": "Les options de la partie sont enregistrées automatiquement après chaque changement",
+        "gameOptionsCantBeUpdated": "Les options de la partie ne peuvent être modifiée en dehors de l'écran de composition de la partie.",
+        "sheriff": "Maire",
+        "isSheriffVoteDoubled": {
+            "label": "Le vote du maire compte double",
+            "description": {
+                "sheriffVoteIsDoubled": "Lors du vote du village pour décider qui sera pendu, la voix du maire compte double.",
+                "sheriffVoteIsNotDoubled": "Lors du vote du village pour décider qui sera pendu, la voix du maire n'a pas plus de valeur qu'un autre habitant."
+            }
+        },
+        "seer": "Voyante",
+        "isSeerTalkative": {
+            "label": "La voyante est bavarde",
+            "description": {
+                "seerIsTalkative": "Lorsque la voyante voit le rôle d'un joueur, le maître du jeu révèlera ce rôle (et seulement le rôle) à voix haute.",
+                "seerIsNotTalkative": "Lorsque la voyante voit le rôle d'un joueur, le maître du jeu devra mimer le rôle découvert à la voyante."
+            }
+        },
+        "twoSisters": "Deux Sœurs",
+        "sistersWakingUpInterval": {
+            "label": "Nombre de nuits entre deux réveils des Deux Sœurs",
+            "description": "Les Deux Sœurs ne se réveillent que la première nuit. | Les Deux Sœurs se réveillent toutes les nuits. | Les Deux Sœurs se réveillent toutes les {sistersWakingUpInterval} nuits."
+        },
+        "threeBrothers": "Trois Frères",
+        "brothersWakingUpInterval": {
+            "label": "Nombre de nuits entre deux réveils des Trois Frères",
+            "description": "Les Trois Frères ne se réveillent que la première nuit. | Les Trois Frères se réveillent toutes les nuits. | Les Trois Frères se réveillent toutes les {brothersWakingUpInterval} nuits."
+        }
     },
     "Home": {
         "werewolvesAssistant": "Assistant Loups-Garous",
@@ -64,7 +97,7 @@
         "attentionPlease": "ATTENTION CEPENDANT",
         "assistantDoesntReplaceTheOriginalGame": "L'Assistant n'a aucune vocation à remplacer le jeu original Les Loups-Garous de Thiercelieux™. Pour utiliser l'Assistant, un jeu avec ses cartes est nécessaire. L'Assistant n'est qu'un support pour le maître du jeu qui est le seul utilisateur de l'outil, les joueurs n'y ont pas accès.",
         "availableRoles": "Rôles disponibles",
-        "thereAreCountAvailableRoles": "Dans cette version de l'Assistant Loups-Garous, {count} roles sont disponibles:",
+        "thereAreCountAvailableRoles": "Dans cette version de l'Assistant Loups-Garous, {count} rôles sont disponibles:",
         "howToContribute": "Comment contribuer à ce projet ?",
         "someMethodsToContribute": "Il existe plusieurs moyens de contribuer à ce projet:",
         "theAssistantIsOpenSource": "L'Assistant Loups-Garous est un projet open-source !",
@@ -85,6 +118,7 @@
     "GameLobby": {
         "loading": "Recherche d'une partie en cours",
         "gameComposition": "Composition de la partie",
+        "gameOptions": "Options de la partie",
         "add": "Ajouter",
         "maxPlayerReached": "Maximum de joueurs atteint",
         "playerName": "Nom du joueur",
@@ -117,7 +151,9 @@
         "gameHasMinimumFourPlayers": "La partie possède au minimum 4 joueurs.",
         "allPlayersMustHaveARole": "Tous les joueurs doivent avoir un rôle.",
         "gameHasMinimumOneVillager": "La partie possède au minimum 1 joueur dans le camp des villageois.",
-        "gameHasMinimumOneWerewolf": "La partie possède au minimum 1 joueur dans le camp des loups-garous."
+        "gameHasMinimumOneWerewolf": "La partie possède au minimum 1 joueur dans le camp des loups-garous.",
+        "gameMustHaveTwoSisters": "Deux joueurs doivent avoir le rôle des deux sœurs s'il y en a une dans la partie.",
+        "gameMustHaveThreeBrothers": "Trois joueurs doivent avoir le rôle des trois frères s'il y en a un dans la partie."
     },
     "GameLobbyRolePickerModal": {
         "noRole": "Aucun rôle",
@@ -128,15 +164,21 @@
         "searchRole": "Rechercher un rôle",
         "chooseRole": "Veuillez choisir un rôle",
         "side": "Camp",
-        "random": "Aléatoire",
         "totalInGame": "0 dans la partie | 1 dans la partie | {total} dans la partie",
         "maxInGameReached": "Maximum atteint pour ce rôle",
-        "totalInGameInThisRole": "Total dans la partie avec ce rôle",
         "selectedPlayerAlreadyHasSelectedRole": "Le joueur sélectionné possède déjà ce rôle",
         "doYouWantToSetItAnyway": "Voulez-vous quand même lui attribuer ce rôle ?",
         "confirm": "Confirmer",
         "cancel": "Annuler",
-        "roleWillBeSwitchedWithOtherPlayer": "Les rôles seront échangés avec le joueur possédant actuellement ce rôle."
+        "roleWillBeSwitchedWithOtherPlayer": "Les rôles seront échangés avec le joueur possédant actuellement ce rôle.",
+        "actualRole": "Rôle actuel",
+        "recommendedMinPlayers": "Recommandé pour les parties de {count} joueurs et plus",
+        "leftToStartGame": "Ce rôle doit encore être distribué {count} fois pour commencer la partie"
+    },
+    "RolePickerRole": {
+        "totalInGameInThisRole": "Total dans la partie avec ce rôle",
+        "random": "Aléatoire",
+        "leftToStartGame": "Ce rôle doit encore être distribué {lack} fois pour commencer la partie"
     },
     "GameLobbyTutorial": {
         "howToUseGameLobby": "Comment composer une équipe ?",
@@ -182,7 +224,7 @@
                 "look": "Au tour de la voyante"
             },
             "werewolves": {
-                "eat": "Au tour des loups garous"
+                "eat": "Au tour des loups-garous"
             },
             "witch": {
                 "use-potion": "Au tour de la sorcière"
@@ -199,100 +241,238 @@
             "sheriff": {
                 "delegate": "Passation de pouvoir du maire",
                 "settle-votes": "Départage des votes"
+            },
+            "dog-wolf": {
+                "choose-side": "Au tour du chien-loup"
+            },
+            "cupid": {
+                "charm": "Au tour de Cupidon"
+            },
+            "lovers": {
+                "meet-each-other": "Au tour des amoureux"
+            },
+            "two-sisters": {
+                "meet-each-other": "Au tour des deux sœurs"
+            },
+            "three-brothers": {
+                "meet-each-other": "Au tour des trois frères"
+            },
+            "wild-child": {
+                "choose-model": "Au tour de l'enfant sauvage"
+            },
+            "big-bad-wolf": {
+                "eat": "Au tour du grand-méchant-loup"
             }
         }
     },
     "GamePlayFieldFooter": {
         "next": "Suivant",
         "playersHaveVoted": "joueurs ont voté",
-        "playerTargeted": "joueur visé",
+        "playerTargeted": "joueur visé | joueurs visés",
         "minOnePlayerHasToVote": "Minimum 1 joueur doit voter",
-        "minOnePlayerHasToBeTargeted": "Minimum 1 joueur doit être visé",
+        "minPlayerHasToBeTargeted": "Minimum {min} joueur doit être visé | Minimum {min} joueurs doivent être visés",
         "timeForDebating": "Temps pour débattre",
         "debateIsOver": "Le débat est terminé, il est temps de voter !",
-        "tieInVotesForbidden": "L'égalité pour ce vote est interdite"
+        "tieInVotesForbidden": "L'égalité pour ce vote est interdite",
+        "oneSideMustBeChosen": "Un camp doit être choisi"
+    },
+    "GamePlayFieldCountdownFooter": {
+        "timeFor": {
+            "lovers": {
+                "meet-each-other": "Temps pour la rencontre des Amoureux"
+            },
+            "two-sisters": {
+                "meet-each-other": "Temps pour la concertation des sœurs"
+            },
+            "three-brothers": {
+                "meet-each-other": "Temps pour la concertation des frères"
+            },
+            "all": {
+                "vote": "Temps pour le débat du village",
+                "elect-sheriff": "Temps pour l'élection du maire"
+            }
+        },
+        "timeIsUpFor": {
+            "lovers": {
+                "meet-each-other": "Il est temps pour les Amoureux de se rendormir"
+            },
+            "two-sisters": {
+                "meet-each-other": "Il est temps pour les sœurs de se rendormir"
+            },
+            "three-brothers": {
+                "meet-each-other": "Il est temps pour les frères de se rendormir"
+            },
+            "all": {
+                "vote": "Il est temps pour le village de voter",
+                "elect-sheriff": "Il est temps pour le village d'élire son maire"
+            }
+        }
     },
     "GamePlayFieldTutorial": {
-        "elect-sheriff": {
-            "howToPlay": "Comment élire le maire ?",
-            "sheriffIsElectedWhen": "Au début de la partie, un maire doit être élu par tous les joueurs vivants.",
-            "playersHave5Min": "Les joueurs ont 5 minutes pour se mettre d'accord sur qui sera leur prochain maire. À la fin du temps, le maître du jeu doit stopper les discussions et procéder à l'élection.",
-            "eachPlayerVoteForSheriff": "Chaque joueur a donc une voix à donner pour l'élection, mais ne peut voter pour lui-même. Il peut néanmoins voter blanc. Le maître du jeu demande le vote de chacun à tour de rôle.",
-            "toValidateAnElection": "Pour que le maire soit élu, au moins un joueur doit avoir voté et une égalité dans les votes est impossible."
+        "seer": {
+            "look": {
+                "howToPlay": "Comment jouer la voyante ?",
+                "seerLooksWhen": "Chaque nuit, si elle est vivante, la voyante se réveille.",
+                "seerCanLook": "Grâce à son don, la voyante voit le rôle de n'importe quel joueur vivant.",
+                "seerPointsAtTarget": "La voyante doit pointer du doigt sa cible. Si la voyante est bavarde, le maître du jeu révelera à haute voix le rôle de la cible, sinon il devra le mimer. Ceci peut être changé dans les options de la partie.",
+                "toValidateLook": "Pour passer à la suite, la voyante doit obligatoirement voir le rôle d'un habitant."
+            }
         },
-        "look": {
-            "howToPlay": "Comment jouer la voyante ?",
-            "seerLooksWhen": "Chaque nuit, si elle est vivante, la voyante se réveille.",
-            "seerCanLook": "Grâce à son don, la voyante voit le rôle de n'importe quel joueur vivant.",
-            "seerPointsAtTarget": "La voyante doit pointer du doigt sa cible et le maître du jeu révelera à haute voix le rôle de cette dernière.",
-            "toValidateLook": "Pour que la voyante puisse révéler un rôle, elle doit obligatoirement choisir une cible."
+        "werewolves": {
+            "eat": {
+                "howToPlay": "Comment jouer les loups-garous ?",
+                "werewolvesEatWhen": "Chaque nuit, les loups-garous se réveillent.",
+                "werewolvesEatAVictim": "Les loups-garous choisissent leur victime parmis les joueurs vivants qui mourra le matin suivant s'il ne reçoit pas de protection.",
+                "werewolvesPointAtVictim": "Les loups-garous se mettent d'accord sans bruit et pointent du doigt leur victime.",
+                "toValidateEat": "Pour passer à la suite, les loups-garous doivent obligatoirement choisir une victime."
+            }
         },
-        "eat": {
-            "howToPlay": "Comment jouer les loups-garous ?",
-            "werewolvesEatWhen": "Chaque nuit, les loups-garous se réveillent.",
-            "werewolvesEatAVictim": "Les loups-garous choisissent leur victime parmis les joueurs vivants qui mourra le matin suivant s'il ne reçoit pas de protection.",
-            "werewolvesPointAtVictim": "Les loups-garous se mettent d'accord sans bruit et pointent du doigt leur victime.",
-            "toValidateEat": "Pour que les loups-garous puissent choisir leur prochain repas, ils doivent obligatoirement choisir une cible."
+        "witch": {
+            "use-potion": {
+                "howToPlay": "Comment jouer la sorcière ?",
+                "witchUsesPotionWhen": "Chaque nuit, si elle est vivante, la sorcière se réveille même si elle n'a plus de potion à utiliser.",
+                "witchCanUsePotions": "La sorcière possède une potion de vie et une potion de mort. Elle peut utiliser chacune d'elle UNE SEULE FOIS pendant la partie. Le maître du jeu va demander pour chaque potion le choix de la sorcière.",
+                "lifePotionProtects": "La potion de vie, utilisable qu'une fois pendant la partie, permet de sauver la victime des loups-garous de la mort. Le maître du jeu désigne la victime des loups-garous et la sorcière doit sans bruit acquiescer ou refuser d'utiliser sa potion.",
+                "ifLifePotionHasBeenUsed": "Si la potion de vie a déjà été utilisée, le maître du jeu doit quand même demander le choix de la sorcière, mais sans pointer du doigt la victime des loups-garous. Ceci permet de ne pas révéler que la potion de vie a été utilisée.",
+                "deathPotionKills": "La potion de mort, utilisable qu'une fois pendant la partie, permet d'empoisonner une victime qui mourra le matin suivant. La sorcière doit sans bruit acquiescer ou refuser d'utiliser sa potion en pointant sa victime le cas échéant.",
+                "ifDeathPotionHasBeenUsed": "Si la potion de mort a déjà été utilisée, le maître du jeu doit quand même demander le choix de la sorcière. Ceci permet de ne pas révéler que la potion de mort a été utilisée.",
+                "toValidateUsePotion": "Durant son tour, la sorcière peut utiliser les deux potions, une seule, ou passer son tour."
+            }
         },
-        "use-potion": {
-            "howToPlay": "Comment jouer la sorcière ?",
-            "witchUsesPotionWhen": "Chaque nuit, si elle est vivante, la sorcière se réveille même si elle n'a plus de potion à utiliser.",
-            "witchCanUsePotions": "La sorcière possède une potion de vie et une potion de mort. Elle peut utiliser chacune d'elle UNE SEULE FOIS pendant la partie. Le maître du jeu va demander pour chaque potion le choix de la sorcière.",
-            "lifePotionProtects": "La potion de vie, utilisable qu'une fois pendant la partie, permet de sauver la victime des loups-garous de la mort. Le maître du jeu désigne la victime des loups-garous et la sorcière doit sans bruit acquiescer ou refuser d'utiliser sa potion.",
-            "ifLifePotionHasBeenUsed": "Si la potion de vie a déjà été utilisée, le maître du jeu doit quand même demander le choix de la sorcière, mais sans pointer du doigt la victime des loups-garous. Ceci permet de ne pas révéler que la potion de vie a été utilisée.",
-            "deathPotionKills": "La potion de mort, utilisable qu'une fois pendant la partie, permet d'empoisonner une victime qui mourra le matin suivant. La sorcière doit sans bruit acquiescer ou refuser d'utiliser sa potion en pointant sa victime le cas échéant.",
-            "ifDeathPotionHasBeenUsed": "Si la potion de mort a déjà été utilisée, le maître du jeu doit quand même demander le choix de la sorcière. Ceci permet de ne pas révéler que la potion de mort a été utilisée.",
-            "toValidateUsePotion": "Durant son tour, la sorcière peut utiliser les deux potions, une seule, ou passer son tour."
+        "guard": {
+            "protect": {
+                "howToPlay": "Comment jouer le salvateur ?",
+                "guardProtectsWhen": "Chaque nuit, s'il est vivant, le salvateur se réveille.",
+                "guardCanProtect": "Le salvateur protège la personne de son choix et cette dernière ne pourra pas mourir durant cette nuit. Le salvateur peut se protéger lui-même mais ne peut pas choisir deux nuits de suite la même personne.",
+                "guardPointsAtTarget": "Le salvateur doit pointer du doigt sans bruit la personne qu'il souhaite protéger.",
+                "toValidateProtect": "Pour passer à la suite, le salvateur doit obligatoirement choisir une personne à protéger."
+            }
         },
-        "protect": {
-            "howToPlay": "Comment jouer le salvateur ?",
-            "guardProtectsWhen": "Chaque nuit, s'il est vivant, le salvateur se réveille.",
-            "guardCanProtect": "Le salvateur protège la personne de son choix et cette dernière ne pourra pas mourir durant cette nuit. Le salvateur peut se protéger lui-même mais ne peut pas choisir deux nuits de suite la même personne.",
-            "guardPointsAtTarget": "Le salvateur doit pointer du doigt sans bruit la personne qu'il souhaite protéger.",
-            "toValidateProtect": "Pour que le salvateur puisse protéger une personne de la mort, il doit obligatoirement choisir une cible."
+        "raven": {
+            "mark": {
+                "howToPlay": "Comment joueur le corbeau ?",
+                "ravenMarksWhen": "Chaque nuit, s'il est vivant, le corbeau se réveille.",
+                "ravenCanMark": "Le corbeau peut, s'il le souhaite, marquer de sa plume n'importe quel joueur qui lui semble suspect. La personne visée par sa marque se verra attribuer 2 voix supplémentaires lors du prochain vote du village la journée. Il peut se désigner lui-même.",
+                "ravenPointsAtTarget": "S'il souhaite marquer un joueur, le corbeau doit pointer du doigt sans bruit sa cible.",
+                "gameMasterWillDropMarkCard": "Le maître du jeu déposera alors la marque du corbeau devant la personne choisie.",
+                "toValidateMark": "Durant son tour, le corbeau peut désigner une cible ou passer son tour."
+            }
         },
-        "mark": {
-            "howToPlay": "Comment joueur le corbeau ?",
-            "ravenMarksWhen": "Chaque nuit, s'il est vivant, le corbeau se réveille.",
-            "ravenCanMark": "Le corbeau peut, s'il le souhaite, marquer de sa plume n'importe quel joueur qui lui semble suspect. La personne visée par sa marque se verra attribuer 2 voix supplémentaires lors du prochain vote du village la journée. Il peut se désigner lui-même.",
-            "ravenPointsAtTarget": "S'il souhaite marquer un joueur, le corbeau doit pointer du doigt sans bruit sa cible.",
-            "gameMasterWillDropMarkCard": "Le maître du jeu déposera alors la marque du corbeau devant la personne choisie.",
-            "toValidateMark": "Durant son tour, le corbeau peut désigner une cible ou passer son tour."
+        "all": {
+            "vote": {
+                "howToPlay": "Comment procéder au vote ?",
+                "allVoteWhen": "Chaque fois que le jour se lève, les habitants débattent pour mettre à mort l'un des leurs en espérant trouver un loup-garou.",
+                "playersHave5Min": "Les joueurs ont 5 minutes pour se mettre d'accord sur qui sera pendu. À la fin du temps, le maître du jeu doit stopper les discussions et procéder au vote.",
+                "eachPlayerVote": "Chaque joueur a donc une voix à donner pour le vote, mais ne peut voter pour lui-même. Il peut néanmoins voter blanc. Le maître du jeu demande le vote de chacun à tour de rôle.",
+                "toValidateAVote": "Pour passer à la suite, au moins un joueur doit avoir voté."
+            },
+            "elect-sheriff": {
+                "howToPlay": "Comment élire le maire ?",
+                "sheriffIsElectedWhen": "Au début de la partie, un maire doit être élu par tous les joueurs vivants.",
+                "sheriffSettlesVotes": "Être le maire possède deux avantages: départager une éventuelle égalité des votes lors de la pendaison et avoir un vote comptant double durant cette dernière ! Le double vote peut être annulé dans les options de la partie.",
+                "playersHave5Min": "Les joueurs ont 5 minutes pour se mettre d'accord sur qui sera leur prochain maire. À la fin du temps, le maître du jeu doit stopper les discussions et procéder à l'élection.",
+                "eachPlayerVoteForSheriff": "Chaque joueur a donc une voix à donner pour l'élection, mais ne peut voter pour lui-même. Il peut néanmoins voter blanc. Le maître du jeu demande le vote de chacun à tour de rôle.",
+                "toValidateAnElection": "Pour passer à la suite, au moins un joueur doit avoir voté et l'égalité dans les votes est impossible."
+            }
         },
-        "vote": {
-            "howToPlay": "Comment procéder au vote ?",
-            "allVoteWhen": "Chaque fois que le jour se lève, les habitants débattent pour mettre à mort l'un des leurs en espérant trouver un loup-garou.",
-            "playersHave5Min": "Les joueurs ont 5 minutes pour se mettre d'accord sur qui sera pendu. À la fin du temps, le maître du jeu doit stopper les discussions et procéder au vote.",
-            "eachPlayerVote": "Chaque joueur a donc une voix à donner pour le vote, mais ne peut voter pour lui-même. Il peut néanmoins voter blanc. Le maître du jeu demande le vote de chacun à tour de rôle.",
-            "toValidateAVote": "Pour que la pendaison ait lieu, au moins un joueur doit avoir voté."
+        "hunter": {
+            "shoot": {
+                "howToPlay": "Comment jouer le chasseur ?",
+                "hunterShootsWhen": "Quand le chasseur meurt, il prend son fusil pour se venger dans son dernier souffle.",
+                "hunterCanShoot": "Le chasseur mourrant choisi arbitrairement sa victime en la pointant du doigt. Elle mourra instantanément du coup fatal.",
+                "toValidateShoot": "Pour passer à la suite, le chasseur doit obligatoirement choisir une cible."
+            }
         },
-        "delegate": {
-            "howToPlay": "Comment déléguer le rôle de maire ?",
-            "sheriffDelegatesWhen": "À chaque fois que le maire meurt, il doit déléguer son rôle à l'un des survivants.",
-            "noDemocracyHere": "Aucune démocratie ici, le maire mourrant choisi arbitrairement son successeur en le pointant du doigt.",
-            "toValidateDelegation": "Pour que le maire délègue son pouvoir, il doit obligatoirement choisir une cible."
+        "sheriff": {
+            "settle-votes": {
+                "howToPlay": "Comment départager les votes ?",
+                "sheriffSettleVotesWhen": "À chaque fois que la village n'arrive pas à se mettre d'accord sur qui pendre, le maire doit trancher.",
+                "toValidateSettleVotes": "Pour passer à la suite, le maire doit obligatoirement choisir la personne qui sera pendue."
+            },
+            "delegate": {
+                "howToPlay": "Comment déléguer le rôle de maire ?",
+                "sheriffDelegatesWhen": "À chaque fois que le maire meurt, il doit déléguer son rôle à l'un des survivants.",
+                "noDemocracyHere": "Aucune démocratie ici, le maire mourrant choisi arbitrairement son successeur en le pointant du doigt.",
+                "toValidateDelegation": "Pour passer à la suite, le maire doit obligatoirement choisir une successeur."
+            }
         },
-        "shoot": {
-            "howToPlay": "Comment jouer le chasseur ?",
-            "hunterShootsWhen": "Quand le chasseur meurt, il prend son fusil pour se venger dans son dernier souffle.",
-            "hunterCanShoot": "Le chasseur mourrant choisi arbitrairement sa victime en la pointant du doigt. Elle mourra instantanément du coup fatal.",
-            "toValidateShoot": "Pour que le chasseur prenne sa revanche, il doit obligatoirement choisir une cible."
+        "dog-wolf": {
+            "choose-side": {
+                "howToPlay": "Comment jouer le chien-loup ?",
+                "dogWolfChoosesSideWhen": "Au début de la partie, seulement la première nuit, le chien-loup se réveille.",
+                "dogWolfCanChooseSide": "Le chien-loup choisit le camp qu'il va rejoindre pour le reste de la partie.",
+                "ifItChoosesVillagers": "S'il choisit le camp des Villageois, il reste avec son maître au village et devra éliminer les Loups-Garous.",
+                "ifItChoosesWerewolves": "Si au contraire, il choisit de rejoindre les Loups-Garous, son instinct primaire sauvage se réveillera et devra éliminer les Villageois. Il se réveillera alors avec les autres Loups-Garous pour décider de la victime à dévorer.",
+                "toValidateChooseSide": "Pour passer à la suite, le chien-loup doit choisir obligatoirement un camp."
+            }
         },
-        "settle-votes": {
-            "howToPlay": "Comment départager les votes ?",
-            "sheriffSettleVotesWhen": "À chaque fois que la village n'arrive pas à se mettre d'accord sur qui pendre, le maire doit trancher.",
-            "toValidateSettleVotes": "Pour que le vote soit tranché, le maire doit obligatoirement choisir une cible."
+        "cupid": {
+            "charm": {
+                "howToPlay": "Comment jouer Cupidon ?",
+                "cupidCharmsWhen": "Au début de la partie, seulement la première nuit, Cupidon se réveille.",
+                "cupidCanCharm": "Cupidon peut rendre amoureux deux joueurs grâce à son arc et ses flèches d'Amour. Il peut se désigner lui-même avec une autre personne. Le maître du jeu devra, en silence et le plus discrètement possible, tapoter le dos des joueurs amoureux une fois le choix de Cupidon fait.",
+                "toValidateCharm": "Pour passer à la suite, Cupidon doit obligatoirement choisir deux cibles."
+            }
+        },
+        "lovers": {
+            "meet-each-other": {
+                "howToPlay": "Comment jouer les Amoureux ?",
+                "loversMeetEachOtherWhen": "Au début de la partie, seulement la première nuit après que Cupidon les ait charmé, les Amoureux se réveillent.",
+                "loversMustWinTogether": "Les Amoureux se découvrent pour la première fois en se réveillant et devront finir la partie ensemble, quel que soit leur rôle ou camps. Si l'un des deux meurt, l'autre mourra instantanément de chagrin.",
+                "loversHave20s": "Les Amoureux ont environ 20 secondes pendant leur tour, ce qui est suffisant pour se découvrir et avoir un coup de foudre.",
+                "noActionRequiredToValidate": "Aucune action n'est requise pour passer à la suite."
+            }
+        },
+        "two-sisters": {
+            "meet-each-other": {
+                "howToPlay": "Comment jouer les deux sœurs ?",
+                "twoSistersMeetEachOtherWhen": "Les deux sœurs ne se réveillent que la première nuit. | Tant que les deux sœurs sont vivantes, elles se réveillent toutes les nuits. | Tant que les deux sœurs sont vivantes, elles se réveillent toutes les {sistersWakingUpInterval} nuits.",
+                "intervalCanBeChanged": "Le nombre de nuits entre deux réveils des deux sœurs peut être changé dans les options de la partie.",
+                "twoSistersTalk": "Les deux sœurs peuvent se faire confiance : elles connaissent toutes les deux le rôle de l'autre ! Pendant leur tour, elles peuvent se concerter rapidement et en silence sur les décisions à prendre pour sauver le village.",
+                "twoSistersHave20s": "Les deux sœurs ont environ 20 secondes pendant leur tour pour discuter grâce à un habile langage des signes.",
+                "noActionRequiredToValidate": "Aucune action n'est requise pour passer à la suite."
+            }
+        },
+        "three-brothers": {
+            "meet-each-other": {
+                "howToPlay": "Comment jouer les trois frères ?",
+                "threeBrothersMeetEachOtherWhen": "Les trois frères ne se réveillent que la première nuit. | Tant qu'au moins deux des trois frères sont vivants, ils se réveillent toutes les nuits. | Tant qu'au moins deux des trois frères sont vivants, ils se réveillent toutes les {brothersWakingUpInterval} nuits.",
+                "intervalCanBeChanged": "Le nombre de nuits entre deux réveils des trois frères peut être changé dans les options de la partie.",
+                "threeBrothersTalk": "Les trois frères peuvent se faire confiance : ils connaissent tous les trois leur rôle respectif ! Pendant leur tour, ils peuvent se concerter rapidement et en silence sur les décisions à prendre pour sauver le village.",
+                "threeBrothersHave20s": "Les trois frères ont environ 20 secondes pendant leur tour pour discuter grâce à un habile langage des signes.",
+                "noActionRequiredToValidate": "Aucune action n'est requise pour passer à la suite."
+            }
+        },
+        "wild-child": {
+            "choose-model": {
+                "howToPlay": "Comment jouer l'enfant sauvage ?",
+                "wildChildChooseModelWhen": "Au début de la partie, seulement la première nuit, l'enfant sauvage se réveille.",
+                "wildChildCanChooseModel": "L'enfant sauvage choisit son modèle pour le reste de la partie. Si ce dernier meurt, l'enfant sauvage passera dans le camp des Loups-Garous. Sinon, il fait parti du camp des Villageois.",
+                "toValidateChooseModel": "Pour passer à la suite, l'enfant sauvage doit obligatoirement choisir un modèle."
+            }
+        },
+        "big-bad-wolf": {
+            "eat": {
+                "howToPlay": "Comment jouer le grand-méchant-loup ?",
+                "bigBadWolfEatsWhen": "Chaque nuit, tant qu'aucun joueur du camp des Loups-Garous n'est mort, le grand-méchant-loup se réveille.",
+                "bigBadWolfEatsAVictim": "Comme les loups-garous, le grand-méchant-loup choisit sa victime parmis les joueurs vivants qui mourra le matin suivant s'il ne reçoit pas de protection. Son choix ne peut être le même que celui de ses congénères.",
+                "bigBadWolfPointsAtVictim": "Le grand-méchant-loup doit pointer du doigt sa victime.",
+                "toValidateEat": "Pour passer à la suite, le grand-méchant-loup doit obligatoirement choisir une victime."
+            }
         }
     },
     "PlayerAttribute": {
         "attributes": {
             "sheriff": "Ce joueur est maire",
             "seen": "Ce joueur a été vu par la voyante",
-            "eaten": "Ce joueur est la cible des loups garous",
+            "eatenByWerewolves": "Ce joueur est la cible des loups garous",
+            "eatenByBigBadWolf": "Ce joueur est la cible du grand-méchant-loup",
             "drankLifePotion": "Ce joueur a bu la potion de vie",
             "drankDeathPotion": "Ce joueur a bu la potion de mort",
             "protected": "Ce joueur est protégé",
-            "ravenMarked": "Ce joueur est marqué par le corbeau"
+            "ravenMarked": "Ce joueur est marqué par le corbeau",
+            "inLove": "Ce joueur est amoureux à en mourir d'un autre",
+            "worshiped": "Ce joueur est le modèle de l'enfant sauvage"
         }
     },
     "PlayerThumbnail": {
@@ -324,17 +504,21 @@
         "useDeathPotionOn": "Utiliser la potion de mort sur ..."
     },
     "GameWinners": {
-        "wonByWerewolves": "Partie gagnée par le seul loup-garou | Partie gagnée par les loups-garous",
-        "wonByVillagers": "Partie gagnée par le seul villageois | Partie gagnée par les villageois",
-        "wonByNobody": "Match nul ! Aucun survivant dans le village...",
         "restartGame": "Recommencer une partie",
         "quit": "Quitter",
         "newGame": "Nouvelle partie",
         "doYouWantToKeepSamePlayers": "Voulez-vous rejouer avec les mêmes joueurs ?",
         "keepSamePlayers": "Garder les mêmes joueurs",
         "fromScratch": "Recommencer du début",
-        "seeGameSummary": "Voir le récapitulatif de partie",
         "rateThisGame": "Noter la partie"
+    },
+    "GameResult": {
+        "wonBy": {
+            "werewolves": "Partie gagnée par le seul Loup-Garou | Partie gagnée par les Loups-Garous",
+            "villagers": "Partie gagnée par le seul Villageois | Partie gagnée par les Villageois",
+            "lovers": "Partie gagnée par les Amoureux",
+            "nobody": "Match nul ! Aucun survivant dans le village..."
+        }
     },
     "GameCanceled": {
         "gameCanceled": "Partie annulée (Oooh ...)",
@@ -344,7 +528,10 @@
         "doYouWantToKeepSamePlayers": "Voulez-vous rejouer avec les mêmes joueurs ?",
         "keepSamePlayers": "Garder les mêmes joueurs",
         "fromScratch": "Recommencer du début"
-        },
+    },
+    "GameSummaryButton": {
+        "seeGameSummary": "Voir le récapitulatif de partie"
+    },
     "GameSummaryModal": {
         "gameSummary": "Récapitulatif de la partie",
         "gameResults": "Résultats de la partie",
@@ -380,45 +567,120 @@
         "day": "Jour",
         "night": "Nuit",
         "actions": {
-            "eat": "ont décidé de manger",
-            "use-potion": {
-                "life": "a utilisé sa potion de vie sur",
-                "death": "a utilisé sa potion de mort sur",
-                "both": "a utilisé ses potions sur"
+            "werewolves": {
+                "eat": "ont décidé de manger"
             },
-            "look": "a vu le rôle de",
-            "shoot": "a tiré sur",
-            "protect": "a protégé",
-            "mark": "a marqué",
-            "elect-sheriff": "a élu comme maire",
-            "vote": "a décidé de pendre",
-            "delegate": "a légué son rôle de maire à",
-            "settle-votes": "a tranché pour pendre"
+            "big-bad-wolf": {
+                "eat": "a décidé de manger"
+            },
+            "witch": {
+                "use-potion": {
+                    "life": "a utilisé sa potion de vie sur",
+                    "death": "a utilisé sa potion de mort sur",
+                    "both": "a utilisé ses potions sur"
+                }
+            },
+            "seer": {
+                "look": "a vu le rôle de"
+            },
+            "hunter": {
+                "shoot": "a tiré sur"
+            },
+            "guard": {
+                "protect": "a protégé"
+            },
+            "raven": {
+                "mark": "a marqué"
+            },
+            "all": {
+                "elect-sheriff": "a élu comme maire",
+                "vote": "a décidé de pendre"
+            },
+            "sheriff": {
+                "delegate": "a légué son rôle de maire à",
+                "settle-votes": "a tranché pour pendre"
+            },
+            "dog-wolf": {
+                "choose-side": "a choisi comme camp"
+            },
+            "cupid": {
+                "charm": "a rendu amoureux"
+            },
+            "two-sisters": {
+                "meet-each-other": "se sont concertés"
+            },
+            "three-brothers": {
+                "meet-each-other": "se sont concertés"
+            },
+            "lovers": {
+                "meet-each-other": "se sont rencontrés et ont eu le coup de foudre"
+            },
+            "wild-child": {
+                "choose-model": "a choisi comme modèle"
+            }
         },
         "skipTurn": "a passé son tour"
     },
     "PlayFieldActionText": {
-        "wantsToLook": "souhaite voir le rôle de",
-        "wantToEat": "souhaite manger | souhaite manger | souhaitent manger",
-        "doesntWantToUseLifePotion": "ne souhaite pas utiliser sa potion de vie",
-        "doesntWantToUseDeathPotion": "ne souhaite pas utiliser sa potion de mort",
-        "wantsToUseLifePotionOn": "souhaite utiliser sa potion de vie sur",
-        "wantsToUseDeathPotionOn": "souhaite utiliser sa potion de mort sur",
-        "wantsToUseLifePotionOnHerself": "souhaite utiliser sa potion de vie sur elle-même",
-        "wantsToUseDeathPotionOnHerself": "souhaite utiliser sa potion de mort sur elle-même",
-        "wantsToProtect": "souhaite protéger",
-        "wantsToProtectHimself": "souhaite se protéger lui-même",
-        "doesntWantToRavenMark": "ne souhaite marquer personne",
-        "wantsToRavenMark": "souhaite marquer",
-        "wantsToRavenMarkHimself": "souhaite se marquer lui-même",
-        "choosesToHang": "souhaite pendre",
-        "choosesToHangHimself": "souhaite se pendre lui-même",
-        "wantsToDelegateTo": "souhaite déléguer son rôle de maire à",
-        "wantsToShoot": "souhaite tirer sur"
+        "and": "et",
+        "seer": {
+            "seen": "souhaite voir le rôle de"
+        },
+        "dog-wolf": {
+            "wantsToChooseSide": "souhaite rejoindre...",
+            "villagers": "souhaite rester avec les Villageois",
+            "werewolves": "souhaite rejoindre les Loups-Garous"
+        },
+        "cupid": {
+            "in-love": "souhaite charmer",
+            "self-targeting-in-love": "lui-même"
+        },
+        "wild-child": {
+            "worshiped": "souhaite choisir comme modèle"
+        },
+        "raven": {
+            "no-raven-marked": "ne souhaite marquer personne",
+            "raven-marked": "souhaite marquer",
+            "self-targeting-raven-marked": "souhaite se marquer lui-même"
+        },
+        "guard": {
+            "protected": "souhaite protéger",
+            "self-targeting-protected": "souhaite se protéger lui-même"
+        },
+        "werewolves": {
+            "eaten": "souhaite manger | souhaitent manger"
+        },
+        "big-bad-wolf": {
+            "eaten": "souhaite manger"
+        },
+        "witch": {
+            "no-drank-life-potion": "ne souhaite pas utiliser sa potion de vie",
+            "no-drank-death-potion": "ne souhaite pas utiliser sa potion de mort",
+            "self-targeting-drank-life-potion": "souhaite utiliser sa potion de vie sur elle-même",
+            "self-targeting-drank-death-potion": "souhaite utiliser sa potion de mort sur elle-même",
+            "drank-life-potion": "souhaite utiliser sa potion de vie sur",
+            "drank-death-potion": "souhaite utiliser sa potion de mort sur"
+        },
+        "sheriff": {
+            "chosen-for-vote": "souhaite pendre",
+            "self-targeting-chosen-for-vote": "souhaite se pendre lui-même",
+            "delegate": "souhaite déléguer son rôle de maire à"
+        },
+        "hunter": {
+            "shoot": "souhaite tirer sur"
+        }
     },
-    "CancelPlayerTarget": {
+    "CancelActionButton": {
         "cancel": "Annuler",
-        "cancelTarget": "Annuler cette cible"
+        "cancelTarget": "Annuler cette cible",
+        "cancelSide": "Annuler le choix du camp"
+    },
+    "MeetEachOtherPlayField": {
+        "meetEachOtherTheFirstTime": "se rencontrent pour la première fois",
+        "meetEachOtherForTalking": "se concertent discrètement"
+    },
+    "NoActionExpected": {
+        "noActionExpected": "Aucune action requise"
     },
     "GameEventMonitor": {
         "skip": "Passer",
@@ -436,6 +698,7 @@
             "looksLifeSomeWerewolvesIntroducedThemselves": "Il semblerait qu'un ou plusieurs loups-garous se soient faufilés dans le village...",
             "villagersMurderWerewolves": "Villageois, prenez les fourches et nettoyez votre village de ces canidés !",
             "beforeStartingLetsElectSheriff": "Mais avant de vous entretuer, il faut élire le maire de ce village.",
+            "allElectSheriff": "Le débat va commencer pour élire le premier maire du village.",
             "playerDies": "{player} est mort ! Quelle tragédie...",
             "playerRevealsRole": "Il ou elle révèle son rôle aux survivants.",
             "playerHasBeenPromotedSheriff": "{player} a été élu maire !",
@@ -443,13 +706,29 @@
             "nightFalls": "La nuit tombe sur le village de Thiercelieux...",
             "inhabitantsFallAsleep": "Les habitants du village s'endorment.",
             "dayRises": "Le jour se lève sur le village de Thiercelieux.",
+            "noDeathDuringNight": "À la surprise générale, personne n'est mort pendant la nuit !",
+            "allVote": "Les habitants du village vont maintenant voter pour pendre l'un des leurs et espérer débusquer un loup-garou.",
             "seerStarts": "La voyante se réveille et va découvrir dans sa boule de cristal le rôle d'un habitant.",
+            "followingMessageMustBeMimed": "La phrase suivante devra être mimée à la voyante car cette dernière n'est pas très bavarde...",
             "seerHasSeen": "La voyante a vu",
             "werewolvesStart": "Le loup-garou se réveille et va choisir son dîner de ce soir. | Les loups-garous se réveillent et vont choisir leur dîner de ce soir.",
             "witchStarts": "La sorcière se réveille et va, si elle le souhaite, utiliser ses potions.",
             "guardStarts": "Le salvateur se réveille et va protéger la personne de son choix.",
             "ravenStarts": "Le corbeau se réveille et va, s'il le souhaite, marquer de sa plume un des habitants.",
-            "hunterStarts": "Dans son dernier souffle, le chasseur s'apprête à choisir la cible de sa vengeance."
+            "hunterStarts": "Dans son dernier souffle, le chasseur s'apprête à choisir la cible de sa vengeance.",
+            "dogWolfStarts": "Le chien-loup se réveille et va choisir son camp pour le reste de la partie.",
+            "cupidStarts": "Cupidon se réveille et va rendre inséparables deux personnes grâce à ses flèches de l'Amour.",
+            "cupidCharmedTwoPlayers": "Cupidon a rendu inséparable deux personnes qui devront maintenant terminer la partie ensemble.",
+            "gameMasterWillTouchLovers": "Le maître du jeu va faire le tour des habitants et toucher dans le dos les deux Amoureux.",
+            "loversStart": "Les Amoureux se réveillent et vont se rencontrer pour la première fois.",
+            "twoSistersMeetEachOther": "Les deux sœurs se réveillent et vont se rencontrer pour la première fois.",
+            "twoSistersWakeUpToTalk": "Les deux sœurs se réveillent et vont se concerter discrètement.",
+            "threeBrothersMeetEachOther": "Les trois frères se réveillent et vont se rencontrer pour la première fois.",
+            "threeBrothersWakeUpToTalk": "Les trois frères se réveillent et vont se concerter discrètement.",
+            "wildChildStarts": "L'enfant sauvage se réveille pour choisir son modèle parmi les habitants.",
+            "bigBadWolfStarts": "Le grand-méchant-loup se réveille pour choisir la seconde victime des loups-garous.",
+            "sheriffSettlesVote": "Le maire va départager pour régler l'égalité des votes sur la pendaison.",
+            "sheriffDelegates": "Dans son dernier souffle, le maire va déléguer son rôle à l'un des survivants."
         }
     },
     "Statistics": {
@@ -469,6 +748,7 @@
     },
     "Role": {
         "a": {
+            "all": "le village",
             "villager": "un villageois",
             "werewolf": "un loup-garou",
             "seer": "une voyante",
@@ -477,12 +757,19 @@
             "guard": "un salvateur",
             "raven": "un corbeau",
             "little-girl": "une petite fille",
-            "villager-villager": "un villageois-villageois"
+            "villager-villager": "un villageois-villageois",
+            "cupid": "Cupidon",
+            "two-sisters": "une des deux sœurs",
+            "three-brothers": "un des trois frères",
+            "wild-child": "un enfant sauvage",
+            "dog-wolf": "un chien-loup",
+            "big-bad-wolf": "un grand-méchant-loup"
         },
         "the": {
             "villager": "le villageois",
             "werewolf": "le loup-garou",
             "werewolves": "les loups-garous",
+            "villagers": "les Villageois",
             "seer": "la voyante",
             "witch": "la sorcière",
             "hunter": "le chasseur",
@@ -491,7 +778,14 @@
             "sheriff": "le maire",
             "all": "le village",
             "little-girl": "la petite fille",
-            "villager-villager": "le villageois-villageois"
+            "villager-villager": "le villageois-villageois",
+            "cupid": "Cupidon",
+            "two-sisters": "les deux sœurs",
+            "three-brothers": "les trois frères",
+            "wild-child": "l'enfant sauvage",
+            "dog-wolf": "le chien-loup",
+            "big-bad-wolf": "le grand-méchant-loup",
+            "lovers": "les amoureux"
         },
         "description": {
             "villager": [
@@ -550,8 +844,56 @@
                 "Ce personnage possède une âme claire et transparente comme l'eau d'un ruisseau montagnard. Il méritera l'écoute attentive de ses pairs et rendra sa parole décisive dans les moments cruciaux.",
                 "Quel pouvoir peut être aussi grand que d'inspirer aux honnêtes gens une confiance absolue ?",
                 "Les Loups-Garous se rueront-ils pour éliminer cet être sans pouvoir secret ? Préféreront-ils débusquer des villageois aux pouvoirs plus menaçant ?",
-                "Sur ses 2 faces, cette carte poossède l'illustration de Simple Villageois. À la distribution, le village aura donc la certitude absolue que son propriétaire est bel et bien un innocent Simple Villageois.",
+                "Sur ses 2 faces, cette carte possède l'illustration de Simple Villageois. À la distribution, le village aura donc la certitude absolue que son propriétaire est bel et bien un innocent Simple Villageois.",
                 "Conseil au meneur: ce personnage peut devenir un Capitaine ou un Garde Champêtre de confiance."
+            ],
+            "cupid": [
+                "Son but est d'éliminer les Loups-Garous.",
+                "En décochant ses célèbres flèches magiques, Cupidon a le pouvoir de rendre 2 personnes amoureuses à jamais.",
+                "La première nuit (tour préliminaire), il désigne les 2 joueurs (ou joueuses) amoureux. Cupidon peut, s'il le veut, se désigner comme l'un des deux Amoureux.",
+                "Si l'un des Amoureux est éliminé, l'autre meurt de chagrin immédiatement. Un Amoureux ne doit jamais éliminer son aimé, ni lui porter aucun préjudice (même pour faire semblant !).",
+                "Attention: si l'un des Amoureux est un Villageois et l'autre un Loup-Garou ou le Joueur de Flûte, le but de la partie change pour les Amoureux: En effet, afin de pouvoir vivre en paix leur amour et gagner la partie, ils doivent éliminer tous les autres joueurs, Loups-Garous et Villageois, en respectant les règles du jeu."
+            ],
+            "two-sisters": [
+                "Leur but est d'éliminer les Loups-Garous.",
+                "Certains locaterciens les confondent quand ils croisent l'une des Deux Sœurs au détour d'un chemin creux.",
+                "Le sourire qui s'affiche sur le visage de la jeune fille après qu'on a tenté sa chance au jeu du prénom est difficile à interpréter : la jeune nubile est-elle heureuse d'avoir été identifiée, ou s'amuse-t-elle de la méprise ?",
+                "En tout cas, les Deux Sœurs s'entendent comme les doigts de la main ou les cheveux d'une même mèche. C'est certes encourageant d'avoir un proche sur qui compter dans ces moments incertains !",
+                "La première nuit, à l'appel du meneur, elles se réveillent ensemble et se reconnaissent. Ensuite, au cours de la partie, une nuit sur deux, elles se réveillent à nouveau et se concertent rapidement et en silence sur les décisions à prendre pour sauver le village.",
+                "Conseil au meneur: particulièrement puissant avec des pratiquants de la langue des signes."
+            ],
+            "three-brothers": [
+                "Leur but est d'éliminer les Loups-Garous.",
+                "Tout le village résonne de leurs joyeux éclats verbaux quand ils regagnent la maison après le travail des champs.",
+                "Pendant les débats, un simple coup d'œil entre eux leur permet de prendre une bonne décision quant à l'avenir du village.",
+                "La première nuit, à l'appel du meneur, ils se réveillent ensemble et se reconnaissent. Ensuite, au cours de la partie, une nuit sur deux, ils se réveillent à nouveau et se concertent rapidement et en silence sur les décisions à prendre pour sauver le village.",
+                "Conseil au meneur: particulièrement puissant avec des pratiquants de la langue des signes. À n'utiliser que dans les grands villages. Si le village est très grand, vous pouvez même y associer les deux sœurs !"
+            ],
+            "wild-child": [
+                "Son but est d'éliminer les Loups-Garous tant que son modèle est vivant.",
+                "Abandonné dans la forêt par ses parents dans sa plus tendre enfance, il y fut élevé par des loups. Dès qu'il sut marcher à quatre pattes, l'Enfant Sauvage se mit à errer aux abords de Thiercelieux.",
+                "Un beau jour, fasciné par un habitant du village qui marchait debout avec grâce et prestance, il en fit son modèle en secret.",
+                "Il décida alors d'intégrer la communauté de Thiercelieux et pénétra, inquiet, dans le village. La communauté fut émue par sa fragilité, l'adopta et l'accueillit en son sein.",
+                "Que deviendra-t-il : honnête Villageois ou terrible Loup-Garou ? Toute son existence, le cœur de l'Enfant Sauvage balancera entre ces deux alternatives. Puisse son modèle le confirmer dans son humanité nouvelle.",
+                "L'enfant Sauvage est un villageois. La première nuit, à l'appel du meneur, il désigne un joueur modèle. Si durant la partie le joueur désigné est éliminé, l'Enfant Sauvage devient Loup-Garou et se réveillera la nuit suivante avec ses congénères, dévorera avec eux toutes les nuits jusqu'à la fin de la partie.",
+                "En revanche, tant que son modèle est vivant, l'Enfant Sauvage demeure un villageois. Que son modèle s'avère ou non être un Loup-Garou ne change rien à l'affaire ! Rien n'empêche l'Enfant Sauvage de participer à l'élimination de son modèle s'il le désire.",
+                "Si son modèle est vivant lorsque tous les Loups-Garous sont éliminés, il a gagné avec les villageois. Si son modèle est éliminé et que seuls des Loups-Garous survivent avec lui, c'est aussi une victoire pour notre Enfant Sauvage.",
+                "Conseil au meneur: ne pas révéler la véritable nature de l'Enfant Sauvage éliminé par le vote du village peut être amusant. Le doute à propos de sa véritable identité subsiste alors : était-il Villageois ou Loup-Garou avant d'être éliminé ?"
+            ],
+            "dog-wolf": [
+                "Son but est d'éliminer les Loups-Garous s'il reste chien ou d'éliminer les Villageois s'il décide de devenir un loup.",
+                "Tous les chiens savent au tréfonds d'eux-mêmes que leurs ancêtres étaient loups et que c'est l'Homme qui les a maintenus dans cet état de compagnons enfantins et craintifs, mais fidèles et généreux.",
+                "En tout cas, seul le Chien-Loup peut décider s'il obéira à son maître humain et civilisé ou s'il écoutera l'appel de la nature sauvage enfouie dans ses entrailles.",
+                "La première nuit, il choisit s'il désire être un Simple Villageois ou Loup-Garou.",
+                "S'il désire être Loup-Garou, il se réveillera avec eux toutes les nuits et participera désormais à la désignation de la victime dévorée. Sinon, il garde les yeux clos et gagnera avec les villageois.",
+                "Ce choix est définitif !",
+                "Conseil au meneur: ne pas révéler la véritable nature du Chien-Loup éliminé par le vote du village peut-être amusant. Le doute à propos de sa véritable identité subsiste alors : était-il Villageois ou Loup-Garou avant d'être éliminé ?"
+            ],
+            "big-bad-wolf": [
+                "Son but est d'éliminer les Villageois.",
+                "À Thiercelieux, les petits cochons ne sont pas les seuls à redouter le Grand-Méchant-Loup. Il est énorme et son appétit est gigantesque. À cause de lui, des villages entiers furent rayés de la carte !",
+                "Chaque nuit, il se réveille et dévore avec les autres Loups-Garous. Mais tant qu'aucun Loup-Garou, Chien-Sauvage devenu loup ou Enfant Sauvage ayant perdu son modèle n'est éliminé, il se réveille seul une deuxième fois et dévore une autre victime.",
+                "Il ne peut pas dévorer de Loup-Garou."
             ]
         },
         "villager": "Villageois",
@@ -562,7 +904,13 @@
         "guard": "Salvateur",
         "raven": "Corbeau",
         "little-girl": "Petite Fille",
-        "villager-villager": "Villageois-Villageois"
+        "villager-villager": "Villageois-Villageois",
+        "cupid": "Cupidon",
+        "two-sisters": "Sœurs",
+        "three-brothers": "Frères",
+        "wild-child": "Enfant Sauvage",
+        "dog-wolf": "Chien-Loup",
+        "big-bad-wolf": "Grand-Méchant-Loup"
     },
     "RoleText": {
         "chooseARole": "Choisir un rôle"
@@ -592,6 +940,12 @@
         "TOO_MANY_REQUESTS": "Trop de requêtes d'un coup... Calm down !",
         "yourSessionHasExpired": "Votre session a expirée, veuillez vous reconnecter",
         "unknownError": "Erreur inconnue"
+    },
+    "VueToggleButton": {
+        "yesNo": {
+            "checked": "Oui",
+            "unchecked": "Non"
+        }
     },
     "VeeValidate": {
         "required": "Ce champ est requis",

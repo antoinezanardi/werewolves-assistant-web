@@ -13,9 +13,9 @@
 
 <script>
 import { mapGetters } from "vuex";
-import PlayerCard from "../../../../shared/Game/PlayerCard";
-import PlayerTargets from "../../../../shared/Game/PlayerTargets/PlayerTargets";
-import PlayFieldActionText from "../../../../shared/Game/PlayField/PlayFieldActionText";
+import PlayerCard from "@/components/shared/Game/PlayerCard";
+import PlayerTargets from "@/components/shared/Game/PlayerTargets/PlayerTargets";
+import PlayFieldActionText from "@/components/shared/Game/PlayField/PlayFieldActionText";
 
 export default {
     name: "ShootPlayField",
@@ -26,14 +26,7 @@ export default {
             required: true,
         },
     },
-    computed: {
-        ...mapGetters("game", { game: "game" }),
-        shootTargetText() {
-            const playerTargeted = this.play.targets.length ? this.game.players.find(({ _id }) => _id === this.play.targets[0].player) : null;
-            const text = `${this.$t("ShootPlayField.wantsToShoot")} `;
-            return playerTargeted ? text + playerTargeted.name : `${text} ...`;
-        },
-    },
+    computed: { ...mapGetters("game", { game: "game" }) },
     methods: {
         playerSelected(payload) {
             this.$emit("player-selected", payload);

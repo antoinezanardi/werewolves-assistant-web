@@ -2,7 +2,7 @@
     <div id="game-play-field" class="h-100 d-flex flex-column">
         <GamePlayFieldHeader @start-tutorial="startTutorial"/>
         <GamePlayFieldContent id="game-content-play-field" :play="play" class="visible-scrollbar"
-                              @player-votes="playerVotes" @player-selected="playerSelected"/>
+                              @player-votes="playerVotes" @player-selected="playerSelected" @side-selected="sideSelected"/>
         <GamePlayFieldFooter :play="play"/>
         <GamePlayFieldTutorial ref="gamePlayFieldTutorial"/>
     </div>
@@ -29,6 +29,9 @@ export default {
         },
         playerSelected(payload) {
             this.$emit("player-selected", payload);
+        },
+        sideSelected(side) {
+            this.$emit("side-selected", side);
         },
         startTutorial() {
             this.$refs.gamePlayFieldTutorial.startTour();

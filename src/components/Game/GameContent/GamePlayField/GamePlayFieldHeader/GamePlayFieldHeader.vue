@@ -32,6 +32,8 @@
 
 <script>
 import { mapGetters } from "vuex";
+import WhatToDoButton from "@/components/shared/Game/WhatToDoButton/WhatToDoButton";
+import RoleImage from "@/components/shared/Game/Role/RoleImage";
 import sheriffSVG from "@/assets/svg/attributes/sheriff.svg";
 import eatenSVG from "@/assets/svg/attributes/eaten.svg";
 import drankDeathPotionSVG from "@/assets/svg/attributes/drank-death-potion.svg";
@@ -41,8 +43,13 @@ import voteSVG from "@/assets/svg/actions/vote.svg";
 import settleVotesSVG from "@/assets/svg/actions/settle-votes.svg";
 import protectedSVG from "@/assets/svg/attributes/protected.svg";
 import ravenMarkedSVG from "@/assets/svg/attributes/raven-marked.svg";
-import WhatToDoButton from "@/components/shared/Game/WhatToDoButton/WhatToDoButton";
-import RoleImage from "@/components/shared/Game/Role/RoleImage";
+import chooseSideSVG from "@/assets/svg/actions/choose-side.svg";
+import charmSVG from "@/assets/svg/actions/charm.svg";
+import inLoveSVG from "@/assets/svg/attributes/in-love.svg";
+import twoSistersSVG from "@/assets/svg/roles/two-sisters.svg";
+import threeBrothersPNG from "@/assets/img/roles/three-brothers.png";
+import worshipedSVG from "@/assets/svg/attributes/worshiped.svg";
+import bigBadWolfSVG from "@/assets/svg/roles/big-bad-wolf.svg";
 
 export default {
     name: "GamePlayFieldHeader",
@@ -51,45 +58,103 @@ export default {
     data() {
         return {
             actions: {
-                "eat": {
-                    icon: eatenSVG,
-                    role: "werewolf",
+                "seer": {
+                    look: {
+                        icon: lookSVG,
+                        role: "seer",
+                    },
                 },
-                "use-potion": {
-                    icon: drankDeathPotionSVG,
-                    role: "witch",
+                "werewolves": {
+                    eat: {
+                        icon: eatenSVG,
+                        role: "werewolf",
+                    },
                 },
-                "look": {
-                    icon: lookSVG,
-                    role: "seer",
+                "witch": {
+                    "use-potion": {
+                        icon: drankDeathPotionSVG,
+                        role: "witch",
+                    },
                 },
-                "protect": {
-                    icon: protectedSVG,
-                    role: "guard",
+                "guard": {
+                    protect: {
+                        icon: protectedSVG,
+                        role: "guard",
+                    },
                 },
-                "shoot": {
-                    icon: shootSVG,
-                    role: "hunter",
+                "hunter": {
+                    shoot: {
+                        icon: shootSVG,
+                        role: "hunter",
+                    },
                 },
-                "mark": {
-                    icon: ravenMarkedSVG,
-                    role: "raven",
+                "raven": {
+                    mark: {
+                        icon: ravenMarkedSVG,
+                        role: "raven",
+                    },
                 },
-                "elect-sheriff": {
-                    icon: sheriffSVG,
-                    role: "villager",
+                "all": {
+                    "vote": {
+                        icon: voteSVG,
+                        role: "villager",
+                    },
+                    "elect-sheriff": {
+                        icon: sheriffSVG,
+                        role: "villager",
+                    },
                 },
-                "vote": {
-                    icon: voteSVG,
-                    role: "villager",
+                "sheriff": {
+                    "delegate": {
+                        icon: sheriffSVG,
+                        role: "sheriff",
+                    },
+                    "settle-votes": {
+                        icon: settleVotesSVG,
+                        role: "sheriff",
+                    },
                 },
-                "delegate": {
-                    icon: sheriffSVG,
-                    role: "sheriff",
+                "dog-wolf": {
+                    "choose-side": {
+                        icon: chooseSideSVG,
+                        role: "dog-wolf",
+                    },
                 },
-                "settle-votes": {
-                    icon: settleVotesSVG,
-                    role: "sheriff",
+                "cupid": {
+                    charm: {
+                        icon: charmSVG,
+                        role: "cupid",
+                    },
+                },
+                "lovers": {
+                    "meet-each-other": {
+                        icon: inLoveSVG,
+                        role: "cupid",
+                    },
+                },
+                "two-sisters": {
+                    "meet-each-other": {
+                        icon: twoSistersSVG,
+                        role: "two-sisters",
+                    },
+                },
+                "three-brothers": {
+                    "meet-each-other": {
+                        icon: threeBrothersPNG,
+                        role: "three-brothers",
+                    },
+                },
+                "wild-child": {
+                    "choose-model": {
+                        icon: worshipedSVG,
+                        role: "wild-child",
+                    },
+                },
+                "big-bad-wolf": {
+                    eat: {
+                        icon: bigBadWolfSVG,
+                        role: "big-bad-wolf",
+                    },
                 },
             },
         };
@@ -111,22 +176,32 @@ export default {
         },
         gameWaitingIcon() {
             const { firstWaiting } = this.game;
-            return this.actions[firstWaiting.to].icon;
+            if (this.actions[firstWaiting.for] && this.actions[firstWaiting.for][firstWaiting.to]) {
+                return this.actions[firstWaiting.for][firstWaiting.to].icon;
+            }
+            return null;
         },
         gameWaitingRole() {
             const { firstWaiting } = this.game;
-            return this.actions[firstWaiting.to].role;
+            if (this.actions[firstWaiting.for] && this.actions[firstWaiting.for][firstWaiting.to]) {
+                return this.actions[firstWaiting.for][firstWaiting.to].role;
+            }
+            return null;
         },
     },
 };
 </script>
 
 <style lang="scss" scoped>
+    @import "../../../../../../node_modules/bootstrap/scss/bootstrap-grid";
     @import "../../../../../../node_modules/bootstrap/scss/bootstrap";
     @import "../../../../../assets/scss/variables";
 
     #game-waiting-label {
-        @include font-size(1.5rem);
+        font-size: 1rem;
+        @include media-breakpoint-up(md) {
+            font-size: 1.5rem;
+        }
     }
 
     #game-phase {

@@ -1,5 +1,44 @@
 # 📈 LIST OF CHANGES FOR WEREWOLVES ASSISTANT WEB
 
+## 1.0.0-beta.9 (2020-12-30)
+
+### 🚀 New features
+
+* [#75](https://github.com/antoinezanardi/werewolves-assistant-web/issues/75) - Cupid role implemented.
+* [#76](https://github.com/antoinezanardi/werewolves-assistant-web/issues/76) - Two Sisters role implemented.
+* [#77](https://github.com/antoinezanardi/werewolves-assistant-web/issues/77) - Three Brothers role implemented.
+* [#78](https://github.com/antoinezanardi/werewolves-assistant-web/issues/78) - Wild Child role implemented.
+* [#79](https://github.com/antoinezanardi/werewolves-assistant-web/issues/79) - Dog-Wolf role implemented.
+* [#80](https://github.com/antoinezanardi/werewolves-assistant-web/issues/80) - Big-Bad-Wolf role implemented.
+* [#84](https://github.com/antoinezanardi/werewolves-assistant-web/issues/84) - Game options for different roles.
+* [#87](https://github.com/antoinezanardi/werewolves-assistant-web/issues/87) - Pre-render plugin added during build step.
+
+### ♻️ Refactoring
+
+* [#82](https://github.com/antoinezanardi/werewolves-assistant-web/issues/82) - Change `player.role.group` to `player.side`.
+* [#83](https://github.com/antoinezanardi/werewolves-assistant-web/issues/83) - Game summary button moved from bottom to right after the game review button to make it more visible.
+
+### 📚 Documentation
+
+* [#81](https://github.com/antoinezanardi/werewolves-assistant-web/issues/81) - Server configuration added.
+
+### 📦 Packages
+
+* `prerender-spa-plugin` installed with version `3.4.0`.
+* `vue-js-toggle-button` installed with version `1.3.3`.
+* `@sentry/browser` updated to version `5.29.2`.
+* `@sentry/integrations` updated to version `5.29.2`.
+* `@vue/eslint-config-airbnb` updated to version `5.3.0`.
+* `@vue/test-utils` updated to version `1.1.2`.
+* `axios` updated to version `0.21.1`.
+* `eslint` updated to version `7.16.0`.
+* `eslint-plugin-vue` updated to version `7.4.0`.
+* `sweetalert2` updated to version `10.12.6`.
+* `vue-select` updated to version `3.11.2`.
+* `vuex` updated to version `3.6.0`.
+
+---
+
 ## 1.0.0-beta.8 (2020-11-21)
 
 ### 🚀 New features

@@ -22,6 +22,7 @@ class GameHistory {
                 from: new Player(vote.from),
                 for: new Player(vote.for),
             }))),
+            side: getProp(gameHistory, "play.side"),
         };
     }
 }

@@ -2,6 +2,7 @@ import { getProp } from "@/helpers/functions/Class";
 import User from "./User";
 import Player from "./Player";
 import GameHistory from "./GameHistory";
+import { isForbiddenTieVoteAction, isSkippableAction, isTargetAction, isTimedAction, isVoteAction } from "@/helpers/functions/Game";
 
 class Game {
     constructor(game = null) {
@@ -13,6 +14,12 @@ class Game {
         this.tick = getProp(game, "tick");
         this.waiting = getProp(game, "waiting", [], waiting => waiting.map(waitingEntry => waitingEntry));
         this.status = getProp(game, "status");
+        this.options = {
+            sistersWakingUpInterval: getProp(game, "options.sistersWakingUpInterval", 2),
+            brothersWakingUpInterval: getProp(game, "options.brothersWakingUpInterval", 2),
+            isSheriffVoteDoubled: getProp(game, "options.isSheriffVoteDoubled", true),
+            isSeerTalkative: getProp(game, "options.isSeerTalkative", true),
+        };
         this.history = getProp(game, "history", [], history => history.map(historyEntry => new GameHistory(historyEntry)));
         this.won = {
             by: getProp(game, "won.by"),
@@ -32,19 +39,19 @@ class Game {
     }
 
     get werewolfPlayers() {
-        return this.players.filter(player => player.role.group === "werewolves");
+        return this.players.filter(player => player.side.current === "werewolves");
     }
 
     get aliveWerewolfPlayers() {
-        return this.players.filter(player => player.isAlive && player.role.group === "werewolves");
+        return this.players.filter(player => player.isAlive && player.side.current === "werewolves");
     }
 
     get villagerPlayers() {
-        return this.players.filter(player => player.role.group === "villagers");
+        return this.players.filter(player => player.side.current === "villagers");
     }
 
     get aliveVillagerPlayers() {
-        return this.players.filter(player => player.isAlive && player.role.group === "villagers");
+        return this.players.filter(player => player.isAlive && player.side.current === "villagers");
     }
 
     get isMaxPlayerReached() {
@@ -63,38 +70,89 @@ class Game {
         return !!this.werewolfPlayers.length;
     }
 
+    get areThereEnoughSisters() {
+        return this.sisterPlayers.length === 2;
+    }
+
+    get areThereEnoughBrothers() {
+        return this.brotherPlayers.length === 3;
+    }
+
     get allPlayersHaveRole() {
         return this.players.length && !this.players.filter(player => player.role.current === undefined).length;
     }
 
-    get canStartGame() {
+    allPlayerRoleMinimumIsReached(roles) {
+        return this.players.length && this.players.every(({ role: playerRole }) => {
+            const role = roles.find(({ name }) => name === playerRole.current);
+            return !role.minInGame || role.minimumReached(this);
+        });
+    }
+
+    canStartGame(roles) {
         return this.areThereEnoughPlayers && this.areThereEnoughVillagers &&
-            this.areThereEnoughWerewolves && this.allPlayersHaveRole;
+            this.areThereEnoughWerewolves && this.allPlayersHaveRole &&
+            this.allPlayerRoleMinimumIsReached(roles);
+    }
+
+    get canUpdateOptions() {
+        return !this._id;
     }
 
     get firstWaiting() {
         return this.waiting[0];
     }
 
-    get isVotePlay() {
-        const waiting = this.firstWaiting;
-        return waiting.to === "elect-sheriff" || waiting.to === "vote";
+    get isFirstWaitingVoteAction() {
+        const { to } = this.firstWaiting;
+        return isVoteAction(to);
     }
 
-    get isForbiddenTieVotePlay() {
-        const waiting = this.firstWaiting;
-        return waiting.to === "elect-sheriff";
+    get isFirstWaitingForbiddenTieVoteAction() {
+        const { to } = this.firstWaiting;
+        return isForbiddenTieVoteAction(to);
     }
 
-    get isOneTargetPlay() {
-        const waiting = this.firstWaiting;
-        return waiting.to === "look" || waiting.to === "eat" || waiting.to === "protect" ||
-            waiting.to === "shoot" || waiting.to === "settle-votes" || waiting.to === "delegate";
+    get isFirstWaitingTargetAction() {
+        const { to } = this.firstWaiting;
+        return isTargetAction(to);
     }
 
-    get isTimedPlay() {
-        const waiting = this.firstWaiting;
-        return waiting.to === "elect-sheriff" || waiting.to === "vote";
+    get expectedTargetsLength() {
+        const { to } = this.firstWaiting;
+        const oneTargetActions = ["look", "eat", "protect", "shoot", "settle-votes", "delegate", "choose-model", "use-potion"];
+        const twoTargetsActions = ["charm"];
+        if (oneTargetActions.includes(to)) {
+            return 1;
+        } else if (twoTargetsActions.includes(to)) {
+            return 2;
+        }
+        return 0;
+    }
+
+    get isFirstWaitingTimedAction() {
+        const { to } = this.firstWaiting;
+        return isTimedAction(to);
+    }
+
+    get maxTimeToPlay() {
+        const { to } = this.firstWaiting;
+        if (to === "elect-sheriff" || to === "vote") {
+            return 5 * 60 * 1000;
+        } else if (to === "meet-each-other") {
+            return 20 * 1000;
+        }
+        return 0;
+    }
+
+    get isFirstWaitingChooseSideAction() {
+        const { to } = this.firstWaiting;
+        return to === "choose-side";
+    }
+
+    get isFirstWaitingSkippableAction() {
+        const { to } = this.firstWaiting;
+        return isSkippableAction(to);
     }
 
     getPlayersWithRole(role) {
@@ -126,7 +184,11 @@ class Game {
     }
 
     getPlayerWithAttribute(attributeName) {
-        return this.players.find(({ attributes }) => attributes.find(({ attribute }) => attribute === attributeName));
+        return this.players.find(player => player.hasAttribute(attributeName));
+    }
+
+    getPlayersWithAttribute(attributeName) {
+        return this.players.filter(player => player.hasAttribute(attributeName));
     }
 
     get sheriffPlayer() {
@@ -137,12 +199,68 @@ class Game {
         return this.getPlayerWithAttribute("eaten");
     }
 
+    get eatenPlayers() {
+        return this.getPlayersWithAttribute("eaten");
+    }
+
     get hasWitchUsedLifePotion() {
         return !!this.history.find(({ play }) => play.action === "use-potion" && !!play.targets.find(({ potion }) => potion.life));
     }
 
     get hasWitchUsedDeathPotion() {
         return !!this.history.find(({ play }) => play.action === "use-potion" && !!play.targets.find(({ potion }) => potion.death));
+    }
+
+    get dogWolfPlayer() {
+        return this.getPlayerWithRole("dog-wolf");
+    }
+
+    get cupidPlayer() {
+        return this.getPlayerWithRole("cupid");
+    }
+
+    get wildChildPlayer() {
+        return this.getPlayerWithRole("wild-child");
+    }
+
+    get sisterPlayers() {
+        return this.getPlayersWithRole("two-sisters");
+    }
+
+    get brotherPlayers() {
+        return this.getPlayersWithRole("three-brothers");
+    }
+
+    get inLovePlayers() {
+        return this.getPlayersWithAttribute("in-love");
+    }
+
+    isRoleInGame(roleName) {
+        return !!this.players.find(({ role }) => role.current === roleName);
+    }
+
+    getPlayerWithId(playerId) {
+        return this.players.find(({ _id }) => _id.toString() === playerId);
+    }
+
+    getPlayerWithName(playerName) {
+        return this.players.find(({ name }) => name === playerName);
+    }
+
+    get playersExpectedToPlay() {
+        const { for: source } = this.firstWaiting;
+        const waitingForGroups = {
+            all: this.players,
+            sheriff: this.getPlayersWithAttribute("sheriff"),
+            lovers: this.getPlayersWithAttribute("in-love"),
+            villagers: this.villagerPlayers,
+            werewolves: this.werewolfPlayers,
+        };
+        return waitingForGroups[source] ? waitingForGroups[source] : this.getPlayersWithRole(source);
+    }
+
+    get alivePlayersExpectedToPlay() {
+        return this.playersExpectedToPlay.filter(({ isAlive }) => isAlive);
     }
 }
 

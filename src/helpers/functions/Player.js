@@ -12,7 +12,7 @@ export function getNominatedPlayers(votes, game, action) {
     const votedPlayers = [];
     const sheriffPlayer = game.getPlayerWithAttribute("sheriff");
     for (const vote of votes) {
-        if (action === "vote" && sheriffPlayer && sheriffPlayer._id === vote.from) {
+        if (action === "vote" && sheriffPlayer && sheriffPlayer._id === vote.from && game.options.isSheriffVoteDoubled) {
             incrementPlayerVoteCount(votedPlayers, vote.for, game, 2);
         } else {
             incrementPlayerVoteCount(votedPlayers, vote.for, game);
@@ -26,4 +26,26 @@ export function getNominatedPlayers(votes, game, action) {
     }
     const maxVotes = Math.max(...votedPlayers.map(player => player.vote));
     return votedPlayers.filter(player => player.vote === maxVotes);
+}
+
+export function maxTargetLengthForPlayerAttribute(attribute) {
+    const oneTargetAttributes = [
+        "seen",
+        "eaten",
+        "drank-life-potion",
+        "drank-death-potion",
+        "protected",
+        "raven-marked",
+        "worshiped",
+        "chosen-for-vote",
+        "delegate",
+        "shoot",
+    ];
+    const twoTargetsAttributes = ["in-love"];
+    if (oneTargetAttributes.includes(attribute)) {
+        return 1;
+    } else if (twoTargetsAttributes.includes(attribute)) {
+        return 2;
+    }
+    return 0;
 }

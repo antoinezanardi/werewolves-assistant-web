@@ -1,44 +1,42 @@
 <template>
     <div id="game-winners" class="d-flex flex-column">
-        <div class="d-flex flex-column justify-content-center flex-grow-1">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <img :src="SVGs.trophy" class="animate__animated animate__tada animate__infinite animate__slower"
-                         width="100" alt="Trophy"/>
+        <div id="game-winners-content" class="visible-scrollbar">
+            <div class="d-flex flex-column h-100 container-fluid">
+                <div class="d-flex flex-column justify-content-center flex-grow-1">
+                    <div class="row mt-2">
+                        <div class="col-12 text-center">
+                            <GameResult/>
+                        </div>
+                    </div>
+                    <div class="row mt-2 text-center justify-content-center">
+                        <div class="col-12 col-lg-6">
+                            <GameSummaryButton class="mb-2 mb-lg-0 mr-lg-2 btn-block" @show-game-summary-modal="showGameSummaryModal"/>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <GameReviewButton class="btn-block" @show-game-review-modal="showGameReviewModal"/>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-12 text-center">
-                    <h2 v-html="winnersText"/>
+                <div class="row flex-grow-1 align-items-center justify-content-center mt-4">
+                    <PlayerCard v-for="player in game.won.players" :key="player.name" :player="player" size="lg" class="col-lg-3 col-md-4 col-6"/>
                 </div>
-            </div>
-            <div class="row mt-2">
-                <div class="col-12 text-center">
-                    <GameReviewButton @show-game-review-modal="showGameReviewModal"/>
-                </div>
-            </div>
-            <div class="row justify-content-center mt-4">
-                <PlayerCard v-for="player in winners" :key="player.name" :player="player" class="col-lg-2 col-3"/>
             </div>
         </div>
-        <div class="row justify-content-between align-items-center">
-            <div class="col-lg-4">
-                <button class="btn btn-primary btn-block" @click="showGameSummaryModal">
-                    <i class="fa fa-list mr-2"/>
-                    <span v-html="$t('GameWinners.seeGameSummary')"/>
-                </button>
-            </div>
-            <div class="col-lg-4 mt-2 mt-lg-0">
-                <button class="btn btn-primary btn-block btn-lg" @click="restartGame">
-                    <i class="fa fa-redo mr-2"/>
-                    <span v-html="$t('GameWinners.restartGame')"/>
-                </button>
-            </div>
-            <div class="col-lg-4 mt-2 mt-lg-0">
-                <router-link class="btn btn-secondary btn-block" to="/">
-                    <i class="fa fa-sign-out-alt mr-2"/>
-                    <span v-html="$t('GameWinners.quit')"/>
-                </router-link>
+        <div>
+            <hr class="bg-dark my-2"/>
+            <div class="row justify-content-between align-items-center">
+                <div class="col-md-8">
+                    <button class="btn btn-primary btn-block btn-lg" @click="restartGame">
+                        <i class="fa fa-redo mr-2"/>
+                        <span v-html="$t('GameWinners.restartGame')"/>
+                    </button>
+                </div>
+                <div class="col-md-4 mt-2 mt-md-0">
+                    <router-link class="btn btn-secondary btn-block" to="/">
+                        <i class="fa fa-sign-out-alt mr-2"/>
+                        <span v-html="$t('GameWinners.quit')"/>
+                    </router-link>
+                </div>
             </div>
         </div>
         <GameSummaryModal ref="gameSummaryModal"/>
@@ -50,37 +48,17 @@
 import { mapGetters } from "vuex";
 import Swal from "sweetalert2";
 import { stringify } from "qs";
-import trophy from "@/assets/svg/game/trophy.svg";
-import PlayerCard from "../../shared/Game/PlayerCard";
-import GameSummaryModal from "@/components/Game/GameWinners/GameSummaryModal/GameSummaryModal";
+import PlayerCard from "@/components/shared/Game/PlayerCard";
+import GameSummaryModal from "@/components/shared/Game/GameSummary/GameSummaryModal/GameSummaryModal";
 import GameReviewModal from "@/components/shared/Game/GameReview/GameReviewModal/GameReviewModal";
 import GameReviewButton from "@/components/shared/Game/GameReview/GameReviewButton/GameReviewButton";
+import GameSummaryButton from "@/components/shared/Game/GameSummary/GameSummaryButton/GameSummaryButton";
+import GameResult from "@/components/shared/Game/GameResult/GameResult";
 
 export default {
     name: "GameWinners",
-    components: { GameReviewButton, GameReviewModal, GameSummaryModal, PlayerCard },
-    data() {
-        return { SVGs: { trophy } };
-    },
-    computed: {
-        ...mapGetters("game", { game: "game" }),
-        winnersText() {
-            if (this.game.won.by === "werewolves") {
-                return this.$tc("GameWinners.wonByWerewolves", this.winners.length);
-            } else if (this.game.won.by === "villagers") {
-                return this.$tc("GameWinners.wonByVillagers", this.winners.length);
-            }
-            return this.$t("GameWinners.wonByNobody");
-        },
-        winners() {
-            if (this.game.won.by === "werewolves") {
-                return this.game.werewolfPlayers;
-            } else if (this.game.won.by === "villagers") {
-                return this.game.villagerPlayers;
-            }
-            return [];
-        },
-    },
+    components: { GameResult, GameSummaryButton, GameReviewButton, GameReviewModal, GameSummaryModal, PlayerCard },
+    computed: { ...mapGetters("game", { game: "game" }) },
     methods: {
         confirmRestartGame() {
             return Swal.fire({
@@ -111,5 +89,9 @@ export default {
 </script>
 
 <style scoped>
-
+    #game-winners-content {
+        overflow-y: scroll;
+        width: 100%;
+        flex-grow: 1;
+    }
 </style>

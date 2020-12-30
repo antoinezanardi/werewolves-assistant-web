@@ -2,25 +2,10 @@
     <div id="game-content-footer">
         <hr class="bg-dark my-1"/>
         <div class="row justify-content-center align-items-center">
-            <div class="col-lg-4 col-12 text-center order-lg-0">
-                <VCountdown v-if="game.isTimedPlay" :time="5 * 60 * 1000" @end="countdown.ended = true">
-                    <template #default="{ minutes, seconds }">
-                        <transition name="fade" mode="out-in">
-                            <div v-if="!countdown.ended" id="countdown-running" key="countdown-running" class="countdown">
-                                <i class="fa fa-stopwatch mr-2"/>
-                                <span v-html="`${$t('GamePlayFieldFooter.timeForDebating')}:`"/>
-                                <VRoller class="ml-2 d-inline-flex" :text="`${minutes}:${seconds.toString().padStart(2, '0')}`"/>
-                            </div>
-                            <div v-else id="countdown-ended" key="countdown-ended"
-                                 class="animate__animated animate__pulse animate__infinite countdown">
-                                <i class="fa fa-stopwatch mr-2 text-danger"/>
-                                <span v-html="`${$t('GamePlayFieldFooter.debateIsOver')}`"/>
-                            </div>
-                        </transition>
-                    </template>
-                </VCountdown>
+            <div class="col-md-4 col-12 text-center order-md-0 mb-1 mb-md-0">
+                <GamePlayFieldCountdownFooter v-if="game.isFirstWaitingTimedAction"/>
             </div>
-            <div class="col-lg-4 col-12 order-last order-lg-1">
+            <div class="col-md-4 col-12 order-last order-md-1">
                 <form @submit.prevent="submitPlay">
                     <SubmitButton id="play-submit-button" classes="btn btn-primary btn-block btn-lg"
                                   :loading="loading" :disabled="!canSubmitPlay">
@@ -29,28 +14,33 @@
                     </SubmitButton>
                 </form>
             </div>
-            <div class="col-lg-4 col order-lg-2">
+            <div class="col-md-4 col order-md-2">
                 <transition name="fade" mode="out-in">
-                    <div v-if="game.isVotePlay" id="vote-play-requirements" key="vote-play-requirements"
-                         class="text-center">
+                    <div v-if="game.isFirstWaitingVoteAction" id="vote-play-requirements" key="vote-play-requirements" class="text-center">
                         <VRoller :text="`${play.votes.length}/${game.alivePlayers.length}`" class="d-inline-flex mr-1"/>
                         <span v-html="$t('GamePlayFieldFooter.playersHaveVoted')"/>
                         <div class="text-muted font-italic">
                             <i class="fa mr-2" :class="votePlayRequirementsIconClass"/>
                             <span class="small" v-html="$t('GamePlayFieldFooter.minOnePlayerHasToVote')"/>
                         </div>
-                        <div v-if="game.isForbiddenTieVotePlay" class="text-muted font-italic">
+                        <div v-if="game.isFirstWaitingForbiddenTieVoteAction" class="text-muted font-italic text-center">
                             <i class="fa mr-2" :class="tieInVotesForbiddenIconClass"/>
                             <span class="small" v-html="$t('GamePlayFieldFooter.tieInVotesForbidden')"/>
                         </div>
                     </div>
-                    <div v-else-if="game.isOneTargetPlay" id="one-target-play-requirements" key="one-target-play-requirements"
+                    <div v-else-if="game.isFirstWaitingTargetAction" id="target-play-requirements" key="target-play-requirements"
                          class="text-center">
-                        <VRoller :text="`${play.targets.length}/1`" class="d-inline-flex mr-1"/>
-                        <span v-html="$t('GamePlayFieldFooter.playerTargeted')"/>
+                        <VRoller :text="`${play.targets.length}/${game.expectedTargetsLength}`" class="d-inline-flex mr-1"/>
+                        <span v-html="$tc('GamePlayFieldFooter.playerTargeted', game.expectedTargetsLength)"/>
                         <div class="text-muted font-italic">
-                            <i class="fa mr-2" :class="oneTargetPlayRequirementsIconClass"/>
-                            <span class="small" v-html="$t('GamePlayFieldFooter.minOnePlayerHasToBeTargeted')"/>
+                            <i class="fa mr-2" :class="targetPlayRequirementsIconClass"/>
+                            <span class="small" v-html="targetPlayRequirementsText"/>
+                        </div>
+                    </div>
+                    <div v-else-if="game.isFirstWaitingChooseSideAction" id="choose-side-play-requirements" key="choose-side-play-requirements">
+                        <div class="text-muted font-italic text-center">
+                            <i class="fa mr-2" :class="chooseSidePlayRequirementsIconClass"/>
+                            <span class="small" v-html="$t('GamePlayFieldFooter.oneSideMustBeChosen')"/>
                         </div>
                     </div>
                 </transition>
@@ -63,10 +53,11 @@
 import { mapActions, mapGetters } from "vuex";
 import SubmitButton from "@/components/shared/Forms/SubmitButton";
 import { getNominatedPlayers } from "@/helpers/functions/Player";
+import GamePlayFieldCountdownFooter from "@/components/Game/GameContent/GamePlayField/GamePlayFieldFooter/GamePlayFieldCountdownFooter";
 
 export default {
     name: "GamePlayFieldFooter",
-    components: { SubmitButton },
+    components: { GamePlayFieldCountdownFooter, SubmitButton },
     props: {
         play: {
             type: Object,
@@ -74,10 +65,7 @@ export default {
         },
     },
     data() {
-        return {
-            loading: false,
-            countdown: { ended: false },
-        };
+        return { loading: false };
     },
     computed: {
         ...mapGetters("game", { game: "game" }),
@@ -94,13 +82,24 @@ export default {
         votePlayRequirementsIconClass() {
             return this.play.votes.length ? "fa-check text-success" : "fa-times text-danger";
         },
-        oneTargetPlayRequirementsIconClass() {
-            return this.play.targets.length === 1 ? "fa-check text-success" : "fa-times text-danger";
+        targetPlayRequirementsIconClass() {
+            return this.play.targets.length === this.game.expectedTargetsLength ? "fa-check text-success" : "fa-times text-danger";
+        },
+        targetPlayRequirementsText() {
+            const expectedTargetsLength = this.game.expectedTargetsLength;
+            return this.$tc("GamePlayFieldFooter.minPlayerHasToBeTargeted", expectedTargetsLength, { min: expectedTargetsLength });
+        },
+        isSideChosen() {
+            return this.play.side;
+        },
+        chooseSidePlayRequirementsIconClass() {
+            return this.isSideChosen ? "fa-check text-success" : "fa-times text-danger";
         },
         canSubmitPlay() {
-            return this.game.isVotePlay && !!this.play.votes.length && (!this.game.isForbiddenTieVotePlay || !this.isThereTieInVotes) ||
-                this.game.isOneTargetPlay && this.play.targets.length === 1 ||
-                this.game.firstWaiting.to === "use-potion" || this.game.firstWaiting.to === "mark";
+            return this.game.isFirstWaitingVoteAction && !!this.play.votes.length &&
+                (!this.game.isFirstWaitingForbiddenTieVoteAction || !this.isThereTieInVotes) ||
+                this.game.isFirstWaitingTargetAction && this.play.targets.length === this.game.expectedTargetsLength ||
+                this.game.isFirstWaitingChooseSideAction && this.isSideChosen || this.game.isFirstWaitingSkippableAction;
         },
     },
     methods: {
