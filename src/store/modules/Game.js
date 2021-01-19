@@ -49,16 +49,16 @@ export default {
             }
         },
         setGameOptionIsSheriffVoteDoubled(state, isSheriffVoteDoubled) {
-            state.game.options.isSheriffVoteDoubled = isSheriffVoteDoubled;
+            state.game.options.roles.sheriff.hasDoubledVote = isSheriffVoteDoubled;
         },
         setGameOptionSistersWakingUpInterval(state, sistersWakingUpInterval) {
-            state.game.options.sistersWakingUpInterval = sistersWakingUpInterval;
+            state.game.options.roles.twoSisters.wakingUpInterval = sistersWakingUpInterval;
         },
         setGameOptionBrothersWakingUpInterval(state, brothersWakingUpInterval) {
-            state.game.options.brothersWakingUpInterval = brothersWakingUpInterval;
+            state.game.options.roles.threeBrothers.wakingUpInterval = brothersWakingUpInterval;
         },
         setGameOptionIsSeerTalkative(state, isSeerTalkative) {
-            state.game.options.isSeerTalkative = isSeerTalkative;
+            state.game.options.roles.seer.isTalkative = isSeerTalkative;
         },
     },
     actions: {

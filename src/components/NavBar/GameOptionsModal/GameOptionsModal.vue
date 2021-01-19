@@ -126,7 +126,7 @@ export default {
         ...mapGetters("game", { game: "game" }),
         isSheriffVoteDoubled: {
             get() {
-                return this.game.options.isSheriffVoteDoubled;
+                return this.game.options.roles.sheriff.hasDoubledVote;
             },
             set(isSheriffVoteDoubled) {
                 this.setGameOptionIsSheriffVoteDoubled(isSheriffVoteDoubled);
@@ -135,7 +135,7 @@ export default {
         },
         sistersWakingUpInterval: {
             get() {
-                return this.game.options.sistersWakingUpInterval;
+                return this.game.options.roles.twoSisters.wakingUpInterval;
             },
             set(newSistersWakingUpInterval) {
                 newSistersWakingUpInterval = adjustNumber(newSistersWakingUpInterval, { min: 0, max: 100 });
@@ -145,7 +145,7 @@ export default {
         },
         brothersWakingUpInterval: {
             get() {
-                return this.game.options.brothersWakingUpInterval;
+                return this.game.options.roles.threeBrothers.wakingUpInterval;
             },
             set(newBrothersWakingUpInterval) {
                 newBrothersWakingUpInterval = adjustNumber(newBrothersWakingUpInterval, { min: 0, max: 100 });
@@ -155,7 +155,7 @@ export default {
         },
         isSeerTalkative: {
             get() {
-                return this.game.options.isSeerTalkative;
+                return this.game.options.roles.seer.isTalkative;
             },
             set(isSeerTalkative) {
                 this.setGameOptionIsSeerTalkative(isSeerTalkative);

@@ -24,7 +24,8 @@ export default {
         // eslint-disable-next-line max-lines-per-function
         steps() {
             const { firstWaiting } = this.game;
-            const { sistersWakingUpInterval, brothersWakingUpInterval } = this.gameOptions;
+            const sistersWakingUpInterval = this.gameOptions.roles.twoSisters.wakingUpInterval;
+            const brothersWakingUpInterval = this.gameOptions.roles.threeBrothers.wakingUpInterval;
             const action = `${firstWaiting.for}.${firstWaiting.to}`;
             const header = { title: this.$t(`GamePlayFieldTutorial.${action}.howToPlay`) };
             const steps = {

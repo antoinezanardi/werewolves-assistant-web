@@ -14,12 +14,7 @@ class Game {
         this.tick = getProp(game, "tick");
         this.waiting = getProp(game, "waiting", [], waiting => waiting.map(waitingEntry => waitingEntry));
         this.status = getProp(game, "status");
-        this.options = {
-            sistersWakingUpInterval: getProp(game, "options.sistersWakingUpInterval", 2),
-            brothersWakingUpInterval: getProp(game, "options.brothersWakingUpInterval", 2),
-            isSheriffVoteDoubled: getProp(game, "options.isSheriffVoteDoubled", true),
-            isSeerTalkative: getProp(game, "options.isSeerTalkative", true),
-        };
+        this.options = Game._getGameOptions(game);
         this.history = getProp(game, "history", [], history => history.map(historyEntry => new GameHistory(historyEntry)));
         this.won = {
             by: getProp(game, "won.by"),
@@ -32,6 +27,20 @@ class Game {
         };
         this.createdAt = getProp(game, "createdAt");
         this.updatedAt = getProp(game, "updatedAt");
+    }
+
+    static _getGameOptions(game) {
+        return {
+            roles: {
+                sheriff: {
+                    enabled: getProp(game, "options.roles.sheriff.enabled", true),
+                    hasDoubledVote: getProp(game, "options.roles.sheriff.hasDoubledVote", true),
+                },
+                seer: { isTalkative: getProp(game, "options.roles.seer.isTalkative", true) },
+                twoSisters: { wakingUpInterval: getProp(game, "options.roles.twoSisters.wakingUpInterval", 2) },
+                threeBrothers: { wakingUpInterval: getProp(game, "options.roles.threeBrothers.wakingUpInterval", 2) },
+            },
+        };
     }
 
     get alivePlayers() {

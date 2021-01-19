@@ -126,7 +126,7 @@ export default {
                 "seer-turn": { messages: [i18n.t("GameEvent.messages.seerStarts")] },
                 "seer-looks": {
                     messages: [
-                        ...insertIf(!this.gameOptions.isSeerTalkative, i18n.t("GameEvent.messages.followingMessageMustBeMimed")),
+                        ...insertIf(!this.gameOptions.roles.seer.isTalkative, i18n.t("GameEvent.messages.followingMessageMustBeMimed")),
                         `${i18n.t("GameEvent.messages.seerHasSeen")} ${gameEventTargetRole} !`,
                     ],
                 },
