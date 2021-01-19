@@ -8,6 +8,7 @@
 
 ### 🐛 Bug fixes
 
+* [#91](https://github.com/antoinezanardi/werewolves-assistant-web/issues/91) - Typos on game event texts.
 * [#107](https://github.com/antoinezanardi/werewolves-assistant-web/issues/107) - Bad prefix for roles.
 * [#108](https://github.com/antoinezanardi/werewolves-assistant-web/issues/108) - Game options modal disclaimer always show.
 
