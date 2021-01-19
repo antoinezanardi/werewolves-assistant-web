@@ -21,7 +21,7 @@ class Player {
     }
 
     hasAttribute(attributeName) {
-        return !!this.attributes.find(({ attribute }) => attribute === attributeName);
+        return !!this.attributes.find(({ name }) => name === attributeName);
     }
 
     get currentRole() {

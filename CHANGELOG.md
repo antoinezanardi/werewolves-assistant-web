@@ -1,5 +1,31 @@
 # 📈 LIST OF CHANGES FOR WEREWOLVES ASSISTANT WEB
 
+## 1.0.0-beta.10 (2021-??-??)
+
+### ♻️ Refactoring
+
+* [#105](https://github.com/antoinezanardi/werewolves-assistant-web/issues/105) - Change `attributes.attribute` to `attributes.name` in Player class.
+
+### 📦 Packages
+
+* `@sentry/browser` updated to version `5.30.0`.
+* `@sentry/integrations` updated to version `5.30.0`.
+* `@vue/cli-plugin-e2e-cypress` updated to version `4.5.10`.
+* `@vue/cli-plugin-eslint` updated to version `4.5.10`.
+* `@vue/cli-plugin-router` updated to version `4.5.10`.
+* `@vue/cli-plugin-unit-mocha` updated to version `4.5.10`.
+* `@vue/cli-plugin-vuex` updated to version `4.5.10`.
+* `@vue/cli-service` updated to version `4.5.10`.
+* `eslint` updated to version `7.18.0`.
+* `eslint-plugin-vue` updated to version `7.4.1`.
+* `qs` updated to version `6.9.6`.
+* `sass-loader` updated to version `10.1.1`.
+* `sweetalert2` updated to version `10.13.0`.
+* `v-tooltip` updated to version `2.1.2`.
+* `vue-i18n` updated to version `8.22.4`.
+
+---
+
 ## 1.0.0-beta.9 (2020-12-30)
 
 ### 🚀 New features

@@ -49,11 +49,11 @@
 
 <script>
 import { mapGetters } from "vuex";
-import PlayerCard from "../../../../shared/Game/PlayerCard";
-import lifePotionSVG from "../../../../../assets/svg/attributes/drank-life-potion.svg";
-import deathPotionSVG from "../../../../../assets/svg/attributes/drank-death-potion.svg";
-import PlayerTargets from "../../../../shared/Game/PlayerTargets/PlayerTargets";
-import PlayFieldActionText from "../../../../shared/Game/PlayField/PlayFieldActionText";
+import PlayerCard from "@/components/shared/Game/PlayerCard";
+import lifePotionSVG from "@/assets/svg/attributes/drank-life-potion.svg";
+import deathPotionSVG from "@/assets/svg/attributes/drank-death-potion.svg";
+import PlayerTargets from "@/components/shared/Game/PlayerTargets/PlayerTargets";
+import PlayFieldActionText from "@/components/shared/Game/PlayField/PlayFieldActionText";
 
 export default {
     name: "UsePotionPlayField",
