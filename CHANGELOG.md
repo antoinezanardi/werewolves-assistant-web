@@ -8,6 +8,7 @@
 
 ### 🌟 Enhancements
 
+* [#93](https://github.com/antoinezanardi/werewolves-assistant-web/issues/93) - Enhance Game Lobby display for small screens.
 * [#98](https://github.com/antoinezanardi/werewolves-assistant-web/issues/98) - Extend player limit.
 
 ### 🐛 Bug fixes

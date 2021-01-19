@@ -97,11 +97,11 @@
                             </div>
                             <div id="roles-panel" class="col-md-8 col-12 visible-scrollbar">
                                 <div class="row justify-content-center">
-                                    <RolePickerRole :game="game" class="col-md-2 col-3 text-center p-2"
+                                    <RolePickerRole :game="game" class="col-md-2 col-sm-3 col-4 text-center p-2"
                                                     @click.native="selectRandomRole"/>
                                     <RolePickerRole v-for="role in roles" :key="role.name" :game="game" :role="role"
                                                     :selected="selected.role.name === role.name"
-                                                    class="col-md-2 col-3 text-center p-2" @click.native="changeSelectedRole(role)"/>
+                                                    class="col-md-2 col-sm-3 col-4 text-center p-2" @click.native="changeSelectedRole(role)"/>
                                 </div>
                             </div>
                         </div>
