@@ -2,6 +2,10 @@
 
 ## 1.0.0-beta.10 (2021-??-??)
 
+### 🐛 Bug fixes
+
+* [#107](https://github.com/antoinezanardi/werewolves-assistant-web/issues/107) - Bad prefix for roles
+
 ### ♻️ Refactoring
 
 * [#105](https://github.com/antoinezanardi/werewolves-assistant-web/issues/105) - Change `attributes.attribute` to `attributes.name` in Player class.

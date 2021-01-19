@@ -8,7 +8,7 @@
                             <div class="offset-md-0 col-md-2 order-md-0 offset-2 col-8 order-0 text-center">
                                 <div class="font-italic small text-secondary" v-html="$t('GameLobbyRolePickerModal.actualRole')"/>
                                 <RoleImage id="selected-player-current-role-image" :role="selected.player.role.current"/>
-                                <RoleText v-if="selected.player.role.current" :role="selected.player.role.current"/>
+                                <RoleText v-if="selected.player.role.current" :role="selected.player.role.current" prefix="the"/>
                                 <div v-else v-html="$t('GameLobbyRolePickerModal.noRole')"/>
                             </div>
                             <div class="col-md-8 order-md-1 col-12 order-2">
@@ -57,7 +57,7 @@
                                             <div class="row mt-3">
                                                 <div class="col-6 text-center">
                                                     <RoleText v-if="isRolePicked" id="selected-role-text" :key="selected.role.name"
-                                                              :role="selected.role.name" class="font-weight-bold"/>
+                                                              :role="selected.role.name" prefix="the" class="font-weight-bold"/>
                                                 </div>
                                                 <div class="col-6 d-flex justify-content-center align-items-center">
                                                     <span class="font-weight-bold mr-2" v-html="`${$t('GameLobbyRolePickerModal.side')}: `"/>
