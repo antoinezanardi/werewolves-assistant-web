@@ -6,6 +6,10 @@
 
 * [#13](https://github.com/antoinezanardi/werewolves-assistant-web/issues/13) - Link CHANGELOG.md on Home page.
 
+### 🌟 Enhancements
+
+* [#98](https://github.com/antoinezanardi/werewolves-assistant-web/issues/98) - Extend player limit.
+
 ### 🐛 Bug fixes
 
 * [#91](https://github.com/antoinezanardi/werewolves-assistant-web/issues/91) - Typos on game event texts.
@@ -27,6 +31,7 @@
 * `@vue/cli-plugin-unit-mocha` updated to version `4.5.10`.
 * `@vue/cli-plugin-vuex` updated to version `4.5.10`.
 * `@vue/cli-service` updated to version `4.5.10`.
+* `bootstrap` updated to version `4.6.0`.
 * `eslint` updated to version `7.18.0`.
 * `eslint-plugin-vue` updated to version `7.4.1`.
 * `qs` updated to version `6.9.6`.

@@ -19,7 +19,7 @@
         "@sentry/integrations": "^5.30.0",
         "animate.css": "^4.1.1",
         "axios": "^0.21.1",
-        "bootstrap": "^4.5.3",
+        "bootstrap": "^4.6.0",
         "epic-spinners": "^1.1.0",
         "jquery": "^3.5.1",
         "jsonwebtoken": "^8.5.1",

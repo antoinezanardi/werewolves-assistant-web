@@ -64,7 +64,7 @@ class Game {
     }
 
     get isMaxPlayerReached() {
-        return this.players.length === 20;
+        return this.players.length === 40;
     }
 
     get areThereEnoughPlayers() {
