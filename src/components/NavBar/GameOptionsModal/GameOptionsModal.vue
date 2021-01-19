@@ -14,7 +14,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div>
+                    <div v-if="!game.canUpdateOptions">
                         <div class="row">
                             <div class="col-12 text-warning d-flex align-items-center">
                                 <i class="fa fa-exclamation-triangle fa-2x mr-3 mb-1"/>

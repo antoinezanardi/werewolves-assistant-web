@@ -4,7 +4,8 @@
 
 ### 🐛 Bug fixes
 
-* [#107](https://github.com/antoinezanardi/werewolves-assistant-web/issues/107) - Bad prefix for roles
+* [#107](https://github.com/antoinezanardi/werewolves-assistant-web/issues/107) - Bad prefix for roles.
+* [#108](https://github.com/antoinezanardi/werewolves-assistant-web/issues/108) - Game options modal disclaimer always show.
 
 ### ♻️ Refactoring
 
