@@ -2,6 +2,10 @@
 
 ## 1.0.0-beta.10 (2021-??-??)
 
+### 🚀 New features
+
+* [#13](https://github.com/antoinezanardi/werewolves-assistant-web/issues/13) - Link CHANGELOG.md on Home page.
+
 ### 🐛 Bug fixes
 
 * [#107](https://github.com/antoinezanardi/werewolves-assistant-web/issues/107) - Bad prefix for roles.

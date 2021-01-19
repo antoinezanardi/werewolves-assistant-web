@@ -54,7 +54,8 @@
         "thisProjectIsOpenSource": "Ce projet est open-source",
         "buyMeACoffee": "M'offrir un café",
         "whatIsItAbout": "À quoi ça sert",
-        "bestToolForGameMastering": "L'outil idéal pour le maître du jeu des Loups-Garous de Thiercelieux"
+        "bestToolForGameMastering": "L'outil idéal pour le maître du jeu des Loups-Garous de Thiercelieux",
+        "checkChangelogOnGithub": "Voir le récapitulatif des mises à jour sur GitHub"
     },
     "Login": {
         "loggedIn": "Connecté",
