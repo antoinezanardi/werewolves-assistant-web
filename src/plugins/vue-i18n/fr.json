@@ -17,6 +17,13 @@
         "optionsAreSaved": "Les options de la partie sont enregistrées automatiquement après chaque changement",
         "gameOptionsCantBeUpdated": "Les options de la partie ne peuvent être modifiée en dehors de l'écran de composition de la partie.",
         "sheriff": "Maire",
+        "isSheriffEnabled": {
+            "label": "Jouer avec la fonction de maire",
+            "description": {
+                "sheriffIsEnabled": "La partie se jouera avec un maire. En cas d'égalité des votes du village, il tranchera.",
+                "sheriffIsNotEnabled": "La partie se jouera sans maire. En cas d'égalité des votes du village, il y aura un deuxième vote pour départager les ex æquo."
+            }
+        },
         "isSheriffVoteDoubled": {
             "label": "Le vote du maire compte double",
             "description": {
@@ -764,7 +771,12 @@
             "three-brothers": "un des trois frères",
             "wild-child": "un enfant sauvage",
             "dog-wolf": "un chien-loup",
-            "big-bad-wolf": "un grand-méchant-loup"
+            "big-bad-wolf": "un grand-méchant-loup",
+            "idiot": "un idiot",
+            "vile-father-of-wolves": "un infect père des loups",
+            "ancient": "un ancien",
+            "scapegoat": "un bouc-émissaire",
+            "pied-piper": "un joueur de flûte"
         },
         "the": {
             "villager": "le villageois",
@@ -786,7 +798,13 @@
             "wild-child": "l'enfant sauvage",
             "dog-wolf": "le chien-loup",
             "big-bad-wolf": "le grand-méchant-loup",
-            "lovers": "les amoureux"
+            "lovers": "les amoureux",
+            "charmed": "les charmés",
+            "idiot": "l'idiot",
+            "vile-father-of-wolves": "l'infect père des loups",
+            "ancient": "l'ancien",
+            "scapegoat": "le bouc-émissaire",
+            "pied-piper": "le joueur de flûte"
         },
         "description": {
             "villager": [
@@ -895,6 +913,42 @@
                 "À Thiercelieux, les petits cochons ne sont pas les seuls à redouter le Grand-Méchant-Loup. Il est énorme et son appétit est gigantesque. À cause de lui, des villages entiers furent rayés de la carte !",
                 "Chaque nuit, il se réveille et dévore avec les autres Loups-Garous. Mais tant qu'aucun Loup-Garou, Chien-Sauvage devenu loup ou Enfant Sauvage ayant perdu son modèle n'est éliminé, il se réveille seul une deuxième fois et dévore une autre victime.",
                 "Il ne peut pas dévorer de Loup-Garou."
+            ],
+            "vile-father-of-wolves": [
+                "Son but est d'éliminer les Villageois.",
+                "Le tout premier Loup-Garou de nos contrées, le père de tous leurs pères, avait deux pouvoirs : le premier était de propager son engeance par une morsure spéciale et le second de fuir ce monde en s'endormant pour quelques siècles.",
+                "Heureusement pour nos ancêtres récents, il s'était depuis longtemps assoupi. Les auteurs de cet ouvrage souhaitent bon courage aux villageois d'aujourd'hui et signalent que l'Infect Père des Loups vient juste de se réveiller d'un long sommeil, et qu'il a très faim !",
+                "Chaque nuit, il se réveille et dévore avec les autres Loups-Garous. Mais une fois dans la partie, s'il le désire, après que les Loups-Garous se sont endormis, il lève la main. Cela signifie que la victime n'est pas dévorée mais infectée.",
+                "L'Infect Père des Loups ne peut utiliser son pouvoir qu'une seule fois dans la partie. Le meneur touche alors cet habitant infecté qui devient immédiatement (et secrètement) Loup-Garou, il participera désormais au festin des Loups-Garous.",
+                "S'il possédait un pouvoir nocturne, il sera réveillé par le meneur les tours suivants pour utiliser ce pouvoir, en plus d'être appelé avec les Loups-Garous."
+            ],
+            "ancient": [
+                "Son but est d'éliminer les Loups-Garous.",
+                "Il a victorieusement traversé toutes les terribles épreuves de la vie, et a acquis une résistance hors du commun ! Les Loups-Garous devront s'y prendre à 2 fois pour le dévorer.",
+                "La première fois que l'Ancien du village est dévoré par les Loups-Garous il survit. Le meneur de jeu ne retourne pas sa carte. L'Ancien est éliminé seulement la deuxième fois qu'il est dévoré.",
+                "Le vote du village, la potion d'empoisonnement de la Sorcière, le tir du Chasseur et le rasoir du Barbier éliminent l'Ancien du premier coup.",
+                "Mais désespérés d'avoir éliminé un tel puit de sciences, les Villageois perdent leurs pouvoirs spéciaux jusqu'à la fin de la partie. Il n'est pas affecté par l'Infect Père des Loups si c'est la première fois qu'il est mordu.",
+                "Attention : Si l'Ancien du village se fait soigner par la Sorcière, il récupère une seule vie."
+            ],
+            "scapegoat": [
+                "Son but est d'éliminer les Loups-Garous.",
+                "C'est bien triste, mais à Thiercelieux, quand quelque chose ne va pas c'est toujours lui qui en subit injustement les conséquences...",
+                "Si le vote du village amène une égalité, c'est le Bouc émissaire qui est éliminé à la place des ex æquo.",
+                "À lui de bien manœuvrer pour éviter cette triste conclusion. Si le Bouc émissaire est éliminé, il lui reste une prérogative à exercer. Il désigne qui votera ou ne votera pas durant la prochaine journée.",
+                "Attention : désigner 1 seul joueur pour voter, c'est risquer de le faire dévorer par les Loups-Garous la nuit suivante. il n'y aura alors pas de vote du village. (Sauf bien entendu si le joueur désigné est un Loup-Garou, ou que les Loups-Garous fassent exprès de ne pas l'éliminer...)"
+            ],
+            "idiot": [
+                "Son but est d'éliminer les Loups-Garous.",
+                "Quel village n'a pas son Idiot ? Il fait un peu n'importe quoi, mais il est tellement attachant que personne ne lui voudrait du mal...",
+                "Si le village vote contre lui, l'Idiot du village retourne sa carte. À cet instant, les Villageois comprennent leur erreur et ils le gracient immédiatement. Dorénavant, il continue à jouer, mais il a perdu son droit de vote. Que vaudrait le vote d'un idiot... Il n'y aura pas de pendaison à ce tour.",
+                "Attention : si les Loups-Garous le dévorent, l'Idiot du village est éliminé. Si l'Idiot est éliminé alors qu'il était le Capitaine du village, il ne transmet pas sa fonction. Si le Chasseur tire sur l'Idiot, ce dernier est éliminé."
+            ],
+            "pied-piper": [
+                "Son but est de charmer tous les joueurs vivants.",
+                "Ignominieusement chassé du village, il est revenu des années plus tard sous le couvert d'une fausse identité pour exercer sa terrible vengeance.",
+                "Chaque nuit, à l'appel du meneur du jeu, le Joueur de flûte charme 2 nouveaux joueurs. Dès l'instant où il ne reste plus que des joueurs charmés, le Joueur de flûte a gagné contre tous les autres. (Même si cela arrive suite à un vote du village ou grâce aux Loups-Garous).",
+                "S'il est infecté par l'Infect Père des Loups, il devient un simple Loup-Garou. Son objectif initial, qui était vouloir charmer tous les joueurs, est donc abandonné. Il va collaborer avec les Loups-Garous pour leur victoire commune.",
+                "Attention : le Joueur de flûte ne peut s'auto-charmer. Le Salvateur ne protège pas du charme. La Sorcière ne guérit pas du charme. Les Loups-Garous ne sont pas immunisés contre le charme. Les joueurs charmés conservent tous leurs pouvoirs et caractéristiques. Le charme ne se transmet pas entre Amoureux."
             ]
         },
         "villager": "Villageois",
@@ -911,7 +965,12 @@
         "three-brothers": "Frères",
         "wild-child": "Enfant Sauvage",
         "dog-wolf": "Chien-Loup",
-        "big-bad-wolf": "Grand-Méchant-Loup"
+        "big-bad-wolf": "Grand-Méchant-Loup",
+        "idiot": "Idiot",
+        "vile-father-of-wolves": "Infect Père des Loups",
+        "ancient": "Ancien",
+        "scapegoat": "Bouc-émissaire",
+        "pied-piper": "Joueur de Flûte"
     },
     "RoleText": {
         "chooseARole": "Choisir un rôle"
@@ -946,6 +1005,10 @@
         "yesNo": {
             "checked": "Oui",
             "unchecked": "Non"
+        },
+        "withWithout": {
+            "checked": "Avec",
+            "unchecked": "Sans"
         }
     },
     "VeeValidate": {

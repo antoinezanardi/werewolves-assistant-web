@@ -48,6 +48,9 @@ export default {
                 player.side.current = undefined;
             }
         },
+        setGameOptionIsSheriffEnabled(state, isSheriffEnabled) {
+            state.game.options.roles.sheriff.enabled = isSheriffEnabled;
+        },
         setGameOptionIsSheriffVoteDoubled(state, isSheriffVoteDoubled) {
             state.game.options.roles.sheriff.hasDoubledVote = isSheriffVoteDoubled;
         },
@@ -86,6 +89,9 @@ export default {
         },
         unsetRoleForPlayerWithName({ commit }, name) {
             commit("unsetRoleForPlayerWithName", name);
+        },
+        setGameOptionIsSheriffEnabled({ commit }, isSheriffEnabled) {
+            commit("setGameOptionIsSheriffEnabled", isSheriffEnabled);
         },
         setGameOptionIsSheriffVoteDoubled({ commit }, isSheriffVoteDoubled) {
             commit("setGameOptionIsSheriffVoteDoubled", isSheriffVoteDoubled);
