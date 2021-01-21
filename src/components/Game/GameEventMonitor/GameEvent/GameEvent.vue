@@ -7,9 +7,9 @@
                 <GameEventImage class="w-100" :event="event"/>
             </div>
         </div>
-        <div id="game-event-message-container" class="w-100 d-flex">
+        <div id="game-event-message-container" class="w-100 d-flex pb-2">
             <div class="row align-items-center d-flex flex-grow-1">
-                <div class="col-2 col-md-1 px-0">
+                <div class="col-2 col-md-1 px-0 text-center">
                     <v-popover trigger="hover" :disabled="!canGoBackToPreviousGameEventMessage || isTouchDevice">
                         <i class="fa fa-chevron-left fa-3x game-event-message-button animate__animated
                                   animate__heartBeat animate__repeat-2 animate__slow"
@@ -26,13 +26,13 @@
                         </template>
                     </v-popover>
                 </div>
-                <div class="col-8 col-md-10 text-center">
+                <div class="col-8 col-md-10 d-flex justify-content-center align-items-center h-100 overflow-auto px-0 visible-scrollbar">
                     <transition mode="out-in" name="fade">
-                        <div id="game-event-message" :key="currentGameEventMessage" class="text-center"
+                        <div id="game-event-message" :key="currentGameEventMessage" class="text-center my-2"
                              v-html="currentGameEventMessage"/>
                     </transition>
                 </div>
-                <div class="col-2 col-md-1 px-0 text-right">
+                <div class="col-2 col-md-1 px-0 text-center">
                     <v-popover trigger="hover" :disabled="isTouchDevice">
                         <i class="fa fa-chevron-right fa-3x game-event-message-button animate__animated animate__heartBeat animate__repeat-2
                                   animate__slow" @click="nextGameEventMessage"/>
@@ -225,7 +225,10 @@ export default {
         height: 40%;
 
         #game-event-message {
-            @include font-size(1.25rem);
+            max-height: 100%;
+            @include media-breakpoint-up(md) {
+                font-size: 1.50rem;
+            }
         }
 
         .game-event-message-button {
