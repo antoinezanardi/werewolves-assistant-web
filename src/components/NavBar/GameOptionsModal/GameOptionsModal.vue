@@ -87,7 +87,7 @@
                         <div class="col-4 d-flex justify-content-center">
                             <div class="col-lg-8">
                                 <input id="sisters-waking-up-interval-option" v-model.number="sistersWakingUpInterval" class="form-control"
-                                       type="number" min="0" max="100" :disabled="!game.canUpdateOptions"/>
+                                       type="number" min="0" max="5" :disabled="!game.canUpdateOptions"/>
                             </div>
                         </div>
                         <div class="col-12 text-muted font-italic" v-html="sistersWakingUpIntervalText"/>
@@ -108,7 +108,7 @@
                         <div class="col-4 d-flex justify-content-center">
                             <div class="col-lg-8">
                                 <input id="brothers-waking-up-interval-option" v-model.number="brothersWakingUpInterval" class="form-control"
-                                       type="number" min="0" max="100" :disabled="!game.canUpdateOptions"/>
+                                       type="number" min="0" max="5" :disabled="!game.canUpdateOptions"/>
                             </div>
                         </div>
                         <div class="col-12 text-muted font-italic" v-html="brothersWakingUpIntervalText"/>
@@ -165,7 +165,7 @@ export default {
                 return this.game.options.roles.twoSisters.wakingUpInterval;
             },
             set(newSistersWakingUpInterval) {
-                newSistersWakingUpInterval = adjustNumber(newSistersWakingUpInterval, { min: 0, max: 100 });
+                newSistersWakingUpInterval = adjustNumber(newSistersWakingUpInterval, { min: 0, max: 5 });
                 this.setGameOptionSistersWakingUpInterval(newSistersWakingUpInterval);
                 this.optionsUpdated = true;
             },
@@ -175,7 +175,7 @@ export default {
                 return this.game.options.roles.threeBrothers.wakingUpInterval;
             },
             set(newBrothersWakingUpInterval) {
-                newBrothersWakingUpInterval = adjustNumber(newBrothersWakingUpInterval, { min: 0, max: 100 });
+                newBrothersWakingUpInterval = adjustNumber(newBrothersWakingUpInterval, { min: 0, max: 5 });
                 this.setGameOptionBrothersWakingUpInterval(newBrothersWakingUpInterval);
                 this.optionsUpdated = true;
             },
