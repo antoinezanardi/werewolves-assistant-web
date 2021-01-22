@@ -96,7 +96,7 @@ export default {
                 "charmed": {
                     "pied-piper": {
                         tooltip: this.$t("PlayerAttribute.attributes.charmed"),
-                        SVG: charmedSVG ,
+                        SVG: charmedSVG,
                     },
                 },
             },
