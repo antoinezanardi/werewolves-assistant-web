@@ -9,7 +9,10 @@ class GameHistory {
         this.phase = getProp(gameHistory, "phase");
         this.tick = getProp(gameHistory, "tick");
         this.play = {
-            source: getProp(gameHistory, "play.source"),
+            source: {
+                name: getProp(gameHistory, "play.source.name"),
+                players: getProp(gameHistory, "play.source.players", [], players => players.map(player => new Player(player))),
+            },
             action: getProp(gameHistory, "play.action"),
             targets: getProp(gameHistory, "play.targets", [], targets => targets.map(target => ({
                 player: new Player(target.player),

@@ -270,6 +270,12 @@
             },
             "big-bad-wolf": {
                 "eat": "Au tour du grand-méchant-loup"
+            },
+            "pied-piper": {
+                "charm": "Au tour du joueur de flûte"
+            },
+            "charmed": {
+                "meet-each-other": "Au tour des charmés par le joueur de flûte"
             }
         }
     },
@@ -298,6 +304,9 @@
             "all": {
                 "vote": "Temps pour le débat du village",
                 "elect-sheriff": "Temps pour l'élection du maire"
+            },
+            "charmed": {
+                "meet-each-other": "Temps pour la rencontre des charmés"
             }
         },
         "timeIsUpFor": {
@@ -313,6 +322,9 @@
             "all": {
                 "vote": "Il est temps pour le village de voter",
                 "elect-sheriff": "Il est temps pour le village d'élire son maire"
+            },
+            "charmed": {
+                "meet-each-other": "Il est temps pour les charmés de se rendormir"
             }
         }
     },
@@ -376,10 +388,11 @@
             },
             "elect-sheriff": {
                 "howToPlay": "Comment élire le maire ?",
-                "sheriffIsElectedWhen": "Au début de la partie, un maire doit être élu par tous les joueurs vivants.",
-                "sheriffSettlesVotes": "Être le maire possède deux avantages: départager une éventuelle égalité des votes lors de la pendaison et avoir un vote comptant double durant cette dernière ! Le double vote peut être annulé dans les options de la partie.",
+                "sheriffIsElectedWhen": "Au début de la partie, un maire doit être élu par tous les joueurs vivants. La présence du maire peut être retirée dans les options de la partie.",
+                "sheriffSettlesVotes": "Être le maire possède deux avantages: départager une éventuelle égalité des votes lors de la pendaison et avoir un vote comptant double durant cette dernière !.",
                 "playersHave5Min": "Les joueurs ont 5 minutes pour se mettre d'accord sur qui sera leur prochain maire. À la fin du temps, le maître du jeu doit stopper les discussions et procéder à l'élection.",
                 "eachPlayerVoteForSheriff": "Chaque joueur a donc une voix à donner pour l'élection, mais ne peut voter pour lui-même. Il peut néanmoins voter blanc. Le maître du jeu demande le vote de chacun à tour de rôle.",
+                "optionsCanBeChanged": "La présence du maire dans la partie ou son vote double peuvent être modifiés dans les options de la partie.",
                 "toValidateAnElection": "Pour passer à la suite, au moins un joueur doit avoir voté et l'égalité dans les votes est impossible."
             }
         },
@@ -467,6 +480,25 @@
                 "bigBadWolfPointsAtVictim": "Le grand-méchant-loup doit pointer du doigt sa victime.",
                 "toValidateEat": "Pour passer à la suite, le grand-méchant-loup doit obligatoirement choisir une victime."
             }
+        },
+        "pied-piper": {
+            "charm": {
+                "howToPlay": "Comment jouer le joueur de flûte ?",
+                "piedPiperCharmsWhen": "Chaque nuit, s'il est vivant, le joueur de flûte se réveille.",
+                "piedPiperCanCharm": "Le joueur de flûte peut charmer deux joueurs grâce son talent de musicien hors pair. Le maître du jeu devra, en silence et le plus discrètement possible, tapoter le dos des joueurs charmés une fois le choix du joueur de flûte fait.",
+                "ifAllAreCharmed": "Si tous les joueurs vivants sont charmés par le joueur de flûte, ce dernier gagne la partie seul !",
+                "ifPiedPiperIsInfected": "Si l'infect père des loups choisit d'infecter le joueur de flûte, ce dernier perd son pouvoir de charme et ne peut plus gagner seul mais avec les Loups-Garous.",
+                "toValidateCharm": "Pour passer à la suite, le joueur de flûte doit obligatoirement choisir deux cibles."
+            }
+        },
+        "charmed": {
+            "meet-each-other": {
+                "howToPlay": "Comment jouer le joueur charmés ?",
+                "charmedMeetEachOtherWhen": "Chaque fois que le joueur de flûte utilise son talent de musicien, tous les joueurs charmés se réveillent et se recontrent.",
+                "ifAllAreCharmed": "Les joueurs charmés doivent se dépécher de trouver qui est le joueur de flûte, car si tous les joueurs vivants sont charmés, le musicien gagnera la partie à lui tout seul !",
+                "charmedHave20s": "Les joueurs charmés ont environ 20 secondes pendant leur tour, ce qui est suffisant pour se découvrir et déduire qui pourrait être le joueur de flûte.",
+                "noActionRequiredToValidate": "Aucune action n'est requise pour passer à la suite."
+            }
         }
     },
     "PlayerAttribute": {
@@ -480,7 +512,8 @@
             "protected": "Ce joueur est protégé",
             "ravenMarked": "Ce joueur est marqué par le corbeau",
             "inLove": "Ce joueur est amoureux à en mourir d'un autre",
-            "worshiped": "Ce joueur est le modèle de l'enfant sauvage"
+            "worshiped": "Ce joueur est le modèle de l'enfant sauvage",
+            "charmed": "Ce joueur a été charmé par le joueur de flûte"
         }
     },
     "PlayerThumbnail": {
@@ -676,6 +709,9 @@
         },
         "hunter": {
             "shoot": "souhaite tirer sur"
+        },
+        "pied-piper": {
+            "charmed": "souhaite charmer"
         }
     },
     "CancelActionButton": {
@@ -685,7 +721,8 @@
     },
     "MeetEachOtherPlayField": {
         "meetEachOtherTheFirstTime": "se rencontrent pour la première fois",
-        "meetEachOtherForTalking": "se concertent discrètement"
+        "meetEachOtherForTalking": "se concertent discrètement",
+        "meetEachOtherInSilence": "se rencontrent sans un bruit"
     },
     "NoActionExpected": {
         "noActionExpected": "Aucune action requise"
@@ -735,8 +772,13 @@
             "threeBrothersWakeUpToTalk": "Les trois frères se réveillent et vont se concerter discrètement.",
             "wildChildStarts": "L'enfant sauvage se réveille pour choisir son modèle parmi les habitants.",
             "bigBadWolfStarts": "Le grand-méchant-loup se réveille pour choisir la seconde victime des loups-garous.",
+            "piedPiperStarts": "Le Joueur de flûte se réveille pour choisir deux victimes qui seront sous l'emprise de son charme.",
             "sheriffSettlesVote": "Le maire va départager pour régler l'égalité des votes sur la pendaison.",
-            "sheriffDelegates": "Dans son dernier souffle, le maire va déléguer son rôle à l'un des survivants."
+            "sheriffDelegates": "Dans son dernier souffle, le maire va déléguer son rôle à l'un des survivants.",
+            "piedPiperCharmedTwoPlayers": "Le joueur de flûte a charmé deux personnes de plus, il se rapproche de son but ultime de vengeance.",
+            "gameMasterWillTouchCharmed": "Le maître du jeu va faire le tour des habitants et toucher dans le dos les deux nouveaux charmés.",
+            "charmedWakeUp": "Les tout juste charmés par le joueur de flûte se réveillent pour se reconnaître.",
+            "charmedWakeUpWithOldOnes": "Les tout juste charmés par le joueur de flûte se réveillent avec les anciens charmés    pour se reconnaître."
         }
     },
     "Statistics": {

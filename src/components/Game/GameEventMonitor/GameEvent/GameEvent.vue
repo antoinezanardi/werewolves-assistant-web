@@ -93,7 +93,7 @@ export default {
                         this.gameCompositionText,
                         i18n.t("GameEvent.messages.looksLifeSomeWerewolvesIntroducedThemselves"),
                         i18n.t("GameEvent.messages.villagersMurderWerewolves"),
-                        i18n.t("GameEvent.messages.beforeStartingLetsElectSheriff"),
+                        ...insertIf(this.gameOptions.roles.sheriff.enabled, i18n.t("GameEvent.messages.beforeStartingLetsElectSheriff")),
                     ],
                 },
                 "player-dies": {
@@ -158,6 +158,19 @@ export default {
                 },
                 "wild-child-turn": { messages: [i18n.t("GameEvent.messages.wildChildStarts")] },
                 "big-bad-wolf-turn": { messages: [i18n.t("GameEvent.messages.bigBadWolfStarts")] },
+                "pied-piper-turn": { messages: [i18n.t("GameEvent.messages.piedPiperStarts")] },
+                "pied-piper-charms": {
+                    messages: [
+                        i18n.t("GameEvent.messages.piedPiperCharmedTwoPlayers"),
+                        i18n.t("GameEvent.messages.gameMasterWillTouchCharmed"),
+                    ],
+                },
+                "charmed-turn": {
+                    messages: [
+                        ...insertIf(this.game.turn === 1, i18n.t("GameEvent.messages.charmedWakeUp")),
+                        ...insertIf(this.game.turn !== 1, i18n.t("GameEvent.messages.charmedWakeUpWithOldOnes")),
+                    ],
+                },
             };
         },
         hasGameEventTarget() {

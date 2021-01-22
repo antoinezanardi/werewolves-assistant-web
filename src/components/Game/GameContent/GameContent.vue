@@ -33,6 +33,7 @@ export default {
         game: {
             handler(newGame, oldGame) {
                 this.resetPlay();
+                this.generateLastGameHistoryEvents();
                 if (newGame.tick === 1) {
                     this.events.push(new GameEvent({ type: "game-starts" }));
                 }
@@ -88,14 +89,17 @@ export default {
             this.play.votes = [];
             this.play.targets = [];
             this.play.side = undefined;
+        },
+        generateLastGameHistoryEvents() {
             if (this.game.history.length) {
                 const lastGameHistoryEntry = this.game.history[0];
+                const lastGameHistoryEntryName = lastGameHistoryEntry.play.source.name;
                 if (lastGameHistoryEntry.play.action === "look") {
                     this.events.push(new GameEvent({ type: "seer-looks", targets: lastGameHistoryEntry.play.targets }));
                 } else if (lastGameHistoryEntry.play.action === "elect-sheriff" || lastGameHistoryEntry.play.action === "delegate") {
                     this.events.push(new GameEvent({ type: "sheriff-elected", targets: lastGameHistoryEntry.play.targets }));
                 } else if (lastGameHistoryEntry.play.action === "charm") {
-                    this.events.push(new GameEvent({ type: "cupid-charms", targets: lastGameHistoryEntry.play.targets }));
+                    this.events.push(new GameEvent({ type: `${lastGameHistoryEntryName}-charms`, targets: lastGameHistoryEntry.play.targets }));
                 }
             }
         },

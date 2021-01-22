@@ -50,6 +50,7 @@ import twoSistersSVG from "@/assets/svg/roles/two-sisters.svg";
 import threeBrothersPNG from "@/assets/img/roles/three-brothers.png";
 import worshipedSVG from "@/assets/svg/attributes/worshiped.svg";
 import bigBadWolfSVG from "@/assets/svg/roles/big-bad-wolf.svg";
+import charmedSVG from "@/assets/svg/attributes/charmed.svg";
 
 export default {
     name: "GamePlayFieldHeader",
@@ -154,6 +155,18 @@ export default {
                     eat: {
                         icon: bigBadWolfSVG,
                         role: "big-bad-wolf",
+                    },
+                },
+                "pied-piper": {
+                    charm: {
+                        icon: charmedSVG,
+                        role: "pied-piper",
+                    },
+                },
+                "charmed": {
+                    "meet-each-other": {
+                        icon: charmedSVG,
+                        role: "pied-piper",
                     },
                 },
             },

@@ -5,7 +5,7 @@
             <span class="d-none d-md-inline-block" v-html="$t('NavBar.werewolvesAssistant')"/>
         </a>
         <div class="navbar-nav d-flex w-100 justify-content-end">
-            <div class="nav-item dropdown">
+            <div id="nav-bar-options" class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true">
                     <i class="fa fa-cog mr-2"/>
                     <span class="d-none d-md-inline-block" v-html="$t('NavBar.options')"/>

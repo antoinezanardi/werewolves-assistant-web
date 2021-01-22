@@ -1,6 +1,6 @@
 <template>
     <div id="player-targets" class="row justify-content-center align-items-center">
-        <div v-for="player in targets" :key="player.name" class="col-lg-2 col-4">
+        <div v-for="player in targets" :key="player.name" class="col-lg-2 col-4 player-target d-flex align-items-center px-2">
             <PlayerCard :ref="`playerCard${player._id}`" :player="player" :selectable="true"
                         :selected="isPlayerSelected(player)" :class="{ selected: isPlayerSelected(player) }"
                         @player-selected="playerSelected"/>
@@ -40,5 +40,7 @@ export default {
 </script>
 
 <style scoped>
-
+    .player-target {
+        height: 120px;
+    }
 </style>

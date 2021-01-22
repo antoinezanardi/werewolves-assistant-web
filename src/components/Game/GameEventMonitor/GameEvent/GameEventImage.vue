@@ -43,6 +43,7 @@ import sheriffSVG from "@/assets/svg/attributes/sheriff.svg";
 import deadSVG from "@/assets/svg/attributes/dead.svg";
 import seenSVG from "@/assets/svg/actions/look.svg";
 import inLoveSVG from "@/assets/svg/attributes/in-love.svg";
+import charmedSVG from "@/assets/svg/attributes/charmed.svg";
 import Player from "@/classes/Player";
 
 export default {
@@ -73,7 +74,7 @@ export default {
     computed: {
         ...mapGetters("game", { game: "game" }),
         isEffectGameEvent() {
-            const effectGameEventTypes = ["sheriff-elected", "player-dies", "seer-looks", "cupid-charms"];
+            const effectGameEventTypes = ["sheriff-elected", "player-dies", "seer-looks", "cupid-charms", "pied-piper-charms"];
             return effectGameEventTypes.includes(this.event.type);
         },
         isPhaseGameEvent() {
@@ -85,6 +86,7 @@ export default {
                 "player-dies": deadSVG,
                 "seer-looks": seenSVG,
                 "cupid-charms": inLoveSVG,
+                "pied-piper-charms": charmedSVG,
             };
             return effectGameEventTypeImageSource[this.event.type];
         },

@@ -1,7 +1,7 @@
 <template>
     <div id="alive-villagers">
         <span class="mr-2" v-html="'🧑🏻‍🌾'"/>
-        <VRoller :text="villagersAliveText" :default-char="villagersAliveText" class="d-inline-flex"/>
+        <div class="d-inline-flex" v-html="villagersAliveText"/>
         <hr class="bg-dark"/>
     </div>
 </template>

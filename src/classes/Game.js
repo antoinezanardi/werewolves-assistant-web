@@ -240,8 +240,16 @@ class Game {
         return this.getPlayersWithRole("three-brothers");
     }
 
+    get vileFatherOfWolvesPlayer() {
+        return this.getPlayerWithRole("vile-father-of-wolves");
+    }
+
     get inLovePlayers() {
         return this.getPlayersWithAttribute("in-love");
+    }
+
+    get charmedPlayers() {
+        return this.getPlayersWithAttribute("charmed");
     }
 
     isRoleInGame(roleName) {
@@ -262,6 +270,7 @@ class Game {
             all: this.players,
             sheriff: this.getPlayersWithAttribute("sheriff"),
             lovers: this.getPlayersWithAttribute("in-love"),
+            charmed: this.getPlayersWithAttribute("charmed"),
             villagers: this.villagerPlayers,
             werewolves: this.werewolfPlayers,
         };
@@ -270,6 +279,10 @@ class Game {
 
     get alivePlayersExpectedToPlay() {
         return this.playersExpectedToPlay.filter(({ isAlive }) => isAlive);
+    }
+
+    get piedPiperTargets() {
+        return this.alivePlayers.filter(player => player.role.current !== "pied-piper" && !player.hasAttribute("charmed"));
     }
 }
 

@@ -13,6 +13,7 @@ import ravenMarkedSVG from "@/assets/svg/attributes/raven-marked.svg";
 import inLoveSVG from "@/assets/svg/attributes/in-love.svg";
 import worshipedSVG from "@/assets/svg/attributes/worshiped.svg";
 import bigBadWolfSVG from "@/assets/svg/roles/big-bad-wolf.svg";
+import charmedSVG from "@/assets/svg/attributes/charmed.svg";
 
 export default {
     name: "PlayerAttribute",
@@ -90,6 +91,12 @@ export default {
                     "wild-child": {
                         tooltip: this.$t("PlayerAttribute.attributes.worshiped"),
                         SVG: worshipedSVG,
+                    },
+                },
+                "charmed": {
+                    "pied-piper": {
+                        tooltip: this.$t("PlayerAttribute.attributes.charmed"),
+                        SVG: charmedSVG ,
                     },
                 },
             },

@@ -41,7 +41,7 @@ export function maxTargetLengthForPlayerAttribute(attribute) {
         "delegate",
         "shoot",
     ];
-    const twoTargetsAttributes = ["in-love"];
+    const twoTargetsAttributes = ["in-love", "charmed"];
     if (oneTargetAttributes.includes(attribute)) {
         return 1;
     } else if (twoTargetsAttributes.includes(attribute)) {

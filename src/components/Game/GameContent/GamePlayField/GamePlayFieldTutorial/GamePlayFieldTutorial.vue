@@ -13,6 +13,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { insertIf } from "@/helpers/functions/Array";
 
 export default {
     name: "GamePlayFieldTutorial",
@@ -253,6 +254,43 @@ export default {
                         { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.big-bad-wolf.eat.bigBadWolfEatsAVictim`) },
                         { header, target: "#werewolf-players", content: this.$t(`GamePlayFieldTutorial.big-bad-wolf.eat.bigBadWolfPointsAtVictim`) },
                         { header, target: "#target-play-requirements", content: this.$t(`GamePlayFieldTutorial.big-bad-wolf.eat.toValidateEat`) },
+                    ],
+                },
+                "pied-piper": {
+                    charm: [
+                        { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.pied-piper.charm.piedPiperCharmsWhen") },
+                        { header, target: "#player-targets", content: this.$t("GamePlayFieldTutorial.pied-piper.charm.piedPiperCanCharm") },
+                        { header, target: "#player-targets", content: this.$t("GamePlayFieldTutorial.pied-piper.charm.ifAllAreCharmed") },
+                        ...insertIf(!!this.game.vileFatherOfWolvesPlayer, {
+                            header,
+                            target: "#pied-piper-player ",
+                            content: this.$t("GamePlayFieldTutorial.pied-piper.charm.ifPiedPiperIsInfected"),
+                        }),
+                        { header, target: "#target-play-requirements", content: this.$t("GamePlayFieldTutorial.pied-piper.charm.toValidateCharm") },
+                    ],
+                },
+                "charmed": {
+                    "meet-each-other": [
+                        {
+                            header,
+                            target: "#game-waiting-label",
+                            content: this.$t(`GamePlayFieldTutorial.charmed.meet-each-other.charmedMeetEachOtherWhen`),
+                        },
+                        {
+                            header,
+                            target: "#meeting-each-other-players",
+                            content: this.$t(`GamePlayFieldTutorial.charmed.meet-each-other.ifAllAreCharmed`),
+                        },
+                        {
+                            header,
+                            target: ".countdown",
+                            content: this.$t(`GamePlayFieldTutorial.charmed.meet-each-other.charmedHave20s`),
+                        },
+                        {
+                            header,
+                            target: "#play-submit-button",
+                            content: this.$t(`GamePlayFieldTutorial.charmed.meet-each-other.noActionRequiredToValidate`),
+                        },
                     ],
                 },
             };
