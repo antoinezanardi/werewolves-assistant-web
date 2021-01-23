@@ -27,6 +27,8 @@ class GameHistory {
             }))),
             side: getProp(gameHistory, "play.side"),
         };
+        this.deadPlayers = getProp(gameHistory, "deadPlayers", [], players => players.map(player => new Player(player)));
+        this.revealedPlayers = getProp(gameHistory, "revealedPlayers", [], players => players.map(player => new Player(player)));
     }
 }
 

@@ -37,6 +37,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import Player from "@/classes/Player";
 import GameEvent from "@/classes/GameEvent";
 import RoleImage from "@/components/shared/Game/Role/RoleImage";
 import sheriffSVG from "@/assets/svg/attributes/sheriff.svg";
@@ -44,7 +45,7 @@ import deadSVG from "@/assets/svg/attributes/dead.svg";
 import seenSVG from "@/assets/svg/actions/look.svg";
 import inLoveSVG from "@/assets/svg/attributes/in-love.svg";
 import charmedSVG from "@/assets/svg/attributes/charmed.svg";
-import Player from "@/classes/Player";
+import questionMarkSVG from "@/assets/svg/misc/question-mark.svg";
 
 export default {
     name: "GameEventImage",
@@ -74,7 +75,7 @@ export default {
     computed: {
         ...mapGetters("game", { game: "game" }),
         isEffectGameEvent() {
-            const effectGameEventTypes = ["sheriff-elected", "player-dies", "seer-looks", "cupid-charms", "pied-piper-charms"];
+            const effectGameEventTypes = ["sheriff-elected", "player-dies", "seer-looks", "cupid-charms", "pied-piper-charms", "deaths-during-night"];
             return effectGameEventTypes.includes(this.event.type);
         },
         isPhaseGameEvent() {
@@ -87,6 +88,7 @@ export default {
                 "seer-looks": seenSVG,
                 "cupid-charms": inLoveSVG,
                 "pied-piper-charms": charmedSVG,
+                "deaths-during-night": questionMarkSVG,
             };
             return effectGameEventTypeImageSource[this.event.type];
         },
@@ -103,6 +105,8 @@ export default {
             const { firstWaiting, alivePlayersExpectedToPlay, playersExpectedToPlay } = this.game;
             if (this.event.type === "no-death-during-night") {
                 return this.game.alivePlayers;
+            } else if (this.event.type === "deaths-during-night") {
+                return this.game.players;
             } else if (this.isEffectGameEvent) {
                 return this.event.targets.map(({ player }) => player);
             }

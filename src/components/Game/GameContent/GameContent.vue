@@ -31,20 +31,20 @@ export default {
     computed: { ...mapGetters("game", { game: "game" }) },
     watch: {
         game: {
-            handler(newGame, oldGame) {
+            handler(newGame) {
                 this.resetPlay();
-                this.generateLastGameHistoryEvents();
+                this.generateLastActionEvents();
                 if (newGame.tick === 1) {
                     this.events.push(new GameEvent({ type: "game-starts" }));
                 }
                 if (newGame.phase === "day") {
-                    this.generateGamePhaseEvent(newGame, oldGame);
-                    this.generateGameDeathEvents(newGame, oldGame);
+                    this.generateGamePhaseEvent();
+                    this.generateGameDeathEvents();
                 } else {
-                    this.generateGameDeathEvents(newGame, oldGame);
-                    this.generateGamePhaseEvent(newGame, oldGame);
+                    this.generateGameDeathEvents();
+                    this.generateGamePhaseEvent();
                 }
-                this.generateGameRoleTurnEvents(newGame, oldGame);
+                this.generateGameRoleTurnEvents();
             },
             deep: true,
             immediate: true,
@@ -90,7 +90,7 @@ export default {
             this.play.targets = [];
             this.play.side = undefined;
         },
-        generateLastGameHistoryEvents() {
+        generateLastActionEvents() {
             if (this.game.history.length) {
                 const lastGameHistoryEntry = this.game.history[0];
                 const lastGameHistoryEntryName = lastGameHistoryEntry.play.source.name;
@@ -103,32 +103,32 @@ export default {
                 }
             }
         },
-        generateGamePhaseEvent(newGame, oldGame) {
-            if (newGame.tick === 2) {
+        generateGamePhaseEvent() {
+            if (this.game.tick === 2) {
                 return this.events.push(new GameEvent({ type: "night-falls" }));
-            } else if (newGame && oldGame && newGame.phase !== oldGame.phase) {
-                const event = newGame.phase === "day" ? new GameEvent({ type: "day-rises" }) : new GameEvent({ type: "night-falls" });
+            } else if (this.game.history.length && this.game.phase !== this.game.history[0].phase) {
+                const event = this.game.phase === "day" ? new GameEvent({ type: "day-rises" }) : new GameEvent({ type: "night-falls" });
                 return this.events.push(event);
             }
         },
-        generateGameDeathEvents(newGame, oldGame) {
-            if (!newGame || !oldGame) {
+        generateGameDeathEvents() {
+            if (!this.game.history.length) {
                 return;
             }
-            for (const newPlayer of newGame.players) {
-                const oldPlayer = oldGame.players.find(({ _id }) => _id === newPlayer._id);
-                if (!newPlayer.isAlive && oldPlayer.isAlive) {
-                    this.events.push(new GameEvent({ type: "player-dies", targets: [{ player: newPlayer }] }));
+            const { deadPlayers } = this.game.history[0];
+            if (this.game.phase === "day") {
+                if (!deadPlayers.length) {
+                    this.events.push(new GameEvent({ type: "no-death-during-night" }));
+                } else {
+                    this.events.push(new GameEvent({ type: "deaths-during-night", targets: deadPlayers }));
                 }
             }
-            if (newGame.phase === "day" && !this.events.find(({ type }) => type === "player-dies")) {
-                this.events.push(new GameEvent({ type: "no-death-during-night" }));
+            for (const deadPlayer of deadPlayers) {
+                this.events.push(new GameEvent({ type: "player-dies", targets: [{ player: deadPlayer }] }));
             }
         },
-        generateGameRoleTurnEvents(newGame, oldGame) {
-            if (!oldGame || newGame.firstWaiting.for !== oldGame.firstWaiting.for || newGame.firstWaiting.to !== oldGame.firstWaiting.to) {
-                this.events.push(new GameEvent({ type: `${newGame.firstWaiting.for}-turn` }));
-            }
+        generateGameRoleTurnEvents() {
+            this.events.push(new GameEvent({ type: `${this.game.firstWaiting.for}-turn` }));
         },
         removeEvent(event) {
             const idx = this.events.findIndex(({ _id }) => _id === event._id);

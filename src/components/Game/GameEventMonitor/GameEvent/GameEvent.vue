@@ -122,6 +122,12 @@ export default {
                     ],
                 },
                 "day-rises": { messages: [i18n.t("GameEvent.messages.dayRises")] },
+                "deaths-during-night": {
+                    messages: [
+                        i18n.tc("GameEvent.messages.deathDuringNight", this.event.targets.length, { numberOfDeaths: this.event.targets.length }),
+                        i18n.t("GameEvent.messages.letsSeeWhoIsDead"),
+                    ],
+                },
                 "no-death-during-night": { messages: [i18n.t("GameEvent.messages.noDeathDuringNight")] },
                 "seer-turn": { messages: [i18n.t("GameEvent.messages.seerStarts")] },
                 "seer-looks": {
