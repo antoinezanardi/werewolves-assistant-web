@@ -276,6 +276,9 @@
             },
             "charmed": {
                 "meet-each-other": "Au tour des charmés par le joueur de flûte"
+            },
+            "scapegoat": {
+                "ban-voting": "Au tour du bouc-émissaire"
             }
         }
     },
@@ -384,6 +387,7 @@
                 "allVoteWhen": "Chaque fois que le jour se lève, les habitants débattent pour mettre à mort l'un des leurs en espérant trouver un loup-garou.",
                 "playersHave5Min": "Les joueurs ont 5 minutes pour se mettre d'accord sur qui sera pendu. À la fin du temps, le maître du jeu doit stopper les discussions et procéder au vote.",
                 "eachPlayerVote": "Chaque joueur a donc une voix à donner pour le vote, mais ne peut voter pour lui-même. Il peut néanmoins voter blanc. Le maître du jeu demande le vote de chacun à tour de rôle.",
+                "scapegoatWillDieIfTie": "En cas d'égalité, c'est le bouc-émissaire qui sera pendu, même s'il n'est pas inclu dans l'égalité.",
                 "toValidateAVote": "Pour passer à la suite, au moins un joueur doit avoir voté."
             },
             "elect-sheriff": {
@@ -712,6 +716,10 @@
         },
         "pied-piper": {
             "charmed": "souhaite charmer"
+        },
+        "scapegoat": {
+            "no-ban-voting": "ne souhaite interdire personne de vote le jour suivant",
+            "ban-voting": "souhaite interdire de vote le jour suivant"
         }
     },
     "CancelActionButton": {
@@ -780,7 +788,8 @@
             "piedPiperCharmedTwoPlayers": "Le joueur de flûte a charmé deux personnes de plus, il se rapproche de son but ultime de vengeance.",
             "gameMasterWillTouchCharmed": "Le maître du jeu va faire le tour des habitants et toucher dans le dos les deux nouveaux charmés.",
             "charmedWakeUp": "Les tout juste charmés par le joueur de flûte se réveillent pour se reconnaître.",
-            "charmedWakeUpWithOldOnes": "Les tout juste charmés par le joueur de flûte se réveillent avec les anciens charmés    pour se reconnaître."
+            "charmedWakeUpWithOldOnes": "Les tout juste charmés par le joueur de flûte se réveillent avec les anciens charmés pour se reconnaître.",
+            "scapegoatStarts": "Face à l'injustice de sa mort, le bouc-émissaire va choisir qui n'aura pas le droit de vote au jour suivant dans son dernier souffle."
         }
     },
     "Statistics": {

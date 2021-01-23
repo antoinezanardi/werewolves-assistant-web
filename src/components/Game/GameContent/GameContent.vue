@@ -77,7 +77,7 @@ export default {
             } else {
                 this.play.targets.push(target);
                 const targetsWithAttribute = this.play.targets.filter(({ attribute }) => attribute === payload.attribute);
-                if (maxTargetLength < targetsWithAttribute.length) {
+                if (maxTargetLength && maxTargetLength < targetsWithAttribute.length) {
                     this.play.targets.shift();
                 }
             }
@@ -115,8 +115,8 @@ export default {
             if (!this.game.history.length) {
                 return;
             }
-            const { deadPlayers } = this.game.history[0];
-            if (this.game.phase === "day") {
+            const { deadPlayers, phase: previousPhase } = this.game.history[0];
+            if (this.game.phase === "day" && previousPhase === "night") {
                 if (!deadPlayers.length) {
                     this.events.push(new GameEvent({ type: "no-death-during-night" }));
                 } else {

@@ -27,6 +27,7 @@ export default {
             const { firstWaiting } = this.game;
             const sistersWakingUpInterval = this.gameOptions.roles.twoSisters.wakingUpInterval;
             const brothersWakingUpInterval = this.gameOptions.roles.threeBrothers.wakingUpInterval;
+            const scapegoatPlayer = this.game.scapegoatPlayer;
             const action = `${firstWaiting.for}.${firstWaiting.to}`;
             const header = { title: this.$t(`GamePlayFieldTutorial.${action}.howToPlay`) };
             const steps = {
@@ -79,6 +80,11 @@ export default {
                         { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.all.vote.allVoteWhen") },
                         { header, target: ".countdown", content: this.$t("GamePlayFieldTutorial.all.vote.playersHave5Min") },
                         { header, target: "#player-votes", content: this.$t("GamePlayFieldTutorial.all.vote.eachPlayerVote") },
+                        ...insertIf(!!scapegoatPlayer && scapegoatPlayer.isAlive, {
+                            header,
+                            target: `#player-vote-${scapegoatPlayer._id}`,
+                            content: this.$t("GamePlayFieldTutorial.all.vote.scapegoatWillDieIfTie"),
+                        }),
                         { header, target: "#vote-play-requirements", content: this.$t("GamePlayFieldTutorial.all.vote.toValidateAVote") },
                     ],
                     "elect-sheriff": [

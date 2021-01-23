@@ -1,5 +1,5 @@
 <template>
-    <div class="player-vote d-flex flex-column align-items-center p-2">
+    <div :id="`player-vote-${player._id}`" class="player-vote d-flex flex-column align-items-center p-2">
         <PlayerCard :player="player" :is-nominated="isNominated"/>
         <div class="mb-3 vote-for-text text-center">
             <span class="font-italic" v-html="$t('PlayerVote.voteFor')"/>

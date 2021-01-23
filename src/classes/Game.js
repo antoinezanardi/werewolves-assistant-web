@@ -131,10 +131,13 @@ class Game {
         const { to } = this.firstWaiting;
         const oneTargetActions = ["look", "eat", "protect", "shoot", "settle-votes", "delegate", "choose-model", "use-potion"];
         const twoTargetsActions = ["charm"];
+        const noLimitActions = ["ban-voting"];
         if (oneTargetActions.includes(to)) {
             return 1;
         } else if (twoTargetsActions.includes(to)) {
             return 2;
+        } else if (noLimitActions.includes(to)) {
+            return this.alivePlayers.length;
         }
         return 0;
     }
@@ -242,6 +245,10 @@ class Game {
 
     get vileFatherOfWolvesPlayer() {
         return this.getPlayerWithRole("vile-father-of-wolves");
+    }
+
+    get scapegoatPlayer() {
+        return this.getPlayerWithRole("scapegoat");
     }
 
     get inLovePlayers() {

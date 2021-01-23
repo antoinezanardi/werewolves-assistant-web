@@ -103,6 +103,7 @@ export default {
                 return [];
             }
             const { firstWaiting, alivePlayersExpectedToPlay, playersExpectedToPlay } = this.game;
+            const deadPlayerActions = ["delegate", "shoot", "ban-voting"];
             if (this.event.type === "no-death-during-night") {
                 return this.game.alivePlayers;
             } else if (this.event.type === "deaths-during-night") {
@@ -110,7 +111,7 @@ export default {
             } else if (this.isEffectGameEvent) {
                 return this.event.targets.map(({ player }) => player);
             }
-            return firstWaiting.to === "delegate" || firstWaiting.to === "shoot" ? playersExpectedToPlay : alivePlayersExpectedToPlay;
+            return deadPlayerActions.includes(firstWaiting.to) ? playersExpectedToPlay : alivePlayersExpectedToPlay;
         },
     },
     created() {

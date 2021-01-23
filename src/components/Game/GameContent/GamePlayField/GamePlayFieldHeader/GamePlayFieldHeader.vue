@@ -51,6 +51,7 @@ import threeBrothersPNG from "@/assets/img/roles/three-brothers.png";
 import worshipedSVG from "@/assets/svg/attributes/worshiped.svg";
 import bigBadWolfSVG from "@/assets/svg/roles/big-bad-wolf.svg";
 import charmedSVG from "@/assets/svg/attributes/charmed.svg";
+import cantVoteSVG from "@/assets/svg/attributes/cant-vote.svg";
 
 export default {
     name: "GamePlayFieldHeader",
@@ -167,6 +168,12 @@ export default {
                     "meet-each-other": {
                         icon: charmedSVG,
                         role: "pied-piper",
+                    },
+                },
+                "scapegoat": {
+                    "ban-voting": {
+                        icon: cantVoteSVG,
+                        role: "scapegoat",
                     },
                 },
             },

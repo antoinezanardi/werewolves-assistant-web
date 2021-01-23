@@ -177,6 +177,7 @@ export default {
                         ...insertIf(this.game.turn !== 1, i18n.t("GameEvent.messages.charmedWakeUpWithOldOnes")),
                     ],
                 },
+                "scapegoat-turn": { messages: [i18n.t("GameEvent.messages.scapegoatStarts")] },
             };
         },
         hasGameEventTarget() {
