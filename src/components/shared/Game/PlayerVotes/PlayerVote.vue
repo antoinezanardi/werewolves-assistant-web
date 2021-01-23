@@ -4,7 +4,7 @@
         <div class="mb-3 vote-for-text text-center">
             <span class="font-italic" v-html="$t('PlayerVote.voteFor')"/>
         </div>
-        <VSelect :options="targetablePlayers" :placeholder="$t('PlayerVote.none')" :filter-by="filterBy"
+        <VSelect :options="targetablePlayers" :placeholder="$t('PlayerVote.none')" :filter="filterByPlayerName"
                  label="name" @input="playerVotes">
             <template #selected-option="{ role, name }">
                 <RoleImage :role="role.current" class="role-image-option mr-2"/>
@@ -28,6 +28,7 @@ import Player from "@/classes/Player";
 import PlayerCard from "../PlayerCard";
 import RoleImage from "../Role/RoleImage";
 import { getNominatedPlayers } from "@/helpers/functions/Player";
+import { fuseSearch } from "@/helpers/functions/VSelect";
 
 export default {
     name: "PlayerVote",
@@ -53,8 +54,8 @@ export default {
         },
     },
     methods: {
-        filterBy(option, label, search) {
-            return option.name.toLowerCase().indexOf(search.toLowerCase()) > -1;
+        filterByPlayerName(option, search) {
+            return fuseSearch(option, search, ["name"]);
         },
         playerVotes(target) {
             target = target ? target._id : null;

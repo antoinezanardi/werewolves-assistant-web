@@ -11,6 +11,7 @@
 * [#93](https://github.com/antoinezanardi/werewolves-assistant-web/issues/93) - Enhance Game Lobby display for small screens.
 * [#98](https://github.com/antoinezanardi/werewolves-assistant-web/issues/98) - Extend player limit.
 * [#109](https://github.com/antoinezanardi/werewolves-assistant-web/issues/109) - Add limits to waking up interval options.
+* [#110](https://github.com/antoinezanardi/werewolves-assistant-web/issues/110) - Better filter for vue-select.
 
 ### 🐛 Bug fixes
 
@@ -26,6 +27,7 @@
 
 ### 📦 Packages
 
+* `fuse.js` updated to version `6.4.6`.
 * `@sentry/browser` updated to version `6.0.1`.
 * `@sentry/integrations` updated to version `6.0.1`.
 * `@vue/cli-plugin-e2e-cypress` updated to version `4.5.11`.
