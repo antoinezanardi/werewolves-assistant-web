@@ -347,6 +347,8 @@
                 "werewolvesEatWhen": "Chaque nuit, les loups-garous se réveillent.",
                 "werewolvesEatAVictim": "Les loups-garous choisissent leur victime parmis les joueurs vivants qui mourra le matin suivant s'il ne reçoit pas de protection.",
                 "werewolvesPointAtVictim": "Les loups-garous se mettent d'accord sans bruit et pointent du doigt leur victime.",
+                "vileFatherOfWolvesCanInfect": "L'infect père des loups est présent dans la partie ! Lorsque les loups-garous auront choisi leur victime et se rendorment, l'infect père des loups peut lever la main. Dans ce cas, la victime deviendra instantanément un loup-garou au lieu de mourir dévorée !",
+                "infectOnlyOnce": "Le choix de l'infect père des loups pourra être renseigné au moment où l'action des loups-garous sera validée. Attention, ce pouvoir ne peut être utilisé qu'une seule fois !",
                 "toValidateEat": "Pour passer à la suite, les loups-garous doivent obligatoirement choisir une victime."
             }
         },

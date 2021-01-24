@@ -28,6 +28,7 @@ export default {
             const sistersWakingUpInterval = this.gameOptions.roles.twoSisters.wakingUpInterval;
             const brothersWakingUpInterval = this.gameOptions.roles.threeBrothers.wakingUpInterval;
             const scapegoatPlayer = this.game.scapegoatPlayer;
+            const vileFatherOfWolvesPlayer = this.game.vileFatherOfWolvesPlayer;
             const action = `${firstWaiting.for}.${firstWaiting.to}`;
             const header = { title: this.$t(`GamePlayFieldTutorial.${action}.howToPlay`) };
             const steps = {
@@ -44,6 +45,16 @@ export default {
                         { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.werewolves.eat.werewolvesEatWhen`) },
                         { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.werewolves.eat.werewolvesEatAVictim`) },
                         { header, target: "#werewolf-players", content: this.$t(`GamePlayFieldTutorial.werewolves.eat.werewolvesPointAtVictim`) },
+                        ...insertIf(!!vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer.isAlive, {
+                            header,
+                            target: `#werewolf-player-${vileFatherOfWolvesPlayer._id}`,
+                            content: this.$t("GamePlayFieldTutorial.werewolves.eat.vileFatherOfWolvesCanInfect"),
+                        }),
+                        ...insertIf(!!vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer.isAlive, {
+                            header,
+                            target: `#play-submit-button`,
+                            content: this.$t("GamePlayFieldTutorial.werewolves.eat.infectOnlyOnce"),
+                        }),
                         { header, target: "#target-play-requirements", content: this.$t(`GamePlayFieldTutorial.werewolves.eat.toValidateEat`) },
                     ],
                 },

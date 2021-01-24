@@ -16,6 +16,7 @@ class GameHistory {
             action: getProp(gameHistory, "play.action"),
             targets: getProp(gameHistory, "play.targets", [], targets => targets.map(target => ({
                 player: new Player(target.player),
+                isInfected: getProp(target, "isInfected"),
                 potion: {
                     life: getProp(target, "potion.life"),
                     death: getProp(target, "potion.death"),
@@ -29,6 +30,11 @@ class GameHistory {
         };
         this.deadPlayers = getProp(gameHistory, "deadPlayers", [], players => players.map(player => new Player(player)));
         this.revealedPlayers = getProp(gameHistory, "revealedPlayers", [], players => players.map(player => new Player(player)));
+    }
+
+    get didVileFatherOfWolvesInfectTarget() {
+        const { play } = this;
+        return play.source.name === "werewolves" && play.action === "eat" && !!play.targets.find(({ isInfected }) => isInfected);
     }
 }
 
