@@ -299,6 +299,21 @@ export default {
                         },
                     ],
                 },
+                "scapegoat": {
+                    "ban-voting": [
+                        {
+                            header, target: "#game-waiting-label",
+                            content: this.$t(`GamePlayFieldTutorial.scapegoat.ban-voting.scapegoatBansVotingWhen`),
+                        },
+                        { header, target: "#player-targets", content: this.$t("GamePlayFieldTutorial.scapegoat.ban-voting.scapegoatCanBanVoting") },
+                        { header, target: "#player-targets", content: this.$t("GamePlayFieldTutorial.scapegoat.ban-voting.noVoteIfAllCantVote") },
+                        {
+                            header,
+                            target: "#play-submit-button",
+                            content: this.$t("GamePlayFieldTutorial.scapegoat.ban-voting.toValidateBanVoting"),
+                        },
+                    ],
+                },
             };
             return steps[firstWaiting.for] && steps[firstWaiting.for][firstWaiting.to] ? steps[firstWaiting.for][firstWaiting.to] : [];
         },

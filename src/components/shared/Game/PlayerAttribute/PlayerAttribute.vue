@@ -14,6 +14,7 @@ import inLoveSVG from "@/assets/svg/attributes/in-love.svg";
 import worshipedSVG from "@/assets/svg/attributes/worshiped.svg";
 import bigBadWolfSVG from "@/assets/svg/roles/big-bad-wolf.svg";
 import charmedSVG from "@/assets/svg/attributes/charmed.svg";
+import cantVoteSVG from "@/assets/svg/attributes/cant-vote.svg";
 
 export default {
     name: "PlayerAttribute",
@@ -97,6 +98,12 @@ export default {
                     "pied-piper": {
                         tooltip: this.$t("PlayerAttribute.attributes.charmed"),
                         SVG: charmedSVG,
+                    },
+                },
+                "cant-vote": {
+                    scapegoat: {
+                        tooltip: this.$t("PlayerAttribute.attributes.cantVoteByScapegoat"),
+                        SVG: cantVoteSVG,
                     },
                 },
             },

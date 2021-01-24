@@ -503,6 +503,15 @@
                 "charmedHave20s": "Les joueurs charmés ont environ 20 secondes pendant leur tour, ce qui est suffisant pour se découvrir et déduire qui pourrait être le joueur de flûte.",
                 "noActionRequiredToValidate": "Aucune action n'est requise pour passer à la suite."
             }
+        },
+        "scapegoat": {
+            "ban-voting": {
+                "howToPlay": "Comment jouer le bouc-émissaire ?",
+                "scapegoatBansVotingWhen": "Suite à une égalité des votes où il a été la victime, le bouc-émissaire a une dernière prérogative avant de rendre l'âme.",
+                "scapegoatCanBanVoting": "Le bouc-émissaire peut retirer le droit de vote à autant de joueurs qu'il souhaite pour le jour suivant.",
+                "noVoteIfAllCantVote": "Si aucun joueur ne peut voter le jour suivant, alors il n'y aura pas de pendaison.",
+                "toValidateBanVoting": "Durant son tour, le bouc-émissaire peut désigner autant de cibles qu'il souhaite ou passer son tour."
+            }
         }
     },
     "PlayerAttribute": {
@@ -718,14 +727,18 @@
             "charmed": "souhaite charmer"
         },
         "scapegoat": {
-            "no-ban-voting": "ne souhaite interdire personne de vote le jour suivant",
-            "ban-voting": "souhaite interdire de vote le jour suivant"
+            "no-ban-voting": "ne souhaite interdire personne de vote pour la prochaine journée",
+            "ban-voting": "souhaite interdire de vote pour la prochaine journée"
         }
     },
     "CancelActionButton": {
         "cancel": "Annuler",
         "cancelTarget": "Annuler cette cible",
         "cancelSide": "Annuler le choix du camp"
+    },
+    "SelectAllTargetsButton": {
+        "selectAll": "Tout sélectionner",
+        "selectAllTargets": "Sélectionner toutes les cibles"
     },
     "MeetEachOtherPlayField": {
         "meetEachOtherTheFirstTime": "se rencontrent pour la première fois",

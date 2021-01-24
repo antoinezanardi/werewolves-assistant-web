@@ -6,7 +6,7 @@
             </div>
         </div>
         <PlayFieldActionText :play="play" attribute="ban-voting" @player-selected="playerSelected"/>
-        <PlayerTargets :targets="game.alivePlayers" :play="play" attribute="ban-voting" class="flex-grow-1" @player-selected="playerSelected"/>
+        <PlayerTargets :targets="game.scapegoatTargets" :play="play" attribute="ban-voting" class="flex-grow-1" @player-selected="playerSelected"/>
     </div>
 </template>
 

@@ -291,6 +291,10 @@ class Game {
     get piedPiperTargets() {
         return this.alivePlayers.filter(player => player.role.current !== "pied-piper" && !player.hasAttribute("charmed"));
     }
+
+    get scapegoatTargets() {
+        return this.alivePlayers.filter(player => !player.hasAttribute("cant-vote"));
+    }
 }
 
 export default Game;
