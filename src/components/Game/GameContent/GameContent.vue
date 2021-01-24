@@ -117,7 +117,8 @@ export default {
         generateGamePhaseEvent() {
             if (this.game.tick === 2) {
                 return this.events.push(new GameEvent({ type: "night-falls" }));
-            } else if (this.game.history.length && this.game.phase !== this.game.history[0].phase) {
+            } else if (this.game.history.length &&
+                (this.game.phase !== this.game.history[0].phase || this.game.turn !== this.game.history[0].turn)) {
                 const event = this.game.phase === "day" ? new GameEvent({ type: "day-rises" }) : new GameEvent({ type: "night-falls" });
                 return this.events.push(event);
             }
@@ -126,8 +127,9 @@ export default {
             if (!this.game.history.length) {
                 return;
             }
-            const { deadPlayers, phase: previousPhase } = this.game.history[0];
-            if (this.game.phase === "day" && previousPhase === "night") {
+            const { deadPlayers, phase: previousPhase, turn: previousTurn } = this.game.history[0];
+            if (this.game.phase === "day" && previousPhase === "night" ||
+                previousPhase === "night" && this.game.phase === "night" && previousTurn !== this.game.phase.turn) {
                 if (!deadPlayers.length) {
                     this.events.push(new GameEvent({ type: "no-death-during-night" }));
                 } else {

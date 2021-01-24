@@ -68,6 +68,8 @@ export default {
         return {
             SVGs: { lifePotionSVG, deathPotionSVG },
             panel: undefined,
+            loadings: { lastProtectEntry: false },
+            protectablePlayers: undefined,
         };
     },
     computed: {
