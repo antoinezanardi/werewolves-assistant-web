@@ -137,6 +137,7 @@ export default {
                     ],
                 },
                 "werewolves-turn": { messages: [i18n.tc("GameEvent.messages.werewolvesStart", this.game.aliveWerewolfPlayers.length)] },
+                "vile-father-of-wolves-infects": { messages: [i18n.t("GameEvent.messages.gameMasterWillTouchInfected")] },
                 "witch-turn": { messages: [i18n.t("GameEvent.messages.witchStarts")] },
                 "guard-turn": { messages: [i18n.t("GameEvent.messages.guardStarts")] },
                 "raven-turn": { messages: [i18n.t("GameEvent.messages.ravenStarts")] },

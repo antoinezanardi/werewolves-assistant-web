@@ -53,12 +53,14 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
 import { mapActions, mapGetters } from "vuex";
 import SubmitButton from "@/components/shared/Forms/SubmitButton";
 import { getNominatedPlayers } from "@/helpers/functions/Player";
 import GamePlayFieldCountdownFooter from "@/components/Game/GameContent/GamePlayField/GamePlayFieldFooter/GamePlayFieldCountdownFooter";
 import GameHistory from "@/classes/GameHistory";
 import Loading from "@/components/shared/Loading";
+import Config from "../../../../../../config";
 
 export default {
     name: "GamePlayFieldFooter",
@@ -135,10 +137,32 @@ export default {
                 }
             }
         },
+        askIfVileFatherOfWolvesInfects() {
+            return Swal.fire({
+                title: this.$t("GamePlayFieldFooter.doesVileFatherOfWolvesInfect"),
+                text: this.$t("GamePlayFieldFooter.ifVileFatherOfWolvesInfects"),
+                imageUrl: `${Config.API.werewolvesAssistant.baseURL}/img/roles/vile-father-of-wolves.png`,
+                imageWidth: 200,
+                imageHeight: 200,
+                showCancelButton: true,
+                confirmButtonText: this.$t("GamePlayFieldFooter.infect"),
+                cancelButtonText: this.$t("GamePlayFieldFooter.dontInfect"),
+                heightAuto: false,
+            });
+        },
+        async launchPreSubmitRequest() {
+            if (this.preSubmitRequests.doesVileFatherOfWolvesInfect) {
+                const { isConfirmed } = await this.askIfVileFatherOfWolvesInfects();
+                if (isConfirmed) {
+                    this.$emit("vile-father-of-wolves-infects");
+                }
+            }
+        },
         async submitPlay() {
             try {
                 this.loadings.makeAPlay = true;
                 const playData = { ...this.play, source: this.game.firstWaiting.for, action: this.game.firstWaiting.to };
+                await this.launchPreSubmitRequest();
                 const { data } = await this.$werewolvesAssistantAPI.makeAPlay(this.game._id, playData);
                 await this.setGame(data);
             } catch (e) {

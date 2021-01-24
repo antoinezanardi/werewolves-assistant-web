@@ -291,7 +291,11 @@
         "timeForDebating": "Temps pour débattre",
         "debateIsOver": "Le débat est terminé, il est temps de voter !",
         "tieInVotesForbidden": "L'égalité pour ce vote est interdite",
-        "oneSideMustBeChosen": "Un camp doit être choisi"
+        "oneSideMustBeChosen": "Un camp doit être choisi",
+        "doesVileFatherOfWolvesInfect": "L'infect père des loups souhaite-t'il infecter ?",
+        "ifVileFatherOfWolvesInfects": "Lorsque les loups-garous se sont endormis le maîre du jeu demande à l'infect père des loups de lever la main s'il souhaite tranformer la victime en loup plutôt que de la tuer.",
+        "infect": "Infecter",
+        "dontInfect": "Ne pas infecter"
     },
     "GamePlayFieldCountdownFooter": {
         "timeFor": {
@@ -788,6 +792,7 @@
             "followingMessageMustBeMimed": "La phrase suivante devra être mimée à la voyante car cette dernière n'est pas très bavarde...",
             "seerHasSeen": "La voyante a vu",
             "werewolvesStart": "Le loup-garou se réveille et va choisir son dîner de ce soir. | Les loups-garous se réveillent et vont choisir leur dîner de ce soir.",
+            "gameMasterWillTouchInfected": "Le maître du jeu va faire le tour des habitants et toucher la victime des loups-garous si l'infect père des loups a décidé de l'infecter. Elle saura alors qu'elle est devenue un loup-garou.",
             "witchStarts": "La sorcière se réveille et va, si elle le souhaite, utiliser ses potions.",
             "guardStarts": "Le salvateur se réveille et va protéger la personne de son choix.",
             "ravenStarts": "Le corbeau se réveille et va, s'il le souhaite, marquer de sa plume un des habitants.",

@@ -47,6 +47,7 @@ import inLoveSVG from "@/assets/svg/attributes/in-love.svg";
 import charmedSVG from "@/assets/svg/attributes/charmed.svg";
 import questionMarkSVG from "@/assets/svg/misc/question-mark.svg";
 import ravenMarkSVG from "@/assets/svg/attributes/raven-marked.svg";
+import eatenSVG from "@/assets/svg/attributes/eaten.svg";
 
 export default {
     name: "GameEventImage",
@@ -84,6 +85,7 @@ export default {
                 "pied-piper-charms",
                 "deaths-during-night",
                 "raven-marks",
+                "vile-father-of-wolves-infects",
             ];
             return effectGameEventTypes.includes(this.event.type);
         },
@@ -99,6 +101,7 @@ export default {
                 "pied-piper-charms": charmedSVG,
                 "deaths-during-night": questionMarkSVG,
                 "raven-marks": ravenMarkSVG,
+                "vile-father-of-wolves-infects": eatenSVG,
             };
             return effectGameEventTypeImageSource[this.event.type];
         },

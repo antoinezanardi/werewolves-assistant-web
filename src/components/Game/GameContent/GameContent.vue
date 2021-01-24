@@ -3,7 +3,7 @@
         <transition mode="out-in" name="fade">
             <GameEventMonitor v-if="events.length" key="game-event-monitor" :events="events" @skip-event="removeEvent"/>
             <GamePlayField v-else key="game-play-field" :play="play" @player-selected="playerSelected" @player-votes="playerVotes"
-                           @side-selected="sideSelected"/>
+                           @side-selected="sideSelected" @vile-father-of-wolves-infects="vileFatherOfWolvesInfects"/>
         </transition>
     </div>
 </template>
@@ -85,6 +85,11 @@ export default {
         sideSelected(side) {
             this.play.side = side;
         },
+        vileFatherOfWolvesInfects() {
+            if (this.play.targets.length) {
+                this.play.targets[0].isInfected = true;
+            }
+        },
         resetPlay() {
             this.play.votes = [];
             this.play.targets = [];
@@ -93,15 +98,19 @@ export default {
         generateLastActionEvents() {
             if (this.game.history.length) {
                 const lastGameHistoryEntry = this.game.history[0];
-                const lastGameHistoryEntryName = lastGameHistoryEntry.play.source.name;
+                const lastGameHistoryEntrySourceName = lastGameHistoryEntry.play.source.name;
+                const { vileFatherOfWolvesPlayer } = this.game;
                 if (lastGameHistoryEntry.play.action === "look") {
                     this.events.push(new GameEvent({ type: "seer-looks", targets: lastGameHistoryEntry.play.targets }));
                 } else if (lastGameHistoryEntry.play.action === "elect-sheriff" || lastGameHistoryEntry.play.action === "delegate") {
                     this.events.push(new GameEvent({ type: "sheriff-elected", targets: lastGameHistoryEntry.play.targets }));
                 } else if (lastGameHistoryEntry.play.action === "charm") {
-                    this.events.push(new GameEvent({ type: `${lastGameHistoryEntryName}-charms`, targets: lastGameHistoryEntry.play.targets }));
+                    this.events.push(new GameEvent({ type: `${lastGameHistoryEntrySourceName}-charms`, targets: lastGameHistoryEntry.play.targets }));
                 } else if (lastGameHistoryEntry.play.action === "mark") {
                     this.events.push(new GameEvent({ type: `raven-marks`, targets: lastGameHistoryEntry.play.targets }));
+                } else if (lastGameHistoryEntry.play.action === "eat" && lastGameHistoryEntrySourceName === "werewolves" &&
+                    !!vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer.isAlive) {
+                    this.events.push(new GameEvent({ type: `vile-father-of-wolves-infects`, targets: lastGameHistoryEntry.play.targets }));
                 }
             }
         },
