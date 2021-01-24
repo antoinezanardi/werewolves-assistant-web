@@ -526,7 +526,8 @@
             "ravenMarked": "Ce joueur est marqué par le corbeau",
             "inLove": "Ce joueur est amoureux à en mourir d'un autre",
             "worshiped": "Ce joueur est le modèle de l'enfant sauvage",
-            "charmed": "Ce joueur a été charmé par le joueur de flûte"
+            "charmed": "Ce joueur a été charmé par le joueur de flûte",
+            "cantVoteByScapegoat": "Ce joueur est interdit de vote par le bouc-émissaire"
         }
     },
     "PlayerThumbnail": {
@@ -740,6 +741,11 @@
         "selectAll": "Tout sélectionner",
         "selectAllTargets": "Sélectionner toutes les cibles"
     },
+    "ProtectPlayField": {
+        "loadingTargets": "Chargement des cibles du salvateur",
+        "cantLoadGuardTargets": "Impossible de charger les cibles du salvateur",
+        "retry": "Réessayer"
+    },
     "MeetEachOtherPlayField": {
         "meetEachOtherTheFirstTime": "se rencontrent pour la première fois",
         "meetEachOtherForTalking": "se concertent discrètement",
@@ -783,6 +789,8 @@
             "witchStarts": "La sorcière se réveille et va, si elle le souhaite, utiliser ses potions.",
             "guardStarts": "Le salvateur se réveille et va protéger la personne de son choix.",
             "ravenStarts": "Le corbeau se réveille et va, s'il le souhaite, marquer de sa plume un des habitants.",
+            "ravenHasMarked": "Le corbeau a choisi où déposer sa plume.",
+            "gameMasterWillDepositMark": "Le maître du jeu va faire le tour des habitants et déposer la marque du corbeau devant la victime.",
             "hunterStarts": "Dans son dernier souffle, le chasseur s'apprête à choisir la cible de sa vengeance.",
             "dogWolfStarts": "Le chien-loup se réveille et va choisir son camp pour le reste de la partie.",
             "cupidStarts": "Cupidon se réveille et va rendre inséparables deux personnes grâce à ses flèches de l'Amour.",

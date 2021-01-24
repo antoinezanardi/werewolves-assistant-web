@@ -1,8 +1,10 @@
 <template>
-    <img v-tooltip="tooltip" alt="Attribute" class="player-attribute" :src="playerAttribute.SVG"/>
+    <img v-tooltip="tooltip" alt="Attribute" class="player-attribute" :class="{ 'not-active': !isAttributeActive }" :src="playerAttribute.SVG"/>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+import { isPlayerAttributeActive } from "@/helpers/functions/Player";
 import sheriffSVG from "@/assets/svg/attributes/sheriff.svg";
 import seenSVG from "@/assets/svg/actions/look.svg";
 import eatenSVG from "@/assets/svg/attributes/eaten.svg";
@@ -110,6 +112,7 @@ export default {
         };
     },
     computed: {
+        ...mapGetters("game", { game: "game" }),
         playerAttribute() {
             if (this.attributes[this.attribute] && this.attributes[this.attribute][this.source]) {
                 return this.attributes[this.attribute][this.source];
@@ -123,6 +126,9 @@ export default {
                           </div>
                           <img width="50" alt="Player Attribute" src="${this.playerAttribute.SVG}"/>`,
             };
+        },
+        isAttributeActive() {
+            return isPlayerAttributeActive(this.playerAttribute, this.game);
         },
     },
 };

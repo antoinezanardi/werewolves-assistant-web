@@ -100,6 +100,8 @@ export default {
                     this.events.push(new GameEvent({ type: "sheriff-elected", targets: lastGameHistoryEntry.play.targets }));
                 } else if (lastGameHistoryEntry.play.action === "charm") {
                     this.events.push(new GameEvent({ type: `${lastGameHistoryEntryName}-charms`, targets: lastGameHistoryEntry.play.targets }));
+                } else if (lastGameHistoryEntry.play.action === "mark") {
+                    this.events.push(new GameEvent({ type: `raven-marks`, targets: lastGameHistoryEntry.play.targets }));
                 }
             }
         },

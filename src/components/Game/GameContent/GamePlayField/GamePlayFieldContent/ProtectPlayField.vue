@@ -6,45 +6,72 @@
             </div>
         </div>
         <PlayFieldActionText :play="play" attribute="protected" @player-selected="playerSelected"/>
-        <PlayerTargets :targets="protectablePlayers" :play="play" attribute="protected" class="flex-grow-1"
-                       @player-selected="playerSelected"/>
+        <transition mode="out-in" name="fade" class="flex-grow-1">
+            <div v-if="loadings.lastProtectEntry" key="loading" class="d-flex flex-grow-1 justify-content-center align-items-center">
+                <Loading :text="$t('ProtectPlayField.loadingTargets')"/>
+            </div>
+            <div v-else-if="!protectablePlayers" key="cant-load-targets"
+                 class="d-flex flex-grow-1 flex-column justify-content-center align-items-center">
+                <h3 class="text-muted font-italic text-center">
+                    <i class="fa fa-ban mr-2"/>
+                    <span v-html="$t('ProtectPlayField.cantLoadGuardTargets')"/>
+                </h3>
+                <button class="btn btn-primary" @click="retrieveProtectablePlayers">
+                    <i class="fa fa-sync mr-2"/>
+                    <span v-html="$t('ProtectPlayField.retry')"/>
+                </button>
+            </div>
+            <PlayerTargets v-else key="targets" :targets="protectablePlayers" :play="play" attribute="protected" @player-selected="playerSelected"/>
+        </transition>
     </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import PlayerCard from "../../../../shared/Game/PlayerCard";
-import PlayerTargets from "../../../../shared/Game/PlayerTargets/PlayerTargets";
-import PlayFieldActionText from "../../../../shared/Game/PlayField/PlayFieldActionText";
+import GameHistory from "@/classes/GameHistory";
+import PlayerCard from "@/components/shared/Game/PlayerCard";
+import PlayerTargets from "@/components/shared/Game/PlayerTargets/PlayerTargets";
+import PlayFieldActionText from "@/components/shared/Game/PlayField/PlayFieldActionText";
+import Loading from "@/components/shared/Loading";
 
 export default {
     name: "ProtectPlayField",
-    components: { PlayFieldActionText, PlayerTargets, PlayerCard },
+    components: { Loading, PlayFieldActionText, PlayerTargets, PlayerCard },
     props: {
         play: {
             type: Object,
             required: true,
         },
     },
-    computed: {
-        ...mapGetters("game", { game: "game" }),
-        protectTargetText() {
-            const playerTargeted = this.play.targets.length ? this.game.players.find(({ _id }) => _id === this.play.targets[0].player) : null;
-            const text = `${this.$t("ProtectPlayField.wantsToProtect")} `;
-            if (playerTargeted) {
-                return playerTargeted._id === this.game.guardPlayer._id ? this.$t("ProtectPlayField.wantsToSelfProtect") : text + playerTargeted.name;
-            }
-            return `${text} ...`;
-        },
-        protectablePlayers() {
-            const lastProtectEntry = this.game.history.find(gameHistoryEntry => gameHistoryEntry.play.action === "protect");
-            if (lastProtectEntry) {
-                return this.game.alivePlayers.filter(({ _id }) => _id !== lastProtectEntry.play.targets[0].player._id);
-            }
-            return this.game.alivePlayers;
-        },
+    data() {
+        return {
+            loadings: { lastProtectEntry: false },
+            protectablePlayers: undefined,
+        };
+    },
+    computed: { ...mapGetters("game", { game: "game" }) },
+    async created() {
+        await this.retrieveProtectablePlayers();
     },
     methods: {
+        async retrieveProtectablePlayers() {
+            try {
+                this.loadings.lastProtectEntry = true;
+                const queryStrings = { "play-source": "guard", "play-action": "protect" };
+                const { data } = await this.$werewolvesAssistantAPI.getGameHistory(this.game._id, queryStrings);
+                const guardActions = data.map(gameHistoryEntry => new GameHistory(gameHistoryEntry));
+                if (guardActions.length) {
+                    const lastGuardAction = guardActions[guardActions.length - 1];
+                    this.protectablePlayers = this.game.alivePlayers.filter(({ _id }) => _id !== lastGuardAction.play.targets[0].player._id);
+                } else {
+                    this.protectablePlayers = this.game.alivePlayers;
+                }
+            } catch (e) {
+                this.$error.display(e);
+            } finally {
+                this.loadings.lastProtectEntry = false;
+            }
+        },
         playerSelected(payload) {
             this.$emit("player-selected", payload);
         },

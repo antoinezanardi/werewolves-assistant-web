@@ -41,7 +41,7 @@
 * `eslint-plugin-vue` updated to version `7.5.0`.
 * `qs` updated to version `6.9.6`.
 * `sass-loader` updated to version `10.1.1`.
-* `sweetalert2` updated to version `10.13.0`.
+* `sweetalert2` updated to version `10.13.1`.
 * `v-tooltip` updated to version `2.1.2`.
 * `vue-i18n` updated to version `8.22.4`.
 

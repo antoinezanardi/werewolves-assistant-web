@@ -140,6 +140,12 @@ export default {
                 "witch-turn": { messages: [i18n.t("GameEvent.messages.witchStarts")] },
                 "guard-turn": { messages: [i18n.t("GameEvent.messages.guardStarts")] },
                 "raven-turn": { messages: [i18n.t("GameEvent.messages.ravenStarts")] },
+                "raven-marks": {
+                    messages: [
+                        i18n.t("GameEvent.messages.ravenHasMarked"),
+                        i18n.t("GameEvent.messages.gameMasterWillDepositMark"),
+                    ],
+                },
                 "hunter-turn": { messages: [i18n.t("GameEvent.messages.hunterStarts")] },
                 "dog-wolf-turn": { messages: [i18n.t("GameEvent.messages.dogWolfStarts")] },
                 "cupid-turn": { messages: [i18n.t("GameEvent.messages.cupidStarts")] },

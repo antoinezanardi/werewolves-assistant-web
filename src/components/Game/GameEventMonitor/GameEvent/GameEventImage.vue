@@ -46,6 +46,7 @@ import seenSVG from "@/assets/svg/actions/look.svg";
 import inLoveSVG from "@/assets/svg/attributes/in-love.svg";
 import charmedSVG from "@/assets/svg/attributes/charmed.svg";
 import questionMarkSVG from "@/assets/svg/misc/question-mark.svg";
+import ravenMarkSVG from "@/assets/svg/attributes/raven-marked.svg";
 
 export default {
     name: "GameEventImage",
@@ -75,7 +76,15 @@ export default {
     computed: {
         ...mapGetters("game", { game: "game" }),
         isEffectGameEvent() {
-            const effectGameEventTypes = ["sheriff-elected", "player-dies", "seer-looks", "cupid-charms", "pied-piper-charms", "deaths-during-night"];
+            const effectGameEventTypes = [
+                "sheriff-elected",
+                "player-dies",
+                "seer-looks",
+                "cupid-charms",
+                "pied-piper-charms",
+                "deaths-during-night",
+                "raven-marks",
+            ];
             return effectGameEventTypes.includes(this.event.type);
         },
         isPhaseGameEvent() {
@@ -89,6 +98,7 @@ export default {
                 "cupid-charms": inLoveSVG,
                 "pied-piper-charms": charmedSVG,
                 "deaths-during-night": questionMarkSVG,
+                "raven-marks": ravenMarkSVG,
             };
             return effectGameEventTypeImageSource[this.event.type];
         },

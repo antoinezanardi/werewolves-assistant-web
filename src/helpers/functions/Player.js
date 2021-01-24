@@ -49,3 +49,7 @@ export function maxTargetLengthForPlayerAttribute(attribute) {
     }
     return 0;
 }
+
+export function isPlayerAttributeActive({ activeAt }, game) {
+    return !activeAt || activeAt.turn <= game.turn && (!activeAt.phase || activeAt.phase === "night" || game.phase === "day");
+}
