@@ -36,6 +36,16 @@ class GameHistory {
         const { play } = this;
         return play.source.name === "werewolves" && play.action === "eat" && !!play.targets.find(({ isInfected }) => isInfected);
     }
+
+    get didWitchUsedLifePotion() {
+        const { play } = this;
+        return play.source.name === "witch" && play.action === "use-potion" && !!play.targets.find(({ potion }) => potion.life);
+    }
+
+    get didWitchUsedDeathPotion() {
+        const { play } = this;
+        return play.source.name === "witch" && play.action === "use-potion" && !!play.targets.find(({ potion }) => potion.death);
+    }
 }
 
 export default GameHistory;

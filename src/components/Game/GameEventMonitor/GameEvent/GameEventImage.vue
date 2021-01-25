@@ -14,7 +14,7 @@
                     <div class="role-effect-container">
                         <RoleImage class="h-100 rounded role-image" :role="playersEvent.thumbnail.front.role.current"
                                    :class="{ 'dead-player': event.type === 'player-dies' }"/>
-                        <img v-if="isEffectGameEvent" :src="effectImageSource" class="effect-image"
+                        <img v-if="isEffectGameEvent && gameEventPlayers.length" :src="effectImageSource" class="effect-image"
                              :class="{ 'animate__animated animate__bounceIn animate__delay-1s': gameEventPlayers.length === 1 }" alt="Effect Image"/>
                     </div>
                     <h3 class="text-center mt-2 w-100 text-truncate" v-html="playersEvent.thumbnail.front.name"/>
@@ -25,7 +25,7 @@
                     <div class="role-effect-container">
                         <RoleImage class="h-100 rounded role-image" :role="playersEvent.thumbnail.back.role.current"
                                    :class="{ 'dead-player': event.type === 'player-dies' }"/>
-                        <img v-if="isEffectGameEvent" :src="effectImageSource" class="effect-image"
+                        <img v-if="isEffectGameEvent && gameEventPlayers.length" :src="effectImageSource" class="effect-image"
                              :class="{ 'animate__animated animate__bounceIn animate__delay-1s': gameEventPlayers.length === 1 }" alt="Effect Image"/>
                     </div>
                     <h3 class="text-center mt-2 w-100 text-truncate" v-html="playersEvent.thumbnail.back.name"/>
@@ -136,7 +136,7 @@ export default {
     },
     methods: {
         setPlayersExpectedToPlayFlip() {
-            this.playersEvent.thumbnail.front = this.gameEventPlayers[0];
+            this.playersEvent.thumbnail.front = this.gameEventPlayers.length ? this.gameEventPlayers[0] : new Player();
             if (this.gameEventPlayers.length > 1) {
                 setInterval(() => {
                     if (this.playersEvent.playerIdx + 1 === this.gameEventPlayers.length) {

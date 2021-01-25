@@ -129,7 +129,7 @@ export default {
             }
             const { deadPlayers, phase: previousPhase, turn: previousTurn } = this.game.history[0];
             if (this.game.phase === "day" && previousPhase === "night" ||
-                previousPhase === "night" && this.game.phase === "night" && previousTurn !== this.game.phase.turn) {
+                previousPhase === "night" && this.game.phase === "night" && previousTurn !== this.game.turn) {
                 if (!deadPlayers.length) {
                     this.events.push(new GameEvent({ type: "no-death-during-night" }));
                 } else {

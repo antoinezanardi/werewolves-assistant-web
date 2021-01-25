@@ -562,7 +562,10 @@
         "lifePotionUsed": "La potion de vie a déjà été utilisée",
         "deathPotionUsed": "La potion de mort a déjà été utilisée",
         "useLifePotionOn": "Utiliser la potion de vie sur ...",
-        "useDeathPotionOn": "Utiliser la potion de mort sur ..."
+        "useDeathPotionOn": "Utiliser la potion de mort sur ...",
+        "loadingPotions": "Chargement des potions",
+        "cantLoadPotions": "Impossible de charger les potions",
+        "retry": "Réessayer"
     },
     "GameWinners": {
         "restartGame": "Recommencer une partie",
@@ -757,6 +760,9 @@
         "meetEachOtherForTalking": "se concertent discrètement",
         "meetEachOtherInSilence": "se rencontrent sans un bruit"
     },
+    "PlayerTargets": {
+        "noPossibleTargets": "Aucune cible possible"
+    },
     "NoActionExpected": {
         "noActionExpected": "Aucune action requise"
     },
@@ -797,7 +803,7 @@
             "guardStarts": "Le salvateur se réveille et va protéger la personne de son choix.",
             "ravenStarts": "Le corbeau se réveille et va, s'il le souhaite, marquer de sa plume un des habitants.",
             "ravenHasMarked": "Le corbeau a choisi où déposer sa plume.",
-            "gameMasterWillDepositMark": "Le maître du jeu va faire le tour des habitants et déposer la marque du corbeau devant la victime.",
+            "gameMasterWillDepositMark": "Le maître du jeu va faire le tour des habitants et déposer la marque du corbeau devant la victime s'il y en a une.",
             "hunterStarts": "Dans son dernier souffle, le chasseur s'apprête à choisir la cible de sa vengeance.",
             "dogWolfStarts": "Le chien-loup se réveille et va choisir son camp pour le reste de la partie.",
             "cupidStarts": "Cupidon se réveille et va rendre inséparables deux personnes grâce à ses flèches de l'Amour.",

@@ -28,8 +28,8 @@
 ### 📦 Packages
 
 * `fuse.js` updated to version `6.4.6`.
-* `@sentry/browser` updated to version `6.0.1`.
-* `@sentry/integrations` updated to version `6.0.1`.
+* `@sentry/browser` updated to version `6.0.2`.
+* `@sentry/integrations` updated to version `6.0.2`.
 * `@vue/cli-plugin-e2e-cypress` updated to version `4.5.11`.
 * `@vue/cli-plugin-eslint` updated to version `4.5.11`.
 * `@vue/cli-plugin-router` updated to version `4.5.11`.
@@ -41,9 +41,10 @@
 * `eslint-plugin-vue` updated to version `7.5.0`.
 * `qs` updated to version `6.9.6`.
 * `sass-loader` updated to version `10.1.1`.
-* `sweetalert2` updated to version `10.13.1`.
+* `sweetalert2` updated to version `10.13.3`.
 * `v-tooltip` updated to version `2.1.2`.
 * `vue-i18n` updated to version `8.22.4`.
+* `vue-router` updated to version `3.5.0`.
 
 ---
 
