@@ -393,7 +393,9 @@
                 "allVoteWhen": "Chaque fois que le jour se lève, les habitants débattent pour mettre à mort l'un des leurs en espérant trouver un loup-garou.",
                 "playersHave5Min": "Les joueurs ont 5 minutes pour se mettre d'accord sur qui sera pendu. À la fin du temps, le maître du jeu doit stopper les discussions et procéder au vote.",
                 "eachPlayerVote": "Chaque joueur a donc une voix à donner pour le vote, mais ne peut voter pour lui-même. Il peut néanmoins voter blanc. Le maître du jeu demande le vote de chacun à tour de rôle.",
-                "scapegoatWillDieIfTie": "En cas d'égalité, c'est le bouc-émissaire qui sera pendu, même s'il n'est pas inclu dans l'égalité.",
+                "scapegoatWillDieIfTie": "Le bouc-émissaire est dans la partie ! En cas d'égalité, c'est lui qui sera pendu, même s'il n'est pas inclu dans l'égalité.",
+                "idiotWillBeForgiven": "L'idiot est dans la partie ! Si son rôle n'est pas encore révélé et que le village décide de voter contre lui, alors il sera gracié, le village se rendant compte de leur bêtise de pendre un idiot. Par contre, son rôle sera révélé et il perdra son droit de vote pour le reste de la partie.",
+                "ancientWillHaveHisRevenge": "L'ancien est dans la partie ! Si le village décide de le pendre, alors tous les villageois d'origine (pas les loups-garous) perdront leurs pouvoirs. Attention à la pendaison irréfléchie !",
                 "toValidateAVote": "Pour passer à la suite, au moins un joueur doit avoir voté."
             },
             "elect-sheriff": {
@@ -794,6 +796,7 @@
             "letsSeeWhoIsDead": "Après plusieurs recherches, le village doit se résoudre à annoncer publiquement la triste nouvelle...",
             "noDeathDuringNight": "Le village se réveille, et, à la surprise générale, personne n'est mort pendant la nuit !",
             "allVote": "Les habitants du village vont maintenant voter pour pendre l'un des leurs et espérer débusquer un loup-garou.",
+            "attentionToTheAncient": "Attention, l'ancien est encore en vie et caché parmi les habitants ! S'il est pendu, tous les villageois d'origine n'auront plus de pouvoirs spéciaux, alors attention !",
             "seerStarts": "La voyante se réveille et va découvrir dans sa boule de cristal le rôle d'un habitant.",
             "followingMessageMustBeMimed": "La phrase suivante devra être mimée à la voyante car cette dernière n'est pas très bavarde...",
             "seerHasSeen": "La voyante a vu",

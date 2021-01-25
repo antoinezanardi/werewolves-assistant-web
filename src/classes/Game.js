@@ -47,6 +47,10 @@ class Game {
         return this.players.filter(player => player.isAlive);
     }
 
+    get canVotePlayers() {
+        return this.players.filter(player => player.isAlive && !player.hasActiveAttribute("cant-vote", this));
+    }
+
     get werewolfPlayers() {
         return this.players.filter(player => player.side.current === "werewolves");
     }
@@ -257,6 +261,14 @@ class Game {
 
     get charmedPlayers() {
         return this.getPlayersWithAttribute("charmed");
+    }
+
+    get idiotPlayer() {
+        return this.getPlayerWithRole("idiot");
+    }
+
+    get ancientPlayer() {
+        return this.getPlayerWithRole("ancient");
     }
 
     isRoleInGame(roleName) {

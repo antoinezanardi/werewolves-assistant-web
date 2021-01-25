@@ -84,6 +84,7 @@ export default {
         }),
         // eslint-disable-next-line max-lines-per-function
         gameEventMetadata() {
+            const { ancientPlayer } = this.game;
             const gameEventTargetName = this.hasGameEventTarget ? this.event.targets[0].player.name : null;
             const gameEventTargetRole = this.hasGameEventTarget ? i18n.t(`Role.a.${this.event.targets[0].player.role.current}`) : null;
             return {
@@ -112,6 +113,8 @@ export default {
                 "all-turn": {
                     messages: [
                         ...insertIf(this.game.firstWaiting.to === "vote", i18n.t("GameEvent.messages.allVote")),
+                        ...insertIf(this.game.firstWaiting.to === "vote" && !!ancientPlayer && ancientPlayer.isAlive,
+                            i18n.t("GameEvent.messages.attentionToTheAncient")),
                         ...insertIf(this.game.firstWaiting.to === "elect-sheriff", i18n.t("GameEvent.messages.allElectSheriff")),
                     ],
                 },

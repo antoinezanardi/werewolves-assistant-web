@@ -1,4 +1,5 @@
 import { getProp } from "@/helpers/functions/Class";
+import { isPlayerAttributeActive } from "@/helpers/functions/Player";
 
 class Player {
     constructor(player = null) {
@@ -7,6 +8,7 @@ class Player {
         this.role = {
             original: getProp(player, "role.original"),
             current: getProp(player, "role.current"),
+            isRevealed: getProp(player, "role.isRevealed"),
         };
         this.side = {
             original: getProp(player, "side.original"),
@@ -24,8 +26,16 @@ class Player {
         return !!this.attributes.find(({ name }) => name === attributeName);
     }
 
+    hasActiveAttribute(attributeName, game) {
+        return !!this.attributes.find(attribute => attribute.name === attributeName && isPlayerAttributeActive(attribute, game));
+    }
+
     get currentRole() {
         return this.role.current;
+    }
+
+    get isRoleRevealed() {
+        return this.role.isRevealed;
     }
 }
 

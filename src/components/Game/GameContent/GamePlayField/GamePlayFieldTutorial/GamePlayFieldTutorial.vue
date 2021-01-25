@@ -27,8 +27,7 @@ export default {
             const { firstWaiting } = this.game;
             const sistersWakingUpInterval = this.gameOptions.roles.twoSisters.wakingUpInterval;
             const brothersWakingUpInterval = this.gameOptions.roles.threeBrothers.wakingUpInterval;
-            const scapegoatPlayer = this.game.scapegoatPlayer;
-            const vileFatherOfWolvesPlayer = this.game.vileFatherOfWolvesPlayer;
+            const { scapegoatPlayer, vileFatherOfWolvesPlayer, idiotPlayer, ancientPlayer } = this.game;
             const action = `${firstWaiting.for}.${firstWaiting.to}`;
             const header = { title: this.$t(`GamePlayFieldTutorial.${action}.howToPlay`) };
             const steps = {
@@ -95,6 +94,16 @@ export default {
                             header,
                             target: `#player-vote-${scapegoatPlayer._id}`,
                             content: this.$t("GamePlayFieldTutorial.all.vote.scapegoatWillDieIfTie"),
+                        }),
+                        ...insertIf(!!idiotPlayer && idiotPlayer.isAlive, {
+                            header,
+                            target: `#player-vote-${idiotPlayer._id}`,
+                            content: this.$t("GamePlayFieldTutorial.all.vote.idiotWillBeForgiven"),
+                        }),
+                        ...insertIf(!!ancientPlayer && ancientPlayer.isAlive, {
+                            header,
+                            target: `#player-vote-${ancientPlayer._id}`,
+                            content: this.$t("GamePlayFieldTutorial.all.vote.ancientWillHaveHisRevenge"),
                         }),
                         { header, target: "#vote-play-requirements", content: this.$t("GamePlayFieldTutorial.all.vote.toValidateAVote") },
                     ],
