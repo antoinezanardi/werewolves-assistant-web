@@ -535,7 +535,8 @@
             "inLove": "Ce joueur est amoureux à en mourir d'un autre",
             "worshiped": "Ce joueur est le modèle de l'enfant sauvage",
             "charmed": "Ce joueur a été charmé par le joueur de flûte",
-            "cantVoteByScapegoat": "Ce joueur est interdit de vote par le bouc-émissaire"
+            "cantVoteByScapegoat": "Ce joueur est interdit de vote par le bouc-émissaire",
+            "cantVoteByAll": "Ce joueur est interdit de vote par le village"
         }
     },
     "PlayerThumbnail": {
@@ -826,7 +827,8 @@
             "gameMasterWillTouchCharmed": "Le maître du jeu va faire le tour des habitants et toucher dans le dos les deux nouveaux charmés.",
             "charmedWakeUp": "Les tout juste charmés par le joueur de flûte se réveillent pour se reconnaître.",
             "charmedWakeUpWithOldOnes": "Les tout juste charmés par le joueur de flûte se réveillent avec les anciens charmés pour se reconnaître.",
-            "scapegoatStarts": "Face à l'injustice de sa mort, le bouc-émissaire va choisir qui n'aura pas le droit de vote au jour suivant dans son dernier souffle."
+            "scapegoatStarts": "Face à l'injustice de sa mort, le bouc-émissaire va choisir qui n'aura pas le droit de vote au jour suivant dans son dernier souffle.",
+            "idiotIsForgivenAndRevealed": "Le village se rend compte que le joueur pendu était en vérité l'idiot ! Les villageois ayant pitié de lui, décident de le gracier. Le joueur retourne sa carte mais ne pourra plus voter jusqu'à la fin de la partie."
         }
     },
     "Statistics": {

@@ -86,7 +86,8 @@ export default {
         gameEventMetadata() {
             const { ancientPlayer } = this.game;
             const gameEventTargetName = this.hasGameEventTarget ? this.event.targets[0].player.name : null;
-            const gameEventTargetRole = this.hasGameEventTarget ? i18n.t(`Role.a.${this.event.targets[0].player.role.current}`) : null;
+            const gameEventTargetRole = this.hasGameEventTarget ? this.event.targets[0].player.role.current : null;
+            const gameEventTargetRoleText = gameEventTargetRole ? i18n.t(`Role.a.${this.event.targets[0].player.role.current}`) : null;
             return {
                 "game-starts": {
                     messages: [
@@ -101,6 +102,12 @@ export default {
                     messages: [
                         i18n.t("GameEvent.messages.playerDies", { player: gameEventTargetName }),
                         i18n.t("GameEvent.messages.playerRevealsRole"),
+                    ],
+                },
+                "player-role-revealed": {
+                    messages: [
+                        ...insertIf(gameEventTargetRole === "idiot",
+                            i18n.t("GameEvent.messages.idiotIsForgivenAndRevealed")),
                     ],
                 },
                 "sheriff-elected": {
@@ -136,7 +143,7 @@ export default {
                 "seer-looks": {
                     messages: [
                         ...insertIf(!this.gameOptions.roles.seer.isTalkative, i18n.t("GameEvent.messages.followingMessageMustBeMimed")),
-                        `${i18n.t("GameEvent.messages.seerHasSeen")} ${gameEventTargetRole} !`,
+                        `${i18n.t("GameEvent.messages.seerHasSeen")} ${gameEventTargetRoleText} !`,
                     ],
                 },
                 "werewolves-turn": { messages: [i18n.tc("GameEvent.messages.werewolvesStart", this.game.aliveWerewolfPlayers.length)] },

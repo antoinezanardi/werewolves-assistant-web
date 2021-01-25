@@ -86,6 +86,7 @@ export default {
                 "deaths-during-night",
                 "raven-marks",
                 "vile-father-of-wolves-infects",
+                "player-role-revealed",
             ];
             return effectGameEventTypes.includes(this.event.type);
         },
@@ -102,6 +103,7 @@ export default {
                 "deaths-during-night": questionMarkSVG,
                 "raven-marks": ravenMarkSVG,
                 "vile-father-of-wolves-infects": eatenSVG,
+                "player-role-revealed": seenSVG,
             };
             return effectGameEventTypeImageSource[this.event.type];
         },

@@ -107,6 +107,10 @@ export default {
                         tooltip: this.$t("PlayerAttribute.attributes.cantVoteByScapegoat"),
                         SVG: cantVoteSVG,
                     },
+                    all: {
+                        tooltip: this.$t("PlayerAttribute.attributes.cantVoteByAll"),
+                        SVG: cantVoteSVG,
+                    },
                 },
             },
         };

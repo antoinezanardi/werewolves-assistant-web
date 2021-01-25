@@ -1,5 +1,5 @@
 <template>
-    <span class="player-card-thumbnail" :class="{ 'player-card-thumbnail-lg': size === 'lg', 'dead-player-card': player.isAlive === false }">
+    <span class="player-card-thumbnail" :class="playerThumbnailClasses">
         <i v-if="!game._id" v-tooltip="$t('PlayerThumbnail.unsetPlayer')" class="fa fa-times-circle unset-player-button"
            @click="unsetPlayer"/>
         <transition name="fade" mode="out-in">
@@ -10,6 +10,10 @@
         <VueFlip v-model="flipped" v-tooltip="playerThumbnailTooltip" height="100%" width="100%" @click.native="$emit('player-selected')">
             <template #front>
                 <RoleImage :role="thumbnail.front"/>
+                <transition name="fade" mode="out-in">
+                    <img v-if="player.isRoleRevealed && player.isAlive" class="player-thumbnail-icon" :src="SVGs.roleRevealed" alt="Role revealed"/>
+                    <img v-else-if="player.isAlive === false" class="player-thumbnail-icon" :src="SVGs.dead" alt="Role revealed"/>
+                </transition>
             </template>
             <template #back>
                 <RoleImage :role="thumbnail.back"/>
@@ -22,6 +26,8 @@
 import { mapGetters } from "vuex";
 import Player from "@/classes/Player";
 import RoleImage from "./Role/RoleImage";
+import roleRevealed from "@/assets/svg/actions/look.svg";
+import dead from "@/assets/svg/attributes/dead.svg";
 
 export default {
     name: "PlayerThumbnail",
@@ -47,10 +53,21 @@ export default {
                 front: undefined,
                 back: undefined,
             },
+            SVGs: {
+                roleRevealed,
+                dead,
+            },
         };
     },
     computed: {
         ...mapGetters("game", { game: "game" }),
+        playerThumbnailClasses() {
+            return {
+                "player-card-thumbnail-lg": this.size === "lg",
+                "dead-player-card": this.player.isAlive === false,
+                "revealed-player-card": this.player.isAlive && this.player.isRoleRevealed,
+            };
+        },
         playerThumbnailTooltip() {
             if (this.game._id || this.player.role.current) {
                 return this.$tc(`Role.${this.player.role.current}`, 1);
@@ -107,10 +124,6 @@ export default {
     position: relative;
     transition: all 0.25s ease;
 
-    &:hover {
-        border-color: #D4D4D4;
-    }
-
     &.player-card-thumbnail-lg {
         width: 100px;
         height: 100px;
@@ -126,6 +139,10 @@ export default {
         img {
             filter: grayscale(1);
         }
+    }
+
+    &:hover {
+        border-color: #D4D4D4;
     }
 
     img {
@@ -149,5 +166,12 @@ export default {
     width: 30px;
     height: 30px;
     z-index: 10;
+}
+
+.player-thumbnail-icon {
+    width: 25px;
+    bottom: 0;
+    right: 0;
+    position: absolute;
 }
 </style>

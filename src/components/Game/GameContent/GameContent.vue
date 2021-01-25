@@ -39,9 +39,9 @@ export default {
                 }
                 if (newGame.phase === "day") {
                     this.generateGamePhaseEvent();
-                    this.generateGameDeathEvents();
+                    this.generateGameDeathAndRevealEvents();
                 } else {
-                    this.generateGameDeathEvents();
+                    this.generateGameDeathAndRevealEvents();
                     this.generateGamePhaseEvent();
                 }
                 this.generateGameRoleTurnEvents();
@@ -123,11 +123,11 @@ export default {
                 return this.events.push(event);
             }
         },
-        generateGameDeathEvents() {
+        generateGameDeathAndRevealEvents() {
             if (!this.game.history.length) {
                 return;
             }
-            const { deadPlayers, phase: previousPhase, turn: previousTurn } = this.game.history[0];
+            const { deadPlayers, revealedPlayers, phase: previousPhase, turn: previousTurn } = this.game.history[0];
             if (this.game.phase === "day" && previousPhase === "night" ||
                 previousPhase === "night" && this.game.phase === "night" && previousTurn !== this.game.turn) {
                 if (!deadPlayers.length) {
@@ -138,6 +138,10 @@ export default {
             }
             for (const deadPlayer of deadPlayers) {
                 this.events.push(new GameEvent({ type: "player-dies", targets: [{ player: deadPlayer }] }));
+            }
+            const revealedAlivePlayers = revealedPlayers.filter(({ _id }) => !deadPlayers.find(deadPlayer => deadPlayer._id === _id));
+            for (const revealedPlayer of revealedAlivePlayers) {
+                this.events.push(new GameEvent({ type: "player-role-revealed", targets: [{ player: revealedPlayer }] }));
             }
         },
         generateGameRoleTurnEvents() {
