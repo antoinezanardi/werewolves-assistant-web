@@ -537,7 +537,12 @@
             "charmed": "Ce joueur a été charmé par le joueur de flûte",
             "cantVoteByScapegoat": "Ce joueur est interdit de vote par le bouc-émissaire",
             "cantVoteByAll": "Ce joueur est interdit de vote par le village"
-        }
+        },
+        "remainingPhases": "Plus qu'une phase (jour ou nuit) pour que l'effet disparaisse | Il reste {remainingPhases} phases (jour ou nuit) avant que l'effet ne disparaisse",
+        "endlessAttribute": "Cet effet restera jusqu'à la fin de la partie ou la mort du joueur",
+        "attributeWillBeActiveWhenSunRises": "Cet effet sera actif lorque le soleil se lèvera",
+        "remainingTurnsToBeActive": "Cet effet sera actif le prochain tour | Cet effet sera actif dans {remainingTurns} tours",
+        "attributeInactiveBecauseDead": "Cet effet est inactif car le joueur est mort"
     },
     "PlayerThumbnail": {
         "chooseRole": "Choisir un rôle",

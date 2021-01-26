@@ -70,13 +70,13 @@ export default {
         },
         playerThumbnailTooltip() {
             if (this.game._id || this.player.role.current) {
-                let content = `<div>${this.$t(`Role.${this.player.role.current}`)}</div>`;
+                let content = `<div>${this.$tc(`Role.${this.player.role.current}`, 1)}</div>`;
                 if (this.player.isAlive === false) {
                     content += `<hr class="bg-dark my-1"/><div>${this.$t("PlayerThumbnail.thisPlayerIsDead")}</div>`;
                 } else if (this.player.isRoleRevealed) {
                     content += `<hr class="bg-dark my-1"/><div>${this.$t("PlayerThumbnail.thisPlayerRoleIsRevealed")}</div>`;
                 }
-                return { content };
+                return { content, boundariesElement: ".player-strip" };
             }
             return this.$t("PlayerThumbnail.chooseRole");
         },
