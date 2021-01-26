@@ -85,9 +85,10 @@ export default {
         // eslint-disable-next-line max-lines-per-function
         gameEventMetadata() {
             const { ancientPlayer } = this.game;
-            const gameEventTargetName = this.hasGameEventTarget ? this.event.targets[0].player.name : null;
-            const gameEventTargetRole = this.hasGameEventTarget ? this.event.targets[0].player.role.current : null;
-            const gameEventTargetRoleText = gameEventTargetRole ? i18n.t(`Role.a.${this.event.targets[0].player.role.current}`) : null;
+            const gameEventFirstTarget = this.hasGameEventTargets ? this.event.targets[0] : null;
+            const gameEventTargetName = this.hasGameEventTargets ? gameEventFirstTarget.player.name : null;
+            const gameEventTargetRole = this.hasGameEventTargets ? gameEventFirstTarget.player.role.current : null;
+            const gameEventTargetRoleText = gameEventTargetRole ? i18n.t(`Role.a.${gameEventFirstTarget.player.role.current}`) : null;
             return {
                 "game-starts": {
                     messages: [
@@ -102,6 +103,8 @@ export default {
                     messages: [
                         i18n.t("GameEvent.messages.playerDies", { player: gameEventTargetName }),
                         i18n.t("GameEvent.messages.playerRevealsRole"),
+                        ...insertIf(gameEventTargetRole === "idiot" && gameEventFirstTarget.player.hasAttribute("sheriff"),
+                            i18n.t("GameEvent.messages.noIdiotSheriffAnymore")),
                     ],
                 },
                 "player-role-revealed": {
@@ -197,7 +200,7 @@ export default {
                 "scapegoat-turn": { messages: [i18n.t("GameEvent.messages.scapegoatStarts")] },
             };
         },
-        hasGameEventTarget() {
+        hasGameEventTargets() {
             return !!this.event.targets.length;
         },
         gameEventMessages() {

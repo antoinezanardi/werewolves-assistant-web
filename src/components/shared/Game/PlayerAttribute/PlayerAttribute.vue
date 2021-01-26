@@ -144,6 +144,7 @@ export default {
                                 <div class="text-center flex-grow-1">${this.tooltipDescription.text}</div>
                             </div>
                         `,
+                container: false,
             };
         },
         tooltipDescription() {

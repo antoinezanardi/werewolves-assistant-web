@@ -1,6 +1,6 @@
 <template>
     <div id="villagers-side" class="visible-scrollbar">
-        <div class="row">
+        <div class="row mt-2">
             <div class="col-12 text-center pl-0">
                 <h3 v-html="$t('GameVillagersSide.villagers')"/>
             </div>
@@ -58,11 +58,12 @@ export default {
 <style lang="scss" scoped>
     #villagers-side {
         overflow-y: auto !important;
+        overflow-x: hidden;
     }
 
     .player-strip {
         height: 100px;
-        width: 90%;
+        width: 100%;
         margin-top: 5px;
         margin-bottom: 10px;
         border: 1px solid grey;
