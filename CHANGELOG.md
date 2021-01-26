@@ -12,6 +12,7 @@
 * [#98](https://github.com/antoinezanardi/werewolves-assistant-web/issues/98) - Extend player limit.
 * [#109](https://github.com/antoinezanardi/werewolves-assistant-web/issues/109) - Add limits to waking up interval options.
 * [#110](https://github.com/antoinezanardi/werewolves-assistant-web/issues/110) - Better filter for vue-select.
+* [#113](https://github.com/antoinezanardi/werewolves-assistant-web/issues/113) - Add an icon, and a tooltip in player thumbnails in sides.
 
 ### 🐛 Bug fixes
 
@@ -27,7 +28,7 @@
 
 ### 📦 Packages
 
-* `fuse.js` updated to version `6.4.6`.
+* `fuse.js` installed with version `6.4.6`.
 * `@sentry/browser` updated to version `6.0.2`.
 * `@sentry/integrations` updated to version `6.0.2`.
 * `@vue/cli-plugin-e2e-cypress` updated to version `4.5.11`.
@@ -44,7 +45,8 @@
 * `sweetalert2` updated to version `10.13.3`.
 * `v-tooltip` updated to version `2.1.2`.
 * `vue-i18n` updated to version `8.22.4`.
-* `vue-router` updated to version `3.5.0`.
+* `vue-router` updated to version `3.6.2`.
+* `vuex` updated to version `3.6.2`.
 
 ---
 

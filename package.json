@@ -42,13 +42,13 @@
         "vue-keypress": "^2.1.1",
         "vue-lazyload": "^1.3.3",
         "vue-roller": "^1.12.4",
-        "vue-router": "^3.5.0",
+        "vue-router": "^3.5.1",
         "vue-scrollto": "^2.20.0",
         "vue-select": "^3.11.2",
         "vue-star-rating": "^1.7.0",
         "vue-toasted": "^1.1.28",
         "vue-tour": "^1.5.0",
-        "vuex": "^3.6.0",
+        "vuex": "^3.6.2",
         "xss": "^1.0.8"
     },
     "devDependencies": {

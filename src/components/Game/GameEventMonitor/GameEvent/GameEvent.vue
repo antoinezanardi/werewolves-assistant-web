@@ -106,8 +106,8 @@ export default {
                 },
                 "player-role-revealed": {
                     messages: [
-                        ...insertIf(gameEventTargetRole === "idiot",
-                            i18n.t("GameEvent.messages.idiotIsForgivenAndRevealed")),
+                        ...insertIf(gameEventTargetRole === "idiot", i18n.t("GameEvent.messages.idiotIsForgiven")),
+                        i18n.t("GameEvent.messages.playerRoleIsRevealed"),
                     ],
                 },
                 "sheriff-elected": {

@@ -545,7 +545,9 @@
         "nominated": {
             "elect-sheriff": "Ce joueur est nominé pour devenir maire",
             "vote": "Ce joueur est nominé pour la pendaison"
-        }
+        },
+        "thisPlayerIsDead": "Ce joueur est mort",
+        "thisPlayerRoleIsRevealed": "Le rôle de ce joueur est connu des autres (sa carte n'est pas cachée)"
     },
     "PlayerVote": {
         "voteFor": "Vote pour",
@@ -828,7 +830,8 @@
             "charmedWakeUp": "Les tout juste charmés par le joueur de flûte se réveillent pour se reconnaître.",
             "charmedWakeUpWithOldOnes": "Les tout juste charmés par le joueur de flûte se réveillent avec les anciens charmés pour se reconnaître.",
             "scapegoatStarts": "Face à l'injustice de sa mort, le bouc-émissaire va choisir qui n'aura pas le droit de vote au jour suivant dans son dernier souffle.",
-            "idiotIsForgivenAndRevealed": "Le village se rend compte que le joueur pendu était en vérité l'idiot ! Les villageois ayant pitié de lui, décident de le gracier. Le joueur retourne sa carte mais ne pourra plus voter jusqu'à la fin de la partie."
+            "idiotIsForgiven": "Le village se rend compte que le joueur pendu était en vérité l'idiot ! Les villageois ayant pitié de lui, décident de le gracier mais il ne pourra plus voter jusqu'à la fin de la partie.",
+            "playerRoleIsRevealed": "Le joueur retourne sa carte et continue à jouer."
         }
     },
     "Statistics": {
