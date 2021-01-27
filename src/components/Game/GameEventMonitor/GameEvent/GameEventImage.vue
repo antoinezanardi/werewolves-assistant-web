@@ -48,6 +48,7 @@ import charmedSVG from "@/assets/svg/attributes/charmed.svg";
 import questionMarkSVG from "@/assets/svg/misc/question-mark.svg";
 import ravenMarkSVG from "@/assets/svg/attributes/raven-marked.svg";
 import eatenSVG from "@/assets/svg/attributes/eaten.svg";
+import voteSVG from "@/assets/svg/actions/vote.svg";
 
 export default {
     name: "GameEventImage",
@@ -87,6 +88,7 @@ export default {
                 "raven-marks",
                 "vile-father-of-wolves-infects",
                 "player-role-revealed",
+                "no-death-after-votes",
             ];
             return effectGameEventTypes.includes(this.event.type);
         },
@@ -104,6 +106,7 @@ export default {
                 "raven-marks": ravenMarkSVG,
                 "vile-father-of-wolves-infects": eatenSVG,
                 "player-role-revealed": seenSVG,
+                "no-death-after-votes": voteSVG,
             };
             return effectGameEventTypeImageSource[this.event.type];
         },

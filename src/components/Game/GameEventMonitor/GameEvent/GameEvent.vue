@@ -131,6 +131,12 @@ export default {
                         ...insertIf(this.game.firstWaiting.to === "elect-sheriff", i18n.t("GameEvent.messages.allElectSheriff")),
                     ],
                 },
+                "no-death-after-votes": {
+                    messages: [
+                        i18n.t("GameEvent.messages.noDeathAfterVotes"),
+                        i18n.t("GameEvent.messages.everybodyFallAsleepAlive"),
+                    ],
+                },
                 "sheriff-turn": {
                     messages: [
                         ...insertIf(this.game.firstWaiting.to === "settle-votes", i18n.t("GameEvent.messages.sheriffSettlesVote")),

@@ -46,6 +46,11 @@ class GameHistory {
         const { play } = this;
         return play.source.name === "witch" && play.action === "use-potion" && !!play.targets.find(({ potion }) => potion.death);
     }
+
+    get wasVotePlayWithoutDeath() {
+        const { play, deadPlayers } = this;
+        return play.source.name === "all" && play.action === "vote" && !deadPlayers.length;
+    }
 }
 
 export default GameHistory;

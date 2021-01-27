@@ -5,7 +5,7 @@
                 <PlayerCard :player="game.witchPlayer" size="lg"/>
             </div>
         </div>
-        <div class="row justify-content-center">
+        <div class="row justify-content-center mb-2">
             <PlayFieldActionText id="use-life-potion-play-field-action-text" :play="play" attribute="drank-life-potion" class="col-lg-6"
                                  @player-selected="playerSelected"/>
             <PlayFieldActionText id="use-death-potion-play-field-action-text" :play="play" attribute="drank-death-potion" class="col-lg-6"

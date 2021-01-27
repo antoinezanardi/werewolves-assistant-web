@@ -111,6 +111,9 @@ export default {
                 } else if (lastGameHistoryEntry.play.action === "eat" && lastGameHistoryEntrySourceName === "werewolves" &&
                     !!vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer.isAlive) {
                     this.events.push(new GameEvent({ type: `vile-father-of-wolves-infects`, targets: lastGameHistoryEntry.play.targets }));
+                } else if (this.game.history.length > 1 && lastGameHistoryEntry.wasVotePlayWithoutDeath &&
+                    this.game.history[1].wasVotePlayWithoutDeath) {
+                    this.events.push(new GameEvent({ type: `no-death-after-votes`, targets: this.game.history[1].play.targets }));
                 }
             }
         },
