@@ -307,6 +307,26 @@ class Game {
     get scapegoatTargets() {
         return this.alivePlayers.filter(player => !player.hasAttribute("cant-vote"));
     }
+
+    get lastActionTargets() {
+        if (!this.history.length) {
+            return [];
+        }
+        return this.history[0].play.targets;
+    }
+
+    get lastActionTargetedPlayers() {
+        return this.lastActionTargets.map(({ player }) => player);
+    }
+
+    get isSecondVoteAfterTie() {
+        if (!this.history.length) {
+            return false;
+        }
+        const { play } = this.history[0];
+        return play.source.name === "all" && play.action === "vote" && play.targets.length > 1 &&
+            this.firstWaiting.for === "all" && this.firstWaiting.to === "vote";
+    }
 }
 
 export default Game;

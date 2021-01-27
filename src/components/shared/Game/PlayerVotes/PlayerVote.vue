@@ -4,7 +4,7 @@
         <div class="mb-3 vote-for-text text-center">
             <span class="font-italic" v-html="$t('PlayerVote.voteFor')"/>
         </div>
-        <VSelect :options="targetablePlayers" :placeholder="$t('PlayerVote.none')" :filter="filterByPlayerName"
+        <VSelect :options="targetablePlayersExceptHimself" :placeholder="$t('PlayerVote.none')" :filter="filterByPlayerName"
                  label="name" @input="playerVotes">
             <template #selected-option="{ role, name }">
                 <RoleImage :role="role.current" class="role-image-option mr-2"/>
@@ -42,11 +42,15 @@ export default {
             type: Object,
             required: true,
         },
+        targetablePlayers: {
+            type: Array,
+            required: true,
+        },
     },
     computed: {
         ...mapGetters("game", { game: "game" }),
-        targetablePlayers() {
-            return this.game.alivePlayers.filter(({ name }) => name !== this.player.name);
+        targetablePlayersExceptHimself() {
+            return this.targetablePlayers.filter(({ name }) => name !== this.player.name);
         },
         isNominated() {
             const nominatedPlayers = getNominatedPlayers(this.play.votes, this.game, this.game.firstWaiting.to);

@@ -1,3 +1,5 @@
+import i18n from "@/plugins/vue-i18n";
+
 function incrementPlayerVoteCount(votedPlayers, playerId, game, inc = 1) {
     const votedPlayer = votedPlayers.find(player => player._id === playerId);
     if (votedPlayer) {
@@ -8,7 +10,7 @@ function incrementPlayerVoteCount(votedPlayers, playerId, game, inc = 1) {
     }
 }
 
-export function getNominatedPlayers(votes, game, action) {
+export function getVotedPlayers(votes, game, action) {
     const votedPlayers = [];
     const sheriffPlayer = game.getPlayerWithAttribute("sheriff");
     for (const vote of votes) {
@@ -24,6 +26,11 @@ export function getNominatedPlayers(votes, game, action) {
             incrementPlayerVoteCount(votedPlayers, ravenMarkedPlayer._id, game, 2);
         }
     }
+    return votedPlayers;
+}
+
+export function getNominatedPlayers(votes, game, action) {
+    const votedPlayers = getVotedPlayers(votes, game, action);
     const maxVotes = Math.max(...votedPlayers.map(player => player.vote));
     return votedPlayers.filter(player => player.vote === maxVotes);
 }
@@ -52,4 +59,17 @@ export function maxTargetLengthForPlayerAttribute(attribute) {
 
 export function isPlayerAttributeActive({ activeAt }, game) {
     return !activeAt || activeAt.turn <= game.turn && (!activeAt.phase || activeAt.phase === "night" || game.phase === "day");
+}
+
+export function listPlayerNames(players) {
+    let actionText = "";
+    for (let i = 0; i < players.length; i++) {
+        actionText += players[i].name;
+        if (i + 2 < players.length) {
+            actionText += ",";
+        } else if (i + 2 === players.length) {
+            actionText += ` ${i18n.t("helpers.Player.and")} `;
+        }
+    }
+    return actionText;
 }

@@ -760,6 +760,10 @@
         "selectAll": "Tout sélectionner",
         "selectAllTargets": "Sélectionner toutes les cibles"
     },
+    "VotePlayField": {
+        "onlyCanBeHanged": "Seuls {players} sont éligibles à la pendaison",
+        "everybodyCanBeHanged": "Tout le monde est éligible à la pendaison"
+    },
     "ProtectPlayField": {
         "loadingTargets": "Chargement des cibles du salvateur",
         "cantLoadGuardTargets": "Impossible de charger les cibles du salvateur",
@@ -805,6 +809,7 @@
             "letsSeeWhoIsDead": "Après plusieurs recherches, le village doit se résoudre à annoncer publiquement la triste nouvelle...",
             "noDeathDuringNight": "Le village se réveille, et, à la surprise générale, personne n'est mort pendant la nuit !",
             "allVote": "Les habitants du village vont maintenant voter pour pendre l'un des leurs et espérer débusquer un loup-garou.",
+            "allVoteAgain": "Étant donné qu'il n'y a pas de maire pour départager, le village va devoir voter entre les joueurs à égalité: {players}.",
             "attentionToTheAncient": "Attention, l'ancien est encore en vie et caché parmi les habitants ! S'il est pendu, tous les villageois d'origine n'auront plus de pouvoirs spéciaux.",
             "seerStarts": "La voyante se réveille et va découvrir dans sa boule de cristal le rôle d'un habitant.",
             "followingMessageMustBeMimed": "La phrase suivante devra être mimée à la voyante car cette dernière n'est pas très bavarde...",
@@ -1127,6 +1132,11 @@
             "buttonPrevious": "Précédent",
             "buttonNext": "Suivant",
             "buttonStop": "Terminer "
+        }
+    },
+    "helpers": {
+        "Player": {
+            "and": "et"
         }
     }
 }

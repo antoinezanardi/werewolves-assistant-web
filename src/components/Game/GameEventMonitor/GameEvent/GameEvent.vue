@@ -57,6 +57,7 @@ import { mapGetters } from "vuex";
 import GameEvent from "@/classes/GameEvent";
 import i18n from "@/plugins/vue-i18n";
 import GameEventImage from "@/components/Game/GameEventMonitor/GameEvent/GameEventImage";
+import { listPlayerNames } from "@/helpers/functions/Player";
 import { insertIf } from "@/helpers/functions/Array";
 import { isTouchDevice } from "@/helpers/functions/Device";
 import leftArrowKey from "@/assets/img/game/left-arrow-key.png";
@@ -122,7 +123,9 @@ export default {
                 "night-falls": { messages: [i18n.t("GameEvent.messages.nightFalls"), i18n.t("GameEvent.messages.inhabitantsFallAsleep")] },
                 "all-turn": {
                     messages: [
-                        ...insertIf(this.game.firstWaiting.to === "vote", i18n.t("GameEvent.messages.allVote")),
+                        ...insertIf(this.game.firstWaiting.to === "vote" && !this.game.isSecondVoteAfterTie, i18n.t("GameEvent.messages.allVote")),
+                        ...insertIf(this.game.firstWaiting.to === "vote" && this.game.isSecondVoteAfterTie,
+                            i18n.t("GameEvent.messages.allVoteAgain", { players: listPlayerNames(this.game.lastActionTargetedPlayers) })),
                         ...insertIf(this.game.firstWaiting.to === "vote" && !!ancientPlayer && ancientPlayer.isAlive,
                             i18n.t("GameEvent.messages.attentionToTheAncient")),
                         ...insertIf(this.game.firstWaiting.to === "elect-sheriff", i18n.t("GameEvent.messages.allElectSheriff")),
