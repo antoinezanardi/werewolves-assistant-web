@@ -88,6 +88,7 @@ export default {
                 "all": {
                     "vote": [
                         { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.all.vote.allVoteWhen") },
+                        { header, target: "#targetable-players-text", content: this.$t("GamePlayFieldTutorial.all.vote.targetablePlayerAreHere") },
                         { header, target: ".countdown", content: this.$t("GamePlayFieldTutorial.all.vote.playersHave5Min") },
                         { header, target: "#player-votes", content: this.$t("GamePlayFieldTutorial.all.vote.eachPlayerVote") },
                         ...insertIf(!!scapegoatPlayer && scapegoatPlayer.isAlive, {

@@ -23,8 +23,8 @@
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-lg-8 col-12">
-                <hr class="bg-dark"/>
+            <div class="col-lg-10 col-12">
+                <hr class="bg-dark mt-2 mb-0"/>
             </div>
         </div>
     </div>

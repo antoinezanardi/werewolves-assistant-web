@@ -1,10 +1,6 @@
 <template>
     <div id="vote-play-field">
-        <div class="row">
-            <div class="col-12">
-                <h3 class="text-center" v-html="targetablePlayersText"/>
-            </div>
-        </div>
+        <h5 id="targetable-players-text" class="text-center py-1" v-html="targetablePlayersText"/>
         <hr class="my-2 bg-dark"/>
         <PlayerVotes :play="play" :targetable-players="targetablePlayers" class="h-100" @player-votes="playerVotes"/>
     </div>
@@ -23,6 +19,9 @@ export default {
             type: Object,
             required: true,
         },
+    },
+    data() {
+        return { votesChart: undefined };
     },
     computed: {
         ...mapGetters("game", { game: "game" }),
@@ -47,5 +46,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

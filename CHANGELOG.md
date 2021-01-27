@@ -14,6 +14,7 @@
 * [#110](https://github.com/antoinezanardi/werewolves-assistant-web/issues/110) - Better filter for vue-select.
 * [#112](https://github.com/antoinezanardi/werewolves-assistant-web/issues/112) - Add remaining phases and active in for attributes in sides.
 * [#113](https://github.com/antoinezanardi/werewolves-assistant-web/issues/113) - Add an icon, and a tooltip in player thumbnails in sides.
+* [#114](https://github.com/antoinezanardi/werewolves-assistant-web/issues/114) - Display who can be voted during vote play.
 
 ### 🐛 Bug fixes
 
