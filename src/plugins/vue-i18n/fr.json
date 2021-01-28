@@ -694,6 +694,15 @@
             },
             "wild-child": {
                 "choose-model": "a choisi comme modèle"
+            },
+            "pied-piper": {
+                "charm": "a choisi de charmer"
+            },
+            "charmed": {
+                "meet-each-other": "se sont concertés"
+            },
+            "scapegoat": {
+                "ban-voting": "a interdit de vote pour le jour suivant"
             }
         },
         "skipTurn": "a passé son tour"

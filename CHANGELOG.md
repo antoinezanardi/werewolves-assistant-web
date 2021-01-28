@@ -5,6 +5,7 @@
 ### 🚀 New features
 
 * [#13](https://github.com/antoinezanardi/werewolves-assistant-web/issues/13) - Link CHANGELOG.md on Home page.
+* [#103](https://github.com/antoinezanardi/werewolves-assistant-web/issues/103) - Implement the Scapegoat role.
 
 ### 🌟 Enhancements
 
@@ -45,7 +46,7 @@
 * `eslint-plugin-vue` updated to version `7.5.0`.
 * `qs` updated to version `6.9.6`.
 * `sass-loader` updated to version `10.1.1`.
-* `sweetalert2` updated to version `10.13.3`.
+* `sweetalert2` updated to version `10.14.0`.
 * `v-tooltip` updated to version `2.1.2`.
 * `vue-i18n` updated to version `8.22.4`.
 * `vue-router` updated to version `3.6.2`.

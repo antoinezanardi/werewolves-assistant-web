@@ -50,12 +50,14 @@ import voteSVG from "@/assets/svg/actions/vote.svg";
 import settleVotesSVG from "@/assets/svg/actions/settle-votes.svg";
 import sheriffSVG from "@/assets/svg/attributes/sheriff.svg";
 import chooseSideSVG from "@/assets/svg/actions/choose-side.svg";
-import charmSVG from "@/assets/svg/actions/charm.svg";
+import cupidCharmSVG from "@/assets/svg/actions/charm.svg";
 import inLoveSVG from "@/assets/svg/attributes/in-love.svg";
 import twoSistersSVG from "@/assets/svg/roles/two-sisters.svg";
 import threeBrothersPNG from "@/assets/img/roles/three-brothers.png";
 import worshipedSVG from "@/assets/svg/attributes/worshiped.svg";
 import bigBadWolfSVG from "@/assets/svg/roles/big-bad-wolf.svg";
+import piedPiperCharmSVG from "@/assets/svg/attributes/charmed.svg";
+import cantVoteSVG from "@/assets/svg/attributes/cant-vote.svg";
 import RoleImage from "@/components/shared/Game/Role/RoleImage";
 import RoleText from "@/components/shared/Game/Role/RoleText";
 
@@ -97,12 +99,15 @@ export default {
                     "delegate": sheriffSVG,
                 },
                 "dog-wolf": { "choose-side": chooseSideSVG },
-                "cupid": { charm: charmSVG },
+                "cupid": { charm: cupidCharmSVG },
                 "lovers": { "meet-each-other": inLoveSVG },
                 "two-sisters": { "meet-each-other": twoSistersSVG },
                 "three-brothers": { "meet-each-other": threeBrothersPNG },
                 "wild-child": { "choose-model": worshipedSVG },
                 "big-bad-wolf": { eat: bigBadWolfSVG },
+                "pied-piper": { charm: piedPiperCharmSVG },
+                "charmed": { "meet-each-other": piedPiperCharmSVG },
+                "scapegoat": { "ban-voting": cantVoteSVG },
             };
             return actionImageSource[play.source.name] ? actionImageSource[play.source.name][play.action] : undefined;
         },
