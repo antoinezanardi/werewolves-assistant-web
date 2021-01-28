@@ -7,10 +7,10 @@
             </div>
             <div class="col-md-4 col-12 order-last order-md-1">
                 <transition name="fade" mode="out-in">
-                    <Loading v-if="loadings.getHistory" key="loading" :icon-size="35"/>
+                    <Loading v-if="loading.getHistory" key="loading" :icon-size="35"/>
                     <form v-else key="submit-form" @submit.prevent="submitPlay">
                         <SubmitButton id="play-submit-button" classes="btn btn-primary btn-block btn-lg"
-                                      :loading="loadings.makeAPlay" :disabled="!canSubmitPlay">
+                                      :loading="loading.makeAPlay" :disabled="!canSubmitPlay">
                             <i class="fa fa-play-circle mr-2"/>
                             <span v-html="$t('GamePlayFieldFooter.next')"/>
                         </SubmitButton>
@@ -73,7 +73,7 @@ export default {
     },
     data() {
         return {
-            loadings: {
+            loading: {
                 makeAPlay: false,
                 getHistory: false,
             },
@@ -124,7 +124,7 @@ export default {
             const { vileFatherOfWolvesPlayer } = this.game;
             if (this.game.firstWaiting.for === "werewolves" && !!vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer.isAlive) {
                 try {
-                    this.loadings.getHistory = true;
+                    this.loading.getHistory = true;
                     const queryStrings = { "play-source": "werewolves", "play-action": "eat" };
                     const { data } = await this.$werewolvesAssistantAPI.getGameHistory(this.game._id, queryStrings);
                     const werewolvesActions = data.map(gameHistoryEntry => new GameHistory(gameHistoryEntry));
@@ -133,7 +133,7 @@ export default {
                 } catch (e) {
                     this.$error.display(e);
                 } finally {
-                    this.loadings.getHistory = false;
+                    this.loading.getHistory = false;
                 }
             }
         },
@@ -160,7 +160,7 @@ export default {
         },
         async submitPlay() {
             try {
-                this.loadings.makeAPlay = true;
+                this.loading.makeAPlay = true;
                 const playData = { ...this.play, source: this.game.firstWaiting.for, action: this.game.firstWaiting.to };
                 await this.launchPreSubmitRequest();
                 const { data } = await this.$werewolvesAssistantAPI.makeAPlay(this.game._id, playData);
@@ -168,7 +168,7 @@ export default {
             } catch (e) {
                 this.$error.display(e);
             } finally {
-                this.loadings.makeAPlay = false;
+                this.loading.makeAPlay = false;
             }
         },
     },

@@ -26,6 +26,7 @@
 ### ♻️ Refactoring
 
 * [#95](https://github.com/antoinezanardi/werewolves-assistant-web/issues/95) - Change game options structure.
+* [#101](https://github.com/antoinezanardi/werewolves-assistant-web/issues/101) - Refactor Game History Modal with tabs, source players and more.
 * [#105](https://github.com/antoinezanardi/werewolves-assistant-web/issues/105) - Change `attributes.attribute` to `attributes.name` in Player class.
 
 ### 📦 Packages

@@ -327,6 +327,10 @@ class Game {
         return play.source.name === "all" && play.action === "vote" && play.targets.length > 1 &&
             this.firstWaiting.for === "all" && this.firstWaiting.to === "vote";
     }
+
+    get didAncientTakeHisRevenge() {
+        return !!this.getPlayerWithAttribute("powerless");
+    }
 }
 
 export default Game;

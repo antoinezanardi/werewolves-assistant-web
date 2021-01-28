@@ -23,6 +23,7 @@ import endlessSVG from "@/assets/svg/misc/endless.svg";
 import hourglassSVG from "@/assets/svg/misc/hourglass.svg";
 import chronometerSVG from "@/assets/svg/misc/chronometer.svg";
 import deadSVG from "@/assets/svg/attributes/dead.svg";
+import powerlessSVG from "@/assets/svg/attributes/powerless.svg";
 
 export default {
     name: "PlayerAttribute",
@@ -116,6 +117,12 @@ export default {
                     all: {
                         tooltip: this.$t("PlayerAttribute.attributes.cantVoteByAll"),
                         SVG: cantVoteSVG,
+                    },
+                },
+                "powerless": {
+                    ancient: {
+                        tooltip: this.$t("PlayerAttribute.attributes.powerless"),
+                        SVG: powerlessSVG,
                     },
                 },
             },

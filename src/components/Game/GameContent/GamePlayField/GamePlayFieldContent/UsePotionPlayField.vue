@@ -12,7 +12,7 @@
                                  @player-selected="playerSelected"/>
         </div>
         <transition mode="out-in" name="fade" class="flex-grow-1">
-            <div v-if="loadings.potionUsage" key="loading" class="d-flex flex-grow-1 justify-content-center align-items-center">
+            <div v-if="loading.potionUsage" key="loading" class="d-flex flex-grow-1 justify-content-center align-items-center">
                 <Loading :text="$t('UsePotionPlayField.loadingPotions')"/>
             </div>
             <div v-else-if="!arePotionsLoaded" key="cant-find-potions"
@@ -91,7 +91,7 @@ export default {
     data() {
         return {
             SVGs: { lifePotionSVG, deathPotionSVG },
-            loadings: { potionUsage: false },
+            loading: { potionUsage: false },
             panel: undefined,
             isLifePotionUsed: undefined,
             isDeathPotionUsed: undefined,
@@ -129,7 +129,7 @@ export default {
         },
         async retrievePotionsUsage() {
             try {
-                this.loadings.potionUsage = true;
+                this.loading.potionUsage = true;
                 const queryStrings = { "play-source": "witch", "play-action": "use-potion" };
                 const { data } = await this.$werewolvesAssistantAPI.getGameHistory(this.game._id, queryStrings);
                 const witchActions = data.map(gameHistoryEntry => new GameHistory(gameHistoryEntry));
@@ -138,7 +138,7 @@ export default {
             } catch (e) {
                 this.$error.display(e);
             } finally {
-                this.loadings.potionUsage = false;
+                this.loading.potionUsage = false;
             }
         },
         openLifePotionPanel() {

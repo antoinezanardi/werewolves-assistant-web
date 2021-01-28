@@ -3,7 +3,7 @@
         <div id="game-winners-content" class="visible-scrollbar">
             <div class="d-flex flex-column h-100 container-fluid">
                 <div class="d-flex flex-column justify-content-center flex-grow-1">
-                    <div class="row mt-2">
+                    <div class="row mt-3">
                         <div class="col-12 text-center">
                             <GameResult/>
                         </div>

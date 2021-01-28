@@ -7,7 +7,7 @@
         </div>
         <PlayFieldActionText :play="play" attribute="protected" @player-selected="playerSelected"/>
         <transition mode="out-in" name="fade" class="flex-grow-1">
-            <div v-if="loadings.lastProtectEntry" key="loading" class="d-flex flex-grow-1 justify-content-center align-items-center">
+            <div v-if="loading.lastProtectEntry" key="loading" class="d-flex flex-grow-1 justify-content-center align-items-center">
                 <Loading :text="$t('ProtectPlayField.loadingTargets')"/>
             </div>
             <div v-else-if="!protectablePlayers" key="cant-load-targets"
@@ -45,7 +45,7 @@ export default {
     },
     data() {
         return {
-            loadings: { lastProtectEntry: false },
+            loading: { lastProtectEntry: false },
             protectablePlayers: undefined,
         };
     },
@@ -56,7 +56,7 @@ export default {
     methods: {
         async retrieveProtectablePlayers() {
             try {
-                this.loadings.lastProtectEntry = true;
+                this.loading.lastProtectEntry = true;
                 const queryStrings = { "play-source": "guard", "play-action": "protect" };
                 const { data } = await this.$werewolvesAssistantAPI.getGameHistory(this.game._id, queryStrings);
                 const guardActions = data.map(gameHistoryEntry => new GameHistory(gameHistoryEntry));
@@ -69,7 +69,7 @@ export default {
             } catch (e) {
                 this.$error.display(e);
             } finally {
-                this.loadings.lastProtectEntry = false;
+                this.loading.lastProtectEntry = false;
             }
         },
         playerSelected(payload) {

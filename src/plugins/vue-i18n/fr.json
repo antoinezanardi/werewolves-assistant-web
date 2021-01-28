@@ -537,7 +537,8 @@
             "worshiped": "Ce joueur est le modèle de l'enfant sauvage",
             "charmed": "Ce joueur a été charmé par le joueur de flûte",
             "cantVoteByScapegoat": "Ce joueur est interdit de vote par le bouc-émissaire",
-            "cantVoteByAll": "Ce joueur est interdit de vote par le village"
+            "cantVoteByAll": "Ce joueur est interdit de vote par le village",
+            "powerless": "Ce joueur n'a plus de pouvoir à cause de la vengeance de l'ancien"
         },
         "remainingPhases": "Plus qu'une phase (jour ou nuit) pour que l'effet disparaisse | Il reste {remainingPhases} phases (jour ou nuit) avant que l'effet ne disparaisse",
         "endlessAttribute": "Cet effet restera jusqu'à la fin de la partie ou la mort du joueur",
@@ -613,7 +614,8 @@
         "gameHistory": "Historique de la partie",
         "villagers": "Villageois",
         "werewolves": "Loups-Garous",
-        "close": "Fermer"
+        "close": "Fermer",
+        "loadingGameHistory": "Chargement de l'historique de la partie"
     },
     "GameReviewButton": {
         "rateThisGame": "Noter votre expérience"
@@ -801,6 +803,7 @@
             "playerDies": "{player} est mort ! Quelle tragédie...",
             "playerRevealsRole": "Il ou elle révèle son rôle aux survivants.",
             "noIdiotSheriffAnymore": "Étant donné que le maire était en réalité l'idiot, il ne délèguera pas sa fonction. Quel idiot !",
+            "ancientTakesHisRevenge": "L'ancien est mort par l'un des villageois ...! Sa vengeance sera terrible : tous les villageois d'origine perdent leurs pouvoirs pour le reste de la partie.",
             "playerHasBeenPromotedSheriff": "{player} a été élu maire !",
             "sheriffCanMakeASpeech": "Le maire peut, s'il le souhaite, faire un discours poignant sur son élection.",
             "nightFalls": "La nuit tombe sur le village de Thiercelieux...",

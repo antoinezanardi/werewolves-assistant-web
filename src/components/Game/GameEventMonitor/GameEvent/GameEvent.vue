@@ -85,7 +85,7 @@ export default {
         }),
         // eslint-disable-next-line max-lines-per-function
         gameEventMetadata() {
-            const { ancientPlayer } = this.game;
+            const { ancientPlayer, didAncientTakeHisRevenge } = this.game;
             const gameEventFirstTarget = this.hasGameEventTargets ? this.event.targets[0] : null;
             const gameEventTargetName = this.hasGameEventTargets ? gameEventFirstTarget.player.name : null;
             const gameEventTargetRole = this.hasGameEventTargets ? gameEventFirstTarget.player.role.current : null;
@@ -106,6 +106,8 @@ export default {
                         i18n.t("GameEvent.messages.playerRevealsRole"),
                         ...insertIf(gameEventTargetRole === "idiot" && gameEventFirstTarget.player.hasAttribute("sheriff"),
                             i18n.t("GameEvent.messages.noIdiotSheriffAnymore")),
+                        ...insertIf(gameEventTargetRole === "ancient" && didAncientTakeHisRevenge,
+                            i18n.t("GameEvent.messages.ancientTakesHisRevenge")),
                     ],
                 },
                 "player-role-revealed": {

@@ -8,8 +8,16 @@
             <img width="45" alt="Icon" :src="actionImageSource"/>
         </td>
         <td class="col-3 d-flex flex-column align-items-center justify-content-center">
-            <RoleImage width="30" :role="gameHistoryEntry.play.source"/>
-            <RoleText class="text-center" :role="gameHistoryEntry.play.source" prefix="the"/>
+            <div v-if="gameHistoryEntry.play.source.name === 'all'" class="d-flex flex-column align-items-center justify-content-center my-1">
+                <RoleImage width="30" :role="gameHistoryEntry.play.source.name"/>
+                <RoleText class="text-center small cursor-text" :role="gameHistoryEntry.play.source.name"/>
+            </div>
+            <div v-for="source of gameHistoryEntry.play.source.players" v-else :key="source._id"
+                 class="d-flex flex-column align-items-center justify-content-center my-1">
+                <RoleImage width="30" :role="source.role.current"/>
+                <div class="text-truncate" v-html="source.name"/>
+                <RoleText class="text-center small cursor-text" :role="source.role.current"/>
+            </div>
         </td>
         <td class="col-4 col-md-3 d-flex flex-column align-items-center justify-content-center">
             <i class="fa fa-2x" :class="actionIconClass"/>
@@ -18,13 +26,13 @@
         <td class="col-3 d-flex flex-column align-items-center justify-content-center">
             <div v-if="gameHistoryEntry.play.side" class="d-flex flex-column align-items-center justify-content-center my-1">
                 <RoleImage width="30" :role="gameHistoryEntry.play.side"/>
-                <RoleText class="text-center small" :role="gameHistoryEntry.play.side"/>
+                <RoleText class="text-center small cursor-text" :role="gameHistoryEntry.play.side"/>
             </div>
             <div v-for="target of gameHistoryEntry.play.targets" v-else :key="target.player._id"
                  class="d-flex flex-column align-items-center justify-content-center my-1">
                 <RoleImage width="30" :role="target.player.role.current"/>
                 <div class="text-truncate" v-html="target.player.name"/>
-                <RoleText class="text-center small" :role="target.player.role.current"/>
+                <RoleText class="text-center small cursor-text" :role="target.player.role.current"/>
             </div>
         </td>
     </tr>
@@ -96,12 +104,12 @@ export default {
                 "wild-child": { "choose-model": worshipedSVG },
                 "big-bad-wolf": { eat: bigBadWolfSVG },
             };
-            return actionImageSource[play.source] ? actionImageSource[play.source][play.action] : undefined;
+            return actionImageSource[play.source.name] ? actionImageSource[play.source.name][play.action] : undefined;
         },
         actionIconClass() {
             const { targets, votes, side, action, source } = this.gameHistoryEntry.play;
             if (action === "meet-each-other") {
-                return source === "lovers" ? "fa-grin-hearts" : "fa-comments";
+                return source.name === "lovers" ? "fa-grin-hearts" : "fa-comments";
             } else if (targets && targets.length || votes && votes.length || side) {
                 return "fa-arrow-right";
             }
@@ -119,7 +127,7 @@ export default {
                 }
                 return this.$t(`GameSummaryHistoryLine.actions.witch.use-potion.death`);
             }
-            return this.$t(`GameSummaryHistoryLine.actions.${source}.${action}`);
+            return this.$t(`GameSummaryHistoryLine.actions.${source.name}.${action}`);
         },
     },
 };
