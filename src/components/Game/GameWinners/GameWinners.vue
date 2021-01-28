@@ -31,7 +31,7 @@
                         <span v-html="$t('GameWinners.restartGame')"/>
                     </button>
                 </div>
-                <div class="col-md-4 mt-2 mt-md-0">
+                <div class="col-md-4 d-md-flex d-none">
                     <router-link class="btn btn-secondary btn-block" to="/">
                         <i class="fa fa-sign-out-alt mr-2"/>
                         <span v-html="$t('GameWinners.quit')"/>

@@ -74,11 +74,16 @@
                                         <div class="col-12">
                                             <table class="table table-hover w-100">
                                                 <tbody>
-                                                    <GameSummaryHistoryLine v-for="gameHistoryEntry in gameHistory"
-                                                                            :key="gameHistoryEntry._id"
-                                                                            :game-history-entry="gameHistoryEntry"/>
+                                                    <template v-for="(gameHistoryEntry, index) in gameHistory">
+                                                        <GameSummaryHistoryPhaseLine :key="`new-phase-${gameHistoryEntry._id}`"
+                                                                                     :game-history="gameHistory"
+                                                                                     :index="index"/>
+                                                        <GameSummaryHistoryPlayLine :key="`play-${gameHistoryEntry._id}`"
+                                                                                    :game-history-entry="gameHistoryEntry"/>
+                                                    </template>
                                                 </tbody>
                                             </table>
+                                            <h4 class="text-center" v-html="`~  ${$t('GameSummaryModal.endOfGame')} ~`"/>
                                         </div>
                                     </div>
                                 </div>
@@ -98,18 +103,19 @@
 <script>
 import { mapGetters } from "vuex";
 import $ from "jquery";
-import GameSummaryHistoryLine from "@/components/shared/Game/GameSummary/GameSummaryModal/GameSummaryHistoryLine";
+import GameSummaryHistoryPlayLine from "@/components/shared/Game/GameSummary/GameSummaryModal/GameSummaryHistoryPlayLine";
 import AliveVillagers from "@/components/shared/Game/Sides/AliveVillagers";
 import AliveWerewolves from "@/components/shared/Game/Sides/AliveWerewolves";
 import trophy from "@/assets/svg/game/trophy.svg";
 import dead from "@/assets/svg/attributes/dead.svg";
 import GameResult from "@/components/shared/Game/GameResult/GameResult";
 import Loading from "@/components/shared/Loading";
+import GameSummaryHistoryPhaseLine from "@/components/shared/Game/GameSummary/GameSummaryModal/GameSummaryHistoryPhaseLine";
 import GameHistory from "@/classes/GameHistory";
 
 export default {
     name: "GameSummaryModal",
-    components: { Loading, GameResult, AliveWerewolves, AliveVillagers, GameSummaryHistoryLine },
+    components: { GameSummaryHistoryPhaseLine, Loading, GameResult, AliveWerewolves, AliveVillagers, GameSummaryHistoryPlayLine },
     data() {
         return {
             SVGs: { trophy, dead },
@@ -155,6 +161,7 @@ export default {
             min-height: calc(85vh - 150px);
             max-height: calc(85vh - 150px);
             overflow-y: auto;
+            overflow-x: hidden;
         }
     }
 

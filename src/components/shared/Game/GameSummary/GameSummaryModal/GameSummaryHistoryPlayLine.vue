@@ -1,21 +1,17 @@
 <template>
     <tr id="game-summary-history-line" class="row">
-        <td class="col-2 d-flex flex-column justify-content-center align-items-center">
-            <i class="fa" :class="phaseClasses"/>
-            <div class="text-center" v-html="phaseText"/>
-        </td>
         <td class="col-md-1 d-none d-md-flex align-items-center justify-content-center">
             <img width="45" alt="Icon" :src="actionImageSource"/>
         </td>
-        <td class="col-3 d-flex flex-column align-items-center justify-content-center">
+        <td class="col-4 d-flex flex-column align-items-center justify-content-center">
             <div v-if="gameHistoryEntry.play.source.name === 'all'" class="d-flex flex-column align-items-center justify-content-center my-1">
                 <RoleImage width="30" :role="gameHistoryEntry.play.source.name"/>
                 <RoleText class="text-center small cursor-text" :role="gameHistoryEntry.play.source.name"/>
             </div>
-            <div v-for="source of gameHistoryEntry.play.source.players" v-else :key="source._id"
+            <div v-for="source of actionSource.players" v-else :key="source._id"
                  class="d-flex flex-column align-items-center justify-content-center my-1">
                 <RoleImage width="30" :role="source.role.current"/>
-                <div class="text-truncate" v-html="source.name"/>
+                <div class="text-center" v-html="source.name"/>
                 <RoleText class="text-center small cursor-text" :role="source.role.current"/>
             </div>
         </td>
@@ -23,7 +19,7 @@
             <i class="fa fa-2x" :class="actionIconClass"/>
             <div class="text-center" v-html="actionText"/>
         </td>
-        <td class="col-3 d-flex flex-column align-items-center justify-content-center">
+        <td class="col-4 d-flex flex-column align-items-center justify-content-center">
             <div v-if="gameHistoryEntry.play.side" class="d-flex flex-column align-items-center justify-content-center my-1">
                 <RoleImage width="30" :role="gameHistoryEntry.play.side"/>
                 <RoleText class="text-center small cursor-text" :role="gameHistoryEntry.play.side"/>
@@ -31,7 +27,7 @@
             <div v-for="target of gameHistoryEntry.play.targets" v-else :key="target.player._id"
                  class="d-flex flex-column align-items-center justify-content-center my-1">
                 <RoleImage width="30" :role="target.player.role.current"/>
-                <div class="text-truncate" v-html="target.player.name"/>
+                <div class="text-center" v-html="target.player.name"/>
                 <RoleText class="text-center small cursor-text" :role="target.player.role.current"/>
             </div>
         </td>
@@ -39,6 +35,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import GameHistory from "@/classes/GameHistory";
 import eatenSVG from "@/assets/svg/attributes/eaten.svg";
 import deathPotionSVG from "@/assets/svg/attributes/drank-death-potion.svg";
@@ -62,7 +59,7 @@ import RoleImage from "@/components/shared/Game/Role/RoleImage";
 import RoleText from "@/components/shared/Game/Role/RoleText";
 
 export default {
-    name: "GameSummaryHistoryLine",
+    name: "GameSummaryHistoryPlayLine",
     components: { RoleText, RoleImage },
     props: {
         gameHistoryEntry: {
@@ -71,16 +68,7 @@ export default {
         },
     },
     computed: {
-        phaseClasses() {
-            return this.gameHistoryEntry.phase === "day" ? "fa-sun sun-color" : "fa-moon moon-color";
-        },
-        phaseText() {
-            const { phase, turn } = this.gameHistoryEntry;
-            if (phase === "day") {
-                return `${this.$t("GameSummaryHistoryLine.day")} ${turn}`;
-            }
-            return `${this.$t("GameSummaryHistoryLine.night")} ${turn}`;
-        },
+        ...mapGetters("game", { game: "game" }),
         actionImageSource() {
             const { play } = this.gameHistoryEntry;
             const actionImageSource = {
@@ -123,16 +111,28 @@ export default {
         actionText() {
             const { targets, votes, side, action, source } = this.gameHistoryEntry.play;
             if (action !== "meet-each-other" && (!targets || !targets.length) && (!votes || !votes.length) && !side) {
-                return this.$t(`GameSummaryHistoryLine.skipTurn`);
-            } else if (this.gameHistoryEntry.play.action === "use-potion") {
+                return this.$t(`GameSummaryHistoryPlayLine.skipTurn`);
+            } else if (action === "use-potion") {
                 if (targets.length === 2) {
-                    return this.$t(`GameSummaryHistoryLine.actions.witch.use-potion.both`);
+                    return this.$t(`GameSummaryHistoryPlayLine.actions.witch.use-potion.both`);
                 } else if (targets[0].potion.life) {
-                    return this.$t(`GameSummaryHistoryLine.actions.witch.use-potion.life`);
+                    return this.$t(`GameSummaryHistoryPlayLine.actions.witch.use-potion.life`);
                 }
-                return this.$t(`GameSummaryHistoryLine.actions.witch.use-potion.death`);
+                return this.$t(`GameSummaryHistoryPlayLine.actions.witch.use-potion.death`);
+            } else if (action === "eat" && targets[0].isInfected) {
+                return this.$t(`GameSummaryHistoryPlayLine.actions.vile-father-of-wolves.infect`);
             }
-            return this.$t(`GameSummaryHistoryLine.actions.${source.name}.${action}`);
+            return this.$t(`GameSummaryHistoryPlayLine.actions.${source.name}.${action}`);
+        },
+        actionSource() {
+            const { action, source, targets } = this.gameHistoryEntry.play;
+            if (action === "eat" && targets[0].isInfected) {
+                return {
+                    name: "vile-father-of-wolves",
+                    players: [this.game.vileFatherOfWolvesPlayer],
+                };
+            }
+            return source;
         },
     },
 };

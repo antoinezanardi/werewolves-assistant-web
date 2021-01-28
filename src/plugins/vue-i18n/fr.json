@@ -615,7 +615,8 @@
         "villagers": "Villageois",
         "werewolves": "Loups-Garous",
         "close": "Fermer",
-        "loadingGameHistory": "Chargement de l'historique de la partie"
+        "loadingGameHistory": "Chargement de l'historique de la partie",
+        "endOfGame": "Fin de la partie"
     },
     "GameReviewButton": {
         "rateThisGame": "Noter votre expérience"
@@ -640,7 +641,7 @@
         "youMustRateFirst": "Vous devez attribuer une note d'abord",
         "close": "Fermer"
     },
-    "GameSummaryHistoryLine": {
+    "GameSummaryHistoryPlayLine": {
         "day": "Jour",
         "night": "Nuit",
         "actions": {
@@ -649,6 +650,9 @@
             },
             "big-bad-wolf": {
                 "eat": "a décidé de manger"
+            },
+            "vile-father-of-wolves": {
+                "infect": "a décidé d'infecter"
             },
             "witch": {
                 "use-potion": {
