@@ -1,14 +1,14 @@
 <template>
     <tr class="row">
-        <td :key="`dead-icon-${deadPlayer._id}`" class="col-1 d-flex align-items-center justify-content-center">
+        <td class="col-1 d-flex align-items-center justify-content-center">
             <img width="45" alt="Death Icon" :src="SVGs.dead"/>
         </td>
-        <td :key="`dead-player-${deadPlayer._id}`" class="col-4 d-flex flex-column justify-content-center align-items-center">
+        <td class="col-4 d-flex flex-column justify-content-center align-items-center">
             <RoleImage width="30" :role="deadPlayer.role.current"/>
             <div class="text-center" v-html="deadPlayer.name"/>
             <RoleText class="text-center small cursor-text" :role="deadPlayer.role.current"/>
         </td>
-        <td :key="`dead-text-${deadPlayer._id}`" class="col-7 d-flex flex-column align-items-center justify-content-center">
+        <td class="col-7 d-flex flex-column align-items-center justify-content-center">
             <img width="30" alt="Death Icon" :src="deathIcon"/>
             <span v-html="deathText"/>
         </td>

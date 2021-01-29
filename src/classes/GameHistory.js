@@ -51,6 +51,10 @@ class GameHistory {
         const { play, deadPlayers } = this;
         return play.source.name === "all" && play.action === "vote" && !deadPlayers.length;
     }
+
+    get revealedAlivePlayers() {
+        return this.revealedPlayers.filter(({ _id }) => !this.deadPlayers.find(deadPlayer => deadPlayer._id === _id));
+    }
 }
 
 export default GameHistory;

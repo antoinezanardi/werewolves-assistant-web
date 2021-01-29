@@ -80,6 +80,10 @@
                                                                                      :index="index"/>
                                                         <GameSummaryHistoryPlayLine :key="`play-${gameHistoryEntry._id}`"
                                                                                     :game-history-entry="gameHistoryEntry"/>
+                                                        <GameSummaryHistoryRevealedPlayerLine v-for="revealedPlayer of
+                                                                                                  gameHistoryEntry.revealedAlivePlayers"
+                                                                                              :key="`revealed-${revealedPlayer._id}`"
+                                                                                              :revealed-player="revealedPlayer"/>
                                                         <GameSummaryHistoryDeadPlayerLine v-for="deadPlayer of gameHistoryEntry.deadPlayers"
                                                                                           :key="`death-${deadPlayer._id}`"
                                                                                           :dead-player="deadPlayer"/>
@@ -117,10 +121,13 @@ import GameSummaryHistoryPhaseLine from "@/components/shared/Game/GameSummary/Ga
 import GameHistory from "@/classes/GameHistory";
 import GameSummaryHistoryDeadPlayerLine
     from "@/components/shared/Game/GameSummary/GameSummaryModal/GameSummaryHistoryDeadPlayerLine";
+import GameSummaryHistoryRevealedPlayerLine
+    from "@/components/shared/Game/GameSummary/GameSummaryModal/GameSummaryHistoryRevealedPlayerLine";
 
 export default {
     name: "GameSummaryModal",
     components: {
+        GameSummaryHistoryRevealedPlayerLine,
         GameSummaryHistoryDeadPlayerLine, GameSummaryHistoryPhaseLine,
         Loading, GameResult, AliveWerewolves, AliveVillagers, GameSummaryHistoryPlayLine,
     },
