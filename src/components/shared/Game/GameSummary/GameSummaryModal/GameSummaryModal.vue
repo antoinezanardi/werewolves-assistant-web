@@ -80,6 +80,9 @@
                                                                                      :index="index"/>
                                                         <GameSummaryHistoryPlayLine :key="`play-${gameHistoryEntry._id}`"
                                                                                     :game-history-entry="gameHistoryEntry"/>
+                                                        <GameSummaryHistoryDeadPlayerLine v-for="deadPlayer of gameHistoryEntry.deadPlayers"
+                                                                                          :key="`death-${deadPlayer._id}`"
+                                                                                          :dead-player="deadPlayer"/>
                                                     </template>
                                                 </tbody>
                                             </table>
@@ -112,10 +115,15 @@ import GameResult from "@/components/shared/Game/GameResult/GameResult";
 import Loading from "@/components/shared/Loading";
 import GameSummaryHistoryPhaseLine from "@/components/shared/Game/GameSummary/GameSummaryModal/GameSummaryHistoryPhaseLine";
 import GameHistory from "@/classes/GameHistory";
+import GameSummaryHistoryDeadPlayerLine
+    from "@/components/shared/Game/GameSummary/GameSummaryModal/GameSummaryHistoryDeadPlayerLine";
 
 export default {
     name: "GameSummaryModal",
-    components: { GameSummaryHistoryPhaseLine, Loading, GameResult, AliveWerewolves, AliveVillagers, GameSummaryHistoryPlayLine },
+    components: {
+        GameSummaryHistoryDeadPlayerLine, GameSummaryHistoryPhaseLine,
+        Loading, GameResult, AliveWerewolves, AliveVillagers, GameSummaryHistoryPlayLine,
+    },
     data() {
         return {
             SVGs: { trophy, dead },

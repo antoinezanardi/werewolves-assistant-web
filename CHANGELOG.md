@@ -5,6 +5,7 @@
 ### 🚀 New features
 
 * [#13](https://github.com/antoinezanardi/werewolves-assistant-web/issues/13) - Link CHANGELOG.md on Home page.
+* [#94](https://github.com/antoinezanardi/werewolves-assistant-web/issues/94) - Display dead players.
 * [#96](https://github.com/antoinezanardi/werewolves-assistant-web/issues/96) - Implement the Vile Father Of Wolves role.
 * [#100](https://github.com/antoinezanardi/werewolves-assistant-web/issues/100) - Implement the Ancient role.
 * [#103](https://github.com/antoinezanardi/werewolves-assistant-web/issues/103) - Implement the Scapegoat role.
@@ -35,8 +36,8 @@
 ### 📦 Packages
 
 * `fuse.js` installed with version `6.4.6`.
-* `@sentry/browser` updated to version `6.0.2`.
-* `@sentry/integrations` updated to version `6.0.2`.
+* `@sentry/browser` updated to version `6.0.3`.
+* `@sentry/integrations` updated to version `6.0.3`.
 * `@vue/cli-plugin-e2e-cypress` updated to version `4.5.11`.
 * `@vue/cli-plugin-eslint` updated to version `4.5.11`.
 * `@vue/cli-plugin-router` updated to version `4.5.11`.

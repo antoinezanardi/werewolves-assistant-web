@@ -711,6 +711,31 @@
         },
         "skipTurn": "a passé son tour"
     },
+    "GameSummaryHistoryDeadPlayerLine": {
+        "murder": {
+            "all": {
+                "vote": "a été pendu sur la place publique après le vote du village."
+            },
+            "werewolves": {
+                "eat": "a été dévoré par les loups-garous."
+            },
+            "big-bad-wolf": {
+                "eat": "a été dévoré par le grand-méchant-loup."
+            },
+            "witch": {
+                "use-potion": "a été empoisonné par la potion de mort de la sorcière."
+            },
+            "hunter": {
+                "shoot": "s'est prit une balle dans la tête de la part du chasseur."
+            },
+            "cupid": {
+                "charm": "est mort d'un chagrin d'amour inconsolable."
+            },
+            "sheriff": {
+                "settle-votes": "a été pendu sur la place publique sur la décision arbitraire du maire."
+            }
+        }
+    },
     "PlayFieldActionText": {
         "and": "et",
         "seer": {
