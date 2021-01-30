@@ -76,7 +76,7 @@ export default {
                 } else if (this.player.isRoleRevealed) {
                     content += `<hr class="bg-dark my-1"/><div>${this.$t("PlayerThumbnail.thisPlayerRoleIsRevealed")}</div>`;
                 }
-                return { content, boundariesElement: ".player-strip" };
+                return { content };
             }
             return this.$t("PlayerThumbnail.chooseRole");
         },

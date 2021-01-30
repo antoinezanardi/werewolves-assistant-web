@@ -5,6 +5,13 @@
             <span class="d-none d-md-inline-block" v-html="$t('NavBar.werewolvesAssistant')"/>
         </a>
         <div class="navbar-nav d-flex w-100 justify-content-end">
+            <transition mode="out-in" name="fade">
+                <div v-if="game.isCreated" class="nav-item d-md-none d-sm-block">
+                    <a class="nav-link" href="#" role="button" aria-haspopup="true" @click.prevent="showGameSidesModal">
+                        <i class="fa fa-chess mr-2"/>
+                    </a>
+                </div>
+            </transition>
             <div id="nav-bar-options" class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true">
                     <i class="fa fa-cog mr-2"/>
@@ -28,6 +35,7 @@
             </div>
         </div>
         <GameOptionsModal ref="gameOptionsModal"/>
+        <GameSidesModal v-if="game.isCreated" ref="gameSidesModal"/>
     </nav>
 </template>
 
@@ -35,10 +43,11 @@
 import Swal from "sweetalert2";
 import { mapActions, mapGetters } from "vuex";
 import GameOptionsModal from "@/components/NavBar/GameOptionsModal/GameOptionsModal";
+import GameSidesModal from "@/components/NavBar/GameSidesModal/GameSidesModal";
 
 export default {
     name: "NavBar",
-    components: { GameOptionsModal },
+    components: { GameSidesModal, GameOptionsModal },
     computed: { ...mapGetters("game", { game: "game" }) },
     methods: {
         ...mapActions("game", { setGame: "setGame" }),
@@ -70,6 +79,9 @@ export default {
         },
         showGameOptionsModal() {
             this.$refs.gameOptionsModal.show();
+        },
+        showGameSidesModal() {
+            this.$refs.gameSidesModal.show();
         },
     },
 };

@@ -24,8 +24,8 @@
 import { mapActions, mapGetters } from "vuex";
 import Swal from "sweetalert2";
 import Loading from "@/components/shared/Loading";
-import GameVillagersSide from "./GameVillagersSide/GameVillagersSide";
-import GameWerewolvesSide from "./GameWerewolvesSide/GameWerewolvesSide";
+import GameVillagersSide from "../shared/Game/Sides/GameVillagersSide/GameVillagersSide";
+import GameWerewolvesSide from "../shared/Game/Sides/GameWerewolvesSide/GameWerewolvesSide";
 import GameContent from "./GameContent/GameContent";
 import GameWinners from "./GameWinners/GameWinners";
 import { isAPIError } from "@/helpers/functions/Error";

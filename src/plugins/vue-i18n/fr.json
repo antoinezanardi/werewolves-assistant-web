@@ -50,6 +50,12 @@
             "description": "Les Trois Frères ne se réveillent que la première nuit. | Les Trois Frères se réveillent toutes les nuits. | Les Trois Frères se réveillent toutes les {brothersWakingUpInterval} nuits."
         }
     },
+    "GameSidesModal": {
+        "gameSides": "Camps de la partie",
+        "villagersSide": "Camp des villageois",
+        "werewolvesSide": "Camp des loups-garous",
+        "close": "Fermer"
+    },
     "Home": {
         "werewolvesAssistant": "Assistant Loups-Garous",
         "play": "Jouer",

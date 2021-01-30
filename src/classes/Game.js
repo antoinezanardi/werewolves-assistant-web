@@ -43,6 +43,10 @@ class Game {
         };
     }
 
+    get isCreated() {
+        return !!this._id;
+    }
+
     get alivePlayers() {
         return this.players.filter(player => player.isAlive);
     }
@@ -109,7 +113,7 @@ class Game {
     }
 
     get canUpdateOptions() {
-        return !this._id;
+        return !this.isCreated;
     }
 
     get firstWaiting() {

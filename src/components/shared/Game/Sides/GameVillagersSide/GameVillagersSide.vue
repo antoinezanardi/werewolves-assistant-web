@@ -29,8 +29,8 @@
 
 <script>
 import { mapGetters } from "vuex";
-import PlayerThumbnail from "../../shared/Game/PlayerThumbnail";
-import PlayerAttribute from "../../shared/Game/PlayerAttribute/PlayerAttribute";
+import PlayerThumbnail from "../../PlayerThumbnail";
+import PlayerAttribute from "../../PlayerAttribute/PlayerAttribute";
 import AliveVillagers from "@/components/shared/Game/Sides/AliveVillagers";
 
 export default {

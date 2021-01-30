@@ -10,7 +10,7 @@
                         </span>
                     </button>
                 </div>
-                <div class="modal-body d-flex flex-column h-100 visible-scrollbar">
+                <div class="modal-body h-100 visible-scrollbar">
                     <ul id="game-summary-modal-tabs" class="nav nav-pills nav-fill">
                         <li id="game-results-tab" class="nav-item" @click="openGameResultsPanel">
                             <a class="nav-link" :class="{ active: panel === 'game-results' }" href="#">

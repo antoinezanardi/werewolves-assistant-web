@@ -1,6 +1,6 @@
 <template>
     <tr id="game-summary-history-line" class="row">
-        <td class="col-md-1 d-none d-md-flex align-items-center justify-content-center">
+        <td class="col-lg-1 d-none d-lg-flex align-items-center justify-content-center">
             <img width="45" alt="Icon" :src="actionImageSource"/>
         </td>
         <td class="col-4 d-flex flex-column align-items-center justify-content-center">
@@ -15,7 +15,7 @@
                 <RoleText class="text-center small cursor-text" :role="source.role.current"/>
             </div>
         </td>
-        <td class="col-4 col-md-3 d-flex flex-column align-items-center justify-content-center">
+        <td class="col-4 col-lg-3 d-flex flex-column align-items-center justify-content-center">
             <i class="fa fa-2x" :class="actionIconClass"/>
             <div class="text-center" v-html="actionText"/>
         </td>

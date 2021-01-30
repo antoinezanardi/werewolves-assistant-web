@@ -1,16 +1,16 @@
 <template>
     <tr class="row">
-        <td class="col-1 d-flex align-items-center justify-content-center">
+        <td class="d-none d-lg-flex col-lg-1 align-items-center justify-content-center">
             <img width="45" alt="Death Icon" :src="SVGs.dead"/>
         </td>
-        <td class="col-4 d-flex flex-column justify-content-center align-items-center">
+        <td class="col-6 col-lg-4 d-flex flex-column justify-content-center align-items-center">
             <RoleImage width="30" :role="deadPlayer.role.current"/>
             <div class="text-center" v-html="deadPlayer.name"/>
             <RoleText class="text-center small cursor-text" :role="deadPlayer.role.current"/>
         </td>
-        <td class="col-7 d-flex flex-column align-items-center justify-content-center">
+        <td class="col-6 col-lg-7 d-flex flex-column align-items-center justify-content-center">
             <img width="30" alt="Death Icon" :src="deathIcon"/>
-            <span v-html="deathText"/>
+            <span class="text-center" v-html="deathText"/>
         </td>
     </tr>
 </template>

@@ -11,6 +11,7 @@
 * [#100](https://github.com/antoinezanardi/werewolves-assistant-web/issues/100) - Implement the Ancient role.
 * [#103](https://github.com/antoinezanardi/werewolves-assistant-web/issues/103) - Implement the Scapegoat role.
 * [#104](https://github.com/antoinezanardi/werewolves-assistant-web/issues/104) - Implement the Idiot role.
+* [#111](https://github.com/antoinezanardi/werewolves-assistant-web/issues/111) - Add game sides in modal for smaller screens.
 
 ### 🌟 Enhancements
 
