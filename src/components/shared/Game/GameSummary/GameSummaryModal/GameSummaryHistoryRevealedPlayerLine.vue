@@ -8,6 +8,9 @@
             <div class="text-center" v-html="revealedPlayer.name"/>
             <RoleText class="text-center small cursor-text" :role="revealedPlayer.role.current"/>
         </td>
+        <td class="col-7 d-flex justify-content-center align-items-center">
+            <span v-html="revealedText"/>
+        </td>
     </tr>
 </template>
 
@@ -30,7 +33,12 @@ export default {
     data() {
         return { SVGs: { seen } };
     },
-    computed: { ...mapGetters("game", { game: "game" }) },
+    computed: {
+        ...mapGetters("game", { game: "game" }),
+        revealedText() {
+            return this.$t("GameSummaryHistoryRevealedPlayerLine.idiotRoleIsRevealed");
+        },
+    },
 };
 </script>
 

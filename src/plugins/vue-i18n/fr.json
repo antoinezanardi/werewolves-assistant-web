@@ -711,6 +711,9 @@
         },
         "skipTurn": "a passé son tour"
     },
+    "GameSummaryHistoryRevealedPlayerLine": {
+        "idiotRoleIsRevealed": "n'a pas été pendu mais a dû révéler son rôle et a perdu son droit de vote."
+    },
     "GameSummaryHistoryDeadPlayerLine": {
         "murder": {
             "all": {

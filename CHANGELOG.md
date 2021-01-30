@@ -7,6 +7,7 @@
 * [#13](https://github.com/antoinezanardi/werewolves-assistant-web/issues/13) - Link CHANGELOG.md on Home page.
 * [#94](https://github.com/antoinezanardi/werewolves-assistant-web/issues/94) - Display dead players.
 * [#96](https://github.com/antoinezanardi/werewolves-assistant-web/issues/96) - Implement the Vile Father Of Wolves role.
+* [#99](https://github.com/antoinezanardi/werewolves-assistant-web/issues/99) - Display revealed players
 * [#100](https://github.com/antoinezanardi/werewolves-assistant-web/issues/100) - Implement the Ancient role.
 * [#103](https://github.com/antoinezanardi/werewolves-assistant-web/issues/103) - Implement the Scapegoat role.
 
