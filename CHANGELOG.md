@@ -10,6 +10,7 @@
 * [#99](https://github.com/antoinezanardi/werewolves-assistant-web/issues/99) - Display revealed players
 * [#100](https://github.com/antoinezanardi/werewolves-assistant-web/issues/100) - Implement the Ancient role.
 * [#103](https://github.com/antoinezanardi/werewolves-assistant-web/issues/103) - Implement the Scapegoat role.
+* [#104](https://github.com/antoinezanardi/werewolves-assistant-web/issues/104) - Implement the Idiot role.
 
 ### 🌟 Enhancements
 
