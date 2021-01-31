@@ -14,6 +14,7 @@ import dead from "@/assets/svg/attributes/dead.svg";
 import eaten from "@/assets/svg/attributes/eaten.svg";
 import inLove from "@/assets/svg/attributes/in-love.svg";
 import villager from "@/assets/svg/roles/villager.svg";
+import charmed from "@/assets/svg/attributes/charmed.svg";
 
 export default {
     name: "GameResult",
@@ -24,9 +25,10 @@ export default {
         ...mapGetters("game", { game: "game" }),
         winnersIcon() {
             const winners = {
-                werewolves: eaten,
-                villagers: villager,
-                lovers: inLove,
+                "werewolves": eaten,
+                "villagers": villager,
+                "lovers": inLove,
+                "pied-piper": charmed,
             };
             return winners[this.game.won.by] ? winners[this.game.won.by] : dead;
         },

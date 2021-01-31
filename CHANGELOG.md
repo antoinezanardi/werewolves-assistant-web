@@ -9,6 +9,7 @@
 * [#96](https://github.com/antoinezanardi/werewolves-assistant-web/issues/96) - Implement the Vile Father Of Wolves role.
 * [#99](https://github.com/antoinezanardi/werewolves-assistant-web/issues/99) - Display revealed players
 * [#100](https://github.com/antoinezanardi/werewolves-assistant-web/issues/100) - Implement the Ancient role.
+* [#102](https://github.com/antoinezanardi/werewolves-assistant-web/issues/102) - Game option for no sheriff.
 * [#103](https://github.com/antoinezanardi/werewolves-assistant-web/issues/103) - Implement the Scapegoat role.
 * [#104](https://github.com/antoinezanardi/werewolves-assistant-web/issues/104) - Implement the Idiot role.
 * [#111](https://github.com/antoinezanardi/werewolves-assistant-web/issues/111) - Add game sides in modal for smaller screens.
@@ -48,7 +49,7 @@
 * `@vue/cli-plugin-vuex` updated to version `4.5.11`.
 * `@vue/cli-service` updated to version `4.5.11`.
 * `bootstrap` updated to version `4.6.0`.
-* `eslint` updated to version `7.18.0`.
+* `eslint` updated to version `7.19.0`.
 * `eslint-plugin-vue` updated to version `7.5.0`.
 * `qs` updated to version `6.9.6`.
 * `sass-loader` updated to version `10.1.1`.

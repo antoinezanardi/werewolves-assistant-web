@@ -140,7 +140,7 @@ class Game {
         const oneTargetActions = ["look", "eat", "protect", "shoot", "settle-votes", "delegate", "choose-model", "use-potion"];
         const twoTargetsActions = ["charm"];
         const noLimitActions = ["ban-voting"];
-        if (oneTargetActions.includes(to)) {
+        if (oneTargetActions.includes(to) || to === "charm" && this.piedPiperTargets.length === 1) {
             return 1;
         } else if (twoTargetsActions.includes(to)) {
             return 2;

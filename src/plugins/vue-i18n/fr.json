@@ -599,6 +599,7 @@
             "werewolves": "Partie gagnée par le seul Loup-Garou | Partie gagnée par les Loups-Garous",
             "villagers": "Partie gagnée par le seul Villageois | Partie gagnée par les Villageois",
             "lovers": "Partie gagnée par les Amoureux",
+            "pied-piper": "Partie gagnée par le Joueur de Flûte",
             "nobody": "Match nul ! Aucun survivant dans le village..."
         }
     },
@@ -1000,7 +1001,7 @@
                 "Son but est d'éliminer les Loups-Garous.",
                 "Ce personnage peut préserver les villageois de la morsure des Loups-Garous... Chaque nuit, le Salvateur est appelé avant les Loups-Garous.",
                 "Le Salvateur désigne alors un joueur au meneur de jeu. (Il est de tradition que le Salvateur reproduise d'abord avec ses mains la figure dessinée sur la carte).",
-                "Le joueur ainsi désigné sera protégé sera protégé la nuit durant (et celle-ci seulement) contre les Loups-Garous. Même désigné par eux, il ne sera pas éliminé du jeu.",
+                "Le joueur ainsi désigné sera protégé la nuit durant (et celle-ci seulement) contre les Loups-Garous. Même désigné par eux, il ne sera pas éliminé du jeu.",
                 "Le Salvateur a le droit de s'auto-protégé. Il n'a pas le droit de protéger 2 nuits de suite le même joueur.",
                 "La protection du Salvateur ne donne aucun résultat sur la Petite Fille. (Elle est en pleine crise de préadolescence et rien ne saurait lui éviter d'avoir des ennuis).",
                 "Le Salvateur ne protège ni du Joueur de Flûte ni de l'infection par l'Infect Père des Loups."
@@ -1070,7 +1071,7 @@
             "big-bad-wolf": [
                 "Son but est d'éliminer les Villageois.",
                 "À Thiercelieux, les petits cochons ne sont pas les seuls à redouter le Grand-Méchant-Loup. Il est énorme et son appétit est gigantesque. À cause de lui, des villages entiers furent rayés de la carte !",
-                "Chaque nuit, il se réveille et dévore avec les autres Loups-Garous. Mais tant qu'aucun Loup-Garou, Chien-Sauvage devenu loup ou Enfant Sauvage ayant perdu son modèle n'est éliminé, il se réveille seul une deuxième fois et dévore une autre victime.",
+                "Chaque nuit, il se réveille et dévore avec les autres Loups-Garous. Mais tant qu'aucun Loup-Garou, Chien-Loup devenu loup ou Enfant Sauvage ayant perdu son modèle n'est éliminé, il se réveille seul une deuxième fois et dévore une autre victime.",
                 "Il ne peut pas dévorer de Loup-Garou."
             ],
             "vile-father-of-wolves": [

@@ -14,6 +14,7 @@
 <script>
 import { mapGetters } from "vuex";
 import { insertIf } from "@/helpers/functions/Array";
+import { getProp } from "@/helpers/functions/Class";
 
 export default {
     name: "GamePlayFieldTutorial",
@@ -46,7 +47,7 @@ export default {
                         { header, target: "#werewolf-players", content: this.$t(`GamePlayFieldTutorial.werewolves.eat.werewolvesPointAtVictim`) },
                         ...insertIf(!!vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer.isAlive, {
                             header,
-                            target: `#werewolf-player-${vileFatherOfWolvesPlayer._id}`,
+                            target: `#werewolf-player-${getProp(vileFatherOfWolvesPlayer, "_id")}`,
                             content: this.$t("GamePlayFieldTutorial.werewolves.eat.vileFatherOfWolvesCanInfect"),
                         }),
                         ...insertIf(!!vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer.isAlive, {
@@ -93,17 +94,17 @@ export default {
                         { header, target: "#player-votes", content: this.$t("GamePlayFieldTutorial.all.vote.eachPlayerVote") },
                         ...insertIf(!!scapegoatPlayer && scapegoatPlayer.isAlive, {
                             header,
-                            target: `#player-vote-${scapegoatPlayer._id}`,
+                            target: `#player-vote-${getProp(scapegoatPlayer, "_id")}`,
                             content: this.$t("GamePlayFieldTutorial.all.vote.scapegoatWillDieIfTie"),
                         }),
                         ...insertIf(!!idiotPlayer && idiotPlayer.isAlive, {
                             header,
-                            target: `#player-vote-${idiotPlayer._id}`,
+                            target: `#player-vote-${getProp(idiotPlayer, "_id")}`,
                             content: this.$t("GamePlayFieldTutorial.all.vote.idiotWillBeForgiven"),
                         }),
                         ...insertIf(!!ancientPlayer && ancientPlayer.isAlive, {
                             header,
-                            target: `#player-vote-${ancientPlayer._id}`,
+                            target: `#player-vote-${getProp(ancientPlayer, "_id")}`,
                             content: this.$t("GamePlayFieldTutorial.all.vote.ancientWillHaveHisRevenge"),
                         }),
                         { header, target: "#vote-play-requirements", content: this.$t("GamePlayFieldTutorial.all.vote.toValidateAVote") },

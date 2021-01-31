@@ -118,7 +118,7 @@ export default {
             }
         },
         generateGamePhaseEvent() {
-            if (this.game.tick === 2) {
+            if (!this.game.options.roles.sheriff.enabled && this.game.tick === 1 || this.game.options.roles.sheriff.enabled && this.game.tick === 2) {
                 return this.events.push(new GameEvent({ type: "night-falls" }));
             } else if (this.game.history.length &&
                 (this.game.phase !== this.game.history[0].phase || this.game.turn !== this.game.history[0].turn)) {
