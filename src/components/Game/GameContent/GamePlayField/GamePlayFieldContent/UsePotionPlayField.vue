@@ -117,7 +117,7 @@ export default {
             return this.game.alivePlayers.filter(player => !player.hasAttribute("eaten"));
         },
         arePotionsLoaded() {
-            return this.isLifePotionUsed !== undefined && this.isDeathPotionUsed;
+            return this.isLifePotionUsed !== undefined && this.isDeathPotionUsed !== undefined;
         },
     },
     async created() {
