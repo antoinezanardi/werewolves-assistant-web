@@ -12,6 +12,7 @@
 * [#102](https://github.com/antoinezanardi/werewolves-assistant-web/issues/102) - Game option for no sheriff.
 * [#103](https://github.com/antoinezanardi/werewolves-assistant-web/issues/103) - Implement the Scapegoat role.
 * [#104](https://github.com/antoinezanardi/werewolves-assistant-web/issues/104) - Implement the Idiot role.
+* [#106](https://github.com/antoinezanardi/werewolves-assistant-web/issues/106) - Implement the Pied Piper role.
 * [#111](https://github.com/antoinezanardi/werewolves-assistant-web/issues/111) - Add game sides in modal for smaller screens.
 
 ### 🌟 Enhancements
