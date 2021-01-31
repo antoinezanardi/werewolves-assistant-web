@@ -1,10 +1,11 @@
 <template>
     <div id="elect-sheriff-play-field">
-        <PlayerVotes class="h-100" :play="play" @player-votes="playerVotes"/>
+        <PlayerVotes class="h-100" :play="play" :targetable-players="game.alivePlayers" @player-votes="playerVotes"/>
     </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import PlayerVotes from "@/components/shared/Game/PlayerVotes/PlayerVotes";
 
 export default {
@@ -16,6 +17,7 @@ export default {
             required: true,
         },
     },
+    computed: { ...mapGetters("game", { game: "game" }) },
     methods: {
         playerVotes(vote) {
             this.$emit("player-votes", vote);

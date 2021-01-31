@@ -50,10 +50,4 @@ export default {
 </script>
 
 <style scoped>
-    .cancel-action-button {
-        padding: 5px 10px;
-        font-size: 1rem;
-        cursor: pointer;
-        color: #989898;
-    }
 </style>

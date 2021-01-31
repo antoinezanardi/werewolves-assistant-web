@@ -1,7 +1,7 @@
 <template>
     <div id="alive-werewolves">
         <span class="mr-2" v-html="'🐺'"/>
-        <VRoller :text="werewolvesAliveText" :default-char="werewolvesAliveText" class="d-inline-flex"/>
+        <div class="d-inline-flex" v-html="werewolvesAliveText"/>
         <hr class="bg-dark"/>
     </div>
 </template>

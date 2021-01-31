@@ -1,6 +1,6 @@
 <template>
     <div id="werewolves-side" class="visible-scrollbar">
-        <div class="row">
+        <div class="row mt-2">
             <div class="col-12 text-center pr-0">
                 <h3 v-html="`${$t('GameWerewolvesSide.werewolves')}`"/>
             </div>
@@ -10,22 +10,15 @@
                 <AliveWerewolves/>
             </div>
         </div>
-        <div class="row">
+        <div class="row player-side-list">
             <transition-group name="flip-list" class="w-100 d-flex flex-column align-items-end">
                 <div v-for="player in sortedWerewolves" :key="player.name" class="player-strip werewolf-player-strip">
-                    <div class="text-center text-truncate m-1">
-                        <transition name="translate-down-fade" mode="out-in">
-                            <i v-if="player.isAlive === false" v-tooltip="$t('GameWerewolvesSide.thisPlayerIsDead')"
-                               class="fa fa-skull-crossbones mr-2"/>
-                        </transition>
-                        <span v-html="player.name"/>
-                    </div>
+                    <div class="text-center text-truncate m-1" v-html="player.name"/>
                     <hr class="bg-dark mt-1 mb-2"/>
                     <div class="d-flex">
                         <PlayerThumbnail :player="player" class="ml-1"/>
                         <transition-group name="fade-list" class="d-flex flex-wrap align-items-center flex-grow-1 p-1">
-                            <PlayerAttribute v-for="({ attribute, source }) in player.attributes" :key="attribute"
-                                             :attribute="attribute" :source="source"/>
+                            <PlayerAttribute v-for="attribute in player.attributes" :key="attribute.name" :attribute="attribute" :player="player"/>
                         </transition-group>
                     </div>
                 </div>
@@ -36,8 +29,8 @@
 
 <script>
 import { mapGetters } from "vuex";
-import PlayerAttribute from "../../shared/Game/PlayerAttribute/PlayerAttribute";
-import PlayerThumbnail from "../../shared/Game/PlayerThumbnail";
+import PlayerAttribute from "../../PlayerAttribute/PlayerAttribute";
+import PlayerThumbnail from "../../PlayerThumbnail";
 import AliveWerewolves from "@/components/shared/Game/Sides/AliveWerewolves";
 
 export default {
@@ -56,10 +49,11 @@ export default {
 <style lang="scss" scoped>
     #werewolves-side {
         overflow-y: auto !important;
+        overflow-x: hidden;
     }
     .player-strip {
         height: 100px;
-        width: 90%;
+        width: 100%;
         margin-top: 5px;
         margin-bottom: 10px;
         border: 1px solid grey;

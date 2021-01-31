@@ -1,10 +1,10 @@
 <template>
-    <div class="player-vote d-flex flex-column align-items-center p-2">
+    <div :id="`player-vote-${player._id}`" class="player-vote d-flex flex-column align-items-center p-2">
         <PlayerCard :player="player" :is-nominated="isNominated"/>
         <div class="mb-3 vote-for-text text-center">
             <span class="font-italic" v-html="$t('PlayerVote.voteFor')"/>
         </div>
-        <VSelect :options="targetablePlayers" :placeholder="$t('PlayerVote.none')" :filter-by="filterBy"
+        <VSelect :options="targetablePlayersExceptHimself" :placeholder="$t('PlayerVote.none')" :filter="filterByPlayerName"
                  label="name" @input="playerVotes">
             <template #selected-option="{ role, name }">
                 <RoleImage :role="role.current" class="role-image-option mr-2"/>
@@ -28,6 +28,7 @@ import Player from "@/classes/Player";
 import PlayerCard from "../PlayerCard";
 import RoleImage from "../Role/RoleImage";
 import { getNominatedPlayers } from "@/helpers/functions/Player";
+import { fuseSearch } from "@/helpers/functions/VSelect";
 
 export default {
     name: "PlayerVote",
@@ -41,11 +42,15 @@ export default {
             type: Object,
             required: true,
         },
+        targetablePlayers: {
+            type: Array,
+            required: true,
+        },
     },
     computed: {
         ...mapGetters("game", { game: "game" }),
-        targetablePlayers() {
-            return this.game.alivePlayers.filter(({ name }) => name !== this.player.name);
+        targetablePlayersExceptHimself() {
+            return this.targetablePlayers.filter(({ name }) => name !== this.player.name);
         },
         isNominated() {
             const nominatedPlayers = getNominatedPlayers(this.play.votes, this.game, this.game.firstWaiting.to);
@@ -53,8 +58,8 @@ export default {
         },
     },
     methods: {
-        filterBy(option, label, search) {
-            return option.name.toLowerCase().indexOf(search.toLowerCase()) > -1;
+        filterByPlayerName(option, search) {
+            return fuseSearch(option, search, ["name"]);
         },
         playerVotes(target) {
             target = target ? target._id : null;

@@ -13,6 +13,8 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { insertIf } from "@/helpers/functions/Array";
+import { getProp } from "@/helpers/functions/Class";
 
 export default {
     name: "GamePlayFieldTutorial",
@@ -24,7 +26,9 @@ export default {
         // eslint-disable-next-line max-lines-per-function
         steps() {
             const { firstWaiting } = this.game;
-            const { sistersWakingUpInterval, brothersWakingUpInterval } = this.gameOptions;
+            const sistersWakingUpInterval = this.gameOptions.roles.twoSisters.wakingUpInterval;
+            const brothersWakingUpInterval = this.gameOptions.roles.threeBrothers.wakingUpInterval;
+            const { scapegoatPlayer, vileFatherOfWolvesPlayer, idiotPlayer, ancientPlayer } = this.game;
             const action = `${firstWaiting.for}.${firstWaiting.to}`;
             const header = { title: this.$t(`GamePlayFieldTutorial.${action}.howToPlay`) };
             const steps = {
@@ -41,6 +45,16 @@ export default {
                         { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.werewolves.eat.werewolvesEatWhen`) },
                         { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.werewolves.eat.werewolvesEatAVictim`) },
                         { header, target: "#werewolf-players", content: this.$t(`GamePlayFieldTutorial.werewolves.eat.werewolvesPointAtVictim`) },
+                        ...insertIf(!!vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer.isAlive, {
+                            header,
+                            target: `#werewolf-player-${getProp(vileFatherOfWolvesPlayer, "_id")}`,
+                            content: this.$t("GamePlayFieldTutorial.werewolves.eat.vileFatherOfWolvesCanInfect"),
+                        }),
+                        ...insertIf(!!vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer.isAlive, {
+                            header,
+                            target: `#play-submit-button`,
+                            content: this.$t("GamePlayFieldTutorial.werewolves.eat.infectOnlyOnce"),
+                        }),
                         { header, target: "#target-play-requirements", content: this.$t(`GamePlayFieldTutorial.werewolves.eat.toValidateEat`) },
                     ],
                 },
@@ -75,8 +89,24 @@ export default {
                 "all": {
                     "vote": [
                         { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.all.vote.allVoteWhen") },
+                        { header, target: "#targetable-players-text", content: this.$t("GamePlayFieldTutorial.all.vote.targetablePlayerAreHere") },
                         { header, target: ".countdown", content: this.$t("GamePlayFieldTutorial.all.vote.playersHave5Min") },
                         { header, target: "#player-votes", content: this.$t("GamePlayFieldTutorial.all.vote.eachPlayerVote") },
+                        ...insertIf(!!scapegoatPlayer && scapegoatPlayer.isAlive, {
+                            header,
+                            target: `#player-vote-${getProp(scapegoatPlayer, "_id")}`,
+                            content: this.$t("GamePlayFieldTutorial.all.vote.scapegoatWillDieIfTie"),
+                        }),
+                        ...insertIf(!!idiotPlayer && idiotPlayer.isAlive, {
+                            header,
+                            target: `#player-vote-${getProp(idiotPlayer, "_id")}`,
+                            content: this.$t("GamePlayFieldTutorial.all.vote.idiotWillBeForgiven"),
+                        }),
+                        ...insertIf(!!ancientPlayer && ancientPlayer.isAlive, {
+                            header,
+                            target: `#player-vote-${getProp(ancientPlayer, "_id")}`,
+                            content: this.$t("GamePlayFieldTutorial.all.vote.ancientWillHaveHisRevenge"),
+                        }),
                         { header, target: "#vote-play-requirements", content: this.$t("GamePlayFieldTutorial.all.vote.toValidateAVote") },
                     ],
                     "elect-sheriff": [
@@ -252,6 +282,58 @@ export default {
                         { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.big-bad-wolf.eat.bigBadWolfEatsAVictim`) },
                         { header, target: "#werewolf-players", content: this.$t(`GamePlayFieldTutorial.big-bad-wolf.eat.bigBadWolfPointsAtVictim`) },
                         { header, target: "#target-play-requirements", content: this.$t(`GamePlayFieldTutorial.big-bad-wolf.eat.toValidateEat`) },
+                    ],
+                },
+                "pied-piper": {
+                    charm: [
+                        { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.pied-piper.charm.piedPiperCharmsWhen") },
+                        { header, target: "#player-targets", content: this.$t("GamePlayFieldTutorial.pied-piper.charm.piedPiperCanCharm") },
+                        { header, target: "#player-targets", content: this.$t("GamePlayFieldTutorial.pied-piper.charm.ifAllAreCharmed") },
+                        ...insertIf(!!this.game.vileFatherOfWolvesPlayer, {
+                            header,
+                            target: "#pied-piper-player ",
+                            content: this.$t("GamePlayFieldTutorial.pied-piper.charm.ifPiedPiperIsInfected"),
+                        }),
+                        { header, target: "#target-play-requirements", content: this.$t("GamePlayFieldTutorial.pied-piper.charm.toValidateCharm") },
+                    ],
+                },
+                "charmed": {
+                    "meet-each-other": [
+                        {
+                            header,
+                            target: "#game-waiting-label",
+                            content: this.$t(`GamePlayFieldTutorial.charmed.meet-each-other.charmedMeetEachOtherWhen`),
+                        },
+                        {
+                            header,
+                            target: "#meeting-each-other-players",
+                            content: this.$t(`GamePlayFieldTutorial.charmed.meet-each-other.ifAllAreCharmed`),
+                        },
+                        {
+                            header,
+                            target: ".countdown",
+                            content: this.$t(`GamePlayFieldTutorial.charmed.meet-each-other.charmedHave20s`),
+                        },
+                        {
+                            header,
+                            target: "#play-submit-button",
+                            content: this.$t(`GamePlayFieldTutorial.charmed.meet-each-other.noActionRequiredToValidate`),
+                        },
+                    ],
+                },
+                "scapegoat": {
+                    "ban-voting": [
+                        {
+                            header, target: "#game-waiting-label",
+                            content: this.$t(`GamePlayFieldTutorial.scapegoat.ban-voting.scapegoatBansVotingWhen`),
+                        },
+                        { header, target: "#player-targets", content: this.$t("GamePlayFieldTutorial.scapegoat.ban-voting.scapegoatCanBanVoting") },
+                        { header, target: "#player-targets", content: this.$t("GamePlayFieldTutorial.scapegoat.ban-voting.noVoteIfAllCantVote") },
+                        {
+                            header,
+                            target: "#play-submit-button",
+                            content: this.$t("GamePlayFieldTutorial.scapegoat.ban-voting.toValidateBanVoting"),
+                        },
                     ],
                 },
             };

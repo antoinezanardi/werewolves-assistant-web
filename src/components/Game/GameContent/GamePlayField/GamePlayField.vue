@@ -1,9 +1,9 @@
 <template>
     <div id="game-play-field" class="h-100 d-flex flex-column">
         <GamePlayFieldHeader @start-tutorial="startTutorial"/>
-        <GamePlayFieldContent id="game-content-play-field" :play="play" class="visible-scrollbar"
+        <GamePlayFieldContent id="game-content-play-field" :play="play" class="visible-scrollbar pt-2"
                               @player-votes="playerVotes" @player-selected="playerSelected" @side-selected="sideSelected"/>
-        <GamePlayFieldFooter :play="play"/>
+        <GamePlayFieldFooter :play="play" @vile-father-of-wolves-infects="vileFatherOfWolvesInfects"/>
         <GamePlayFieldTutorial ref="gamePlayFieldTutorial"/>
     </div>
 </template>
@@ -35,6 +35,9 @@ export default {
         },
         startTutorial() {
             this.$refs.gamePlayFieldTutorial.startTour();
+        },
+        vileFatherOfWolvesInfects() {
+            this.$emit("vile-father-of-wolves-infects");
         },
     },
 };

@@ -77,7 +77,7 @@
                 <p v-html="$tc('About.thereAreCountAvailableRoles', roles.length, { count: roles.length })"/>
                 <div v-for="(role, index) in roles" :key="role.name" class="row justify-content-center align-items-center">
                     <RoleImage :role="role.name" class="col-md-2 col-4"/>
-                    <RoleText :role="role.name" class="col-md-2 col-4 text-center font-weight-bold"/>
+                    <RoleText :role="role.name" prefix="the" class="col-md-2 col-4 text-center font-weight-bold"/>
                     <div class="col-md-8 mt-md-0 col-12 mt-3">
                         <p v-for="paragraph of $t(`Role.description.${role.name}`)"
                            :key="paragraph" v-html="paragraph"/>

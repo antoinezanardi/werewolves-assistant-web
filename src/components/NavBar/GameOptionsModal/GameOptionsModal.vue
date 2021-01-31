@@ -14,7 +14,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div>
+                    <div v-if="!game.canUpdateOptions">
                         <div class="row">
                             <div class="col-12 text-warning d-flex align-items-center">
                                 <i class="fa fa-exclamation-triangle fa-2x mr-3 mb-1"/>
@@ -24,13 +24,24 @@
                         <hr class="bg-dark mt-1 mb-2"/>
                     </div>
                     <div class="row">
-                        <div class="option-section col-12 d-flex justify-content-center align-items-center">
+                        <div class="option-section col-12 d-flex align-items-center">
                             <img :src="SVGs['sheriff']" class="mr-2" alt="Sheriff" width="50"/>
                             <div v-html="$t('GameOptionsModal.sheriff')"/>
                         </div>
                     </div>
                     <hr class="bg-dark mt-1 mb-2"/>
                     <div class="row align-items-center">
+                        <div class="col-8">
+                            <label for="is-sheriff-enabled-option" class="option-label"
+                                   v-html="$t('GameOptionsModal.isSheriffEnabled.label')"/>
+                        </div>
+                        <div class="col-4 text-center">
+                            <toggle-button id="is-sheriff-enabled-option" v-model="isSheriffEnabled" :disabled="!game.canUpdateOptions"
+                                           :labels="$t('VueToggleButton.withWithout')" :height="25" :width="60" :sync="true"/>
+                        </div>
+                        <div class="col-12 text-muted font-italic" v-html="isSheriffEnabledText"/>
+                    </div>
+                    <div class="row align-items-center mt-4">
                         <div class="col-8">
                             <label for="is-sheriff-vote-doubled-option" class="option-label"
                                    v-html="$t('GameOptionsModal.isSheriffVoteDoubled.label')"/>
@@ -41,8 +52,9 @@
                         </div>
                         <div class="col-12 text-muted font-italic" v-html="isSheriffVoteDoubledText"/>
                     </div>
+                    <hr class="bg-dark mt-2 mb-1"/>
                     <div class="row">
-                        <div class="option-section col-12 d-flex justify-content-center align-items-center">
+                        <div class="option-section col-12 d-flex align-items-center">
                             <img :src="SVGs['seer']" class="mr-2" alt="Seer" width="50"/>
                             <div v-html="$t('GameOptionsModal.seer')"/>
                         </div>
@@ -59,8 +71,9 @@
                         </div>
                         <div class="col-12 text-muted font-italic" v-html="isSeerTalkativeText"/>
                     </div>
+                    <hr class="bg-dark mt-2 mb-1"/>
                     <div class="row">
-                        <div class="option-section col-12 d-flex justify-content-center align-items-center">
+                        <div class="option-section col-12 d-flex align-items-center">
                             <img :src="SVGs['two-sisters']" class="mr-2" alt="Two Sisters" width="50"/>
                             <div v-html="$t('GameOptionsModal.twoSisters')"/>
                         </div>
@@ -71,14 +84,17 @@
                             <label for="sisters-waking-up-interval-option" class="option-label"
                                    v-html="$t('GameOptionsModal.sistersWakingUpInterval.label')"/>
                         </div>
-                        <div class="col-4 text-right">
-                            <input id="sisters-waking-up-interval-option" v-model.number="sistersWakingUpInterval" class="form-control" type="number"
-                                   min="0" max="100" :disabled="!game.canUpdateOptions"/>
+                        <div class="col-4 d-flex justify-content-center">
+                            <div class="col-lg-8">
+                                <input id="sisters-waking-up-interval-option" v-model.number="sistersWakingUpInterval" class="form-control"
+                                       type="number" min="0" max="5" :disabled="!game.canUpdateOptions"/>
+                            </div>
                         </div>
                         <div class="col-12 text-muted font-italic" v-html="sistersWakingUpIntervalText"/>
                     </div>
+                    <hr class="bg-dark mt-2 mb-1"/>
                     <div class="row mt-2">
-                        <div class="option-section col-12 d-flex justify-content-center align-items-center">
+                        <div class="option-section col-12 d-flex align-items-center">
                             <img :src="PNGs['three-brothers']" class="mr-2" alt="Three Brothers" width="50"/>
                             <div v-html="$t('GameOptionsModal.threeBrothers')"/>
                         </div>
@@ -89,9 +105,11 @@
                             <label for="brothers-waking-up-interval-option" class="option-label"
                                    v-html="$t('GameOptionsModal.brothersWakingUpInterval.label')"/>
                         </div>
-                        <div class="col-4 text-right">
-                            <input id="brothers-waking-up-interval-option" v-model.number="brothersWakingUpInterval" class="form-control"
-                                   type="number" min="0" max="100" :disabled="!game.canUpdateOptions"/>
+                        <div class="col-4 d-flex justify-content-center">
+                            <div class="col-lg-8">
+                                <input id="brothers-waking-up-interval-option" v-model.number="brothersWakingUpInterval" class="form-control"
+                                       type="number" min="0" max="5" :disabled="!game.canUpdateOptions"/>
+                            </div>
                         </div>
                         <div class="col-12 text-muted font-italic" v-html="brothersWakingUpIntervalText"/>
                     </div>
@@ -124,9 +142,18 @@ export default {
     },
     computed: {
         ...mapGetters("game", { game: "game" }),
+        isSheriffEnabled: {
+            get() {
+                return this.game.options.roles.sheriff.enabled;
+            },
+            set(isSheriffEnabled) {
+                this.setGameOptionIsSheriffEnabled(isSheriffEnabled);
+                this.optionsUpdated = true;
+            },
+        },
         isSheriffVoteDoubled: {
             get() {
-                return this.game.options.isSheriffVoteDoubled;
+                return this.game.options.roles.sheriff.hasDoubledVote;
             },
             set(isSheriffVoteDoubled) {
                 this.setGameOptionIsSheriffVoteDoubled(isSheriffVoteDoubled);
@@ -135,27 +162,27 @@ export default {
         },
         sistersWakingUpInterval: {
             get() {
-                return this.game.options.sistersWakingUpInterval;
+                return this.game.options.roles.twoSisters.wakingUpInterval;
             },
             set(newSistersWakingUpInterval) {
-                newSistersWakingUpInterval = adjustNumber(newSistersWakingUpInterval, { min: 0, max: 100 });
+                newSistersWakingUpInterval = adjustNumber(newSistersWakingUpInterval, { min: 0, max: 5 });
                 this.setGameOptionSistersWakingUpInterval(newSistersWakingUpInterval);
                 this.optionsUpdated = true;
             },
         },
         brothersWakingUpInterval: {
             get() {
-                return this.game.options.brothersWakingUpInterval;
+                return this.game.options.roles.threeBrothers.wakingUpInterval;
             },
             set(newBrothersWakingUpInterval) {
-                newBrothersWakingUpInterval = adjustNumber(newBrothersWakingUpInterval, { min: 0, max: 100 });
+                newBrothersWakingUpInterval = adjustNumber(newBrothersWakingUpInterval, { min: 0, max: 5 });
                 this.setGameOptionBrothersWakingUpInterval(newBrothersWakingUpInterval);
                 this.optionsUpdated = true;
             },
         },
         isSeerTalkative: {
             get() {
-                return this.game.options.isSeerTalkative;
+                return this.game.options.roles.seer.isTalkative;
             },
             set(isSeerTalkative) {
                 this.setGameOptionIsSeerTalkative(isSeerTalkative);
@@ -169,6 +196,10 @@ export default {
         brothersWakingUpIntervalText() {
             const { brothersWakingUpInterval } = this;
             return this.$tc("GameOptionsModal.brothersWakingUpInterval.description", brothersWakingUpInterval, { brothersWakingUpInterval });
+        },
+        isSheriffEnabledText() {
+            const description = this.isSheriffEnabled ? "sheriffIsEnabled" : "sheriffIsNotEnabled";
+            return this.$t(`GameOptionsModal.isSheriffEnabled.description.${description}`);
         },
         isSheriffVoteDoubledText() {
             const description = this.isSheriffVoteDoubled ? "sheriffVoteIsDoubled" : "sheriffVoteIsNotDoubled";
@@ -189,6 +220,7 @@ export default {
     methods: {
         ...mapActions("game", {
             setGameOptionIsSheriffVoteDoubled: "setGameOptionIsSheriffVoteDoubled",
+            setGameOptionIsSheriffEnabled: "setGameOptionIsSheriffEnabled",
             setGameOptionSistersWakingUpInterval: "setGameOptionSistersWakingUpInterval",
             setGameOptionBrothersWakingUpInterval: "setGameOptionBrothersWakingUpInterval",
             setGameOptionIsSeerTalkative: "setGameOptionIsSeerTalkative",

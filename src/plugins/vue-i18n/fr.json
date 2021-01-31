@@ -17,6 +17,13 @@
         "optionsAreSaved": "Les options de la partie sont enregistrées automatiquement après chaque changement",
         "gameOptionsCantBeUpdated": "Les options de la partie ne peuvent être modifiée en dehors de l'écran de composition de la partie.",
         "sheriff": "Maire",
+        "isSheriffEnabled": {
+            "label": "Jouer avec la fonction de maire",
+            "description": {
+                "sheriffIsEnabled": "La partie se jouera avec un maire. En cas d'égalité des votes du village, il tranchera.",
+                "sheriffIsNotEnabled": "La partie se jouera sans maire. En cas d'égalité des votes du village, il y aura un deuxième vote pour départager les ex æquo."
+            }
+        },
         "isSheriffVoteDoubled": {
             "label": "Le vote du maire compte double",
             "description": {
@@ -43,6 +50,12 @@
             "description": "Les Trois Frères ne se réveillent que la première nuit. | Les Trois Frères se réveillent toutes les nuits. | Les Trois Frères se réveillent toutes les {brothersWakingUpInterval} nuits."
         }
     },
+    "GameSidesModal": {
+        "gameSides": "Camps de la partie",
+        "villagersSide": "Camp des villageois",
+        "werewolvesSide": "Camp des loups-garous",
+        "close": "Fermer"
+    },
     "Home": {
         "werewolvesAssistant": "Assistant Loups-Garous",
         "play": "Jouer",
@@ -54,7 +67,8 @@
         "thisProjectIsOpenSource": "Ce projet est open-source",
         "buyMeACoffee": "M'offrir un café",
         "whatIsItAbout": "À quoi ça sert",
-        "bestToolForGameMastering": "L'outil idéal pour le maître du jeu des Loups-Garous de Thiercelieux"
+        "bestToolForGameMastering": "L'outil idéal pour le maître du jeu des Loups-Garous de Thiercelieux",
+        "checkChangelogOnGithub": "Voir le récapitulatif des mises à jour sur GitHub"
     },
     "Login": {
         "loggedIn": "Connecté",
@@ -262,6 +276,15 @@
             },
             "big-bad-wolf": {
                 "eat": "Au tour du grand-méchant-loup"
+            },
+            "pied-piper": {
+                "charm": "Au tour du joueur de flûte"
+            },
+            "charmed": {
+                "meet-each-other": "Au tour des charmés par le joueur de flûte"
+            },
+            "scapegoat": {
+                "ban-voting": "Au tour du bouc-émissaire"
             }
         }
     },
@@ -274,7 +297,11 @@
         "timeForDebating": "Temps pour débattre",
         "debateIsOver": "Le débat est terminé, il est temps de voter !",
         "tieInVotesForbidden": "L'égalité pour ce vote est interdite",
-        "oneSideMustBeChosen": "Un camp doit être choisi"
+        "oneSideMustBeChosen": "Un camp doit être choisi",
+        "doesVileFatherOfWolvesInfect": "L'infect père des loups souhaite-t'il infecter ?",
+        "ifVileFatherOfWolvesInfects": "Lorsque les loups-garous se sont endormis le maîre du jeu demande à l'infect père des loups de lever la main s'il souhaite tranformer la victime en loup plutôt que de la tuer.",
+        "infect": "Infecter",
+        "dontInfect": "Ne pas infecter"
     },
     "GamePlayFieldCountdownFooter": {
         "timeFor": {
@@ -290,6 +317,9 @@
             "all": {
                 "vote": "Temps pour le débat du village",
                 "elect-sheriff": "Temps pour l'élection du maire"
+            },
+            "charmed": {
+                "meet-each-other": "Temps pour la rencontre des charmés"
             }
         },
         "timeIsUpFor": {
@@ -305,6 +335,9 @@
             "all": {
                 "vote": "Il est temps pour le village de voter",
                 "elect-sheriff": "Il est temps pour le village d'élire son maire"
+            },
+            "charmed": {
+                "meet-each-other": "Il est temps pour les charmés de se rendormir"
             }
         }
     },
@@ -324,6 +357,8 @@
                 "werewolvesEatWhen": "Chaque nuit, les loups-garous se réveillent.",
                 "werewolvesEatAVictim": "Les loups-garous choisissent leur victime parmis les joueurs vivants qui mourra le matin suivant s'il ne reçoit pas de protection.",
                 "werewolvesPointAtVictim": "Les loups-garous se mettent d'accord sans bruit et pointent du doigt leur victime.",
+                "vileFatherOfWolvesCanInfect": "L'infect père des loups est présent dans la partie ! Lorsque les loups-garous auront choisi leur victime et se rendorment, l'infect père des loups peut lever la main. Dans ce cas, la victime deviendra instantanément un loup-garou au lieu de mourir dévorée !",
+                "infectOnlyOnce": "Le choix de l'infect père des loups pourra être renseigné au moment où l'action des loups-garous sera validée. Attention, ce pouvoir ne peut être utilisé qu'une seule fois !",
                 "toValidateEat": "Pour passer à la suite, les loups-garous doivent obligatoirement choisir une victime."
             }
         },
@@ -362,16 +397,21 @@
             "vote": {
                 "howToPlay": "Comment procéder au vote ?",
                 "allVoteWhen": "Chaque fois que le jour se lève, les habitants débattent pour mettre à mort l'un des leurs en espérant trouver un loup-garou.",
+                "targetablePlayerAreHere": "Les joueurs éligibles à la pendaison de ce vote sont spécifiés ici.",
                 "playersHave5Min": "Les joueurs ont 5 minutes pour se mettre d'accord sur qui sera pendu. À la fin du temps, le maître du jeu doit stopper les discussions et procéder au vote.",
                 "eachPlayerVote": "Chaque joueur a donc une voix à donner pour le vote, mais ne peut voter pour lui-même. Il peut néanmoins voter blanc. Le maître du jeu demande le vote de chacun à tour de rôle.",
+                "scapegoatWillDieIfTie": "Le bouc-émissaire est dans la partie ! En cas d'égalité, c'est lui qui sera pendu, même s'il n'est pas inclu dans l'égalité.",
+                "idiotWillBeForgiven": "L'idiot est dans la partie ! Si son rôle n'est pas encore révélé et que le village décide de voter contre lui, alors il sera gracié, le village se rendant compte de leur bêtise de pendre un idiot. Par contre, son rôle sera révélé et il perdra son droit de vote pour le reste de la partie.",
+                "ancientWillHaveHisRevenge": "L'ancien est dans la partie ! Si le village décide de le pendre, alors tous les villageois d'origine (pas les loups-garous) perdront leurs pouvoirs. Attention à la pendaison irréfléchie !",
                 "toValidateAVote": "Pour passer à la suite, au moins un joueur doit avoir voté."
             },
             "elect-sheriff": {
                 "howToPlay": "Comment élire le maire ?",
-                "sheriffIsElectedWhen": "Au début de la partie, un maire doit être élu par tous les joueurs vivants.",
-                "sheriffSettlesVotes": "Être le maire possède deux avantages: départager une éventuelle égalité des votes lors de la pendaison et avoir un vote comptant double durant cette dernière ! Le double vote peut être annulé dans les options de la partie.",
+                "sheriffIsElectedWhen": "Au début de la partie, un maire doit être élu par tous les joueurs vivants. La présence du maire peut être retirée dans les options de la partie.",
+                "sheriffSettlesVotes": "Être le maire possède deux avantages: départager une éventuelle égalité des votes lors de la pendaison et avoir un vote comptant double durant cette dernière !.",
                 "playersHave5Min": "Les joueurs ont 5 minutes pour se mettre d'accord sur qui sera leur prochain maire. À la fin du temps, le maître du jeu doit stopper les discussions et procéder à l'élection.",
                 "eachPlayerVoteForSheriff": "Chaque joueur a donc une voix à donner pour l'élection, mais ne peut voter pour lui-même. Il peut néanmoins voter blanc. Le maître du jeu demande le vote de chacun à tour de rôle.",
+                "optionsCanBeChanged": "La présence du maire dans la partie ou son vote double peuvent être modifiés dans les options de la partie.",
                 "toValidateAnElection": "Pour passer à la suite, au moins un joueur doit avoir voté et l'égalité dans les votes est impossible."
             }
         },
@@ -459,6 +499,34 @@
                 "bigBadWolfPointsAtVictim": "Le grand-méchant-loup doit pointer du doigt sa victime.",
                 "toValidateEat": "Pour passer à la suite, le grand-méchant-loup doit obligatoirement choisir une victime."
             }
+        },
+        "pied-piper": {
+            "charm": {
+                "howToPlay": "Comment jouer le joueur de flûte ?",
+                "piedPiperCharmsWhen": "Chaque nuit, s'il est vivant, le joueur de flûte se réveille.",
+                "piedPiperCanCharm": "Le joueur de flûte peut charmer deux joueurs grâce son talent de musicien hors pair. Le maître du jeu devra, en silence et le plus discrètement possible, tapoter le dos des joueurs charmés une fois le choix du joueur de flûte fait.",
+                "ifAllAreCharmed": "Si tous les joueurs vivants sont charmés par le joueur de flûte, ce dernier gagne la partie seul !",
+                "ifPiedPiperIsInfected": "Si l'infect père des loups choisit d'infecter le joueur de flûte, ce dernier perd son pouvoir de charme et ne peut plus gagner seul mais avec les Loups-Garous.",
+                "toValidateCharm": "Pour passer à la suite, le joueur de flûte doit obligatoirement choisir deux cibles."
+            }
+        },
+        "charmed": {
+            "meet-each-other": {
+                "howToPlay": "Comment jouer le joueur charmés ?",
+                "charmedMeetEachOtherWhen": "Chaque fois que le joueur de flûte utilise son talent de musicien, tous les joueurs charmés se réveillent et se recontrent.",
+                "ifAllAreCharmed": "Les joueurs charmés doivent se dépécher de trouver qui est le joueur de flûte, car si tous les joueurs vivants sont charmés, le musicien gagnera la partie à lui tout seul !",
+                "charmedHave20s": "Les joueurs charmés ont environ 20 secondes pendant leur tour, ce qui est suffisant pour se découvrir et déduire qui pourrait être le joueur de flûte.",
+                "noActionRequiredToValidate": "Aucune action n'est requise pour passer à la suite."
+            }
+        },
+        "scapegoat": {
+            "ban-voting": {
+                "howToPlay": "Comment jouer le bouc-émissaire ?",
+                "scapegoatBansVotingWhen": "Suite à une égalité des votes où il a été la victime, le bouc-émissaire a une dernière prérogative avant de rendre l'âme.",
+                "scapegoatCanBanVoting": "Le bouc-émissaire peut retirer le droit de vote à autant de joueurs qu'il souhaite pour le jour suivant.",
+                "noVoteIfAllCantVote": "Si aucun joueur ne peut voter le jour suivant, alors il n'y aura pas de pendaison.",
+                "toValidateBanVoting": "Durant son tour, le bouc-émissaire peut désigner autant de cibles qu'il souhaite ou passer son tour."
+            }
         }
     },
     "PlayerAttribute": {
@@ -472,8 +540,17 @@
             "protected": "Ce joueur est protégé",
             "ravenMarked": "Ce joueur est marqué par le corbeau",
             "inLove": "Ce joueur est amoureux à en mourir d'un autre",
-            "worshiped": "Ce joueur est le modèle de l'enfant sauvage"
-        }
+            "worshiped": "Ce joueur est le modèle de l'enfant sauvage",
+            "charmed": "Ce joueur a été charmé par le joueur de flûte",
+            "cantVoteByScapegoat": "Ce joueur est interdit de vote par le bouc-émissaire",
+            "cantVoteByAll": "Ce joueur est interdit de vote par le village",
+            "powerless": "Ce joueur n'a plus de pouvoir à cause de la vengeance de l'ancien"
+        },
+        "remainingPhases": "Plus qu'une phase (jour ou nuit) pour que l'effet disparaisse | Il reste {remainingPhases} phases (jour ou nuit) avant que l'effet ne disparaisse",
+        "endlessAttribute": "Cet effet restera jusqu'à la fin de la partie ou la mort du joueur",
+        "attributeWillBeActiveWhenSunRises": "Cet effet sera actif lorque le soleil se lèvera",
+        "remainingTurnsToBeActive": "Cet effet sera actif le prochain tour | Cet effet sera actif dans {remainingTurns} tours",
+        "attributeInactiveBecauseDead": "Cet effet est inactif car le joueur est mort"
     },
     "PlayerThumbnail": {
         "chooseRole": "Choisir un rôle",
@@ -481,7 +558,9 @@
         "nominated": {
             "elect-sheriff": "Ce joueur est nominé pour devenir maire",
             "vote": "Ce joueur est nominé pour la pendaison"
-        }
+        },
+        "thisPlayerIsDead": "Ce joueur est mort",
+        "thisPlayerRoleIsRevealed": "Le rôle de ce joueur est connu des autres (sa carte n'est pas cachée)"
     },
     "PlayerVote": {
         "voteFor": "Vote pour",
@@ -501,7 +580,10 @@
         "lifePotionUsed": "La potion de vie a déjà été utilisée",
         "deathPotionUsed": "La potion de mort a déjà été utilisée",
         "useLifePotionOn": "Utiliser la potion de vie sur ...",
-        "useDeathPotionOn": "Utiliser la potion de mort sur ..."
+        "useDeathPotionOn": "Utiliser la potion de mort sur ...",
+        "loadingPotions": "Chargement des potions",
+        "cantLoadPotions": "Impossible de charger les potions",
+        "retry": "Réessayer"
     },
     "GameWinners": {
         "restartGame": "Recommencer une partie",
@@ -517,6 +599,7 @@
             "werewolves": "Partie gagnée par le seul Loup-Garou | Partie gagnée par les Loups-Garous",
             "villagers": "Partie gagnée par le seul Villageois | Partie gagnée par les Villageois",
             "lovers": "Partie gagnée par les Amoureux",
+            "pied-piper": "Partie gagnée par le Joueur de Flûte",
             "nobody": "Match nul ! Aucun survivant dans le village..."
         }
     },
@@ -538,7 +621,9 @@
         "gameHistory": "Historique de la partie",
         "villagers": "Villageois",
         "werewolves": "Loups-Garous",
-        "close": "Fermer"
+        "close": "Fermer",
+        "loadingGameHistory": "Chargement de l'historique de la partie",
+        "endOfGame": "Fin de la partie"
     },
     "GameReviewButton": {
         "rateThisGame": "Noter votre expérience"
@@ -563,7 +648,7 @@
         "youMustRateFirst": "Vous devez attribuer une note d'abord",
         "close": "Fermer"
     },
-    "GameSummaryHistoryLine": {
+    "GameSummaryHistoryPlayLine": {
         "day": "Jour",
         "night": "Nuit",
         "actions": {
@@ -572,6 +657,9 @@
             },
             "big-bad-wolf": {
                 "eat": "a décidé de manger"
+            },
+            "vile-father-of-wolves": {
+                "infect": "a décidé d'infecter"
             },
             "witch": {
                 "use-potion": {
@@ -617,9 +705,46 @@
             },
             "wild-child": {
                 "choose-model": "a choisi comme modèle"
+            },
+            "pied-piper": {
+                "charm": "a choisi de charmer"
+            },
+            "charmed": {
+                "meet-each-other": "se sont concertés"
+            },
+            "scapegoat": {
+                "ban-voting": "a interdit de vote pour le jour suivant"
             }
         },
         "skipTurn": "a passé son tour"
+    },
+    "GameSummaryHistoryRevealedPlayerLine": {
+        "idiotRoleIsRevealed": "n'a pas été pendu mais a dû révéler son rôle et a perdu son droit de vote."
+    },
+    "GameSummaryHistoryDeadPlayerLine": {
+        "murder": {
+            "all": {
+                "vote": "a été pendu sur la place publique après le vote du village."
+            },
+            "werewolves": {
+                "eat": "a été dévoré par les loups-garous."
+            },
+            "big-bad-wolf": {
+                "eat": "a été dévoré par le grand-méchant-loup."
+            },
+            "witch": {
+                "use-potion": "a été empoisonné par la potion de mort de la sorcière."
+            },
+            "hunter": {
+                "shoot": "s'est prit une balle dans la tête de la part du chasseur."
+            },
+            "cupid": {
+                "charm": "est mort d'un chagrin d'amour inconsolable."
+            },
+            "sheriff": {
+                "settle-votes": "a été pendu sur la place publique sur la décision arbitraire du maire."
+            }
+        }
     },
     "PlayFieldActionText": {
         "and": "et",
@@ -668,6 +793,13 @@
         },
         "hunter": {
             "shoot": "souhaite tirer sur"
+        },
+        "pied-piper": {
+            "charmed": "souhaite charmer"
+        },
+        "scapegoat": {
+            "no-ban-voting": "ne souhaite interdire personne de vote pour la prochaine journée",
+            "ban-voting": "souhaite interdire de vote pour la prochaine journée"
         }
     },
     "CancelActionButton": {
@@ -675,9 +807,26 @@
         "cancelTarget": "Annuler cette cible",
         "cancelSide": "Annuler le choix du camp"
     },
+    "SelectAllTargetsButton": {
+        "selectAll": "Tout sélectionner",
+        "selectAllTargets": "Sélectionner toutes les cibles"
+    },
+    "VotePlayField": {
+        "onlyCanBeHanged": "Seuls {players} sont éligibles à la pendaison",
+        "everybodyCanBeHanged": "Tout le monde est éligible à la pendaison"
+    },
+    "ProtectPlayField": {
+        "loadingTargets": "Chargement des cibles du salvateur",
+        "cantLoadGuardTargets": "Impossible de charger les cibles du salvateur",
+        "retry": "Réessayer"
+    },
     "MeetEachOtherPlayField": {
         "meetEachOtherTheFirstTime": "se rencontrent pour la première fois",
-        "meetEachOtherForTalking": "se concertent discrètement"
+        "meetEachOtherForTalking": "se concertent discrètement",
+        "meetEachOtherInSilence": "se rencontrent sans un bruit"
+    },
+    "PlayerTargets": {
+        "noPossibleTargets": "Aucune cible possible"
     },
     "NoActionExpected": {
         "noActionExpected": "Aucune action requise"
@@ -701,24 +850,35 @@
             "allElectSheriff": "Le débat va commencer pour élire le premier maire du village.",
             "playerDies": "{player} est mort ! Quelle tragédie...",
             "playerRevealsRole": "Il ou elle révèle son rôle aux survivants.",
+            "noIdiotSheriffAnymore": "Étant donné que le maire était en réalité l'idiot, il ne délèguera pas sa fonction. Quel idiot !",
+            "ancientTakesHisRevenge": "L'ancien est mort par l'un des villageois ...! Sa vengeance sera terrible : tous les villageois d'origine perdent leurs pouvoirs pour le reste de la partie.",
             "playerHasBeenPromotedSheriff": "{player} a été élu maire !",
             "sheriffCanMakeASpeech": "Le maire peut, s'il le souhaite, faire un discours poignant sur son élection.",
             "nightFalls": "La nuit tombe sur le village de Thiercelieux...",
             "inhabitantsFallAsleep": "Les habitants du village s'endorment.",
             "dayRises": "Le jour se lève sur le village de Thiercelieux.",
-            "noDeathDuringNight": "À la surprise générale, personne n'est mort pendant la nuit !",
+            "deathDuringNight": "Le village se réveille et on dirait qu'un seul habitant manque à l'appel ! | Le village se réveille et on dirait que {numberOfDeaths} habitants manquent à l'appel !",
+            "letsSeeWhoIsDead": "Après plusieurs recherches, le village doit se résoudre à annoncer publiquement la triste nouvelle...",
+            "noDeathDuringNight": "Le village se réveille, et, à la surprise générale, personne n'est mort pendant la nuit !",
             "allVote": "Les habitants du village vont maintenant voter pour pendre l'un des leurs et espérer débusquer un loup-garou.",
+            "allVoteAgain": "Étant donné qu'il n'y a pas de maire pour départager, le village va devoir voter entre les joueurs à égalité: {players}.",
+            "noDeathAfterVotes": "Même après 2 votes consécutifs, le village n'a pas réussi à s'entendre sur qui sera pendu.",
+            "everybodyFallAsleepAlive": "Par conséquent, il n'y aura aucune mise à mort publique aujourd'hui. Tous les habitants sans exception se rendorment en vie... pour l'instant !",
+            "attentionToTheAncient": "Attention, l'ancien est encore en vie et caché parmi les habitants ! S'il est pendu, tous les villageois d'origine n'auront plus de pouvoirs spéciaux.",
             "seerStarts": "La voyante se réveille et va découvrir dans sa boule de cristal le rôle d'un habitant.",
             "followingMessageMustBeMimed": "La phrase suivante devra être mimée à la voyante car cette dernière n'est pas très bavarde...",
             "seerHasSeen": "La voyante a vu",
             "werewolvesStart": "Le loup-garou se réveille et va choisir son dîner de ce soir. | Les loups-garous se réveillent et vont choisir leur dîner de ce soir.",
+            "gameMasterWillTouchInfected": "Le maître du jeu va faire le tour des habitants et toucher la victime des loups-garous si l'infect père des loups a décidé de l'infecter. Elle saura alors qu'elle est devenue un loup-garou.",
             "witchStarts": "La sorcière se réveille et va, si elle le souhaite, utiliser ses potions.",
             "guardStarts": "Le salvateur se réveille et va protéger la personne de son choix.",
             "ravenStarts": "Le corbeau se réveille et va, s'il le souhaite, marquer de sa plume un des habitants.",
+            "ravenHasMarked": "Le corbeau a choisi où déposer sa plume.",
+            "gameMasterWillDepositMark": "Le maître du jeu va faire le tour des habitants et déposer la marque du corbeau devant la victime s'il y en a une.",
             "hunterStarts": "Dans son dernier souffle, le chasseur s'apprête à choisir la cible de sa vengeance.",
             "dogWolfStarts": "Le chien-loup se réveille et va choisir son camp pour le reste de la partie.",
             "cupidStarts": "Cupidon se réveille et va rendre inséparables deux personnes grâce à ses flèches de l'Amour.",
-            "cupidCharmedTwoPlayers": "Cupidon a rendu inséparable deux personnes qui devront maintenant terminer la partie ensemble.",
+            "cupidCharmedTwoPlayers": "Cupidon a rendu inséparables deux personnes qui devront maintenant terminer la partie ensemble.",
             "gameMasterWillTouchLovers": "Le maître du jeu va faire le tour des habitants et toucher dans le dos les deux Amoureux.",
             "loversStart": "Les Amoureux se réveillent et vont se rencontrer pour la première fois.",
             "twoSistersMeetEachOther": "Les deux sœurs se réveillent et vont se rencontrer pour la première fois.",
@@ -727,8 +887,16 @@
             "threeBrothersWakeUpToTalk": "Les trois frères se réveillent et vont se concerter discrètement.",
             "wildChildStarts": "L'enfant sauvage se réveille pour choisir son modèle parmi les habitants.",
             "bigBadWolfStarts": "Le grand-méchant-loup se réveille pour choisir la seconde victime des loups-garous.",
+            "piedPiperStarts": "Le Joueur de flûte se réveille pour choisir deux victimes qui seront sous l'emprise de son charme.",
             "sheriffSettlesVote": "Le maire va départager pour régler l'égalité des votes sur la pendaison.",
-            "sheriffDelegates": "Dans son dernier souffle, le maire va déléguer son rôle à l'un des survivants."
+            "sheriffDelegates": "Dans son dernier souffle, le maire va déléguer son rôle à l'un des survivants.",
+            "piedPiperCharmedTwoPlayers": "Le joueur de flûte a charmé deux personnes de plus, il se rapproche de son but ultime de vengeance.",
+            "gameMasterWillTouchCharmed": "Le maître du jeu va faire le tour des habitants et toucher dans le dos les deux nouveaux charmés.",
+            "charmedWakeUp": "Les tout juste charmés par le joueur de flûte se réveillent pour se reconnaître.",
+            "charmedWakeUpWithOldOnes": "Les tout juste charmés par le joueur de flûte se réveillent avec les anciens charmés pour se reconnaître.",
+            "scapegoatStarts": "Face à l'injustice de sa mort, le bouc-émissaire va choisir qui n'aura pas le droit de vote au jour suivant dans son dernier souffle.",
+            "idiotIsForgiven": "Le village se rend compte que le joueur pendu était en vérité l'idiot ! Les villageois ayant pitié de lui, décident de le gracier mais il ne pourra plus voter jusqu'à la fin de la partie.",
+            "playerRoleIsRevealed": "Le joueur retourne sa carte et continue à jouer."
         }
     },
     "Statistics": {
@@ -763,7 +931,12 @@
             "three-brothers": "un des trois frères",
             "wild-child": "un enfant sauvage",
             "dog-wolf": "un chien-loup",
-            "big-bad-wolf": "un grand-méchant-loup"
+            "big-bad-wolf": "un grand-méchant-loup",
+            "idiot": "un idiot",
+            "vile-father-of-wolves": "un infect père des loups",
+            "ancient": "un ancien",
+            "scapegoat": "un bouc-émissaire",
+            "pied-piper": "un joueur de flûte"
         },
         "the": {
             "villager": "le villageois",
@@ -785,7 +958,13 @@
             "wild-child": "l'enfant sauvage",
             "dog-wolf": "le chien-loup",
             "big-bad-wolf": "le grand-méchant-loup",
-            "lovers": "les amoureux"
+            "lovers": "les amoureux",
+            "charmed": "les charmés",
+            "idiot": "l'idiot",
+            "vile-father-of-wolves": "l'infect père des loups",
+            "ancient": "l'ancien",
+            "scapegoat": "le bouc-émissaire",
+            "pied-piper": "le joueur de flûte"
         },
         "description": {
             "villager": [
@@ -822,7 +1001,7 @@
                 "Son but est d'éliminer les Loups-Garous.",
                 "Ce personnage peut préserver les villageois de la morsure des Loups-Garous... Chaque nuit, le Salvateur est appelé avant les Loups-Garous.",
                 "Le Salvateur désigne alors un joueur au meneur de jeu. (Il est de tradition que le Salvateur reproduise d'abord avec ses mains la figure dessinée sur la carte).",
-                "Le joueur ainsi désigné sera protégé sera protégé la nuit durant (et celle-ci seulement) contre les Loups-Garous. Même désigné par eux, il ne sera pas éliminé du jeu.",
+                "Le joueur ainsi désigné sera protégé la nuit durant (et celle-ci seulement) contre les Loups-Garous. Même désigné par eux, il ne sera pas éliminé du jeu.",
                 "Le Salvateur a le droit de s'auto-protégé. Il n'a pas le droit de protéger 2 nuits de suite le même joueur.",
                 "La protection du Salvateur ne donne aucun résultat sur la Petite Fille. (Elle est en pleine crise de préadolescence et rien ne saurait lui éviter d'avoir des ennuis).",
                 "Le Salvateur ne protège ni du Joueur de Flûte ni de l'infection par l'Infect Père des Loups."
@@ -892,8 +1071,44 @@
             "big-bad-wolf": [
                 "Son but est d'éliminer les Villageois.",
                 "À Thiercelieux, les petits cochons ne sont pas les seuls à redouter le Grand-Méchant-Loup. Il est énorme et son appétit est gigantesque. À cause de lui, des villages entiers furent rayés de la carte !",
-                "Chaque nuit, il se réveille et dévore avec les autres Loups-Garous. Mais tant qu'aucun Loup-Garou, Chien-Sauvage devenu loup ou Enfant Sauvage ayant perdu son modèle n'est éliminé, il se réveille seul une deuxième fois et dévore une autre victime.",
+                "Chaque nuit, il se réveille et dévore avec les autres Loups-Garous. Mais tant qu'aucun Loup-Garou, Chien-Loup devenu loup ou Enfant Sauvage ayant perdu son modèle n'est éliminé, il se réveille seul une deuxième fois et dévore une autre victime.",
                 "Il ne peut pas dévorer de Loup-Garou."
+            ],
+            "vile-father-of-wolves": [
+                "Son but est d'éliminer les Villageois.",
+                "Le tout premier Loup-Garou de nos contrées, le père de tous leurs pères, avait deux pouvoirs : le premier était de propager son engeance par une morsure spéciale et le second de fuir ce monde en s'endormant pour quelques siècles.",
+                "Heureusement pour nos ancêtres récents, il s'était depuis longtemps assoupi. Les auteurs de cet ouvrage souhaitent bon courage aux villageois d'aujourd'hui et signalent que l'Infect Père des Loups vient juste de se réveiller d'un long sommeil, et qu'il a très faim !",
+                "Chaque nuit, il se réveille et dévore avec les autres Loups-Garous. Mais une fois dans la partie, s'il le désire, après que les Loups-Garous se sont endormis, il lève la main. Cela signifie que la victime n'est pas dévorée mais infectée.",
+                "L'Infect Père des Loups ne peut utiliser son pouvoir qu'une seule fois dans la partie. Le meneur touche alors cet habitant infecté qui devient immédiatement (et secrètement) Loup-Garou, il participera désormais au festin des Loups-Garous.",
+                "S'il possédait un pouvoir nocturne, il sera réveillé par le meneur les tours suivants pour utiliser ce pouvoir, en plus d'être appelé avec les Loups-Garous."
+            ],
+            "ancient": [
+                "Son but est d'éliminer les Loups-Garous.",
+                "Il a victorieusement traversé toutes les terribles épreuves de la vie, et a acquis une résistance hors du commun ! Les Loups-Garous devront s'y prendre à 2 fois pour le dévorer.",
+                "La première fois que l'Ancien du village est dévoré par les Loups-Garous il survit. Le meneur de jeu ne retourne pas sa carte. L'Ancien est éliminé seulement la deuxième fois qu'il est dévoré.",
+                "Le vote du village, la potion d'empoisonnement de la Sorcière, le tir du Chasseur et le rasoir du Barbier éliminent l'Ancien du premier coup.",
+                "Mais désespérés d'avoir éliminé un tel puit de sciences, les Villageois perdent leurs pouvoirs spéciaux jusqu'à la fin de la partie. Il n'est pas affecté par l'Infect Père des Loups si c'est la première fois qu'il est mordu.",
+                "Attention : Si l'Ancien du village se fait soigner par la Sorcière, il récupère une seule vie."
+            ],
+            "scapegoat": [
+                "Son but est d'éliminer les Loups-Garous.",
+                "C'est bien triste, mais à Thiercelieux, quand quelque chose ne va pas c'est toujours lui qui en subit injustement les conséquences...",
+                "Si le vote du village amène une égalité, c'est le Bouc émissaire qui est éliminé à la place des ex æquo.",
+                "À lui de bien manœuvrer pour éviter cette triste conclusion. Si le Bouc émissaire est éliminé, il lui reste une prérogative à exercer. Il désigne qui votera ou ne votera pas durant la prochaine journée.",
+                "Attention : désigner 1 seul joueur pour voter, c'est risquer de le faire dévorer par les Loups-Garous la nuit suivante. il n'y aura alors pas de vote du village. (Sauf bien entendu si le joueur désigné est un Loup-Garou, ou que les Loups-Garous fassent exprès de ne pas l'éliminer...)"
+            ],
+            "idiot": [
+                "Son but est d'éliminer les Loups-Garous.",
+                "Quel village n'a pas son Idiot ? Il fait un peu n'importe quoi, mais il est tellement attachant que personne ne lui voudrait du mal...",
+                "Si le village vote contre lui, l'Idiot du village retourne sa carte. À cet instant, les Villageois comprennent leur erreur et ils le gracient immédiatement. Dorénavant, il continue à jouer, mais il a perdu son droit de vote. Que vaudrait le vote d'un idiot... Il n'y aura pas de pendaison à ce tour.",
+                "Attention : si les Loups-Garous le dévorent, l'Idiot du village est éliminé. Si l'Idiot est éliminé alors qu'il était le Capitaine du village, il ne transmet pas sa fonction. Si le Chasseur tire sur l'Idiot, ce dernier est éliminé."
+            ],
+            "pied-piper": [
+                "Son but est de charmer tous les joueurs vivants.",
+                "Ignominieusement chassé du village, il est revenu des années plus tard sous le couvert d'une fausse identité pour exercer sa terrible vengeance.",
+                "Chaque nuit, à l'appel du meneur du jeu, le Joueur de flûte charme 2 nouveaux joueurs. Dès l'instant où il ne reste plus que des joueurs charmés, le Joueur de flûte a gagné contre tous les autres. (Même si cela arrive suite à un vote du village ou grâce aux Loups-Garous).",
+                "S'il est infecté par l'Infect Père des Loups, il devient un simple Loup-Garou. Son objectif initial, qui était vouloir charmer tous les joueurs, est donc abandonné. Il va collaborer avec les Loups-Garous pour leur victoire commune.",
+                "Attention : le Joueur de flûte ne peut s'auto-charmer. Le Salvateur ne protège pas du charme. La Sorcière ne guérit pas du charme. Les Loups-Garous ne sont pas immunisés contre le charme. Les joueurs charmés conservent tous leurs pouvoirs et caractéristiques. Le charme ne se transmet pas entre Amoureux."
             ]
         },
         "villager": "Villageois",
@@ -910,7 +1125,12 @@
         "three-brothers": "Frères",
         "wild-child": "Enfant Sauvage",
         "dog-wolf": "Chien-Loup",
-        "big-bad-wolf": "Grand-Méchant-Loup"
+        "big-bad-wolf": "Grand-Méchant-Loup",
+        "idiot": "Idiot",
+        "vile-father-of-wolves": "Infect Père des Loups",
+        "ancient": "Ancien",
+        "scapegoat": "Bouc-émissaire",
+        "pied-piper": "Joueur de Flûte"
     },
     "RoleText": {
         "chooseARole": "Choisir un rôle"
@@ -945,6 +1165,10 @@
         "yesNo": {
             "checked": "Oui",
             "unchecked": "Non"
+        },
+        "withWithout": {
+            "checked": "Avec",
+            "unchecked": "Sans"
         }
     },
     "VeeValidate": {
@@ -962,6 +1186,11 @@
             "buttonPrevious": "Précédent",
             "buttonNext": "Suivant",
             "buttonStop": "Terminer "
+        }
+    },
+    "helpers": {
+        "Player": {
+            "and": "et"
         }
     }
 }

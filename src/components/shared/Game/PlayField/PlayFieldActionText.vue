@@ -4,8 +4,10 @@
             <transition name="translate-down-fade" mode="out-in">
                 <h3 id="play-field-action-text" :key="actionText" v-html="actionText"/>
             </transition>
-            <div id="cancel-player-target-container" class="d-flex align-items-center justify-content-center">
-                <CancelActionButton :attribute="attribute" :play="play" @player-selected="playerSelected" @side-selected="sideSelected"/>
+            <div id="play-field-action-buttons-container" class="d-flex align-items-center justify-content-center">
+                <SelectAllTargetsButton :attribute="attribute" :play="play" class="play-field-action-button mr-2" @player-selected="playerSelected"/>
+                <CancelActionButton :attribute="attribute" :play="play" class="play-field-action-button"
+                                    @player-selected="playerSelected" @side-selected="sideSelected"/>
             </div>
         </div>
     </div>
@@ -14,10 +16,11 @@
 <script>
 import { mapGetters } from "vuex";
 import CancelActionButton from "./CancelActionButton";
+import SelectAllTargetsButton from "@/components/shared/Game/PlayField/SelectAllTargetsButton";
 
 export default {
     name: "PlayFieldActionText",
-    components: { CancelActionButton },
+    components: { SelectAllTargetsButton, CancelActionButton },
     props: {
         play: {
             type: Object,
@@ -104,7 +107,14 @@ export default {
         @include font-size(1.5rem);
     }
 
-    #cancel-player-target-container {
+    #play-field-action-buttons-container {
         height: 40px;
+    }
+
+    .play-field-action-button {
+        padding: 5px 10px;
+        font-size: 1rem;
+        cursor: pointer;
+        color: #989898;
     }
 </style>
