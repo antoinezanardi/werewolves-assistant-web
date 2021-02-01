@@ -1,7 +1,7 @@
 {
     "name": "werewolves-assistant-web",
     "description": "Werewolves Assistant Web is a Vue web app using the Werewolves Assistant API. Thanks to this app, being the game master of the Werewolves of Millers Hollow game is so easy !",
-    "version": "1.0.0-beta.8",
+    "version": "1.0.0-beta.10",
     "private": true,
     "scripts": {
         "start": "npm run serve",

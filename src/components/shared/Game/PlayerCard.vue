@@ -6,7 +6,7 @@
                          @player-selected="togglePlayerSelected"/>
         <div class="player-card-name text-center" :class="{ 'player-card-name-lg': size === 'lg' }"
              @click="togglePlayerSelected" v-html="player.name"/>
-        <div v-if="!game._id" class="player-card-role small text-center text-muted d-flex align-items-center">
+        <div v-if="!game._id" class="player-card-role small text-center text-muted d-flex align-items-center justify-content-center w-100">
             <i v-if="player.role.current" v-tooltip="$t('PlayerCard.unsetRole')"
                class="fa fa-times-circle mr-1 unset-role-button" @click="unsetRole"/>
             <RoleText class="text-truncate" :role="player.role.current"

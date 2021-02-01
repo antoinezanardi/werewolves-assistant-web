@@ -64,7 +64,7 @@
                         <transition-group v-else id="players" tag="div" name="fade-list"
                                           class="row justify-content-center align-items-center flex-grow-1 visible-scrollbar py-2 mx-2">
                             <PlayerCard v-for="player in game.players" :key="player.name" :game="game" :player="player"
-                                        class="player-item col-lg-2 col-4 mb-2" @choose-role="showRolePickerModal"
+                                        class="player-item col-lg-2 col-md-3 col-6 mb-2" @choose-role="showRolePickerModal"
                                         @unset-role="unsetRole" @unset-player="unsetPlayer"/>
                         </transition-group>
                     </transition>
