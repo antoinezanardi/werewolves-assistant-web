@@ -16,7 +16,7 @@
             <i class="fa fa-random mr-1"/>
             <span class="font-italic" v-html="$t('RolePickerRole.random')"/>
         </div>
-        <RoleText v-else :role="role.name"/>
+        <RoleText v-else :role="role.name" prefix="the"/>
     </div>
 </template>
 

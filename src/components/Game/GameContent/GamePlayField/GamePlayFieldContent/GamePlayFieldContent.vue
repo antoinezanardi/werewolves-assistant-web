@@ -28,6 +28,8 @@
             <MeetEachOtherPlayField v-else-if="game.firstWaiting.to === 'meet-each-other'" key="meet-each-other" class="h-100 container-fluid"/>
             <ChooseModelPlayField v-else-if="game.firstWaiting.to === 'choose-model'" key="choose-model" :play="play" class="h-100 container-fluid"
                                   @player-selected="playerSelected"/>
+            <BanVotingPlayField v-else-if="game.firstWaiting.to === 'ban-voting'" key="ban-voting" :play="play" class="h-100 container-fluid"
+                                @player-selected="playerSelected"/>
             <div v-else key="unknown">
                 ?
             </div>
@@ -53,10 +55,12 @@ import MeetEachOtherPlayField
     from "@/components/Game/GameContent/GamePlayField/GamePlayFieldContent/MeetEachOtherPlayField";
 import ChooseModelPlayField
     from "@/components/Game/GameContent/GamePlayField/GamePlayFieldContent/ChooseModelPlayField";
+import BanVotingPlayField from "@/components/Game/GameContent/GamePlayField/GamePlayFieldContent/BanVotingPlayField";
 
 export default {
     name: "GamePlayFieldContent",
     components: {
+        BanVotingPlayField,
         ChooseModelPlayField,
         MeetEachOtherPlayField,
         CharmPlayField,

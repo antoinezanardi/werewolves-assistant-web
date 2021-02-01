@@ -14,7 +14,7 @@
                     <div class="role-effect-container">
                         <RoleImage class="h-100 rounded role-image" :role="playersEvent.thumbnail.front.role.current"
                                    :class="{ 'dead-player': event.type === 'player-dies' }"/>
-                        <img v-if="isEffectGameEvent" :src="effectImageSource" class="effect-image"
+                        <img v-if="isEffectGameEvent && gameEventPlayers.length" :src="effectImageSource" class="effect-image"
                              :class="{ 'animate__animated animate__bounceIn animate__delay-1s': gameEventPlayers.length === 1 }" alt="Effect Image"/>
                     </div>
                     <h3 class="text-center mt-2 w-100 text-truncate" v-html="playersEvent.thumbnail.front.name"/>
@@ -25,7 +25,7 @@
                     <div class="role-effect-container">
                         <RoleImage class="h-100 rounded role-image" :role="playersEvent.thumbnail.back.role.current"
                                    :class="{ 'dead-player': event.type === 'player-dies' }"/>
-                        <img v-if="isEffectGameEvent" :src="effectImageSource" class="effect-image"
+                        <img v-if="isEffectGameEvent && gameEventPlayers.length" :src="effectImageSource" class="effect-image"
                              :class="{ 'animate__animated animate__bounceIn animate__delay-1s': gameEventPlayers.length === 1 }" alt="Effect Image"/>
                     </div>
                     <h3 class="text-center mt-2 w-100 text-truncate" v-html="playersEvent.thumbnail.back.name"/>
@@ -37,13 +37,18 @@
 
 <script>
 import { mapGetters } from "vuex";
+import Player from "@/classes/Player";
 import GameEvent from "@/classes/GameEvent";
 import RoleImage from "@/components/shared/Game/Role/RoleImage";
 import sheriffSVG from "@/assets/svg/attributes/sheriff.svg";
 import deadSVG from "@/assets/svg/attributes/dead.svg";
 import seenSVG from "@/assets/svg/actions/look.svg";
 import inLoveSVG from "@/assets/svg/attributes/in-love.svg";
-import Player from "@/classes/Player";
+import charmedSVG from "@/assets/svg/attributes/charmed.svg";
+import questionMarkSVG from "@/assets/svg/misc/question-mark.svg";
+import ravenMarkSVG from "@/assets/svg/attributes/raven-marked.svg";
+import eatenSVG from "@/assets/svg/attributes/eaten.svg";
+import voteSVG from "@/assets/svg/actions/vote.svg";
 
 export default {
     name: "GameEventImage",
@@ -73,7 +78,18 @@ export default {
     computed: {
         ...mapGetters("game", { game: "game" }),
         isEffectGameEvent() {
-            const effectGameEventTypes = ["sheriff-elected", "player-dies", "seer-looks", "cupid-charms"];
+            const effectGameEventTypes = [
+                "sheriff-elected",
+                "player-dies",
+                "seer-looks",
+                "cupid-charms",
+                "pied-piper-charms",
+                "deaths-during-night",
+                "raven-marks",
+                "vile-father-of-wolves-infects",
+                "player-role-revealed",
+                "no-death-after-votes",
+            ];
             return effectGameEventTypes.includes(this.event.type);
         },
         isPhaseGameEvent() {
@@ -85,6 +101,12 @@ export default {
                 "player-dies": deadSVG,
                 "seer-looks": seenSVG,
                 "cupid-charms": inLoveSVG,
+                "pied-piper-charms": charmedSVG,
+                "deaths-during-night": questionMarkSVG,
+                "raven-marks": ravenMarkSVG,
+                "vile-father-of-wolves-infects": eatenSVG,
+                "player-role-revealed": seenSVG,
+                "no-death-after-votes": voteSVG,
             };
             return effectGameEventTypeImageSource[this.event.type];
         },
@@ -99,12 +121,15 @@ export default {
                 return [];
             }
             const { firstWaiting, alivePlayersExpectedToPlay, playersExpectedToPlay } = this.game;
+            const deadPlayerActions = ["delegate", "shoot", "ban-voting"];
             if (this.event.type === "no-death-during-night") {
                 return this.game.alivePlayers;
+            } else if (this.event.type === "deaths-during-night") {
+                return this.game.players;
             } else if (this.isEffectGameEvent) {
                 return this.event.targets.map(({ player }) => player);
             }
-            return firstWaiting.to === "delegate" || firstWaiting.to === "shoot" ? playersExpectedToPlay : alivePlayersExpectedToPlay;
+            return deadPlayerActions.includes(firstWaiting.to) ? playersExpectedToPlay : alivePlayersExpectedToPlay;
         },
     },
     created() {
@@ -116,7 +141,7 @@ export default {
     },
     methods: {
         setPlayersExpectedToPlayFlip() {
-            this.playersEvent.thumbnail.front = this.gameEventPlayers[0];
+            this.playersEvent.thumbnail.front = this.gameEventPlayers.length ? this.gameEventPlayers[0] : new Player();
             if (this.gameEventPlayers.length > 1) {
                 setInterval(() => {
                     if (this.playersEvent.playerIdx + 1 === this.gameEventPlayers.length) {

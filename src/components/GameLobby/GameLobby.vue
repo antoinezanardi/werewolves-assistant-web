@@ -64,7 +64,7 @@
                         <transition-group v-else id="players" tag="div" name="fade-list"
                                           class="row justify-content-center align-items-center flex-grow-1 visible-scrollbar py-2 mx-2">
                             <PlayerCard v-for="player in game.players" :key="player.name" :game="game" :player="player"
-                                        class="player-item col-lg-2 col-4 mb-2" @choose-role="showRolePickerModal"
+                                        class="player-item col-lg-2 col-md-3 col-6 mb-2" @choose-role="showRolePickerModal"
                                         @unset-role="unsetRole" @unset-player="unsetPlayer"/>
                         </transition-group>
                     </transition>
@@ -99,7 +99,7 @@
                                 </SubmitButton>
                             </form>
                         </div>
-                        <div class="col-lg-4 mt-2 mt-lg-0">
+                        <div class="col-lg-4 d-sm-flex d-none mt-2 mt-lg-0">
                             <router-link class="btn btn-secondary btn-block" to="/">
                                 <i class="fa fa-sign-out-alt mr-2"/>
                                 <span v-html="$t('GameLobby.quit')"/>
@@ -281,11 +281,15 @@ export default {
 </script>
 
 <style lang="scss">
+    @import "../../../node_modules/bootstrap/scss/bootstrap-grid";
     @import "../../../node_modules/bootstrap/scss/bootstrap";
     @import "../../assets/scss/_variables";
 
     #game-lobby-title {
-        @include font-size(2.2rem);
+        font-size: 1.25rem;
+        @include media-breakpoint-up(sm) {
+            font-size: 2rem;
+        }
         padding: 10px 10px 0;
     }
 

@@ -46,6 +46,11 @@ const WerewolvesAssistantAPI = {
 
         Vue.prototype.$werewolvesAssistantAPI.makeAPlay = (gameId, play) => axios.post(`/games/${gameId}/play`, play);
 
+        Vue.prototype.$werewolvesAssistantAPI.getGameHistory = (gameId, queryStrings) => {
+            const URL = `/games/${gameId}/history?${stringify(queryStrings)}`;
+            return axios.get(URL);
+        };
+
         Vue.prototype.$werewolvesAssistantAPI.getRoles = () => axios.get(`/roles`);
     },
 };

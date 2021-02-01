@@ -6,13 +6,16 @@
                 <GamePlayFieldCountdownFooter v-if="game.isFirstWaitingTimedAction"/>
             </div>
             <div class="col-md-4 col-12 order-last order-md-1">
-                <form @submit.prevent="submitPlay">
-                    <SubmitButton id="play-submit-button" classes="btn btn-primary btn-block btn-lg"
-                                  :loading="loading" :disabled="!canSubmitPlay">
-                        <i class="fa fa-play-circle mr-2"/>
-                        <span v-html="$t('GamePlayFieldFooter.next')"/>
-                    </SubmitButton>
-                </form>
+                <transition name="fade" mode="out-in">
+                    <Loading v-if="loading.getHistory" key="loading" :icon-size="35"/>
+                    <form v-else key="submit-form" @submit.prevent="submitPlay">
+                        <SubmitButton id="play-submit-button" classes="btn btn-primary btn-block btn-lg"
+                                      :loading="loading.makeAPlay" :disabled="!canSubmitPlay">
+                            <i class="fa fa-play-circle mr-2"/>
+                            <span v-html="$t('GamePlayFieldFooter.next')"/>
+                        </SubmitButton>
+                    </form>
+                </transition>
             </div>
             <div class="col-md-4 col order-md-2">
                 <transition name="fade" mode="out-in">
@@ -50,14 +53,18 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
 import { mapActions, mapGetters } from "vuex";
 import SubmitButton from "@/components/shared/Forms/SubmitButton";
 import { getNominatedPlayers } from "@/helpers/functions/Player";
 import GamePlayFieldCountdownFooter from "@/components/Game/GameContent/GamePlayField/GamePlayFieldFooter/GamePlayFieldCountdownFooter";
+import GameHistory from "@/classes/GameHistory";
+import Loading from "@/components/shared/Loading";
+import Config from "../../../../../../config";
 
 export default {
     name: "GamePlayFieldFooter",
-    components: { GamePlayFieldCountdownFooter, SubmitButton },
+    components: { Loading, GamePlayFieldCountdownFooter, SubmitButton },
     props: {
         play: {
             type: Object,
@@ -65,7 +72,13 @@ export default {
         },
     },
     data() {
-        return { loading: false };
+        return {
+            loading: {
+                makeAPlay: false,
+                getHistory: false,
+            },
+            preSubmitRequests: { doesVileFatherOfWolvesInfect: false },
+        };
     },
     computed: {
         ...mapGetters("game", { game: "game" }),
@@ -102,18 +115,60 @@ export default {
                 this.game.isFirstWaitingChooseSideAction && this.isSideChosen || this.game.isFirstWaitingSkippableAction;
         },
     },
+    async created() {
+        await this.setPreSubmitRequests();
+    },
     methods: {
         ...mapActions("game", { setGame: "setGame" }),
+        async setPreSubmitRequests() {
+            const { vileFatherOfWolvesPlayer } = this.game;
+            if (this.game.firstWaiting.for === "werewolves" && !!vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer.isAlive) {
+                try {
+                    this.loading.getHistory = true;
+                    const queryStrings = { "play-source": "werewolves", "play-action": "eat" };
+                    const { data } = await this.$werewolvesAssistantAPI.getGameHistory(this.game._id, queryStrings);
+                    const werewolvesActions = data.map(gameHistoryEntry => new GameHistory(gameHistoryEntry));
+                    const infectionUsed = !!werewolvesActions.find(werewolvesAction => werewolvesAction.didVileFatherOfWolvesInfectTarget);
+                    this.preSubmitRequests.doesVileFatherOfWolvesInfect = !infectionUsed;
+                } catch (e) {
+                    this.$error.display(e);
+                } finally {
+                    this.loading.getHistory = false;
+                }
+            }
+        },
+        askIfVileFatherOfWolvesInfects() {
+            return Swal.fire({
+                title: this.$t("GamePlayFieldFooter.doesVileFatherOfWolvesInfect"),
+                text: this.$t("GamePlayFieldFooter.ifVileFatherOfWolvesInfects"),
+                imageUrl: `${Config.API.werewolvesAssistant.baseURL}/img/roles/vile-father-of-wolves.png`,
+                imageWidth: 200,
+                imageHeight: 200,
+                showCancelButton: true,
+                confirmButtonText: this.$t("GamePlayFieldFooter.infect"),
+                cancelButtonText: this.$t("GamePlayFieldFooter.dontInfect"),
+                heightAuto: false,
+            });
+        },
+        async launchPreSubmitRequest() {
+            if (this.preSubmitRequests.doesVileFatherOfWolvesInfect) {
+                const { isConfirmed } = await this.askIfVileFatherOfWolvesInfects();
+                if (isConfirmed) {
+                    this.$emit("vile-father-of-wolves-infects");
+                }
+            }
+        },
         async submitPlay() {
             try {
-                this.loading = true;
+                this.loading.makeAPlay = true;
                 const playData = { ...this.play, source: this.game.firstWaiting.for, action: this.game.firstWaiting.to };
+                await this.launchPreSubmitRequest();
                 const { data } = await this.$werewolvesAssistantAPI.makeAPlay(this.game._id, playData);
                 await this.setGame(data);
             } catch (e) {
                 this.$error.display(e);
             } finally {
-                this.loading = false;
+                this.loading.makeAPlay = false;
             }
         },
     },

@@ -23,8 +23,8 @@
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-lg-8 col-12">
-                <hr class="bg-dark"/>
+            <div class="col-lg-10 col-12">
+                <hr class="bg-dark mt-2 mb-0"/>
             </div>
         </div>
     </div>
@@ -50,6 +50,8 @@ import twoSistersSVG from "@/assets/svg/roles/two-sisters.svg";
 import threeBrothersPNG from "@/assets/img/roles/three-brothers.png";
 import worshipedSVG from "@/assets/svg/attributes/worshiped.svg";
 import bigBadWolfSVG from "@/assets/svg/roles/big-bad-wolf.svg";
+import charmedSVG from "@/assets/svg/attributes/charmed.svg";
+import cantVoteSVG from "@/assets/svg/attributes/cant-vote.svg";
 
 export default {
     name: "GamePlayFieldHeader",
@@ -154,6 +156,24 @@ export default {
                     eat: {
                         icon: bigBadWolfSVG,
                         role: "big-bad-wolf",
+                    },
+                },
+                "pied-piper": {
+                    charm: {
+                        icon: charmedSVG,
+                        role: "pied-piper",
+                    },
+                },
+                "charmed": {
+                    "meet-each-other": {
+                        icon: charmedSVG,
+                        role: "pied-piper",
+                    },
+                },
+                "scapegoat": {
+                    "ban-voting": {
+                        icon: cantVoteSVG,
+                        role: "scapegoat",
                     },
                 },
             },

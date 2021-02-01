@@ -14,12 +14,7 @@ class Game {
         this.tick = getProp(game, "tick");
         this.waiting = getProp(game, "waiting", [], waiting => waiting.map(waitingEntry => waitingEntry));
         this.status = getProp(game, "status");
-        this.options = {
-            sistersWakingUpInterval: getProp(game, "options.sistersWakingUpInterval", 2),
-            brothersWakingUpInterval: getProp(game, "options.brothersWakingUpInterval", 2),
-            isSheriffVoteDoubled: getProp(game, "options.isSheriffVoteDoubled", true),
-            isSeerTalkative: getProp(game, "options.isSeerTalkative", true),
-        };
+        this.options = Game._getGameOptions(game);
         this.history = getProp(game, "history", [], history => history.map(historyEntry => new GameHistory(historyEntry)));
         this.won = {
             by: getProp(game, "won.by"),
@@ -34,8 +29,30 @@ class Game {
         this.updatedAt = getProp(game, "updatedAt");
     }
 
+    static _getGameOptions(game) {
+        return {
+            roles: {
+                sheriff: {
+                    enabled: getProp(game, "options.roles.sheriff.enabled", true),
+                    hasDoubledVote: getProp(game, "options.roles.sheriff.hasDoubledVote", true),
+                },
+                seer: { isTalkative: getProp(game, "options.roles.seer.isTalkative", true) },
+                twoSisters: { wakingUpInterval: getProp(game, "options.roles.twoSisters.wakingUpInterval", 2) },
+                threeBrothers: { wakingUpInterval: getProp(game, "options.roles.threeBrothers.wakingUpInterval", 2) },
+            },
+        };
+    }
+
+    get isCreated() {
+        return !!this._id;
+    }
+
     get alivePlayers() {
         return this.players.filter(player => player.isAlive);
+    }
+
+    get canVotePlayers() {
+        return this.players.filter(player => player.isAlive && !player.hasActiveAttribute("cant-vote", this));
     }
 
     get werewolfPlayers() {
@@ -55,7 +72,7 @@ class Game {
     }
 
     get isMaxPlayerReached() {
-        return this.players.length === 20;
+        return this.players.length === 40;
     }
 
     get areThereEnoughPlayers() {
@@ -96,7 +113,7 @@ class Game {
     }
 
     get canUpdateOptions() {
-        return !this._id;
+        return !this.isCreated;
     }
 
     get firstWaiting() {
@@ -122,10 +139,13 @@ class Game {
         const { to } = this.firstWaiting;
         const oneTargetActions = ["look", "eat", "protect", "shoot", "settle-votes", "delegate", "choose-model", "use-potion"];
         const twoTargetsActions = ["charm"];
-        if (oneTargetActions.includes(to)) {
+        const noLimitActions = ["ban-voting"];
+        if (oneTargetActions.includes(to) || to === "charm" && this.piedPiperTargets.length === 1) {
             return 1;
         } else if (twoTargetsActions.includes(to)) {
             return 2;
+        } else if (noLimitActions.includes(to)) {
+            return this.alivePlayers.length;
         }
         return 0;
     }
@@ -231,8 +251,28 @@ class Game {
         return this.getPlayersWithRole("three-brothers");
     }
 
+    get vileFatherOfWolvesPlayer() {
+        return this.getPlayerWithRole("vile-father-of-wolves");
+    }
+
+    get scapegoatPlayer() {
+        return this.getPlayerWithRole("scapegoat");
+    }
+
     get inLovePlayers() {
         return this.getPlayersWithAttribute("in-love");
+    }
+
+    get charmedPlayers() {
+        return this.getPlayersWithAttribute("charmed");
+    }
+
+    get idiotPlayer() {
+        return this.getPlayerWithRole("idiot");
+    }
+
+    get ancientPlayer() {
+        return this.getPlayerWithRole("ancient");
     }
 
     isRoleInGame(roleName) {
@@ -253,6 +293,7 @@ class Game {
             all: this.players,
             sheriff: this.getPlayersWithAttribute("sheriff"),
             lovers: this.getPlayersWithAttribute("in-love"),
+            charmed: this.getPlayersWithAttribute("charmed"),
             villagers: this.villagerPlayers,
             werewolves: this.werewolfPlayers,
         };
@@ -261,6 +302,38 @@ class Game {
 
     get alivePlayersExpectedToPlay() {
         return this.playersExpectedToPlay.filter(({ isAlive }) => isAlive);
+    }
+
+    get piedPiperTargets() {
+        return this.alivePlayers.filter(player => player.role.current !== "pied-piper" && !player.hasAttribute("charmed"));
+    }
+
+    get scapegoatTargets() {
+        return this.alivePlayers.filter(player => !player.hasAttribute("cant-vote"));
+    }
+
+    get lastActionTargets() {
+        if (!this.history.length) {
+            return [];
+        }
+        return this.history[0].play.targets;
+    }
+
+    get lastActionTargetedPlayers() {
+        return this.lastActionTargets.map(({ player }) => player);
+    }
+
+    get isSecondVoteAfterTie() {
+        if (!this.history.length) {
+            return false;
+        }
+        const { play } = this.history[0];
+        return play.source.name === "all" && play.action === "vote" && play.targets.length > 1 &&
+            this.firstWaiting.for === "all" && this.firstWaiting.to === "vote";
+    }
+
+    get didAncientTakeHisRevenge() {
+        return !!this.getPlayerWithAttribute("powerless");
     }
 }
 

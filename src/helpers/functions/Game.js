@@ -19,6 +19,6 @@ export function isTargetAction(action) {
 }
 
 export function isSkippableAction(action) {
-    const skippableActions = ["use-potion", "mark", "meet-each-other"];
+    const skippableActions = ["use-potion", "mark", "meet-each-other", "ban-voting"];
     return skippableActions.includes(action);
 }

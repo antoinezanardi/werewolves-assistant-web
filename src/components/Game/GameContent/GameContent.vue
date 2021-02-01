@@ -3,7 +3,7 @@
         <transition mode="out-in" name="fade">
             <GameEventMonitor v-if="events.length" key="game-event-monitor" :events="events" @skip-event="removeEvent"/>
             <GamePlayField v-else key="game-play-field" :play="play" @player-selected="playerSelected" @player-votes="playerVotes"
-                           @side-selected="sideSelected"/>
+                           @side-selected="sideSelected" @vile-father-of-wolves-infects="vileFatherOfWolvesInfects"/>
         </transition>
     </div>
 </template>
@@ -31,19 +31,20 @@ export default {
     computed: { ...mapGetters("game", { game: "game" }) },
     watch: {
         game: {
-            handler(newGame, oldGame) {
+            handler(newGame) {
                 this.resetPlay();
+                this.generateLastActionEvents();
                 if (newGame.tick === 1) {
                     this.events.push(new GameEvent({ type: "game-starts" }));
                 }
                 if (newGame.phase === "day") {
-                    this.generateGamePhaseEvent(newGame, oldGame);
-                    this.generateGameDeathEvents(newGame, oldGame);
+                    this.generateGamePhaseEvent();
+                    this.generateGameDeathAndRevealEvents();
                 } else {
-                    this.generateGameDeathEvents(newGame, oldGame);
-                    this.generateGamePhaseEvent(newGame, oldGame);
+                    this.generateGameDeathAndRevealEvents();
+                    this.generateGamePhaseEvent();
                 }
-                this.generateGameRoleTurnEvents(newGame, oldGame);
+                this.generateGameRoleTurnEvents();
             },
             deep: true,
             immediate: true,
@@ -76,7 +77,7 @@ export default {
             } else {
                 this.play.targets.push(target);
                 const targetsWithAttribute = this.play.targets.filter(({ attribute }) => attribute === payload.attribute);
-                if (maxTargetLength < targetsWithAttribute.length) {
+                if (maxTargetLength && maxTargetLength < targetsWithAttribute.length) {
                     this.play.targets.shift();
                 }
             }
@@ -84,47 +85,69 @@ export default {
         sideSelected(side) {
             this.play.side = side;
         },
+        vileFatherOfWolvesInfects() {
+            if (this.play.targets.length) {
+                this.play.targets[0].isInfected = true;
+            }
+        },
         resetPlay() {
             this.play.votes = [];
             this.play.targets = [];
             this.play.side = undefined;
+        },
+        generateLastActionEvents() {
             if (this.game.history.length) {
                 const lastGameHistoryEntry = this.game.history[0];
+                const lastGameHistoryEntrySourceName = lastGameHistoryEntry.play.source.name;
+                const { vileFatherOfWolvesPlayer } = this.game;
                 if (lastGameHistoryEntry.play.action === "look") {
                     this.events.push(new GameEvent({ type: "seer-looks", targets: lastGameHistoryEntry.play.targets }));
                 } else if (lastGameHistoryEntry.play.action === "elect-sheriff" || lastGameHistoryEntry.play.action === "delegate") {
                     this.events.push(new GameEvent({ type: "sheriff-elected", targets: lastGameHistoryEntry.play.targets }));
                 } else if (lastGameHistoryEntry.play.action === "charm") {
-                    this.events.push(new GameEvent({ type: "cupid-charms", targets: lastGameHistoryEntry.play.targets }));
+                    this.events.push(new GameEvent({ type: `${lastGameHistoryEntrySourceName}-charms`, targets: lastGameHistoryEntry.play.targets }));
+                } else if (lastGameHistoryEntry.play.action === "mark") {
+                    this.events.push(new GameEvent({ type: `raven-marks`, targets: lastGameHistoryEntry.play.targets }));
+                } else if (lastGameHistoryEntry.play.action === "eat" && lastGameHistoryEntrySourceName === "werewolves" &&
+                    !!vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer.isAlive) {
+                    this.events.push(new GameEvent({ type: `vile-father-of-wolves-infects`, targets: lastGameHistoryEntry.play.targets }));
+                } else if (this.game.history.length > 1 && lastGameHistoryEntry.wasVotePlayWithoutDeath &&
+                    this.game.history[1].wasVotePlayWithoutDeath) {
+                    this.events.push(new GameEvent({ type: `no-death-after-votes`, targets: this.game.history[1].play.targets }));
                 }
             }
         },
-        generateGamePhaseEvent(newGame, oldGame) {
-            if (newGame.tick === 2) {
+        generateGamePhaseEvent() {
+            if (!this.game.options.roles.sheriff.enabled && this.game.tick === 1 || this.game.options.roles.sheriff.enabled && this.game.tick === 2) {
                 return this.events.push(new GameEvent({ type: "night-falls" }));
-            } else if (newGame && oldGame && newGame.phase !== oldGame.phase) {
-                const event = newGame.phase === "day" ? new GameEvent({ type: "day-rises" }) : new GameEvent({ type: "night-falls" });
+            } else if (this.game.history.length &&
+                (this.game.phase !== this.game.history[0].phase || this.game.turn !== this.game.history[0].turn)) {
+                const event = this.game.phase === "day" ? new GameEvent({ type: "day-rises" }) : new GameEvent({ type: "night-falls" });
                 return this.events.push(event);
             }
         },
-        generateGameDeathEvents(newGame, oldGame) {
-            if (!newGame || !oldGame) {
+        generateGameDeathAndRevealEvents() {
+            if (!this.game.history.length) {
                 return;
             }
-            for (const newPlayer of newGame.players) {
-                const oldPlayer = oldGame.players.find(({ _id }) => _id === newPlayer._id);
-                if (!newPlayer.isAlive && oldPlayer.isAlive) {
-                    this.events.push(new GameEvent({ type: "player-dies", targets: [{ player: newPlayer }] }));
+            const { deadPlayers, revealedAlivePlayers, phase: previousPhase, turn: previousTurn } = this.game.history[0];
+            if (this.game.phase === "day" && previousPhase === "night" ||
+                previousPhase === "night" && this.game.phase === "night" && previousTurn !== this.game.turn) {
+                if (!deadPlayers.length) {
+                    this.events.push(new GameEvent({ type: "no-death-during-night" }));
+                } else {
+                    this.events.push(new GameEvent({ type: "deaths-during-night", targets: deadPlayers }));
                 }
             }
-            if (newGame.phase === "day" && !this.events.find(({ type }) => type === "player-dies")) {
-                this.events.push(new GameEvent({ type: "no-death-during-night" }));
+            for (const deadPlayer of deadPlayers) {
+                this.events.push(new GameEvent({ type: "player-dies", targets: [{ player: deadPlayer }] }));
+            }
+            for (const revealedPlayer of revealedAlivePlayers) {
+                this.events.push(new GameEvent({ type: "player-role-revealed", targets: [{ player: revealedPlayer }] }));
             }
         },
-        generateGameRoleTurnEvents(newGame, oldGame) {
-            if (!oldGame || newGame.firstWaiting.for !== oldGame.firstWaiting.for || newGame.firstWaiting.to !== oldGame.firstWaiting.to) {
-                this.events.push(new GameEvent({ type: `${newGame.firstWaiting.for}-turn` }));
-            }
+        generateGameRoleTurnEvents() {
+            this.events.push(new GameEvent({ type: `${this.game.firstWaiting.for}-turn` }));
         },
         removeEvent(event) {
             const idx = this.events.findIndex(({ _id }) => _id === event._id);

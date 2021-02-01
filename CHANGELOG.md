@@ -1,5 +1,67 @@
 # 📈 LIST OF CHANGES FOR WEREWOLVES ASSISTANT WEB
 
+## 1.0.0-beta.10 (2021-02-01)
+
+### 🚀 New features
+
+* [#13](https://github.com/antoinezanardi/werewolves-assistant-web/issues/13) - Link CHANGELOG.md on Home page.
+* [#94](https://github.com/antoinezanardi/werewolves-assistant-web/issues/94) - Display dead players.
+* [#96](https://github.com/antoinezanardi/werewolves-assistant-web/issues/96) - Implement the Vile Father Of Wolves role.
+* [#99](https://github.com/antoinezanardi/werewolves-assistant-web/issues/99) - Display revealed players
+* [#100](https://github.com/antoinezanardi/werewolves-assistant-web/issues/100) - Implement the Ancient role.
+* [#102](https://github.com/antoinezanardi/werewolves-assistant-web/issues/102) - Game option for no sheriff.
+* [#103](https://github.com/antoinezanardi/werewolves-assistant-web/issues/103) - Implement the Scapegoat role.
+* [#104](https://github.com/antoinezanardi/werewolves-assistant-web/issues/104) - Implement the Idiot role.
+* [#106](https://github.com/antoinezanardi/werewolves-assistant-web/issues/106) - Implement the Pied Piper role.
+* [#111](https://github.com/antoinezanardi/werewolves-assistant-web/issues/111) - Add game sides in modal for smaller screens.
+
+### 🌟 Enhancements
+
+* [#93](https://github.com/antoinezanardi/werewolves-assistant-web/issues/93) - Enhance Game Lobby display for small screens.
+* [#98](https://github.com/antoinezanardi/werewolves-assistant-web/issues/98) - Extend player limit.
+* [#109](https://github.com/antoinezanardi/werewolves-assistant-web/issues/109) - Add limits to waking up interval options.
+* [#110](https://github.com/antoinezanardi/werewolves-assistant-web/issues/110) - Better filter for vue-select.
+* [#112](https://github.com/antoinezanardi/werewolves-assistant-web/issues/112) - Add remaining phases and active in for attributes in sides.
+* [#113](https://github.com/antoinezanardi/werewolves-assistant-web/issues/113) - Add an icon, and a tooltip in player thumbnails in sides.
+* [#114](https://github.com/antoinezanardi/werewolves-assistant-web/issues/114) - Display who can be voted during vote play.
+
+### 🐛 Bug fixes
+
+* [#91](https://github.com/antoinezanardi/werewolves-assistant-web/issues/91) - Typos on game event texts.
+* [#92](https://github.com/antoinezanardi/werewolves-assistant-web/issues/92) - Text too long in game event.
+* [#107](https://github.com/antoinezanardi/werewolves-assistant-web/issues/107) - Bad prefix for roles.
+* [#108](https://github.com/antoinezanardi/werewolves-assistant-web/issues/108) - Game options modal disclaimer always show.
+
+### ♻️ Refactoring
+
+* [#95](https://github.com/antoinezanardi/werewolves-assistant-web/issues/95) - Change game options structure.
+* [#101](https://github.com/antoinezanardi/werewolves-assistant-web/issues/101) - Refactor Game History Modal with tabs, source players and more.
+* [#105](https://github.com/antoinezanardi/werewolves-assistant-web/issues/105) - Change `attributes.attribute` to `attributes.name` in Player class.
+
+### 📦 Packages
+
+* `fuse.js` installed with version `6.4.6`.
+* `@sentry/browser` updated to version `6.0.3`.
+* `@sentry/integrations` updated to version `6.0.3`.
+* `@vue/cli-plugin-e2e-cypress` updated to version `4.5.11`.
+* `@vue/cli-plugin-eslint` updated to version `4.5.11`.
+* `@vue/cli-plugin-router` updated to version `4.5.11`.
+* `@vue/cli-plugin-unit-mocha` updated to version `4.5.11`.
+* `@vue/cli-plugin-vuex` updated to version `4.5.11`.
+* `@vue/cli-service` updated to version `4.5.11`.
+* `bootstrap` updated to version `4.6.0`.
+* `eslint` updated to version `7.19.0`.
+* `eslint-plugin-vue` updated to version `7.5.0`.
+* `qs` updated to version `6.9.6`.
+* `sass-loader` updated to version `10.1.1`.
+* `sweetalert2` updated to version `10.14.0`.
+* `v-tooltip` updated to version `2.1.2`.
+* `vue-i18n` updated to version `8.22.4`.
+* `vue-router` updated to version `3.6.2`.
+* `vuex` updated to version `3.6.2`.
+
+---
+
 ## 1.0.0-beta.9 (2020-12-30)
 
 ### 🚀 New features

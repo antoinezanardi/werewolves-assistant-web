@@ -8,7 +8,7 @@
                             <div class="offset-md-0 col-md-2 order-md-0 offset-2 col-8 order-0 text-center">
                                 <div class="font-italic small text-secondary" v-html="$t('GameLobbyRolePickerModal.actualRole')"/>
                                 <RoleImage id="selected-player-current-role-image" :role="selected.player.role.current"/>
-                                <RoleText v-if="selected.player.role.current" :role="selected.player.role.current"/>
+                                <RoleText v-if="selected.player.role.current" :role="selected.player.role.current" prefix="the"/>
                                 <div v-else v-html="$t('GameLobbyRolePickerModal.noRole')"/>
                             </div>
                             <div class="col-md-8 order-md-1 col-12 order-2">
@@ -57,7 +57,7 @@
                                             <div class="row mt-3">
                                                 <div class="col-6 text-center">
                                                     <RoleText v-if="isRolePicked" id="selected-role-text" :key="selected.role.name"
-                                                              :role="selected.role.name" class="font-weight-bold"/>
+                                                              :role="selected.role.name" prefix="the" class="font-weight-bold"/>
                                                 </div>
                                                 <div class="col-6 d-flex justify-content-center align-items-center">
                                                     <span class="font-weight-bold mr-2" v-html="`${$t('GameLobbyRolePickerModal.side')}: `"/>
@@ -97,11 +97,11 @@
                             </div>
                             <div id="roles-panel" class="col-md-8 col-12 visible-scrollbar">
                                 <div class="row justify-content-center">
-                                    <RolePickerRole :game="game" class="col-md-2 col-3 text-center p-2"
+                                    <RolePickerRole :game="game" class="col-md-2 col-sm-3 col-4 text-center p-2"
                                                     @click.native="selectRandomRole"/>
                                     <RolePickerRole v-for="role in roles" :key="role.name" :game="game" :role="role"
                                                     :selected="selected.role.name === role.name"
-                                                    class="col-md-2 col-3 text-center p-2" @click.native="changeSelectedRole(role)"/>
+                                                    class="col-md-2 col-sm-3 col-4 text-center p-2" @click.native="changeSelectedRole(role)"/>
                                 </div>
                             </div>
                         </div>

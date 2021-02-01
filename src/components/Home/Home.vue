@@ -7,10 +7,13 @@
                     <h1 id="title" class="text-center">
                         <span id="title-wrapper" class="text-center">
                             <span v-html="$t('Home.werewolvesAssistant')"/>
-                            <span id="version" class="badge badge-dark text-center text-uppercase">
+                            <a id="version" v-tooltip="$t('Home.checkChangelogOnGithub')" target="_blank"
+                               href="https://github.com/antoinezanardi/werewolves-assistant-web/blob/master/CHANGELOG.md"
+                               class="badge badge-dark text-center text-uppercase">
+                                <i class="fab fa-github mr-2 text-white"/>
                                 <span v-html="'v1.0.0'"/>
                                 <span class="text-muted" v-html="' - beta'"/>
-                            </span>
+                            </a>
                         </span>
                     </h1>
                     <h4 id="subtitle" class="text-center">

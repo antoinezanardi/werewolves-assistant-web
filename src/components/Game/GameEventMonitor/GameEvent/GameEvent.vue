@@ -7,9 +7,9 @@
                 <GameEventImage class="w-100" :event="event"/>
             </div>
         </div>
-        <div id="game-event-message-container" class="w-100 d-flex">
+        <div id="game-event-message-container" class="w-100 d-flex pb-2">
             <div class="row align-items-center d-flex flex-grow-1">
-                <div class="col-2 col-md-1 px-0">
+                <div class="col-2 col-md-1 px-0 text-center">
                     <v-popover trigger="hover" :disabled="!canGoBackToPreviousGameEventMessage || isTouchDevice">
                         <i class="fa fa-chevron-left fa-3x game-event-message-button animate__animated
                                   animate__heartBeat animate__repeat-2 animate__slow"
@@ -26,13 +26,13 @@
                         </template>
                     </v-popover>
                 </div>
-                <div class="col-8 col-md-10 text-center">
+                <div class="col-8 col-md-10 d-flex justify-content-center align-items-center h-100 overflow-auto px-0 visible-scrollbar">
                     <transition mode="out-in" name="fade">
-                        <div id="game-event-message" :key="currentGameEventMessage" class="text-center"
+                        <div id="game-event-message" :key="currentGameEventMessage" class="text-center my-2"
                              v-html="currentGameEventMessage"/>
                     </transition>
                 </div>
-                <div class="col-2 col-md-1 px-0 text-right">
+                <div class="col-2 col-md-1 px-0 text-center">
                     <v-popover trigger="hover" :disabled="isTouchDevice">
                         <i class="fa fa-chevron-right fa-3x game-event-message-button animate__animated animate__heartBeat animate__repeat-2
                                   animate__slow" @click="nextGameEventMessage"/>
@@ -57,6 +57,7 @@ import { mapGetters } from "vuex";
 import GameEvent from "@/classes/GameEvent";
 import i18n from "@/plugins/vue-i18n";
 import GameEventImage from "@/components/Game/GameEventMonitor/GameEvent/GameEventImage";
+import { listPlayerNames } from "@/helpers/functions/Player";
 import { insertIf } from "@/helpers/functions/Array";
 import { isTouchDevice } from "@/helpers/functions/Device";
 import leftArrowKey from "@/assets/img/game/left-arrow-key.png";
@@ -84,8 +85,11 @@ export default {
         }),
         // eslint-disable-next-line max-lines-per-function
         gameEventMetadata() {
-            const gameEventTargetName = this.hasGameEventTarget ? this.event.targets[0].player.name : null;
-            const gameEventTargetRole = this.hasGameEventTarget ? i18n.t(`Role.a.${this.event.targets[0].player.role.current}`) : null;
+            const { ancientPlayer, didAncientTakeHisRevenge } = this.game;
+            const gameEventFirstTarget = this.hasGameEventTargets ? this.event.targets[0] : null;
+            const gameEventTargetName = this.hasGameEventTargets ? gameEventFirstTarget.player.name : null;
+            const gameEventTargetRole = this.hasGameEventTargets ? gameEventFirstTarget.player.role.current : null;
+            const gameEventTargetRoleText = gameEventTargetRole ? i18n.t(`Role.a.${gameEventFirstTarget.player.role.current}`) : null;
             return {
                 "game-starts": {
                     messages: [
@@ -93,13 +97,23 @@ export default {
                         this.gameCompositionText,
                         i18n.t("GameEvent.messages.looksLifeSomeWerewolvesIntroducedThemselves"),
                         i18n.t("GameEvent.messages.villagersMurderWerewolves"),
-                        i18n.t("GameEvent.messages.beforeStartingLetsElectSheriff"),
+                        ...insertIf(this.gameOptions.roles.sheriff.enabled, i18n.t("GameEvent.messages.beforeStartingLetsElectSheriff")),
                     ],
                 },
                 "player-dies": {
                     messages: [
                         i18n.t("GameEvent.messages.playerDies", { player: gameEventTargetName }),
                         i18n.t("GameEvent.messages.playerRevealsRole"),
+                        ...insertIf(gameEventTargetRole === "idiot" && gameEventFirstTarget.player.hasAttribute("sheriff"),
+                            i18n.t("GameEvent.messages.noIdiotSheriffAnymore")),
+                        ...insertIf(gameEventTargetRole === "ancient" && didAncientTakeHisRevenge,
+                            i18n.t("GameEvent.messages.ancientTakesHisRevenge")),
+                    ],
+                },
+                "player-role-revealed": {
+                    messages: [
+                        ...insertIf(gameEventTargetRole === "idiot", i18n.t("GameEvent.messages.idiotIsForgiven")),
+                        i18n.t("GameEvent.messages.playerRoleIsRevealed"),
                     ],
                 },
                 "sheriff-elected": {
@@ -111,8 +125,18 @@ export default {
                 "night-falls": { messages: [i18n.t("GameEvent.messages.nightFalls"), i18n.t("GameEvent.messages.inhabitantsFallAsleep")] },
                 "all-turn": {
                     messages: [
-                        ...insertIf(this.game.firstWaiting.to === "vote", i18n.t("GameEvent.messages.allVote")),
+                        ...insertIf(this.game.firstWaiting.to === "vote" && !this.game.isSecondVoteAfterTie, i18n.t("GameEvent.messages.allVote")),
+                        ...insertIf(this.game.firstWaiting.to === "vote" && this.game.isSecondVoteAfterTie,
+                            i18n.t("GameEvent.messages.allVoteAgain", { players: listPlayerNames(this.game.lastActionTargetedPlayers) })),
+                        ...insertIf(this.game.firstWaiting.to === "vote" && !!ancientPlayer && ancientPlayer.isAlive,
+                            i18n.t("GameEvent.messages.attentionToTheAncient")),
                         ...insertIf(this.game.firstWaiting.to === "elect-sheriff", i18n.t("GameEvent.messages.allElectSheriff")),
+                    ],
+                },
+                "no-death-after-votes": {
+                    messages: [
+                        i18n.t("GameEvent.messages.noDeathAfterVotes"),
+                        i18n.t("GameEvent.messages.everybodyFallAsleepAlive"),
                     ],
                 },
                 "sheriff-turn": {
@@ -122,18 +146,31 @@ export default {
                     ],
                 },
                 "day-rises": { messages: [i18n.t("GameEvent.messages.dayRises")] },
+                "deaths-during-night": {
+                    messages: [
+                        i18n.tc("GameEvent.messages.deathDuringNight", this.event.targets.length, { numberOfDeaths: this.event.targets.length }),
+                        i18n.t("GameEvent.messages.letsSeeWhoIsDead"),
+                    ],
+                },
                 "no-death-during-night": { messages: [i18n.t("GameEvent.messages.noDeathDuringNight")] },
                 "seer-turn": { messages: [i18n.t("GameEvent.messages.seerStarts")] },
                 "seer-looks": {
                     messages: [
-                        ...insertIf(!this.gameOptions.isSeerTalkative, i18n.t("GameEvent.messages.followingMessageMustBeMimed")),
-                        `${i18n.t("GameEvent.messages.seerHasSeen")} ${gameEventTargetRole} !`,
+                        ...insertIf(!this.gameOptions.roles.seer.isTalkative, i18n.t("GameEvent.messages.followingMessageMustBeMimed")),
+                        `${i18n.t("GameEvent.messages.seerHasSeen")} ${gameEventTargetRoleText} !`,
                     ],
                 },
                 "werewolves-turn": { messages: [i18n.tc("GameEvent.messages.werewolvesStart", this.game.aliveWerewolfPlayers.length)] },
+                "vile-father-of-wolves-infects": { messages: [i18n.t("GameEvent.messages.gameMasterWillTouchInfected")] },
                 "witch-turn": { messages: [i18n.t("GameEvent.messages.witchStarts")] },
                 "guard-turn": { messages: [i18n.t("GameEvent.messages.guardStarts")] },
                 "raven-turn": { messages: [i18n.t("GameEvent.messages.ravenStarts")] },
+                "raven-marks": {
+                    messages: [
+                        i18n.t("GameEvent.messages.ravenHasMarked"),
+                        i18n.t("GameEvent.messages.gameMasterWillDepositMark"),
+                    ],
+                },
                 "hunter-turn": { messages: [i18n.t("GameEvent.messages.hunterStarts")] },
                 "dog-wolf-turn": { messages: [i18n.t("GameEvent.messages.dogWolfStarts")] },
                 "cupid-turn": { messages: [i18n.t("GameEvent.messages.cupidStarts")] },
@@ -158,9 +195,23 @@ export default {
                 },
                 "wild-child-turn": { messages: [i18n.t("GameEvent.messages.wildChildStarts")] },
                 "big-bad-wolf-turn": { messages: [i18n.t("GameEvent.messages.bigBadWolfStarts")] },
+                "pied-piper-turn": { messages: [i18n.t("GameEvent.messages.piedPiperStarts")] },
+                "pied-piper-charms": {
+                    messages: [
+                        i18n.t("GameEvent.messages.piedPiperCharmedTwoPlayers"),
+                        i18n.t("GameEvent.messages.gameMasterWillTouchCharmed"),
+                    ],
+                },
+                "charmed-turn": {
+                    messages: [
+                        ...insertIf(this.game.turn === 1, i18n.t("GameEvent.messages.charmedWakeUp")),
+                        ...insertIf(this.game.turn !== 1, i18n.t("GameEvent.messages.charmedWakeUpWithOldOnes")),
+                    ],
+                },
+                "scapegoat-turn": { messages: [i18n.t("GameEvent.messages.scapegoatStarts")] },
             };
         },
-        hasGameEventTarget() {
+        hasGameEventTargets() {
             return !!this.event.targets.length;
         },
         gameEventMessages() {
@@ -225,7 +276,10 @@ export default {
         height: 40%;
 
         #game-event-message {
-            @include font-size(1.25rem);
+            max-height: 100%;
+            @include media-breakpoint-up(md) {
+                font-size: 1.50rem;
+            }
         }
 
         .game-event-message-button {

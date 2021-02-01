@@ -1,12 +1,12 @@
 <template>
     <div id="charm-play-field" class="d-flex flex-column">
-        <div class="row justify-content-center align-items-center">
+        <div id="pied-piper-player" class="row justify-content-center align-items-center">
             <div class="col-12">
-                <PlayerCard :player="game.cupidPlayer" size="lg"/>
+                <PlayerCard :player="charmingPlayer" size="lg"/>
             </div>
         </div>
-        <PlayFieldActionText :play="play" attribute="in-love" @player-selected="playerSelected"/>
-        <PlayerTargets :targets="game.alivePlayers" :play="play" attribute="in-love" class="flex-grow-1"
+        <PlayFieldActionText :play="play" :attribute="targetsAppliedAttribute" @player-selected="playerSelected"/>
+        <PlayerTargets :targets="canBeCharmedPlayers" :play="play" :attribute="targetsAppliedAttribute" class="flex-grow-1"
                        @player-selected="playerSelected"/>
     </div>
 </template>
@@ -26,7 +26,25 @@ export default {
             required: true,
         },
     },
-    computed: { ...mapGetters("game", { game: "game" }) },
+    computed: {
+        ...mapGetters("game", { game: "game" }),
+        charmingPlayer() {
+            const { firstWaiting } = this.game;
+            return this.game.getPlayerWithRole(firstWaiting.for);
+        },
+        targetsAppliedAttribute() {
+            const { firstWaiting } = this.game;
+            return firstWaiting.for === "pied-piper" ? "charmed" : "in-love";
+        },
+        canBeCharmedPlayers() {
+            const { firstWaiting } = this.game;
+            const canBeCharmedPlayers = {
+                "pied-piper": this.game.piedPiperTargets,
+                "cupid": this.game.alivePlayers,
+            };
+            return canBeCharmedPlayers[firstWaiting.for] ? canBeCharmedPlayers[firstWaiting.for] : [];
+        },
+    },
     methods: {
         playerSelected(payload) {
             this.$emit("player-selected", payload);

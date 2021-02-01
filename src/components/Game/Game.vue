@@ -4,7 +4,7 @@
             <div v-if="loading.getGame" key="loading" class="h-100 d-flex justify-content-center align-items-center">
                 <Loading :text="$t('Game.loadingGame')"/>
             </div>
-            <div v-else key="game" class="pt-2 row mx-0 h-100">
+            <div v-else key="game" class="row mx-0 h-100">
                 <GameVillagersSide class="col-lg-2 col-md-3 d-none d-md-block h-100"/>
                 <transition mode="out-in" name="fade">
                     <GameContent v-if="game.status === 'playing'" key="playing-game"
@@ -24,8 +24,8 @@
 import { mapActions, mapGetters } from "vuex";
 import Swal from "sweetalert2";
 import Loading from "@/components/shared/Loading";
-import GameVillagersSide from "./GameVillagersSide/GameVillagersSide";
-import GameWerewolvesSide from "./GameWerewolvesSide/GameWerewolvesSide";
+import GameVillagersSide from "../shared/Game/Sides/GameVillagersSide/GameVillagersSide";
+import GameWerewolvesSide from "../shared/Game/Sides/GameWerewolvesSide/GameWerewolvesSide";
 import GameContent from "./GameContent/GameContent";
 import GameWinners from "./GameWinners/GameWinners";
 import { isAPIError } from "@/helpers/functions/Error";
