@@ -18,7 +18,7 @@
                                    type="email" class="form-control" :placeholder="$t('RegisterPanel.required')"
                                    required :class="classes" :disabled="loading"/>
                         </div>
-                        <div v-html="errors[0]"/>
+                        <div class="input-error" v-html="errors[0]"/>
                     </ValidationProvider>
                 </div>
             </div>
@@ -41,7 +41,7 @@
                                    class="form-control" :class="classes" :placeholder="$t('RegisterPanel.required')"
                                    required minlength="5" maxlength="50" :disabled="loading"/>
                         </div>
-                        <div v-html="errors[0]"/>
+                        <div class="input-error" v-html="errors[0]"/>
                     </ValidationProvider>
                 </div>
             </div>
@@ -64,7 +64,7 @@
                                    class="form-control" :class="classes" :placeholder="$t('RegisterPanel.required')"
                                    required minlength="5" maxlength="50" :disabled="loading"/>
                         </div>
-                        <div v-html="errors[0]"/>
+                        <div class="input-error" v-html="errors[0]"/>
                     </ValidationProvider>
                 </div>
             </div>
@@ -75,6 +75,11 @@
             </div>
             <div class="col-10 col-lg-10">
                 <span id="register-data-disclaimer-text" v-html="$t('RegisterPanel.userDataOnlyForAccount')"/>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-12 text-center">
+                <a href="#" @click.prevent="$emit('open-login-tab')" v-html="$t('RegisterPanel.IAlreadyHaveAnAccount')"/>
             </div>
         </div>
     </div>

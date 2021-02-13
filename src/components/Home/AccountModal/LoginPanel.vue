@@ -18,7 +18,7 @@
                                    class="form-control" :placeholder="$t('LoginPanel.required')" maxlength="50"
                                    required :class="classes" :disabled="loading"/>
                         </div>
-                        <div v-html="errors[0]"/>
+                        <div class="input-error" v-html="errors[0]"/>
                     </ValidationProvider>
                 </div>
             </div>
@@ -42,9 +42,14 @@
                                    :placeholder="$t('LoginPanel.required')" required minlength="5" maxlength="50"
                                    :disabled="loading"/>
                         </div>
-                        <div v-html="errors[0]"/>
+                        <div class="input-error" v-html="errors[0]"/>
                     </ValidationProvider>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center">
+                <a href="#" @click.prevent="$emit('open-register-tab')" v-html="$t('LoginPanel.IDontHaveAnAccountYet')"/>
             </div>
         </div>
     </div>

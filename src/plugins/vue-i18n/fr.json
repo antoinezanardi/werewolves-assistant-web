@@ -83,14 +83,16 @@
     "LoginPanel": {
         "email": "E-mail",
         "password": "Mot de passe",
-        "required": "Requis"
+        "required": "Requis",
+        "IDontHaveAnAccountYet": "Je n'ai pas encore de compte"
     },
     "RegisterPanel": {
         "email": "E-mail",
         "password": "Mot de passe",
         "confirmPassword": "Confirmer le mot de passe",
         "required": "Requis",
-        "userDataOnlyForAccount": "Ces informations ne sont enregistrées que pour vous permettre de vous connecter et ainsi enregistrer vos parties."
+        "userDataOnlyForAccount": "Ces informations ne sont enregistrées que pour vous permettre de vous connecter et ainsi enregistrer vos parties.",
+        "IAlreadyHaveAnAccount": "J'ai déjà un compte"
     },
     "About": {
         "werewolvesAssistantWhatFor": "Un assistant ? Pour quoi faire ?",

@@ -1,5 +1,30 @@
 # 📈 LIST OF CHANGES FOR WEREWOLVES ASSISTANT WEB
 
+## 1.0.0-beta.11 (2021-02-??)
+
+### 🚀 New features
+
+### 🌟 Enhancements
+
+* [#137](https://github.com/antoinezanardi/werewolves-assistant-web/issues/137) - Add some links to log in modal.
+
+### 🐛 Bug fixes
+
+### ♻️ Refactoring
+
+### 📦 Packages
+
+* `@sentry/browser` updated to version `6.1.0`.
+* `@sentry/integrations` updated to version `6.1.0`.
+* `@vue/test-utils` updated to version `1.1.3`.
+* `chai` updated to version `4.3.0`.
+* `eslint` updated to version `7.20.0`.
+* `sass-loader` updated to version `11.0.1`.
+* `sweetalert2` updated to version `10.14.1`.
+* `vue-gtag` updated to version `1.11.0`.
+
+---
+
 ## 1.0.0-beta.10 (2021-02-01)
 
 ### 🚀 New features
