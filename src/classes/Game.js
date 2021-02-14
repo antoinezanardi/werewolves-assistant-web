@@ -39,6 +39,7 @@ class Game {
                 seer: { isTalkative: getProp(game, "options.roles.seer.isTalkative", true) },
                 twoSisters: { wakingUpInterval: getProp(game, "options.roles.twoSisters.wakingUpInterval", 2) },
                 threeBrothers: { wakingUpInterval: getProp(game, "options.roles.threeBrothers.wakingUpInterval", 2) },
+                raven: { markPenalty: getProp(game, "options.roles.raven.markPenalty", 2) },
             },
         };
     }

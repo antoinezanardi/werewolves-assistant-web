@@ -100,6 +100,27 @@
             </div>
             <div class="col-12 text-muted font-italic" v-html="brothersWakingUpIntervalText"/>
         </div>
+        <hr class="bg-dark mt-2 mb-1"/>
+        <div class="row mt-2">
+            <div class="option-section col-12 d-flex align-items-center">
+                <img :src="SVGs['raven']" class="mr-2" alt="Raven" width="50"/>
+                <div v-html="$t('GameRolesOptions.raven')"/>
+            </div>
+        </div>
+        <hr class="bg-dark mt-1 mb-2"/>
+        <div class="row align-items-center">
+            <div class="col-8">
+                <label for="raven-mark-penalty-option" class="option-label"
+                       v-html="$t('GameRolesOptions.ravenMarkPenalty.label')"/>
+            </div>
+            <div class="col-4 d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <input id="raven-mark-penalty-option" v-model.number="ravenMarkPenalty" class="form-control"
+                           type="number" min="1" max="5" :disabled="!game.canUpdateOptions"/>
+                </div>
+            </div>
+            <div class="col-12 text-muted font-italic" v-html="ravenMarkPenaltyText"/>
+        </div>
     </div>
 </template>
 
@@ -110,12 +131,13 @@ import twoSistersSVG from "@/assets/svg/roles/two-sisters.svg";
 import sheriffSVG from "@/assets/svg/attributes/sheriff.svg";
 import lookSVG from "@/assets/svg/actions/look.svg";
 import threeBrothersPNG from "@/assets/img/roles/three-brothers.png";
+import ravenSVG from "@/assets/svg/attributes/raven-marked.svg";
 
 export default {
     name: "GameRolesOptions",
     data() {
         return {
-            SVGs: { "two-sisters": twoSistersSVG, "sheriff": sheriffSVG, "seer": lookSVG },
+            SVGs: { "two-sisters": twoSistersSVG, "sheriff": sheriffSVG, "seer": lookSVG, "raven": ravenSVG },
             PNGs: { "three-brothers": threeBrothersPNG },
         };
     },
@@ -168,6 +190,16 @@ export default {
                 this.$emit("options-updated");
             },
         },
+        ravenMarkPenalty: {
+            get() {
+                return this.game.options.roles.raven.markPenalty;
+            },
+            set(newRavenMarkPenalty) {
+                newRavenMarkPenalty = adjustNumber(newRavenMarkPenalty, { min: 1, max: 5 });
+                this.setGameOptionRavenMarkPenalty(newRavenMarkPenalty);
+                this.$emit("options-updated");
+            },
+        },
         sistersWakingUpIntervalText() {
             const { sistersWakingUpInterval } = this;
             return this.$tc("GameRolesOptions.sistersWakingUpInterval.description", sistersWakingUpInterval, { sistersWakingUpInterval });
@@ -188,6 +220,10 @@ export default {
             const description = this.isSeerTalkative ? "seerIsTalkative" : "seerIsNotTalkative";
             return this.$t(`GameRolesOptions.isSeerTalkative.description.${description}`);
         },
+        ravenMarkPenaltyText() {
+            const { ravenMarkPenalty } = this;
+            return this.$tc("GameRolesOptions.ravenMarkPenalty.description", ravenMarkPenalty, { ravenMarkPenalty });
+        },
     },
     methods: {
         ...mapActions("game", {
@@ -196,6 +232,7 @@ export default {
             setGameOptionSistersWakingUpInterval: "setGameOptionSistersWakingUpInterval",
             setGameOptionBrothersWakingUpInterval: "setGameOptionBrothersWakingUpInterval",
             setGameOptionIsSeerTalkative: "setGameOptionIsSeerTalkative",
+            setGameOptionRavenMarkPenalty: "setGameOptionRavenMarkPenalty",
         }),
     },
 };

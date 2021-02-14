@@ -4,6 +4,8 @@
 
 ### 🚀 New features
 
+* [#121](https://github.com/antoinezanardi/werewolves-assistant-web/issues/121) - Add option for raven mark penalty.
+
 ### 🌟 Enhancements
 
 * [#120](https://github.com/antoinezanardi/werewolves-assistant-web/issues/120) - Back to top on About page.

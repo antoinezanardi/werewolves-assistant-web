@@ -52,6 +52,11 @@
         "brothersWakingUpInterval": {
             "label": "Nombre de nuits entre deux réveils des Trois Frères",
             "description": "Les Trois Frères ne se réveillent que la première nuit. | Les Trois Frères se réveillent toutes les nuits. | Les Trois Frères se réveillent toutes les {brothersWakingUpInterval} nuits."
+        },
+        "raven": "Corbeau",
+        "ravenMarkPenalty": {
+            "label": "Nombre de votes contre le joueur avec la marque du corbeau",
+            "description": "Le joueur ayant reçu la marque du corbeau aura 1 vote contre lui en plus au prochain vote | Le joueur ayant reçu la marque du corbeau aura {ravenMarkPenalty} votes contre lui en plus au prochain vote."
         }
     },
     "GameSidesModal": {

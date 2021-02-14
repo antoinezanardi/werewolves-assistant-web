@@ -63,6 +63,9 @@ export default {
         setGameOptionIsSeerTalkative(state, isSeerTalkative) {
             state.game.options.roles.seer.isTalkative = isSeerTalkative;
         },
+        setGameOptionRavenMarkPenalty(state, markPenalty) {
+            state.game.options.roles.raven.markPenalty = markPenalty;
+        },
     },
     actions: {
         async getAndSetGame({ commit }, { gameId }) {
@@ -104,6 +107,9 @@ export default {
         },
         setGameOptionIsSeerTalkative({ commit }, isSeerTalkative) {
             commit("setGameOptionIsSeerTalkative", isSeerTalkative);
+        },
+        setGameOptionRavenMarkPenalty({ commit }, markPenalty) {
+            commit("setGameOptionRavenMarkPenalty", markPenalty);
         },
     },
 };
