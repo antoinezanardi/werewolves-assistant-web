@@ -65,6 +65,14 @@
                 "littleGirlIsProtected": "La Petite Fille est protégée des Loups-Garous si le Salvateur la protège.",
                 "littleGirlIsNotProtected": "La Petite Fille mourra de la morsure des Loups-Garous même si le Salvateur la protège."
             }
+        },
+        "idiot": "Idiot",
+        "doesIdiotDieOnAncientDeath": {
+            "label": "L'Idiot déjà révélé meurt à la mort de l'Ancien",
+            "description": {
+                "idiotDiesOnAncientDeath": "Si l'Idiot est déjà révélé (son rôle est connu des autres joueurs) et que l'Ancien meurt, le village reconsidèrera sa décision de l'avoir épargné.",
+                "idiotDoesntDieOnAncientDeath": "L'Idiot déjà révélé ne mourra pas si l'Ancien meurt à son tour."
+            }
         }
     },
     "GameSidesModal": {

@@ -42,6 +42,25 @@
         <hr class="bg-dark mt-2 mb-1"/>
         <div class="row">
             <div class="option-section col-12 d-flex align-items-center">
+                <img :src="SVGs['seer']" class="mr-2" alt="Seer" width="50"/>
+                <div v-html="$t('GameRolesOptions.seer')"/>
+            </div>
+        </div>
+        <hr class="bg-dark mt-1 mb-2"/>
+        <div class="row align-items-center">
+            <div class="col-8">
+                <label for="is-seer-talkative-option" class="option-label"
+                       v-html="$t('GameRolesOptions.isSeerTalkative.label')"/>
+            </div>
+            <div class="col-4 text-center">
+                <toggle-button id="is-seer-talkative-option" v-model="isSeerTalkative" :disabled="!game.canUpdateOptions"
+                               :labels="$t('VueToggleButton.yesNo')" :height="25" :width="60" :sync="true"/>
+            </div>
+            <div class="col-12 text-muted font-italic" v-html="isSeerTalkativeText"/>
+        </div>
+        <hr class="bg-dark mt-2 mb-1"/>
+        <div class="row">
+            <div class="option-section col-12 d-flex align-items-center">
                 <img :src="SVGs['little-girl']" class="mr-2" alt="Little Girl" width="50"/>
                 <div v-html="$t('GameRolesOptions.littleGirl')"/>
             </div>
@@ -61,21 +80,21 @@
         <hr class="bg-dark mt-2 mb-1"/>
         <div class="row">
             <div class="option-section col-12 d-flex align-items-center">
-                <img :src="SVGs['seer']" class="mr-2" alt="Seer" width="50"/>
-                <div v-html="$t('GameRolesOptions.seer')"/>
+                <img :src="SVGs['idiot']" class="mr-2" alt="Idiot" width="50"/>
+                <div v-html="$t('GameRolesOptions.idiot')"/>
             </div>
         </div>
         <hr class="bg-dark mt-1 mb-2"/>
         <div class="row align-items-center">
             <div class="col-8">
-                <label for="is-seer-talkative-option" class="option-label"
-                       v-html="$t('GameRolesOptions.isSeerTalkative.label')"/>
+                <label for="does-idiot-die-on-ancient-death" class="option-label"
+                       v-html="$t('GameRolesOptions.doesIdiotDieOnAncientDeath.label')"/>
             </div>
             <div class="col-4 text-center">
-                <toggle-button id="is-seer-talkative-option" v-model="isSeerTalkative" :disabled="!game.canUpdateOptions"
+                <toggle-button id="does-idiot-die-on-ancient-death" v-model="doesIdiotDieOnAncientDeath" :disabled="!game.canUpdateOptions"
                                :labels="$t('VueToggleButton.yesNo')" :height="25" :width="60" :sync="true"/>
             </div>
-            <div class="col-12 text-muted font-italic" v-html="isSeerTalkativeText"/>
+            <div class="col-12 text-muted font-italic" v-html="doesIdiotDieOnAncientDeathText"/>
         </div>
         <hr class="bg-dark mt-2 mb-1"/>
         <div class="row">
@@ -152,12 +171,20 @@ import lookSVG from "@/assets/svg/actions/look.svg";
 import threeBrothersPNG from "@/assets/img/roles/three-brothers.png";
 import ravenSVG from "@/assets/svg/attributes/raven-marked.svg";
 import littleGirlSVG from "@/assets/svg/roles/little-girl.svg";
+import idiotSVG from "@/assets/svg/roles/idiot.svg";
 
 export default {
     name: "GameRolesOptions",
     data() {
         return {
-            SVGs: { "two-sisters": twoSistersSVG, "sheriff": sheriffSVG, "seer": lookSVG, "raven": ravenSVG, "little-girl": littleGirlSVG },
+            SVGs: {
+                "two-sisters": twoSistersSVG,
+                "sheriff": sheriffSVG,
+                "seer": lookSVG,
+                "raven": ravenSVG,
+                "little-girl": littleGirlSVG,
+                "idiot": idiotSVG,
+            },
             PNGs: { "three-brothers": threeBrothersPNG },
         };
     },
@@ -181,12 +208,30 @@ export default {
                 this.$emit("options-updated");
             },
         },
+        isSeerTalkative: {
+            get() {
+                return this.game.options.roles.seer.isTalkative;
+            },
+            set(isSeerTalkative) {
+                this.setGameOptionIsSeerTalkative(isSeerTalkative);
+                this.$emit("options-updated");
+            },
+        },
         isLittleGirlProtectedByGuard: {
             get() {
                 return this.game.options.roles.littleGirl.isProtectedByGuard;
             },
             set(isLittleGirlProtectedByGuard) {
                 this.setGameOptionIsLittleProtectedByGuard(isLittleGirlProtectedByGuard);
+                this.$emit("options-updated");
+            },
+        },
+        doesIdiotDieOnAncientDeath: {
+            get() {
+                return this.game.options.roles.idiot.doesDieOnAncientDeath;
+            },
+            set(doesIdiotDieOnAncientDeath) {
+                this.setGameOptionDoesIdiotDieOnAncientDeath(doesIdiotDieOnAncientDeath);
                 this.$emit("options-updated");
             },
         },
@@ -210,15 +255,6 @@ export default {
                 this.$emit("options-updated");
             },
         },
-        isSeerTalkative: {
-            get() {
-                return this.game.options.roles.seer.isTalkative;
-            },
-            set(isSeerTalkative) {
-                this.setGameOptionIsSeerTalkative(isSeerTalkative);
-                this.$emit("options-updated");
-            },
-        },
         ravenMarkPenalty: {
             get() {
                 return this.game.options.roles.raven.markPenalty;
@@ -228,14 +264,6 @@ export default {
                 this.setGameOptionRavenMarkPenalty(newRavenMarkPenalty);
                 this.$emit("options-updated");
             },
-        },
-        sistersWakingUpIntervalText() {
-            const { sistersWakingUpInterval } = this;
-            return this.$tc("GameRolesOptions.sistersWakingUpInterval.description", sistersWakingUpInterval, { sistersWakingUpInterval });
-        },
-        brothersWakingUpIntervalText() {
-            const { brothersWakingUpInterval } = this;
-            return this.$tc("GameRolesOptions.brothersWakingUpInterval.description", brothersWakingUpInterval, { brothersWakingUpInterval });
         },
         isSheriffEnabledText() {
             const description = this.isSheriffEnabled ? "sheriffIsEnabled" : "sheriffIsNotEnabled";
@@ -249,23 +277,36 @@ export default {
             const description = this.isSeerTalkative ? "seerIsTalkative" : "seerIsNotTalkative";
             return this.$t(`GameRolesOptions.isSeerTalkative.description.${description}`);
         },
-        ravenMarkPenaltyText() {
-            const { ravenMarkPenalty } = this;
-            return this.$tc("GameRolesOptions.ravenMarkPenalty.description", ravenMarkPenalty, { ravenMarkPenalty });
-        },
         isLittleGirlProtectedByGuardText() {
             const description = this.isLittleGirlProtectedByGuard ? "littleGirlIsProtected" : "littleGirlIsNotProtected";
             return this.$t(`GameRolesOptions.isLittleGirlProtectedByGuard.description.${description}`);
+        },
+        doesIdiotDieOnAncientDeathText() {
+            const description = this.doesIdiotDieOnAncientDeath ? "idiotDiesOnAncientDeath" : "idiotDoesntDieOnAncientDeath";
+            return this.$t(`GameRolesOptions.doesIdiotDieOnAncientDeath.description.${description}`);
+        },
+        sistersWakingUpIntervalText() {
+            const { sistersWakingUpInterval } = this;
+            return this.$tc("GameRolesOptions.sistersWakingUpInterval.description", sistersWakingUpInterval, { sistersWakingUpInterval });
+        },
+        brothersWakingUpIntervalText() {
+            const { brothersWakingUpInterval } = this;
+            return this.$tc("GameRolesOptions.brothersWakingUpInterval.description", brothersWakingUpInterval, { brothersWakingUpInterval });
+        },
+        ravenMarkPenaltyText() {
+            const { ravenMarkPenalty } = this;
+            return this.$tc("GameRolesOptions.ravenMarkPenalty.description", ravenMarkPenalty, { ravenMarkPenalty });
         },
     },
     methods: {
         ...mapActions("game", {
             setGameOptionIsSheriffVoteDoubled: "setGameOptionIsSheriffVoteDoubled",
             setGameOptionIsSheriffEnabled: "setGameOptionIsSheriffEnabled",
+            setGameOptionIsSeerTalkative: "setGameOptionIsSeerTalkative",
+            setGameOptionDoesIdiotDieOnAncientDeath: "setGameOptionDoesIdiotDieOnAncientDeath",
             setGameOptionIsLittleProtectedByGuard: "setGameOptionIsLittleProtectedByGuard",
             setGameOptionSistersWakingUpInterval: "setGameOptionSistersWakingUpInterval",
             setGameOptionBrothersWakingUpInterval: "setGameOptionBrothersWakingUpInterval",
-            setGameOptionIsSeerTalkative: "setGameOptionIsSeerTalkative",
             setGameOptionRavenMarkPenalty: "setGameOptionRavenMarkPenalty",
         }),
     },
