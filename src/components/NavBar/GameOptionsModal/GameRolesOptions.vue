@@ -42,6 +42,25 @@
         <hr class="bg-dark mt-2 mb-1"/>
         <div class="row">
             <div class="option-section col-12 d-flex align-items-center">
+                <img :src="SVGs['little-girl']" class="mr-2" alt="Little Girl" width="50"/>
+                <div v-html="$t('GameRolesOptions.littleGirl')"/>
+            </div>
+        </div>
+        <hr class="bg-dark mt-1 mb-2"/>
+        <div class="row align-items-center">
+            <div class="col-8">
+                <label for="is-little-girl-protected-by-guard" class="option-label"
+                       v-html="$t('GameRolesOptions.isLittleGirlProtectedByGuard.label')"/>
+            </div>
+            <div class="col-4 text-center">
+                <toggle-button id="is-little-girl-protected-by-guard" v-model="isLittleGirlProtectedByGuard" :disabled="!game.canUpdateOptions"
+                               :labels="$t('VueToggleButton.yesNo')" :height="25" :width="60" :sync="true"/>
+            </div>
+            <div class="col-12 text-muted font-italic" v-html="isLittleGirlProtectedByGuardText"/>
+        </div>
+        <hr class="bg-dark mt-2 mb-1"/>
+        <div class="row">
+            <div class="option-section col-12 d-flex align-items-center">
                 <img :src="SVGs['seer']" class="mr-2" alt="Seer" width="50"/>
                 <div v-html="$t('GameRolesOptions.seer')"/>
             </div>
@@ -132,12 +151,13 @@ import sheriffSVG from "@/assets/svg/attributes/sheriff.svg";
 import lookSVG from "@/assets/svg/actions/look.svg";
 import threeBrothersPNG from "@/assets/img/roles/three-brothers.png";
 import ravenSVG from "@/assets/svg/attributes/raven-marked.svg";
+import littleGirlSVG from "@/assets/svg/roles/little-girl.svg";
 
 export default {
     name: "GameRolesOptions",
     data() {
         return {
-            SVGs: { "two-sisters": twoSistersSVG, "sheriff": sheriffSVG, "seer": lookSVG, "raven": ravenSVG },
+            SVGs: { "two-sisters": twoSistersSVG, "sheriff": sheriffSVG, "seer": lookSVG, "raven": ravenSVG, "little-girl": littleGirlSVG },
             PNGs: { "three-brothers": threeBrothersPNG },
         };
     },
@@ -158,6 +178,15 @@ export default {
             },
             set(isSheriffVoteDoubled) {
                 this.setGameOptionIsSheriffVoteDoubled(isSheriffVoteDoubled);
+                this.$emit("options-updated");
+            },
+        },
+        isLittleGirlProtectedByGuard: {
+            get() {
+                return this.game.options.roles.littleGirl.isProtectedByGuard;
+            },
+            set(isLittleGirlProtectedByGuard) {
+                this.setGameOptionIsLittleProtectedByGuard(isLittleGirlProtectedByGuard);
                 this.$emit("options-updated");
             },
         },
@@ -224,11 +253,16 @@ export default {
             const { ravenMarkPenalty } = this;
             return this.$tc("GameRolesOptions.ravenMarkPenalty.description", ravenMarkPenalty, { ravenMarkPenalty });
         },
+        isLittleGirlProtectedByGuardText() {
+            const description = this.isLittleGirlProtectedByGuard ? "littleGirlIsProtected" : "littleGirlIsNotProtected";
+            return this.$t(`GameRolesOptions.isLittleGirlProtectedByGuard.description.${description}`);
+        },
     },
     methods: {
         ...mapActions("game", {
             setGameOptionIsSheriffVoteDoubled: "setGameOptionIsSheriffVoteDoubled",
             setGameOptionIsSheriffEnabled: "setGameOptionIsSheriffEnabled",
+            setGameOptionIsLittleProtectedByGuard: "setGameOptionIsLittleProtectedByGuard",
             setGameOptionSistersWakingUpInterval: "setGameOptionSistersWakingUpInterval",
             setGameOptionBrothersWakingUpInterval: "setGameOptionBrothersWakingUpInterval",
             setGameOptionIsSeerTalkative: "setGameOptionIsSeerTalkative",

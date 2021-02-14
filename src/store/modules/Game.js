@@ -54,6 +54,9 @@ export default {
         setGameOptionIsSheriffVoteDoubled(state, isSheriffVoteDoubled) {
             state.game.options.roles.sheriff.hasDoubledVote = isSheriffVoteDoubled;
         },
+        setGameOptionIsLittleProtectedByGuard(state, isLittleGirlProtectedByGuard) {
+            state.game.options.roles.littleGirl.isProtectedByGuard = isLittleGirlProtectedByGuard;
+        },
         setGameOptionSistersWakingUpInterval(state, sistersWakingUpInterval) {
             state.game.options.roles.twoSisters.wakingUpInterval = sistersWakingUpInterval;
         },
@@ -98,6 +101,9 @@ export default {
         },
         setGameOptionIsSheriffVoteDoubled({ commit }, isSheriffVoteDoubled) {
             commit("setGameOptionIsSheriffVoteDoubled", isSheriffVoteDoubled);
+        },
+        setGameOptionIsLittleProtectedByGuard({ commit }, isLittleGirlProtectedByGuard) {
+            commit("setGameOptionIsLittleProtectedByGuard", isLittleGirlProtectedByGuard);
         },
         setGameOptionSistersWakingUpInterval({ commit }, sistersWakingUpInterval) {
             commit("setGameOptionSistersWakingUpInterval", sistersWakingUpInterval);

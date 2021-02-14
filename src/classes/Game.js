@@ -36,6 +36,7 @@ class Game {
                     isEnabled: getProp(game, "options.roles.sheriff.isEnabled", true),
                     hasDoubledVote: getProp(game, "options.roles.sheriff.hasDoubledVote", true),
                 },
+                littleGirl: { isProtectedByGuard: getProp(game, "options.roles.littleGirl.isProtectedByGuard", false) },
                 seer: { isTalkative: getProp(game, "options.roles.seer.isTalkative", true) },
                 twoSisters: { wakingUpInterval: getProp(game, "options.roles.twoSisters.wakingUpInterval", 2) },
                 threeBrothers: { wakingUpInterval: getProp(game, "options.roles.threeBrothers.wakingUpInterval", 2) },

@@ -5,6 +5,7 @@
 ### 🚀 New features
 
 * [#121](https://github.com/antoinezanardi/werewolves-assistant-web/issues/121) - Add option for raven mark penalty.
+* [#124](https://github.com/antoinezanardi/werewolves-assistant-web/issues/124) - Add guard protection on little girl option.
 
 ### 🌟 Enhancements
 

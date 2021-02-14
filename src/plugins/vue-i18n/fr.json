@@ -57,6 +57,14 @@
         "ravenMarkPenalty": {
             "label": "Nombre de votes contre le joueur avec la marque du corbeau",
             "description": "Le joueur ayant reçu la marque du corbeau aura 1 vote contre lui en plus au prochain vote | Le joueur ayant reçu la marque du corbeau aura {ravenMarkPenalty} votes contre lui en plus au prochain vote."
+        },
+        "littleGirl": "Petite Fille",
+        "isLittleGirlProtectedByGuard": {
+            "label": "La Petite Fille est protégée par le Salvateur",
+            "description": {
+                "littleGirlIsProtected": "La Petite Fille est protégée des Loups-Garous si le Salvateur la protège.",
+                "littleGirlIsNotProtected": "La Petite Fille mourra de la morsure des Loups-Garous même si le Salvateur la protège."
+            }
         }
     },
     "GameSidesModal": {
