@@ -14,6 +14,7 @@ import i18n from "./vue-i18n";
 import "./vue-js-toggle-button";
 import "./vue-keypress";
 import "./vue-lazyload";
+import "./vue-particles";
 import "./vue-roller";
 import "./vue-scrollto";
 import "./vue-select";

@@ -8,6 +8,7 @@
 
 * [#120](https://github.com/antoinezanardi/werewolves-assistant-web/issues/120) - Back to top on About page.
 * [#137](https://github.com/antoinezanardi/werewolves-assistant-web/issues/137) - Add some links to log in modal.
+* [#138](https://github.com/antoinezanardi/werewolves-assistant-web/issues/138) - Add background and particles to home page.
 
 ### 🐛 Bug fixes
 
@@ -17,6 +18,7 @@
 
 ### 📦 Packages
 
+* `particles.vue` installed with version `2.1.12`.
 * `vue-backtotop` installed with version `1.6.1`.
 * `@sentry/browser` updated to version `6.1.0`.
 * `@sentry/integrations` updated to version `6.1.0`.

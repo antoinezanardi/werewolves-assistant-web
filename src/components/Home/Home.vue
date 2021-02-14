@@ -1,6 +1,7 @@
 <template>
     <div id="home" class="container-fluid d-flex flex-column">
         <div id="home-content" class="flex-column flex-grow-1 d-flex justify-content-center">
+            <Particles id="home-particles" :options="particles.options"/>
             <div class="row">
                 <div class="col-12 text-center">
                     <img id="home-logo" src="../../assets/img/wolf.png" alt="Wolf"/>
@@ -18,7 +19,7 @@
                     </h1>
                     <h4 id="subtitle" class="text-center">
                         <i class="fa fa-star mr-2 text-warning"/>
-                        <span class="text-secondary" v-html="$t('Home.bestToolForGameMastering')"/>
+                        <span class="text-gray" v-html="$t('Home.bestToolForGameMastering')"/>
                     </h4>
                 </div>
             </div>
@@ -86,10 +87,14 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import AccountModal from "./AccountModal/AccountModal";
+import homeParticleOptions from "@/assets/json/home-particles-options.json";
 
 export default {
     name: "Home",
     components: { AccountModal },
+    data() {
+        return { particles: { options: homeParticleOptions } };
+    },
     computed: {
         ...mapGetters("user", { isUserLogged: "isLogged" }),
         aboutPageVisited() {
@@ -171,7 +176,7 @@ export default {
             font-size: 3rem;
         }
         position: relative;
-
+        text-shadow: 1px 1px 3px black;
         #title-wrapper {
             position: relative;
         }
@@ -182,6 +187,7 @@ export default {
         @include media-breakpoint-up(md) {
             font-size: 1.2rem;
         }
+        text-shadow: 1px 1px 3px black;
     }
 
     #version {
@@ -200,5 +206,22 @@ export default {
         @include media-breakpoint-up(md) {
             width: 150px;
         }
+    }
+
+    #home-particles {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+    }
+
+    #home {
+        background: url("https://images6.alphacoders.com/559/559873.jpg") no-repeat
+        center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
     }
 </style>
