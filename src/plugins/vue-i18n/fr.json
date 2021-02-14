@@ -15,6 +15,10 @@
         "gameOptions": "Options de la partie",
         "close": "Fermer",
         "optionsAreSaved": "Les options de la partie sont enregistrées automatiquement après chaque changement",
+        "gameRolesOptions": "Rôles",
+        "gameRepartitionOptions": "Répartition aléatoire"
+    },
+    "GameRolesOptions": {
         "gameOptionsCantBeUpdated": "Les options de la partie ne peuvent être modifiée en dehors de l'écran de composition de la partie.",
         "sheriff": "Maire",
         "isSheriffEnabled": {

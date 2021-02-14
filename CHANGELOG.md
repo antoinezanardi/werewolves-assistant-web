@@ -16,6 +16,8 @@
 
 ### ♻️ Refactoring
 
+* [#129](https://github.com/antoinezanardi/werewolves-assistant-web/issues/129) - Change sheriff enabled option property name.
+
 ### 📦 Packages
 
 * `particles.vue` installed with version `2.1.12`.
@@ -25,7 +27,6 @@
 * `@vue/test-utils` updated to version `1.1.3`.
 * `chai` updated to version `4.3.0`.
 * `eslint` updated to version `7.20.0`.
-* `sass-loader` updated to version `11.0.1`.
 * `sweetalert2` updated to version `10.14.1`.
 * `vue-gtag` updated to version `1.11.0`.
 

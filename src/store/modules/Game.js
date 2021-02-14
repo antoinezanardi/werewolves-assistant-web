@@ -49,7 +49,7 @@ export default {
             }
         },
         setGameOptionIsSheriffEnabled(state, isSheriffEnabled) {
-            state.game.options.roles.sheriff.enabled = isSheriffEnabled;
+            state.game.options.roles.sheriff.isEnabled = isSheriffEnabled;
         },
         setGameOptionIsSheriffVoteDoubled(state, isSheriffVoteDoubled) {
             state.game.options.roles.sheriff.hasDoubledVote = isSheriffVoteDoubled;

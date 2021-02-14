@@ -33,7 +33,7 @@ class Game {
         return {
             roles: {
                 sheriff: {
-                    enabled: getProp(game, "options.roles.sheriff.enabled", true),
+                    isEnabled: getProp(game, "options.roles.sheriff.isEnabled", true),
                     hasDoubledVote: getProp(game, "options.roles.sheriff.hasDoubledVote", true),
                 },
                 seer: { isTalkative: getProp(game, "options.roles.seer.isTalkative", true) },

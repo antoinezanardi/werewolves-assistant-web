@@ -97,7 +97,7 @@ export default {
                         this.gameCompositionText,
                         i18n.t("GameEvent.messages.looksLifeSomeWerewolvesIntroducedThemselves"),
                         i18n.t("GameEvent.messages.villagersMurderWerewolves"),
-                        ...insertIf(this.gameOptions.roles.sheriff.enabled, i18n.t("GameEvent.messages.beforeStartingLetsElectSheriff")),
+                        ...insertIf(this.gameOptions.roles.sheriff.isEnabled, i18n.t("GameEvent.messages.beforeStartingLetsElectSheriff")),
                     ],
                 },
                 "player-dies": {
