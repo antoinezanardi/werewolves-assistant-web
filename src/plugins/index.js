@@ -5,6 +5,7 @@ import Router from "./router";
 import "./sentry";
 import "./v-tooltip";
 import "./vee-validate";
+import "./vue-backtotop";
 import "./vue-countdown";
 import "./vue-flip";
 import "./vue-github-buttons";

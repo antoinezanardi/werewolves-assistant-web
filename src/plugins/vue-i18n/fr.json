@@ -129,7 +129,8 @@
         "forMe": "Pour moi",
         "isOneOfTheBestGame": "est un des meilleurs jeux entre amis ou en famille autour d'une table, où s'entremellent alliances et trahisons, un peu comme un Mario Kart en fait... Au fur et à mesure d'une partie, la vraie nature de chaque joueur se révèle, les masques tombent, chacun se sent menacé... Autant de rebondissements qui rendent chaque partie unique !",
         "ImAFanOfGameMastering": "Étant un grand fan du rôle de maître du jeu, j'ai toujours eu l'envie de partager ce doux sentiment de chef d'orchestre durant une partie. J'ai donc créé cet assistant pour que n'importe qui puisse endosser ce rôle si important, et ce, dans n'importe quelle configuration de jeu.",
-        "pleaseRateThisProjectAndHaveFun": "N'hésitez pas à me faire part de vos avis sur cet assistant. Il a été créé pour servir tous maîtres du jeu, novices ou experts, et rendre vos parties mémorables. Amusez-vous bien ! "
+        "pleaseRateThisProjectAndHaveFun": "N'hésitez pas à me faire part de vos avis sur cet assistant. Il a été créé pour servir tous maîtres du jeu, novices ou experts, et rendre vos parties mémorables. Amusez-vous bien ! ",
+        "backToTop": "Revenir en haut"
     },
     "GameLobby": {
         "loading": "Recherche d'une partie en cours",

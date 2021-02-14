@@ -6,6 +6,7 @@
 
 ### 🌟 Enhancements
 
+* [#120](https://github.com/antoinezanardi/werewolves-assistant-web/issues/120) - Back to top on About page.
 * [#137](https://github.com/antoinezanardi/werewolves-assistant-web/issues/137) - Add some links to log in modal.
 
 ### 🐛 Bug fixes
@@ -16,6 +17,7 @@
 
 ### 📦 Packages
 
+* `vue-backtotop` installed with version `1.6.1`.
 * `@sentry/browser` updated to version `6.1.0`.
 * `@sentry/integrations` updated to version `6.1.0`.
 * `@vue/test-utils` updated to version `1.1.3`.
