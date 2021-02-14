@@ -3,7 +3,7 @@
         <div id="home-content" class="flex-column flex-grow-1 d-flex justify-content-center">
             <div class="row">
                 <div class="col-12 text-center">
-                    <img width="150" src="../../assets/img/wolf.png" alt="Wolf"/>
+                    <img id="home-logo" src="../../assets/img/wolf.png" alt="Wolf"/>
                     <h1 id="title" class="text-center">
                         <span id="title-wrapper" class="text-center">
                             <span v-html="$t('Home.werewolvesAssistant')"/>
@@ -24,13 +24,13 @@
             </div>
             <div class="mt-4 d-flex justify-content-center">
                 <div class="col-lg-4 col-md-6 col-sm-12">
-                    <button class="btn btn-block btn-primary text-uppercase font-weight-bold home-btn" @click="play">
+                    <button id="play-btn" class="btn btn-block btn-primary text-uppercase font-weight-bold" @click="play">
                         <i class="fa fa-play-circle mr-2"/>
                         <span v-html="$t('Home.play')"/>
                     </button>
                     <transition name="fade">
                         <router-link v-if="isUserLogged" key="statistics" to="/statistics"
-                                     class="btn btn-block btn-dark text-uppercase font-weight-bold home-btn mt-4">
+                                     class="btn btn-block btn-dark font-weight-bold home-btn mt-4">
                             <i class="far fa-chart-bar mr-2"/>
                             <span v-html="$t('Home.statistics')"/>
                         </router-link>
@@ -42,13 +42,13 @@
                     </router-link>
                     <transition name="fade" mode="out-in">
                         <button v-if="!isUserLogged" key="not-logged"
-                                class="btn btn-secondary btn-block mt-4 text-uppercase font-weight-bold account-btn"
+                                class="btn btn-secondary btn-block mt-4 font-weight-bold home-btn"
                                 @click="showAccountModal">
                             <i class="fa fa-key mr-2"/>
                             <span v-html="$t('Home.logInOrSignUp')"/>
                         </button>
                         <button v-else key="logged"
-                                class="btn btn-secondary btn-block mt-4 text-uppercase font-weight-bold account-btn"
+                                class="btn btn-secondary btn-block mt-4 font-weight-bold home-btn"
                                 @click="logout">
                             <i class="fa fa-sign-out-alt mr-2"/>
                             <span v-html="$t('Home.logOut')"/>
@@ -114,15 +114,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    @import "../../../node_modules/bootstrap/scss/bootstrap";
-    @import "../../assets/scss/variables";
+    @import "../../../node_modules/bootstrap/scss/bootstrap-grid";
 
-    .home-btn {
-        @include font-size(2rem);
+    #play-btn {
+        font-size: 1.5rem;
+        @include media-breakpoint-up(md) {
+            font-size: 2rem;
+        }
     }
 
-    .account-btn {
-        @include font-size(1rem);
+    .home-btn {
+        font-size: 1.2rem;
+        @include media-breakpoint-up(md) {
+            font-size: 1.5rem;
+        }
     }
 
     .bmc-button img {
@@ -134,9 +139,9 @@ export default {
     }
 
     #bmc-button {
-        padding: 5px 15px 7px 10px !important;
+        padding: 5px 0 7px 15px !important;
         line-height: 24px !important;
-        height: 36px !important;
+        height: 38px !important;
         text-decoration: none !important;
         display: inline-flex !important;
         color: #FFFFFF !important;
@@ -161,7 +166,10 @@ export default {
     }
 
     #title {
-        @include font-size(3rem);
+        font-size: 1.5rem;
+        @include media-breakpoint-up(md) {
+            font-size: 3rem;
+        }
         position: relative;
 
         #title-wrapper {
@@ -170,7 +178,10 @@ export default {
     }
 
     #subtitle {
-        @include font-size(1.2rem);
+        font-size: 1rem;
+        @include media-breakpoint-up(md) {
+            font-size: 1.2rem;
+        }
     }
 
     #version {
@@ -182,5 +193,12 @@ export default {
 
     #home-footer {
         padding: 15px;
+    }
+
+    #home-logo {
+        width: 120px;
+        @include media-breakpoint-up(md) {
+            width: 150px;
+        }
     }
 </style>

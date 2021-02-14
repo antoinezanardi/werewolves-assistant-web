@@ -10,6 +10,8 @@
 
 ### 🐛 Bug fixes
 
+* [#119](https://github.com/antoinezanardi/werewolves-assistant-web/issues/119) - Adapt home page to smaller screens.
+
 ### ♻️ Refactoring
 
 ### 📦 Packages
