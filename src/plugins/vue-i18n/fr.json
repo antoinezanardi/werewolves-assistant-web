@@ -31,27 +31,27 @@
         "isSheriffVoteDoubled": {
             "label": "Le vote du maire compte double",
             "description": {
-                "sheriffVoteIsDoubled": "Lors du vote du village pour décider qui sera pendu, la voix du maire compte double.",
-                "sheriffVoteIsNotDoubled": "Lors du vote du village pour décider qui sera pendu, la voix du maire n'a pas plus de valeur qu'un autre habitant."
+                "sheriffVoteIsDoubled": "Lors du vote du village pour décider qui sera pendu, la voix du maire comptera double.",
+                "sheriffVoteIsNotDoubled": "Lors du vote du village pour décider qui sera pendu, la voix du maire n'aura pas plus de valeur qu'un autre habitant."
             }
         },
         "seer": "Voyante",
         "isSeerTalkative": {
             "label": "La voyante est bavarde",
             "description": {
-                "seerIsTalkative": "Lorsque la voyante voit le rôle d'un joueur, le maître du jeu révèlera ce rôle (et seulement le rôle) à voix haute.",
-                "seerIsNotTalkative": "Lorsque la voyante voit le rôle d'un joueur, le maître du jeu devra mimer le rôle découvert à la voyante."
+                "seerIsTalkative": "Lorsque la voyante verra le rôle d'un joueur, le maître du jeu révèlera ce rôle (et seulement le rôle) à voix haute.",
+                "seerIsNotTalkative": "Lorsque la voyante verra le rôle d'un joueur, le maître du jeu devra mimer le rôle découvert à la voyante."
             }
         },
         "twoSisters": "Deux Sœurs",
         "sistersWakingUpInterval": {
             "label": "Nombre de nuits entre deux réveils des Deux Sœurs",
-            "description": "Les Deux Sœurs ne se réveillent que la première nuit. | Les Deux Sœurs se réveillent toutes les nuits. | Les Deux Sœurs se réveillent toutes les {sistersWakingUpInterval} nuits."
+            "description": "Les Deux Sœurs ne se réveilleront que la première nuit. | Les Deux Sœurs se réveilleront toutes les nuits. | Les Deux Sœurs se réveilleront toutes les {sistersWakingUpInterval} nuits."
         },
         "threeBrothers": "Trois Frères",
         "brothersWakingUpInterval": {
             "label": "Nombre de nuits entre deux réveils des Trois Frères",
-            "description": "Les Trois Frères ne se réveillent que la première nuit. | Les Trois Frères se réveillent toutes les nuits. | Les Trois Frères se réveillent toutes les {brothersWakingUpInterval} nuits."
+            "description": "Les Trois Frères ne se réveilleront que la première nuit. | Les Trois Frères se réveilleront toutes les nuits. | Les Trois Frères se réveilleront toutes les {brothersWakingUpInterval} nuits."
         },
         "raven": "Corbeau",
         "ravenMarkPenalty": {
@@ -62,7 +62,7 @@
         "isLittleGirlProtectedByGuard": {
             "label": "La Petite Fille est protégée par le Salvateur",
             "description": {
-                "littleGirlIsProtected": "La Petite Fille est protégée des Loups-Garous si le Salvateur la protège.",
+                "littleGirlIsProtected": "La Petite Fille sera protégée des Loups-Garous si le Salvateur la protège.",
                 "littleGirlIsNotProtected": "La Petite Fille mourra de la morsure des Loups-Garous même si le Salvateur la protège."
             }
         },
@@ -74,6 +74,51 @@
                 "idiotDoesntDieOnAncientDeath": "L'Idiot déjà révélé ne mourra pas si l'Ancien meurt à son tour."
             }
         }
+    },
+    "GameRepartitionOptions": {
+        "roles": "Tous les rôles",
+        "chooseRoles": "Choisir des rôles...",
+        "forbiddenRoles": {
+            "label": "Bannir certains rôles"
+        },
+        "areRecommendedMinPlayersRespected": {
+            "label": "Le minimum de joueurs recommandé est respecté",
+            "description": {
+                "recommendedMinPlayersRespected": "La répartition aléatoire ne distribuera pas les rôles dont le minimum de joueurs recommandé n'est pas atteint.",
+                "recommendedMinPlayersNotRespected": "La répartition aléatoire distribuera les rôles sans prendre en compte le minimum de joueurs recommandé."
+            }
+        },
+        "werewolvesRoles": "Rôles des Loups-Garous",
+        "arePowerfulWerewolfRolesPrioritized": {
+            "label": "Les Loups-Garous avec un pouvoir spécial sont prioritaires",
+            "description": {
+                "powerfulWerewolfRolesPrioritized": "La répartition aléatoire distribuera en priorité les Loups-Garous possédant un pouvoir spécial.",
+                "powerfulWerewolfRolesNotPrioritized": "La répartition aléatoire distribuera les Loups-Garous possédant un pouvoir spécial et les simples Loups-Garous avec la même probabilité."
+            }
+        },
+        "villagersRoles": "Rôles des Villageois",
+        "arePowerfulVillagerRolesPrioritized": {
+            "label": "Les Villageois avec un pouvoir spécial sont prioritaires",
+            "description": {
+                "powerfulVillagerRolesPrioritized": "La répartition aléatoire distribuera en priorité les Villageois possédant un pouvoir spécial.",
+                "powerfulVillagerRolesNotPrioritized": "La répartition aléatoire distribuera les Villageois possédant un pouvoir spécial et les simples Villageois avec la même probabilité."
+            }
+        }
+    },
+    "ListInvolvedRoles": {
+        "recommended-min-players": {
+            "open": "Afficher les rôles ayant un minimum de joueurs recommandé",
+            "close": "Masquer les rôles ayant un minimum de joueurs recommandé"
+        },
+        "powerful-werewolves": {
+            "open": "Afficher les rôles des Loups-Garous avec un pouvoir spécial",
+            "close": "Masquer les rôles des Loups-Garous avec un pouvoir spécial"
+        },
+        "powerful-villagers": {
+            "open": "Afficher les rôles des Villageois avec un pouvoir spécial",
+            "close": "Masquer les rôles des Villageois avec un pouvoir spécial"
+        },
+        "recommendedMinPlayers": "{recommendedMinPlayers} joueurs min."
     },
     "GameSidesModal": {
         "gameSides": "Camps de la partie",

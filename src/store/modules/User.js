@@ -1,15 +1,22 @@
 import Vue from "vue";
 import JWT from "jsonwebtoken";
-import User from "@/classes/User";
 import i18n from "@/plugins/vue-i18n";
 import router from "@/plugins/router";
+import User from "@/classes/User";
+import UserPreferences from "@/classes/UserPreferences";
 
 export default {
     namespaced: true,
-    state: { user: new User() },
+    state: {
+        user: new User(),
+        preferences: new UserPreferences(),
+    },
     getters: {
         user(state) {
             return state.user;
+        },
+        userPreferences(state) {
+            return state.preferences;
         },
         isLogged(state) {
             return state.user.logged;
@@ -21,6 +28,21 @@ export default {
         },
         setLogged(state, logged) {
             state.user.logged = logged;
+        },
+        setPreferenceGameRepartitionForbiddenRoles(state, forbiddenRoles) {
+            state.preferences.game.repartition.forbiddenRoles = forbiddenRoles;
+        },
+        setPreferenceGameRepartitionAreRecommendedMinPlayersRespected(state, areRecommendedMinPlayersRespected) {
+            state.preferences.game.repartition.areRecommendedMinPlayersRespected = areRecommendedMinPlayersRespected;
+        },
+        setPreferenceGameRepartitionArePowerfulVillagerRolesPrioritized(state, arePowerfulVillagerRolesPrioritized) {
+            state.preferences.game.repartition.arePowerfulVillagerRolesPrioritized = arePowerfulVillagerRolesPrioritized;
+        },
+        setPreferenceGameRepartitionArePowerfulWerewolfRolesPrioritized(state, arePowerfulWerewolfRolesPrioritized) {
+            state.preferences.game.repartition.arePowerfulWerewolfRolesPrioritized = arePowerfulWerewolfRolesPrioritized;
+        },
+        saveUserPreferences(state) {
+            state.preferences.save();
         },
     },
     actions: {
@@ -66,6 +88,22 @@ export default {
             }
             commit("setLogged", false);
             localStorage.removeItem("token");
+        },
+        setPreferenceGameRepartitionForbiddenRoles({ commit }, forbiddenRoles) {
+            commit("setPreferenceGameRepartitionForbiddenRoles", forbiddenRoles);
+            commit("saveUserPreferences");
+        },
+        setPreferenceGameRepartitionAreRecommendedMinPlayersRespected({ commit }, areRecommendedMinPlayersRespected) {
+            commit("setPreferenceGameRepartitionAreRecommendedMinPlayersRespected", areRecommendedMinPlayersRespected);
+            commit("saveUserPreferences");
+        },
+        setPreferenceGameRepartitionArePowerfulVillagerRolesPrioritized({ commit }, arePowerfulVillagerRolesPrioritized) {
+            commit("setPreferenceGameRepartitionArePowerfulVillagerRolesPrioritized", arePowerfulVillagerRolesPrioritized);
+            commit("saveUserPreferences");
+        },
+        setPreferenceGameRepartitionArePowerfulWerewolfRolesPrioritized({ commit }, arePowerfulWerewolfRolesPrioritized) {
+            commit("setPreferenceGameRepartitionArePowerfulWerewolfRolesPrioritized", arePowerfulWerewolfRolesPrioritized);
+            commit("saveUserPreferences");
         },
     },
 };

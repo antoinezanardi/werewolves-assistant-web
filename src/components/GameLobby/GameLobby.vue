@@ -165,6 +165,7 @@ export default {
     computed: {
         ...mapGetters("role", { roles: "roles" }),
         ...mapGetters("game", { game: "game" }),
+        ...mapGetters("user", { userPreferences: "userPreferences" }),
         isPlayerNameTaken() {
             return this.game.players.find(({ name }) => name === this.sanitizedPlayerName);
         },
@@ -176,6 +177,14 @@ export default {
         },
         sanitizedPlayerName() {
             return filterOutHTMLTags(this.playerName.trim());
+        },
+        kebabCasedGameRepartitionOptions() {
+            return {
+                "forbidden-roles": this.userPreferences.game.repartition.forbiddenRoles,
+                "are-recommended-min-players-respected": this.userPreferences.game.repartition.areRecommendedMinPlayersRespected,
+                "are-powerful-villager-roles-prioritized": this.userPreferences.game.repartition.arePowerfulVillagerRolesPrioritized,
+                "are-powerful-werewolf-roles-prioritized": this.userPreferences.game.repartition.arePowerfulWerewolfRolesPrioritized,
+            };
         },
     },
     async created() {
@@ -222,7 +231,7 @@ export default {
                 }
                 this.loading.getGameRepartition = true;
                 const players = this.game.players.map(({ name }) => ({ name }));
-                const { data } = await this.$werewolvesAssistantAPI.getGameRepartition({ players });
+                const { data } = await this.$werewolvesAssistantAPI.getGameRepartition({ players, ...this.kebabCasedGameRepartitionOptions });
                 for (const { name: playerName, role: roleName } of data.players) {
                     const role = this.roles.find(({ name }) => name === roleName);
                     if (role) {

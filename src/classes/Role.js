@@ -13,6 +13,14 @@ class Role {
         const roleCount = game.getPlayersWithRole(this.name).length;
         return !roleCount || this.minInGame <= roleCount;
     }
+
+    get isInWerewolfSide() {
+        return this.side === "werewolves";
+    }
+
+    get isInVillagerSide() {
+        return this.side === "villagers";
+    }
 }
 
 export default Role;

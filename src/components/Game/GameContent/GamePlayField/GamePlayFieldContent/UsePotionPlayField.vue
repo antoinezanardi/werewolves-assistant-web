@@ -159,8 +159,4 @@ export default {
     .used-potion-svg {
         filter: grayscale(1);
     }
-
-    .nav-link {
-        transition: all 0.25s linear;
-    }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div id="home" class="container-fluid d-flex flex-column">
+    <div id="home" class="container-fluid d-flex flex-column" :style="{ 'background-image': `url(${IMGs.background})` }">
         <div id="home-content" class="flex-column flex-grow-1 d-flex justify-content-center">
             <Particles id="home-particles" :options="particles.options"/>
             <div class="row">
@@ -87,13 +87,17 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import AccountModal from "./AccountModal/AccountModal";
+import background from "@/assets/img/home/background.jpg";
 import homeParticleOptions from "@/assets/json/home-particles-options.json";
 
 export default {
     name: "Home",
     components: { AccountModal },
     data() {
-        return { particles: { options: homeParticleOptions } };
+        return {
+            particles: { options: homeParticleOptions },
+            IMGs: { background },
+        };
     },
     computed: {
         ...mapGetters("user", { isUserLogged: "isLogged" }),
@@ -217,8 +221,7 @@ export default {
     }
 
     #home {
-        background: url("https://images6.alphacoders.com/559/559873.jpg") no-repeat
-        center center fixed;
+        background: no-repeat center center fixed;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;

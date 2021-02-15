@@ -33,6 +33,8 @@
                     </div>
                     <transition mode="out-in" name="translate-down-fade">
                         <GameRolesOptions v-if="panel === 'game-roles-options'" key="game-roles-options" @options-updated="optionsUpdated = true"/>
+                        <GameRepartitionOptions v-else-if="panel === 'game-repartition-options'" key="game-repartition-options"
+                                                @options-updated="optionsUpdated = true"/>
                     </transition>
                 </div>
                 <div class="modal-footer">
@@ -46,10 +48,11 @@
 <script>
 import $ from "jquery";
 import GameRolesOptions from "@/components/NavBar/GameOptionsModal/GameRolesOptions";
+import GameRepartitionOptions from "@/components/NavBar/GameOptionsModal/GameRepartitionOptions/GameRepartitionOptions";
 
 export default {
     name: "GameOptionsModal",
-    components: { GameRolesOptions },
+    components: { GameRepartitionOptions, GameRolesOptions },
     data() {
         return {
             optionsUpdated: false,
