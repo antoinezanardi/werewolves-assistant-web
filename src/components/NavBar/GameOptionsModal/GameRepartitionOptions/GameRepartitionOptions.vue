@@ -13,8 +13,8 @@
                        v-html="$t('GameRepartitionOptions.forbiddenRoles.label')"/>
             </div>
             <div class="col-6 text-center">
-                <VSelect id="forbidden-roles" :options="forbiddenRoles" :placeholder="$t('GameRepartitionOptions.chooseRoles')" label="name"
-                         :filter="filterByRoleName" multiple @input="forbidRoles">
+                <VSelect id="forbidden-roles" :options="forbiddenRolesOptions" :placeholder="$t('GameRepartitionOptions.chooseRoles')" label="name"
+                         :filter="filterByRoleName" multiple :value="forbiddenRoles" @input="forbidRoles">
                     <template #selected-option="{ name }">
                         <RoleImage :role="name" class="role-image-option"/>
                     </template>
@@ -97,6 +97,7 @@ import { mapActions, mapGetters } from "vuex";
 import RoleImage from "@/components/shared/Game/Role/RoleImage";
 import ListInvolvedRoles from "@/components/NavBar/GameOptionsModal/GameRepartitionOptions/ListInvolvedRoles";
 import { fuseSearch } from "@/helpers/functions/VSelect";
+import i18n from "../../../../plugins/vue-i18n";
 
 export default {
     name: "GameRepartitionOptions",
@@ -106,14 +107,18 @@ export default {
         ...mapGetters("user", { userPreferences: "userPreferences" }),
         forbiddenRoles: {
             get() {
-                let { forbiddenRoles } = this.userPreferences.game.repartition;
-                forbiddenRoles = this.roles.filter(({ name }) => name !== "villager" && name !== "werewolf" && !forbiddenRoles.includes(name));
-                return forbiddenRoles.map(role => ({ ...role, displayedName: this.$t(`Role.the.${role.name}`) }));
+                const { forbiddenRoles } = this.userPreferences.game.repartition;
+                return forbiddenRoles.map(roleName => this.roles.find(({ name }) => name === roleName));
             },
             set(forbiddenRoles) {
                 this.setPreferenceGameRepartitionForbiddenRoles(forbiddenRoles);
                 this.$emit("options-updated");
             },
+        },
+        forbiddenRolesOptions() {
+            let { forbiddenRoles } = this.userPreferences.game.repartition;
+            forbiddenRoles = this.roles.filter(({ name }) => name !== "villager" && name !== "werewolf" && !forbiddenRoles.includes(name));
+            return forbiddenRoles.map(role => ({ ...role, displayedName: this.$t(`Role.the.${role.name}`) }));
         },
         areRecommendedMinPlayersRespected: {
             get() {
@@ -153,6 +158,21 @@ export default {
         arePowerfulVillagerRolesPrioritizedText() {
             const description = this.arePowerfulVillagerRolesPrioritized ? "powerfulVillagerRolesPrioritized" : "powerfulVillagerRolesNotPrioritized";
             return this.$t(`GameRepartitionOptions.arePowerfulVillagerRolesPrioritized.description.${description}`);
+        },
+        forbiddenRolesText() {
+            if (!this.forbiddenRoles.length) {
+                return this.$t("GameRepartitionOptions.noForbiddenRoles");
+            }
+            let forbiddenRolesText = "";
+            for (let i = 0; i < this.forbiddenRoles.length; i++) {
+                forbiddenRolesText += this.$t(`Role.the.${this.forbiddenRoles[i].name}`);
+                if (i + 2 < this.forbiddenRoles.length) {
+                    forbiddenRolesText += ", ";
+                } else if (i + 2 === this.forbiddenRoles.length) {
+                    forbiddenRolesText += ` ${i18n.t("GameRepartitionOptions.and")} `;
+                }
+            }
+            return this.$t("GameRepartitionOptions.forbiddenRolesAre", { forbiddenRolesText });
         },
     },
     methods: {

@@ -41,7 +41,9 @@
                     </div>
                     <div class="row my-2">
                         <div class="col-12 text-center">
-                            <button class="btn btn-outline-primary btn-sm" @click.prevent="$emit('show-game-options-modal')">
+                            <button ref="showGameOptionsModalButton" class="btn btn-outline-primary btn-sm"
+                                    :class="{ 'animate__animated animate__heartBeat': gameOptionsModalButton.isHighlighted }"
+                                    @click.prevent="$emit('show-game-options-modal')">
                                 <i class="fa fa-dice mr-2"/>
                                 <span v-html="$t('GameLobby.gameOptions')"/>
                             </button>
@@ -159,6 +161,8 @@ export default {
                 createGame: false,
                 getGameRepartition: false,
             },
+            gameRepartitionRequestCount: 0,
+            gameOptionsModalButton: { isHighlighted: false },
             playerName: "",
         };
     },
@@ -187,6 +191,25 @@ export default {
             };
         },
     },
+    watch: {
+        gameRepartitionRequestCount(value) {
+            if (value === 3 && this.userPreferences.game.repartition.isProTipShown) {
+                const options = {
+                    icon: "exclamation-circle", duration: 7000,
+                    action: [
+                        {
+                            text: this.$t("GameLobby.seeOptions"),
+                            onClick: this.highlightAndSeeGameRepartitionOptions,
+                        }, {
+                            text: this.$t("GameLobby.dontShowMeAgain"),
+                            onClick: this.hideGameRepartitionProTipForever,
+                        },
+                    ],
+                };
+                this.$toasted.info(this.$t("GameLobby.youCanChangeGameRepartitionOptions"), options);
+            }
+        },
+    },
     async created() {
         try {
             await this.setGame(new Game());
@@ -206,7 +229,10 @@ export default {
         }
     },
     methods: {
-        ...mapActions("user", { checkUserAuthentication: "checkUserAuthentication" }),
+        ...mapActions("user", {
+            checkUserAuthentication: "checkUserAuthentication",
+            setPreferenceGameRepartitionIsProTipShown: "setPreferenceGameRepartitionIsProTipShown",
+        }),
         ...mapActions("game", {
             setGame: "setGame",
             setGamePlayers: "setGamePlayers",
@@ -242,6 +268,7 @@ export default {
             } catch (e) {
                 this.$error.display(e);
             } finally {
+                this.gameRepartitionRequestCount++;
                 this.loading.getGameRepartition = false;
             }
         },
@@ -284,6 +311,18 @@ export default {
         },
         showRolePickerModal(player) {
             this.$refs.gameLobbyRolePickerModal.show(player);
+        },
+        highlightAndSeeGameRepartitionOptions(e, toastObject) {
+            toastObject.goAway(0);
+            this.gameOptionsModalButton.isHighlighted = true;
+            setTimeout(() => {
+                this.gameOptionsModalButton.isHighlighted = false;
+                this.$emit("show-game-options-modal", { panel: "game-repartition-options" });
+            }, 1000);
+        },
+        hideGameRepartitionProTipForever(e, toastObject) {
+            toastObject.goAway(0);
+            this.setPreferenceGameRepartitionIsProTipShown(false);
         },
     },
 };

@@ -51,9 +51,9 @@ export default {
                 this.$error.display(err);
             }
         },
-        showGameOptionsModal() {
+        showGameOptionsModal(options) {
             if (this.$refs.navBar) {
-                this.$refs.navBar.showGameOptionsModal();
+                this.$refs.navBar.showGameOptionsModal(options);
             }
         },
     },

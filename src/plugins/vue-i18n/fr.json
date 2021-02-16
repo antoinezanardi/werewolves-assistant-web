@@ -103,7 +103,10 @@
                 "powerfulVillagerRolesPrioritized": "La répartition aléatoire distribuera en priorité les Villageois possédant un pouvoir spécial.",
                 "powerfulVillagerRolesNotPrioritized": "La répartition aléatoire distribuera les Villageois possédant un pouvoir spécial et les simples Villageois avec la même probabilité."
             }
-        }
+        },
+        "noForbiddenRoles": "La répartition aléatoire distribuera tous les rôles aléatoirement sans exception.",
+        "and": "et",
+        "forbiddenRolesAre": "La répartition aléatoire distribuera tous les rôles aléatoirement sauf {forbiddenRolesText}."
     },
     "ListInvolvedRoles": {
         "recommended-min-players": {
@@ -223,7 +226,10 @@
         "gameCompositionNotFinished": "La composition du jeu n'est pas encore finalisée.",
         "quit": "Quitter",
         "cancel": "Annuler",
-        "playerNameLengthMax": "Limite de caractères atteinte pour un nom de joueur (30 max.)"
+        "playerNameLengthMax": "Limite de caractères atteinte pour un nom de joueur (30 max.)",
+        "youCanChangeGameRepartitionOptions": "La répartition aléatoire ne vous convient pas ?",
+        "seeOptions": "Parcourir les options",
+        "dontShowMeAgain": "Ne plus afficher"
     },
     "GameLobbyComposition": {
         "playerCount": "Aucun joueur | {count} joueur | {count} joueurs",
@@ -1212,7 +1218,7 @@
         "maxAvailableCharacters": " / {max} caractères maximum"
     },
     "WhatToDoButton": {
-        "whatAmISupposedToDo": "Qu'est-ce que ce je dois faire ici?"
+        "whatAmISupposedToDo": "Qu'est-ce que ce je dois faire ici ?"
     },
     "NotFound": {
         "looksLikeYouGotLost": "Il semblerait que vous soyez perdu...",

@@ -62,14 +62,14 @@ export function isPlayerAttributeActive({ activeAt }, game) {
 }
 
 export function listPlayerNames(players) {
-    let actionText = "";
+    let playersText = "";
     for (let i = 0; i < players.length; i++) {
-        actionText += players[i].name;
+        playersText += players[i].name;
         if (i + 2 < players.length) {
-            actionText += ",";
+            playersText += ",";
         } else if (i + 2 === players.length) {
-            actionText += ` ${i18n.t("helpers.Player.and")} `;
+            playersText += ` ${i18n.t("helpers.Player.and")} `;
         }
     }
-    return actionText;
+    return playersText;
 }

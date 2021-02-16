@@ -42,7 +42,7 @@
         <hr class="bg-dark mt-2 mb-1"/>
         <div class="row">
             <div class="option-section col-12 d-flex align-items-center">
-                <img :src="SVGs['seer']" class="mr-2" alt="Seer" width="50"/>
+                <RoleImage role="seer" class="mr-2 option-section-image"/>
                 <div v-html="$t('GameRolesOptions.seer')"/>
             </div>
         </div>
@@ -61,7 +61,7 @@
         <hr class="bg-dark mt-2 mb-1"/>
         <div class="row">
             <div class="option-section col-12 d-flex align-items-center">
-                <img :src="SVGs['little-girl']" class="mr-2" alt="Little Girl" width="50"/>
+                <RoleImage role="little-girl" class="mr-2 option-section-image"/>
                 <div v-html="$t('GameRolesOptions.littleGirl')"/>
             </div>
         </div>
@@ -80,7 +80,7 @@
         <hr class="bg-dark mt-2 mb-1"/>
         <div class="row">
             <div class="option-section col-12 d-flex align-items-center">
-                <img :src="SVGs['idiot']" class="mr-2" alt="Idiot" width="50"/>
+                <RoleImage role="idiot" class="mr-2 option-section-image"/>
                 <div v-html="$t('GameRolesOptions.idiot')"/>
             </div>
         </div>
@@ -99,7 +99,7 @@
         <hr class="bg-dark mt-2 mb-1"/>
         <div class="row">
             <div class="option-section col-12 d-flex align-items-center">
-                <img :src="SVGs['two-sisters']" class="mr-2" alt="Two Sisters" width="50"/>
+                <RoleImage role="two-sisters" class="mr-2 option-section-image"/>
                 <div v-html="$t('GameRolesOptions.twoSisters')"/>
             </div>
         </div>
@@ -120,7 +120,7 @@
         <hr class="bg-dark mt-2 mb-1"/>
         <div class="row mt-2">
             <div class="option-section col-12 d-flex align-items-center">
-                <img :src="PNGs['three-brothers']" class="mr-2" alt="Three Brothers" width="50"/>
+                <RoleImage role="three-brothers" class="mr-2 option-section-image"/>
                 <div v-html="$t('GameRolesOptions.threeBrothers')"/>
             </div>
         </div>
@@ -141,7 +141,7 @@
         <hr class="bg-dark mt-2 mb-1"/>
         <div class="row mt-2">
             <div class="option-section col-12 d-flex align-items-center">
-                <img :src="SVGs['raven']" class="mr-2" alt="Raven" width="50"/>
+                <RoleImage role="raven" class="mr-2 option-section-image"/>
                 <div v-html="$t('GameRolesOptions.raven')"/>
             </div>
         </div>
@@ -165,28 +165,14 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import { adjustNumber } from "@/helpers/functions/Number";
-import twoSistersSVG from "@/assets/svg/roles/two-sisters.svg";
 import sheriffSVG from "@/assets/svg/attributes/sheriff.svg";
-import lookSVG from "@/assets/svg/actions/look.svg";
-import threeBrothersPNG from "@/assets/img/roles/three-brothers.png";
-import ravenSVG from "@/assets/svg/attributes/raven-marked.svg";
-import littleGirlSVG from "@/assets/svg/roles/little-girl.svg";
-import idiotSVG from "@/assets/svg/roles/idiot.svg";
+import RoleImage from "@/components/shared/Game/Role/RoleImage";
 
 export default {
     name: "GameRolesOptions",
+    components: { RoleImage },
     data() {
-        return {
-            SVGs: {
-                "two-sisters": twoSistersSVG,
-                "sheriff": sheriffSVG,
-                "seer": lookSVG,
-                "raven": ravenSVG,
-                "little-girl": littleGirlSVG,
-                "idiot": idiotSVG,
-            },
-            PNGs: { "three-brothers": threeBrothersPNG },
-        };
+        return { SVGs: { sheriff: sheriffSVG } };
     },
     computed: {
         ...mapGetters("game", { game: "game" }),
@@ -320,5 +306,10 @@ export default {
 
     .option-label {
         font-size: 1rem;
+    }
+
+    .option-section-image {
+        width: 50px;
+        height: 50px;
     }
 </style>

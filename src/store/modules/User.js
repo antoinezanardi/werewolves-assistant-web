@@ -41,6 +41,9 @@ export default {
         setPreferenceGameRepartitionArePowerfulWerewolfRolesPrioritized(state, arePowerfulWerewolfRolesPrioritized) {
             state.preferences.game.repartition.arePowerfulWerewolfRolesPrioritized = arePowerfulWerewolfRolesPrioritized;
         },
+        setPreferenceGameRepartitionIsProTipShown(state, isProTipShown) {
+            state.preferences.game.repartition.isProTipShown = isProTipShown;
+        },
         saveUserPreferences(state) {
             state.preferences.save();
         },
@@ -103,6 +106,10 @@ export default {
         },
         setPreferenceGameRepartitionArePowerfulWerewolfRolesPrioritized({ commit }, arePowerfulWerewolfRolesPrioritized) {
             commit("setPreferenceGameRepartitionArePowerfulWerewolfRolesPrioritized", arePowerfulWerewolfRolesPrioritized);
+            commit("saveUserPreferences");
+        },
+        setPreferenceGameRepartitionIsProTipShown({ commit }, isProTipShown) {
+            commit("setPreferenceGameRepartitionIsProTipShown", isProTipShown);
             commit("saveUserPreferences");
         },
     },

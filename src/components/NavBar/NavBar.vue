@@ -77,8 +77,8 @@ export default {
                 this.$error.display(e);
             }
         },
-        showGameOptionsModal() {
-            this.$refs.gameOptionsModal.show();
+        showGameOptionsModal(options) {
+            this.$refs.gameOptionsModal.show(options);
         },
         showGameSidesModal() {
             this.$refs.gameSidesModal.show();

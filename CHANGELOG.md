@@ -5,6 +5,7 @@
 ### 🚀 New features
 
 * [#121](https://github.com/antoinezanardi/werewolves-assistant-web/issues/121) - Add option for raven mark penalty.
+* [#123](https://github.com/antoinezanardi/werewolves-assistant-web/issues/123) - Options for game repartition.
 * [#124](https://github.com/antoinezanardi/werewolves-assistant-web/issues/124) - Add guard protection on little girl option.
 * [#125](https://github.com/antoinezanardi/werewolves-assistant-web/issues/125) - Add idiot dies on ancient death option.
 
@@ -31,7 +32,8 @@
 * `@vue/test-utils` updated to version `1.1.3`.
 * `chai` updated to version `4.3.0`.
 * `eslint` updated to version `7.20.0`.
-* `sweetalert2` updated to version `10.14.1`.
+* `eslint-plugin-vue` updated to version `7.6.0`.
+* `sweetalert2` updated to version `10.15.0`.
 * `vue-gtag` updated to version `1.11.0`.
 
 ---

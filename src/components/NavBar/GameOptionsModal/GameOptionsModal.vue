@@ -56,7 +56,7 @@ export default {
     data() {
         return {
             optionsUpdated: false,
-            panel: "game-roles-options",
+            panel: "c",
         };
     },
     watch: {
@@ -67,7 +67,9 @@ export default {
         },
     },
     methods: {
-        show() {
+        show(options = {}) {
+            const { panel = "game-roles-options" } = options;
+            this.panel = panel;
             $("#game-options-modal").modal("show");
         },
         openGameRolesOptions() {
