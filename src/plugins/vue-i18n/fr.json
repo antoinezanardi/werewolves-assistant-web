@@ -73,7 +73,12 @@
                 "idiotDiesOnAncientDeath": "Si l'Idiot est déjà révélé (son rôle est connu des autres joueurs) et que l'Ancien meurt, le village reconsidèrera sa décision de l'avoir épargné.",
                 "idiotDoesntDieOnAncientDeath": "L'Idiot déjà révélé ne mourra pas si l'Ancien meurt à son tour."
             }
-        }
+        },
+        "thief": "Voleur",
+        "additionalCardsForThief": "Cartes additionnelles destinées au Voleur",
+        "chooseTwoCards": "Choisir 2 cartes...",
+        "thereIsNoThiefInParty": "Il n'y a pas de Voleur dans la partie, impossible de choisir des cartes additionnelles qui lui seront destinées.",
+        "thiefAdditionalCardsLeftToPick": "Les cartes du Voleur sont prêtes | Encore une carte à choisir | Encore 2 cartes à choisir"
     },
     "GameRepartitionOptions": {
         "roles": "Tous les rôles",

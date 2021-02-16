@@ -72,6 +72,10 @@ export default {
         setGameOptionRavenMarkPenalty(state, markPenalty) {
             state.game.options.roles.raven.markPenalty = markPenalty;
         },
+        setGameThiefAdditionalCards(state, thiefAdditionalCards) {
+            state.game.additionalCards = state.game.additionalCards.filter(({ for: recipient }) => recipient !== "thief");
+            state.game.additionalCards.push(...thiefAdditionalCards);
+        },
     },
     actions: {
         async getAndSetGame({ commit }, { gameId }) {
@@ -122,6 +126,9 @@ export default {
         },
         setGameOptionRavenMarkPenalty({ commit }, markPenalty) {
             commit("setGameOptionRavenMarkPenalty", markPenalty);
+        },
+        setGameThiefAdditionalCards({ commit }, thiefAdditionalCards) {
+            commit("setGameThiefAdditionalCards", thiefAdditionalCards);
         },
     },
 };

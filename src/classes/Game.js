@@ -3,6 +3,7 @@ import User from "./User";
 import Player from "./Player";
 import GameHistory from "./GameHistory";
 import { isForbiddenTieVoteAction, isSkippableAction, isTargetAction, isTimedAction, isVoteAction } from "@/helpers/functions/Game";
+import GameAdditionalCard from "@/classes/GameAdditionalCard";
 
 class Game {
     constructor(game = null) {
@@ -14,6 +15,7 @@ class Game {
         this.tick = getProp(game, "tick");
         this.waiting = getProp(game, "waiting", [], waiting => waiting.map(waitingEntry => waitingEntry));
         this.status = getProp(game, "status");
+        this.additionalCards = Game._getGameAdditionalCards(game);
         this.options = Game._getGameOptions(game);
         this.history = getProp(game, "history", [], history => history.map(historyEntry => new GameHistory(historyEntry)));
         this.won = {
@@ -27,6 +29,10 @@ class Game {
         };
         this.createdAt = getProp(game, "createdAt");
         this.updatedAt = getProp(game, "updatedAt");
+    }
+
+    static _getGameAdditionalCards(game) {
+        return getProp(game, "additionalCards", [], additionalCards => additionalCards.map(additionalCard => new GameAdditionalCard(additionalCard)));
     }
 
     static _getGameOptions(game) {
@@ -98,6 +104,10 @@ class Game {
         return this.brotherPlayers.length === 3;
     }
 
+    get areThereEnoughThiefAdditionalCards() {
+        return this.thiefAdditionalCards.length === 2;
+    }
+
     get allPlayersHaveRole() {
         return this.players.length && !this.players.filter(player => player.role.current === undefined).length;
     }
@@ -110,9 +120,8 @@ class Game {
     }
 
     canStartGame(roles) {
-        return this.areThereEnoughPlayers && this.areThereEnoughVillagers &&
-            this.areThereEnoughWerewolves && this.allPlayersHaveRole &&
-            this.allPlayerRoleMinimumIsReached(roles);
+        return this.areThereEnoughPlayers && this.areThereEnoughVillagers && this.areThereEnoughWerewolves && this.allPlayersHaveRole &&
+            (!this.getPlayerWithRole("thief") || this.areThereEnoughThiefAdditionalCards) && this.allPlayerRoleMinimumIsReached(roles);
     }
 
     get canUpdateOptions() {
@@ -278,6 +287,10 @@ class Game {
         return this.getPlayerWithRole("ancient");
     }
 
+    get thiefPlayer() {
+        return this.getPlayerWithRole("thief");
+    }
+
     isRoleInGame(roleName) {
         return !!this.players.find(({ role }) => role.current === roleName);
     }
@@ -337,6 +350,10 @@ class Game {
 
     get didAncientTakeHisRevenge() {
         return !!this.getPlayerWithAttribute("powerless");
+    }
+
+    get thiefAdditionalCards() {
+        return this.additionalCards.filter(({ for: recipient }) => recipient === "thief");
     }
 }
 

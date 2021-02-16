@@ -141,6 +141,43 @@
         <hr class="bg-dark mt-2 mb-1"/>
         <div class="row mt-2">
             <div class="option-section col-12 d-flex align-items-center">
+                <RoleImage role="thief" class="mr-2 option-section-image"/>
+                <div v-html="$t('GameRolesOptions.thief')"/>
+            </div>
+        </div>
+        <hr class="bg-dark mt-1 mb-2"/>
+        <div class="row align-items-center">
+            <div class="col-md-6 col-12">
+                <label for="thief-additional-cards" class="option-label" v-html="$t('GameRolesOptions.additionalCardsForThief')"/>
+            </div>
+            <div v-if="game.thiefPlayer" class="col-md-6 col-12 text-center">
+                <VSelect v-if="game.thiefPlayer" id="thief-additional-cards" :filter="filterByRoleName" :options="thiefAdditionalCardsOptions"
+                         :placeholder="$t('GameRolesOptions.chooseTwoCards')" label="role" multiple :value="game.thiefAdditionalCards"
+                         :selectable="() => game.thiefAdditionalCards.length < 2" :disabled="!game.canUpdateOptions" @input="selectAdditionalCard">
+                    <template #selected-option="{ role }">
+                        <RoleImage :role="role" class="role-image-option"/>
+                    </template>
+                    <template #option="{ displayedName, role }" class="d-flex flex-row">
+                        <RoleImage :role="role" class="role-image-option mr-2"/>
+                        <span class="text-capitalize" v-html="displayedName"/>
+                    </template>
+                    <template #no-options>
+                        <i class="fa fa-ban mr-2"/>
+                        <span v-html="$t('VSelect.noOption')"/>
+                    </template>
+                </VSelect>
+                <transition mode="out-in" name="fade">
+                    <div :key="thiefAdditionalCardsValidationText" class="text-center mt-2">
+                        <i class="fa mr-2" :class="thiefAdditionalCardsValidationIcon"/>
+                        <span v-html="thiefAdditionalCardsValidationText"/>
+                    </div>
+                </transition>
+            </div>
+            <div class="col-12 text-muted font-italic" v-html="thiefAdditionalCardsText"/>
+        </div>
+        <hr class="bg-dark mt-2 mb-1"/>
+        <div class="row mt-2">
+            <div class="option-section col-12 d-flex align-items-center">
                 <RoleImage role="raven" class="mr-2 option-section-image"/>
                 <div v-html="$t('GameRolesOptions.raven')"/>
             </div>
@@ -163,19 +200,26 @@
 </template>
 
 <script>
+import uniqId from "uniqid";
 import { mapActions, mapGetters } from "vuex";
 import { adjustNumber } from "@/helpers/functions/Number";
 import sheriffSVG from "@/assets/svg/attributes/sheriff.svg";
 import RoleImage from "@/components/shared/Game/Role/RoleImage";
+import { fuseSearch } from "@/helpers/functions/VSelect";
+import GameAdditionalCard from "@/classes/GameAdditionalCard";
 
 export default {
     name: "GameRolesOptions",
     components: { RoleImage },
     data() {
-        return { SVGs: { sheriff: sheriffSVG } };
+        return {
+            SVGs: { sheriff: sheriffSVG },
+            additionalCardPickedAtTs: Date.now(),
+        };
     },
     computed: {
         ...mapGetters("game", { game: "game" }),
+        ...mapGetters("role", { roles: "roles" }),
         isSheriffEnabled: {
             get() {
                 return this.game.options.roles.sheriff.isEnabled;
@@ -241,6 +285,18 @@ export default {
                 this.$emit("options-updated");
             },
         },
+        thiefAdditionalCardsOptions() {
+            const availableRoles = this.roles.filter(role => {
+                const roleCountInPlayers = this.game.getPlayersWithRole(role.name).length;
+                const roleCountInAdditionalCards = this.game.additionalCards.filter(({ role: roleName }) => roleName === role.name).length;
+                const roleCount = roleCountInPlayers + roleCountInAdditionalCards;
+                return !role.minInGame && role.maxInGame > roleCount;
+            });
+            return availableRoles.map(({ name }) => ({
+                ...new GameAdditionalCard({ _id: uniqId(this.additionalCardPickedAtTs), for: "thief", role: name, isUsed: false }),
+                displayedName: this.$t(`Role.the.${name}`),
+            }));
+        },
         ravenMarkPenalty: {
             get() {
                 return this.game.options.roles.raven.markPenalty;
@@ -279,6 +335,25 @@ export default {
             const { brothersWakingUpInterval } = this;
             return this.$tc("GameRolesOptions.brothersWakingUpInterval.description", brothersWakingUpInterval, { brothersWakingUpInterval });
         },
+        thiefAdditionalCardsValidationIcon() {
+            const { thiefAdditionalCards } = this.game;
+            const leftToPick = 2 - thiefAdditionalCards.length;
+            if (leftToPick) {
+                return "fa-exclamation-circle text-danger animate__animated animate__heartBeat animate__infinite";
+            }
+            return "fa-check-circle text-success";
+        },
+        thiefAdditionalCardsValidationText() {
+            const { thiefAdditionalCards } = this.game;
+            const leftToPick = 2 - thiefAdditionalCards.length;
+            return this.$tc("GameRolesOptions.thiefAdditionalCardsLeftToPick", leftToPick, { leftToPick });
+        },
+        thiefAdditionalCardsText() {
+            if (!this.game.thiefPlayer) {
+                return this.$t("GameRolesOptions.thereIsNoThiefInParty");
+            }
+            return "";
+        },
         ravenMarkPenaltyText() {
             const { ravenMarkPenalty } = this;
             return this.$tc("GameRolesOptions.ravenMarkPenalty.description", ravenMarkPenalty, { ravenMarkPenalty });
@@ -294,7 +369,15 @@ export default {
             setGameOptionSistersWakingUpInterval: "setGameOptionSistersWakingUpInterval",
             setGameOptionBrothersWakingUpInterval: "setGameOptionBrothersWakingUpInterval",
             setGameOptionRavenMarkPenalty: "setGameOptionRavenMarkPenalty",
+            setGameThiefAdditionalCards: "setGameThiefAdditionalCards",
         }),
+        filterByRoleName(option, search) {
+            return fuseSearch(option, search, ["displayedName"]);
+        },
+        selectAdditionalCard(thiefAdditionalCards) {
+            this.additionalCardPickedAtTs = Date.now();
+            this.setGameThiefAdditionalCards(thiefAdditionalCards);
+        },
     },
 };
 </script>
@@ -311,5 +394,12 @@ export default {
     .option-section-image {
         width: 50px;
         height: 50px;
+    }
+
+    .role-image-option {
+        min-width: 20px;
+        min-height: 20px;
+        max-width: 20px;
+        max-height: 20px;
     }
 </style>

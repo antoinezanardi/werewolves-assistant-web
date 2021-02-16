@@ -17,6 +17,20 @@
     }
 }
 
+.vs--disabled {
+    background-color: $bg-color;
+}
+
+.vs__dropdown-option--disabled {
+    span {
+        color: $dark-color;
+    }
+    img {
+        filter: grayscale(1);
+    }
+    cursor: not-allowed !important;
+}
+
 .vs__dropdown-toggle {
     border-color: $dark-color;
     caret-color: white;

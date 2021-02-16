@@ -8,11 +8,11 @@
         </div>
         <hr class="bg-dark mt-1 mb-2"/>
         <div class="row align-items-center">
-            <div class="col-6">
+            <div class="col-md-6 col-12">
                 <label for="forbidden-roles" class="option-label"
                        v-html="$t('GameRepartitionOptions.forbiddenRoles.label')"/>
             </div>
-            <div class="col-6 text-center">
+            <div class="col-md-6 col-12 text-center">
                 <VSelect id="forbidden-roles" :options="forbiddenRolesOptions" :placeholder="$t('GameRepartitionOptions.chooseRoles')" label="name"
                          :filter="filterByRoleName" multiple :value="forbiddenRoles" @input="forbidRoles">
                     <template #selected-option="{ name }">
