@@ -2,20 +2,20 @@
     <div id="game-lobby-role-picker-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header p-1">
                     <div class="container-fluid">
                         <div class="row align-items-center">
-                            <div class="offset-md-0 col-md-2 order-md-0 offset-2 col-8 order-0 text-center">
+                            <div class="offset-lg-0 col-lg-2 order-lg-0 offset-2 col-8 order-0 text-center">
                                 <div class="font-italic small text-secondary" v-html="$t('GameLobbyRolePickerModal.actualRole')"/>
                                 <RoleImage id="selected-player-current-role-image" :role="selected.player.role.current"/>
                                 <RoleText v-if="selected.player.role.current" :role="selected.player.role.current" prefix="the"/>
                                 <div v-else v-html="$t('GameLobbyRolePickerModal.noRole')"/>
                             </div>
-                            <div class="col-md-8 order-md-1 col-12 order-2">
-                                <h5 class="modal-title text-center"
+                            <div class="col-lg-8 order-lg-1 col-12 order-2">
+                                <h5 class="modal-title text-center text-truncate"
                                     v-html="`${$t('GameLobbyRolePickerModal.pickRoleFor')} ${selected.player.name}`"/>
                             </div>
-                            <div class="col-md-2 order-md-2 col-2 order-1 text-right">
+                            <div class="col-lg-2 order-lg-2 col-2 order-1 text-right">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span class="text-white" aria-hidden="true" v-html="'&times;'"/>
                                 </button>
@@ -23,10 +23,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body pt-0">
                     <div class="container-fluid h-100">
                         <div class="row h-100">
-                            <div id="selected-role-panel" class="col-md-4 col-12 visible-scrollbar">
+                            <div id="selected-role-panel" class="col-lg-4 col-12 visible-scrollbar">
                                 <div id="selected-role-thumbnail" class="row align-items-center justify-content-center">
                                     <div class="col-12 d-flex justify-content-center text-center h-100 pt-1">
                                         <VueFlip v-model="selectedRoleThumbnail.flipped" height="100%" width="100%">
@@ -43,18 +43,18 @@
                                     <transition mode="out-in" name="fade">
                                         <div v-if="!isRolePicked">
                                             <div class="row mt-2">
-                                                <div class="col-12 text-center">
-                                                    <div id="choose-role-text" class="my-2"
+                                                <div class="col-12 d-lg-block d-flex align-items-center justify-content-center text-center">
+                                                    <div id="choose-role-text" class="my-1"
                                                          v-html="$t('GameLobbyRolePickerModal.chooseRole')"/>
                                                     <i class="fa fa-2x fa-chevron-right animate__animated animate__slow animate__headShake
-                                                              animate__infinite d-md-inline-block d-none"/>
-                                                    <i class="fa fa-2x fa-chevron-down animate__animated animate__slow animate__swing
-                                                              animate__infinite d-md-none"/>
+                                                              animate__infinite d-lg-inline-block d-none"/>
+                                                    <i class="fa fa-chevron-down animate__animated animate__slow animate__swing
+                                                              animate__infinite ml-2 d-lg-none"/>
                                                 </div>
                                             </div>
                                         </div>
                                         <div v-else :key="selected.role.name">
-                                            <div class="row mt-3">
+                                            <div class="row mt-2 d-flex align-items-center">
                                                 <div class="col-6 text-center">
                                                     <RoleText v-if="isRolePicked" id="selected-role-text" :key="selected.role.name"
                                                               :role="selected.role.name" prefix="the" class="font-weight-bold"/>
@@ -66,16 +66,16 @@
                                             </div>
                                             <div class="row mt-2">
                                                 <div class="col-12">
-                                                    <div class="mt-2">
+                                                    <div class="mt-1">
                                                         <i class="fa fa-chess-pawn text-info mr-2"/>
                                                         <span v-html="selectedRoleAlreadyTakenText"/>
                                                     </div>
-                                                    <div v-if="isRoleCountAlertDisplayed" class="mt-2">
+                                                    <div v-if="isRoleCountAlertDisplayed" class="mt-1">
                                                         <i class="fa fa-exclamation-circle animate__animated animate__heartBeat
                                                                     animate__infinite text-danger mr-2"/>
                                                         <span v-html="roleCountAlertText"/>
                                                     </div>
-                                                    <div v-if="selected.role.recommendedMinPlayers" class="mt-2">
+                                                    <div v-if="selected.role.recommendedMinPlayers" class="mt-1">
                                                         <i class="fa fa-chess text-info mr-2"/>
                                                         <span v-html="recommendedMinPlayersText"/>
                                                     </div>
@@ -92,34 +92,34 @@
                                     </transition>
                                 </div>
                             </div>
-                            <div class="col-12 d-md-none">
+                            <div class="col-12 d-lg-none">
                                 <hr class="bg-dark my-1"/>
                             </div>
-                            <div id="roles-panel" class="col-md-8 col-12 visible-scrollbar">
+                            <div id="roles-panel" class="col-lg-8 col-12 visible-scrollbar">
                                 <div class="row justify-content-center">
-                                    <RolePickerRole :game="game" class="col-md-2 col-sm-3 col-4 text-center p-2"
+                                    <RolePickerRole :game="game" class="col-lg-2 col-sm-3 col-3 text-center p-2"
                                                     @click.native="selectRandomRole"/>
                                     <RolePickerRole v-for="role in roles" :key="role.name" :game="game" :role="role"
                                                     :selected="selected.role.name === role.name"
-                                                    class="col-md-2 col-sm-3 col-4 text-center p-2" @click.native="changeSelectedRole(role)"/>
+                                                    class="col-lg-2 col-sm-3 col-3 text-center p-2" @click.native="changeSelectedRole(role)"/>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer py-0">
                     <div class="container-fluid">
                         <div class="row align-items-center">
-                            <div v-tooltip="assignRoleTooltip" class="offset-md-4 col-md-4 offset-2 col-8">
+                            <div v-tooltip="assignRoleTooltip" class="offset-lg-4 col-lg-4 offset-2 col-8">
                                 <form @submit.prevent="assignRole">
                                     <button type="submit" class="btn btn-primary btn-lg btn-block" :disabled="!canAssignRole"
                                             v-html="$t('GameLobbyRolePickerModal.assignRole')"/>
                                 </form>
                             </div>
-                            <div class="col-md-4 col-2 text-right">
+                            <div class="col-lg-4 col-2 text-right">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                    <i class="d-md-none fa fa-times"/>
-                                    <span class="d-md-inline d-none" v-html="$t('GameLobbyRolePickerModal.close')"/>
+                                    <i class="d-lg-none fa fa-times"/>
+                                    <span class="d-lg-inline d-none" v-html="$t('GameLobbyRolePickerModal.close')"/>
                                 </button>
                             </div>
                         </div>
@@ -206,6 +206,7 @@ export default {
             this.selected.player = new Player(selectedPlayer);
             this.selected.role = new Role();
             $("#game-lobby-role-picker-modal").modal("show");
+            $(".tooltip").tooltip("hide");
         },
         hide() {
             $("#game-lobby-role-picker-modal").modal("hide");
@@ -279,8 +280,15 @@ export default {
     #game-lobby-role-picker-modal {
         overflow-y: hidden;
 
+        .modal-title {
+            font-size: 1rem;
+            @include media-breakpoint-up(lg) {
+                font-size: 1.25rem;
+            }
+        }
+
         .modal-body {
-            height: calc(85vh - 225px);
+            height: calc(85vh - 180px);
             #roles-panel {
                 overflow-y: auto;
             }
@@ -289,40 +297,51 @@ export default {
 
     #selected-role-panel {
         overflow-y: scroll;
-        height: 45%;
-        @include media-breakpoint-up(md) {
+        height: 40%;
+        @include media-breakpoint-up(lg) {
             height: 100%;
         }
     }
 
     #selected-role-thumbnail {
-        height: 47%;
-    }
-
-    #selected-role-data {
-        height: 47%;
+        height: 40%;
     }
 
     #selected-player-current-role-image {
-        width: 35px;
+        height: 20px;
+        width: 20px;
+        @include media-breakpoint-up(lg) {
+            height: 35px;
+            width: 35px;
+        }
     }
 
     #choose-role-text {
-        font-size: 1.25rem;
+        font-size: 1rem;
+        @include media-breakpoint-up(lg) {
+            font-size: 1.25rem;
+        }
     }
 
     #selected-role-text {
-        font-size: 1.25rem;
+        font-size: 0.85rem;
+        @include media-breakpoint-up(lg) {
+            font-size: 1.25rem;
+        }
     }
 
     #selected-role-side-image {
-        height: 35px;
-        width: 35px;
+        height: 25px;
+        width: 25px;
+        @include media-breakpoint-up(lg) {
+            height: 35px;
+            width: 35px;
+        }
     }
 
     #roles-panel {
-        height: 55%;
-        @include media-breakpoint-up(md) {
+        height: 60%;
+        @include media-breakpoint-up(lg) {
             height: 100%;
         }
     }

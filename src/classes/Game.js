@@ -121,7 +121,7 @@ class Game {
 
     canStartGame(roles) {
         return this.areThereEnoughPlayers && this.areThereEnoughVillagers && this.areThereEnoughWerewolves && this.allPlayersHaveRole &&
-            (!this.getPlayerWithRole("thief") || this.areThereEnoughThiefAdditionalCards) && this.allPlayerRoleMinimumIsReached(roles);
+            this.areGameRolesOptionsValid && this.allPlayerRoleMinimumIsReached(roles);
     }
 
     get canUpdateOptions() {
@@ -354,6 +354,14 @@ class Game {
 
     get thiefAdditionalCards() {
         return this.additionalCards.filter(({ for: recipient }) => recipient === "thief");
+    }
+
+    get areGameRolesOptionsValid() {
+        return !this.getPlayerWithRole("thief") || this.areThereEnoughThiefAdditionalCards;
+    }
+
+    get areGameOptionsValid() {
+        return this.areGameRolesOptionsValid;
     }
 }
 

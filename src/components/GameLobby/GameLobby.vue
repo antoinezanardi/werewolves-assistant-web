@@ -40,8 +40,11 @@
                         </div>
                     </div>
                     <div class="row my-2">
-                        <div class="col-12 text-center">
-                            <button ref="showGameOptionsModalButton" class="btn btn-outline-primary btn-sm"
+                        <div class="col-12 d-flex justify-content-center align-items-center">
+                            <transition name="fade" mode="out-in">
+                                <RequiredActionIcon v-if="!game.areGameOptionsValid" class="mr-2"/>
+                            </transition>
+                            <button id="game-options-modal-button" ref="showGameOptionsModalButton" class="btn btn-outline-primary btn-sm"
                                     :class="{ 'animate__animated animate__heartBeat': gameOptionsModalButton.isHighlighted }"
                                     @click.prevent="$emit('show-game-options-modal')">
                                 <i class="fa fa-dice mr-2"/>
@@ -75,7 +78,7 @@
                     <hr class="bg-dark my-2"/>
                     <div class="row justify-content-center align-items-center my-3">
                         <div class="col-12 text-center">
-                            <GameLobbyStartConditions :game="game"/>
+                            <GameLobbyStartConditions @highlight-and-see-thief-additional-cards="highlightAndSeeThiefAdditionalCards"/>
                         </div>
                     </div>
                     <div id="game-lobby-footer" class="row justify-content-between align-items-center">
@@ -132,10 +135,12 @@ import PlayerCard from "@/components/shared/Game/PlayerCard";
 import { filterOutHTMLTags } from "@/helpers/functions/String";
 import GameLobbyRolePickerModal from "@/components/GameLobby/GameLobbyRolePickerModal/GameLobbyRolePickerModal";
 import GameLobbyStartConditions from "@/components/GameLobby/GameLobbyStartConditions";
+import RequiredActionIcon from "@/components/shared/RequiredActionIcon";
 
 export default {
     name: "GameLobby",
     components: {
+        RequiredActionIcon,
         GameLobbyStartConditions,
         GameLobbyRolePickerModal,
         PlayerCard,
@@ -318,6 +323,13 @@ export default {
             setTimeout(() => {
                 this.gameOptionsModalButton.isHighlighted = false;
                 this.$emit("show-game-options-modal", { panel: "game-repartition-options" });
+            }, 1000);
+        },
+        highlightAndSeeThiefAdditionalCards() {
+            this.gameOptionsModalButton.isHighlighted = true;
+            setTimeout(() => {
+                this.gameOptionsModalButton.isHighlighted = false;
+                this.$emit("show-game-options-modal", { panel: "game-roles-options", scrollTo: "thief-section" });
             }, 1000);
         },
         hideGameRepartitionProTipForever(e, toastObject) {

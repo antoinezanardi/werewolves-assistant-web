@@ -139,7 +139,7 @@
             <div class="col-12 text-muted font-italic" v-html="brothersWakingUpIntervalText"/>
         </div>
         <hr class="bg-dark mt-2 mb-1"/>
-        <div class="row mt-2">
+        <div id="thief-section" class="row mt-2">
             <div class="option-section col-12 d-flex align-items-center">
                 <RoleImage role="thief" class="mr-2 option-section-image"/>
                 <div v-html="$t('GameRolesOptions.thief')"/>
@@ -207,6 +207,7 @@ import sheriffSVG from "@/assets/svg/attributes/sheriff.svg";
 import RoleImage from "@/components/shared/Game/Role/RoleImage";
 import { fuseSearch } from "@/helpers/functions/VSelect";
 import GameAdditionalCard from "@/classes/GameAdditionalCard";
+import { listRoles } from "@/helpers/functions/Role";
 
 export default {
     name: "GameRolesOptions",
@@ -352,7 +353,14 @@ export default {
             if (!this.game.thiefPlayer) {
                 return this.$t("GameRolesOptions.thereIsNoThiefInParty");
             }
-            return "";
+            const { thiefAdditionalCards } = this.game;
+            let additionalCardsText;
+            if (!thiefAdditionalCards.length) {
+                additionalCardsText = "..";
+            } else {
+                additionalCardsText = listRoles(thiefAdditionalCards.map(({ role }) => ({ name: role })), "a", "or");
+            }
+            return this.$t("GameRolesOptions.thiefWillBeAbleToPlay", { additionalCardsText });
         },
         ravenMarkPenaltyText() {
             const { ravenMarkPenalty } = this;
@@ -377,6 +385,7 @@ export default {
         selectAdditionalCard(thiefAdditionalCards) {
             this.additionalCardPickedAtTs = Date.now();
             this.setGameThiefAdditionalCards(thiefAdditionalCards);
+            this.$emit("options-updated");
         },
     },
 };

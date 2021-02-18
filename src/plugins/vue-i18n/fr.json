@@ -75,10 +75,11 @@
             }
         },
         "thief": "Voleur",
-        "additionalCardsForThief": "Cartes additionnelles destinées au Voleur",
+        "additionalCardsForThief": "Cartes additionnelles destinées au Voleur (2 max.)",
         "chooseTwoCards": "Choisir 2 cartes...",
         "thereIsNoThiefInParty": "Il n'y a pas de Voleur dans la partie, impossible de choisir des cartes additionnelles qui lui seront destinées.",
-        "thiefAdditionalCardsLeftToPick": "Les cartes du Voleur sont prêtes | Encore une carte à choisir | Encore 2 cartes à choisir"
+        "thiefAdditionalCardsLeftToPick": "Les cartes du Voleur sont prêtes | Encore une carte à choisir | Encore 2 cartes à choisir",
+        "thiefWillBeAbleToPlay": "La première nuit, le Voleur pourra, s'il le souhaite, devenir {additionalCardsText}."
     },
     "GameRepartitionOptions": {
         "roles": "Tous les rôles",
@@ -223,7 +224,7 @@
         "fourPlayerRequiredToGetRandomRepartition": "4 joueurs minimum sont requis pour répartir aléatoirement les rôles",
         "addPlayerWithName": "Ajoutez chaque joueur en insérant leur nom ci-dessus",
         "missingPlayersToStart": "Il manque {missingCount} joueur pour commencer la partie | Il manque un seul joueur pour commencer la partie | Il manque {missingCount} joueurs pour commencer la partie",
-        "missingOneWerewolfToStart": "Il manque un loup garou pour commencer la partie",
+        "missingOneWerewolfToStart": "Il manque un loup-garou pour commencer la partie",
         "missingOneVillagerToStart": "Il manque un villageois pour commencer",
         "allPlayerDontHaveARole": "Certains joueurs n'ont pas de rôle",
         "gameCreated": "Partie créée",
@@ -239,7 +240,7 @@
     "GameLobbyComposition": {
         "playerCount": "Aucun joueur | {count} joueur | {count} joueurs",
         "villagersCount": "Aucun villageois | {count} villageois | {count} villageois",
-        "werewolvesCount": "Aucun loup garou | {count} loup garou | {count} loups garous",
+        "werewolvesCount": "Aucun loup-garou | {count} loup-garou | {count} loups garous",
         "minToStart": "Minimum {min} pour commencer",
         "minPlayerRequirementsToStart": "Minimum 4 joueurs avec un rôle pour commencer dont 1 loup-garou et 1 villageois"
     },
@@ -251,7 +252,9 @@
         "gameHasMinimumOneVillager": "La partie possède au minimum 1 joueur dans le camp des villageois.",
         "gameHasMinimumOneWerewolf": "La partie possède au minimum 1 joueur dans le camp des loups-garous.",
         "gameMustHaveTwoSisters": "Deux joueurs doivent avoir le rôle des deux sœurs s'il y en a une dans la partie.",
-        "gameMustHaveThreeBrothers": "Trois joueurs doivent avoir le rôle des trois frères s'il y en a un dans la partie."
+        "gameMustHaveThreeBrothers": "Trois joueurs doivent avoir le rôle des trois frères s'il y en a un dans la partie.",
+        "thiefAdditionalCardsMustBeSet": "Deux cartes additionnelles doivent être ajoutées si le voleur est dans la partie.",
+        "chooseCards": "Choisir les cartes"
     },
     "GameLobbyRolePickerModal": {
         "noRole": "Aucun rôle",
@@ -283,6 +286,7 @@
         "toStartAGame": "Pour lancer une partie, le maître du jeu doit renseigner 4 à 40 joueurs et leur attribuer un rôle.",
         "eachPlayerName": "Il peut renseigner le nom de chaque joueur ici.",
         "randomRepartition": "Une fois tous les joueurs ajoutés, il peut répartir aléatoirement les rôles. Il faut un minimum de 4 joueurs pour faire une répartition aléatoire.",
+        "gameOptionsCanBeChanged": "Les options de la partie ainsi que les paramètres de la répartition aléatoire peuvent être changés ici. Changer ces options permet de diversifier les parties en changeant les règles du jeu !",
         "requirementsToStartAGame": "Pour pouvoir lancer une partie, les joueurs doivent être 4 minimum et tous posséder un rôle. La partie doit comporter au moins 1 loup-garou et 1 villageois (avec ou sans pouvoir)."
     },
     "GameLobbyAlreadyHavePlayingGame": {
@@ -1020,7 +1024,11 @@
             "vile-father-of-wolves": "un infect père des loups",
             "ancient": "un ancien",
             "scapegoat": "un bouc-émissaire",
-            "pied-piper": "un joueur de flûte"
+            "pied-piper": "un joueur de flûte",
+            "white-werewolf": "un loup-garou blanc",
+            "stuttering-judge": "un juge bègue",
+            "thief": "un voleur",
+            "angel": "un ange"
         },
         "the": {
             "villager": "le villageois",
@@ -1048,7 +1056,11 @@
             "vile-father-of-wolves": "l'infect père des loups",
             "ancient": "l'ancien",
             "scapegoat": "le bouc-émissaire",
-            "pied-piper": "le joueur de flûte"
+            "pied-piper": "le joueur de flûte",
+            "white-werewolf": "le loup-garou blanc",
+            "stuttering-judge": "le juge bègue",
+            "thief": "le voleur",
+            "angel": "l'ange"
         },
         "description": {
             "villager": [
@@ -1193,6 +1205,33 @@
                 "Chaque nuit, à l'appel du meneur du jeu, le Joueur de flûte charme 2 nouveaux joueurs. Dès l'instant où il ne reste plus que des joueurs charmés, le Joueur de flûte a gagné contre tous les autres. (Même si cela arrive suite à un vote du village ou grâce aux Loups-Garous).",
                 "S'il est infecté par l'Infect Père des Loups, il devient un simple Loup-Garou. Son objectif initial, qui était vouloir charmer tous les joueurs, est donc abandonné. Il va collaborer avec les Loups-Garous pour leur victoire commune.",
                 "Attention : le Joueur de flûte ne peut s'auto-charmer. Le Salvateur ne protège pas du charme. La Sorcière ne guérit pas du charme. Les Loups-Garous ne sont pas immunisés contre le charme. Les joueurs charmés conservent tous leurs pouvoirs et caractéristiques. Le charme ne se transmet pas entre Amoureux."
+            ],
+            "white-werewolf": [
+                "Son but est d'être le seul survivant du village. Dans ce cas-là seulement il gagne la partie.",
+                "Ce très malfaisant personnage déteste autant les Loups-Garous que les Villageois !",
+                "Dans un ouvrage récent, intitulé \"Le Village\", on raconte qu'une étrange mutation serait survenue au sein même de la population lycanthropique.",
+                "Chaque nuit, il se réveille et dévore avec les autres Loups-Garous. Mais une nuit sur deux, à l'appel du meneur, il se réveille seul et peut éliminer un Loup-Garou."
+            ],
+            "stuttering-judge": [
+                "Son but est d'éliminer les Loups-Garous.",
+                "Le plus jeune fils du meunier était doué pour les études et rêvait d'être avocat. Comme son père avait bien réussi à rouler ses clients dans la farine, il l'envoya faire son droit dans la grande cité voisine.",
+                "Un léger défaut de prononciation interdit au jeune homme le prestige tant convoité d'être défendeur de la veuve et de l'orphelin. Toutefois, il regagna le village de Thiercelieux auréolé du titre guère moins prestigieux de juge itinérant.",
+                "Une fois dans la partie, le Juge Bègue peut décider qu'il y aura 2 votes consécutifs et deux éliminations de suspect.",
+                "Le Juge Bègue signifie au meneur sa décision par un signe particulier qu'il utilise pour désigner un habitant durant le vote du village. Le deuxième vote est aussitôt déclenché sans débat par le meneur, juste après l'élimination due au premier vote. Le \"Ju-juge-Bè-bègue\" aura montré ce signe particulier durant la première nuit, à l'appel du meneur.",
+                "Conseil au meneur : soyez toujours attentif au comportement du Juge Bègue durant les votes, afin de ne pas manquer son signe particulier."
+            ],
+            "thief": [
+                "Son but est d'éliminer les Loups-Garous mais son but peut changer suivant la carte choisie.",
+                "Si on veut jouer le Voleur, deux cartes additionnelles doivent être ajoutées en plus de la composition de base. Les deux cartes sont disposées au centre de la table faces cachées.",
+                "La première nuit, le Voleur pourra prendre connaissance de ces deux cartes, et échanger sa carte contre une des deux cartes. Si ces cartes sont deux Loups-Garous, il est obligé d'échanger sa carte contre un des deux Loups-Garous. Il jouera désormais ce personnage jusqu'à la fin de la partie."
+            ],
+            "angel": [
+                "Son but est de mourir dès le 1er tour, soit au premier vote, soit par les Loups-Garous durant la première nuit. Si une des conditions est remplie, il gagne seule la partie.",
+                "La vie fangeuse d'un village infesté de créatures malfaisantes le dégoûte; il souhaite être victime du pire cauchemar, pour se réveiller enfin paisible dans son lit douillet.",
+                "Quand l'Ange est en jeu, la partie débute toujours par le débat du village suivi d'un vote éliminatoire, puis d'une première nuit.",
+                "Si l'Ange réussit à réussit à attirer le vote discriminatoire des Villageois ou la vindicte dévorante des lycanthropes pour être éliminé au premier tour, il pourra sortir vainqueur du cauchemar et gagner la partie.",
+                "Alors le jeu s'arrête : les joueurs peuvent commencer une nouvelle partie. S'il échoue, il deviendra Simple Villageois pour le reste de la partie.",
+                "Conseil au meneur : n'hésitez pas à rappeler l'éventuelle présence de l'Ange lors de la première journée ! Les débats seront plus animés, les beaux parleurs étant protégés par cette angélique menace !"
             ]
         },
         "villager": "Villageois",
@@ -1235,6 +1274,9 @@
         "willBeAvailableSoon": "Encore un coup de ces fichus Loups-Garous ... Le maire a été averti, l'Assistant sera bientôt de nouveau opérationel.",
         "refresh": "Rafraichir la page"
     },
+    "RequiredActionIcon": {
+        "actionIsRequired": "Une action est requise"
+    },
     "Error": {
         "unauthorized": "Vous ne pouvez pas accéder à cette page",
         "BAD_REQUEST": "Mauvaise requête serveur",
@@ -1275,6 +1317,10 @@
     "helpers": {
         "Player": {
             "and": "et"
+        },
+        "Role": {
+            "and": "et",
+            "or": "ou"
         }
     }
 }

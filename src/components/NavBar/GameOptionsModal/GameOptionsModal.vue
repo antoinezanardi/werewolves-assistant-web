@@ -17,6 +17,7 @@
                     <ul id="game-summary-modal-tabs" class="nav nav-pills nav-fill">
                         <li id="game-results-tab" class="nav-item" @click="openGameRolesOptions">
                             <a class="nav-link" :class="{ active: panel === 'game-roles-options' }" href="#">
+                                <RequiredActionIcon v-if="!game.areGameRolesOptionsValid" class="mr-2" color="white"/>
                                 <i class="fa fa-chess mr-2"/>
                                 <span v-html="$t('GameOptionsModal.gameRolesOptions')"/>
                             </a>
@@ -32,7 +33,8 @@
                         <hr class="bg-dark my-2"/>
                     </div>
                     <transition mode="out-in" name="translate-down-fade">
-                        <GameRolesOptions v-if="panel === 'game-roles-options'" key="game-roles-options" @options-updated="optionsUpdated = true"/>
+                        <GameRolesOptions v-if="panel === 'game-roles-options'" key="game-roles-options" ref="gameRolesOptions"
+                                          @options-updated="optionsUpdated = true"/>
                         <GameRepartitionOptions v-else-if="panel === 'game-repartition-options'" key="game-repartition-options"
                                                 @options-updated="optionsUpdated = true"/>
                     </transition>
@@ -46,19 +48,23 @@
 </template>
 
 <script>
+import VueScrollTo from "vue-scrollto";
 import $ from "jquery";
 import GameRolesOptions from "@/components/NavBar/GameOptionsModal/GameRolesOptions";
 import GameRepartitionOptions from "@/components/NavBar/GameOptionsModal/GameRepartitionOptions/GameRepartitionOptions";
+import RequiredActionIcon from "@/components/shared/RequiredActionIcon";
+import { mapGetters } from "vuex";
 
 export default {
     name: "GameOptionsModal",
-    components: { GameRepartitionOptions, GameRolesOptions },
+    components: { RequiredActionIcon, GameRepartitionOptions, GameRolesOptions },
     data() {
         return {
             optionsUpdated: false,
             panel: "c",
         };
     },
+    computed: { ...mapGetters("game", { game: "game" }) },
     watch: {
         optionsUpdated(newValue, oldValue) {
             if (newValue && !oldValue) {
@@ -68,9 +74,14 @@ export default {
     },
     methods: {
         show(options = {}) {
-            const { panel = "game-roles-options" } = options;
+            const { panel = "game-roles-options", scrollTo } = options;
             this.panel = panel;
             $("#game-options-modal").modal("show");
+            if (scrollTo) {
+                setTimeout(() => {
+                    VueScrollTo.scrollTo(`#${scrollTo}`, 1000, { container: ".modal-body" });
+                }, 600);
+            }
         },
         openGameRolesOptions() {
             this.panel = "game-roles-options";

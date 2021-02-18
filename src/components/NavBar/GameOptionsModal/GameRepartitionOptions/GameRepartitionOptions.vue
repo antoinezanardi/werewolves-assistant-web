@@ -97,7 +97,7 @@ import { mapActions, mapGetters } from "vuex";
 import RoleImage from "@/components/shared/Game/Role/RoleImage";
 import ListInvolvedRoles from "@/components/NavBar/GameOptionsModal/GameRepartitionOptions/ListInvolvedRoles";
 import { fuseSearch } from "@/helpers/functions/VSelect";
-import i18n from "../../../../plugins/vue-i18n";
+import { listRoles } from "@/helpers/functions/Role";
 
 export default {
     name: "GameRepartitionOptions",
@@ -163,15 +163,7 @@ export default {
             if (!this.forbiddenRoles.length) {
                 return this.$t("GameRepartitionOptions.noForbiddenRoles");
             }
-            let forbiddenRolesText = "";
-            for (let i = 0; i < this.forbiddenRoles.length; i++) {
-                forbiddenRolesText += this.$t(`Role.the.${this.forbiddenRoles[i].name}`);
-                if (i + 2 < this.forbiddenRoles.length) {
-                    forbiddenRolesText += ", ";
-                } else if (i + 2 === this.forbiddenRoles.length) {
-                    forbiddenRolesText += ` ${i18n.t("GameRepartitionOptions.and")} `;
-                }
-            }
+            const forbiddenRolesText = listRoles(this.forbiddenRoles);
             return this.$t("GameRepartitionOptions.forbiddenRolesAre", { forbiddenRolesText });
         },
     },

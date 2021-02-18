@@ -18,6 +18,7 @@
 ### 🐛 Bug fixes
 
 * [#119](https://github.com/antoinezanardi/werewolves-assistant-web/issues/119) - Adapt home page to smaller screens.
+* [#139](https://github.com/antoinezanardi/werewolves-assistant-web/issues/139) - Broken styles on GameLobby.
 
 ### ♻️ Refactoring
 
@@ -27,13 +28,13 @@
 
 * `particles.vue` installed with version `2.1.12`.
 * `vue-backtotop` installed with version `1.6.1`.
-* `@sentry/browser` updated to version `6.1.0`.
-* `@sentry/integrations` updated to version `6.1.0`.
+* `@sentry/browser` updated to version `6.2.0`.
+* `@sentry/integrations` updated to version `6.2.0`.
 * `@vue/test-utils` updated to version `1.1.3`.
 * `chai` updated to version `4.3.0`.
 * `eslint` updated to version `7.20.0`.
 * `eslint-plugin-vue` updated to version `7.6.0`.
-* `sweetalert2` updated to version `10.15.0`.
+* `sweetalert2` updated to version `10.15.4`.
 * `vue-gtag` updated to version `1.11.0`.
 
 ---
