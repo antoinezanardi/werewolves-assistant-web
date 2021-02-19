@@ -3,4 +3,9 @@
     border-radius: 40px;
     background-color: #4f4f4f;
     padding: 5px 15px 5px;
+
+    &:hover {
+        background-color: #3e3e3e;
+        border-color: #3e3e3e;
+    }
 }

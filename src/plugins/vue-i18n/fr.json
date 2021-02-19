@@ -286,8 +286,8 @@
         "toStartAGame": "Pour lancer une partie, le maître du jeu doit renseigner 4 à 40 joueurs et leur attribuer un rôle.",
         "eachPlayerName": "Il peut renseigner le nom de chaque joueur ici.",
         "randomRepartition": "Une fois tous les joueurs ajoutés, il peut répartir aléatoirement les rôles. Il faut un minimum de 4 joueurs pour faire une répartition aléatoire.",
-        "gameOptionsCanBeChanged": "Les options de la partie ainsi que les paramètres de la répartition aléatoire peuvent être changés ici. Changer ces options permet de diversifier les parties en changeant les règles du jeu !",
-        "requirementsToStartAGame": "Pour pouvoir lancer une partie, les joueurs doivent être 4 minimum et tous posséder un rôle. La partie doit comporter au moins 1 loup-garou et 1 villageois (avec ou sans pouvoir)."
+        "gameOptionsCanBeChanged": "Les options de la partie ainsi que les paramètres de la répartition aléatoire peuvent être changés ici. Modifier les règles du jeu rend les parties plus originales et parfois même hasardeuses !",
+        "requirementsToStartAGame": "Pour pouvoir lancer une partie, les joueurs doivent être 4 minimum et tous posséder un rôle. La partie doit comporter au moins 1 loup-garou et 1 villageois (avec ou sans pouvoir). Toutes les conditions se trouvent dans la bulle d'aide bleue."
     },
     "GameLobbyAlreadyHavePlayingGame": {
         "youAlreadyHavePlayingGame": "Vous avez déjà une partie en cours",

@@ -23,7 +23,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-body pt-0">
+                <div class="modal-body py-0">
                     <div class="container-fluid h-100">
                         <div class="row h-100">
                             <div id="selected-role-panel" class="col-lg-4 col-12 visible-scrollbar">
@@ -340,7 +340,7 @@ export default {
     }
 
     #roles-panel {
-        height: 60%;
+        height: 55%;
         @include media-breakpoint-up(lg) {
             height: 100%;
         }

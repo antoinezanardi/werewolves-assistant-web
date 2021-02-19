@@ -162,7 +162,7 @@
                 </router-link>
             </div>
         </div>
-        <BackToTop v-tooltip="$t('About.backToTop')" :visibleoffset="100">
+        <BackToTop v-tooltip="{ content: $t('About.backToTop'), trigger: 'focus hover' }" :visibleoffset="100">
             <i class="fa fa-chevron-up fa-2x"/>
         </BackToTop>
     </div>
