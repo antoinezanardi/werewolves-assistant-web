@@ -78,19 +78,7 @@ export default {
     computed: {
         ...mapGetters("game", { game: "game" }),
         isEffectGameEvent() {
-            const effectGameEventTypes = [
-                "sheriff-elected",
-                "player-dies",
-                "seer-looks",
-                "cupid-charms",
-                "pied-piper-charms",
-                "deaths-during-night",
-                "raven-marks",
-                "vile-father-of-wolves-infects",
-                "player-role-revealed",
-                "no-death-after-votes",
-            ];
-            return effectGameEventTypes.includes(this.event.type);
+            return !!this.effectImageSource;
         },
         isPhaseGameEvent() {
             return this.event.type === "night-falls" || this.event.type === "day-rises";
@@ -106,6 +94,7 @@ export default {
                 "raven-marks": ravenMarkSVG,
                 "vile-father-of-wolves-infects": eatenSVG,
                 "player-role-revealed": seenSVG,
+                "player-starts-game-revealed": seenSVG,
                 "no-death-after-votes": voteSVG,
             };
             return effectGameEventTypeImageSource[this.event.type];

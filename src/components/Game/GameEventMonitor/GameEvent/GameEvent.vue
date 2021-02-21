@@ -101,6 +101,12 @@ export default {
                         ...insertIf(this.gameOptions.roles.sheriff.isEnabled, i18n.t("GameEvent.messages.beforeStartingLetsElectSheriff")),
                     ],
                 },
+                "player-starts-game-revealed": {
+                    messages: [
+                        i18n.t("GameEvent.messages.villagerVillagerStartsGameRevealed",
+                            { player: gameEventTargetName }),
+                    ],
+                },
                 "player-dies": {
                     messages: [
                         i18n.t("GameEvent.messages.playerDies", { player: gameEventTargetName }),

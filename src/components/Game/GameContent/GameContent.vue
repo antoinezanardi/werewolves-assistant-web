@@ -36,6 +36,7 @@ export default {
                 this.generateLastActionEvents();
                 if (newGame.tick === 1) {
                     this.events.push(new GameEvent({ type: "game-starts" }));
+                    this.generatePlayerStartsGameRevealedEvents();
                 }
                 if (newGame.phase === "day") {
                     this.generateGamePhaseEvent();
@@ -125,6 +126,13 @@ export default {
                 (this.game.phase !== this.game.history[0].phase || this.game.turn !== this.game.history[0].turn)) {
                 const event = this.game.phase === "day" ? new GameEvent({ type: "day-rises" }) : new GameEvent({ type: "night-falls" });
                 return this.events.push(event);
+            }
+        },
+        generatePlayerStartsGameRevealedEvents() {
+            for (const player of this.game.players) {
+                if (player.role.isRevealed) {
+                    this.events.push(new GameEvent({ type: "player-starts-game-revealed", targets: [{ player }] }));
+                }
             }
         },
         generateGameDeathAndRevealEvents() {

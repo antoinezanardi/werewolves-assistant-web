@@ -938,6 +938,7 @@
             "looksLifeSomeWerewolvesIntroducedThemselves": "Il semblerait qu'un ou plusieurs loups-garous se soient faufilés dans le village...",
             "villagersMurderWerewolves": "Villageois, prenez les fourches et nettoyez votre village de ces canidés !",
             "beforeStartingLetsElectSheriff": "Mais avant de vous entretuer, il faut élire le maire de ce village.",
+            "villagerVillagerStartsGameRevealed": "{player} est le Villageois-Villegeois et commence donc la partie avec son rôle connu de tous. C'est un Villageois digne de confiance.",
             "allElectSheriff": "Le débat va commencer pour élire le premier maire du village.",
             "playerDies": "{player} est mort ! Quelle tragédie...",
             "playerRevealsRole": "Il ou elle révèle son rôle aux survivants.",

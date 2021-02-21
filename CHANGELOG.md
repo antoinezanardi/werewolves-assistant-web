@@ -14,6 +14,7 @@
 * [#120](https://github.com/antoinezanardi/werewolves-assistant-web/issues/120) - Back to top on About page.
 * [#137](https://github.com/antoinezanardi/werewolves-assistant-web/issues/137) - Add some links to log in modal.
 * [#138](https://github.com/antoinezanardi/werewolves-assistant-web/issues/138) - Add background and particles to home page.
+* [#142](https://github.com/antoinezanardi/werewolves-assistant-web/issues/142) - Tell which players are already revealed at the beginning of the game.
 * [#143](https://github.com/antoinezanardi/werewolves-assistant-web/issues/143) - Style for players who voted.
 
 ### 🐛 Bug fixes
