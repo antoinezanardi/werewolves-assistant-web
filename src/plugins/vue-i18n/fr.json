@@ -376,6 +376,13 @@
             }
         }
     },
+    "GamePlayAlert": {
+        "description": {
+            "idiot-wont-delegate": "Si l'Idiot est nommé maire du village et qu'il meurt, il n'y aura plus de maire dans la partie. L'Idiot n'est pas capable de déléguer son rôle de maire avec toute cette paperasse...",
+            "villager-villager-can-be-trusted": "Le Villageois-Villageois peut faire un excellent maire, étant donné que son rôle est connu de tous."
+        },
+        "shareThisWithPlayers": "Partager cette information avec les joueurs peut rendre la partie un peu plus intéressante."
+    },
     "GamePlayFieldFooter": {
         "next": "Suivant",
         "playersHaveVoted": "joueurs ont voté",
@@ -499,7 +506,8 @@
                 "sheriffSettlesVotes": "Être le maire possède deux avantages: départager une éventuelle égalité des votes lors de la pendaison et avoir un vote comptant double durant cette dernière !",
                 "playersHave5Min": "Les joueurs ont 5 minutes pour se mettre d'accord sur qui sera leur prochain maire. À la fin du temps, le maître du jeu doit stopper les discussions et procéder à l'élection.",
                 "eachPlayerVoteForSheriff": "Chaque joueur a donc une voix à donner pour l'élection, mais ne peut voter pour lui-même. Il peut néanmoins voter blanc. Le maître du jeu demande le vote de chacun à tour de rôle.",
-                "optionsCanBeChanged": "La présence du maire dans la partie ou son vote double peuvent être modifiés dans les options de la partie.",
+                "idiotWontDelegate": "L'Idiot est dans la partie ! S'il est nommé maire du village et qu'il meurt, il n'y aura plus de maire dans la partie.",
+                "villagerVillagerCanBeTrusted": "Le Villageois-Villageois est dans la partie ! Il peut faire un excellent maire, étant donné que son rôle est connu de tous.",
                 "toValidateAnElection": "Pour passer à la suite, au moins un joueur doit avoir voté et l'égalité dans les votes est impossible."
             }
         },

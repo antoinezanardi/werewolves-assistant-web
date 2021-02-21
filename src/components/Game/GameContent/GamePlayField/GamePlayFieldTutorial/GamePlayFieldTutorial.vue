@@ -114,6 +114,16 @@ export default {
                         { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.all.elect-sheriff.sheriffSettlesVotes") },
                         { header, target: ".countdown", content: this.$t("GamePlayFieldTutorial.all.elect-sheriff.playersHave5Min") },
                         { header, target: "#player-votes", content: this.$t("GamePlayFieldTutorial.all.elect-sheriff.eachPlayerVoteForSheriff") },
+                        ...insertIf(idiotPlayer && idiotPlayer.isAlive && !idiotPlayer.hasAttribute("powerless"), {
+                            header,
+                            target: `#game-play-alert-idiot-wont-delegate`,
+                            content: this.$t("GamePlayFieldTutorial.all.elect-sheriff.idiotWontDelegate"),
+                        }),
+                        ...insertIf(idiotPlayer && idiotPlayer.isAlive, {
+                            header,
+                            target: `#game-play-alert-villager-villager-can-be-trusted`,
+                            content: this.$t("GamePlayFieldTutorial.all.elect-sheriff.villagerVillagerCanBeTrusted"),
+                        }),
                         {
                             header,
                             target: "#vote-play-requirements",
