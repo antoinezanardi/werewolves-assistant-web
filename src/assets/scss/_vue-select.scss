@@ -2,18 +2,24 @@
 
 .v-select {
     width: 100%;
-}
 
-.vs__dropdown-menu {
-    background-color: $bg-color;
-    border: 1px solid $dark-color;
-    max-height: 170px;
-    overflow-y: scroll;
-    @extend .visible-scrollbar;
+    &.border-success {
+        .vs__dropdown-toggle {
+            border-color: #1c7730;
+        }
+    }
 
-    .vs__dropdown-option {
-        color: white !important;
-        caret-color: white;
+    .vs__dropdown-menu {
+        background-color: $bg-color;
+        border: 1px solid $dark-color;
+        max-height: 170px;
+        overflow-y: scroll;
+        @extend .visible-scrollbar;
+
+        .vs__dropdown-option {
+            color: white !important;
+            caret-color: white;
+        }
     }
 }
 
@@ -35,6 +41,7 @@
     border-color: $dark-color;
     caret-color: white;
     color: white;
+    transition: all 0.5s ease;
 }
 
 .vs__selected {
@@ -54,14 +61,13 @@
 }
 
 .vs__selected-options {
-    //flex-wrap: nowrap;
     max-width: calc(100% - 44px);
 }
 
 .vs__selected {
     white-space: nowrap;
     text-overflow: ellipsis;
-    max-width: 100%;
+    max-width: 84%;
     overflow: hidden;
     color: white;
     background-color: $bg-color;

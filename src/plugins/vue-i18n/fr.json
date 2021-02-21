@@ -496,7 +496,7 @@
             "elect-sheriff": {
                 "howToPlay": "Comment élire le maire ?",
                 "sheriffIsElectedWhen": "Au début de la partie, un maire doit être élu par tous les joueurs vivants. La présence du maire peut être retirée dans les options de la partie.",
-                "sheriffSettlesVotes": "Être le maire possède deux avantages: départager une éventuelle égalité des votes lors de la pendaison et avoir un vote comptant double durant cette dernière !.",
+                "sheriffSettlesVotes": "Être le maire possède deux avantages: départager une éventuelle égalité des votes lors de la pendaison et avoir un vote comptant double durant cette dernière !",
                 "playersHave5Min": "Les joueurs ont 5 minutes pour se mettre d'accord sur qui sera leur prochain maire. À la fin du temps, le maître du jeu doit stopper les discussions et procéder à l'élection.",
                 "eachPlayerVoteForSheriff": "Chaque joueur a donc une voix à donner pour l'élection, mais ne peut voter pour lui-même. Il peut néanmoins voter blanc. Le maître du jeu demande le vote de chacun à tour de rôle.",
                 "optionsCanBeChanged": "La présence du maire dans la partie ou son vote double peuvent être modifiés dans les options de la partie.",
@@ -652,7 +652,8 @@
     },
     "PlayerVote": {
         "voteFor": "Vote pour",
-        "none": "Personne"
+        "none": "Personne",
+        "playerHasVoted": "Ce joueur a voté"
     },
     "GameVillagersSide": {
         "villagers": "Villageois",
@@ -929,9 +930,11 @@
         "press": "Appuyez sur",
         "toGoBack": "pour revenir en arrière",
         "toGoFurther": "pour passer à la suite",
+        "and": "et",
         "messages": {
             "welcomeToTheVillage": "Bienvenue à tous dans le village de Thiercelieux !",
-            "compositionIs": "Ce village de {inhabitantCount} habitants se composent de ",
+            "compositionIs": "Ce village de {inhabitantCount} habitants se compose de ",
+            "moreRolesBecauseOfThief": "Attention, le Voleur est dans la partie ! Ce joueur pourra échanger son rôle avec un autre qui n'a pas été annoncé dans la composition.",
             "looksLifeSomeWerewolvesIntroducedThemselves": "Il semblerait qu'un ou plusieurs loups-garous se soient faufilés dans le village...",
             "villagersMurderWerewolves": "Villageois, prenez les fourches et nettoyez votre village de ces canidés !",
             "beforeStartingLetsElectSheriff": "Mais avant de vous entretuer, il faut élire le maire de ce village.",
@@ -1253,7 +1256,11 @@
         "vile-father-of-wolves": "Infect Père des Loups",
         "ancient": "Ancien",
         "scapegoat": "Bouc-émissaire",
-        "pied-piper": "Joueur de Flûte"
+        "pied-piper": "Joueur de Flûte",
+        "white-werewolf": "Loup-Garou Blanc",
+        "stuttering-judge": "Juge Bègue",
+        "thief": "Voleur",
+        "angel": "Ange"
     },
     "RoleText": {
         "chooseARole": "Choisir un rôle"

@@ -1,11 +1,14 @@
 <template>
     <div :id="`player-vote-${player._id}`" class="player-vote d-flex flex-column align-items-center p-2">
         <PlayerCard :player="player" :is-nominated="isNominated"/>
-        <div class="mb-3 vote-for-text text-center">
+        <div class="mb-1 vote-for-text text-center" :class="{ 'text-success': hasVoted }">
+            <transition mode="out-in" name="translate-down-fade">
+                <i v-if="hasVoted" v-tooltip="$t('PlayerVote.playerHasVoted')" class="fa fa-vote-yea mr-2"/>
+            </transition>
             <span class="font-italic" v-html="$t('PlayerVote.voteFor')"/>
         </div>
         <VSelect :options="targetablePlayersExceptHimself" :placeholder="$t('PlayerVote.none')" :filter="filterByPlayerName"
-                 label="name" @input="playerVotes">
+                 label="name" :class="{ 'border-success': hasVoted }" @input="playerVotes">
             <template #selected-option="{ role, name }">
                 <RoleImage :role="role.current" class="role-image-option mr-2"/>
                 <span class="text-truncate" v-html="name"/>
@@ -56,6 +59,9 @@ export default {
             const nominatedPlayers = getNominatedPlayers(this.play.votes, this.game, this.game.firstWaiting.to);
             return nominatedPlayers ? !!nominatedPlayers.find(({ _id }) => _id === this.player._id) : undefined;
         },
+        hasVoted() {
+            return this.play.votes.find(({ from: source }) => source === this.player._id);
+        },
     },
     methods: {
         filterByPlayerName(option, search) {
@@ -75,6 +81,7 @@ export default {
         width: 100%;
         color: #999999;
         padding: 3px 6px;
+        transition: all 0.5s ease;
     }
 
     .role-image-option {

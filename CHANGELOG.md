@@ -14,6 +14,7 @@
 * [#120](https://github.com/antoinezanardi/werewolves-assistant-web/issues/120) - Back to top on About page.
 * [#137](https://github.com/antoinezanardi/werewolves-assistant-web/issues/137) - Add some links to log in modal.
 * [#138](https://github.com/antoinezanardi/werewolves-assistant-web/issues/138) - Add background and particles to home page.
+* [#143](https://github.com/antoinezanardi/werewolves-assistant-web/issues/143) - Style for players who voted.
 
 ### 🐛 Bug fixes
 
@@ -34,7 +35,7 @@
 * `chai` updated to version `4.3.0`.
 * `eslint` updated to version `7.20.0`.
 * `eslint-plugin-vue` updated to version `7.6.0`.
-* `sweetalert2` updated to version `10.15.4`.
+* `sweetalert2` updated to version `10.15.5`.
 * `vue-gtag` updated to version `1.11.0`.
 
 ---

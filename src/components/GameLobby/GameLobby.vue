@@ -287,8 +287,12 @@ export default {
             try {
                 this.loading.createGame = true;
                 const players = this.game.players.map(({ name, role }) => ({ name, role: role.current }));
-                const { options } = this.game;
-                const { data } = await this.$werewolvesAssistantAPI.createGame({ players, options });
+                const { options, additionalCards } = this.game;
+                const body = { options, players };
+                if (this.game.thiefPlayer) {
+                    body.additionalCards = additionalCards.map(({ role, for: recipient }) => ({ role, for: recipient }));
+                }
+                const { data } = await this.$werewolvesAssistantAPI.createGame(body);
                 this.$toasted.success(this.$t("GameLobby.gameCreated"), { icon: "gamepad" });
                 await this.$router.push(`/game/${data._id}`);
             } catch (e) {

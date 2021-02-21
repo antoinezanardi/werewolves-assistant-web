@@ -95,6 +95,7 @@ export default {
                     messages: [
                         i18n.t("GameEvent.messages.welcomeToTheVillage"),
                         this.gameCompositionText,
+                        ...insertIf(this.game.thiefPlayer, i18n.t("GameEvent.messages.moreRolesBecauseOfThief")),
                         i18n.t("GameEvent.messages.looksLifeSomeWerewolvesIntroducedThemselves"),
                         i18n.t("GameEvent.messages.villagersMurderWerewolves"),
                         ...insertIf(this.gameOptions.roles.sheriff.isEnabled, i18n.t("GameEvent.messages.beforeStartingLetsElectSheriff")),
@@ -235,7 +236,7 @@ export default {
                 }
             }
             for (let i = 0; i < roles.length; i++) {
-                gameCompositionText += i + 1 === roles.length ? ` et` : ` `;
+                gameCompositionText += i + 1 === roles.length ? ` ${this.$t("GameEvent.and")}` : ` `;
                 gameCompositionText += ` ${roles[i].count} ${this.$tc(`Role.${roles[i].name}`, roles[i].count)}`;
                 if (i + 2 < roles.length) {
                     gameCompositionText += ",";
