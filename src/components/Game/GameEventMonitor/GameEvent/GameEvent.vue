@@ -83,6 +83,7 @@ export default {
             game: "game",
             gameOptions: "gameOptions",
         }),
+        ...mapGetters("audioManager", { audioManager: "audioManager" }),
         // eslint-disable-next-line max-lines-per-function
         gameEventMetadata() {
             const { ancientPlayer, didAncientTakeHisRevenge } = this.game;
@@ -139,6 +140,7 @@ export default {
                             i18n.t("GameEvent.messages.attentionToTheAncient")),
                         ...insertIf(this.game.firstWaiting.to === "elect-sheriff", i18n.t("GameEvent.messages.allElectSheriff")),
                     ],
+                    soundEffect: "sheriff-election",
                 },
                 "no-death-after-votes": {
                     messages: [
@@ -224,6 +226,9 @@ export default {
         gameEventMessages() {
             return this.gameEventMetadata[this.event.type] ? this.gameEventMetadata[this.event.type].messages : [];
         },
+        gameEventSoundEffect() {
+            return this.gameEventMetadata[this.event.type] ? this.gameEventMetadata[this.event.type].soundEffect : undefined;
+        },
         currentGameEventMessage() {
             return this.gameEventMessages && this.messageIdx < this.gameEventMessages.length ? this.gameEventMessages[this.messageIdx] : "";
         },
@@ -252,6 +257,11 @@ export default {
             return gameCompositionText;
         },
         isTouchDevice,
+    },
+    created() {
+        if (this.gameEventSoundEffect) {
+            this.audioManager.playSoundEffect(this.gameEventSoundEffect);
+        }
     },
     methods: {
         previousGameEventMessage() {

@@ -28,6 +28,7 @@
 
 ### 📦 Packages
 
+* `howler` installed with version `2.2.1`.
 * `particles.vue` installed with version `2.1.12`.
 * `vue-backtotop` installed with version `1.6.1`.
 * `@sentry/browser` updated to version `6.2.0`.

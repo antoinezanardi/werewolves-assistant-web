@@ -5,6 +5,9 @@
             <span class="d-none d-md-inline-block" v-html="$t('NavBar.werewolvesAssistant')"/>
         </a>
         <div class="navbar-nav d-flex w-100 justify-content-end">
+            <div class="nav-item">
+                <MuteButton class="nav-link"/>
+            </div>
             <transition mode="out-in" name="fade">
                 <div v-if="game.isCreated" class="nav-item d-md-none d-sm-block">
                     <a class="nav-link" href="#" role="button" aria-haspopup="true" @click.prevent="showGameSidesModal">
@@ -44,12 +47,17 @@ import Swal from "sweetalert2";
 import { mapActions, mapGetters } from "vuex";
 import GameOptionsModal from "@/components/NavBar/GameOptionsModal/GameOptionsModal";
 import GameSidesModal from "@/components/NavBar/GameSidesModal/GameSidesModal";
+import MuteButton from "@/components/shared/AudioManager/MuteButton";
 
 export default {
     name: "NavBar",
-    components: { GameSidesModal, GameOptionsModal },
-    computed: { ...mapGetters("game", { game: "game" }) },
+    components: { MuteButton, GameSidesModal, GameOptionsModal },
+    computed: {
+        ...mapGetters("game", { game: "game" }),
+        ...mapGetters("audioManager", { audioManager: "audioManager" }),
+    },
     methods: {
+        ...mapActions("game", { setGame: "setGame" }),
         ...mapActions("game", { setGame: "setGame" }),
         async backToHomePage() {
             await this.$router.push("/");

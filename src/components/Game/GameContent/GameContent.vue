@@ -14,6 +14,7 @@ import GamePlayField from "./GamePlayField/GamePlayField";
 import GameEvent from "@/classes/GameEvent";
 import GameEventMonitor from "@/components/Game/GameEventMonitor/GameEventMonitor";
 import { maxTargetLengthForPlayerAttribute } from "@/helpers/functions/Player";
+import { isPreFirstNightPlay } from "@/helpers/functions/Game";
 
 export default {
     name: "GameContent",
@@ -28,7 +29,10 @@ export default {
             events: [],
         };
     },
-    computed: { ...mapGetters("game", { game: "game" }) },
+    computed: {
+        ...mapGetters("game", { game: "game" }),
+        ...mapGetters("audioManager", { audioManager: "audioManager" }),
+    },
     watch: {
         game: {
             handler(newGame) {
@@ -50,6 +54,13 @@ export default {
             deep: true,
             immediate: true,
         },
+    },
+    created() {
+        if (isPreFirstNightPlay(this.game.firstWaiting.to, this.game.turn, this.game.phase) || this.game.phase === "day") {
+            this.audioManager.playDayMusic();
+        } else {
+            this.audioManager.playNightMusic();
+        }
     },
     methods: {
         playerVotes(vote) {

@@ -22,3 +22,8 @@ export function isSkippableAction(action) {
     const skippableActions = ["use-potion", "mark", "meet-each-other", "ban-voting"];
     return skippableActions.includes(action);
 }
+
+export function isPreFirstNightPlay(action, turn, phase) {
+    const preFirstNightActions = ["elect-sheriff", "vote", "settle-votes", "delegate"];
+    return turn === 1 && phase === "night" && preFirstNightActions.includes(action);
+}
