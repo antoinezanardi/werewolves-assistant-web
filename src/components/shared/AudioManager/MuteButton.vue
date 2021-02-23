@@ -5,24 +5,20 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
     name: "MuteButton",
     computed: {
         ...mapGetters("audioManager", { audioManager: "audioManager" }),
         muteClasses() {
-            return this.audioManager.isMuted ? "fa-volume-up" : "fa-volume-mute";
+            return this.audioManager.isMuted ? "fa-volume-mute" : "fa-volume-up";
         },
         muteTooltip() {
             return this.audioManager.isMuted ? this.$t("MuteButton.unmute") : this.$t("MuteButton.mute");
         },
     },
-    methods: {
-        toggleMute() {
-            this.audioManager.toggleMute();
-        },
-    },
+    methods: { ...mapActions("audioManager", { toggleMute: "toggleMute" }) },
 };
 </script>
 

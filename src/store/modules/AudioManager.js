@@ -8,6 +8,15 @@ export default {
             return state.audioManager;
         },
     },
-    mutations: {},
-    actions: {},
+    mutations: {
+        toggleMute(state) {
+            state.audioManager.toggleMute();
+        },
+    },
+    actions: {
+        async toggleMute({ commit, dispatch, state }) {
+            commit("toggleMute");
+            await dispatch("user/setPreferenceAudioIsMuted", state.audioManager.isMuted, { root: true });
+        },
+    },
 };

@@ -1,8 +1,8 @@
 <template>
     <div :id="`game-play-alert-${type}`" class="game-play-alert">
         <v-popover>
-            <div class="p-2 d-flex align-items-center">
-                <RoleImage class="game-play-alert-role-image mr-2" :role="gamePlayAlertRole"/>
+            <div class="p-2 d-flex justify-content-between align-items-center">
+                <RoleImage class="game-play-alert-role-image" :role="gamePlayAlertRole"/>
                 <i class="game-play-alert-role-icon fa" :class="gamePlayAlertIconClasses"/>
             </div>
             <template #popover>
@@ -37,13 +37,21 @@ export default {
             const gamePlayAlertRoles = {
                 "idiot-wont-delegate": "idiot",
                 "villager-villager-can-be-trusted": "villager-villager",
+                "ancient-can-make-all-powerless": "ancient",
+                "idiot-wont-die-from-votes": "idiot",
+                "scapegoat-will-die-from-tie": "scapegoat",
+                "angel-will-win-if-he-dies": "angel",
             };
             return gamePlayAlertRoles[this.type];
         },
         gamePlayAlertIconClasses() {
             const gamePlayAlertIcons = {
                 "idiot-wont-delegate": "fa-grimace",
-                "villager-villager-can-be-trusted": "fa-thumbs-up text-success",
+                "villager-villager-can-be-trusted": "fa-thumbs-up",
+                "ancient-can-make-all-powerless": "fa-bolt",
+                "idiot-wont-die-from-votes": "fa-shield-alt",
+                "scapegoat-will-die-from-tie": "fa-comment-slash",
+                "angel-will-win-if-he-dies": "fa-trophy",
             };
             return gamePlayAlertIcons[this.type];
         },
@@ -57,6 +65,7 @@ export default {
         border-radius: 10px;
         transition: all 0.25s ease;
         cursor: pointer;
+        min-width: 75px;
 
         &:hover {
             border-color: #eaeaea;

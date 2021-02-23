@@ -37,6 +37,10 @@ class Player {
     get isRoleRevealed() {
         return this.role.isRevealed;
     }
+
+    get isAliveAndPowerful() {
+        return this.isAlive && !this.hasAttribute("powerless");
+    }
 }
 
 export default Player;

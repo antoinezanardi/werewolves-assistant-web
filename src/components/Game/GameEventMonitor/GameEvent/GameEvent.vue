@@ -86,7 +86,7 @@ export default {
         ...mapGetters("audioManager", { audioManager: "audioManager" }),
         // eslint-disable-next-line max-lines-per-function
         gameEventMetadata() {
-            const { ancientPlayer, didAncientTakeHisRevenge } = this.game;
+            const { ancientPlayer, angelPlayer, didAncientTakeHisRevenge, firstWaiting } = this.game;
             const gameEventFirstTarget = this.hasGameEventTargets ? this.event.targets[0] : null;
             const gameEventTargetName = this.hasGameEventTargets ? gameEventFirstTarget.player.name : null;
             const gameEventTargetRole = this.hasGameEventTargets ? gameEventFirstTarget.player.role.current : null;
@@ -117,6 +117,7 @@ export default {
                         ...insertIf(gameEventTargetRole === "ancient" && didAncientTakeHisRevenge,
                             i18n.t("GameEvent.messages.ancientTakesHisRevenge")),
                     ],
+                    soundEffect: "death",
                 },
                 "player-role-revealed": {
                     messages: [
@@ -129,16 +130,22 @@ export default {
                         i18n.t("GameEvent.messages.playerHasBeenPromotedSheriff", { gameEventTargetName }),
                         ...insertIf(this.game.turn === 1, i18n.t("GameEvent.messages.sheriffCanMakeASpeech")),
                     ],
+                    soundEffect: "sheriff-is-elected",
                 },
-                "night-falls": { messages: [i18n.t("GameEvent.messages.nightFalls"), i18n.t("GameEvent.messages.inhabitantsFallAsleep")] },
+                "night-falls": {
+                    messages: [i18n.t("GameEvent.messages.nightFalls"), i18n.t("GameEvent.messages.inhabitantsFallAsleep")],
+                    soundEffect: "night-falls",
+                },
                 "all-turn": {
                     messages: [
-                        ...insertIf(this.game.firstWaiting.to === "vote" && !this.game.isSecondVoteAfterTie, i18n.t("GameEvent.messages.allVote")),
-                        ...insertIf(this.game.firstWaiting.to === "vote" && this.game.isSecondVoteAfterTie,
+                        ...insertIf(firstWaiting.to === "vote" && !!angelPlayer && this.game.isCurrentPlayPreFirstNightPlay,
+                            i18n.t("GameEvent.messages.gameStartsWithVoteBecauseOfAngel")),
+                        ...insertIf(firstWaiting.to === "vote" && !this.game.isSecondVoteAfterTie, i18n.t("GameEvent.messages.allVote")),
+                        ...insertIf(firstWaiting.to === "vote" && this.game.isSecondVoteAfterTie,
                             i18n.t("GameEvent.messages.allVoteAgain", { players: listPlayerNames(this.game.lastActionTargetedPlayers) })),
-                        ...insertIf(this.game.firstWaiting.to === "vote" && !!ancientPlayer && ancientPlayer.isAlive,
+                        ...insertIf(firstWaiting.to === "vote" && !!ancientPlayer && ancientPlayer.isAlive,
                             i18n.t("GameEvent.messages.attentionToTheAncient")),
-                        ...insertIf(this.game.firstWaiting.to === "elect-sheriff", i18n.t("GameEvent.messages.allElectSheriff")),
+                        ...insertIf(firstWaiting.to === "elect-sheriff", i18n.t("GameEvent.messages.allElectSheriff")),
                     ],
                     soundEffect: "sheriff-election",
                 },
@@ -150,8 +157,8 @@ export default {
                 },
                 "sheriff-turn": {
                     messages: [
-                        ...insertIf(this.game.firstWaiting.to === "settle-votes", i18n.t("GameEvent.messages.sheriffSettlesVote")),
-                        ...insertIf(this.game.firstWaiting.to === "delegate", i18n.t("GameEvent.messages.sheriffDelegates")),
+                        ...insertIf(firstWaiting.to === "settle-votes", i18n.t("GameEvent.messages.sheriffSettlesVote")),
+                        ...insertIf(firstWaiting.to === "delegate", i18n.t("GameEvent.messages.sheriffDelegates")),
                     ],
                 },
                 "day-rises": { messages: [i18n.t("GameEvent.messages.dayRises")] },
@@ -218,6 +225,13 @@ export default {
                     ],
                 },
                 "scapegoat-turn": { messages: [i18n.t("GameEvent.messages.scapegoatStarts")] },
+                "thief-turn": {
+                    messages: [
+                        i18n.t("GameEvent.messages.thiefStarts"),
+                        i18n.t("GameEvent.messages.gameMasterWillFlipAdditionalCards"),
+                    ],
+                    soundEffect: "thief-plays",
+                },
             };
         },
         hasGameEventTargets() {
@@ -261,6 +275,11 @@ export default {
     created() {
         if (this.gameEventSoundEffect) {
             this.audioManager.playSoundEffect(this.gameEventSoundEffect);
+        }
+        if (this.event.type === "day-rises") {
+            this.audioManager.playDayMusic();
+        } else if (this.event.type === "night-falls") {
+            this.audioManager.playNightMusic();
         }
     },
     methods: {

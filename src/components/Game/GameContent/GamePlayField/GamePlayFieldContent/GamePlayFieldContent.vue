@@ -13,7 +13,7 @@
                               class="h-100 container-fluid" @player-selected="playerSelected"/>
             <MarkPlayField v-else-if="game.firstWaiting.to === 'mark'" key="mark" :play="play"
                            class="h-100 container-fluid" @player-selected="playerSelected"/>
-            <VotePlayField v-else-if="game.firstWaiting.to === 'vote'" key="vote" :play="play"
+            <VotePlayField v-else-if="game.firstWaiting.to === 'vote'" key="vote" :play="play" :past-events="pastEvents"
                            class="h-100 container-fluid" @player-votes="playerVotes"/>
             <SettleVotesPlayField v-else-if="game.firstWaiting.to === 'settle-votes'" key="settle-votes"
                                   :play="play" class="h-100 container-fluid" @player-selected="playerSelected"/>
@@ -70,6 +70,10 @@ export default {
     },
     props: {
         play: {
+            type: Object,
+            required: true,
+        },
+        pastEvents: {
             type: Object,
             required: true,
         },

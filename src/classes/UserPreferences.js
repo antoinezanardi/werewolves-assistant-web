@@ -12,6 +12,7 @@ class UserPreferences {
                 isProTipShown: getProp(localUserPreferences, "game.repartition.isProTipShown", true),
             },
         };
+        this.audio = { isMuted: getProp(localUserPreferences, "audio.isMuted", false) };
     }
 
     save() {

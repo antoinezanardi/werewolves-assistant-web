@@ -14,7 +14,6 @@ import GamePlayField from "./GamePlayField/GamePlayField";
 import GameEvent from "@/classes/GameEvent";
 import GameEventMonitor from "@/components/Game/GameEventMonitor/GameEventMonitor";
 import { maxTargetLengthForPlayerAttribute } from "@/helpers/functions/Player";
-import { isPreFirstNightPlay } from "@/helpers/functions/Game";
 
 export default {
     name: "GameContent",
@@ -25,6 +24,7 @@ export default {
                 votes: [],
                 targets: [],
                 side: undefined,
+                doesJudgeRequestAnotherVote: undefined,
             },
             events: [],
         };
@@ -56,7 +56,8 @@ export default {
         },
     },
     created() {
-        if (isPreFirstNightPlay(this.game.firstWaiting.to, this.game.turn, this.game.phase) || this.game.phase === "day") {
+        if (this.game.isCurrentPlayPreFirstNightPlay || this.game.phase === "day" && !this.events.find(({ type }) => type === "day-rises") ||
+            this.game.phase === "night" && this.events.find(({ type }) => type === "night-falls")) {
             this.audioManager.playDayMusic();
         } else {
             this.audioManager.playNightMusic();
@@ -130,8 +131,7 @@ export default {
             }
         },
         generateGamePhaseEvent() {
-            if (!this.game.options.roles.sheriff.isEnabled && this.game.tick === 1 ||
-                this.game.options.roles.sheriff.isEnabled && this.game.tick === 2) {
+            if (this.game.history.length && this.game.history[0].isPreFirstNightPlay && !this.game.isCurrentPlayPreFirstNightPlay) {
                 return this.events.push(new GameEvent({ type: "night-falls" }));
             } else if (this.game.history.length &&
                 (this.game.phase !== this.game.history[0].phase || this.game.turn !== this.game.history[0].turn)) {

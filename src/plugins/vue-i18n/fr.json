@@ -383,9 +383,17 @@
     "GamePlayAlert": {
         "description": {
             "idiot-wont-delegate": "Si l'Idiot est nommé maire du village et qu'il meurt, il n'y aura plus de maire dans la partie. L'Idiot n'est pas capable de déléguer son rôle de maire avec toute cette paperasse...",
-            "villager-villager-can-be-trusted": "Le Villageois-Villageois peut faire un excellent maire, étant donné que son rôle est connu de tous."
+            "villager-villager-can-be-trusted": "Le Villageois-Villageois peut faire un excellent maire, étant donné que son rôle est connu de tous.",
+            "ancient-can-make-all-powerless": "Si l'Ancien meurt de cette action, alors tous les joueurs dans le camp des villageois perdront leurs pouvoirs spéciaux.",
+            "idiot-wont-die-from-votes": "L'Idiot ne peut mourir de cette pendaison. Si les votes sont contre lui, alors son rôle sera révélé, il perdra son droit de vote mais ne mourra pas.",
+            "scapegoat-will-die-from-tie": "Si une égalité advient pendant les votes, le Bouc-Émissaire sera la victime de la pendaison. Il devra alors décider qui aura le droit de vote pour le vote du jour d'après.",
+            "angel-will-win-if-he-dies": "Si l'Ange meurt de cette action, alors il gagnera instantanément la partie."
         },
         "shareThisWithPlayers": "Partager cette information avec les joueurs peut rendre la partie un peu plus intéressante."
+    },
+    "GamePlayField": {
+        "cantLoadGame": "Chargement impossible",
+        "retry": "Réessayer"
     },
     "GamePlayFieldFooter": {
         "next": "Suivant",
@@ -499,9 +507,10 @@
                 "targetablePlayerAreHere": "Les joueurs éligibles à la pendaison de ce vote sont spécifiés ici.",
                 "playersHave5Min": "Les joueurs ont 5 minutes pour se mettre d'accord sur qui sera pendu. À la fin du temps, le maître du jeu doit stopper les discussions et procéder au vote.",
                 "eachPlayerVote": "Chaque joueur a donc une voix à donner pour le vote, mais ne peut voter pour lui-même. Il peut néanmoins voter blanc. Le maître du jeu demande le vote de chacun à tour de rôle.",
-                "scapegoatWillDieIfTie": "Le bouc-émissaire est dans la partie ! En cas d'égalité, c'est lui qui sera pendu, même s'il n'est pas inclu dans l'égalité.",
+                "scapegoatWillDieIfTie": "Le bouc-émissaire est dans la partie ! En cas d'égalité, c'est lui qui sera pendu, même s'il n'est pas inclu dans l'égalité. Il décidera ensuite qui aura le droit de vote pour le jour d'après.",
                 "idiotWillBeForgiven": "L'idiot est dans la partie ! Si son rôle n'est pas encore révélé et que le village décide de voter contre lui, alors il sera gracié, le village se rendant compte de leur bêtise de pendre un idiot. Par contre, son rôle sera révélé et il perdra son droit de vote pour le reste de la partie.",
                 "ancientWillHaveHisRevenge": "L'ancien est dans la partie ! Si le village décide de le pendre, alors tous les villageois d'origine (pas les loups-garous) perdront leurs pouvoirs. Attention à la pendaison irréfléchie !",
+                "angelWillWinIfHeDiesNow": "L'ange est dans la partie ! S'il meurt des votes, alors il gagnera la partie.",
                 "toValidateAVote": "Pour passer à la suite, au moins un joueur doit avoir voté."
             },
             "elect-sheriff": {
@@ -914,7 +923,11 @@
     },
     "VotePlayField": {
         "onlyCanBeHanged": "Seuls {players} sont éligibles à la pendaison",
-        "everybodyCanBeHanged": "Tout le monde est éligible à la pendaison"
+        "everybodyCanBeHanged": "Tout le monde est éligible à la pendaison",
+        "stutteringJudgeHasMadeHisSign": "a fait son signe pour demander un second vote ?",
+        "stutteringJudgeDidntChooseSignYet": "ne peut pas demander un second vote car il n'a pas encore choisi son signe.",
+        "stutteringJudgeAlreadyRequestedVote": "a déjà demandé un second vote.",
+        "stutteringJudgeIsPowerless": "ne peut pas demander un second vote car il n'a plus son pouvoir."
     },
     "ProtectPlayField": {
         "loadingTargets": "Chargement des cibles du salvateur",
@@ -952,6 +965,7 @@
             "beforeStartingLetsElectSheriff": "Mais avant de vous entretuer, il faut élire le maire de ce village.",
             "villagerVillagerStartsGameRevealed": "{player} est le Villageois-Villageois et commence donc la partie avec son rôle connu de tous. C'est un Villageois digne de confiance.",
             "allElectSheriff": "Le débat va commencer pour élire le premier maire du village.",
+            "gameStartsWithVoteBecauseOfAngel": "La partie commence par un vote du village car l'Ange est présent. S'il meurt de ce vote, il gagnera instantanément la partie !",
             "playerDies": "{player} est mort ! Quelle tragédie...",
             "playerRevealsRole": "Il ou elle révèle son rôle aux survivants.",
             "noIdiotSheriffAnymore": "Étant donné que le maire était en réalité l'idiot, il ne délèguera pas sa fonction. Quel idiot !",
@@ -1000,7 +1014,9 @@
             "charmedWakeUpWithOldOnes": "Les tout juste charmés par le joueur de flûte se réveillent avec les anciens charmés pour se reconnaître.",
             "scapegoatStarts": "Face à l'injustice de sa mort, le bouc-émissaire va choisir qui n'aura pas le droit de vote au jour suivant dans son dernier souffle.",
             "idiotIsForgiven": "Le village se rend compte que le joueur pendu était en vérité l'idiot ! Les villageois ayant pitié de lui, décident de le gracier mais il ne pourra plus voter jusqu'à la fin de la partie.",
-            "playerRoleIsRevealed": "Le joueur retourne sa carte et continue à jouer."
+            "playerRoleIsRevealed": "Le joueur retourne sa carte et continue à jouer.",
+            "thiefStarts": "Le voleur se réveille et va, s'il le souhaite, voler l'une des deux cartes additionnelles et s'approprier le rôle sur celle-ci.",
+            "gameMasterWillFlipAdditionalCards": "Le maître du jeu va retourner les cartes additionnelles destinées au Voleur pour qu'il en prenne connaissance et puisse faire son choix."
         }
     },
     "Statistics": {

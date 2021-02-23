@@ -44,6 +44,9 @@ export default {
         setPreferenceGameRepartitionIsProTipShown(state, isProTipShown) {
             state.preferences.game.repartition.isProTipShown = isProTipShown;
         },
+        setPreferenceAudioIsMuted(state, isMuted) {
+            state.preferences.audio.isMuted = isMuted;
+        },
         saveUserPreferences(state) {
             state.preferences.save();
         },
@@ -110,6 +113,10 @@ export default {
         },
         setPreferenceGameRepartitionIsProTipShown({ commit }, isProTipShown) {
             commit("setPreferenceGameRepartitionIsProTipShown", isProTipShown);
+            commit("saveUserPreferences");
+        },
+        setPreferenceAudioIsMuted({ commit }, isMuted) {
+            commit("setPreferenceAudioIsMuted", isMuted);
             commit("saveUserPreferences");
         },
     },

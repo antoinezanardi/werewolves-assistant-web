@@ -1,8 +1,11 @@
 import { Howler, Howl } from "howler";
+import UserPreferences from "@/classes/UserPreferences";
 import { randomIntFromInterval } from "@/helpers/functions/Number";
 
 class AudioManager {
     constructor() {
+        const userPreferences = new UserPreferences();
+        this.isMuted = userPreferences.audio.isMuted;
         this.ambient = {
             volume: 1,
             dayMusics: [],
@@ -12,7 +15,7 @@ class AudioManager {
             volume: 1,
             sounds: {},
         };
-        this.isMuted = false;
+        Howler.mute(this.isMuted);
         this._loadAmbientMusics();
         this._loadSoundEffects();
     }
@@ -22,7 +25,7 @@ class AudioManager {
             loop: true,
             volume: this.ambient.volume,
         };
-        const ambientNightFiles = ["/audio/ambient/night/night-1.wav"];
+        const ambientNightFiles = ["/audio/ambient/night/night-1.mp3"];
         for (const ambientNightFile of ambientNightFiles) {
             this.ambient.nightMusics.push(new Howl({ src: ambientNightFile, ...options }));
         }
@@ -35,7 +38,14 @@ class AudioManager {
     _loadSoundEffects() {
         const basePath = "/audio/sounds";
         const options = { volume: this.soundEffects.volume };
-        this.soundEffects.sounds = { "sheriff-election": new Howl({ src: `${basePath}/sheriff-election.mp3`, ...options }) };
+        this.soundEffects.sounds = {
+            "sheriff-election": new Howl({ src: `${basePath}/sheriff-election.mp3`, ...options }),
+            "time-is-up": new Howl({ src: `${basePath}/time-is-up.mp3`, ...options }),
+            "sheriff-is-elected": new Howl({ src: `${basePath}/sheriff-is-elected.mp3`, ...options }),
+            "death": new Howl({ src: `${basePath}/death.mp3`, ...options }),
+            "night-falls": new Howl({ src: `${basePath}/night-falls.mp3`, ...options }),
+            "thief-plays": new Howl({ src: `${basePath}/thief-plays.mp3`, ...options }),
+        };
     }
 
     toggleMute() {
@@ -60,7 +70,7 @@ class AudioManager {
     playNightMusic() {
         this.stopDayMusic();
         const nightMusicsRandomIdx = randomIntFromInterval(0, this.ambient.nightMusics.length - 1);
-        this.ambient.nightMusics[nightMusicsRandomIdx].fade(0, this.ambient.volume, 500);
+        this.ambient.nightMusics[nightMusicsRandomIdx].fade(0, this.ambient.volume, 5000);
         this.ambient.nightMusics[nightMusicsRandomIdx].play();
     }
 

@@ -28,7 +28,10 @@ export default {
             const { firstWaiting } = this.game;
             const sistersWakingUpInterval = this.gameOptions.roles.twoSisters.wakingUpInterval;
             const brothersWakingUpInterval = this.gameOptions.roles.threeBrothers.wakingUpInterval;
-            const { scapegoatPlayer, vileFatherOfWolvesPlayer, idiotPlayer, ancientPlayer } = this.game;
+            const {
+                scapegoatPlayer, vileFatherOfWolvesPlayer, idiotPlayer, ancientPlayer, villagerVillagerPlayer, angelPlayer,
+                isIdiotProtectedFromVotes, doesAngelWinIfHeDiesNow,
+            } = this.game;
             const action = `${firstWaiting.for}.${firstWaiting.to}`;
             const header = { title: this.$t(`GamePlayFieldTutorial.${action}.howToPlay`) };
             const steps = {
@@ -92,20 +95,25 @@ export default {
                         { header, target: "#targetable-players-text", content: this.$t("GamePlayFieldTutorial.all.vote.targetablePlayerAreHere") },
                         { header, target: ".countdown", content: this.$t("GamePlayFieldTutorial.all.vote.playersHave5Min") },
                         { header, target: "#player-votes", content: this.$t("GamePlayFieldTutorial.all.vote.eachPlayerVote") },
-                        ...insertIf(!!scapegoatPlayer && scapegoatPlayer.isAlive, {
-                            header,
-                            target: `#player-vote-${getProp(scapegoatPlayer, "_id")}`,
-                            content: this.$t("GamePlayFieldTutorial.all.vote.scapegoatWillDieIfTie"),
-                        }),
-                        ...insertIf(!!idiotPlayer && idiotPlayer.isAlive, {
-                            header,
-                            target: `#player-vote-${getProp(idiotPlayer, "_id")}`,
-                            content: this.$t("GamePlayFieldTutorial.all.vote.idiotWillBeForgiven"),
-                        }),
                         ...insertIf(!!ancientPlayer && ancientPlayer.isAlive, {
                             header,
-                            target: `#player-vote-${getProp(ancientPlayer, "_id")}`,
+                            target: `#game-play-alert-ancient-can-make-all-powerless`,
                             content: this.$t("GamePlayFieldTutorial.all.vote.ancientWillHaveHisRevenge"),
+                        }),
+                        ...insertIf(!!idiotPlayer && isIdiotProtectedFromVotes, {
+                            header,
+                            target: `#game-play-alert-idiot-wont-die-from-votes`,
+                            content: this.$t("GamePlayFieldTutorial.all.vote.idiotWillBeForgiven"),
+                        }),
+                        ...insertIf(!!scapegoatPlayer && scapegoatPlayer.isAliveAndPowerful, {
+                            header,
+                            target: `#game-play-alert-scapegoat-will-die-from-tie`,
+                            content: this.$t("GamePlayFieldTutorial.all.vote.scapegoatWillDieIfTie"),
+                        }),
+                        ...insertIf(!!angelPlayer && doesAngelWinIfHeDiesNow, {
+                            header,
+                            target: `#game-play-alert-angel-will-win-if-he-dies`,
+                            content: this.$t("GamePlayFieldTutorial.all.vote.angelWillWinIfHeDiesNow"),
                         }),
                         { header, target: "#vote-play-requirements", content: this.$t("GamePlayFieldTutorial.all.vote.toValidateAVote") },
                     ],
@@ -119,7 +127,7 @@ export default {
                             target: `#game-play-alert-idiot-wont-delegate`,
                             content: this.$t("GamePlayFieldTutorial.all.elect-sheriff.idiotWontDelegate"),
                         }),
-                        ...insertIf(idiotPlayer && idiotPlayer.isAlive, {
+                        ...insertIf(villagerVillagerPlayer && villagerVillagerPlayer.isAlive, {
                             header,
                             target: `#game-play-alert-villager-villager-can-be-trusted`,
                             content: this.$t("GamePlayFieldTutorial.all.elect-sheriff.villagerVillagerCanBeTrusted"),

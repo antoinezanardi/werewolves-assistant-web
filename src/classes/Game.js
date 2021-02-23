@@ -2,7 +2,10 @@ import { getProp } from "@/helpers/functions/Class";
 import User from "./User";
 import Player from "./Player";
 import GameHistory from "./GameHistory";
-import { isForbiddenTieVoteAction, isSkippableAction, isTargetAction, isTimedAction, isVoteAction } from "@/helpers/functions/Game";
+import {
+    isForbiddenTieVoteAction, isSkippableAction, isTargetAction, isTimedAction, isVoteAction,
+    isPreFirstNightPlay,
+} from "@/helpers/functions/Game";
 import GameAdditionalCard from "@/classes/GameAdditionalCard";
 
 class Game {
@@ -227,20 +230,8 @@ class Game {
         return this.getPlayerWithAttribute("sheriff");
     }
 
-    get eatenPlayer() {
-        return this.getPlayerWithAttribute("eaten");
-    }
-
     get eatenPlayers() {
         return this.getPlayersWithAttribute("eaten");
-    }
-
-    get hasWitchUsedLifePotion() {
-        return !!this.history.find(({ play }) => play.action === "use-potion" && !!play.targets.find(({ potion }) => potion.life));
-    }
-
-    get hasWitchUsedDeathPotion() {
-        return !!this.history.find(({ play }) => play.action === "use-potion" && !!play.targets.find(({ potion }) => potion.death));
     }
 
     get dogWolfPlayer() {
@@ -271,6 +262,16 @@ class Game {
         return this.getPlayerWithRole("scapegoat");
     }
 
+    get angelPlayer() {
+        return this.getPlayerWithRole("angel");
+    }
+
+    get doesAngelWinIfHeDiesNow() {
+        const { angelPlayer, firstWaiting, turn, isCurrentPlayPreFirstNightPlay } = this;
+        return !!angelPlayer && (firstWaiting.to === "eat" && angelPlayer.isAliveAndPowerful && turn === 1 ||
+            (firstWaiting.to === "vote" || firstWaiting.to === "settle-votes") && isCurrentPlayPreFirstNightPlay);
+    }
+
     get inLovePlayers() {
         return this.getPlayersWithAttribute("in-love");
     }
@@ -283,12 +284,29 @@ class Game {
         return this.getPlayerWithRole("idiot");
     }
 
+    get isIdiotProtectedFromVotes() {
+        const { idiotPlayer } = this;
+        return !!idiotPlayer && idiotPlayer.isAliveAndPowerful && !idiotPlayer.isRoleRevealed;
+    }
+
     get ancientPlayer() {
         return this.getPlayerWithRole("ancient");
     }
 
     get thiefPlayer() {
         return this.getPlayerWithRole("thief");
+    }
+
+    get villagerVillagerPlayer() {
+        return this.getPlayerWithRole("villager-villager");
+    }
+
+    get stutteringJudgePlayer() {
+        return this.getPlayerWithRole("stuttering-judge");
+    }
+
+    canStutteringJudgeRequestVote(hasChosenSign, hasRequestedVote) {
+        return !!this.stutteringJudgePlayer && !this.stutteringJudgePlayer.hasAttribute("powerless") && hasChosenSign && hasRequestedVote;
     }
 
     isRoleInGame(roleName) {
@@ -362,6 +380,10 @@ class Game {
 
     get areGameOptionsValid() {
         return this.areGameRolesOptionsValid;
+    }
+
+    get isCurrentPlayPreFirstNightPlay() {
+        return isPreFirstNightPlay(this.firstWaiting.to, this.turn, this.phase);
     }
 }
 

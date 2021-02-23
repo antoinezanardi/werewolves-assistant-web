@@ -1,5 +1,6 @@
-import { getProp } from "@/helpers/functions/Class";
 import Player from "./Player";
+import { getProp } from "@/helpers/functions/Class";
+import { isPreFirstNightPlay } from "@/helpers/functions/Game";
 
 class GameHistory {
     constructor(gameHistory = null) {
@@ -26,6 +27,7 @@ class GameHistory {
                 from: new Player(vote.from),
                 for: new Player(vote.for),
             }))),
+            doesJudgeRequestAnotherVote: getProp(gameHistory, "play.doesJudgeRequestAnotherVote"),
             side: getProp(gameHistory, "play.side"),
         };
         this.deadPlayers = getProp(gameHistory, "deadPlayers", [], players => players.map(player => new Player(player)));
@@ -52,8 +54,17 @@ class GameHistory {
         return play.source.name === "all" && play.action === "vote" && !deadPlayers.length;
     }
 
+    get hasStutteringJudgeRequestedVote() {
+        const { play } = this;
+        return play.source.name === "all" && play.action === "vote" && play.doesJudgeRequestAnotherVote;
+    }
+
     get revealedAlivePlayers() {
         return this.revealedPlayers.filter(({ _id }) => !this.deadPlayers.find(deadPlayer => deadPlayer._id === _id));
+    }
+
+    get isPreFirstNightPlay() {
+        return isPreFirstNightPlay(this.play.action, this.turn, this.phase);
     }
 }
 
