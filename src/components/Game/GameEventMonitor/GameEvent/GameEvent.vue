@@ -188,15 +188,25 @@ export default {
                     ],
                 },
                 "hunter-turn": { messages: [i18n.t("GameEvent.messages.hunterStarts")] },
-                "dog-wolf-turn": { messages: [i18n.t("GameEvent.messages.dogWolfStarts")] },
-                "cupid-turn": { messages: [i18n.t("GameEvent.messages.cupidStarts")] },
+                "dog-wolf-turn": {
+                    messages: [i18n.t("GameEvent.messages.dogWolfStarts")],
+                    soundEffect: "dog-wolf-plays",
+                },
+                "cupid-turn": {
+                    messages: [i18n.t("GameEvent.messages.cupidStarts")],
+                    soundEffect: "cupid-plays",
+                },
                 "cupid-charms": {
                     messages: [
                         i18n.t("GameEvent.messages.cupidCharmedTwoPlayers"),
                         i18n.t("GameEvent.messages.gameMasterWillTouchLovers"),
                     ],
+                    soundEffect: "cupid-plays",
                 },
-                "lovers-turn": { messages: [i18n.t("GameEvent.messages.loversStart")] },
+                "lovers-turn": {
+                    messages: [i18n.t("GameEvent.messages.loversStart")],
+                    soundEffect: "lovers-play",
+                },
                 "two-sisters-turn": {
                     messages: [
                         ...insertIf(this.game.turn === 1, i18n.t("GameEvent.messages.twoSistersMeetEachOther")),
@@ -231,6 +241,14 @@ export default {
                         i18n.t("GameEvent.messages.gameMasterWillFlipAdditionalCards"),
                     ],
                     soundEffect: "thief-plays",
+                },
+                "thief-chooses-card": {
+                    messages: [i18n.t("GameEvent.messages.thiefChoosesCard")],
+                    soundEffect: "thief-plays",
+                },
+                "stuttering-judge-turn": {
+                    messages: [i18n.t("GameEvent.messages.stutteringJudgeStarts")],
+                    soundEffect: "stuttering-judge-plays",
                 },
             };
         },

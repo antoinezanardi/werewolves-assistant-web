@@ -17,7 +17,8 @@
             <div v-else key="game-play-field" class="h-100 d-flex flex-column">
                 <GamePlayFieldHeader @start-tutorial="startTutorial"/>
                 <GamePlayFieldContent id="game-content-play-field" :play="play" :past-events="pastEvents" class="visible-scrollbar pt-2"
-                                      @player-votes="playerVotes" @player-selected="playerSelected" @side-selected="sideSelected"/>
+                                      @player-votes="playerVotes" @player-selected="playerSelected" @side-selected="sideSelected"
+                                      @card-selected="cardSelected"/>
                 <GamePlayFieldFooter :play="play" @vile-father-of-wolves-infects="vileFatherOfWolvesInfects"/>
                 <GamePlayFieldTutorial ref="gamePlayFieldTutorial"/>
             </div>
@@ -70,6 +71,9 @@ export default {
         },
         sideSelected(side) {
             this.$emit("side-selected", side);
+        },
+        cardSelected(card) {
+            this.$emit("card-selected", card);
         },
         startTutorial() {
             this.$refs.gamePlayFieldTutorial.startTour();

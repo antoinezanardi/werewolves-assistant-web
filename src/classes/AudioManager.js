@@ -45,6 +45,10 @@ class AudioManager {
             "death": new Howl({ src: `${basePath}/death.mp3`, ...options }),
             "night-falls": new Howl({ src: `${basePath}/night-falls.mp3`, ...options }),
             "thief-plays": new Howl({ src: `${basePath}/thief-plays.mp3`, ...options }),
+            "dog-wolf-plays": new Howl({ src: `${basePath}/dog-wolf-plays.mp3`, ...options }),
+            "cupid-plays": new Howl({ src: `${basePath}/cupid-plays.mp3`, ...options }),
+            "lovers-play": new Howl({ src: `${basePath}/lovers-play.mp3`, ...options }),
+            "stuttering-judge-plays": new Howl({ src: `${basePath}/stuttering-judge-plays.mp3`, ...options }),
         };
     }
 

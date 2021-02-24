@@ -185,9 +185,14 @@ class Game {
         return to === "choose-side";
     }
 
+    get isFirstWaitingChooseCardAction() {
+        const { to } = this.firstWaiting;
+        return to === "choose-card";
+    }
+
     get isFirstWaitingSkippableAction() {
         const { to } = this.firstWaiting;
-        return isSkippableAction(to);
+        return isSkippableAction(to, this.additionalCards);
     }
 
     getPlayersWithRole(role) {
@@ -196,6 +201,10 @@ class Game {
 
     getPlayerWithRole(role) {
         return this.players.find(player => player.currentRole === role);
+    }
+
+    getPlayerWithOriginalRole(role) {
+        return this.players.find(player => player.originalRole === role);
     }
 
     get seerPlayer() {
@@ -295,6 +304,10 @@ class Game {
 
     get thiefPlayer() {
         return this.getPlayerWithRole("thief");
+    }
+
+    get originalThiefPlayer() {
+        return this.getPlayerWithOriginalRole("thief");
     }
 
     get villagerVillagerPlayer() {

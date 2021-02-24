@@ -354,6 +354,13 @@ export default {
                         },
                     ],
                 },
+                "thief": {
+                    "choose-card": [
+                        { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.thief.choose-card.thiefChoosesCardWhen`) },
+                        { header, target: "#additional-cards", content: this.$t("GamePlayFieldTutorial.thief.choose-card.thiefCanChooseCard") },
+                        { header, target: "#play-submit-button", content: this.$t("GamePlayFieldTutorial.thief.choose-card.toValidateChooseCard") },
+                    ],
+                },
             };
             return steps[firstWaiting.for] && steps[firstWaiting.for][firstWaiting.to] ? steps[firstWaiting.for][firstWaiting.to] : [];
         },

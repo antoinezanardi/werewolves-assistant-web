@@ -30,6 +30,8 @@
                                   @player-selected="playerSelected"/>
             <BanVotingPlayField v-else-if="game.firstWaiting.to === 'ban-voting'" key="ban-voting" :play="play" class="h-100 container-fluid"
                                 @player-selected="playerSelected"/>
+            <ChooseCardPlayField v-else-if="game.firstWaiting.to === 'choose-card'" key="choose-card" :play="play" class="h-100 container-fluid"
+                                 @card-selected="cardSelected"/>
             <div v-else key="unknown">
                 ?
             </div>
@@ -56,10 +58,12 @@ import MeetEachOtherPlayField
 import ChooseModelPlayField
     from "@/components/Game/GameContent/GamePlayField/GamePlayFieldContent/ChooseModelPlayField";
 import BanVotingPlayField from "@/components/Game/GameContent/GamePlayField/GamePlayFieldContent/BanVotingPlayField";
+import ChooseCardPlayField from "@/components/Game/GameContent/GamePlayField/GamePlayFieldContent/ChooseCardPlayField";
 
 export default {
     name: "GamePlayFieldContent",
     components: {
+        ChooseCardPlayField,
         BanVotingPlayField,
         ChooseModelPlayField,
         MeetEachOtherPlayField,
@@ -88,6 +92,9 @@ export default {
         },
         sideSelected(payload) {
             this.$emit("side-selected", payload);
+        },
+        cardSelected(payload) {
+            this.$emit("card-selected", payload);
         },
     },
 };

@@ -18,9 +18,10 @@ export function isTargetAction(action) {
     return targetActions.includes(action);
 }
 
-export function isSkippableAction(action) {
+export function isSkippableAction(action, additionalCards) {
     const skippableActions = ["use-potion", "mark", "meet-each-other", "ban-voting"];
-    return skippableActions.includes(action);
+    const werewolfRoles = ["werewolf", "white-werewolf", "vile-father-of-wolves", "big-bad-wolf"];
+    return skippableActions.includes(action) || action === "choose-card" && !additionalCards.every(({ role }) => werewolfRoles.includes(role));
 }
 
 export function isPreFirstNightPlay(action, turn, phase) {

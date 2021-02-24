@@ -377,6 +377,9 @@
             },
             "scapegoat": {
                 "ban-voting": "Au tour du bouc-émissaire"
+            },
+            "thief": {
+                "choose-card": "Au tour du voleur"
             }
         }
     },
@@ -405,6 +408,7 @@
         "debateIsOver": "Le débat est terminé, il est temps de voter !",
         "tieInVotesForbidden": "L'égalité pour ce vote est interdite",
         "oneSideMustBeChosen": "Un camp doit être choisi",
+        "oneCardMustBeChosen": "Une carte doit être choisie",
         "doesVileFatherOfWolvesInfect": "L'infect père des loups souhaite-t'il infecter ?",
         "ifVileFatherOfWolvesInfects": "Lorsque les loups-garous se sont endormis le maîre du jeu demande à l'infect père des loups de lever la main s'il souhaite tranformer la victime en loup plutôt que de la tuer.",
         "infect": "Infecter",
@@ -636,6 +640,14 @@
                 "noVoteIfAllCantVote": "Si aucun joueur ne peut voter le jour suivant, alors il n'y aura pas de pendaison.",
                 "toValidateBanVoting": "Durant son tour, le bouc-émissaire peut désigner autant de cibles qu'il souhaite ou passer son tour."
             }
+        },
+        "thief": {
+            "choose-card": {
+                "howToPlay": "Comment jouer le voleur ?",
+                "thiefChoosesCardWhen": "Au début de la partie, seulement la première nuit, le voleur se réveille après que la maître du jeu est retourné les cartes qui sont destinées au voleur.",
+                "thiefCanChooseCard": "Le voleur peut, s'il le souhaite, échanger une de ses cartes contre la sienne, et ainsir changer de rôle jusque la fin de la partie. Attention, le voleur sera obligé de prendre une carte si les deux rôles sont du camp des Loups-Garous.",
+                "toValidateChooseCard": "Pour passer à la suite, le voleur peut passer son tour ou obligatoirement prendre une carte si les deux cartes proposées sont dans le camp des Loups-Garous."
+            }
         }
     },
     "PlayerAttribute": {
@@ -669,7 +681,8 @@
             "vote": "Ce joueur est nominé pour la pendaison"
         },
         "thisPlayerIsDead": "Ce joueur est mort",
-        "thisPlayerRoleIsRevealed": "Le rôle de ce joueur est connu des autres (sa carte n'est pas cachée)"
+        "thisPlayerRoleIsRevealed": "Le rôle de ce joueur est connu des autres (sa carte n'est pas cachée)",
+        "previously": "Anciennement {role}"
     },
     "PlayerVote": {
         "voteFor": "Vote pour",
@@ -694,6 +707,9 @@
         "loadingPotions": "Chargement des potions",
         "cantLoadPotions": "Impossible de charger les potions",
         "retry": "Réessayer"
+    },
+    "ChooseCardPlayField": {
+        "thiefMustChooseCard": "Le Voleur est obligé de prendre une carte car elles sont toutes du camp des Loups-Garous"
     },
     "GameWinners": {
         "restartGame": "Recommencer une partie",
@@ -910,6 +926,10 @@
         "scapegoat": {
             "no-ban-voting": "ne souhaite interdire personne de vote pour la prochaine journée",
             "ban-voting": "souhaite interdire de vote pour la prochaine journée"
+        },
+        "thief": {
+            "no-choose-card": "ne souhaite pas changer de rôle",
+            "choose-card": "souhaite devenir"
         }
     },
     "CancelActionButton": {
@@ -1016,7 +1036,8 @@
             "idiotIsForgiven": "Le village se rend compte que le joueur pendu était en vérité l'idiot ! Les villageois ayant pitié de lui, décident de le gracier mais il ne pourra plus voter jusqu'à la fin de la partie.",
             "playerRoleIsRevealed": "Le joueur retourne sa carte et continue à jouer.",
             "thiefStarts": "Le voleur se réveille et va, s'il le souhaite, voler l'une des deux cartes additionnelles et s'approprier le rôle sur celle-ci.",
-            "gameMasterWillFlipAdditionalCards": "Le maître du jeu va retourner les cartes additionnelles destinées au Voleur pour qu'il en prenne connaissance et puisse faire son choix."
+            "gameMasterWillFlipAdditionalCards": "Le maître du jeu va retourner les cartes additionnelles destinées au Voleur pour qu'il en prenne connaissance et puisse faire son choix.",
+            "thiefChoosesCard": "Si le Voleur a choisi une carte, le maître du jeu va procéder à l'échange. Les deux cartes restantes sont replacées faces cachées au centre de la table."
         }
     },
     "Statistics": {

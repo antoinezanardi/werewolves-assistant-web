@@ -1,6 +1,6 @@
 <template>
     <transition mode="out-in" name="translate-down-fade">
-        <span v-if="targetedPlayersForAttribute.length || play.side" key="cancel-player-target"
+        <span v-if="targetedPlayersForAttribute.length || play.side || play.chosenCard" key="cancel-player-target"
               v-tooltip="cancelTooltipText" class="cancel-action-button badge-pill badge-dark"
               @click="cancelAction">
             <span v-html="$t('CancelActionButton.cancel')"/>
@@ -43,6 +43,8 @@ export default {
                 }
             } else if (this.play.side) {
                 this.$emit("side-selected", undefined);
+            } else if (this.play.chosenCard) {
+                this.$emit("card-selected", undefined);
             }
         },
     },

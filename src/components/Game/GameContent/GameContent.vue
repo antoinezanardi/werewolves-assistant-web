@@ -3,7 +3,7 @@
         <transition mode="out-in" name="fade">
             <GameEventMonitor v-if="events.length" key="game-event-monitor" :events="events" @skip-event="removeEvent"/>
             <GamePlayField v-else key="game-play-field" :play="play" @player-selected="playerSelected" @player-votes="playerVotes"
-                           @side-selected="sideSelected" @vile-father-of-wolves-infects="vileFatherOfWolvesInfects"/>
+                           @side-selected="sideSelected" @vile-father-of-wolves-infects="vileFatherOfWolvesInfects" @card-selected="cardSelected"/>
         </transition>
     </div>
 </template>
@@ -23,8 +23,9 @@ export default {
             play: {
                 votes: [],
                 targets: [],
-                side: undefined,
                 doesJudgeRequestAnotherVote: undefined,
+                chosenCard: undefined,
+                side: undefined,
             },
             events: [],
         };
@@ -98,6 +99,9 @@ export default {
         sideSelected(side) {
             this.play.side = side;
         },
+        cardSelected(card) {
+            this.play.chosenCard = card ? card._id : undefined;
+        },
         vileFatherOfWolvesInfects() {
             if (this.play.targets.length) {
                 this.play.targets[0].isInfected = true;
@@ -107,6 +111,7 @@ export default {
             this.play.votes = [];
             this.play.targets = [];
             this.play.side = undefined;
+            this.play.chosenCard = undefined;
         },
         generateLastActionEvents() {
             if (this.game.history.length) {
@@ -127,6 +132,8 @@ export default {
                 } else if (this.game.history.length > 1 && lastGameHistoryEntry.wasVotePlayWithoutDeath &&
                     this.game.history[1].wasVotePlayWithoutDeath) {
                     this.events.push(new GameEvent({ type: `no-death-after-votes`, targets: this.game.history[1].play.targets }));
+                } else if (lastGameHistoryEntry.play.action === "choose-card") {
+                    this.events.push(new GameEvent({ type: `thief-chooses-card`, targets: [{ player: this.game.originalThiefPlayer }] }));
                 }
             }
         },

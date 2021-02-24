@@ -34,6 +34,10 @@ class Player {
         return this.role.current;
     }
 
+    get originalRole() {
+        return this.role.original;
+    }
+
     get isRoleRevealed() {
         return this.role.isRevealed;
     }
