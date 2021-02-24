@@ -380,6 +380,9 @@
             },
             "thief": {
                 "choose-card": "Au tour du voleur"
+            },
+            "stuttering-judge": {
+                "choose-sign": "Au tour du juge bègue"
             }
         }
     },
@@ -711,6 +714,9 @@
     "ChooseCardPlayField": {
         "thiefMustChooseCard": "Le Voleur est obligé de prendre une carte car elles sont toutes du camp des Loups-Garous"
     },
+    "ChooseSignPlayField": {
+        "choosesHisSign": "convient d'un signe avec le maître du jeu"
+    },
     "GameWinners": {
         "restartGame": "Recommencer une partie",
         "quit": "Quitter",
@@ -1037,7 +1043,8 @@
             "playerRoleIsRevealed": "Le joueur retourne sa carte et continue à jouer.",
             "thiefStarts": "Le voleur se réveille et va, s'il le souhaite, voler l'une des deux cartes additionnelles et s'approprier le rôle sur celle-ci.",
             "gameMasterWillFlipAdditionalCards": "Le maître du jeu va retourner les cartes additionnelles destinées au Voleur pour qu'il en prenne connaissance et puisse faire son choix.",
-            "thiefChoosesCard": "Si le Voleur a choisi une carte, le maître du jeu va procéder à l'échange. Les deux cartes restantes sont replacées faces cachées au centre de la table."
+            "thiefChoosesCard": "Si le Voleur a choisi une carte, le maître du jeu va procéder à l'échange. Les deux cartes restantes sont replacées faces cachées au centre de la table.",
+            "stutteringJudgeStarts": "Le Juge Bègue se réveille et va convenir d'un signe avec le maître du jeu. Ce signe réalisé pendant un vote en déclenchera un second juste après l'annonce de la victime."
         }
     },
     "Statistics": {

@@ -19,7 +19,7 @@ export function isTargetAction(action) {
 }
 
 export function isSkippableAction(action, additionalCards) {
-    const skippableActions = ["use-potion", "mark", "meet-each-other", "ban-voting"];
+    const skippableActions = ["use-potion", "mark", "meet-each-other", "ban-voting", "choose-sign"];
     const werewolfRoles = ["werewolf", "white-werewolf", "vile-father-of-wolves", "big-bad-wolf"];
     return skippableActions.includes(action) || action === "choose-card" && !additionalCards.every(({ role }) => werewolfRoles.includes(role));
 }
