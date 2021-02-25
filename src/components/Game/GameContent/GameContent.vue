@@ -57,7 +57,7 @@ export default {
         },
     },
     created() {
-        if (this.game.isCurrentPlayPreFirstNightPlay || this.game.phase === "day" && !this.events.find(({ type }) => type === "day-rises") ||
+        if (this.game.isFirstWaitingPreFirstNightPlay || this.game.phase === "day" && !this.events.find(({ type }) => type === "day-rises") ||
             this.game.phase === "night" && this.events.find(({ type }) => type === "night-falls")) {
             this.audioManager.playDayMusic();
         } else {
@@ -138,7 +138,7 @@ export default {
             }
         },
         generateGamePhaseEvent() {
-            if (this.game.history.length && this.game.history[0].isPreFirstNightPlay && !this.game.isCurrentPlayPreFirstNightPlay) {
+            if (this.game.history.length && this.game.history[0].isPreFirstNightPlay && !this.game.isFirstWaitingPreFirstNightPlay) {
                 return this.events.push(new GameEvent({ type: "night-falls" }));
             } else if (this.game.history.length &&
                 (this.game.phase !== this.game.history[0].phase || this.game.turn !== this.game.history[0].turn)) {

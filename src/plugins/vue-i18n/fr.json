@@ -415,7 +415,13 @@
         "doesVileFatherOfWolvesInfect": "L'Infect Père des Loups souhaite-t'il infecter ?",
         "ifVileFatherOfWolvesInfects": "Lorsque les Loups-Garous se sont endormis le maîre du jeu demande à l'Infect Père des Loups de lever la main s'il souhaite tranformer la victime en loup plutôt que de la tuer.",
         "infect": "Infecter",
-        "dontInfect": "Ne pas infecter"
+        "dontInfect": "Ne pas infecter",
+        "isSignWellDefined": "Le signe est-il bien défini ?",
+        "payAttentionToSignForNextVotes": "Le maître du jeu devra être attentif pendant les prochains votes au signe du Juge Bègue.",
+        "signIsWellDefined": "Le signe est bien défini",
+        "cancel": "Annuler",
+        "everybodyIsAsleep": "Tout le monde dort",
+        "timeToBedForSource": "Il est temps pour {source} de se rendormir..."
     },
     "GamePlayFieldCountdownFooter": {
         "timeFor": {
@@ -647,9 +653,18 @@
         "thief": {
             "choose-card": {
                 "howToPlay": "Comment jouer le Voleur ?",
-                "thiefChoosesCardWhen": "Au début de la partie, seulement la première nuit, le Voleur se réveille après que la maître du jeu est retourné les cartes qui sont destinées au Voleur.",
+                "thiefChoosesCardWhen": "Au début de la partie, seulement la première nuit, le Voleur se réveille après que le maître du jeu est retourné les cartes qui sont destinées au Voleur.",
                 "thiefCanChooseCard": "Le Voleur peut, s'il le souhaite, échanger une de ses cartes contre la sienne, et ainsir changer de rôle jusque la fin de la partie. Attention, le Voleur sera obligé de prendre une carte si les deux rôles sont du camp des Loups-Garous.",
                 "toValidateChooseCard": "Pour passer à la suite, le Voleur peut passer son tour ou obligatoirement prendre une carte si les deux cartes proposées sont dans le camp des Loups-Garous."
+            }
+        },
+        "stuttering-judge": {
+            "choose-sign": {
+                "howToPlay": "Comment jouer le Juge Bègue ?",
+                "stutteringJudgeChoosesSignWhen": "Au début de la partie, seulement la première nuit, le Juge Bègue se réveille.",
+                "stutteringJudgeCanRequestVote": "Une seule fois pendant la partie, le Juge Bègue peut décider arbitrairement qu'il y aura non pas une mais deux pendaisons pendant la journée.",
+                "stutteringJudgeCanChooseSign": "Pour cela, il doit convenir d'un signe avec le maître du jeu dès maintenant. Le Juge Bègue pourra reproduire ce signe discrètement au maître du jeu pendant un vote, enclanchant un second vote dans la foulée.",
+                "toValidateChooseSign": "Pour passer à la suite, le maître du jeu et le Juge Bègue doivent avoir convenu du signe à reproduire et tous deux bien le retenir pour le reste de la partie."
             }
         }
     },
@@ -1110,8 +1125,8 @@
             "wild-child": "l'Enfant Sauvage",
             "dog-wolf": "le Chien-Loup",
             "big-bad-wolf": "le Grand-Méchant-Loup",
-            "lovers": "les amoureux",
-            "charmed": "les charmés",
+            "lovers": "les Amoureux",
+            "charmed": "les Charmés",
             "idiot": "l'Idiot",
             "vile-father-of-wolves": "l'Infect Père des Loups",
             "ancient": "l'Ancien",

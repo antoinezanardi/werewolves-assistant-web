@@ -361,6 +361,30 @@ export default {
                         { header, target: "#play-submit-button", content: this.$t("GamePlayFieldTutorial.thief.choose-card.toValidateChooseCard") },
                     ],
                 },
+                "stuttering-judge": {
+                    "choose-sign": [
+                        {
+                            header,
+                            target: "#game-waiting-label",
+                            content: this.$t(`GamePlayFieldTutorial.stuttering-judge.choose-sign.stutteringJudgeChoosesSignWhen`),
+                        },
+                        {
+                            header,
+                            target: "#stuttering-judge-player",
+                            content: this.$t(`GamePlayFieldTutorial.stuttering-judge.choose-sign.stutteringJudgeCanRequestVote`),
+                        },
+                        {
+                            header,
+                            target: "#stuttering-judge-player",
+                            content: this.$t(`GamePlayFieldTutorial.stuttering-judge.choose-sign.stutteringJudgeCanChooseSign`),
+                        },
+                        {
+                            header,
+                            target: "#play-submit-button",
+                            content: this.$t("GamePlayFieldTutorial.stuttering-judge.choose-sign.toValidateChooseSign"),
+                        },
+                    ],
+                },
             };
             return steps[firstWaiting.for] && steps[firstWaiting.for][firstWaiting.to] ? steps[firstWaiting.for][firstWaiting.to] : [];
         },

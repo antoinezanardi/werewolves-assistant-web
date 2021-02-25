@@ -68,6 +68,7 @@ import { getNominatedPlayers } from "@/helpers/functions/Player";
 import GamePlayFieldCountdownFooter from "@/components/Game/GameContent/GamePlayField/GamePlayFieldFooter/GamePlayFieldCountdownFooter";
 import GameHistory from "@/classes/GameHistory";
 import Loading from "@/components/shared/Loading";
+import sleepingTimeSVG from "@/assets/svg/game/sleeping-time.svg";
 import Config from "../../../../../../config";
 
 export default {
@@ -166,21 +167,61 @@ export default {
                 heightAuto: false,
             });
         },
-        async launchPreSubmitRequest() {
-            if (this.preSubmitRequests.doesVileFatherOfWolvesInfect) {
+        makeSourcePlayersGoToBed() {
+            return Swal.fire({
+                title: this.$t(`GamePlayFieldFooter.timeToBedForSource`, { source: this.$t(`Role.the.${this.game.firstWaiting.for}`) }),
+                imageUrl: sleepingTimeSVG,
+                imageWidth: 100,
+                imageHeight: 100,
+                showCancelButton: true,
+                confirmButtonText: this.$t("GamePlayFieldFooter.everybodyIsAsleep"),
+                cancelButtonText: this.$t("GamePlayFieldFooter.cancel"),
+                heightAuto: false,
+            });
+        },
+        askIfSignIsWellDefined() {
+            return Swal.fire({
+                title: this.$t("GamePlayFieldFooter.isSignWellDefined"),
+                text: this.$t("GamePlayFieldFooter.payAttentionToSignForNextVotes"),
+                imageUrl: `${Config.API.werewolvesAssistant.baseURL}/img/roles/stuttering-judge.png`,
+                imageWidth: 200,
+                imageHeight: 200,
+                customClass: { image: "swal2-role-image" },
+                showCancelButton: true,
+                confirmButtonText: this.$t("GamePlayFieldFooter.signIsWellDefined"),
+                cancelButtonText: this.$t("GamePlayFieldFooter.cancel"),
+                heightAuto: false,
+            });
+        },
+        async launchPreSubmitRequests() {
+            let isSubmittingAllowed = true;
+            if (this.game.firstWaiting.to === "choose-sign") {
+                const { isConfirmed } = await this.askIfSignIsWellDefined();
+                isSubmittingAllowed = isConfirmed;
+            }
+            if (isSubmittingAllowed && this.game.doesSourceGoToBed) {
+                const { isConfirmed } = await this.makeSourcePlayersGoToBed();
+                isSubmittingAllowed = isConfirmed;
+            }
+            if (isSubmittingAllowed && this.preSubmitRequests.doesVileFatherOfWolvesInfect) {
                 const { isConfirmed } = await this.askIfVileFatherOfWolvesInfects();
                 if (isConfirmed) {
                     this.$emit("vile-father-of-wolves-infects");
                 }
             }
+            return isSubmittingAllowed;
         },
         async submitPlay() {
             try {
                 this.loading.makeAPlay = true;
-                const playData = { ...this.play, source: this.game.firstWaiting.for, action: this.game.firstWaiting.to };
-                await this.launchPreSubmitRequest();
-                const { data } = await this.$werewolvesAssistantAPI.makeAPlay(this.game._id, playData);
-                await this.setGame(data);
+                // const playData = { ...this.play, source: this.game.firstWaiting.for, action: this.game.firstWaiting.to };
+                if (await this.launchPreSubmitRequests()) {
+                    /*
+                     * const { data } = await this.$werewolvesAssistantAPI.makeAPlay(this.game._id, playData);
+                     * await this.setGame(data);
+                     */
+                    console.log("submitted");
+                }
             } catch (e) {
                 this.$error.display(e);
             } finally {

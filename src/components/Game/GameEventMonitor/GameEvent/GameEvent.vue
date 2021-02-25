@@ -138,7 +138,7 @@ export default {
                 },
                 "all-turn": {
                     messages: [
-                        ...insertIf(firstWaiting.to === "vote" && !!angelPlayer && this.game.isCurrentPlayPreFirstNightPlay,
+                        ...insertIf(firstWaiting.to === "vote" && !!angelPlayer && this.game.isFirstWaitingPreFirstNightPlay,
                             i18n.t("GameEvent.messages.gameStartsWithVoteBecauseOfAngel")),
                         ...insertIf(firstWaiting.to === "vote" && !this.game.isSecondVoteAfterTie, i18n.t("GameEvent.messages.allVote")),
                         ...insertIf(firstWaiting.to === "vote" && this.game.isSecondVoteAfterTie,

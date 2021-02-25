@@ -16,6 +16,7 @@
 * [#138](https://github.com/antoinezanardi/werewolves-assistant-web/issues/138) - Add background and particles to home page.
 * [#142](https://github.com/antoinezanardi/werewolves-assistant-web/issues/142) - Tell which players are already revealed at the beginning of the game.
 * [#143](https://github.com/antoinezanardi/werewolves-assistant-web/issues/143) - Style for players who voted.
+* [#144](https://github.com/antoinezanardi/werewolves-assistant-web/issues/144) - Players are getting asleep when action is over.
 * [#145](https://github.com/antoinezanardi/werewolves-assistant-web/issues/145) - Capitalize all roles in texts.
 
 ### 🐛 Bug fixes

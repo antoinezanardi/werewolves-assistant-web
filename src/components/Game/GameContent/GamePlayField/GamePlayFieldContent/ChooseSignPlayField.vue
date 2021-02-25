@@ -2,7 +2,7 @@
     <div id="choose-sign-play-field" class="d-flex flex-column">
         <div class="row">
             <div class="col-12">
-                <PlayerCard :player="game.stutteringJudgePlayer" size="lg"/>
+                <PlayerCard id="stuttering-judge-player" :player="game.stutteringJudgePlayer" size="lg"/>
             </div>
         </div>
         <div class="row">

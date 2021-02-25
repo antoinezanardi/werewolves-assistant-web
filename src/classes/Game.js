@@ -195,6 +195,14 @@ class Game {
         return isSkippableAction(to, this.additionalCards);
     }
 
+    get isFirstWaitingPreFirstNightPlay() {
+        return isPreFirstNightPlay(this.firstWaiting.to, this.turn, this.phase);
+    }
+
+    get doesSourceGoToBed() {
+        return !this.isFirstWaitingPreFirstNightPlay && this.phase === "night";
+    }
+
     getPlayersWithRole(role) {
         return this.players.filter(player => player.currentRole === role);
     }
@@ -276,9 +284,9 @@ class Game {
     }
 
     get doesAngelWinIfHeDiesNow() {
-        const { angelPlayer, firstWaiting, turn, isCurrentPlayPreFirstNightPlay } = this;
+        const { angelPlayer, firstWaiting, turn, isFirstWaitingPreFirstNightPlay } = this;
         return !!angelPlayer && (firstWaiting.to === "eat" && angelPlayer.isAliveAndPowerful && turn === 1 ||
-            (firstWaiting.to === "vote" || firstWaiting.to === "settle-votes") && isCurrentPlayPreFirstNightPlay);
+            (firstWaiting.to === "vote" || firstWaiting.to === "settle-votes") && isFirstWaitingPreFirstNightPlay);
     }
 
     get inLovePlayers() {
@@ -393,10 +401,6 @@ class Game {
 
     get areGameOptionsValid() {
         return this.areGameRolesOptionsValid;
-    }
-
-    get isCurrentPlayPreFirstNightPlay() {
-        return isPreFirstNightPlay(this.firstWaiting.to, this.turn, this.phase);
     }
 }
 
