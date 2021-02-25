@@ -16,6 +16,7 @@
 * [#138](https://github.com/antoinezanardi/werewolves-assistant-web/issues/138) - Add background and particles to home page.
 * [#142](https://github.com/antoinezanardi/werewolves-assistant-web/issues/142) - Tell which players are already revealed at the beginning of the game.
 * [#143](https://github.com/antoinezanardi/werewolves-assistant-web/issues/143) - Style for players who voted.
+* [#145](https://github.com/antoinezanardi/werewolves-assistant-web/issues/145) - Capitalize all roles in texts.
 
 ### 🐛 Bug fixes
 
@@ -38,6 +39,7 @@
 * `eslint` updated to version `7.20.0`.
 * `eslint-plugin-vue` updated to version `7.6.0`.
 * `sweetalert2` updated to version `10.15.5`.
+* `vue-i18n` updated to version `8.23.0`.
 * `vue-gtag` updated to version `1.11.0`.
 
 ---
