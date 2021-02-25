@@ -41,6 +41,10 @@ export default {
                 "idiot-wont-die-from-votes": "idiot",
                 "scapegoat-will-die-from-tie": "scapegoat",
                 "angel-will-win-if-he-dies": "angel",
+                "ancient-can-survive-werewolves": "ancient",
+                "guard-can-protect-target": "guard",
+                "witch-can-protect-target": "witch",
+                "vile-father-of-wolves-can-infect": "vile-father-of-wolves",
             };
             return gamePlayAlertRoles[this.type];
         },
@@ -52,6 +56,10 @@ export default {
                 "idiot-wont-die-from-votes": "fa-shield-alt",
                 "scapegoat-will-die-from-tie": "fa-comment-slash",
                 "angel-will-win-if-he-dies": "fa-trophy",
+                "ancient-can-survive-werewolves": "fa-fist-raised",
+                "guard-can-protect-target": "fa-shield-alt",
+                "witch-can-protect-target": "fa-magic",
+                "vile-father-of-wolves-can-infect": "fa-people-arrows",
             };
             return gamePlayAlertIcons[this.type];
         },

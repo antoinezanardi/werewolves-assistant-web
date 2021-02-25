@@ -160,6 +160,7 @@ export default {
                         ...insertIf(firstWaiting.to === "settle-votes", i18n.t("GameEvent.messages.sheriffSettlesVote")),
                         ...insertIf(firstWaiting.to === "delegate", i18n.t("GameEvent.messages.sheriffDelegates")),
                     ],
+                    soundEffect: "sheriff-election",
                 },
                 "day-rises": { messages: [i18n.t("GameEvent.messages.dayRises")] },
                 "deaths-during-night": {
@@ -169,23 +170,43 @@ export default {
                     ],
                 },
                 "no-death-during-night": { messages: [i18n.t("GameEvent.messages.noDeathDuringNight")] },
-                "seer-turn": { messages: [i18n.t("GameEvent.messages.seerStarts")] },
+                "seer-turn": {
+                    messages: [i18n.t("GameEvent.messages.seerStarts")],
+                    soundEffect: "seer-plays",
+                },
                 "seer-looks": {
                     messages: [
                         ...insertIf(!this.gameOptions.roles.seer.isTalkative, i18n.t("GameEvent.messages.followingMessageMustBeMimed")),
                         `${i18n.t("GameEvent.messages.seerHasSeen")} ${gameEventTargetRoleText} !`,
                     ],
+                    soundEffect: "seer-plays",
                 },
-                "werewolves-turn": { messages: [i18n.tc("GameEvent.messages.werewolvesStart", this.game.aliveWerewolfPlayers.length)] },
-                "vile-father-of-wolves-infects": { messages: [i18n.t("GameEvent.messages.gameMasterWillTouchInfected")] },
-                "witch-turn": { messages: [i18n.t("GameEvent.messages.witchStarts")] },
-                "guard-turn": { messages: [i18n.t("GameEvent.messages.guardStarts")] },
-                "raven-turn": { messages: [i18n.t("GameEvent.messages.ravenStarts")] },
+                "werewolves-turn": {
+                    messages: [i18n.tc("GameEvent.messages.werewolvesStart", this.game.aliveWerewolfPlayers.length)],
+                    soundEffect: "werewolves-play",
+                },
+                "vile-father-of-wolves-infects": {
+                    messages: [i18n.t("GameEvent.messages.gameMasterWillTouchInfected")],
+                    soundEffect: "vile-father-of-wolves-infects",
+                },
+                "witch-turn": {
+                    messages: [i18n.t("GameEvent.messages.witchStarts")],
+                    soundEffect: "witch-plays",
+                },
+                "guard-turn": {
+                    messages: [i18n.t("GameEvent.messages.guardStarts")],
+                    soundEffect: "guard-plays",
+                },
+                "raven-turn": {
+                    messages: [i18n.t("GameEvent.messages.ravenStarts")],
+                    soundEffect: "raven-plays",
+                },
                 "raven-marks": {
                     messages: [
                         i18n.t("GameEvent.messages.ravenHasMarked"),
                         i18n.t("GameEvent.messages.gameMasterWillDepositMark"),
                     ],
+                    soundEffect: "raven-plays",
                 },
                 "hunter-turn": { messages: [i18n.t("GameEvent.messages.hunterStarts")] },
                 "dog-wolf-turn": {
@@ -212,15 +233,23 @@ export default {
                         ...insertIf(this.game.turn === 1, i18n.t("GameEvent.messages.twoSistersMeetEachOther")),
                         ...insertIf(this.game.turn !== 1, i18n.t("GameEvent.messages.twoSistersWakeUpToTalk")),
                     ],
+                    soundEffect: "two-sisters-play",
                 },
                 "three-brothers-turn": {
                     messages: [
                         ...insertIf(this.game.turn === 1, i18n.t("GameEvent.messages.threeBrothersMeetEachOther")),
                         ...insertIf(this.game.turn !== 1, i18n.t("GameEvent.messages.threeBrothersWakeUpToTalk")),
                     ],
+                    soundEffect: "three-brothers-play",
                 },
-                "wild-child-turn": { messages: [i18n.t("GameEvent.messages.wildChildStarts")] },
-                "big-bad-wolf-turn": { messages: [i18n.t("GameEvent.messages.bigBadWolfStarts")] },
+                "wild-child-turn": {
+                    messages: [i18n.t("GameEvent.messages.wildChildStarts")],
+                    soundEffect: "wild-child-plays",
+                },
+                "big-bad-wolf-turn": {
+                    messages: [i18n.t("GameEvent.messages.bigBadWolfStarts")],
+                    soundEffect: "big-bad-wolf-plays",
+                },
                 "pied-piper-turn": { messages: [i18n.t("GameEvent.messages.piedPiperStarts")] },
                 "pied-piper-charms": {
                     messages: [
@@ -249,6 +278,10 @@ export default {
                 "stuttering-judge-turn": {
                     messages: [i18n.t("GameEvent.messages.stutteringJudgeStarts")],
                     soundEffect: "stuttering-judge-plays",
+                },
+                "white-werewolf-turn": {
+                    messages: [i18n.t("GameEvent.messages.whiteWerewolfStarts")],
+                    soundEffect: "white-werewolf-plays",
                 },
             };
         },

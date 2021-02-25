@@ -19,7 +19,7 @@
                 <GamePlayFieldContent id="game-content-play-field" :play="play" :past-events="pastEvents" class="visible-scrollbar pt-2"
                                       @player-votes="playerVotes" @player-selected="playerSelected" @side-selected="sideSelected"
                                       @card-selected="cardSelected"/>
-                <GamePlayFieldFooter :play="play" @vile-father-of-wolves-infects="vileFatherOfWolvesInfects"/>
+                <GamePlayFieldFooter :play="play" :past-events="pastEvents" @vile-father-of-wolves-infects="vileFatherOfWolvesInfects"/>
                 <GamePlayFieldTutorial ref="gamePlayFieldTutorial"/>
             </div>
         </transition>

@@ -49,6 +49,17 @@ class AudioManager {
             "cupid-plays": new Howl({ src: `${basePath}/cupid-plays.mp3`, ...options }),
             "lovers-play": new Howl({ src: `${basePath}/lovers-play.mp3`, ...options }),
             "stuttering-judge-plays": new Howl({ src: `${basePath}/stuttering-judge-plays.mp3`, ...options }),
+            "seer-plays": new Howl({ src: `${basePath}/seer-plays.mp3`, ...options }),
+            "guard-plays": new Howl({ src: `${basePath}/guard-plays.mp3`, ...options }),
+            "raven-plays": new Howl({ src: `${basePath}/raven-plays.mp3`, ...options }),
+            "witch-plays": new Howl({ src: `${basePath}/witch-plays.mp3`, ...options }),
+            "werewolves-play": new Howl({ src: `${basePath}/werewolves-play.mp3`, ...options }),
+            "big-bad-wolf-plays": new Howl({ src: `${basePath}/big-bad-wolf-plays.mp3`, ...options }),
+            "wild-child-plays": new Howl({ src: `${basePath}/wild-child-plays.mp3`, ...options }),
+            "two-sisters-play": new Howl({ src: `${basePath}/two-sisters-play.mp3`, ...options }),
+            "three-brothers-play": new Howl({ src: `${basePath}/three-brothers-play.mp3`, ...options }),
+            "vile-father-of-wolves-infects": new Howl({ src: `${basePath}/vile-father-of-wolves-infects.mp3`, ...options }),
+            "white-werewolf-plays": new Howl({ src: `${basePath}/white-werewolf-plays.mp3`, ...options }),
         };
     }
 

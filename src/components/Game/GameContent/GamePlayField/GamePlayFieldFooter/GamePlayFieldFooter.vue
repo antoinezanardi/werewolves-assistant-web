@@ -66,7 +66,6 @@ import { mapActions, mapGetters } from "vuex";
 import SubmitButton from "@/components/shared/Forms/SubmitButton";
 import { getNominatedPlayers } from "@/helpers/functions/Player";
 import GamePlayFieldCountdownFooter from "@/components/Game/GameContent/GamePlayField/GamePlayFieldFooter/GamePlayFieldCountdownFooter";
-import GameHistory from "@/classes/GameHistory";
 import Loading from "@/components/shared/Loading";
 import sleepingTimeSVG from "@/assets/svg/game/sleeping-time.svg";
 import Config from "../../../../../../config";
@@ -79,15 +78,13 @@ export default {
             type: Object,
             required: true,
         },
+        pastEvents: {
+            type: Object,
+            required: true,
+        },
     },
     data() {
-        return {
-            loading: {
-                makeAPlay: false,
-                getHistory: false,
-            },
-            preSubmitRequests: { doesVileFatherOfWolvesInfect: false },
-        };
+        return { loading: { makeAPlay: false } };
     },
     computed: {
         ...mapGetters("game", { game: "game" }),
@@ -132,28 +129,8 @@ export default {
                 this.game.isFirstWaitingSkippableAction;
         },
     },
-    async created() {
-        await this.setPreSubmitRequests();
-    },
     methods: {
         ...mapActions("game", { setGame: "setGame" }),
-        async setPreSubmitRequests() {
-            const { vileFatherOfWolvesPlayer } = this.game;
-            if (this.game.firstWaiting.for === "werewolves" && !!vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer.isAlive) {
-                try {
-                    this.loading.getHistory = true;
-                    const queryStrings = { "play-source": "werewolves", "play-action": "eat" };
-                    const { data } = await this.$werewolvesAssistantAPI.getGameHistory(this.game._id, queryStrings);
-                    const werewolvesActions = data.map(gameHistoryEntry => new GameHistory(gameHistoryEntry));
-                    const infectionUsed = !!werewolvesActions.find(werewolvesAction => werewolvesAction.didVileFatherOfWolvesInfectTarget);
-                    this.preSubmitRequests.doesVileFatherOfWolvesInfect = !infectionUsed;
-                } catch (e) {
-                    this.$error.display(e);
-                } finally {
-                    this.loading.getHistory = false;
-                }
-            }
-        },
         askIfVileFatherOfWolvesInfects() {
             return Swal.fire({
                 title: this.$t("GamePlayFieldFooter.doesVileFatherOfWolvesInfect"),
@@ -161,6 +138,7 @@ export default {
                 imageUrl: `${Config.API.werewolvesAssistant.baseURL}/img/roles/vile-father-of-wolves.png`,
                 imageWidth: 200,
                 imageHeight: 200,
+                customClass: { image: "swal2-role-image" },
                 showCancelButton: true,
                 confirmButtonText: this.$t("GamePlayFieldFooter.infect"),
                 cancelButtonText: this.$t("GamePlayFieldFooter.dontInfect"),
@@ -195,15 +173,17 @@ export default {
         },
         async launchPreSubmitRequests() {
             let isSubmittingAllowed = true;
-            if (this.game.firstWaiting.to === "choose-sign") {
+            const { firstWaiting, vileFatherOfWolvesPlayer, doesSourceGoToBed } = this.game;
+            if (firstWaiting.to === "choose-sign") {
                 const { isConfirmed } = await this.askIfSignIsWellDefined();
                 isSubmittingAllowed = isConfirmed;
             }
-            if (isSubmittingAllowed && this.game.doesSourceGoToBed) {
+            if (isSubmittingAllowed && doesSourceGoToBed) {
                 const { isConfirmed } = await this.makeSourcePlayersGoToBed();
                 isSubmittingAllowed = isConfirmed;
             }
-            if (isSubmittingAllowed && this.preSubmitRequests.doesVileFatherOfWolvesInfect) {
+            if (isSubmittingAllowed && firstWaiting.to === "eat" && !!vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer.isAlive &&
+                !this.pastEvents.hasVileFatherOfWolvesInfected) {
                 const { isConfirmed } = await this.askIfVileFatherOfWolvesInfects();
                 if (isConfirmed) {
                     this.$emit("vile-father-of-wolves-infects");
@@ -214,13 +194,10 @@ export default {
         async submitPlay() {
             try {
                 this.loading.makeAPlay = true;
-                // const playData = { ...this.play, source: this.game.firstWaiting.for, action: this.game.firstWaiting.to };
+                const playData = { ...this.play, source: this.game.firstWaiting.for, action: this.game.firstWaiting.to };
                 if (await this.launchPreSubmitRequests()) {
-                    /*
-                     * const { data } = await this.$werewolvesAssistantAPI.makeAPlay(this.game._id, playData);
-                     * await this.setGame(data);
-                     */
-                    console.log("submitted");
+                    const { data } = await this.$werewolvesAssistantAPI.makeAPlay(this.game._id, playData);
+                    await this.setGame(data);
                 }
             } catch (e) {
                 this.$error.display(e);

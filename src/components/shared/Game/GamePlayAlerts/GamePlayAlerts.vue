@@ -19,10 +19,10 @@ export default {
         ...mapGetters("game", { game: "game" }),
         gamePlayAlerts() {
             const {
-                firstWaiting, idiotPlayer, villagerVillagerPlayer, ancientPlayer, scapegoatPlayer, angelPlayer,
-                isIdiotProtectedFromVotes, doesAngelWinIfHeDiesNow,
+                firstWaiting, idiotPlayer, villagerVillagerPlayer, ancientPlayer, scapegoatPlayer, angelPlayer, guardPlayer, witchPlayer,
+                isIdiotProtectedFromVotes, doesAngelWinIfHeDiesNow, vileFatherOfWolvesPlayer,
             } = this.game;
-            const { to: action } = firstWaiting;
+            const { to: action, for: source } = firstWaiting;
             const ancientRevengeActions = ["vote", "settle-votes", "shoot", "use-potion"];
             const voteActions = ["vote", "settle-votes"];
             const sheriffElectionActions = ["elect-sheriff", "delegate"];
@@ -33,7 +33,12 @@ export default {
                 ...insertIf(ancientRevengeActions.includes(action) && !!ancientPlayer && ancientPlayer.isAlive, "ancient-can-make-all-powerless"),
                 ...insertIf(voteActions.includes(action) && !!idiotPlayer && isIdiotProtectedFromVotes, "idiot-wont-die-from-votes"),
                 ...insertIf(voteActions.includes(action) && !!scapegoatPlayer && scapegoatPlayer.isAliveAndPowerful, "scapegoat-will-die-from-tie"),
-                ...insertIf(!!angelPlayer && doesAngelWinIfHeDiesNow, "angel-will-win-if-he-dies"),
+                ...insertIf(!!angelPlayer && angelPlayer.isAliveAndPowerful && doesAngelWinIfHeDiesNow, "angel-will-win-if-he-dies"),
+                ...insertIf(action === "eat" && !!ancientPlayer, "ancient-can-survive-werewolves"),
+                ...insertIf(action === "eat" && !!guardPlayer && guardPlayer.isAliveAndPowerful, "guard-can-protect-target"),
+                ...insertIf(action === "eat" && !!witchPlayer && witchPlayer.isAliveAndPowerful, "witch-can-protect-target"),
+                ...insertIf(action === "eat" && source === "werewolves" && !!vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer.isAlive,
+                    "vile-father-of-wolves-can-infect"),
             ];
         },
     },

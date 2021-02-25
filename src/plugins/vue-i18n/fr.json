@@ -383,6 +383,9 @@
             },
             "stuttering-judge": {
                 "choose-sign": "Au tour du Juge Bègue"
+            },
+            "white-werewolf": {
+                "eat": "Au tour du Loup-Garou Blanc"
             }
         }
     },
@@ -393,7 +396,11 @@
             "ancient-can-make-all-powerless": "Si l'Ancien meurt de cette action, alors tous les joueurs dans le camp des Villageois perdront leurs pouvoirs spéciaux.",
             "idiot-wont-die-from-votes": "L'Idiot ne peut mourir de cette pendaison. Si les votes sont contre lui, alors son rôle sera révélé, il perdra son droit de vote mais ne mourra pas.",
             "scapegoat-will-die-from-tie": "Si une égalité advient pendant les votes, le Bouc-Émissaire sera la victime de la pendaison. Il devra alors décider qui aura le droit de vote pour le vote du jour d'après.",
-            "angel-will-win-if-he-dies": "Si l'Ange meurt de cette action, alors il gagnera instantanément la partie."
+            "angel-will-win-if-he-dies": "Si l'Ange meurt de cette action, alors il gagnera instantanément la partie.",
+            "ancient-can-survive-werewolves": "L'Ancien a la force de l'âge : il survivra des Loups-Garous si c'est la première fois qu'il se fait dévorer par ces canidés.",
+            "guard-can-protect-target": "Si le Salvateur a protégé la cible des Loups-Garous, elle survivra.",
+            "witch-can-protect-target": "La Sorcière pourra, si elle le souhaite, utiliser sa potion de vie pour sauver la victime des Loups-Garous plus tard dans la nuit.",
+            "vile-father-of-wolves-can-infect": "L'Infect Père des Loups pourra, s'il le souhaite, transformer la victime en Loup-Garou."
         },
         "shareThisWithPlayers": "Partager cette information avec les joueurs peut rendre la partie un peu plus intéressante."
     },
@@ -477,7 +484,11 @@
                 "werewolvesEatWhen": "Chaque nuit, les Loups-Garous se réveillent.",
                 "werewolvesEatAVictim": "Les Loups-Garous choisissent leur victime parmis les joueurs vivants qui mourra le matin suivant s'il ne reçoit pas de protection.",
                 "werewolvesPointAtVictim": "Les Loups-Garous se mettent d'accord sans bruit et pointent du doigt leur victime.",
-                "vileFatherOfWolvesCanInfect": "L'Infect Père des Loups est présent dans la partie ! Lorsque les Loups-Garous auront choisi leur victime et se rendorment, l'Infect Père des Loups peut lever la main. Dans ce cas, la victime rejoidra instantanément le camp des Loups-Garous au lieu de mourir dévorée, ceci en gardant son rôle original et ses pouvoirs !",
+                "angelCanWin": "L'Ange est dans la partie ! S'il meurt maintenant des Loups-Garous, alors il gagnera la partie.",
+                "guardCanProtect": "Le Salvateur est dans la partie ! La personne qu'il a protégé ne pourra pas être mangée par les Loups-Garous.",
+                "witchCanSave": "La Sorcière est dans la partie ! Elle pourra, si elle le décide pendant son tour, utiliser sa potion de vie pour sauver la victime des Loups-Garous.",
+                "ancientCanSurvive": "L'Ancien est dans la partie ! Il pourra survivre à une attaque des Loups-Garous, même sans protection de Salvateur ou de Sorcière.",
+                "vileFatherOfWolvesCanInfect": "L'Infect Père des Loups est dans la partie ! Lorsque les Loups-Garous auront choisi leur victime et se rendorment, l'Infect Père des Loups peut lever la main. Dans ce cas, la victime rejoindra instantanément le camp des Loups-Garous au lieu de mourir dévorée, ceci en gardant son rôle original et ses pouvoirs !",
                 "infectOnlyOnce": "Le choix de l'Infect Père des Loups pourra être renseigné au moment où l'action des Loups-Garous sera validée. Attention, ce pouvoir ne peut être utilisé qu'une seule fois !",
                 "toValidateEat": "Pour passer à la suite, les Loups-Garous doivent obligatoirement choisir une victime."
             }
@@ -951,6 +962,10 @@
         "thief": {
             "no-choose-card": "ne souhaite pas changer de rôle",
             "choose-card": "souhaite devenir"
+        },
+        "white-werewolf": {
+            "no-eaten": "ne souhaite pas manger l'un de ses congénères",
+            "eaten": "souhaite manger"
         }
     },
     "CancelActionButton": {
@@ -1059,7 +1074,8 @@
             "thiefStarts": "Le Voleur se réveille et va, s'il le souhaite, voler l'une des deux cartes additionnelles et s'approprier le rôle sur celle-ci.",
             "gameMasterWillFlipAdditionalCards": "Le maître du jeu va retourner les cartes additionnelles destinées au Voleur pour qu'il en prenne connaissance et puisse faire son choix.",
             "thiefChoosesCard": "Si le Voleur a choisi une carte, le maître du jeu va procéder à l'échange. Les deux cartes restantes sont replacées faces cachées au centre de la table.",
-            "stutteringJudgeStarts": "Le Juge Bègue se réveille et va convenir d'un signe avec le maître du jeu. Ce signe réalisé pendant un vote en déclenchera un second juste après l'annonce de la victime."
+            "stutteringJudgeStarts": "Le Juge Bègue se réveille et va convenir d'un signe avec le maître du jeu. Ce signe réalisé pendant un vote en déclenchera un second juste après l'annonce de la victime.",
+            "whiteWerewolfStarts": "Le Loup-Garou Blanc se réveille et va, s'il le souhaite, dévorer l'un de ses congénères."
         }
     },
     "Statistics": {

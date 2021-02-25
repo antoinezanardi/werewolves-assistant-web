@@ -54,6 +54,7 @@ import charmedSVG from "@/assets/svg/attributes/charmed.svg";
 import cantVoteSVG from "@/assets/svg/attributes/cant-vote.svg";
 import thiefSVG from "@/assets/svg/roles/thief.svg";
 import stutteringJudgeSVG from "@/assets/svg/roles/stuttering-judge.svg";
+import whiteWerewolfSVG from "@/assets/svg/roles/white-werewolf.svg";
 
 export default {
     name: "GamePlayFieldHeader",
@@ -188,6 +189,12 @@ export default {
                     "choose-sign": {
                         icon: stutteringJudgeSVG,
                         role: "stuttering-judge",
+                    },
+                },
+                "white-werewolf": {
+                    eat: {
+                        icon: whiteWerewolfSVG,
+                        role: "white-werewolf",
                     },
                 },
             },

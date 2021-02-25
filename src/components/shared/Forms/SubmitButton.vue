@@ -7,7 +7,7 @@
                 <div v-if="!loading" key="text">
                     <slot/>
                 </div>
-                <HalfCircleSpinner v-else key="loading" :size="24" :animation-duration="1000"/>
+                <HalfCircleSpinner v-else key="loading" :size="30" :animation-duration="1000"/>
             </transition>
         </button>
     </div>

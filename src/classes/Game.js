@@ -191,8 +191,8 @@ class Game {
     }
 
     get isFirstWaitingSkippableAction() {
-        const { to } = this.firstWaiting;
-        return isSkippableAction(to, this.additionalCards);
+        const { to: action, for: source } = this.firstWaiting;
+        return isSkippableAction(action, source, this.additionalCards);
     }
 
     get isFirstWaitingPreFirstNightPlay() {

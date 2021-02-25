@@ -1,5 +1,6 @@
 <template>
     <div id="eat-play-field" class="d-flex flex-column">
+        <GamePlayAlerts/>
         <div id="werewolf-players" class="row justify-content-center align-items-center">
             <PlayerCard v-for="player of eatingPlayers" :id="`werewolf-player-${player._id}`" :key="player.name" :player="player" size="lg"
                         class="col-6 col-md-4 col-lg-3"/>
@@ -15,10 +16,11 @@ import { mapGetters } from "vuex";
 import PlayerCard from "../../../../shared/Game/PlayerCard";
 import PlayerTargets from "../../../../shared/Game/PlayerTargets/PlayerTargets";
 import PlayFieldActionText from "../../../../shared/Game/PlayField/PlayFieldActionText";
+import GamePlayAlerts from "@/components/shared/Game/GamePlayAlerts/GamePlayAlerts";
 
 export default {
     name: "EatPlayField",
-    components: { PlayFieldActionText, PlayerTargets, PlayerCard },
+    components: { GamePlayAlerts, PlayFieldActionText, PlayerTargets, PlayerCard },
     props: {
         play: {
             type: Object,

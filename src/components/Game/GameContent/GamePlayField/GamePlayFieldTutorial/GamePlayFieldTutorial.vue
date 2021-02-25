@@ -14,7 +14,6 @@
 <script>
 import { mapGetters } from "vuex";
 import { insertIf } from "@/helpers/functions/Array";
-import { getProp } from "@/helpers/functions/Class";
 
 export default {
     name: "GamePlayFieldTutorial",
@@ -30,7 +29,7 @@ export default {
             const brothersWakingUpInterval = this.gameOptions.roles.threeBrothers.wakingUpInterval;
             const {
                 scapegoatPlayer, vileFatherOfWolvesPlayer, idiotPlayer, ancientPlayer, villagerVillagerPlayer, angelPlayer,
-                isIdiotProtectedFromVotes, doesAngelWinIfHeDiesNow,
+                isIdiotProtectedFromVotes, doesAngelWinIfHeDiesNow, witchPlayer, guardPlayer,
             } = this.game;
             const action = `${firstWaiting.for}.${firstWaiting.to}`;
             const header = { title: this.$t(`GamePlayFieldTutorial.${action}.howToPlay`) };
@@ -48,9 +47,29 @@ export default {
                         { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.werewolves.eat.werewolvesEatWhen`) },
                         { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.werewolves.eat.werewolvesEatAVictim`) },
                         { header, target: "#werewolf-players", content: this.$t(`GamePlayFieldTutorial.werewolves.eat.werewolvesPointAtVictim`) },
+                        ...insertIf(!!angelPlayer && angelPlayer.isAliveAndPowerful && doesAngelWinIfHeDiesNow, {
+                            header,
+                            target: `#game-play-alert-angel-will-win-if-he-dies`,
+                            content: this.$t("GamePlayFieldTutorial.werewolves.eat.angelCanWin"),
+                        }),
+                        ...insertIf(!!ancientPlayer && ancientPlayer.isAlive, {
+                            header,
+                            target: `#game-play-alert-ancient-can-survive-werewolves`,
+                            content: this.$t("GamePlayFieldTutorial.werewolves.eat.ancientCanSurvive"),
+                        }),
+                        ...insertIf(!!guardPlayer && guardPlayer.isAliveAndPowerful, {
+                            header,
+                            target: `#game-play-alert-guard-can-protect-target`,
+                            content: this.$t("GamePlayFieldTutorial.werewolves.eat.guardCanProtect"),
+                        }),
+                        ...insertIf(!!witchPlayer && witchPlayer.isAliveAndPowerful, {
+                            header,
+                            target: `#game-play-alert-witch-can-protect-target`,
+                            content: this.$t("GamePlayFieldTutorial.werewolves.eat.witchCanSave"),
+                        }),
                         ...insertIf(!!vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer.isAlive, {
                             header,
-                            target: `#werewolf-player-${getProp(vileFatherOfWolvesPlayer, "_id")}`,
+                            target: `#game-play-alert-vile-father-of-wolves-can-infect`,
                             content: this.$t("GamePlayFieldTutorial.werewolves.eat.vileFatherOfWolvesCanInfect"),
                         }),
                         ...insertIf(!!vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer.isAlive, {
