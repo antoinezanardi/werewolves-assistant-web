@@ -227,6 +227,10 @@ class Game {
         return this.getPlayerWithRole("guard");
     }
 
+    get littleGirlPlayer() {
+        return this.getPlayerWithRole("little-girl");
+    }
+
     get ravenPlayer() {
         return this.getPlayerWithRole("raven");
     }
@@ -326,8 +330,16 @@ class Game {
         return this.getPlayerWithRole("stuttering-judge");
     }
 
+    get piedPiperPlayer() {
+        return this.getPlayerWithRole("pied-piper");
+    }
+
+    get piedPiperTargets() {
+        return this.alivePlayers.filter(player => player.role.current !== "pied-piper" && !player.hasAttribute("charmed"));
+    }
+
     canStutteringJudgeRequestVote(hasChosenSign, hasRequestedVote) {
-        return !!this.stutteringJudgePlayer && !this.stutteringJudgePlayer.hasAttribute("powerless") && hasChosenSign && hasRequestedVote;
+        return !!this.stutteringJudgePlayer && this.stutteringJudgePlayer.isAliveAndPowerful && hasChosenSign && !hasRequestedVote;
     }
 
     isRoleInGame(roleName) {
@@ -357,10 +369,6 @@ class Game {
 
     get alivePlayersExpectedToPlay() {
         return this.playersExpectedToPlay.filter(({ isAlive }) => isAlive);
-    }
-
-    get piedPiperTargets() {
-        return this.alivePlayers.filter(player => player.role.current !== "pied-piper" && !player.hasAttribute("charmed"));
     }
 
     get scapegoatTargets() {

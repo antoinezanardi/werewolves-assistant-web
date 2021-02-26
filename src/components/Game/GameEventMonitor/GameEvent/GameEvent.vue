@@ -211,7 +211,10 @@ export default {
                     ],
                     soundEffect: "raven-plays",
                 },
-                "hunter-turn": { messages: [i18n.t("GameEvent.messages.hunterStarts")] },
+                "hunter-turn": {
+                    messages: [i18n.t("GameEvent.messages.hunterStarts")],
+                    soundEffect: "hunter-plays",
+                },
                 "dog-wolf-turn": {
                     messages: [i18n.t("GameEvent.messages.dogWolfStarts")],
                     soundEffect: "dog-wolf-plays",

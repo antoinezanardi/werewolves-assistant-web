@@ -1,7 +1,7 @@
 <template>
     <div id="game-play-alerts">
         <div class="d-flex justify-content-center align-items-center flex-wrap">
-            <GamePlayAlert v-for="gamePlayAlert of gamePlayAlerts" :key="gamePlayAlert" :type="gamePlayAlert" class="mx-1 mb-2"/>
+            <GamePlayAlert v-for="gamePlayAlert of gamePlayAlerts" :key="gamePlayAlert" :type="gamePlayAlert" class="mx-1 mb-1"/>
         </div>
         <hr v-if="gamePlayAlerts.length" class="bg-dark mt-1 mb-2"/>
     </div>
@@ -15,14 +15,24 @@ import { insertIf } from "@/helpers/functions/Array";
 export default {
     name: "GamePlayAlerts",
     components: { GamePlayAlert },
+    props: {
+        pastEvents: {
+            type: Object,
+            required: true,
+        },
+    },
     computed: {
         ...mapGetters("game", { game: "game" }),
+        // eslint-disable-next-line max-lines-per-function
         gamePlayAlerts() {
             const {
                 firstWaiting, idiotPlayer, villagerVillagerPlayer, ancientPlayer, scapegoatPlayer, angelPlayer, guardPlayer, witchPlayer,
-                isIdiotProtectedFromVotes, doesAngelWinIfHeDiesNow, vileFatherOfWolvesPlayer,
+                isIdiotProtectedFromVotes, doesAngelWinIfHeDiesNow, vileFatherOfWolvesPlayer, stutteringJudgePlayer, littleGirlPlayer,
+                piedPiperPlayer,
             } = this.game;
             const { to: action, for: source } = firstWaiting;
+            const { hasStutteringJudgeChosenSign, hasStutteringJudgeRequestedVote } = this.pastEvents;
+            const { isProtectedByGuard: isLittleGirlProtectedByGuard } = this.game.options.roles.littleGirl;
             const ancientRevengeActions = ["vote", "settle-votes", "shoot", "use-potion"];
             const voteActions = ["vote", "settle-votes"];
             const sheriffElectionActions = ["elect-sheriff", "delegate"];
@@ -41,6 +51,13 @@ export default {
                     "witch-can-protect-target"),
                 ...insertIf(action === "eat" && source === "werewolves" && !!vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer.isAlive,
                     "vile-father-of-wolves-can-infect"),
+                ...insertIf(action === "eat" && source === "werewolves" && !!vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer.isAlive &&
+                        !!piedPiperPlayer && piedPiperPlayer.isAliveAndPowerful, "pied-piper-will-loose-powers-if-infected"),
+                ...insertIf(action === "vote" && !!stutteringJudgePlayer &&
+                    this.game.canStutteringJudgeRequestVote(hasStutteringJudgeChosenSign, hasStutteringJudgeRequestedVote),
+                "stuttering-judge-can-request-vote"),
+                ...insertIf(action === "protect" && !!guardPlayer && guardPlayer.isAliveAndPowerful && !!littleGirlPlayer &&
+                    !isLittleGirlProtectedByGuard, "guard-cant-protect-little-girl"),
             ];
         },
     },

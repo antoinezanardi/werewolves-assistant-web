@@ -1,6 +1,6 @@
 <template>
     <div id="vote-play-field">
-        <GamePlayAlerts/>
+        <GamePlayAlerts :past-events="pastEvents"/>
         <div v-if="game.stutteringJudgePlayer && game.stutteringJudgePlayer.isAlive">
             <div class="row align-items-center">
                 <div class="col-sm-6 col-12 ">
@@ -8,7 +8,8 @@
                 </div>
                 <div class="col-sm-6 col-12 text-center">
                     <div v-html="stutteringJudgeText"/>
-                    <toggle-button v-if="canStutteringJudgeRequestVote" class="mt-1" :labels="$t('VueToggleButton.yesNo')" :height="25" :width="60"/>
+                    <toggle-button v-if="canStutteringJudgeRequestVote" class="mt-1" :labels="$t('VueToggleButton.yesNo')" :height="25" :width="60"
+                                   @change="stutteringJudgeRequestsAnotherVote"/>
                 </div>
             </div>
             <hr class="my-2 bg-dark"/>
@@ -71,6 +72,9 @@ export default {
     methods: {
         playerVotes(vote) {
             this.$emit("player-votes", vote);
+        },
+        stutteringJudgeRequestsAnotherVote({ value }) {
+            this.$emit("stuttering-judge-requests-another-vote", value);
         },
     },
 };

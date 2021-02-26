@@ -35,6 +35,7 @@ class AudioManager {
         }
     }
 
+    // eslint-disable-next-line max-lines-per-function
     _loadSoundEffects() {
         const basePath = "/audio/sounds";
         const options = { volume: this.soundEffects.volume };
@@ -63,6 +64,7 @@ class AudioManager {
             "pied-piper-plays": new Howl({ src: `${basePath}/pied-piper-plays.mp3`, ...options }),
             "charmed-play": new Howl({ src: `${basePath}/charmed-play.mp3`, ...options }),
             "day-rises": new Howl({ src: `${basePath}/day-rises.mp3`, ...options }),
+            "hunter-plays": new Howl({ src: `${basePath}/hunter-plays.mp3`, ...options }),
         };
     }
 

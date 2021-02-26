@@ -23,7 +23,7 @@ export function getVotedPlayers(votes, game, action) {
     if (action === "vote") {
         const ravenMarkedPlayer = game.getPlayerWithAttribute("raven-marked");
         if (ravenMarkedPlayer && ravenMarkedPlayer.isAlive) {
-            incrementPlayerVoteCount(votedPlayers, ravenMarkedPlayer._id, game, 2);
+            incrementPlayerVoteCount(votedPlayers, ravenMarkedPlayer._id, game, game.options.roles.raven.markPenalty);
         }
     }
     return votedPlayers;

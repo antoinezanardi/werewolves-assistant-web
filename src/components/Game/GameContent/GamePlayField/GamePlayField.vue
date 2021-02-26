@@ -18,9 +18,9 @@
                 <GamePlayFieldHeader @start-tutorial="startTutorial"/>
                 <GamePlayFieldContent id="game-content-play-field" :play="play" :past-events="pastEvents" class="visible-scrollbar pt-2"
                                       @player-votes="playerVotes" @player-selected="playerSelected" @side-selected="sideSelected"
-                                      @card-selected="cardSelected"/>
+                                      @card-selected="cardSelected" @stuttering-judge-requests-another-vote="stutteringJudgeRequestsAnotherVote"/>
                 <GamePlayFieldFooter :play="play" :past-events="pastEvents" @vile-father-of-wolves-infects="vileFatherOfWolvesInfects"/>
-                <GamePlayFieldTutorial ref="gamePlayFieldTutorial"/>
+                <GamePlayFieldTutorial ref="gamePlayFieldTutorial" :past-events="pastEvents"/>
             </div>
         </transition>
     </div>
@@ -81,8 +81,15 @@ export default {
         vileFatherOfWolvesInfects() {
             this.$emit("vile-father-of-wolves-infects");
         },
-        fillVileFatherOfWolvesInfectionUsage() {
+        stutteringJudgeRequestsAnotherVote(payload) {
+            this.$emit("stuttering-judge-requests-another-vote", payload);
+        },
+        async fillVileFatherOfWolvesInfectionUsage() {
             this.loadings.pastEvents = true;
+            const eatQueryStrings = { "play-source": "werewolves", "play-action": "eat" };
+            const { data } = await this.$werewolvesAssistantAPI.getGameHistory(this.game._id, eatQueryStrings);
+            const eatPlays = data.map(eatPlay => new GameHistory(eatPlay));
+            this.pastEvents.hasVileFatherOfWolvesInfected = !!eatPlays.find(play => play.didVileFatherOfWolvesInfectTarget);
         },
         async fillStutteringJudgePastEvents() {
             this.loadings.pastEvents = true;
@@ -101,15 +108,16 @@ export default {
             this.loadings.pastEvents = true;
         },
         async getPastEvents() {
-            const { firstWaiting, stutteringJudgePlayer, vileFatherOfWolves } = this.game;
+            const { firstWaiting, stutteringJudgePlayer, vileFatherOfWolvesPlayer } = this.game;
             try {
                 if (firstWaiting.to === "protect") {
                     await this.fillLastGuardTarget();
                 } else if (firstWaiting.to === "use-potion") {
                     await this.fillWitchPotionsUsage();
-                } else if (firstWaiting.to === "vote" && !!stutteringJudgePlayer) {
+                } else if (firstWaiting.to === "vote" && !!stutteringJudgePlayer && stutteringJudgePlayer.isAliveAndPowerful) {
                     await this.fillStutteringJudgePastEvents();
-                } else if (firstWaiting.to === "eat" && !!vileFatherOfWolves) {
+                } else if (firstWaiting.to === "eat" && firstWaiting.for === "werewolves" && !!vileFatherOfWolvesPlayer &&
+                    vileFatherOfWolvesPlayer.isAlive) {
                     await this.fillVileFatherOfWolvesInfectionUsage();
                 }
                 this.cantGetPastEvents = false;

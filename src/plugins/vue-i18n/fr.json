@@ -400,7 +400,10 @@
             "ancient-can-survive-werewolves": "L'Ancien a la force de l'âge : il survivra des Loups-Garous si c'est la première fois qu'il se fait dévorer par ces canidés.",
             "guard-can-protect-target": "Si le Salvateur a protégé la cible des Loups-Garous, elle survivra.",
             "witch-can-protect-target": "La Sorcière pourra, si elle le souhaite, utiliser sa potion de vie pour sauver la victime des Loups-Garous plus tard dans la nuit.",
-            "vile-father-of-wolves-can-infect": "L'Infect Père des Loups pourra, s'il le souhaite, transformer la victime en Loup-Garou."
+            "vile-father-of-wolves-can-infect": "L'Infect Père des Loups pourra, s'il le souhaite, transformer la victime en Loup-Garou.",
+            "stuttering-judge-can-request-vote": "Le Juge Bègue pourra, s'il le souhaite, demander un second vote en réalisant son signe au maître du jeu.",
+            "guard-cant-protect-little-girl": "La Petite Fille est pleine crise de préadolescence, la protection du Salvateur sera sans effet sur elle si elle se fait manger par les Loups-Garous...",
+            "pied-piper-will-loose-powers-if-infected": "Si le Joueur de Flûte est infecté, il perdra son pouvoir de charme et abandonnera son but de gagner la partie en charmant tout les joueurs vivants."
         },
         "shareThisWithPlayers": "Partager cette information avec les joueurs peut rendre la partie un peu plus intéressante."
     },
@@ -490,6 +493,7 @@
                 "ancientCanSurvive": "L'Ancien est dans la partie ! Il pourra survivre à une attaque des Loups-Garous, même sans protection de Salvateur ou de Sorcière.",
                 "vileFatherOfWolvesCanInfect": "L'Infect Père des Loups est dans la partie ! Lorsque les Loups-Garous auront choisi leur victime et se rendorment, l'Infect Père des Loups peut lever la main. Dans ce cas, la victime rejoindra instantanément le camp des Loups-Garous au lieu de mourir dévorée, ceci en gardant son rôle original et ses pouvoirs !",
                 "infectOnlyOnce": "Le choix de l'Infect Père des Loups pourra être renseigné au moment où l'action des Loups-Garous sera validée. Attention, ce pouvoir ne peut être utilisé qu'une seule fois !",
+                "piedPiperWillLoosePowerIfInfected": "Le Joueur de Flûte et l'Infect Père des Loups sont dans la partie ! Si le Joueur de Flûte est infecté, il ne pourra plus charmer jusqu'à la fin de la partie et abandonnera son but de charmer tous les joueurs vivants pour gagner la partie.",
                 "toValidateEat": "Pour passer à la suite, les Loups-Garous doivent obligatoirement choisir une victime."
             }
         },
@@ -502,6 +506,7 @@
                 "ifLifePotionHasBeenUsed": "Si la potion de vie a déjà été utilisée, le maître du jeu doit quand même demander le choix de la Sorcière, mais sans pointer du doigt la victime des Loups-Garous. Ceci permet de ne pas révéler que la potion de vie a été utilisée.",
                 "deathPotionKills": "La potion de mort, utilisable qu'une fois pendant la partie, permet d'empoisonner une victime qui mourra le matin suivant. La Sorcière doit sans bruit acquiescer ou refuser d'utiliser sa potion en pointant sa victime le cas échéant.",
                 "ifDeathPotionHasBeenUsed": "Si la potion de mort a déjà été utilisée, le maître du jeu doit quand même demander le choix de la Sorcière. Ceci permet de ne pas révéler que la potion de mort a été utilisée.",
+                "ancientWillHaveHisRevenge": "L'Ancien est dans la partie ! Si la Sorcière utilise sa potion de mort sur lui, alors tous les joueurs dans le camp des Villageois perdront leurs pouvoirs.",
                 "toValidateUsePotion": "Durant son tour, la Sorcière peut utiliser les deux potions, une seule, ou passer son tour."
             }
         },
@@ -511,6 +516,7 @@
                 "guardProtectsWhen": "Chaque nuit, s'il est vivant, le Salvateur se réveille.",
                 "guardCanProtect": "Le Salvateur protège la personne de son choix et cette dernière ne pourra pas mourir durant cette nuit. Le Salvateur peut se protéger lui-même mais ne peut pas choisir deux nuits de suite la même personne.",
                 "guardPointsAtTarget": "Le Salvateur doit pointer du doigt sans bruit la personne qu'il souhaite protéger.",
+                "littleGirlIsNotProtected": "La Petite Fille est dans la partie ! Si les Loups-Garous la dévore, même la protection du Salvateur ne pourra pas la protéger.",
                 "toValidateProtect": "Pour passer à la suite, le Salvateur doit obligatoirement choisir une personne à protéger."
             }
         },
@@ -535,6 +541,7 @@
                 "idiotWillBeForgiven": "L'Idiot est dans la partie ! Si son rôle n'est pas encore révélé et que le village décide de voter contre lui, alors il sera gracié, le village se rendant compte de leur bêtise de pendre un Idiot. Par contre, son rôle sera révélé et il perdra son droit de vote pour le reste de la partie.",
                 "ancientWillHaveHisRevenge": "L'Ancien est dans la partie ! Si le village décide de le pendre, alors tous les joueurs dans le camp des Villageois perdront leurs pouvoirs. Attention à la pendaison irréfléchie !",
                 "angelWillWinIfHeDiesNow": "L'Ange est dans la partie ! S'il meurt des votes, alors il gagnera la partie.",
+                "stutteringJudgeCanRequestAnotherVote": "Le Juge Bègue est dans la partie ! En réalisant le signe précédemment convenu au maître du jeu, un deuxième vote aura lieu après le résultat de celui en cours.",
                 "toValidateAVote": "Pour passer à la suite, au moins un joueur doit avoir voté."
             },
             "elect-sheriff": {
@@ -553,6 +560,7 @@
                 "howToPlay": "Comment jouer le Chasseur ?",
                 "hunterShootsWhen": "Quand le Chasseur meurt, il prend son fusil pour se venger dans son dernier souffle.",
                 "hunterCanShoot": "Le Chasseur mourrant choisi arbitrairement sa victime en la pointant du doigt. Elle mourra instantanément du coup fatal.",
+                "ancientWillHaveHisRevenge": "L'Ancien est dans la partie ! Si le Chasseur décide de le tuer, alors tous les joueurs dans le camp des Villageois perdront leurs pouvoirs.",
                 "toValidateShoot": "Pour passer à la suite, le Chasseur doit obligatoirement choisir une cible."
             }
         },
@@ -992,11 +1000,6 @@
         "stutteringJudgeDidntChooseSignYet": "ne peut pas demander un second vote car il n'a pas encore choisi son signe.",
         "stutteringJudgeAlreadyRequestedVote": "a déjà demandé un second vote.",
         "stutteringJudgeIsPowerless": "ne peut pas demander un second vote car il n'a plus son pouvoir."
-    },
-    "ProtectPlayField": {
-        "loadingTargets": "Chargement des cibles du Salvateur",
-        "cantLoadGuardTargets": "Impossible de charger les cibles du Salvateur",
-        "retry": "Réessayer"
     },
     "MeetEachOtherPlayField": {
         "meetEachOtherTheFirstTime": "se rencontrent pour la première fois",

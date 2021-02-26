@@ -1,5 +1,6 @@
 <template>
     <div id="protect-play-field" class="d-flex flex-column">
+        <GamePlayAlerts :past-events="pastEvents"/>
         <div class="row justify-content-center align-items-center">
             <div class="col-12 col-lg-4">
                 <PlayerCard id="guard-player-card" :player="game.guardPlayer" size="lg"/>
@@ -17,10 +18,11 @@ import { mapGetters } from "vuex";
 import PlayerCard from "@/components/shared/Game/PlayerCard";
 import PlayerTargets from "@/components/shared/Game/PlayerTargets/PlayerTargets";
 import PlayFieldActionText from "@/components/shared/Game/PlayField/PlayFieldActionText";
+import GamePlayAlerts from "@/components/shared/Game/GamePlayAlerts/GamePlayAlerts";
 
 export default {
     name: "ProtectPlayField",
-    components: { PlayFieldActionText, PlayerTargets, PlayerCard },
+    components: { GamePlayAlerts, PlayFieldActionText, PlayerTargets, PlayerCard },
     props: {
         play: {
             type: Object,

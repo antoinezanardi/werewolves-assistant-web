@@ -1,6 +1,6 @@
 <template>
     <div id="eat-play-field" class="d-flex flex-column">
-        <GamePlayAlerts/>
+        <GamePlayAlerts :past-events="pastEvents"/>
         <div id="werewolf-players" class="row justify-content-center align-items-center">
             <PlayerCard v-for="player of eatingPlayers" :id="`werewolf-player-${player._id}`" :key="player.name" :player="player" size="lg"
                         class="col-6 col-md-4 col-lg-3"/>
@@ -23,6 +23,10 @@ export default {
     components: { GamePlayAlerts, PlayFieldActionText, PlayerTargets, PlayerCard },
     props: {
         play: {
+            type: Object,
+            required: true,
+        },
+        pastEvents: {
             type: Object,
             required: true,
         },

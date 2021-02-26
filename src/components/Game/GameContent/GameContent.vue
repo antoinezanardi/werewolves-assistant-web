@@ -3,7 +3,8 @@
         <transition mode="out-in" name="fade">
             <GameEventMonitor v-if="events.length" key="game-event-monitor" :events="events" @skip-event="removeEvent"/>
             <GamePlayField v-else key="game-play-field" :play="play" @player-selected="playerSelected" @player-votes="playerVotes"
-                           @side-selected="sideSelected" @vile-father-of-wolves-infects="vileFatherOfWolvesInfects" @card-selected="cardSelected"/>
+                           @side-selected="sideSelected" @vile-father-of-wolves-infects="vileFatherOfWolvesInfects" @card-selected="cardSelected"
+                           @stuttering-judge-requests-another-vote="stutteringJudgeRequestsAnotherVote"/>
         </transition>
     </div>
 </template>
@@ -79,9 +80,9 @@ export default {
         playerSelected(payload) {
             const target = { player: payload.player._id, attribute: payload.attribute };
             if (target.attribute === "drank-life-potion") {
-                target.hasDrankLifePotionoptional = true;
+                target.hasDrankLifePotion = true;
             } else if (target.attribute === "drank-death-potion") {
-                target.hasDrankDeathPotionoptional = true;
+                target.hasDrankDeathPotion = true;
             }
             const maxTargetLength = maxTargetLengthForPlayerAttribute(payload.attribute);
             const targetIdx = this.play.targets.findIndex(({ player }) => player === target.player);
@@ -109,6 +110,9 @@ export default {
             if (this.play.targets.length) {
                 this.play.targets[0].isInfected = true;
             }
+        },
+        stutteringJudgeRequestsAnotherVote(doesStutteringJudgeRequestAnotherVote) {
+            this.play.doesJudgeRequestAnotherVote = doesStutteringJudgeRequestAnotherVote;
         },
         resetPlay() {
             this.play.votes = [];

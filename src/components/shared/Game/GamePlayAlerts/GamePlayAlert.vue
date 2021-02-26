@@ -45,6 +45,9 @@ export default {
                 "guard-can-protect-target": "guard",
                 "witch-can-protect-target": "witch",
                 "vile-father-of-wolves-can-infect": "vile-father-of-wolves",
+                "stuttering-judge-can-request-vote": "stuttering-judge",
+                "guard-cant-protect-little-girl": "little-girl",
+                "pied-piper-will-loose-powers-if-infected": "pied-piper",
             };
             return gamePlayAlertRoles[this.type];
         },
@@ -60,6 +63,9 @@ export default {
                 "guard-can-protect-target": "fa-shield-alt",
                 "witch-can-protect-target": "fa-magic",
                 "vile-father-of-wolves-can-infect": "fa-people-arrows",
+                "stuttering-judge-can-request-vote": "fa-gavel",
+                "guard-cant-protect-little-girl": "fa-female",
+                "pied-piper-will-loose-powers-if-infected": "fa-ban",
             };
             return gamePlayAlertIcons[this.type];
         },
