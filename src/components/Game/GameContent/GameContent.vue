@@ -57,11 +57,14 @@ export default {
         },
     },
     created() {
-        if (this.game.isFirstWaitingPreFirstNightPlay || this.game.phase === "day" && !this.events.find(({ type }) => type === "day-rises") ||
-            this.game.phase === "night" && this.events.find(({ type }) => type === "night-falls")) {
-            this.audioManager.playDayMusic();
-        } else {
-            this.audioManager.playNightMusic();
+        const firstEvent = this.events.length ? this.events[0] : undefined;
+        if (!firstEvent || firstEvent.type !== "day-rises" && firstEvent.type !== "night-falls") {
+            if (this.game.isFirstWaitingPreFirstNightPlay || this.game.phase === "day" && !this.events.find(({ type }) => type === "day-rises") ||
+                this.game.phase === "night" && this.events.find(({ type }) => type === "night-falls")) {
+                this.audioManager.playDayMusic();
+            } else {
+                this.audioManager.playNightMusic();
+            }
         }
     },
     methods: {
@@ -76,9 +79,9 @@ export default {
         playerSelected(payload) {
             const target = { player: payload.player._id, attribute: payload.attribute };
             if (target.attribute === "drank-life-potion") {
-                target.potion = { life: true };
+                target.hasDrankLifePotionoptional = true;
             } else if (target.attribute === "drank-death-potion") {
-                target.potion = { death: true };
+                target.hasDrankDeathPotionoptional = true;
             }
             const maxTargetLength = maxTargetLengthForPlayerAttribute(payload.attribute);
             const targetIdx = this.play.targets.findIndex(({ player }) => player === target.player);

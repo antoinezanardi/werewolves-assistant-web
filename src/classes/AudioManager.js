@@ -60,6 +60,9 @@ class AudioManager {
             "three-brothers-play": new Howl({ src: `${basePath}/three-brothers-play.mp3`, ...options }),
             "vile-father-of-wolves-infects": new Howl({ src: `${basePath}/vile-father-of-wolves-infects.mp3`, ...options }),
             "white-werewolf-plays": new Howl({ src: `${basePath}/white-werewolf-plays.mp3`, ...options }),
+            "pied-piper-plays": new Howl({ src: `${basePath}/pied-piper-plays.mp3`, ...options }),
+            "charmed-play": new Howl({ src: `${basePath}/charmed-play.mp3`, ...options }),
+            "day-rises": new Howl({ src: `${basePath}/day-rises.mp3`, ...options }),
         };
     }
 

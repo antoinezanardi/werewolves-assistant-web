@@ -18,10 +18,8 @@ class GameHistory {
             targets: getProp(gameHistory, "play.targets", [], targets => targets.map(target => ({
                 player: new Player(target.player),
                 isInfected: getProp(target, "isInfected"),
-                potion: {
-                    life: getProp(target, "potion.life"),
-                    death: getProp(target, "potion.death"),
-                },
+                hasDrankLifePotion: getProp(target, "hasDrankLifePotion"),
+                hasDrankDeathPotion: getProp(target, "hasDrankDeathPotion"),
             }))),
             votes: getProp(gameHistory, "play.votes", [], votes => votes.map(vote => ({
                 from: new Player(vote.from),

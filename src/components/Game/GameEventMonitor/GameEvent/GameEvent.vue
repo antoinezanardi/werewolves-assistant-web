@@ -162,7 +162,10 @@ export default {
                     ],
                     soundEffect: "sheriff-election",
                 },
-                "day-rises": { messages: [i18n.t("GameEvent.messages.dayRises")] },
+                "day-rises": {
+                    messages: [i18n.t("GameEvent.messages.dayRises")],
+                    soundEffect: "day-rises",
+                },
                 "deaths-during-night": {
                     messages: [
                         i18n.tc("GameEvent.messages.deathDuringNight", this.event.targets.length, { numberOfDeaths: this.event.targets.length }),
@@ -250,18 +253,23 @@ export default {
                     messages: [i18n.t("GameEvent.messages.bigBadWolfStarts")],
                     soundEffect: "big-bad-wolf-plays",
                 },
-                "pied-piper-turn": { messages: [i18n.t("GameEvent.messages.piedPiperStarts")] },
+                "pied-piper-turn": {
+                    messages: [i18n.t("GameEvent.messages.piedPiperStarts")],
+                    soundEffect: "pied-piper-plays",
+                },
                 "pied-piper-charms": {
                     messages: [
                         i18n.t("GameEvent.messages.piedPiperCharmedTwoPlayers"),
                         i18n.t("GameEvent.messages.gameMasterWillTouchCharmed"),
                     ],
+                    soundEffect: "pied-piper-plays",
                 },
                 "charmed-turn": {
                     messages: [
                         ...insertIf(this.game.turn === 1, i18n.t("GameEvent.messages.charmedWakeUp")),
                         ...insertIf(this.game.turn !== 1, i18n.t("GameEvent.messages.charmedWakeUpWithOldOnes")),
                     ],
+                    soundEffect: "charmed-play",
                 },
                 "scapegoat-turn": { messages: [i18n.t("GameEvent.messages.scapegoatStarts")] },
                 "thief-turn": {

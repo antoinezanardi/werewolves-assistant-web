@@ -30,13 +30,17 @@ export default {
     computed: {
         ...mapGetters("game", { game: "game" }),
         eatablePlayers() {
-            return this.game.alivePlayers.filter(player => player.side.current !== "werewolves" && !player.hasAttribute("eaten"));
+            const { firstWaiting, aliveVillagerPlayers, aliveWerewolfPlayers } = this.game;
+            const eatableVillagers = aliveVillagerPlayers.filter(player => !player.hasAttribute("eaten"));
+            const eatableWerewolves = aliveWerewolfPlayers.filter(({ currentRole }) => currentRole !== "white-werewolf");
+            return firstWaiting.for === "white-werewolf" ? eatableWerewolves : eatableVillagers;
         },
         eatingPlayers() {
             const { firstWaiting } = this.game;
             const eatingPlayers = {
                 "werewolves": this.game.aliveWerewolfPlayers,
                 "big-bad-wolf": this.game.getPlayersWithRole("big-bad-wolf"),
+                "white-werewolf": this.game.getPlayersWithRole("white-werewolf"),
             };
             return eatingPlayers[firstWaiting.for] ? eatingPlayers[firstWaiting.for] : [];
         },

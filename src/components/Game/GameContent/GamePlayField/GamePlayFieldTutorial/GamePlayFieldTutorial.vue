@@ -404,6 +404,13 @@ export default {
                         },
                     ],
                 },
+                "white-werewolf": {
+                    eat: [
+                        { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.white-werewolf.eat.whiteWerewolfEatsWhen`) },
+                        { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.white-werewolf.eat.whiteWerewolfCanEat`) },
+                        { header, target: "#play-submit-button", content: this.$t("GamePlayFieldTutorial.white-werewolf.eat.toValidateEat") },
+                    ],
+                },
             };
             return steps[firstWaiting.for] && steps[firstWaiting.for][firstWaiting.to] ? steps[firstWaiting.for][firstWaiting.to] : [];
         },

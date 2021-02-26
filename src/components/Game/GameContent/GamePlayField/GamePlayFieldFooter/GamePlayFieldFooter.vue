@@ -32,8 +32,8 @@
                             <span class="small" v-html="$t('GamePlayFieldFooter.tieInVotesForbidden')"/>
                         </div>
                     </div>
-                    <div v-else-if="game.isFirstWaitingTargetAction" id="target-play-requirements" key="target-play-requirements"
-                         class="text-center">
+                    <div v-else-if="game.isFirstWaitingTargetAction && !game.isFirstWaitingSkippableAction"
+                         id="target-play-requirements" key="target-play-requirements" class="text-center">
                         <VRoller :text="`${play.targets.length}/${game.expectedTargetsLength}`" class="d-inline-flex mr-1"/>
                         <span v-html="$tc('GamePlayFieldFooter.playerTargeted', game.expectedTargetsLength)"/>
                         <div class="text-muted d-flex justify-content-center align-items-center">
@@ -182,8 +182,8 @@ export default {
                 const { isConfirmed } = await this.makeSourcePlayersGoToBed();
                 isSubmittingAllowed = isConfirmed;
             }
-            if (isSubmittingAllowed && firstWaiting.to === "eat" && !!vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer.isAlive &&
-                !this.pastEvents.hasVileFatherOfWolvesInfected) {
+            if (isSubmittingAllowed && firstWaiting.to === "eat" && firstWaiting.for === "werewolves" && !!vileFatherOfWolvesPlayer &&
+                vileFatherOfWolvesPlayer.isAlive && !this.pastEvents.hasVileFatherOfWolvesInfected) {
                 const { isConfirmed } = await this.askIfVileFatherOfWolvesInfects();
                 if (isConfirmed) {
                     this.$emit("vile-father-of-wolves-infects");

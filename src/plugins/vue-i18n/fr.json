@@ -677,6 +677,14 @@
                 "stutteringJudgeCanChooseSign": "Pour cela, il doit convenir d'un signe avec le maître du jeu dès maintenant. Le Juge Bègue pourra reproduire ce signe discrètement au maître du jeu pendant un vote, enclanchant un second vote dans la foulée.",
                 "toValidateChooseSign": "Pour passer à la suite, le maître du jeu et le Juge Bègue doivent avoir convenu du signe à reproduire et tous deux bien le retenir pour le reste de la partie."
             }
+        },
+        "white-werewolf": {
+            "eat": {
+                "howToPlay": "Comment jouer le Loup-Garou Blanc ?",
+                "whiteWerewolfEatsWhen": "Toutes les deux nuits, le Loup-Garou Blanc se réveille.",
+                "whiteWerewolfCanEat": "Le but du Loup-Garou Blanc est d'être le dernier survivant du Village. Pour cela, il peut, s'il le souhaite, manger l'un de ses congénères.",
+                "toValidateEat": "Pour passer à la suite, le Loup-Garou Blanc peut choisir de manger un autre Loup-Garou ou passer son tour."
+            }
         }
     },
     "PlayerAttribute": {

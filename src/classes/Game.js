@@ -285,7 +285,7 @@ class Game {
 
     get doesAngelWinIfHeDiesNow() {
         const { angelPlayer, firstWaiting, turn, isFirstWaitingPreFirstNightPlay } = this;
-        return !!angelPlayer && (firstWaiting.to === "eat" && angelPlayer.isAliveAndPowerful && turn === 1 ||
+        return !!angelPlayer && (firstWaiting.to === "eat" && firstWaiting.for !== "white-werewolf" && angelPlayer.isAliveAndPowerful && turn === 1 ||
             (firstWaiting.to === "vote" || firstWaiting.to === "settle-votes") && isFirstWaitingPreFirstNightPlay);
     }
 

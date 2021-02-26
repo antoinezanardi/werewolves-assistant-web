@@ -11,79 +11,66 @@
             <PlayFieldActionText id="use-death-potion-play-field-action-text" :play="play" attribute="drank-death-potion" class="col-lg-6"
                                  @player-selected="playerSelected"/>
         </div>
-        <transition mode="out-in" name="fade" class="flex-grow-1">
-            <div v-if="loading.potionUsage" key="loading" class="d-flex flex-grow-1 justify-content-center align-items-center">
-                <Loading :text="$t('UsePotionPlayField.loadingPotions')"/>
-            </div>
-            <div v-else-if="!arePotionsLoaded" key="cant-find-potions"
-                 class="d-flex flex-grow-1 flex-column justify-content-center align-items-center">
-                <h3 class="text-muted font-italic text-center">
-                    <i class="fa fa-ban mr-2"/>
-                    <span v-html="$t('UsePotionPlayField.cantLoadPotions')"/>
-                </h3>
-                <button class="btn btn-primary" @click="retrievePotionsUsage">
-                    <i class="fa fa-sync mr-2"/>
-                    <span v-html="$t('UsePotionPlayField.retry')"/>
-                </button>
-            </div>
-            <div v-else key="witch-potions" class="h-100 d-flex flex-column">
-                <div class="row">
-                    <div class="col-12">
-                        <ul id="potion-tabs" class="nav nav-pills nav-fill">
-                            <li id="life-potion-tab" class="nav-item" @click="openLifePotionPanel">
-                                <a id="use-life-potion-tab" class="nav-link"
-                                   :class="{ active: panel === 'life-potion', disabled: isLifePotionUsed }" href="#">
-                                    <img :src="SVGs.lifePotionSVG" width="25" alt="Life Potion" class="mr-2"
-                                         :class="{ 'used-potion-svg': isLifePotionUsed }"/>
-                                    <span v-html="lifePotionPanelTabText"/>
-                                </a>
-                            </li>
-                            <li id="death-potion-tab" class="nav-item" @click="openDeathPotionPanel">
-                                <a id="use-death-potion-tab" class="nav-link"
-                                   :class="{ active: panel === 'death-potion', disabled: isDeathPotionUsed }" href="#">
-                                    <img :src="SVGs.deathPotionSVG" width="25" alt="Death Potion" class="mr-2"
-                                         :class="{ 'used-potion-svg': isDeathPotionUsed }"/>
-                                    <span v-html="deathPotionPanelTabText"/>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="row flex-grow-1">
-                    <div class="col-12">
-                        <transition mode="out-in" name="translate-down-fade">
-                            <div v-if="panel === 'life-potion'" id="use-life-potion-content" key="life-potion-panel" class="h-100">
-                                <PlayerTargets :targets="game.eatenPlayers" :play="play" attribute="drank-life-potion"
-                                               class="h-100" @player-selected="playerSelected"/>
-                            </div>
-                            <div v-else-if="panel === 'death-potion'" id="use-death-potion-content" key="death-potion-panel"
-                                 class="h-100">
-                                <PlayerTargets :targets="alivePlayersWithoutWerewolvesTarget" :play="play" attribute="drank-death-potion"
-                                               class="h-100" @player-selected="playerSelected"/>
-                            </div>
-                        </transition>
-                    </div>
+        <div class="h-100 d-flex flex-grow-1 flex-column">
+            <div class="row">
+                <div class="col-12">
+                    <ul id="potion-tabs" class="nav nav-pills nav-fill">
+                        <li id="life-potion-tab" class="nav-item" @click="openLifePotionPanel">
+                            <a id="use-life-potion-tab" class="nav-link"
+                               :class="{ active: panel === 'life-potion', disabled: pastEvents.hasWithUsedLifePotion }" href="#">
+                                <img :src="SVGs.lifePotionSVG" width="25" alt="Life Potion" class="mr-2"
+                                     :class="{ 'used-potion-svg': pastEvents.hasWithUsedLifePotion }"/>
+                                <span v-html="lifePotionPanelTabText"/>
+                            </a>
+                        </li>
+                        <li id="death-potion-tab" class="nav-item" @click="openDeathPotionPanel">
+                            <a id="use-death-potion-tab" class="nav-link"
+                               :class="{ active: panel === 'death-potion', disabled: pastEvents.hasWithUsedDeathPotion }" href="#">
+                                <img :src="SVGs.deathPotionSVG" width="25" alt="Death Potion" class="mr-2"
+                                     :class="{ 'used-potion-svg': pastEvents.hasWithUsedDeathPotion }"/>
+                                <span v-html="deathPotionPanelTabText"/>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </transition>
+            <div class="row flex-grow-1">
+                <div class="col-12">
+                    <transition mode="out-in" name="translate-down-fade">
+                        <div v-if="panel === 'life-potion'" id="use-life-potion-content" key="life-potion-panel" class="h-100">
+                            <PlayerTargets :targets="game.eatenPlayers" :play="play" attribute="drank-life-potion"
+                                           class="h-100" @player-selected="playerSelected"/>
+                        </div>
+                        <div v-else-if="panel === 'death-potion'" id="use-death-potion-content" key="death-potion-panel"
+                             class="h-100">
+                            <PlayerTargets :targets="alivePlayersWithoutWerewolvesTarget" :play="play" attribute="drank-death-potion"
+                                           class="h-100" @player-selected="playerSelected"/>
+                        </div>
+                    </transition>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
+import { scrollTo } from "vue-scrollto";
 import { mapGetters } from "vuex";
 import PlayerCard from "@/components/shared/Game/PlayerCard";
 import lifePotionSVG from "@/assets/svg/attributes/drank-life-potion.svg";
 import deathPotionSVG from "@/assets/svg/attributes/drank-death-potion.svg";
 import PlayerTargets from "@/components/shared/Game/PlayerTargets/PlayerTargets";
 import PlayFieldActionText from "@/components/shared/Game/PlayField/PlayFieldActionText";
-import Loading from "@/components/shared/Loading";
-import GameHistory from "@/classes/GameHistory";
 
 export default {
     name: "UsePotionPlayField",
-    components: { Loading, PlayFieldActionText, PlayerTargets, PlayerCard },
+    components: { PlayFieldActionText, PlayerTargets, PlayerCard },
     props: {
         play: {
+            type: Object,
+            required: true,
+        },
+        pastEvents: {
             type: Object,
             required: true,
         },
@@ -91,10 +78,7 @@ export default {
     data() {
         return {
             SVGs: { lifePotionSVG, deathPotionSVG },
-            loading: { potionUsage: false },
             panel: undefined,
-            isLifePotionUsed: undefined,
-            isDeathPotionUsed: undefined,
         };
     },
     computed: {
@@ -108,47 +92,33 @@ export default {
             return this.$t("UsePotionPlayField.doesntWantToUseDeathPotion");
         },
         lifePotionPanelTabText() {
-            return this.isLifePotionUsed ? this.$t("UsePotionPlayField.lifePotionUsed") : this.$t("UsePotionPlayField.useLifePotionOn");
+            const { hasWitchUsedLifePotion } = this.pastEvents;
+            return hasWitchUsedLifePotion ? this.$t("UsePotionPlayField.lifePotionUsed") : this.$t("UsePotionPlayField.useLifePotionOn");
         },
         deathPotionPanelTabText() {
-            return this.isDeathPotionUsed ? this.$t("UsePotionPlayField.deathPotionUsed") : this.$t("UsePotionPlayField.useDeathPotionOn");
+            const { hasWithUsedDeathPotion } = this.pastEvents;
+            return hasWithUsedDeathPotion ? this.$t("UsePotionPlayField.deathPotionUsed") : this.$t("UsePotionPlayField.useDeathPotionOn");
         },
         alivePlayersWithoutWerewolvesTarget() {
             return this.game.alivePlayers.filter(player => !player.hasAttribute("eaten"));
         },
-        arePotionsLoaded() {
-            return this.isLifePotionUsed !== undefined && this.isDeathPotionUsed !== undefined;
-        },
-    },
-    async created() {
-        await this.retrievePotionsUsage();
     },
     methods: {
         playerSelected(payload) {
             this.$emit("player-selected", payload);
         },
-        async retrievePotionsUsage() {
-            try {
-                this.loading.potionUsage = true;
-                const queryStrings = { "play-source": "witch", "play-action": "use-potion" };
-                const { data } = await this.$werewolvesAssistantAPI.getGameHistory(this.game._id, queryStrings);
-                const witchActions = data.map(gameHistoryEntry => new GameHistory(gameHistoryEntry));
-                this.isLifePotionUsed = !!witchActions.find(witchAction => witchAction.didWitchUsedLifePotion);
-                this.isDeathPotionUsed = !!witchActions.find(witchAction => witchAction.didWitchUsedDeathPotion);
-            } catch (e) {
-                this.$error.display(e);
-            } finally {
-                this.loading.potionUsage = false;
-            }
-        },
         openLifePotionPanel() {
-            if (!this.isLifePotionUsed) {
+            const { hasWitchUsedLifePotion } = this.pastEvents;
+            if (!hasWitchUsedLifePotion) {
                 this.panel = "life-potion";
+                scrollTo("#life-potion-tab", 500, { container: "#game-content-play-field" });
             }
         },
         openDeathPotionPanel() {
-            if (!this.isDeathPotionUsed) {
+            const { hasWithUsedDeathPotion } = this.pastEvents;
+            if (!hasWithUsedDeathPotion) {
                 this.panel = "death-potion";
+                scrollTo("#death-potion-tab", 500, { container: "#game-content-play-field" });
             }
         },
     },

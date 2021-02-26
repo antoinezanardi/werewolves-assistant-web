@@ -3,7 +3,8 @@
         <ElectSheriffPlayField v-if="currentAction === 'elect-sheriff'" :play="play" class="h-100 container-fluid" @player-votes="playerVotes"/>
         <LookPlayField v-else-if="currentAction === 'look'" :play="play" class="h-100 container-fluid" @player-selected="playerSelected"/>
         <EatPlayField v-else-if="currentAction === 'eat'" :play="play" class="h-100 container-fluid" @player-selected="playerSelected"/>
-        <UsePotionPlayField v-else-if="currentAction === 'use-potion'" :play="play" class="h-100 container-fluid" @player-selected="playerSelected"/>
+        <UsePotionPlayField v-else-if="currentAction === 'use-potion'" :play="play" :past-events="pastEvents" class="h-100 container-fluid"
+                            @player-selected="playerSelected"/>
         <ProtectPlayField v-else-if="currentAction === 'protect'" :play="play" class="h-100 container-fluid" :past-events="pastEvents"
                           @player-selected="playerSelected"/>
         <MarkPlayField v-else-if="currentAction === 'mark'" :play="play" class="h-100 container-fluid" @player-selected="playerSelected"/>
