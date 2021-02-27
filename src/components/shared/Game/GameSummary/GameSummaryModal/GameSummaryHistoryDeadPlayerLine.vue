@@ -26,6 +26,7 @@ import vote from "@/assets/svg/actions/vote.svg";
 import deathPotion from "@/assets/svg/attributes/drank-death-potion.svg";
 import shoot from "@/assets/svg/actions/shoot.svg";
 import inLove from "@/assets/svg/attributes/in-love.svg";
+import whiteWerewolf from "@/assets/svg/roles/white-werewolf.svg";
 import Player from "@/classes/Player";
 
 export default {
@@ -44,6 +45,7 @@ export default {
                 "all": { vote },
                 "werewolves": { eat: eaten },
                 "big-bad-wolf": { eat: bigBadWolf },
+                "white-werewolf": { eat: whiteWerewolf },
                 "witch": { "use-potion": deathPotion },
                 "hunter": { shoot },
                 "cupid": { charm: inLove },

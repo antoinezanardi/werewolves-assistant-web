@@ -59,6 +59,28 @@
                                     </div>
                                 </div>
                             </div>
+                            <div v-if="game.additionalCards">
+                                <hr class="bg-dark"/>
+                                <h4 class="text-center">
+                                    <i class="fa fa-chess mr-2 text-info"/>
+                                    <span v-html="$t('GameSummaryModal.additionalCards')"/>
+                                </h4>
+                                <hr class="bg-dark"/>
+                                <div v-if="game.thiefAdditionalCards.length">
+                                    <h5 class="text-center">
+                                        <RoleImage class="additional-card-recipient mr-2" role="thief"/>
+                                        <span v-html="$t('GameSummaryModal.thiefAdditionalCards')"/>
+                                    </h5>
+                                    <hr class="bg-dark"/>
+                                    <div class="row justify-content-center">
+                                        <div v-for="card of game.thiefAdditionalCards" :key="card._id"
+                                             class="col-lg-2 col-6 d-flex flex-column align-items-center">
+                                            <RoleImage :role="card.role" class="additional-card-image mt-2"/>
+                                            <RoleText prefix="a" :role="card.role"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div v-else-if="panel === 'game-history'" id="game-summary-history-container" key="game-summary-history-container">
                             <transition mode="out-in" name="fade">
@@ -123,10 +145,14 @@ import GameSummaryHistoryDeadPlayerLine
     from "@/components/shared/Game/GameSummary/GameSummaryModal/GameSummaryHistoryDeadPlayerLine";
 import GameSummaryHistoryRevealedPlayerLine
     from "@/components/shared/Game/GameSummary/GameSummaryModal/GameSummaryHistoryRevealedPlayerLine";
+import RoleImage from "@/components/shared/Game/Role/RoleImage";
+import RoleText from "@/components/shared/Game/Role/RoleText";
 
 export default {
     name: "GameSummaryModal",
     components: {
+        RoleText,
+        RoleImage,
         GameSummaryHistoryRevealedPlayerLine,
         GameSummaryHistoryDeadPlayerLine, GameSummaryHistoryPhaseLine,
         Loading, GameResult, AliveWerewolves, AliveVillagers, GameSummaryHistoryPlayLine,
@@ -182,5 +208,15 @@ export default {
 
     .nav-link {
         transition: all 0.25s linear;
+    }
+
+    .additional-card-recipient {
+        width: 30px;
+        height: auto;
+    }
+
+    .additional-card-image {
+        width: 100px;
+        height: auto;
     }
 </style>

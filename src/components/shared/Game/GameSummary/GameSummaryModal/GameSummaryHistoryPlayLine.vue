@@ -10,9 +10,9 @@
             </div>
             <div v-for="source of actionSource.players" v-else :key="source._id"
                  class="d-flex flex-column align-items-center justify-content-center my-1">
-                <RoleImage width="30" :role="source.role.current"/>
+                <RoleImage width="30" :role="playerSourceRole(gameHistoryEntry, source)"/>
                 <div class="text-center" v-html="source.name"/>
-                <RoleText class="text-center small cursor-text" :role="source.role.current"/>
+                <RoleText class="text-center small cursor-text" :role="playerSourceRole(gameHistoryEntry, source)"/>
             </div>
         </td>
         <td class="col-4 col-lg-3 d-flex flex-column align-items-center justify-content-center">
@@ -23,6 +23,10 @@
             <div v-if="gameHistoryEntry.play.side" class="d-flex flex-column align-items-center justify-content-center my-1">
                 <RoleImage width="30" :role="gameHistoryEntry.play.side"/>
                 <RoleText class="text-center small cursor-text" :role="gameHistoryEntry.play.side"/>
+            </div>
+            <div v-else-if="gameHistoryEntry.play.chosenCard" class="d-flex flex-column align-items-center justify-content-center my-1">
+                <RoleImage width="30" :role="gameHistoryEntry.play.chosenCard.role"/>
+                <RoleText class="text-center small cursor-text" prefix="a" :role="gameHistoryEntry.play.chosenCard.role"/>
             </div>
             <div v-for="target of gameHistoryEntry.play.targets" v-else :key="target.player._id"
                  class="d-flex flex-column align-items-center justify-content-center my-1">
@@ -55,6 +59,9 @@ import worshipedSVG from "@/assets/svg/attributes/worshiped.svg";
 import bigBadWolfSVG from "@/assets/svg/roles/big-bad-wolf.svg";
 import piedPiperCharmSVG from "@/assets/svg/attributes/charmed.svg";
 import cantVoteSVG from "@/assets/svg/attributes/cant-vote.svg";
+import thiefSVG from "@/assets/svg/roles/thief.svg";
+import stutteringJudgeSVG from "@/assets/svg/roles/stuttering-judge.svg";
+import whiteWerewolfSVG from "@/assets/svg/roles/white-werewolf.svg";
 import RoleImage from "@/components/shared/Game/Role/RoleImage";
 import RoleText from "@/components/shared/Game/Role/RoleText";
 
@@ -69,6 +76,7 @@ export default {
     },
     computed: {
         ...mapGetters("game", { game: "game" }),
+        // eslint-disable-next-line max-lines-per-function
         actionImageSource() {
             const { play } = this.gameHistoryEntry;
             const actionImageSource = {
@@ -96,43 +104,54 @@ export default {
                 "pied-piper": { charm: piedPiperCharmSVG },
                 "charmed": { "meet-each-other": piedPiperCharmSVG },
                 "scapegoat": { "ban-voting": cantVoteSVG },
+                "thief": { "choose-card": thiefSVG },
+                "stuttering-judge": { "choose-sign": stutteringJudgeSVG },
+                "white-werewolf": { eat: whiteWerewolfSVG },
             };
             return actionImageSource[play.source.name] ? actionImageSource[play.source.name][play.action] : undefined;
         },
         actionIconClass() {
-            const { targets, votes, side, action, source } = this.gameHistoryEntry.play;
+            const { targets, votes, side, action, source, chosenCard } = this.gameHistoryEntry.play;
             if (action === "meet-each-other") {
                 return source.name === "lovers" ? "fa-grin-hearts" : "fa-comments";
-            } else if (targets && targets.length || votes && votes.length || side) {
+            } else if (action === "choose-sign") {
+                return "fa-hand-spock";
+            } else if (targets && targets.length || votes && votes.length || side || chosenCard) {
                 return "fa-arrow-right";
             }
             return "fa-ban";
         },
         actionText() {
-            const { targets, votes, side, action, source } = this.gameHistoryEntry.play;
-            if (action !== "meet-each-other" && (!targets || !targets.length) && (!votes || !votes.length) && !side) {
+            const { targets, votes, side, chosenCard, action, source } = this.gameHistoryEntry.play;
+            if (action !== "meet-each-other" && action !== "choose-sign" && (!targets || !targets.length) && (!votes || !votes.length) && !side &&
+                !chosenCard) {
                 return this.$t(`GameSummaryHistoryPlayLine.skipTurn`);
             } else if (action === "use-potion") {
                 if (targets.length === 2) {
                     return this.$t(`GameSummaryHistoryPlayLine.actions.witch.use-potion.both`);
-                } else if (targets[0].potion.life) {
+                } else if (targets[0].hasDrankLifePotion) {
                     return this.$t(`GameSummaryHistoryPlayLine.actions.witch.use-potion.life`);
                 }
                 return this.$t(`GameSummaryHistoryPlayLine.actions.witch.use-potion.death`);
-            } else if (action === "eat" && targets[0].isInfected) {
+            } else if (action === "eat" && source === "werewolves" && targets[0].isInfected) {
                 return this.$t(`GameSummaryHistoryPlayLine.actions.vile-father-of-wolves.infect`);
             }
             return this.$t(`GameSummaryHistoryPlayLine.actions.${source.name}.${action}`);
         },
         actionSource() {
             const { action, source, targets } = this.gameHistoryEntry.play;
-            if (action === "eat" && targets[0].isInfected) {
+            if (action === "eat" && source === "werewolves" && targets[0].isInfected) {
                 return {
                     name: "vile-father-of-wolves",
                     players: [this.game.vileFatherOfWolvesPlayer],
                 };
             }
             return source;
+        },
+    },
+    methods: {
+        playerSourceRole(gameHistoryEntry, player) {
+            return gameHistoryEntry.play.action === "choose-card" ? player.originalRole : player.currentRole;
         },
     },
 };

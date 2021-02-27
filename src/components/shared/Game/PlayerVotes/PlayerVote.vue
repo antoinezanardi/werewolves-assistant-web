@@ -5,9 +5,9 @@
             <transition mode="out-in" name="translate-down-fade">
                 <i v-if="hasVoted" v-tooltip="$t('PlayerVote.playerHasVoted')" class="fa fa-vote-yea mr-2"/>
             </transition>
-            <span class="font-italic" v-html="$t('PlayerVote.voteFor')"/>
+            <span class="font-italic" v-html="voteText"/>
         </div>
-        <VSelect :options="targetablePlayersExceptHimself" :placeholder="$t('PlayerVote.none')" :filter="filterByPlayerName"
+        <VSelect v-if="player.canVote" :options="targetablePlayersExceptHimself" :placeholder="$t('PlayerVote.none')" :filter="filterByPlayerName"
                  label="name" :class="{ 'border-success': hasVoted }" @input="playerVotes">
             <template #selected-option="{ role, name }">
                 <RoleImage :role="role.current" class="role-image-option mr-2"/>
@@ -61,6 +61,9 @@ export default {
         },
         hasVoted() {
             return this.play.votes.find(({ from: source }) => source === this.player._id);
+        },
+        voteText() {
+            return this.player.canVote ? this.$t("PlayerVote.voteFor") : this.$t("PlayerVote.cantVote");
         },
     },
     methods: {

@@ -50,7 +50,7 @@ export default {
             pastEvents: {
                 lastGuardTarget: undefined,
                 hasWitchUsedLifePotion: undefined,
-                hasWitchUsedLDeathPotion: undefined,
+                hasWitchUsedDeathPotion: undefined,
                 hasStutteringJudgeChosenSign: undefined,
                 hasStutteringJudgeRequestedVote: undefined,
                 hasVileFatherOfWolvesInfected: undefined,
@@ -88,7 +88,7 @@ export default {
             this.loadings.pastEvents = true;
             const eatQueryStrings = { "play-source": "werewolves", "play-action": "eat" };
             const { data } = await this.$werewolvesAssistantAPI.getGameHistory(this.game._id, eatQueryStrings);
-            const eatPlays = data.map(eatPlay => new GameHistory(eatPlay));
+            const eatPlays = data.map(gameHistoryEntry => new GameHistory(gameHistoryEntry));
             this.pastEvents.hasVileFatherOfWolvesInfected = !!eatPlays.find(play => play.didVileFatherOfWolvesInfectTarget);
         },
         async fillStutteringJudgePastEvents() {
@@ -101,11 +101,22 @@ export default {
             const votePlays = data.map(gameHistoryEntry => new GameHistory(gameHistoryEntry));
             this.pastEvents.hasStutteringJudgeRequestedVote = !!votePlays.find(votePlay => votePlay.hasStutteringJudgeRequestedVote);
         },
-        fillWitchPotionsUsage() {
+        async fillWitchPotionsUsage() {
             this.loadings.pastEvents = true;
+            const usePotionsQueryStrings = { "play-source": "witch", "play-action": "use-potion" };
+            const { data } = await this.$werewolvesAssistantAPI.getGameHistory(this.game._id, usePotionsQueryStrings);
+            const usePotionPlays = data.map(gameHistoryEntry => new GameHistory(gameHistoryEntry));
+            this.pastEvents.hasWitchUsedLifePotion = !!usePotionPlays.find(({ didWitchUsedLifePotion }) => didWitchUsedLifePotion);
+            this.pastEvents.hasWitchUsedDeathPotion = !!usePotionPlays.find(({ didWitchUsedDeathPotion }) => didWitchUsedDeathPotion);
         },
-        fillLastGuardTarget() {
+        async fillLastGuardTarget() {
             this.loadings.pastEvents = true;
+            const protectQueryStrings = { "play-source": "guard", "play-action": "protect" };
+            const { data } = await this.$werewolvesAssistantAPI.getGameHistory(this.game._id, protectQueryStrings);
+            if (data.length) {
+                const lastProtectPlay = new GameHistory(data[data.length - 1]);
+                this.pastEvents.lastGuardTarget = lastProtectPlay.play.targets[0].player;
+            }
         },
         async getPastEvents() {
             const { firstWaiting, stutteringJudgePlayer, vileFatherOfWolvesPlayer } = this.game;
@@ -122,6 +133,7 @@ export default {
                 }
                 this.cantGetPastEvents = false;
             } catch (err) {
+                console.log(err);
                 this.cantGetPastEvents = true;
                 this.$error.display(err);
             } finally {

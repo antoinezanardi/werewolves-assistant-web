@@ -18,17 +18,17 @@
                     <ul id="potion-tabs" class="nav nav-pills nav-fill">
                         <li id="life-potion-tab" class="nav-item" @click="openLifePotionPanel">
                             <a id="use-life-potion-tab" class="nav-link"
-                               :class="{ active: panel === 'life-potion', disabled: pastEvents.hasWithUsedLifePotion }" href="#">
+                               :class="{ active: panel === 'life-potion', disabled: pastEvents.hasWitchUsedLifePotion }" href="#">
                                 <img :src="SVGs.lifePotionSVG" width="25" alt="Life Potion" class="mr-2"
-                                     :class="{ 'used-potion-svg': pastEvents.hasWithUsedLifePotion }"/>
+                                     :class="{ 'used-potion-svg': pastEvents.hasWitchUsedLifePotion }"/>
                                 <span v-html="lifePotionPanelTabText"/>
                             </a>
                         </li>
                         <li id="death-potion-tab" class="nav-item" @click="openDeathPotionPanel">
                             <a id="use-death-potion-tab" class="nav-link"
-                               :class="{ active: panel === 'death-potion', disabled: pastEvents.hasWithUsedDeathPotion }" href="#">
+                               :class="{ active: panel === 'death-potion', disabled: pastEvents.hasWitchUsedDeathPotion }" href="#">
                                 <img :src="SVGs.deathPotionSVG" width="25" alt="Death Potion" class="mr-2"
-                                     :class="{ 'used-potion-svg': pastEvents.hasWithUsedDeathPotion }"/>
+                                     :class="{ 'used-potion-svg': pastEvents.hasWitchUsedDeathPotion }"/>
                                 <span v-html="deathPotionPanelTabText"/>
                             </a>
                         </li>
@@ -98,8 +98,8 @@ export default {
             return hasWitchUsedLifePotion ? this.$t("UsePotionPlayField.lifePotionUsed") : this.$t("UsePotionPlayField.useLifePotionOn");
         },
         deathPotionPanelTabText() {
-            const { hasWithUsedDeathPotion } = this.pastEvents;
-            return hasWithUsedDeathPotion ? this.$t("UsePotionPlayField.deathPotionUsed") : this.$t("UsePotionPlayField.useDeathPotionOn");
+            const { hasWitchUsedDeathPotion } = this.pastEvents;
+            return hasWitchUsedDeathPotion ? this.$t("UsePotionPlayField.deathPotionUsed") : this.$t("UsePotionPlayField.useDeathPotionOn");
         },
         alivePlayersWithoutWerewolvesTarget() {
             return this.game.alivePlayers.filter(player => !player.hasAttribute("eaten"));
@@ -117,8 +117,8 @@ export default {
             }
         },
         openDeathPotionPanel() {
-            const { hasWithUsedDeathPotion } = this.pastEvents;
-            if (!hasWithUsedDeathPotion) {
+            const { hasWitchUsedDeathPotion } = this.pastEvents;
+            if (!hasWitchUsedDeathPotion) {
                 this.panel = "death-potion";
                 scrollTo("#death-potion-tab", 500, { container: "#game-content-play-field" });
             }

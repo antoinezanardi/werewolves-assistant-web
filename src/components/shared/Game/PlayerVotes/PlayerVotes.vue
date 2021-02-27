@@ -1,6 +1,6 @@
 <template>
     <div id="player-votes" class="row justify-content-center align-items-center">
-        <PlayerVote v-for="player in game.canVotePlayers" :key="player.name" :player="player" :play="play" :targetable-players="targetablePlayers"
+        <PlayerVote v-for="player in game.alivePlayers" :key="player.name" :player="player" :play="play" :targetable-players="targetablePlayers"
                     class="col-6 col-lg-3" @player-votes="playerVotes"/>
     </div>
 </template>

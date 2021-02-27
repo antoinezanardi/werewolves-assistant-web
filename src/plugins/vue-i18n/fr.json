@@ -701,6 +701,7 @@
             "seen": "Ce joueur a été vu par la Voyante",
             "eatenByWerewolves": "Ce joueur est la cible des Loups-Garous",
             "eatenByBigBadWolf": "Ce joueur est la cible du Grand-Méchant-Loup",
+            "eatenByWhiteWerewolf": "Ce joueur est la cible du Loup-Garou Blanc",
             "drankLifePotion": "Ce joueur a bu la potion de vie",
             "drankDeathPotion": "Ce joueur a bu la potion de mort",
             "protected": "Ce joueur est protégé",
@@ -732,7 +733,8 @@
     "PlayerVote": {
         "voteFor": "Vote pour",
         "none": "Personne",
-        "playerHasVoted": "Ce joueur a voté"
+        "playerHasVoted": "Ce joueur a voté",
+        "cantVote": "n'a pas le droit de voter"
     },
     "GameVillagersSide": {
         "villagers": "Villageois",
@@ -774,6 +776,7 @@
             "villagers": "Partie gagnée par le seul Villageois | Partie gagnée par les Villageois",
             "lovers": "Partie gagnée par les Amoureux",
             "pied-piper": "Partie gagnée par le Joueur de Flûte",
+            "white-werewolf": "Partie gagnée par le Loup-Garou Blanc",
             "nobody": "Match nul ! Aucun survivant dans le village..."
         }
     },
@@ -797,7 +800,9 @@
         "werewolves": "Loups-Garous",
         "close": "Fermer",
         "loadingGameHistory": "Chargement de l'historique de la partie",
-        "endOfGame": "Fin de la partie"
+        "endOfGame": "Fin de la partie",
+        "additionalCards": "Cartes additionnelles",
+        "thiefAdditionalCards": "Cartes destinées au Voleur"
     },
     "GameReviewButton": {
         "rateThisGame": "Noter votre expérience"
@@ -888,6 +893,15 @@
             },
             "scapegoat": {
                 "ban-voting": "a interdit de vote pour le jour suivant"
+            },
+            "thief": {
+                "choose-card": "a choisi comme carte"
+            },
+            "stuttering-judge": {
+                "choose-sign": "a convenu d'un signe avec le maître du jeu"
+            },
+            "white-werewolf": {
+                "eat": "a décidé de manger"
             }
         },
         "skipTurn": "a passé son tour"
@@ -905,6 +919,9 @@
             },
             "big-bad-wolf": {
                 "eat": "a été dévoré par le Grand-Méchant-Loup."
+            },
+            "white-werewolf": {
+                "eat": "a été dévoré par le Loup-Garou Blanc."
             },
             "witch": {
                 "use-potion": "a été empoisonné par la potion de mort de la Sorcière."
@@ -1045,7 +1062,7 @@
             "deathDuringNight": "Le village se réveille et on dirait qu'un seul habitant manque à l'appel ! | Le village se réveille et on dirait que {numberOfDeaths} habitants manquent à l'appel !",
             "letsSeeWhoIsDead": "Après plusieurs recherches, le village doit se résoudre à annoncer publiquement la triste nouvelle...",
             "noDeathDuringNight": "Le village se réveille, et, à la surprise générale, personne n'est mort pendant la nuit !",
-            "allVote": "Les habitants du village vont maintenant voter pour pendre l'un des leurs et espérer débusquer un loup-Garou.",
+            "allVote": "Les habitants du village vont maintenant voter pour pendre l'un des leurs et espérer débusquer un Loup-Garou.",
             "allVoteAgain": "Étant donné qu'il n'y a pas de maire pour départager, le village va devoir voter entre les joueurs à égalité: {players}.",
             "noDeathAfterVotes": "Même après 2 votes consécutifs, le village n'a pas réussi à s'entendre sur qui sera pendu.",
             "everybodyFallAsleepAlive": "Par conséquent, il n'y aura aucune mise à mort publique aujourd'hui. Tous les habitants sans exception se rendorment en vie... pour l'instant !",

@@ -391,7 +391,7 @@ class Game {
             return false;
         }
         const { play } = this.history[0];
-        return play.source.name === "all" && play.action === "vote" && play.targets.length > 1 &&
+        return play.source.name === "all" && play.action === "vote" && play.votesResult === "need-settlement" &&
             this.firstWaiting.for === "all" && this.firstWaiting.to === "vote";
     }
 

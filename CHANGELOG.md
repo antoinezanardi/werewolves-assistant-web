@@ -8,6 +8,7 @@
 * [#123](https://github.com/antoinezanardi/werewolves-assistant-web/issues/123) - Options for game repartition.
 * [#124](https://github.com/antoinezanardi/werewolves-assistant-web/issues/124) - Add guard protection on little girl option.
 * [#125](https://github.com/antoinezanardi/werewolves-assistant-web/issues/125) - Add idiot dies on ancient death option.
+* [#126](https://github.com/antoinezanardi/werewolves-assistant-web/issues/126) - Implement the White Werewolf Role.
 
 ### 🌟 Enhancements
 

@@ -25,7 +25,9 @@ class GameHistory {
                 from: new Player(vote.from),
                 for: new Player(vote.for),
             }))),
+            votesResult: getProp(gameHistory, "play.votesResult"),
             doesJudgeRequestAnotherVote: getProp(gameHistory, "play.doesJudgeRequestAnotherVote"),
+            chosenCard: getProp(gameHistory, "play.chosenCard"),
             side: getProp(gameHistory, "play.side"),
         };
         this.deadPlayers = getProp(gameHistory, "deadPlayers", [], players => players.map(player => new Player(player)));
@@ -39,17 +41,17 @@ class GameHistory {
 
     get didWitchUsedLifePotion() {
         const { play } = this;
-        return play.source.name === "witch" && play.action === "use-potion" && !!play.targets.find(({ potion }) => potion.life);
+        return play.source.name === "witch" && play.action === "use-potion" && !!play.targets.find(({ hasDrankLifePotion }) => hasDrankLifePotion);
     }
 
     get didWitchUsedDeathPotion() {
         const { play } = this;
-        return play.source.name === "witch" && play.action === "use-potion" && !!play.targets.find(({ potion }) => potion.death);
+        return play.source.name === "witch" && play.action === "use-potion" && !!play.targets.find(({ hasDrankDeathPotion }) => hasDrankDeathPotion);
     }
 
     get wasVotePlayWithoutDeath() {
-        const { play, deadPlayers } = this;
-        return play.source.name === "all" && play.action === "vote" && !deadPlayers.length;
+        const { play } = this;
+        return play.source.name === "all" && play.action === "vote" && play.votesResult === "no-death";
     }
 
     get hasStutteringJudgeRequestedVote() {

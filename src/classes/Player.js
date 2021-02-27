@@ -45,6 +45,10 @@ class Player {
     get isAliveAndPowerful() {
         return this.isAlive && !this.hasAttribute("powerless");
     }
+
+    get canVote() {
+        return !this.hasAttribute("cant-vote");
+    }
 }
 
 export default Player;

@@ -1,5 +1,5 @@
 <template>
-    <div id="vote-play-field">
+    <div id="vote-play-field" class="d-flex flex-column">
         <GamePlayAlerts :past-events="pastEvents"/>
         <div v-if="game.stutteringJudgePlayer && game.stutteringJudgePlayer.isAlive">
             <div class="row align-items-center">
@@ -15,7 +15,7 @@
             <hr class="my-2 bg-dark"/>
         </div>
         <h5 id="targetable-players-text" class="text-center py-1" v-html="targetablePlayersText"/>
-        <PlayerVotes :play="play" :targetable-players="targetablePlayers" class="h-100" @player-votes="playerVotes"/>
+        <PlayerVotes :play="play" :targetable-players="targetablePlayers" class="flex-grow-1" @player-votes="playerVotes"/>
     </div>
 </template>
 
