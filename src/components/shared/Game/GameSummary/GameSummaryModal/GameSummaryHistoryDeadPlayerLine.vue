@@ -42,7 +42,10 @@ export default {
         return {
             SVGs: { dead },
             murderIcons: {
-                "all": { vote },
+                "all": {
+                    vote,
+                    reconsider: vote,
+                },
                 "werewolves": { eat: eaten },
                 "big-bad-wolf": { eat: bigBadWolf },
                 "white-werewolf": { eat: whiteWerewolf },

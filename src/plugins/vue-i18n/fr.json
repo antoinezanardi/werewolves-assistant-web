@@ -912,7 +912,8 @@
     "GameSummaryHistoryDeadPlayerLine": {
         "murder": {
             "all": {
-                "vote": "a été pendu sur la place publique après le vote du village."
+                "vote": "a été pendu sur la place publique après le vote du village.",
+                "reconsider": "a finalement été pendu, le Village revenant sur sa décision d'épargner l'Idiot maintenant que l'Ancien est mort."
             },
             "werewolves": {
                 "eat": "a été dévoré par les Loups-Garous."
