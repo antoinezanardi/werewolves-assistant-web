@@ -967,7 +967,8 @@
             "eaten": "souhaite manger | souhaitent manger"
         },
         "big-bad-wolf": {
-            "eaten": "souhaite manger"
+            "eaten": "souhaite manger",
+            "no-eaten": "ne peut manger personne"
         },
         "witch": {
             "no-drank-life-potion": "ne souhaite pas utiliser sa potion de vie",

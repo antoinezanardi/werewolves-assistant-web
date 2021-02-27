@@ -18,11 +18,14 @@ export function isTargetAction(action) {
     return targetActions.includes(action);
 }
 
-export function isSkippableAction(action, source, additionalCards) {
+export function isSkippableAction(action, source, game) {
+    const { additionalCards, aliveVillagerPlayers } = game;
     const skippableActions = ["use-potion", "mark", "meet-each-other", "ban-voting", "choose-sign"];
     const werewolfRoles = ["werewolf", "white-werewolf", "vile-father-of-wolves", "big-bad-wolf"];
-    return skippableActions.includes(action) || action === "eat" && source === "white-werewolf" ||
-        action === "choose-card" && !additionalCards.every(({ role }) => werewolfRoles.includes(role));
+    const areAllVillagersEaten = aliveVillagerPlayers.every(player => player.hasAttribute("eaten"));
+    return skippableActions.includes(action) ||
+        action === "eat" && (source === "white-werewolf" || source === "big-bad-wolf" && areAllVillagersEaten) ||
+        action === "choose-card" && additionalCards && !additionalCards.every(({ role }) => werewolfRoles.includes(role));
 }
 
 export function isPreFirstNightPlay(action, turn, phase) {

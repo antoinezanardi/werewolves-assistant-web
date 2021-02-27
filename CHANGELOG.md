@@ -23,6 +23,7 @@
 ### 🐛 Bug fixes
 
 * [#119](https://github.com/antoinezanardi/werewolves-assistant-web/issues/119) - Adapt home page to smaller screens.
+* [#122](https://github.com/antoinezanardi/werewolves-assistant-web/issues/122) - No targets for big bad wolf.
 * [#139](https://github.com/antoinezanardi/werewolves-assistant-web/issues/139) - Broken styles on GameLobby.
 
 ### ♻️ Refactoring

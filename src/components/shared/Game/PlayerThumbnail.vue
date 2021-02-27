@@ -12,7 +12,7 @@
                 <RoleImage :role="thumbnail.front"/>
                 <transition name="fade" mode="out-in">
                     <img v-if="player.isAlive === false" class="player-thumbnail-icon" :src="SVGs.dead" alt="Player dead"/>
-                    <img v-else-if="player.currentRole !== player.originalRole" class="player-thumbnail-icon" :src="SVGs.roleChanged"
+                    <img v-else-if="game._id && player.currentRole !== player.originalRole" class="player-thumbnail-icon" :src="SVGs.roleChanged"
                          alt="Role changed"/>
                     <img v-else-if="player.isRoleRevealed" class="player-thumbnail-icon" :src="SVGs.roleRevealed"
                          alt="Role revealed"/>
@@ -76,7 +76,7 @@ export default {
         playerThumbnailTooltip() {
             if (this.game._id || this.player.role.current) {
                 let content = `<div>${this.$tc(`Role.${this.player.role.current}`, 1)}</div>`;
-                if (this.player.currentRole !== this.player.originalRole) {
+                if (this.game._id && this.player.currentRole !== this.player.originalRole) {
                     const originalRoleText = this.$t(`Role.${this.player.originalRole}`);
                     content += `<hr class="bg-dark my-1"/><div>(${this.$t("PlayerThumbnail.previously", { role: originalRoleText })})</div>`;
                 }
