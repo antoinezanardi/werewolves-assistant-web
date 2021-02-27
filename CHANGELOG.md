@@ -31,6 +31,10 @@
 * [#129](https://github.com/antoinezanardi/werewolves-assistant-web/issues/129) - Change sheriff enabled option property name.
 * [#130](https://github.com/antoinezanardi/werewolves-assistant-web/issues/130) - Change `potion` structure for plays and game history.
 
+### 📚 Documentation
+
+* [#133](https://github.com/antoinezanardi/werewolves-assistant-web/issues/133) - Update README.md.
+
 ### 📦 Packages
 
 * `howler` installed with version `2.2.1`.
