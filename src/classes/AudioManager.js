@@ -65,6 +65,7 @@ class AudioManager {
             "charmed-play": new Howl({ src: `${basePath}/charmed-play.mp3`, ...options }),
             "day-rises": new Howl({ src: `${basePath}/day-rises.mp3`, ...options }),
             "hunter-plays": new Howl({ src: `${basePath}/hunter-plays.mp3`, ...options }),
+            "scapegoat-plays": new Howl({ src: `${basePath}/scapegoat-plays.mp3`, ...options }),
         };
     }
 

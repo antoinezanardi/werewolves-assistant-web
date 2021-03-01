@@ -274,7 +274,10 @@ export default {
                     ],
                     soundEffect: "charmed-play",
                 },
-                "scapegoat-turn": { messages: [i18n.t("GameEvent.messages.scapegoatStarts")] },
+                "scapegoat-turn": {
+                    messages: [i18n.t("GameEvent.messages.scapegoatStarts")],
+                    soundEffect: "scapegoat-plays",
+                },
                 "thief-turn": {
                     messages: [
                         i18n.t("GameEvent.messages.thiefStarts"),

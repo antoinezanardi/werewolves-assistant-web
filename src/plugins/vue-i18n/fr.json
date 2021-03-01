@@ -905,7 +905,17 @@
                 "eat": "a décidé de manger"
             }
         },
-        "skipTurn": "a passé son tour"
+        "consequences": {
+            "thiefMustChooseCard": "Le Voleur était obligé de choisir une carte étant donné que toutes les cartes qui lui étaient destinées étaient du camp des Loups-Garous.",
+            "littleGirlNotProtected": "La Petite Fille ne peut être protégée de la morsure des Loups-Garous par le Salvateur. (Ceci peut être modifié dans les options de la partie)",
+            "piedPiperIsInfected": "Le Joueur de Flûte a été infecté, il perd donc son but de charmer tous les joueurs.",
+            "stutteringJudgeRequestedVote": "Le Juge Bègue a demandé un nouveau vote après l'annonce des résultats de celui-ci.",
+            "votesNoDeath": "Aucun joueur n'est mort de cette pendaison.",
+            "ravenMarked": "Le joueur aura {markPenalty} voix d'office contre lui au prochain vote. (Ceci peut être modifié dans les options de la partie)",
+            "votesNeedSettlement": "Dû à l'égalité des votes, les ex æquo doivent être départagés."
+        },
+        "skipTurn": "a passé son tour",
+        "remarksOnPlay": "Remarques sur cette action"
     },
     "GameSummaryHistoryRevealedPlayerLine": {
         "idiotRoleIsRevealed": "n'a pas été pendu mais a dû révéler son rôle et a perdu son droit de vote."
@@ -1068,7 +1078,7 @@
             "allVote": "Les habitants du village vont maintenant voter pour pendre l'un des leurs et espérer débusquer un Loup-Garou.",
             "allVoteAgain": "Étant donné qu'il n'y a pas de maire pour départager, le village va devoir voter entre les joueurs à égalité: {players}.",
             "noDeathAfterVotes": "Même après 2 votes consécutifs, le village n'a pas réussi à s'entendre sur qui sera pendu.",
-            "everybodyFallAsleepAlive": "Par conséquent, il n'y aura aucune mise à mort publique aujourd'hui. Tous les habitants sans exception se rendorment en vie... pour l'instant !",
+            "everybodyFallAsleepAlive": "Par conséquent, il n'y aura aucune mise à mort publique aujourd'hui.",
             "attentionToTheAncient": "Attention, l'Ancien est encore en vie et caché parmi les habitants ! S'il est pendu, tous les Villageois d'origine n'auront plus de pouvoirs spéciaux.",
             "seerStarts": "La Voyante se réveille et va découvrir dans sa boule de cristal le rôle d'un habitant.",
             "followingMessageMustBeMimed": "La phrase suivante devra être mimée à la Voyante car cette dernière n'est pas très bavarde...",

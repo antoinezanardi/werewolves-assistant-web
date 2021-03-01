@@ -136,7 +136,7 @@ export default {
                 } else if (lastGameHistoryEntry.play.action === "eat" && lastGameHistoryEntrySourceName === "werewolves" &&
                     !!vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer.isAlive) {
                     this.events.push(new GameEvent({ type: `vile-father-of-wolves-infects`, targets: lastGameHistoryEntry.play.targets }));
-                } else if (this.game.history.length && lastGameHistoryEntry.wasVotePlayWithoutDeath && !lastGameHistoryEntry.revealedPlayers) {
+                } else if (lastGameHistoryEntry.wasVotePlayWithoutDeath && !lastGameHistoryEntry.revealedPlayers.length) {
                     this.events.push(new GameEvent({ type: `no-death-after-votes`, targets: this.game.history[0].play.targets }));
                 } else if (lastGameHistoryEntry.play.action === "choose-card") {
                     this.events.push(new GameEvent({ type: `thief-chooses-card`, targets: [{ player: this.game.originalThiefPlayer }] }));

@@ -74,7 +74,7 @@
                                     <hr class="bg-dark"/>
                                     <div class="row justify-content-center">
                                         <div v-for="card of game.thiefAdditionalCards" :key="card._id"
-                                             class="col-lg-2 col-6 d-flex flex-column align-items-center">
+                                             class="col-lg-2 col-6 d-flex flex-column align-items-center text-center">
                                             <RoleImage :role="card.role" class="additional-card-image mt-2"/>
                                             <RoleText prefix="a" :role="card.role"/>
                                         </div>
