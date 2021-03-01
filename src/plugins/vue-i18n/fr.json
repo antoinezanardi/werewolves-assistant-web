@@ -777,6 +777,7 @@
             "lovers": "Partie gagnée par les Amoureux",
             "pied-piper": "Partie gagnée par le Joueur de Flûte",
             "white-werewolf": "Partie gagnée par le Loup-Garou Blanc",
+            "angel": "Partie gagnée par l'Ange",
             "nobody": "Match nul ! Aucun survivant dans le village..."
         }
     },

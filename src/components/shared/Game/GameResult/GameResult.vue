@@ -16,6 +16,7 @@ import inLove from "@/assets/svg/attributes/in-love.svg";
 import villager from "@/assets/svg/roles/villager.svg";
 import charmed from "@/assets/svg/attributes/charmed.svg";
 import whiteWerewolf from "@/assets/svg/roles/white-werewolf.svg";
+import angel from "@/assets/svg/roles/angel.svg";
 
 export default {
     name: "GameResult",
@@ -31,6 +32,7 @@ export default {
                 "lovers": inLove,
                 "pied-piper": charmed,
                 "white-werewolf": whiteWerewolf,
+                angel,
             };
             return winners[this.game.won.by] ? winners[this.game.won.by] : dead;
         },

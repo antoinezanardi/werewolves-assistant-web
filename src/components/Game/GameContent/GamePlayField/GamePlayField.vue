@@ -133,7 +133,6 @@ export default {
                 }
                 this.cantGetPastEvents = false;
             } catch (err) {
-                console.log(err);
                 this.cantGetPastEvents = true;
                 this.$error.display(err);
             } finally {

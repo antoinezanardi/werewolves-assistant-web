@@ -59,7 +59,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div v-if="game.additionalCards">
+                            <div v-if="game.additionalCards.length">
                                 <hr class="bg-dark"/>
                                 <h4 class="text-center">
                                     <i class="fa fa-chess mr-2 text-info"/>

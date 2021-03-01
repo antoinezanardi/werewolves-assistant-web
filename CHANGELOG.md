@@ -9,6 +9,7 @@
 * [#124](https://github.com/antoinezanardi/werewolves-assistant-web/issues/124) - Add guard protection on little girl option.
 * [#125](https://github.com/antoinezanardi/werewolves-assistant-web/issues/125) - Add idiot dies on ancient death option.
 * [#126](https://github.com/antoinezanardi/werewolves-assistant-web/issues/126) - Implement the White Werewolf Role.
+* [#131](https://github.com/antoinezanardi/werewolves-assistant-web/issues/131) - Implement the Angel Role.
 
 ### 🌟 Enhancements
 
@@ -44,7 +45,7 @@
 * `@sentry/integrations` updated to version `6.2.0`.
 * `@vue/test-utils` updated to version `1.1.3`.
 * `chai` updated to version `4.3.0`.
-* `eslint` updated to version `7.20.0`.
+* `eslint` updated to version `7.21.0`.
 * `eslint-plugin-vue` updated to version `7.6.0`.
 * `sweetalert2` updated to version `10.15.5`.
 * `vue-i18n` updated to version `8.23.0`.
