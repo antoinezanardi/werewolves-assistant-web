@@ -1,6 +1,6 @@
 # 📈 LIST OF CHANGES FOR WEREWOLVES ASSISTANT WEB
 
-## 1.0.0-beta.11 (2021-02-??)
+## 1.0.0-beta.11 (2021-03-??)
 
 ### 🚀 New features
 
@@ -11,6 +11,7 @@
 * [#126](https://github.com/antoinezanardi/werewolves-assistant-web/issues/126) - Implement the White Werewolf Role.
 * [#131](https://github.com/antoinezanardi/werewolves-assistant-web/issues/131) - Implement the Angel Role.
 * [#132](https://github.com/antoinezanardi/werewolves-assistant-web/issues/132) - Implement the Thief Role.
+* [#141](https://github.com/antoinezanardi/werewolves-assistant-web/issues/141) - Role warnings for plays.
 
 ### 🌟 Enhancements
 
