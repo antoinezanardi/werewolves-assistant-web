@@ -10,6 +10,7 @@
 * [#125](https://github.com/antoinezanardi/werewolves-assistant-web/issues/125) - Add idiot dies on ancient death option.
 * [#126](https://github.com/antoinezanardi/werewolves-assistant-web/issues/126) - Implement the White Werewolf Role.
 * [#131](https://github.com/antoinezanardi/werewolves-assistant-web/issues/131) - Implement the Angel Role.
+* [#132](https://github.com/antoinezanardi/werewolves-assistant-web/issues/132) - Implement the Thief Role.
 
 ### 🌟 Enhancements
 
