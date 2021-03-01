@@ -108,6 +108,7 @@
                                                                                               :revealed-player="revealedPlayer"/>
                                                         <GameSummaryHistoryDeadPlayerLine v-for="deadPlayer of gameHistoryEntry.deadPlayers"
                                                                                           :key="`death-${deadPlayer._id}`"
+                                                                                          :game-history-entry="gameHistoryEntry"
                                                                                           :dead-player="deadPlayer"/>
                                                     </template>
                                                 </tbody>

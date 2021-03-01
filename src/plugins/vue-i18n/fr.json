@@ -947,6 +947,13 @@
             "sheriff": {
                 "settle-votes": "a été pendu sur la place publique sur la décision arbitraire du maire."
             }
+        },
+        "remarksOnDeath": "Remarques sur cette mort",
+        "consequences": {
+            "scapegoatDiesForTie": "Suite à l'égalité des votes, le Bouc-Émissaire a été pendu arbitrairement.",
+            "idiotWontDelegate": "L'Idiot n'a pas délégué son rôle de maire dans son dernier souffle... Quel idiot.",
+            "ancientHadHisRevenge": "Dans son dernier souffle, l'Ancien a pris sa revanche sur cette jeunesse éffrontée : Tous les joueurs dans le camp des Villageois ont perdu leurs pouvoirs.",
+            "wildChildBecameWerewolf": "Ce joueur ayant été le modèle de l'Enfant Sauvage, ce dernier se transforma en Loup-Garou à sa mort."
         }
     },
     "PlayFieldActionText": {
