@@ -9,7 +9,7 @@
         <div class="flex-grow-1">
             <div id="additional-cards" class="row">
                 <div v-for="card of game.thiefAdditionalCards" :key="card._id" class="additional-card col text-center"
-                     :class="{ selected: play.chosenCard === card._id }" @click.prevent="cardSelected(card)">
+                     :class="{ selected: play.card === card._id }" @click.prevent="cardSelected(card)">
                     <RoleImage class="additional-card-image" :role="card.role"/>
                     <RoleText class="additional-card-text mt-1" :role="card.role"/>
                 </div>

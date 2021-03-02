@@ -46,8 +46,8 @@ class Player {
         return this.isAlive && !this.hasAttribute("powerless");
     }
 
-    get canVote() {
-        return !this.hasAttribute("cant-vote");
+    canVote(game) {
+        return !this.hasActiveAttribute("cant-vote", game);
     }
 }
 

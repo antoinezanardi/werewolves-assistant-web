@@ -25,7 +25,7 @@ export default {
                 votes: [],
                 targets: [],
                 doesJudgeRequestAnotherVote: undefined,
-                chosenCard: undefined,
+                card: undefined,
                 side: undefined,
             },
             events: [],
@@ -104,7 +104,7 @@ export default {
             this.play.side = side;
         },
         cardSelected(card) {
-            this.play.chosenCard = card ? card._id : undefined;
+            this.play.card = card ? card._id : undefined;
         },
         vileFatherOfWolvesInfects() {
             if (this.play.targets.length) {
@@ -117,8 +117,9 @@ export default {
         resetPlay() {
             this.play.votes = [];
             this.play.targets = [];
+            this.play.doesJudgeRequestAnotherVote = undefined;
             this.play.side = undefined;
-            this.play.chosenCard = undefined;
+            this.play.card = undefined;
         },
         generateLastActionEvents() {
             if (this.game.history.length) {

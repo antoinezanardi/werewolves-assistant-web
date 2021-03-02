@@ -1,6 +1,6 @@
 <template>
     <div id="elect-sheriff-play-field">
-        <GamePlayAlerts/>
+        <GamePlayAlerts :past-events="pastEvents"/>
         <PlayerVotes class="h-100" :play="play" :targetable-players="game.alivePlayers" @player-votes="playerVotes"/>
     </div>
 </template>
@@ -15,6 +15,10 @@ export default {
     components: { GamePlayAlerts, PlayerVotes },
     props: {
         play: {
+            type: Object,
+            required: true,
+        },
+        pastEvents: {
             type: Object,
             required: true,
         },

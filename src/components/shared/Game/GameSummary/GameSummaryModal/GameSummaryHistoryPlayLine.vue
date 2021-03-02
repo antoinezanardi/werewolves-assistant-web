@@ -24,9 +24,9 @@
                 <RoleImage width="30" :role="gameHistoryEntry.play.side"/>
                 <RoleText class="text-center small cursor-text" :role="gameHistoryEntry.play.side"/>
             </div>
-            <div v-else-if="gameHistoryEntry.play.chosenCard" class="d-flex flex-column align-items-center justify-content-center my-1">
-                <RoleImage width="30" :role="gameHistoryEntry.play.chosenCard.role"/>
-                <RoleText class="text-center small cursor-text" prefix="a" :role="gameHistoryEntry.play.chosenCard.role"/>
+            <div v-else-if="gameHistoryEntry.play.card" class="d-flex flex-column align-items-center justify-content-center my-1">
+                <RoleImage width="30" :role="gameHistoryEntry.play.card.role"/>
+                <RoleText class="text-center small cursor-text" prefix="a" :role="gameHistoryEntry.play.card.role"/>
             </div>
             <div v-for="target of gameHistoryEntry.play.targets" v-else :key="target.player._id"
                  class="d-flex flex-column align-items-center justify-content-center my-1">
@@ -123,20 +123,20 @@ export default {
             return actionImageSource[play.source.name] ? actionImageSource[play.source.name][play.action] : undefined;
         },
         actionIconClass() {
-            const { targets, votes, side, action, source, chosenCard } = this.gameHistoryEntry.play;
+            const { targets, votes, side, action, source, card } = this.gameHistoryEntry.play;
             if (action === "meet-each-other") {
                 return source.name === "lovers" ? "fa-grin-hearts" : "fa-comments";
             } else if (action === "choose-sign") {
                 return "fa-hand-spock";
-            } else if (targets && targets.length || votes && votes.length || side || chosenCard) {
+            } else if (targets && targets.length || votes && votes.length || side || card) {
                 return "fa-arrow-right";
             }
             return "fa-ban";
         },
         actionText() {
-            const { targets, votes, side, chosenCard, action, source } = this.gameHistoryEntry.play;
+            const { targets, votes, side, card, action, source } = this.gameHistoryEntry.play;
             if (action !== "meet-each-other" && action !== "choose-sign" && (!targets || !targets.length) && (!votes || !votes.length) && !side &&
-                !chosenCard) {
+                !card) {
                 return this.$t(`GameSummaryHistoryPlayLine.skipTurn`);
             } else if (action === "use-potion") {
                 if (targets.length === 2) {

@@ -112,7 +112,7 @@ export default {
             return this.play.side;
         },
         isCardChosen() {
-            return this.play.chosenCard;
+            return this.play.card;
         },
         chooseSidePlayRequirementsIconClass() {
             return this.isSideChosen ? "fa-check text-success" : "fa-times text-danger";

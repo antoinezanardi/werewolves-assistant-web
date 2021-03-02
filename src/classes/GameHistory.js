@@ -27,7 +27,7 @@ class GameHistory {
             }))),
             votesResult: getProp(gameHistory, "play.votesResult"),
             doesJudgeRequestAnotherVote: getProp(gameHistory, "play.doesJudgeRequestAnotherVote"),
-            chosenCard: getProp(gameHistory, "play.chosenCard"),
+            card: getProp(gameHistory, "play.card"),
             side: getProp(gameHistory, "play.side"),
         };
         this.deadPlayers = getProp(gameHistory, "deadPlayers", [], players => players.map(player => new Player(player)));

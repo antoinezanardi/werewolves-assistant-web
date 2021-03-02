@@ -9,6 +9,7 @@
 * [#124](https://github.com/antoinezanardi/werewolves-assistant-web/issues/124) - Add guard protection on little girl option.
 * [#125](https://github.com/antoinezanardi/werewolves-assistant-web/issues/125) - Add idiot dies on ancient death option.
 * [#126](https://github.com/antoinezanardi/werewolves-assistant-web/issues/126) - Implement the White Werewolf Role.
+* [#127](https://github.com/antoinezanardi/werewolves-assistant-web/issues/127) - Implement the Stuttering Judge Role.
 * [#131](https://github.com/antoinezanardi/werewolves-assistant-web/issues/131) - Implement the Angel Role.
 * [#132](https://github.com/antoinezanardi/werewolves-assistant-web/issues/132) - Implement the Thief Role.
 * [#141](https://github.com/antoinezanardi/werewolves-assistant-web/issues/141) - Role warnings for plays.
@@ -43,14 +44,14 @@
 ### 📦 Packages
 
 * `howler` installed with version `2.2.1`.
-* `particles.vue` installed with version `2.1.12`.
+* `particles.vue` installed with version `2.2.1`.
 * `vue-backtotop` installed with version `1.6.1`.
-* `@sentry/browser` updated to version `6.2.0`.
-* `@sentry/integrations` updated to version `6.2.0`.
+* `@sentry/browser` updated to version `6.2.1`.
+* `@sentry/integrations` updated to version `6.2.1`.
 * `@vue/test-utils` updated to version `1.1.3`.
 * `chai` updated to version `4.3.0`.
 * `eslint` updated to version `7.21.0`.
-* `eslint-plugin-vue` updated to version `7.6.0`.
+* `eslint-plugin-vue` updated to version `7.7.0`.
 * `sweetalert2` updated to version `10.15.5`.
 * `vue-i18n` updated to version `8.23.0`.
 * `vue-gtag` updated to version `1.11.0`.

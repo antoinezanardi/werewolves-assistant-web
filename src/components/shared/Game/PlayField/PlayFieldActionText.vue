@@ -53,8 +53,8 @@ export default {
             }
             return `${baseActionText}...`;
         },
-        chosenCard() {
-            return this.play.chosenCard ? this.game.additionalCards.find(({ _id }) => _id === this.play.chosenCard) : null;
+        card() {
+            return this.play.card ? this.game.additionalCards.find(({ _id }) => _id === this.play.card) : null;
         },
         chooseSideActionText() {
             if (!this.play.side) {
@@ -63,11 +63,11 @@ export default {
             return this.$t(`PlayFieldActionText.dog-wolf.${this.play.side}`);
         },
         chooseCardActionText() {
-            if (!this.chosenCard) {
+            if (!this.card) {
                 const noChosenCardTextKey = this.game.isFirstWaitingSkippableAction ? "no-choose-card" : "choose-card";
                 return `${this.$t(`PlayFieldActionText.thief.${noChosenCardTextKey}`)}...`;
             }
-            return `${this.$t(`PlayFieldActionText.thief.choose-card`)} ${this.$t(`Role.a.${this.chosenCard.role}`)}`;
+            return `${this.$t(`PlayFieldActionText.thief.choose-card`)} ${this.$t(`Role.a.${this.card.role}`)}`;
         },
         isOneTargetPlayAndTargetingHimself() {
             if (this.game.expectedTargetsLength !== 1 || this.targetedPlayersForAttribute.length !== 1) {

@@ -140,6 +140,8 @@ export default {
                     messages: [
                         ...insertIf(firstWaiting.to === "vote" && !!angelPlayer && this.game.isFirstWaitingPreFirstNightPlay,
                             i18n.t("GameEvent.messages.gameStartsWithVoteBecauseOfAngel")),
+                        ...insertIf(firstWaiting.to === "vote" && firstWaiting.cause === "stuttering-judge-request",
+                            i18n.t("GameEvent.messages.allVoteBecauseOfStutteringJudge")),
                         ...insertIf(firstWaiting.to === "vote" && !this.game.isSecondVoteAfterTie, i18n.t("GameEvent.messages.allVote")),
                         ...insertIf(firstWaiting.to === "vote" && this.game.isSecondVoteAfterTie,
                             i18n.t("GameEvent.messages.allVoteAgain", { players: listPlayerNames(this.game.lastActionTargetedPlayers) })),

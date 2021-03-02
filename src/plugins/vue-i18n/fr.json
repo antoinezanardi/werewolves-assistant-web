@@ -1083,6 +1083,7 @@
             "letsSeeWhoIsDead": "Après plusieurs recherches, le village doit se résoudre à annoncer publiquement la triste nouvelle...",
             "noDeathDuringNight": "Le village se réveille, et, à la surprise générale, personne n'est mort pendant la nuit !",
             "allVote": "Les habitants du village vont maintenant voter pour pendre l'un des leurs et espérer débusquer un Loup-Garou.",
+            "allVoteBecauseOfStutteringJudge": "À la demande du Juge Bègue grâce à un habile signe dissimulé, un second vote a immédiatement lieu.  ",
             "allVoteAgain": "Étant donné qu'il n'y a pas de maire pour départager, le village va devoir voter entre les joueurs à égalité: {players}.",
             "noDeathAfterVotes": "Même après 2 votes consécutifs, le village n'a pas réussi à s'entendre sur qui sera pendu.",
             "everybodyFallAsleepAlive": "Par conséquent, il n'y aura aucune mise à mort publique aujourd'hui.",

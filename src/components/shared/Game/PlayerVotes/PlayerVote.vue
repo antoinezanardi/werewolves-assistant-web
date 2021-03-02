@@ -63,7 +63,7 @@ export default {
             return this.play.votes.find(({ from: source }) => source === this.player._id);
         },
         voteText() {
-            return this.player.canVote ? this.$t("PlayerVote.voteFor") : this.$t("PlayerVote.cantVote");
+            return this.player.canVote(this.game) ? this.$t("PlayerVote.voteFor") : this.$t("PlayerVote.cantVote");
         },
     },
     methods: {
