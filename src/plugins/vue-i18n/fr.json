@@ -906,7 +906,7 @@
             }
         },
         "consequences": {
-            "thiefMustChooseCard": "Le Voleur était obligé de choisir une carte étant donné que toutes les cartes qui lui étaient destinées étaient du camp des Loups-Garous.",
+            "thiefMustChooseCard": "Le Voleur était obligé de choisir une carte étant donné que toutes les cartes qui lui été destinées étaient du camp des Loups-Garous.",
             "littleGirlNotProtected": "La Petite Fille ne peut être protégée de la morsure des Loups-Garous par le Salvateur. (Ceci peut être modifié dans les options de la partie)",
             "piedPiperIsInfected": "Le Joueur de Flûte a été infecté, il perd donc son but de charmer tous les joueurs.",
             "stutteringJudgeRequestedVote": "Le Juge Bègue a demandé un nouveau vote après l'annonce des résultats de celui-ci.",

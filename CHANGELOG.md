@@ -12,6 +12,7 @@
 * [#127](https://github.com/antoinezanardi/werewolves-assistant-web/issues/127) - Implement the Stuttering Judge Role.
 * [#131](https://github.com/antoinezanardi/werewolves-assistant-web/issues/131) - Implement the Angel Role.
 * [#132](https://github.com/antoinezanardi/werewolves-assistant-web/issues/132) - Implement the Thief Role.
+* [#135](https://github.com/antoinezanardi/werewolves-assistant-web/issues/135) - Add sounds and music.
 * [#141](https://github.com/antoinezanardi/werewolves-assistant-web/issues/141) - Role warnings for plays.
 
 ### 🌟 Enhancements

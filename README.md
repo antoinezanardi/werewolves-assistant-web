@@ -54,7 +54,7 @@ The MongoDB database is protected under username and password authentication.
 
 ## <a name="roles-available">🃏 Roles available</a>
 
-On this current version [![GitHub release](https://img.shields.io/github/release/antoinezanardi/werewolves-assistant-web.svg)](https://GitHub.com/antoinezanardi/werewolves-assistant-web/releases/), **23 different roles** are available to play:
+On this current version [![GitHub release](https://img.shields.io/github/release/antoinezanardi/werewolves-assistant-web.svg)](https://GitHub.com/antoinezanardi/werewolves-assistant-web/releases/), **24 different roles** are available to play:
 
 - **<img src="https://werewolves-assistant-api.antoinezanardi.fr/img/roles/werewolf.png" width="25"/> The Werewolf**
 - **<img src="https://werewolves-assistant-api.antoinezanardi.fr/img/roles/big-bad-wolf.png" width="25"/> The Big-Bad-Wolf**
@@ -73,6 +73,7 @@ On this current version [![GitHub release](https://img.shields.io/github/release
 - **<img src="https://werewolves-assistant-api.antoinezanardi.fr/img/roles/idiot.png" width="25"/> The Idiot**
 - **<img src="https://werewolves-assistant-api.antoinezanardi.fr/img/roles/two-sisters.png" width="25"/> The Two Sisters**
 - **<img src="https://werewolves-assistant-api.antoinezanardi.fr/img/roles/three-brothers.png" width="25"/> The Three Brothers**
+- **<img src="https://werewolves-assistant-api.antoinezanardi.fr/img/roles/stuttering-judge.png" width="25"/> The Stuttering Judge**
 - **<img src="https://werewolves-assistant-api.antoinezanardi.fr/img/roles/wild-child.png" width="25"/> The Wild Child**
 - **<img src="https://werewolves-assistant-api.antoinezanardi.fr/img/roles/dog-wolf.png" width="25"/> The Dog-Wolf**
 - **<img src="https://werewolves-assistant-api.antoinezanardi.fr/img/roles/thief.png" width="25"/> The Thief**

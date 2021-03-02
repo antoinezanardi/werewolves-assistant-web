@@ -25,11 +25,18 @@ class AudioManager {
             loop: true,
             volume: this.ambient.volume,
         };
-        const ambientNightFiles = ["/audio/ambient/night/night-1.mp3"];
+        const ambientNightFiles = [
+            "/audio/ambient/night/night-1.mp3",
+            "/audio/ambient/night/night-2.mp3",
+            "/audio/ambient/night/night-3f.mp3",
+        ];
         for (const ambientNightFile of ambientNightFiles) {
             this.ambient.nightMusics.push(new Howl({ src: ambientNightFile, ...options }));
         }
-        const ambientDayFiles = ["/audio/ambient/day/day-1.mp3"];
+        const ambientDayFiles = [
+            "/audio/ambient/day/day-1.mp3",
+            "/audio/ambient/day/day-2.mp3",
+        ];
         for (const ambientDayFile of ambientDayFiles) {
             this.ambient.dayMusics.push(new Howl({ src: ambientDayFile, ...options }));
         }
