@@ -1,0 +1,3 @@
+User-Agent: *
+Allow: /
+Sitemap: https://werewolves-assistant.antoinezanardi.fr/sitemaps.xml

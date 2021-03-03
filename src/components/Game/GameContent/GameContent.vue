@@ -3,7 +3,8 @@
         <transition mode="out-in" name="fade">
             <GameEventMonitor v-if="events.length" key="game-event-monitor" :events="events" @skip-event="removeEvent"/>
             <GamePlayField v-else key="game-play-field" :play="play" @player-selected="playerSelected" @player-votes="playerVotes"
-                           @side-selected="sideSelected" @vile-father-of-wolves-infects="vileFatherOfWolvesInfects"/>
+                           @side-selected="sideSelected" @vile-father-of-wolves-infects="vileFatherOfWolvesInfects" @card-selected="cardSelected"
+                           @stuttering-judge-requests-another-vote="stutteringJudgeRequestsAnotherVote"/>
         </transition>
     </div>
 </template>
@@ -23,12 +24,17 @@ export default {
             play: {
                 votes: [],
                 targets: [],
+                doesJudgeRequestAnotherVote: undefined,
+                card: undefined,
                 side: undefined,
             },
             events: [],
         };
     },
-    computed: { ...mapGetters("game", { game: "game" }) },
+    computed: {
+        ...mapGetters("game", { game: "game" }),
+        ...mapGetters("audioManager", { audioManager: "audioManager" }),
+    },
     watch: {
         game: {
             handler(newGame) {
@@ -36,6 +42,7 @@ export default {
                 this.generateLastActionEvents();
                 if (newGame.tick === 1) {
                     this.events.push(new GameEvent({ type: "game-starts" }));
+                    this.generatePlayerStartsGameRevealedEvents();
                 }
                 if (newGame.phase === "day") {
                     this.generateGamePhaseEvent();
@@ -50,6 +57,17 @@ export default {
             immediate: true,
         },
     },
+    created() {
+        const firstEvent = this.events.length ? this.events[0] : undefined;
+        if (!firstEvent || firstEvent.type !== "day-rises" && firstEvent.type !== "night-falls") {
+            if (this.game.isFirstWaitingPreFirstNightPlay || this.game.phase === "day" && !this.events.find(({ type }) => type === "day-rises") ||
+                this.game.phase === "night" && this.events.find(({ type }) => type === "night-falls")) {
+                this.audioManager.playDayMusic();
+            } else {
+                this.audioManager.playNightMusic();
+            }
+        }
+    },
     methods: {
         playerVotes(vote) {
             const idx = this.play.votes.findIndex(({ from }) => from === vote.from);
@@ -62,9 +80,9 @@ export default {
         playerSelected(payload) {
             const target = { player: payload.player._id, attribute: payload.attribute };
             if (target.attribute === "drank-life-potion") {
-                target.potion = { life: true };
+                target.hasDrankLifePotion = true;
             } else if (target.attribute === "drank-death-potion") {
-                target.potion = { death: true };
+                target.hasDrankDeathPotion = true;
             }
             const maxTargetLength = maxTargetLengthForPlayerAttribute(payload.attribute);
             const targetIdx = this.play.targets.findIndex(({ player }) => player === target.player);
@@ -85,15 +103,23 @@ export default {
         sideSelected(side) {
             this.play.side = side;
         },
+        cardSelected(card) {
+            this.play.card = card ? card._id : undefined;
+        },
         vileFatherOfWolvesInfects() {
             if (this.play.targets.length) {
                 this.play.targets[0].isInfected = true;
             }
         },
+        stutteringJudgeRequestsAnotherVote(doesStutteringJudgeRequestAnotherVote) {
+            this.play.doesJudgeRequestAnotherVote = doesStutteringJudgeRequestAnotherVote;
+        },
         resetPlay() {
             this.play.votes = [];
             this.play.targets = [];
+            this.play.doesJudgeRequestAnotherVote = undefined;
             this.play.side = undefined;
+            this.play.card = undefined;
         },
         generateLastActionEvents() {
             if (this.game.history.length) {
@@ -111,19 +137,27 @@ export default {
                 } else if (lastGameHistoryEntry.play.action === "eat" && lastGameHistoryEntrySourceName === "werewolves" &&
                     !!vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer.isAlive) {
                     this.events.push(new GameEvent({ type: `vile-father-of-wolves-infects`, targets: lastGameHistoryEntry.play.targets }));
-                } else if (this.game.history.length > 1 && lastGameHistoryEntry.wasVotePlayWithoutDeath &&
-                    this.game.history[1].wasVotePlayWithoutDeath) {
-                    this.events.push(new GameEvent({ type: `no-death-after-votes`, targets: this.game.history[1].play.targets }));
+                } else if (lastGameHistoryEntry.wasVotePlayWithoutDeath && !lastGameHistoryEntry.revealedPlayers.length) {
+                    this.events.push(new GameEvent({ type: `no-death-after-votes`, targets: this.game.history[0].play.targets }));
+                } else if (lastGameHistoryEntry.play.action === "choose-card") {
+                    this.events.push(new GameEvent({ type: `thief-chooses-card`, targets: [{ player: this.game.originalThiefPlayer }] }));
                 }
             }
         },
         generateGamePhaseEvent() {
-            if (!this.game.options.roles.sheriff.enabled && this.game.tick === 1 || this.game.options.roles.sheriff.enabled && this.game.tick === 2) {
+            if (this.game.history.length && this.game.history[0].isPreFirstNightPlay && !this.game.isFirstWaitingPreFirstNightPlay) {
                 return this.events.push(new GameEvent({ type: "night-falls" }));
             } else if (this.game.history.length &&
                 (this.game.phase !== this.game.history[0].phase || this.game.turn !== this.game.history[0].turn)) {
                 const event = this.game.phase === "day" ? new GameEvent({ type: "day-rises" }) : new GameEvent({ type: "night-falls" });
                 return this.events.push(event);
+            }
+        },
+        generatePlayerStartsGameRevealedEvents() {
+            for (const player of this.game.players) {
+                if (player.role.isRevealed) {
+                    this.events.push(new GameEvent({ type: "player-starts-game-revealed", targets: [{ player }] }));
+                }
             }
         },
         generateGameDeathAndRevealEvents() {

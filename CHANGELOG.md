@@ -1,5 +1,68 @@
 # 📈 LIST OF CHANGES FOR WEREWOLVES ASSISTANT WEB
 
+## 1.0.0-beta.11 (2021-03-03)
+
+### 🚀 New features
+
+* [#121](https://github.com/antoinezanardi/werewolves-assistant-web/issues/121) - Add option for raven mark penalty.
+* [#123](https://github.com/antoinezanardi/werewolves-assistant-web/issues/123) - Options for game repartition.
+* [#124](https://github.com/antoinezanardi/werewolves-assistant-web/issues/124) - Add guard protection on little girl option.
+* [#125](https://github.com/antoinezanardi/werewolves-assistant-web/issues/125) - Add idiot dies on ancient death option.
+* [#126](https://github.com/antoinezanardi/werewolves-assistant-web/issues/126) - Implement the White Werewolf Role.
+* [#127](https://github.com/antoinezanardi/werewolves-assistant-web/issues/127) - Implement the Stuttering Judge Role.
+* [#131](https://github.com/antoinezanardi/werewolves-assistant-web/issues/131) - Implement the Angel Role.
+* [#132](https://github.com/antoinezanardi/werewolves-assistant-web/issues/132) - Implement the Thief Role.
+* [#135](https://github.com/antoinezanardi/werewolves-assistant-web/issues/135) - Add sounds and music.
+* [#141](https://github.com/antoinezanardi/werewolves-assistant-web/issues/141) - Role warnings for plays.
+
+### 🌟 Enhancements
+
+* [#120](https://github.com/antoinezanardi/werewolves-assistant-web/issues/120) - Back to top on About page.
+* [#128](https://github.com/antoinezanardi/werewolves-assistant-web/issues/128) - Votes results in game history.
+* [#134](https://github.com/antoinezanardi/werewolves-assistant-web/issues/134) - Add explanations in game history modal.
+* [#137](https://github.com/antoinezanardi/werewolves-assistant-web/issues/137) - Add some links to log in modal.
+* [#138](https://github.com/antoinezanardi/werewolves-assistant-web/issues/138) - Add background and particles to home page.
+* [#142](https://github.com/antoinezanardi/werewolves-assistant-web/issues/142) - Tell which players are already revealed at the beginning of the game.
+* [#143](https://github.com/antoinezanardi/werewolves-assistant-web/issues/143) - Style for players who voted.
+* [#144](https://github.com/antoinezanardi/werewolves-assistant-web/issues/144) - Players are getting asleep when action is over.
+* [#145](https://github.com/antoinezanardi/werewolves-assistant-web/issues/145) - Capitalize all roles in texts.
+* [#146](https://github.com/antoinezanardi/werewolves-assistant-web/issues/146) - Improve SEO. 
+
+### 🐛 Bug fixes
+
+* [#119](https://github.com/antoinezanardi/werewolves-assistant-web/issues/119) - Adapt home page to smaller screens.
+* [#122](https://github.com/antoinezanardi/werewolves-assistant-web/issues/122) - No targets for big bad wolf.
+* [#139](https://github.com/antoinezanardi/werewolves-assistant-web/issues/139) - Broken styles on GameLobby.
+* [#140](https://github.com/antoinezanardi/werewolves-assistant-web/issues/140) - Broken styles on Windows.
+
+### ♻️ Refactoring
+
+* [#129](https://github.com/antoinezanardi/werewolves-assistant-web/issues/129) - Change sheriff enabled option property name.
+* [#130](https://github.com/antoinezanardi/werewolves-assistant-web/issues/130) - Change `potion` structure for plays and game history.
+
+### 📚 Documentation
+
+* [#133](https://github.com/antoinezanardi/werewolves-assistant-web/issues/133) - Update README.md.
+
+### 📦 Packages
+
+* `howler` installed with version `2.2.1`.
+* `particles.vue` installed with version `2.2.2`.
+* `vue-backtotop` installed with version `1.6.1`.
+* `vue-meta` installed with version `2.4.0`.
+* `@sentry/browser` updated to version `6.2.1`.
+* `@sentry/integrations` updated to version `6.2.1`.
+* `@vue/test-utils` updated to version `1.1.3`.
+* `chai` updated to version `4.3.1`.
+* `eslint` updated to version `7.21.0`.
+* `eslint-plugin-vue` updated to version `7.7.0`.
+* `jquery` updated to version `3.6.0`.
+* `sweetalert2` updated to version `10.15.5`.
+* `vue-i18n` updated to version `8.23.0`.
+* `vue-gtag` updated to version `1.11.0`.
+
+---
+
 ## 1.0.0-beta.10 (2021-02-01)
 
 ### 🚀 New features

@@ -1,3 +1,10 @@
-const xss = require("xss");
+import xss from "xss";
 
-exports.filterOutHTMLTags = str => xss(str, { whiteList: [], stripIgnoreTag: true });
+export function filterOutHTMLTags(str) {
+    return xss(str, { whiteList: [], stripIgnoreTag: true });
+}
+
+export function capitalize(str) {
+    const regExp = /(?:[-_'])(?:[a-z0-9-_])/u;
+    return str.replace(regExp, x => x.toUpperCase());
+}

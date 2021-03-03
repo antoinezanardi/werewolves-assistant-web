@@ -1,5 +1,6 @@
-import { getProp } from "@/helpers/functions/Class";
 import Player from "./Player";
+import { getProp } from "@/helpers/functions/Class";
+import { isPreFirstNightPlay } from "@/helpers/functions/Game";
 
 class GameHistory {
     constructor(gameHistory = null) {
@@ -17,15 +18,16 @@ class GameHistory {
             targets: getProp(gameHistory, "play.targets", [], targets => targets.map(target => ({
                 player: new Player(target.player),
                 isInfected: getProp(target, "isInfected"),
-                potion: {
-                    life: getProp(target, "potion.life"),
-                    death: getProp(target, "potion.death"),
-                },
+                hasDrankLifePotion: getProp(target, "hasDrankLifePotion"),
+                hasDrankDeathPotion: getProp(target, "hasDrankDeathPotion"),
             }))),
             votes: getProp(gameHistory, "play.votes", [], votes => votes.map(vote => ({
                 from: new Player(vote.from),
                 for: new Player(vote.for),
             }))),
+            votesResult: getProp(gameHistory, "play.votesResult"),
+            doesJudgeRequestAnotherVote: getProp(gameHistory, "play.doesJudgeRequestAnotherVote"),
+            card: getProp(gameHistory, "play.card"),
             side: getProp(gameHistory, "play.side"),
         };
         this.deadPlayers = getProp(gameHistory, "deadPlayers", [], players => players.map(player => new Player(player)));
@@ -39,21 +41,30 @@ class GameHistory {
 
     get didWitchUsedLifePotion() {
         const { play } = this;
-        return play.source.name === "witch" && play.action === "use-potion" && !!play.targets.find(({ potion }) => potion.life);
+        return play.source.name === "witch" && play.action === "use-potion" && !!play.targets.find(({ hasDrankLifePotion }) => hasDrankLifePotion);
     }
 
     get didWitchUsedDeathPotion() {
         const { play } = this;
-        return play.source.name === "witch" && play.action === "use-potion" && !!play.targets.find(({ potion }) => potion.death);
+        return play.source.name === "witch" && play.action === "use-potion" && !!play.targets.find(({ hasDrankDeathPotion }) => hasDrankDeathPotion);
     }
 
     get wasVotePlayWithoutDeath() {
-        const { play, deadPlayers } = this;
-        return play.source.name === "all" && play.action === "vote" && !deadPlayers.length;
+        const { play } = this;
+        return play.source.name === "all" && play.action === "vote" && play.votesResult === "no-death";
+    }
+
+    get hasStutteringJudgeRequestedVote() {
+        const { play } = this;
+        return play.source.name === "all" && play.action === "vote" && play.doesJudgeRequestAnotherVote;
     }
 
     get revealedAlivePlayers() {
         return this.revealedPlayers.filter(({ _id }) => !this.deadPlayers.find(deadPlayer => deadPlayer._id === _id));
+    }
+
+    get isPreFirstNightPlay() {
+        return isPreFirstNightPlay(this.play.action, this.turn, this.phase);
     }
 }
 

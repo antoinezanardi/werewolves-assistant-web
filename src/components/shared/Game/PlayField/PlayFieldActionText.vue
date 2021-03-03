@@ -7,7 +7,7 @@
             <div id="play-field-action-buttons-container" class="d-flex align-items-center justify-content-center">
                 <SelectAllTargetsButton :attribute="attribute" :play="play" class="play-field-action-button mr-2" @player-selected="playerSelected"/>
                 <CancelActionButton :attribute="attribute" :play="play" class="play-field-action-button"
-                                    @player-selected="playerSelected" @side-selected="sideSelected"/>
+                                    @player-selected="playerSelected" @side-selected="sideSelected" @card-selected="cardSelected"/>
             </div>
         </div>
     </div>
@@ -39,10 +39,9 @@ export default {
         actionText() {
             const { firstWaiting } = this.game;
             if (firstWaiting.to === "choose-side") {
-                if (!this.play.side) {
-                    return this.$t("PlayFieldActionText.dog-wolf.wantsToChooseSide");
-                }
-                return this.$t(`PlayFieldActionText.dog-wolf.${this.play.side}`);
+                return this.chooseSideActionText;
+            } else if (firstWaiting.to === "choose-card") {
+                return this.chooseCardActionText;
             }
             const baseActionText = this.$tc(`PlayFieldActionText.${firstWaiting.for}.${this.attribute}`, this.game.alivePlayersExpectedToPlay.length);
             if (this.game.isFirstWaitingSkippableAction && !this.targetedPlayersForAttribute.length) {
@@ -53,6 +52,22 @@ export default {
                 return baseActionText + this.getActionTextDependingOnTargets();
             }
             return `${baseActionText}...`;
+        },
+        card() {
+            return this.play.card ? this.game.additionalCards.find(({ _id }) => _id === this.play.card) : null;
+        },
+        chooseSideActionText() {
+            if (!this.play.side) {
+                return this.$t("PlayFieldActionText.dog-wolf.wantsToChooseSide");
+            }
+            return this.$t(`PlayFieldActionText.dog-wolf.${this.play.side}`);
+        },
+        chooseCardActionText() {
+            if (!this.card) {
+                const noChosenCardTextKey = this.game.isFirstWaitingSkippableAction ? "no-choose-card" : "choose-card";
+                return `${this.$t(`PlayFieldActionText.thief.${noChosenCardTextKey}`)}...`;
+            }
+            return `${this.$t(`PlayFieldActionText.thief.choose-card`)} ${this.$t(`Role.a.${this.card.role}`)}`;
         },
         isOneTargetPlayAndTargetingHimself() {
             if (this.game.expectedTargetsLength !== 1 || this.targetedPlayersForAttribute.length !== 1) {
@@ -94,6 +109,9 @@ export default {
         },
         sideSelected(payload) {
             this.$emit("side-selected", payload);
+        },
+        cardSelected(payload) {
+            this.$emit("card-selected", payload);
         },
     },
 };

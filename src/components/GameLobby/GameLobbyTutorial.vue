@@ -20,6 +20,7 @@ export default {
                 { header, target: "#game-lobby-title", content: this.$t("GameLobbyTutorial.toStartAGame") },
                 { header, target: "#game-lobby-player-input", content: this.$t("GameLobbyTutorial.eachPlayerName") },
                 { header, target: "#random-repartition-button", content: this.$t("GameLobbyTutorial.randomRepartition") },
+                { header, target: "#game-options-modal-button", content: this.$t("GameLobbyTutorial.gameOptionsCanBeChanged") },
                 { header, target: "#game-lobby-start-conditions", content: this.$t("GameLobbyTutorial.requirementsToStartAGame") },
             ];
         },

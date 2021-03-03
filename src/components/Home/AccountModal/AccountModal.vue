@@ -28,9 +28,9 @@
                         <div class="modal-body">
                             <transition mode="out-in" name="switch-panel">
                                 <LoginPanel v-if="panel === 'log-in'" ref="loginPanel" key="log-in-panel"
-                                            :loading="loading" class="account-panel"/>
+                                            :loading="loading" class="account-panel" @open-register-tab="panel = 'register'"/>
                                 <RegisterPanel v-else-if="panel === 'register'" ref="registerPanel" key="register-panel"
-                                               :loading="loading" class="account-panel"/>
+                                               :loading="loading" class="account-panel" @open-login-tab="panel = 'log-in'"/>
                             </transition>
                         </div>
                         <div class="modal-footer d-flex justify-content-between">
@@ -141,6 +141,6 @@ export default {
     }
     .switch-panel-enter, .switch-panel-leave-to {
         opacity: 0;
-        max-height: 170px;
+        max-height: 240px;
     }
 </style>

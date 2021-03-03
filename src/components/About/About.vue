@@ -162,6 +162,9 @@
                 </router-link>
             </div>
         </div>
+        <BackToTop v-tooltip="{ content: $t('About.backToTop'), trigger: 'focus hover' }" :visibleoffset="100">
+            <i class="fa fa-chevron-up fa-2x"/>
+        </BackToTop>
     </div>
 </template>
 
@@ -169,6 +172,7 @@
 import { mapGetters } from "vuex";
 import RoleImage from "@/components/shared/Game/Role/RoleImage";
 import RoleText from "@/components/shared/Game/Role/RoleText";
+import { i18n } from "@/plugins";
 
 export default {
     name: "About",
@@ -177,6 +181,7 @@ export default {
     created() {
         localStorage.setItem("aboutPageVisited", "true");
     },
+    metaInfo: { titleTemplate: `%s - ${i18n.t("About.metaInfo.title")}` },
 };
 </script>
 

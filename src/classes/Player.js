@@ -34,8 +34,20 @@ class Player {
         return this.role.current;
     }
 
+    get originalRole() {
+        return this.role.original;
+    }
+
     get isRoleRevealed() {
         return this.role.isRevealed;
+    }
+
+    get isAliveAndPowerful() {
+        return this.isAlive && !this.hasAttribute("powerless");
+    }
+
+    canVote(game) {
+        return !this.hasActiveAttribute("cant-vote", game);
     }
 }
 
