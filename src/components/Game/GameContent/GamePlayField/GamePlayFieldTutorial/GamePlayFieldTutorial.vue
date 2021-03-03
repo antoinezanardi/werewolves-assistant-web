@@ -14,10 +14,15 @@
 <script>
 import { mapGetters } from "vuex";
 import { insertIf } from "@/helpers/functions/Array";
-import { getProp } from "@/helpers/functions/Class";
 
 export default {
     name: "GamePlayFieldTutorial",
+    props: {
+        pastEvents: {
+            type: Object,
+            required: true,
+        },
+    },
     computed: {
         ...mapGetters("game", {
             game: "game",
@@ -26,9 +31,14 @@ export default {
         // eslint-disable-next-line max-lines-per-function
         steps() {
             const { firstWaiting } = this.game;
+            const { hasStutteringJudgeChosenSign, hasStutteringJudgeRequestedVote } = this.pastEvents;
             const sistersWakingUpInterval = this.gameOptions.roles.twoSisters.wakingUpInterval;
             const brothersWakingUpInterval = this.gameOptions.roles.threeBrothers.wakingUpInterval;
-            const { scapegoatPlayer, vileFatherOfWolvesPlayer, idiotPlayer, ancientPlayer } = this.game;
+            const { isProtectedByGuard: isLittleGirlProtectedByGuard } = this.game.options.roles.littleGirl;
+            const {
+                scapegoatPlayer, vileFatherOfWolvesPlayer, idiotPlayer, ancientPlayer, villagerVillagerPlayer, angelPlayer, piedPiperPlayer,
+                isIdiotProtectedFromVotes, doesAngelWinIfHeDiesNow, witchPlayer, guardPlayer, stutteringJudgePlayer, littleGirlPlayer,
+            } = this.game;
             const action = `${firstWaiting.for}.${firstWaiting.to}`;
             const header = { title: this.$t(`GamePlayFieldTutorial.${action}.howToPlay`) };
             const steps = {
@@ -45,15 +55,41 @@ export default {
                         { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.werewolves.eat.werewolvesEatWhen`) },
                         { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.werewolves.eat.werewolvesEatAVictim`) },
                         { header, target: "#werewolf-players", content: this.$t(`GamePlayFieldTutorial.werewolves.eat.werewolvesPointAtVictim`) },
+                        ...insertIf(!!angelPlayer && angelPlayer.isAliveAndPowerful && doesAngelWinIfHeDiesNow, {
+                            header,
+                            target: `#game-play-alert-angel-will-win-if-he-dies`,
+                            content: this.$t("GamePlayFieldTutorial.werewolves.eat.angelCanWin"),
+                        }),
+                        ...insertIf(!!ancientPlayer && ancientPlayer.isAlive, {
+                            header,
+                            target: `#game-play-alert-ancient-can-survive-werewolves`,
+                            content: this.$t("GamePlayFieldTutorial.werewolves.eat.ancientCanSurvive"),
+                        }),
+                        ...insertIf(!!guardPlayer && guardPlayer.isAliveAndPowerful, {
+                            header,
+                            target: `#game-play-alert-guard-can-protect-target`,
+                            content: this.$t("GamePlayFieldTutorial.werewolves.eat.guardCanProtect"),
+                        }),
+                        ...insertIf(!!witchPlayer && witchPlayer.isAliveAndPowerful, {
+                            header,
+                            target: `#game-play-alert-witch-can-protect-target`,
+                            content: this.$t("GamePlayFieldTutorial.werewolves.eat.witchCanSave"),
+                        }),
                         ...insertIf(!!vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer.isAlive, {
                             header,
-                            target: `#werewolf-player-${getProp(vileFatherOfWolvesPlayer, "_id")}`,
+                            target: `#game-play-alert-vile-father-of-wolves-can-infect`,
                             content: this.$t("GamePlayFieldTutorial.werewolves.eat.vileFatherOfWolvesCanInfect"),
                         }),
                         ...insertIf(!!vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer.isAlive, {
                             header,
                             target: `#play-submit-button`,
                             content: this.$t("GamePlayFieldTutorial.werewolves.eat.infectOnlyOnce"),
+                        }),
+                        ...insertIf(!!vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer.isAlive &&
+                            !!piedPiperPlayer && piedPiperPlayer.isAliveAndPowerful, {
+                            header,
+                            target: `#game-play-alert-pied-piper-will-loose-powers-if-infected`,
+                            content: this.$t("GamePlayFieldTutorial.werewolves.eat.piedPiperWillLoosePowerIfInfected"),
                         }),
                         { header, target: "#target-play-requirements", content: this.$t(`GamePlayFieldTutorial.werewolves.eat.toValidateEat`) },
                     ],
@@ -66,6 +102,11 @@ export default {
                         { header, target: "#life-potion-tab", content: this.$t("GamePlayFieldTutorial.witch.use-potion.ifLifePotionHasBeenUsed") },
                         { header, target: "#death-potion-tab", content: this.$t("GamePlayFieldTutorial.witch.use-potion.deathPotionKills") },
                         { header, target: "#death-potion-tab", content: this.$t("GamePlayFieldTutorial.witch.use-potion.ifDeathPotionHasBeenUsed") },
+                        ...insertIf(!!ancientPlayer && ancientPlayer.isAlive, {
+                            header,
+                            target: `#game-play-alert-ancient-can-make-all-powerless`,
+                            content: this.$t("GamePlayFieldTutorial.witch.use-potion.ancientWillHaveHisRevenge"),
+                        }),
                         { header, target: "#play-submit-button", content: this.$t("GamePlayFieldTutorial.witch.use-potion.toValidateUsePotion") },
                     ],
                 },
@@ -74,6 +115,11 @@ export default {
                         { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.guard.protect.guardProtectsWhen`) },
                         { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.guard.protect.guardCanProtect`) },
                         { header, target: "#guard-player-card", content: this.$t(`GamePlayFieldTutorial.guard.protect.guardPointsAtTarget`) },
+                        ...insertIf(!!littleGirlPlayer && littleGirlPlayer.isAliveAndPowerful && !isLittleGirlProtectedByGuard, {
+                            header,
+                            target: `#game-play-alert-guard-cant-protect-little-girl`,
+                            content: this.$t("GamePlayFieldTutorial.guard.protect.littleGirlIsNotProtected"),
+                        }),
                         { header, target: "#target-play-requirements", content: this.$t(`GamePlayFieldTutorial.guard.protect.toValidateProtect`) },
                     ],
                 },
@@ -92,20 +138,31 @@ export default {
                         { header, target: "#targetable-players-text", content: this.$t("GamePlayFieldTutorial.all.vote.targetablePlayerAreHere") },
                         { header, target: ".countdown", content: this.$t("GamePlayFieldTutorial.all.vote.playersHave5Min") },
                         { header, target: "#player-votes", content: this.$t("GamePlayFieldTutorial.all.vote.eachPlayerVote") },
-                        ...insertIf(!!scapegoatPlayer && scapegoatPlayer.isAlive, {
-                            header,
-                            target: `#player-vote-${getProp(scapegoatPlayer, "_id")}`,
-                            content: this.$t("GamePlayFieldTutorial.all.vote.scapegoatWillDieIfTie"),
-                        }),
-                        ...insertIf(!!idiotPlayer && idiotPlayer.isAlive, {
-                            header,
-                            target: `#player-vote-${getProp(idiotPlayer, "_id")}`,
-                            content: this.$t("GamePlayFieldTutorial.all.vote.idiotWillBeForgiven"),
-                        }),
                         ...insertIf(!!ancientPlayer && ancientPlayer.isAlive, {
                             header,
-                            target: `#player-vote-${getProp(ancientPlayer, "_id")}`,
+                            target: `#game-play-alert-ancient-can-make-all-powerless`,
                             content: this.$t("GamePlayFieldTutorial.all.vote.ancientWillHaveHisRevenge"),
+                        }),
+                        ...insertIf(!!idiotPlayer && isIdiotProtectedFromVotes, {
+                            header,
+                            target: `#game-play-alert-idiot-wont-die-from-votes`,
+                            content: this.$t("GamePlayFieldTutorial.all.vote.idiotWillBeForgiven"),
+                        }),
+                        ...insertIf(!!scapegoatPlayer && scapegoatPlayer.isAliveAndPowerful, {
+                            header,
+                            target: `#game-play-alert-scapegoat-will-die-from-tie`,
+                            content: this.$t("GamePlayFieldTutorial.all.vote.scapegoatWillDieIfTie"),
+                        }),
+                        ...insertIf(!!angelPlayer && doesAngelWinIfHeDiesNow, {
+                            header,
+                            target: `#game-play-alert-angel-will-win-if-he-dies`,
+                            content: this.$t("GamePlayFieldTutorial.all.vote.angelWillWinIfHeDiesNow"),
+                        }),
+                        ...insertIf(!!stutteringJudgePlayer &&
+                            this.game.canStutteringJudgeRequestVote(hasStutteringJudgeChosenSign, hasStutteringJudgeRequestedVote), {
+                            header,
+                            target: `#game-play-alert-stuttering-judge-can-request-vote`,
+                            content: this.$t("GamePlayFieldTutorial.all.vote.stutteringJudgeCanRequestAnotherVote"),
                         }),
                         { header, target: "#vote-play-requirements", content: this.$t("GamePlayFieldTutorial.all.vote.toValidateAVote") },
                     ],
@@ -114,6 +171,16 @@ export default {
                         { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.all.elect-sheriff.sheriffSettlesVotes") },
                         { header, target: ".countdown", content: this.$t("GamePlayFieldTutorial.all.elect-sheriff.playersHave5Min") },
                         { header, target: "#player-votes", content: this.$t("GamePlayFieldTutorial.all.elect-sheriff.eachPlayerVoteForSheriff") },
+                        ...insertIf(idiotPlayer && idiotPlayer.isAlive && !idiotPlayer.hasAttribute("powerless"), {
+                            header,
+                            target: `#game-play-alert-idiot-wont-delegate`,
+                            content: this.$t("GamePlayFieldTutorial.all.elect-sheriff.idiotWontDelegate"),
+                        }),
+                        ...insertIf(villagerVillagerPlayer && villagerVillagerPlayer.isAlive, {
+                            header,
+                            target: `#game-play-alert-villager-villager-can-be-trusted`,
+                            content: this.$t("GamePlayFieldTutorial.all.elect-sheriff.villagerVillagerCanBeTrusted"),
+                        }),
                         {
                             header,
                             target: "#vote-play-requirements",
@@ -125,6 +192,11 @@ export default {
                     shoot: [
                         { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.hunter.shoot.hunterShootsWhen") },
                         { header, target: "#player-targets", content: this.$t("GamePlayFieldTutorial.hunter.shoot.hunterCanShoot") },
+                        ...insertIf(!!ancientPlayer && ancientPlayer.isAlive, {
+                            header,
+                            target: `#game-play-alert-ancient-can-make-all-powerless`,
+                            content: this.$t("GamePlayFieldTutorial.hunter.shoot.ancientWillHaveHisRevenge"),
+                        }),
                         { header, target: "#target-play-requirements", content: this.$t("GamePlayFieldTutorial.hunter.shoot.toValidateShoot") },
                     ],
                 },
@@ -135,6 +207,21 @@ export default {
                             target: "#game-waiting-label",
                             content: this.$t("GamePlayFieldTutorial.sheriff.settle-votes.sheriffSettleVotesWhen"),
                         },
+                        ...insertIf(!!ancientPlayer && ancientPlayer.isAlive, {
+                            header,
+                            target: `#game-play-alert-ancient-can-make-all-powerless`,
+                            content: this.$t("GamePlayFieldTutorial.all.vote.ancientWillHaveHisRevenge"),
+                        }),
+                        ...insertIf(!!idiotPlayer && isIdiotProtectedFromVotes, {
+                            header,
+                            target: `#game-play-alert-idiot-wont-die-from-votes`,
+                            content: this.$t("GamePlayFieldTutorial.all.vote.idiotWillBeForgiven"),
+                        }),
+                        ...insertIf(!!angelPlayer && doesAngelWinIfHeDiesNow, {
+                            header,
+                            target: `#game-play-alert-angel-will-win-if-he-dies`,
+                            content: this.$t("GamePlayFieldTutorial.all.vote.angelWillWinIfHeDiesNow"),
+                        }),
                         {
                             header,
                             target: "#target-play-requirements",
@@ -281,6 +368,21 @@ export default {
                         { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.big-bad-wolf.eat.bigBadWolfEatsWhen`) },
                         { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.big-bad-wolf.eat.bigBadWolfEatsAVictim`) },
                         { header, target: "#werewolf-players", content: this.$t(`GamePlayFieldTutorial.big-bad-wolf.eat.bigBadWolfPointsAtVictim`) },
+                        ...insertIf(!!ancientPlayer && ancientPlayer.isAlive, {
+                            header,
+                            target: `#game-play-alert-ancient-can-survive-werewolves`,
+                            content: this.$t("GamePlayFieldTutorial.werewolves.eat.ancientCanSurvive"),
+                        }),
+                        ...insertIf(!!guardPlayer && guardPlayer.isAliveAndPowerful, {
+                            header,
+                            target: `#game-play-alert-guard-can-protect-target`,
+                            content: this.$t("GamePlayFieldTutorial.werewolves.eat.guardCanProtect"),
+                        }),
+                        ...insertIf(!!witchPlayer && witchPlayer.isAliveAndPowerful, {
+                            header,
+                            target: `#game-play-alert-witch-can-protect-target`,
+                            content: this.$t("GamePlayFieldTutorial.werewolves.eat.witchCanSave"),
+                        }),
                         { header, target: "#target-play-requirements", content: this.$t(`GamePlayFieldTutorial.big-bad-wolf.eat.toValidateEat`) },
                     ],
                 },
@@ -334,6 +436,44 @@ export default {
                             target: "#play-submit-button",
                             content: this.$t("GamePlayFieldTutorial.scapegoat.ban-voting.toValidateBanVoting"),
                         },
+                    ],
+                },
+                "thief": {
+                    "choose-card": [
+                        { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.thief.choose-card.thiefChoosesCardWhen`) },
+                        { header, target: "#additional-cards", content: this.$t("GamePlayFieldTutorial.thief.choose-card.thiefCanChooseCard") },
+                        { header, target: "#play-submit-button", content: this.$t("GamePlayFieldTutorial.thief.choose-card.toValidateChooseCard") },
+                    ],
+                },
+                "stuttering-judge": {
+                    "choose-sign": [
+                        {
+                            header,
+                            target: "#game-waiting-label",
+                            content: this.$t(`GamePlayFieldTutorial.stuttering-judge.choose-sign.stutteringJudgeChoosesSignWhen`),
+                        },
+                        {
+                            header,
+                            target: "#stuttering-judge-player",
+                            content: this.$t(`GamePlayFieldTutorial.stuttering-judge.choose-sign.stutteringJudgeCanRequestVote`),
+                        },
+                        {
+                            header,
+                            target: "#stuttering-judge-player",
+                            content: this.$t(`GamePlayFieldTutorial.stuttering-judge.choose-sign.stutteringJudgeCanChooseSign`),
+                        },
+                        {
+                            header,
+                            target: "#play-submit-button",
+                            content: this.$t("GamePlayFieldTutorial.stuttering-judge.choose-sign.toValidateChooseSign"),
+                        },
+                    ],
+                },
+                "white-werewolf": {
+                    eat: [
+                        { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.white-werewolf.eat.whiteWerewolfEatsWhen`) },
+                        { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.white-werewolf.eat.whiteWerewolfCanEat`) },
+                        { header, target: "#play-submit-button", content: this.$t("GamePlayFieldTutorial.white-werewolf.eat.toValidateEat") },
                     ],
                 },
             };

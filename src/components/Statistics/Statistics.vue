@@ -174,7 +174,7 @@ export default {
     @import "../../assets/scss/variables";
 
     #statistics-container {
-        overflow-y: scroll;
+        overflow-y: auto;
 
         li {
             @include font-size(1.5rem);

@@ -2,7 +2,11 @@ import { getProp } from "@/helpers/functions/Class";
 import User from "./User";
 import Player from "./Player";
 import GameHistory from "./GameHistory";
-import { isForbiddenTieVoteAction, isSkippableAction, isTargetAction, isTimedAction, isVoteAction } from "@/helpers/functions/Game";
+import {
+    isForbiddenTieVoteAction, isSkippableAction, isTargetAction, isTimedAction, isVoteAction,
+    isPreFirstNightPlay,
+} from "@/helpers/functions/Game";
+import GameAdditionalCard from "@/classes/GameAdditionalCard";
 
 class Game {
     constructor(game = null) {
@@ -14,6 +18,7 @@ class Game {
         this.tick = getProp(game, "tick");
         this.waiting = getProp(game, "waiting", [], waiting => waiting.map(waitingEntry => waitingEntry));
         this.status = getProp(game, "status");
+        this.additionalCards = Game._getGameAdditionalCards(game);
         this.options = Game._getGameOptions(game);
         this.history = getProp(game, "history", [], history => history.map(historyEntry => new GameHistory(historyEntry)));
         this.won = {
@@ -29,16 +34,23 @@ class Game {
         this.updatedAt = getProp(game, "updatedAt");
     }
 
+    static _getGameAdditionalCards(game) {
+        return getProp(game, "additionalCards", [], additionalCards => additionalCards.map(additionalCard => new GameAdditionalCard(additionalCard)));
+    }
+
     static _getGameOptions(game) {
         return {
             roles: {
                 sheriff: {
-                    enabled: getProp(game, "options.roles.sheriff.enabled", true),
+                    isEnabled: getProp(game, "options.roles.sheriff.isEnabled", true),
                     hasDoubledVote: getProp(game, "options.roles.sheriff.hasDoubledVote", true),
                 },
                 seer: { isTalkative: getProp(game, "options.roles.seer.isTalkative", true) },
+                littleGirl: { isProtectedByGuard: getProp(game, "options.roles.littleGirl.isProtectedByGuard", false) },
+                idiot: { doesDieOnAncientDeath: getProp(game, "options.roles.idiot.doesDieOnAncientDeath", true) },
                 twoSisters: { wakingUpInterval: getProp(game, "options.roles.twoSisters.wakingUpInterval", 2) },
                 threeBrothers: { wakingUpInterval: getProp(game, "options.roles.threeBrothers.wakingUpInterval", 2) },
+                raven: { markPenalty: getProp(game, "options.roles.raven.markPenalty", 2) },
             },
         };
     }
@@ -95,6 +107,10 @@ class Game {
         return this.brotherPlayers.length === 3;
     }
 
+    get areThereEnoughThiefAdditionalCards() {
+        return this.thiefAdditionalCards.length === 2;
+    }
+
     get allPlayersHaveRole() {
         return this.players.length && !this.players.filter(player => player.role.current === undefined).length;
     }
@@ -107,9 +123,8 @@ class Game {
     }
 
     canStartGame(roles) {
-        return this.areThereEnoughPlayers && this.areThereEnoughVillagers &&
-            this.areThereEnoughWerewolves && this.allPlayersHaveRole &&
-            this.allPlayerRoleMinimumIsReached(roles);
+        return this.areThereEnoughPlayers && this.areThereEnoughVillagers && this.areThereEnoughWerewolves && this.allPlayersHaveRole &&
+            this.areGameRolesOptionsValid && this.allPlayerRoleMinimumIsReached(roles);
     }
 
     get canUpdateOptions() {
@@ -170,9 +185,22 @@ class Game {
         return to === "choose-side";
     }
 
-    get isFirstWaitingSkippableAction() {
+    get isFirstWaitingChooseCardAction() {
         const { to } = this.firstWaiting;
-        return isSkippableAction(to);
+        return to === "choose-card";
+    }
+
+    get isFirstWaitingSkippableAction() {
+        const { to: action, for: source } = this.firstWaiting;
+        return isSkippableAction(action, source, this);
+    }
+
+    get isFirstWaitingPreFirstNightPlay() {
+        return isPreFirstNightPlay(this.firstWaiting.to, this.turn, this.phase);
+    }
+
+    get doesSourceGoToBed() {
+        return !this.isFirstWaitingPreFirstNightPlay && this.phase === "night";
     }
 
     getPlayersWithRole(role) {
@@ -181,6 +209,10 @@ class Game {
 
     getPlayerWithRole(role) {
         return this.players.find(player => player.currentRole === role);
+    }
+
+    getPlayerWithOriginalRole(role) {
+        return this.players.find(player => player.originalRole === role);
     }
 
     get seerPlayer() {
@@ -193,6 +225,10 @@ class Game {
 
     get guardPlayer() {
         return this.getPlayerWithRole("guard");
+    }
+
+    get littleGirlPlayer() {
+        return this.getPlayerWithRole("little-girl");
     }
 
     get ravenPlayer() {
@@ -215,20 +251,8 @@ class Game {
         return this.getPlayerWithAttribute("sheriff");
     }
 
-    get eatenPlayer() {
-        return this.getPlayerWithAttribute("eaten");
-    }
-
     get eatenPlayers() {
         return this.getPlayersWithAttribute("eaten");
-    }
-
-    get hasWitchUsedLifePotion() {
-        return !!this.history.find(({ play }) => play.action === "use-potion" && !!play.targets.find(({ potion }) => potion.life));
-    }
-
-    get hasWitchUsedDeathPotion() {
-        return !!this.history.find(({ play }) => play.action === "use-potion" && !!play.targets.find(({ potion }) => potion.death));
     }
 
     get dogWolfPlayer() {
@@ -259,6 +283,16 @@ class Game {
         return this.getPlayerWithRole("scapegoat");
     }
 
+    get angelPlayer() {
+        return this.getPlayerWithRole("angel");
+    }
+
+    get doesAngelWinIfHeDiesNow() {
+        const { angelPlayer, firstWaiting, turn, isFirstWaitingPreFirstNightPlay } = this;
+        return !!angelPlayer && (firstWaiting.to === "eat" && firstWaiting.for !== "white-werewolf" && angelPlayer.isAliveAndPowerful && turn === 1 ||
+            (firstWaiting.to === "vote" || firstWaiting.to === "settle-votes") && isFirstWaitingPreFirstNightPlay);
+    }
+
     get inLovePlayers() {
         return this.getPlayersWithAttribute("in-love");
     }
@@ -271,8 +305,41 @@ class Game {
         return this.getPlayerWithRole("idiot");
     }
 
+    get isIdiotProtectedFromVotes() {
+        const { idiotPlayer } = this;
+        return !!idiotPlayer && idiotPlayer.isAliveAndPowerful && !idiotPlayer.isRoleRevealed;
+    }
+
     get ancientPlayer() {
         return this.getPlayerWithRole("ancient");
+    }
+
+    get thiefPlayer() {
+        return this.getPlayerWithRole("thief");
+    }
+
+    get originalThiefPlayer() {
+        return this.getPlayerWithOriginalRole("thief");
+    }
+
+    get villagerVillagerPlayer() {
+        return this.getPlayerWithRole("villager-villager");
+    }
+
+    get stutteringJudgePlayer() {
+        return this.getPlayerWithRole("stuttering-judge");
+    }
+
+    get piedPiperPlayer() {
+        return this.getPlayerWithRole("pied-piper");
+    }
+
+    get piedPiperTargets() {
+        return this.alivePlayers.filter(player => player.role.current !== "pied-piper" && !player.hasAttribute("charmed"));
+    }
+
+    canStutteringJudgeRequestVote(hasChosenSign, hasRequestedVote) {
+        return !!this.stutteringJudgePlayer && this.stutteringJudgePlayer.isAliveAndPowerful && hasChosenSign && !hasRequestedVote;
     }
 
     isRoleInGame(roleName) {
@@ -304,10 +371,6 @@ class Game {
         return this.playersExpectedToPlay.filter(({ isAlive }) => isAlive);
     }
 
-    get piedPiperTargets() {
-        return this.alivePlayers.filter(player => player.role.current !== "pied-piper" && !player.hasAttribute("charmed"));
-    }
-
     get scapegoatTargets() {
         return this.alivePlayers.filter(player => !player.hasAttribute("cant-vote"));
     }
@@ -328,12 +391,24 @@ class Game {
             return false;
         }
         const { play } = this.history[0];
-        return play.source.name === "all" && play.action === "vote" && play.targets.length > 1 &&
+        return play.source.name === "all" && play.action === "vote" && play.votesResult === "need-settlement" &&
             this.firstWaiting.for === "all" && this.firstWaiting.to === "vote";
     }
 
     get didAncientTakeHisRevenge() {
         return !!this.getPlayerWithAttribute("powerless");
+    }
+
+    get thiefAdditionalCards() {
+        return this.additionalCards.filter(({ for: recipient }) => recipient === "thief");
+    }
+
+    get areGameRolesOptionsValid() {
+        return !this.getPlayerWithRole("thief") || this.areThereEnoughThiefAdditionalCards;
+    }
+
+    get areGameOptionsValid() {
+        return this.areGameRolesOptionsValid;
     }
 }
 

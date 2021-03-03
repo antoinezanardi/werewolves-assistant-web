@@ -1,39 +1,33 @@
 <template>
     <div id="game-content-play-field">
-        <transition name="fade" mode="out-in">
-            <ElectSheriffPlayField v-if="game.firstWaiting.to === 'elect-sheriff'" key="elect-sheriff" :play="play"
-                                   class="h-100 container-fluid" @player-votes="playerVotes"/>
-            <LookPlayField v-else-if="game.firstWaiting.to === 'look'" key="look" :play="play"
-                           class="h-100 container-fluid" @player-selected="playerSelected"/>
-            <EatPlayField v-else-if="game.firstWaiting.to === 'eat'" key="eat" :play="play"
-                          class="h-100 container-fluid" @player-selected="playerSelected"/>
-            <UsePotionPlayField v-else-if="game.firstWaiting.to === 'use-potion'" key="use-potion" :play="play"
-                                class="h-100 container-fluid" @player-selected="playerSelected"/>
-            <ProtectPlayField v-else-if="game.firstWaiting.to === 'protect'" key="protect" :play="play"
-                              class="h-100 container-fluid" @player-selected="playerSelected"/>
-            <MarkPlayField v-else-if="game.firstWaiting.to === 'mark'" key="mark" :play="play"
-                           class="h-100 container-fluid" @player-selected="playerSelected"/>
-            <VotePlayField v-else-if="game.firstWaiting.to === 'vote'" key="vote" :play="play"
-                           class="h-100 container-fluid" @player-votes="playerVotes"/>
-            <SettleVotesPlayField v-else-if="game.firstWaiting.to === 'settle-votes'" key="settle-votes"
-                                  :play="play" class="h-100 container-fluid" @player-selected="playerSelected"/>
-            <DelegatePlayField v-else-if="game.firstWaiting.to === 'delegate'" key="delegate"
-                               :play="play" class="h-100 container-fluid" @player-selected="playerSelected"/>
-            <ShootPlayField v-else-if="game.firstWaiting.to === 'shoot'" key="shoot"
-                            :play="play" class="h-100 container-fluid" @player-selected="playerSelected"/>
-            <ChooseSidePlayField v-else-if="game.firstWaiting.to === 'choose-side'" key="choose-side"
-                                 :play="play" class="h-100 container-fluid" @side-selected="sideSelected"/>
-            <CharmPlayField v-else-if="game.firstWaiting.to === 'charm'" key="charm"
-                            :play="play" class="h-100 container-fluid" @player-selected="playerSelected"/>
-            <MeetEachOtherPlayField v-else-if="game.firstWaiting.to === 'meet-each-other'" key="meet-each-other" class="h-100 container-fluid"/>
-            <ChooseModelPlayField v-else-if="game.firstWaiting.to === 'choose-model'" key="choose-model" :play="play" class="h-100 container-fluid"
-                                  @player-selected="playerSelected"/>
-            <BanVotingPlayField v-else-if="game.firstWaiting.to === 'ban-voting'" key="ban-voting" :play="play" class="h-100 container-fluid"
-                                @player-selected="playerSelected"/>
-            <div v-else key="unknown">
-                ?
-            </div>
-        </transition>
+        <ElectSheriffPlayField v-if="currentAction === 'elect-sheriff'" :play="play" :past-events="pastEvents" class="h-100 container-fluid"
+                               @player-votes="playerVotes"/>
+        <LookPlayField v-else-if="currentAction === 'look'" :play="play" class="h-100 container-fluid" @player-selected="playerSelected"/>
+        <EatPlayField v-else-if="currentAction === 'eat'" :play="play" class="h-100 container-fluid" :past-events="pastEvents"
+                      @player-selected="playerSelected"/>
+        <UsePotionPlayField v-else-if="currentAction === 'use-potion'" :play="play" :past-events="pastEvents" class="h-100 container-fluid"
+                            @player-selected="playerSelected"/>
+        <ProtectPlayField v-else-if="currentAction === 'protect'" :play="play" class="h-100 container-fluid" :past-events="pastEvents"
+                          @player-selected="playerSelected"/>
+        <MarkPlayField v-else-if="currentAction === 'mark'" :play="play" class="h-100 container-fluid" @player-selected="playerSelected"/>
+        <VotePlayField v-else-if="currentAction === 'vote'" :play="play" :past-events="pastEvents" class="h-100 container-fluid"
+                       @player-votes="playerVotes" @stuttering-judge-requests-another-vote="stutteringJudgeRequestsAnotherVote"/>
+        <SettleVotesPlayField v-else-if="currentAction === 'settle-votes'" :play="play" class="h-100 container-fluid" :past-events="pastEvents"
+                              @player-selected="playerSelected"/>
+        <DelegatePlayField v-else-if="currentAction === 'delegate'" :play="play" class="h-100 container-fluid" @player-selected="playerSelected"/>
+        <ShootPlayField v-else-if="currentAction === 'shoot'" :play="play" class="h-100 container-fluid" :past-events="pastEvents"
+                        @player-selected="playerSelected"/>
+        <ChooseSidePlayField v-else-if="currentAction === 'choose-side'" :play="play" class="h-100 container-fluid" @side-selected="sideSelected"/>
+        <CharmPlayField v-else-if="currentAction === 'charm'" :play="play" class="h-100 container-fluid" @player-selected="playerSelected"/>
+        <MeetEachOtherPlayField v-else-if="currentAction === 'meet-each-other'" key="meet-each-other" class="h-100 container-fluid"/>
+        <ChooseModelPlayField v-else-if="currentAction === 'choose-model'" :play="play" class="h-100 container-fluid"
+                              @player-selected="playerSelected"/>
+        <BanVotingPlayField v-else-if="currentAction === 'ban-voting'" :play="play" class="h-100 container-fluid" @player-selected="playerSelected"/>
+        <ChooseCardPlayField v-else-if="currentAction === 'choose-card'" :play="play" class="h-100 container-fluid" @card-selected="cardSelected"/>
+        <ChooseSignPlayField v-else-if="currentAction === 'choose-sign'" :play="play" class="h-100 container-fluid"/>
+        <div v-else key="unknown">
+            ?
+        </div>
     </div>
 </template>
 
@@ -56,10 +50,14 @@ import MeetEachOtherPlayField
 import ChooseModelPlayField
     from "@/components/Game/GameContent/GamePlayField/GamePlayFieldContent/ChooseModelPlayField";
 import BanVotingPlayField from "@/components/Game/GameContent/GamePlayField/GamePlayFieldContent/BanVotingPlayField";
+import ChooseCardPlayField from "@/components/Game/GameContent/GamePlayField/GamePlayFieldContent/ChooseCardPlayField";
+import ChooseSignPlayField from "@/components/Game/GameContent/GamePlayField/GamePlayFieldContent/ChooseSignPlayField";
 
 export default {
     name: "GamePlayFieldContent",
     components: {
+        ChooseSignPlayField,
+        ChooseCardPlayField,
         BanVotingPlayField,
         ChooseModelPlayField,
         MeetEachOtherPlayField,
@@ -73,8 +71,17 @@ export default {
             type: Object,
             required: true,
         },
+        pastEvents: {
+            type: Object,
+            required: true,
+        },
     },
-    computed: { ...mapGetters("game", { game: "game" }) },
+    computed: {
+        ...mapGetters("game", { game: "game" }),
+        currentAction() {
+            return this.game.firstWaiting.to;
+        },
+    },
     methods: {
         playerVotes(vote) {
             this.$emit("player-votes", vote);
@@ -84,6 +91,12 @@ export default {
         },
         sideSelected(payload) {
             this.$emit("side-selected", payload);
+        },
+        cardSelected(payload) {
+            this.$emit("card-selected", payload);
+        },
+        stutteringJudgeRequestsAnotherVote(payload) {
+            this.$emit("stuttering-judge-requests-another-vote", payload);
         },
     },
 };

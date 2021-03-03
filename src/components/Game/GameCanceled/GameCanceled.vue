@@ -45,7 +45,13 @@ import GameReviewModal from "@/components/shared/Game/GameReview/GameReviewModal
 export default {
     name: "GameCanceled",
     components: { GameReviewModal, GameReviewButton },
-    computed: { ...mapGetters("game", { game: "game" }) },
+    computed: {
+        ...mapGetters("game", { game: "game" }),
+        ...mapGetters("audioManager", { audioManager: "audioManager" }),
+    },
+    created() {
+        this.audioManager.stopAllMusics();
+    },
     methods: {
         confirmRestartGame() {
             return Swal.fire({

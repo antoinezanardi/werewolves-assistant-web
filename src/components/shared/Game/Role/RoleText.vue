@@ -4,6 +4,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { capitalize } from "@/helpers/functions/String";
 
 export default {
     name: "RoleText",
@@ -30,9 +31,9 @@ export default {
             } else if (groups.includes(this.role) || this.role === "sheriff") {
                 prefix = "the";
             } else {
-                prefix = this.game.getPlayersWithRole(this.role).length === 1 ? "the" : "a";
+                prefix = this.game.getPlayersWithRole(this.role).length > 1 ? "a" : "the";
             }
-            return this.$t(`Role.${prefix}.${this.role}`);
+            return capitalize(this.$t(`Role.${prefix}.${this.role}`));
         },
         roleTextClasses() {
             if (this.role) {

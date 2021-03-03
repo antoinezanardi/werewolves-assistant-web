@@ -40,8 +40,13 @@
                         </div>
                     </div>
                     <div class="row my-2">
-                        <div class="col-12 text-center">
-                            <button class="btn btn-outline-primary btn-sm" @click.prevent="$emit('show-game-options-modal')">
+                        <div class="col-12 d-flex justify-content-center align-items-center">
+                            <transition name="fade" mode="out-in">
+                                <RequiredActionIcon v-if="!game.areGameOptionsValid" class="mr-2"/>
+                            </transition>
+                            <button id="game-options-modal-button" ref="showGameOptionsModalButton" class="btn btn-outline-primary btn-sm"
+                                    :class="{ 'animate__animated animate__heartBeat': gameOptionsModalButton.isHighlighted }"
+                                    @click.prevent="$emit('show-game-options-modal')">
                                 <i class="fa fa-dice mr-2"/>
                                 <span v-html="$t('GameLobby.gameOptions')"/>
                             </button>
@@ -52,7 +57,7 @@
                         <hr class="bg-dark mt-3 mb-2"/>
                     </div>
                 </div>
-                <div id="game-lobby-players-container" class="d-flex flex-column flex-grow-1">
+                <div id="game-lobby-players-container" class="d-flex flex-column flex-grow-1 visible-scrollbar">
                     <transition mode="out-in" name="fade">
                         <div v-if="!game.players.length" class="d-flex flex-column justify-content-center flex-grow-1">
                             <h3 id="no-player-text"
@@ -73,7 +78,7 @@
                     <hr class="bg-dark my-2"/>
                     <div class="row justify-content-center align-items-center my-3">
                         <div class="col-12 text-center">
-                            <GameLobbyStartConditions :game="game"/>
+                            <GameLobbyStartConditions @highlight-and-see-thief-additional-cards="highlightAndSeeThiefAdditionalCards"/>
                         </div>
                     </div>
                     <div id="game-lobby-footer" class="row justify-content-between align-items-center">
@@ -130,10 +135,12 @@ import PlayerCard from "@/components/shared/Game/PlayerCard";
 import { filterOutHTMLTags } from "@/helpers/functions/String";
 import GameLobbyRolePickerModal from "@/components/GameLobby/GameLobbyRolePickerModal/GameLobbyRolePickerModal";
 import GameLobbyStartConditions from "@/components/GameLobby/GameLobbyStartConditions";
+import RequiredActionIcon from "@/components/shared/RequiredActionIcon";
 
 export default {
     name: "GameLobby",
     components: {
+        RequiredActionIcon,
         GameLobbyStartConditions,
         GameLobbyRolePickerModal,
         PlayerCard,
@@ -159,12 +166,15 @@ export default {
                 createGame: false,
                 getGameRepartition: false,
             },
+            gameRepartitionRequestCount: 0,
+            gameOptionsModalButton: { isHighlighted: false },
             playerName: "",
         };
     },
     computed: {
         ...mapGetters("role", { roles: "roles" }),
         ...mapGetters("game", { game: "game" }),
+        ...mapGetters("user", { userPreferences: "userPreferences" }),
         isPlayerNameTaken() {
             return this.game.players.find(({ name }) => name === this.sanitizedPlayerName);
         },
@@ -176,6 +186,33 @@ export default {
         },
         sanitizedPlayerName() {
             return filterOutHTMLTags(this.playerName.trim());
+        },
+        kebabCasedGameRepartitionOptions() {
+            return {
+                "forbidden-roles": this.userPreferences.game.repartition.forbiddenRoles,
+                "are-recommended-min-players-respected": this.userPreferences.game.repartition.areRecommendedMinPlayersRespected,
+                "are-powerful-villager-roles-prioritized": this.userPreferences.game.repartition.arePowerfulVillagerRolesPrioritized,
+                "are-powerful-werewolf-roles-prioritized": this.userPreferences.game.repartition.arePowerfulWerewolfRolesPrioritized,
+            };
+        },
+    },
+    watch: {
+        gameRepartitionRequestCount(value) {
+            if (value === 3 && this.userPreferences.game.repartition.isProTipShown) {
+                const options = {
+                    icon: "exclamation-circle", duration: 7000,
+                    action: [
+                        {
+                            text: this.$t("GameLobby.seeOptions"),
+                            onClick: this.highlightAndSeeGameRepartitionOptions,
+                        }, {
+                            text: this.$t("GameLobby.dontShowMeAgain"),
+                            onClick: this.hideGameRepartitionProTipForever,
+                        },
+                    ],
+                };
+                this.$toasted.info(this.$t("GameLobby.youCanChangeGameRepartitionOptions"), options);
+            }
         },
     },
     async created() {
@@ -197,7 +234,10 @@ export default {
         }
     },
     methods: {
-        ...mapActions("user", { checkUserAuthentication: "checkUserAuthentication" }),
+        ...mapActions("user", {
+            checkUserAuthentication: "checkUserAuthentication",
+            setPreferenceGameRepartitionIsProTipShown: "setPreferenceGameRepartitionIsProTipShown",
+        }),
         ...mapActions("game", {
             setGame: "setGame",
             setGamePlayers: "setGamePlayers",
@@ -222,7 +262,7 @@ export default {
                 }
                 this.loading.getGameRepartition = true;
                 const players = this.game.players.map(({ name }) => ({ name }));
-                const { data } = await this.$werewolvesAssistantAPI.getGameRepartition({ players });
+                const { data } = await this.$werewolvesAssistantAPI.getGameRepartition({ players, ...this.kebabCasedGameRepartitionOptions });
                 for (const { name: playerName, role: roleName } of data.players) {
                     const role = this.roles.find(({ name }) => name === roleName);
                     if (role) {
@@ -233,6 +273,7 @@ export default {
             } catch (e) {
                 this.$error.display(e);
             } finally {
+                this.gameRepartitionRequestCount++;
                 this.loading.getGameRepartition = false;
             }
         },
@@ -246,8 +287,12 @@ export default {
             try {
                 this.loading.createGame = true;
                 const players = this.game.players.map(({ name, role }) => ({ name, role: role.current }));
-                const { options } = this.game;
-                const { data } = await this.$werewolvesAssistantAPI.createGame({ players, options });
+                const { options, additionalCards } = this.game;
+                const body = { options, players };
+                if (this.game.thiefPlayer) {
+                    body.additionalCards = additionalCards.map(({ role, for: recipient }) => ({ role, for: recipient }));
+                }
+                const { data } = await this.$werewolvesAssistantAPI.createGame(body);
                 this.$toasted.success(this.$t("GameLobby.gameCreated"), { icon: "gamepad" });
                 await this.$router.push(`/game/${data._id}`);
             } catch (e) {
@@ -276,6 +321,25 @@ export default {
         showRolePickerModal(player) {
             this.$refs.gameLobbyRolePickerModal.show(player);
         },
+        highlightAndSeeGameRepartitionOptions(e, toastObject) {
+            toastObject.goAway(0);
+            this.gameOptionsModalButton.isHighlighted = true;
+            setTimeout(() => {
+                this.gameOptionsModalButton.isHighlighted = false;
+                this.$emit("show-game-options-modal", { panel: "game-repartition-options" });
+            }, 1000);
+        },
+        highlightAndSeeThiefAdditionalCards() {
+            this.gameOptionsModalButton.isHighlighted = true;
+            setTimeout(() => {
+                this.gameOptionsModalButton.isHighlighted = false;
+                this.$emit("show-game-options-modal", { panel: "game-roles-options", scrollTo: "thief-section" });
+            }, 1000);
+        },
+        hideGameRepartitionProTipForever(e, toastObject) {
+            toastObject.goAway(0);
+            this.setPreferenceGameRepartitionIsProTipShown(false);
+        },
     },
 };
 </script>
@@ -284,6 +348,10 @@ export default {
     @import "../../../node_modules/bootstrap/scss/bootstrap-grid";
     @import "../../../node_modules/bootstrap/scss/bootstrap";
     @import "../../assets/scss/_variables";
+
+    #game-lobby {
+        overflow-x: hidden;
+    }
 
     #game-lobby-title {
         font-size: 1.25rem;
@@ -298,7 +366,6 @@ export default {
     }
 
     #players {
-        overflow-y: scroll;
         overflow-x: hidden !important;
     }
 
@@ -307,7 +374,7 @@ export default {
     }
 
     #game-lobby-players-container {
-        overflow-y: scroll;
+        overflow-y: auto;
         min-height: 75px;
     }
 </style>

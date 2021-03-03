@@ -66,7 +66,7 @@ export default {
 
         .side-image {
             width: 150px;
-            height: 150px;
+            height: auto;
         }
 
         .side-text {

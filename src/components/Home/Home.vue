@@ -1,9 +1,10 @@
 <template>
-    <div id="home" class="container-fluid d-flex flex-column">
+    <div id="home" class="container-fluid d-flex flex-column" :style="{ 'background-image': `url(${IMGs.background})` }">
         <div id="home-content" class="flex-column flex-grow-1 d-flex justify-content-center">
+            <Particles id="home-particles" :options="particles.options"/>
             <div class="row">
                 <div class="col-12 text-center">
-                    <img width="150" src="../../assets/img/wolf.png" alt="Wolf"/>
+                    <img id="home-logo" src="../../assets/img/wolf.png" alt="Wolf"/>
                     <h1 id="title" class="text-center">
                         <span id="title-wrapper" class="text-center">
                             <span v-html="$t('Home.werewolvesAssistant')"/>
@@ -12,25 +13,25 @@
                                class="badge badge-dark text-center text-uppercase">
                                 <i class="fab fa-github mr-2 text-white"/>
                                 <span v-html="'v1.0.0'"/>
-                                <span class="text-muted" v-html="' - beta'"/>
+                                <span v-html="' - beta'"/>
                             </a>
                         </span>
                     </h1>
-                    <h4 id="subtitle" class="text-center">
+                    <h2 id="subtitle" class="text-center">
                         <i class="fa fa-star mr-2 text-warning"/>
-                        <span class="text-secondary" v-html="$t('Home.bestToolForGameMastering')"/>
-                    </h4>
+                        <span class="text-gray" v-html="$t('Home.bestToolForGameMastering')"/>
+                    </h2>
                 </div>
             </div>
             <div class="mt-4 d-flex justify-content-center">
                 <div class="col-lg-4 col-md-6 col-sm-12">
-                    <button class="btn btn-block btn-primary text-uppercase font-weight-bold home-btn" @click="play">
+                    <button id="play-btn" class="btn btn-block btn-primary text-uppercase font-weight-bold" @click="play">
                         <i class="fa fa-play-circle mr-2"/>
                         <span v-html="$t('Home.play')"/>
                     </button>
                     <transition name="fade">
                         <router-link v-if="isUserLogged" key="statistics" to="/statistics"
-                                     class="btn btn-block btn-dark text-uppercase font-weight-bold home-btn mt-4">
+                                     class="btn btn-block btn-dark font-weight-bold home-btn mt-4">
                             <i class="far fa-chart-bar mr-2"/>
                             <span v-html="$t('Home.statistics')"/>
                         </router-link>
@@ -42,13 +43,13 @@
                     </router-link>
                     <transition name="fade" mode="out-in">
                         <button v-if="!isUserLogged" key="not-logged"
-                                class="btn btn-secondary btn-block mt-4 text-uppercase font-weight-bold account-btn"
+                                class="btn btn-secondary btn-block mt-4 font-weight-bold home-btn"
                                 @click="showAccountModal">
                             <i class="fa fa-key mr-2"/>
                             <span v-html="$t('Home.logInOrSignUp')"/>
                         </button>
                         <button v-else key="logged"
-                                class="btn btn-secondary btn-block mt-4 text-uppercase font-weight-bold account-btn"
+                                class="btn btn-secondary btn-block mt-4 font-weight-bold home-btn"
                                 @click="logout">
                             <i class="fa fa-sign-out-alt mr-2"/>
                             <span v-html="$t('Home.logOut')"/>
@@ -86,10 +87,18 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import AccountModal from "./AccountModal/AccountModal";
+import background from "@/assets/img/home/background.jpg";
+import homeParticleOptions from "@/assets/json/home-particles-options.json";
 
 export default {
     name: "Home",
     components: { AccountModal },
+    data() {
+        return {
+            particles: { options: homeParticleOptions },
+            IMGs: { background },
+        };
+    },
     computed: {
         ...mapGetters("user", { isUserLogged: "isLogged" }),
         aboutPageVisited() {
@@ -114,15 +123,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    @import "../../../node_modules/bootstrap/scss/bootstrap";
-    @import "../../assets/scss/variables";
+    @import "../../../node_modules/bootstrap/scss/bootstrap-grid";
 
-    .home-btn {
-        @include font-size(2rem);
+    #play-btn {
+        font-size: 1.5rem;
+        @include media-breakpoint-up(md) {
+            font-size: 2rem;
+        }
     }
 
-    .account-btn {
-        @include font-size(1rem);
+    .home-btn {
+        font-size: 1.2rem;
+        @include media-breakpoint-up(md) {
+            font-size: 1.5rem;
+        }
     }
 
     .bmc-button img {
@@ -134,9 +148,9 @@ export default {
     }
 
     #bmc-button {
-        padding: 5px 15px 7px 10px !important;
+        padding: 5px 0 7px 15px !important;
         line-height: 24px !important;
-        height: 36px !important;
+        height: 38px !important;
         text-decoration: none !important;
         display: inline-flex !important;
         color: #FFFFFF !important;
@@ -161,16 +175,23 @@ export default {
     }
 
     #title {
-        @include font-size(3rem);
+        font-size: 1.5rem;
+        @include media-breakpoint-up(md) {
+            font-size: 3rem;
+        }
         position: relative;
-
+        text-shadow: 1px 1px 3px black;
         #title-wrapper {
             position: relative;
         }
     }
 
     #subtitle {
-        @include font-size(1.2rem);
+        font-size: 1rem;
+        @include media-breakpoint-up(md) {
+            font-size: 1.2rem;
+        }
+        text-shadow: 1px 1px 3px black;
     }
 
     #version {
@@ -178,9 +199,33 @@ export default {
         position: absolute;
         right: 0;
         bottom: 100%;
+        text-shadow: 1px 1px 3px black;
     }
 
     #home-footer {
         padding: 15px;
+    }
+
+    #home-logo {
+        width: 120px;
+        @include media-breakpoint-up(md) {
+            width: 150px;
+        }
+    }
+
+    #home-particles {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+    }
+
+    #home {
+        background: no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
     }
 </style>

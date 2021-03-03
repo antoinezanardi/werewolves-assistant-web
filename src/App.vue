@@ -15,8 +15,9 @@
 
 <script>
 import { mapActions } from "vuex";
-import SpinningLoader from "./components/SpinningLoader/SpinningLoader";
-import NavBar from "./components/NavBar/NavBar";
+import i18n from "@/plugins/vue-i18n";
+import SpinningLoader from "@/components/SpinningLoader/SpinningLoader";
+import NavBar from "@/components/NavBar/NavBar";
 import NotAvailable from "@/components/NotAvailable/NotAvailable";
 
 export default {
@@ -51,11 +52,22 @@ export default {
                 this.$error.display(err);
             }
         },
-        showGameOptionsModal() {
+        showGameOptionsModal(options) {
             if (this.$refs.navBar) {
-                this.$refs.navBar.showGameOptionsModal();
+                this.$refs.navBar.showGameOptionsModal(options);
             }
         },
+    },
+    metaInfo: {
+        htmlAttrs: { lang: i18n.t("App.metaInfo.lang") },
+        title: i18n.t("App.metaInfo.title"),
+        meta: [
+            { charset: "UTF-8" },
+            { name: "viewport", content: "width=device-width, initial-scale=1.0" },
+            { "http-equiv": "X-UA-Compatible", "content": "IE=edge" },
+            { name: "description", content: i18n.t("App.metaInfo.description") },
+            { name: "keywords", content: i18n.t("App.metaInfo.keywords") },
+        ],
     },
 };
 </script>

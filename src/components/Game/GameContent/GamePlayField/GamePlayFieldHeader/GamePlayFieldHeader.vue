@@ -52,6 +52,9 @@ import worshipedSVG from "@/assets/svg/attributes/worshiped.svg";
 import bigBadWolfSVG from "@/assets/svg/roles/big-bad-wolf.svg";
 import charmedSVG from "@/assets/svg/attributes/charmed.svg";
 import cantVoteSVG from "@/assets/svg/attributes/cant-vote.svg";
+import thiefSVG from "@/assets/svg/roles/thief.svg";
+import stutteringJudgeSVG from "@/assets/svg/roles/stuttering-judge.svg";
+import whiteWerewolfSVG from "@/assets/svg/roles/white-werewolf.svg";
 
 export default {
     name: "GamePlayFieldHeader",
@@ -174,6 +177,24 @@ export default {
                     "ban-voting": {
                         icon: cantVoteSVG,
                         role: "scapegoat",
+                    },
+                },
+                "thief": {
+                    "choose-card": {
+                        icon: thiefSVG,
+                        role: "thief",
+                    },
+                },
+                "stuttering-judge": {
+                    "choose-sign": {
+                        icon: stutteringJudgeSVG,
+                        role: "stuttering-judge",
+                    },
+                },
+                "white-werewolf": {
+                    eat: {
+                        icon: whiteWerewolfSVG,
+                        role: "white-werewolf",
                     },
                 },
             },

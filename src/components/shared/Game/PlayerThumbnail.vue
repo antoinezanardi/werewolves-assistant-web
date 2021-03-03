@@ -1,5 +1,5 @@
 <template>
-    <span class="player-card-thumbnail" :class="playerThumbnailClasses">
+    <span v-tooltip="playerThumbnailTooltip" class="player-card-thumbnail" :class="playerThumbnailClasses">
         <i v-if="!game._id" v-tooltip="$t('PlayerThumbnail.unsetPlayer')" class="fa fa-times-circle unset-player-button"
            @click="unsetPlayer"/>
         <transition name="fade" mode="out-in">
@@ -7,12 +7,15 @@
                  class="nominated-player animate__animated animate__infinite animate__heartBeat animate__slow"
                  :src="nominatedImageSource" alt="Nominated Player"/>
         </transition>
-        <VueFlip v-model="flipped" v-tooltip="playerThumbnailTooltip" height="100%" width="100%" @click.native="$emit('player-selected')">
+        <VueFlip v-model="flipped" height="100%" width="100%" @click.native="$emit('player-selected')">
             <template #front>
                 <RoleImage :role="thumbnail.front"/>
                 <transition name="fade" mode="out-in">
-                    <img v-if="player.isRoleRevealed && player.isAlive" class="player-thumbnail-icon" :src="SVGs.roleRevealed" alt="Role revealed"/>
-                    <img v-else-if="player.isAlive === false" class="player-thumbnail-icon" :src="SVGs.dead" alt="Role revealed"/>
+                    <img v-if="player.isAlive === false" class="player-thumbnail-icon" :src="SVGs.dead" alt="Player dead"/>
+                    <img v-else-if="game._id && player.currentRole !== player.originalRole" class="player-thumbnail-icon" :src="SVGs.roleChanged"
+                         alt="Role changed"/>
+                    <img v-else-if="player.isRoleRevealed" class="player-thumbnail-icon" :src="SVGs.roleRevealed"
+                         alt="Role revealed"/>
                 </transition>
             </template>
             <template #back>
@@ -27,6 +30,7 @@ import { mapGetters } from "vuex";
 import Player from "@/classes/Player";
 import RoleImage from "./Role/RoleImage";
 import roleRevealed from "@/assets/svg/actions/look.svg";
+import roleChanged from "@/assets/svg/roles/thief.svg";
 import dead from "@/assets/svg/attributes/dead.svg";
 
 export default {
@@ -56,6 +60,7 @@ export default {
             SVGs: {
                 roleRevealed,
                 dead,
+                roleChanged,
             },
         };
     },
@@ -71,12 +76,16 @@ export default {
         playerThumbnailTooltip() {
             if (this.game._id || this.player.role.current) {
                 let content = `<div>${this.$tc(`Role.${this.player.role.current}`, 1)}</div>`;
+                if (this.game._id && this.player.currentRole !== this.player.originalRole) {
+                    const originalRoleText = this.$t(`Role.${this.player.originalRole}`);
+                    content += `<hr class="bg-dark my-1"/><div>(${this.$t("PlayerThumbnail.previously", { role: originalRoleText })})</div>`;
+                }
                 if (this.player.isAlive === false) {
                     content += `<hr class="bg-dark my-1"/><div>${this.$t("PlayerThumbnail.thisPlayerIsDead")}</div>`;
                 } else if (this.player.isRoleRevealed) {
                     content += `<hr class="bg-dark my-1"/><div>${this.$t("PlayerThumbnail.thisPlayerRoleIsRevealed")}</div>`;
                 }
-                return { content };
+                return { content, container: false };
             }
             return this.$t("PlayerThumbnail.chooseRole");
         },

@@ -24,6 +24,7 @@ import hourglassSVG from "@/assets/svg/misc/hourglass.svg";
 import chronometerSVG from "@/assets/svg/misc/chronometer.svg";
 import deadSVG from "@/assets/svg/attributes/dead.svg";
 import powerlessSVG from "@/assets/svg/attributes/powerless.svg";
+import whiteWerewolfSVG from "@/assets/svg/roles/white-werewolf.svg";
 
 export default {
     name: "PlayerAttribute",
@@ -65,6 +66,10 @@ export default {
                     "big-bad-wolf": {
                         tooltip: this.$t("PlayerAttribute.attributes.eatenByBigBadWolf"),
                         SVG: bigBadWolfSVG,
+                    },
+                    "white-werewolf": {
+                        tooltip: this.$t("PlayerAttribute.attributes.eatenByWhiteWerewolf"),
+                        SVG: whiteWerewolfSVG,
                     },
                 },
                 "drank-life-potion": {

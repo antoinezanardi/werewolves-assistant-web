@@ -16,3 +16,7 @@ body {
 .page-with-navbar {
     height: calc(100% - 60px);
 }
+
+.nav-link {
+    transition: all 0.25s linear;
+}

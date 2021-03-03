@@ -83,9 +83,10 @@ export default {
             game: "game",
             gameOptions: "gameOptions",
         }),
+        ...mapGetters("audioManager", { audioManager: "audioManager" }),
         // eslint-disable-next-line max-lines-per-function
         gameEventMetadata() {
-            const { ancientPlayer, didAncientTakeHisRevenge } = this.game;
+            const { ancientPlayer, angelPlayer, didAncientTakeHisRevenge, firstWaiting } = this.game;
             const gameEventFirstTarget = this.hasGameEventTargets ? this.event.targets[0] : null;
             const gameEventTargetName = this.hasGameEventTargets ? gameEventFirstTarget.player.name : null;
             const gameEventTargetRole = this.hasGameEventTargets ? gameEventFirstTarget.player.role.current : null;
@@ -95,9 +96,16 @@ export default {
                     messages: [
                         i18n.t("GameEvent.messages.welcomeToTheVillage"),
                         this.gameCompositionText,
+                        ...insertIf(this.game.thiefPlayer, i18n.t("GameEvent.messages.moreRolesBecauseOfThief")),
                         i18n.t("GameEvent.messages.looksLifeSomeWerewolvesIntroducedThemselves"),
                         i18n.t("GameEvent.messages.villagersMurderWerewolves"),
-                        ...insertIf(this.gameOptions.roles.sheriff.enabled, i18n.t("GameEvent.messages.beforeStartingLetsElectSheriff")),
+                        ...insertIf(this.gameOptions.roles.sheriff.isEnabled, i18n.t("GameEvent.messages.beforeStartingLetsElectSheriff")),
+                    ],
+                },
+                "player-starts-game-revealed": {
+                    messages: [
+                        i18n.t("GameEvent.messages.villagerVillagerStartsGameRevealed",
+                            { player: gameEventTargetName }),
                     ],
                 },
                 "player-dies": {
@@ -109,6 +117,7 @@ export default {
                         ...insertIf(gameEventTargetRole === "ancient" && didAncientTakeHisRevenge,
                             i18n.t("GameEvent.messages.ancientTakesHisRevenge")),
                     ],
+                    soundEffect: "death",
                 },
                 "player-role-revealed": {
                     messages: [
@@ -121,17 +130,26 @@ export default {
                         i18n.t("GameEvent.messages.playerHasBeenPromotedSheriff", { gameEventTargetName }),
                         ...insertIf(this.game.turn === 1, i18n.t("GameEvent.messages.sheriffCanMakeASpeech")),
                     ],
+                    soundEffect: "sheriff-is-elected",
                 },
-                "night-falls": { messages: [i18n.t("GameEvent.messages.nightFalls"), i18n.t("GameEvent.messages.inhabitantsFallAsleep")] },
+                "night-falls": {
+                    messages: [i18n.t("GameEvent.messages.nightFalls"), i18n.t("GameEvent.messages.inhabitantsFallAsleep")],
+                    soundEffect: "night-falls",
+                },
                 "all-turn": {
                     messages: [
-                        ...insertIf(this.game.firstWaiting.to === "vote" && !this.game.isSecondVoteAfterTie, i18n.t("GameEvent.messages.allVote")),
-                        ...insertIf(this.game.firstWaiting.to === "vote" && this.game.isSecondVoteAfterTie,
+                        ...insertIf(firstWaiting.to === "vote" && !!angelPlayer && this.game.isFirstWaitingPreFirstNightPlay,
+                            i18n.t("GameEvent.messages.gameStartsWithVoteBecauseOfAngel")),
+                        ...insertIf(firstWaiting.to === "vote" && firstWaiting.cause === "stuttering-judge-request",
+                            i18n.t("GameEvent.messages.allVoteBecauseOfStutteringJudge")),
+                        ...insertIf(firstWaiting.to === "vote" && !this.game.isSecondVoteAfterTie, i18n.t("GameEvent.messages.allVote")),
+                        ...insertIf(firstWaiting.to === "vote" && this.game.isSecondVoteAfterTie,
                             i18n.t("GameEvent.messages.allVoteAgain", { players: listPlayerNames(this.game.lastActionTargetedPlayers) })),
-                        ...insertIf(this.game.firstWaiting.to === "vote" && !!ancientPlayer && ancientPlayer.isAlive,
+                        ...insertIf(firstWaiting.to === "vote" && !!ancientPlayer && ancientPlayer.isAlive,
                             i18n.t("GameEvent.messages.attentionToTheAncient")),
-                        ...insertIf(this.game.firstWaiting.to === "elect-sheriff", i18n.t("GameEvent.messages.allElectSheriff")),
+                        ...insertIf(firstWaiting.to === "elect-sheriff", i18n.t("GameEvent.messages.allElectSheriff")),
                     ],
+                    soundEffect: "sheriff-election",
                 },
                 "no-death-after-votes": {
                     messages: [
@@ -141,11 +159,15 @@ export default {
                 },
                 "sheriff-turn": {
                     messages: [
-                        ...insertIf(this.game.firstWaiting.to === "settle-votes", i18n.t("GameEvent.messages.sheriffSettlesVote")),
-                        ...insertIf(this.game.firstWaiting.to === "delegate", i18n.t("GameEvent.messages.sheriffDelegates")),
+                        ...insertIf(firstWaiting.to === "settle-votes", i18n.t("GameEvent.messages.sheriffSettlesVote")),
+                        ...insertIf(firstWaiting.to === "delegate", i18n.t("GameEvent.messages.sheriffDelegates")),
                     ],
+                    soundEffect: "sheriff-election",
                 },
-                "day-rises": { messages: [i18n.t("GameEvent.messages.dayRises")] },
+                "day-rises": {
+                    messages: [i18n.t("GameEvent.messages.dayRises")],
+                    soundEffect: "day-rises",
+                },
                 "deaths-during-night": {
                     messages: [
                         i18n.tc("GameEvent.messages.deathDuringNight", this.event.targets.length, { numberOfDeaths: this.event.targets.length }),
@@ -153,62 +175,130 @@ export default {
                     ],
                 },
                 "no-death-during-night": { messages: [i18n.t("GameEvent.messages.noDeathDuringNight")] },
-                "seer-turn": { messages: [i18n.t("GameEvent.messages.seerStarts")] },
+                "seer-turn": {
+                    messages: [i18n.t("GameEvent.messages.seerStarts")],
+                    soundEffect: "seer-plays",
+                },
                 "seer-looks": {
                     messages: [
                         ...insertIf(!this.gameOptions.roles.seer.isTalkative, i18n.t("GameEvent.messages.followingMessageMustBeMimed")),
                         `${i18n.t("GameEvent.messages.seerHasSeen")} ${gameEventTargetRoleText} !`,
                     ],
+                    soundEffect: "seer-plays",
                 },
-                "werewolves-turn": { messages: [i18n.tc("GameEvent.messages.werewolvesStart", this.game.aliveWerewolfPlayers.length)] },
-                "vile-father-of-wolves-infects": { messages: [i18n.t("GameEvent.messages.gameMasterWillTouchInfected")] },
-                "witch-turn": { messages: [i18n.t("GameEvent.messages.witchStarts")] },
-                "guard-turn": { messages: [i18n.t("GameEvent.messages.guardStarts")] },
-                "raven-turn": { messages: [i18n.t("GameEvent.messages.ravenStarts")] },
+                "werewolves-turn": {
+                    messages: [i18n.tc("GameEvent.messages.werewolvesStart", this.game.aliveWerewolfPlayers.length)],
+                    soundEffect: "werewolves-play",
+                },
+                "vile-father-of-wolves-infects": {
+                    messages: [i18n.t("GameEvent.messages.gameMasterWillTouchInfected")],
+                    soundEffect: "vile-father-of-wolves-infects",
+                },
+                "witch-turn": {
+                    messages: [i18n.t("GameEvent.messages.witchStarts")],
+                    soundEffect: "witch-plays",
+                },
+                "guard-turn": {
+                    messages: [i18n.t("GameEvent.messages.guardStarts")],
+                    soundEffect: "guard-plays",
+                },
+                "raven-turn": {
+                    messages: [i18n.t("GameEvent.messages.ravenStarts")],
+                    soundEffect: "raven-plays",
+                },
                 "raven-marks": {
                     messages: [
                         i18n.t("GameEvent.messages.ravenHasMarked"),
                         i18n.t("GameEvent.messages.gameMasterWillDepositMark"),
                     ],
+                    soundEffect: "raven-plays",
                 },
-                "hunter-turn": { messages: [i18n.t("GameEvent.messages.hunterStarts")] },
-                "dog-wolf-turn": { messages: [i18n.t("GameEvent.messages.dogWolfStarts")] },
-                "cupid-turn": { messages: [i18n.t("GameEvent.messages.cupidStarts")] },
+                "hunter-turn": {
+                    messages: [i18n.t("GameEvent.messages.hunterStarts")],
+                    soundEffect: "hunter-plays",
+                },
+                "dog-wolf-turn": {
+                    messages: [i18n.t("GameEvent.messages.dogWolfStarts")],
+                    soundEffect: "dog-wolf-plays",
+                },
+                "cupid-turn": {
+                    messages: [i18n.t("GameEvent.messages.cupidStarts")],
+                    soundEffect: "cupid-plays",
+                },
                 "cupid-charms": {
                     messages: [
                         i18n.t("GameEvent.messages.cupidCharmedTwoPlayers"),
                         i18n.t("GameEvent.messages.gameMasterWillTouchLovers"),
                     ],
+                    soundEffect: "cupid-plays",
                 },
-                "lovers-turn": { messages: [i18n.t("GameEvent.messages.loversStart")] },
+                "lovers-turn": {
+                    messages: [i18n.t("GameEvent.messages.loversStart")],
+                    soundEffect: "lovers-play",
+                },
                 "two-sisters-turn": {
                     messages: [
                         ...insertIf(this.game.turn === 1, i18n.t("GameEvent.messages.twoSistersMeetEachOther")),
                         ...insertIf(this.game.turn !== 1, i18n.t("GameEvent.messages.twoSistersWakeUpToTalk")),
                     ],
+                    soundEffect: "two-sisters-play",
                 },
                 "three-brothers-turn": {
                     messages: [
                         ...insertIf(this.game.turn === 1, i18n.t("GameEvent.messages.threeBrothersMeetEachOther")),
                         ...insertIf(this.game.turn !== 1, i18n.t("GameEvent.messages.threeBrothersWakeUpToTalk")),
                     ],
+                    soundEffect: "three-brothers-play",
                 },
-                "wild-child-turn": { messages: [i18n.t("GameEvent.messages.wildChildStarts")] },
-                "big-bad-wolf-turn": { messages: [i18n.t("GameEvent.messages.bigBadWolfStarts")] },
-                "pied-piper-turn": { messages: [i18n.t("GameEvent.messages.piedPiperStarts")] },
+                "wild-child-turn": {
+                    messages: [i18n.t("GameEvent.messages.wildChildStarts")],
+                    soundEffect: "wild-child-plays",
+                },
+                "big-bad-wolf-turn": {
+                    messages: [i18n.t("GameEvent.messages.bigBadWolfStarts")],
+                    soundEffect: "big-bad-wolf-plays",
+                },
+                "pied-piper-turn": {
+                    messages: [i18n.t("GameEvent.messages.piedPiperStarts")],
+                    soundEffect: "pied-piper-plays",
+                },
                 "pied-piper-charms": {
                     messages: [
                         i18n.t("GameEvent.messages.piedPiperCharmedTwoPlayers"),
                         i18n.t("GameEvent.messages.gameMasterWillTouchCharmed"),
                     ],
+                    soundEffect: "pied-piper-plays",
                 },
                 "charmed-turn": {
                     messages: [
                         ...insertIf(this.game.turn === 1, i18n.t("GameEvent.messages.charmedWakeUp")),
                         ...insertIf(this.game.turn !== 1, i18n.t("GameEvent.messages.charmedWakeUpWithOldOnes")),
                     ],
+                    soundEffect: "charmed-play",
                 },
-                "scapegoat-turn": { messages: [i18n.t("GameEvent.messages.scapegoatStarts")] },
+                "scapegoat-turn": {
+                    messages: [i18n.t("GameEvent.messages.scapegoatStarts")],
+                    soundEffect: "scapegoat-plays",
+                },
+                "thief-turn": {
+                    messages: [
+                        i18n.t("GameEvent.messages.thiefStarts"),
+                        i18n.t("GameEvent.messages.gameMasterWillFlipAdditionalCards"),
+                    ],
+                    soundEffect: "thief-plays",
+                },
+                "thief-chooses-card": {
+                    messages: [i18n.t("GameEvent.messages.thiefChoosesCard")],
+                    soundEffect: "thief-plays",
+                },
+                "stuttering-judge-turn": {
+                    messages: [i18n.t("GameEvent.messages.stutteringJudgeStarts")],
+                    soundEffect: "stuttering-judge-plays",
+                },
+                "white-werewolf-turn": {
+                    messages: [i18n.t("GameEvent.messages.whiteWerewolfStarts")],
+                    soundEffect: "white-werewolf-plays",
+                },
             };
         },
         hasGameEventTargets() {
@@ -216,6 +306,9 @@ export default {
         },
         gameEventMessages() {
             return this.gameEventMetadata[this.event.type] ? this.gameEventMetadata[this.event.type].messages : [];
+        },
+        gameEventSoundEffect() {
+            return this.gameEventMetadata[this.event.type] ? this.gameEventMetadata[this.event.type].soundEffect : undefined;
         },
         currentGameEventMessage() {
             return this.gameEventMessages && this.messageIdx < this.gameEventMessages.length ? this.gameEventMessages[this.messageIdx] : "";
@@ -235,7 +328,7 @@ export default {
                 }
             }
             for (let i = 0; i < roles.length; i++) {
-                gameCompositionText += i + 1 === roles.length ? ` et` : ` `;
+                gameCompositionText += i + 1 === roles.length ? ` ${this.$t("GameEvent.and")}` : ` `;
                 gameCompositionText += ` ${roles[i].count} ${this.$tc(`Role.${roles[i].name}`, roles[i].count)}`;
                 if (i + 2 < roles.length) {
                     gameCompositionText += ",";
@@ -245,6 +338,16 @@ export default {
             return gameCompositionText;
         },
         isTouchDevice,
+    },
+    created() {
+        if (this.gameEventSoundEffect) {
+            this.audioManager.playSoundEffect(this.gameEventSoundEffect);
+        }
+        if (this.event.type === "day-rises") {
+            this.audioManager.playDayMusic();
+        } else if (this.event.type === "night-falls") {
+            this.audioManager.playNightMusic();
+        }
     },
     methods: {
         previousGameEventMessage() {

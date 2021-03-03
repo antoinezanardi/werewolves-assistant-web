@@ -12,11 +12,11 @@
                class="role-minimum-not-reached fa fa-exclamation-circle animate__animated animate__heartBeat animate__infinite"/>
             <RoleImage :role="role.name"/>
         </div>
-        <div v-if="!role.name" class="cursor-pointer">
+        <div v-if="!role.name" class="cursor-pointer role-text">
             <i class="fa fa-random mr-1"/>
             <span class="font-italic" v-html="$t('RolePickerRole.random')"/>
         </div>
-        <RoleText v-else :role="role.name" prefix="the"/>
+        <RoleText v-else class="role-text" :role="role.name" prefix="the"/>
     </div>
 </template>
 
@@ -52,6 +52,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+@import "../../../../node_modules/bootstrap/scss/bootstrap-grid";
+
 .role-image-container {
     border: 3px solid grey;
     border-radius: 8px;
@@ -86,6 +89,16 @@ export default {
 
     &.selected {
         border-color: #eeeeee;
+    }
+}
+
+.role-text {
+    font-size: 0.7rem;
+    @include media-breakpoint-up(md) {
+        font-size: 0.85rem;
+    }
+    @include media-breakpoint-up(lg) {
+        font-size: 1rem;
     }
 }
 </style>

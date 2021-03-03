@@ -58,7 +58,13 @@ import GameResult from "@/components/shared/Game/GameResult/GameResult";
 export default {
     name: "GameWinners",
     components: { GameResult, GameSummaryButton, GameReviewButton, GameReviewModal, GameSummaryModal, PlayerCard },
-    computed: { ...mapGetters("game", { game: "game" }) },
+    computed: {
+        ...mapGetters("game", { game: "game" }),
+        ...mapGetters("audioManager", { audioManager: "audioManager" }),
+    },
+    created() {
+        this.audioManager.stopAllMusics();
+    },
     methods: {
         confirmRestartGame() {
             return Swal.fire({
@@ -90,7 +96,7 @@ export default {
 
 <style scoped>
     #game-winners-content {
-        overflow-y: scroll;
+        overflow-y: auto;
         width: 100%;
         flex-grow: 1;
     }

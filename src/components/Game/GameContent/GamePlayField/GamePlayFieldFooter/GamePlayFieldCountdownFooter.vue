@@ -27,6 +27,7 @@ export default {
     },
     computed: {
         ...mapGetters("game", { game: "game" }),
+        ...mapGetters("audioManager", { audioManager: "audioManager" }),
         timeForActionText() {
             const { firstWaiting } = this.game;
             return this.$t(`GamePlayFieldCountdownFooter.timeFor.${firstWaiting.for}.${firstWaiting.to}`);
@@ -34,6 +35,13 @@ export default {
         timeIsUpForActionText() {
             const { firstWaiting } = this.game;
             return this.$t(`GamePlayFieldCountdownFooter.timeIsUpFor.${firstWaiting.for}.${firstWaiting.to}`);
+        },
+    },
+    watch: {
+        "countdown.ended"(hasEnded) {
+            if (hasEnded) {
+                this.audioManager.playSoundEffect("time-is-up");
+            }
         },
     },
     methods: {

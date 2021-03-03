@@ -23,7 +23,7 @@ export function getVotedPlayers(votes, game, action) {
     if (action === "vote") {
         const ravenMarkedPlayer = game.getPlayerWithAttribute("raven-marked");
         if (ravenMarkedPlayer && ravenMarkedPlayer.isAlive) {
-            incrementPlayerVoteCount(votedPlayers, ravenMarkedPlayer._id, game, 2);
+            incrementPlayerVoteCount(votedPlayers, ravenMarkedPlayer._id, game, game.options.roles.raven.markPenalty);
         }
     }
     return votedPlayers;
@@ -62,14 +62,14 @@ export function isPlayerAttributeActive({ activeAt }, game) {
 }
 
 export function listPlayerNames(players) {
-    let actionText = "";
+    let playersText = "";
     for (let i = 0; i < players.length; i++) {
-        actionText += players[i].name;
+        playersText += players[i].name;
         if (i + 2 < players.length) {
-            actionText += ",";
+            playersText += ",";
         } else if (i + 2 === players.length) {
-            actionText += ` ${i18n.t("helpers.Player.and")} `;
+            playersText += ` ${i18n.t("helpers.Player.and")} `;
         }
     }
-    return actionText;
+    return playersText;
 }

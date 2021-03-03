@@ -18,7 +18,21 @@ export function isTargetAction(action) {
     return targetActions.includes(action);
 }
 
-export function isSkippableAction(action) {
-    const skippableActions = ["use-potion", "mark", "meet-each-other", "ban-voting"];
-    return skippableActions.includes(action);
+export function areAllAdditionalCardsWerewolves(additionalCards) {
+    const werewolfRoles = ["werewolf", "white-werewolf", "vile-father-of-wolves", "big-bad-wolf"];
+    return additionalCards.every(({ role }) => werewolfRoles.includes(role));
+}
+
+export function isSkippableAction(action, source, game) {
+    const { additionalCards, aliveVillagerPlayers } = game;
+    const skippableActions = ["use-potion", "mark", "meet-each-other", "ban-voting", "choose-sign"];
+    const areAllVillagersEaten = aliveVillagerPlayers.every(player => player.hasAttribute("eaten"));
+    return skippableActions.includes(action) ||
+        action === "eat" && (source === "white-werewolf" || source === "big-bad-wolf" && areAllVillagersEaten) ||
+        action === "choose-card" && additionalCards && !areAllAdditionalCardsWerewolves(additionalCards);
+}
+
+export function isPreFirstNightPlay(action, turn, phase) {
+    const preFirstNightActions = ["elect-sheriff", "vote", "settle-votes", "delegate", "ban-voting", "shoot"];
+    return turn === 1 && phase === "night" && preFirstNightActions.includes(action);
 }
