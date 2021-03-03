@@ -13,14 +13,14 @@
                                class="badge badge-dark text-center text-uppercase">
                                 <i class="fab fa-github mr-2 text-white"/>
                                 <span v-html="'v1.0.0'"/>
-                                <span class="text-muted" v-html="' - beta'"/>
+                                <span v-html="' - beta'"/>
                             </a>
                         </span>
                     </h1>
-                    <h4 id="subtitle" class="text-center">
+                    <h2 id="subtitle" class="text-center">
                         <i class="fa fa-star mr-2 text-warning"/>
                         <span class="text-gray" v-html="$t('Home.bestToolForGameMastering')"/>
-                    </h4>
+                    </h2>
                 </div>
             </div>
             <div class="mt-4 d-flex justify-content-center">
@@ -199,6 +199,7 @@ export default {
         position: absolute;
         right: 0;
         bottom: 100%;
+        text-shadow: 1px 1px 3px black;
     }
 
     #home-footer {

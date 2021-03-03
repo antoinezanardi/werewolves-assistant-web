@@ -26,6 +26,7 @@
 * [#143](https://github.com/antoinezanardi/werewolves-assistant-web/issues/143) - Style for players who voted.
 * [#144](https://github.com/antoinezanardi/werewolves-assistant-web/issues/144) - Players are getting asleep when action is over.
 * [#145](https://github.com/antoinezanardi/werewolves-assistant-web/issues/145) - Capitalize all roles in texts.
+* [#146](https://github.com/antoinezanardi/werewolves-assistant-web/issues/146) - Improve SEO.
 
 ### 🐛 Bug fixes
 
@@ -45,14 +46,16 @@
 ### 📦 Packages
 
 * `howler` installed with version `2.2.1`.
-* `particles.vue` installed with version `2.2.1`.
+* `particles.vue` installed with version `2.2.2`.
 * `vue-backtotop` installed with version `1.6.1`.
+* `vue-meta` installed with version `2.4.0`.
 * `@sentry/browser` updated to version `6.2.1`.
 * `@sentry/integrations` updated to version `6.2.1`.
 * `@vue/test-utils` updated to version `1.1.3`.
-* `chai` updated to version `4.3.0`.
+* `chai` updated to version `4.3.1`.
 * `eslint` updated to version `7.21.0`.
 * `eslint-plugin-vue` updated to version `7.7.0`.
+* `jquery` updated to version `3.6.0`.
 * `sweetalert2` updated to version `10.15.5`.
 * `vue-i18n` updated to version `8.23.0`.
 * `vue-gtag` updated to version `1.11.0`.

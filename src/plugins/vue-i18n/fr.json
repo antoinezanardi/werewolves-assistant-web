@@ -1,4 +1,12 @@
 {
+    "App": {
+        "metaInfo": {
+            "title": "Assistant Loups-Garous",
+            "lang": "fr",
+            "description": "L'outil idéal pour le maître du jeu des Loups-Garous de Thiercelieux™",
+            "keywords": "assistant, loups, garous, thiercelieux, aide, narration, narrateur, maitre, jeu, gratuit, animateur, animation"
+        }
+    },
     "NavBar": {
         "werewolvesAssistant": "Assistant Loups-Garous",
         "options": "Options",
@@ -150,7 +158,7 @@
         "thisProjectIsOpenSource": "Ce projet est open-source",
         "buyMeACoffee": "M'offrir un café",
         "whatIsItAbout": "À quoi ça sert",
-        "bestToolForGameMastering": "L'outil idéal pour le maître du jeu des Loups-Garous de Thiercelieux",
+        "bestToolForGameMastering": "L'outil idéal pour le maître du jeu des Loups-Garous de Thiercelieux™",
         "checkChangelogOnGithub": "Voir le récapitulatif des mises à jour sur GitHub"
     },
     "Login": {
@@ -178,6 +186,9 @@
         "IAlreadyHaveAnAccount": "J'ai déjà un compte"
     },
     "About": {
+        "metaInfo": {
+            "title": "À quoi ça sert ?"
+        },
         "werewolvesAssistantWhatFor": "Un assistant ? Pour quoi faire ?",
         "theGame": "Le jeu",
         "werewolvesOfMillersHollowTM": "Les Loups-Garous de Thiercelieux™",

@@ -28,7 +28,7 @@ class AudioManager {
         const ambientNightFiles = [
             "/audio/ambient/night/night-1.mp3",
             "/audio/ambient/night/night-2.mp3",
-            "/audio/ambient/night/night-3f.mp3",
+            "/audio/ambient/night/night-3.mp3",
         ];
         for (const ambientNightFile of ambientNightFiles) {
             this.ambient.nightMusics.push(new Howl({ src: ambientNightFile, ...options }));
