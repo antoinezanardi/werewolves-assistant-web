@@ -62,7 +62,7 @@ export default {
         htmlAttrs: { lang: i18n.t("App.metaInfo.lang") },
         title: i18n.t("App.metaInfo.title"),
         meta: [
-            { charset: "UTF-8" },
+            { charset: "utf-8" },
             { name: "viewport", content: "width=device-width, initial-scale=1.0" },
             { "http-equiv": "X-UA-Compatible", "content": "IE=edge" },
             { name: "description", content: i18n.t("App.metaInfo.description") },
