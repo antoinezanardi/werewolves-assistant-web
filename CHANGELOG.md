@@ -26,7 +26,7 @@
 * [#143](https://github.com/antoinezanardi/werewolves-assistant-web/issues/143) - Style for players who voted.
 * [#144](https://github.com/antoinezanardi/werewolves-assistant-web/issues/144) - Players are getting asleep when action is over.
 * [#145](https://github.com/antoinezanardi/werewolves-assistant-web/issues/145) - Capitalize all roles in texts.
-* [#146](https://github.com/antoinezanardi/werewolves-assistant-web/issues/146) - Improve SEO.
+* [#146](https://github.com/antoinezanardi/werewolves-assistant-web/issues/146) - Improve SEO. 
 
 ### 🐛 Bug fixes
 
