@@ -2,7 +2,7 @@ $scrollbar-color: rgba(234, 234, 234, 0.5);
 $scrollbar-background-color: #1A1C1D;
 
 .visible-scrollbar {
-    scrollbar-color: $scrollbar-background-color $scrollbar-color;
+    scrollbar-color: $scrollbar-color $scrollbar-background-color;
 
     &::-webkit-scrollbar {
         width: 3px;

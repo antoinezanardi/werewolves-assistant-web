@@ -1,6 +1,6 @@
 # 📈 LIST OF CHANGES FOR WEREWOLVES ASSISTANT WEB
 
-## 1.0.0-beta.11 (2021-03-??)
+## 1.0.0-beta.11 (2021-03-03)
 
 ### 🚀 New features
 
@@ -33,6 +33,7 @@
 * [#119](https://github.com/antoinezanardi/werewolves-assistant-web/issues/119) - Adapt home page to smaller screens.
 * [#122](https://github.com/antoinezanardi/werewolves-assistant-web/issues/122) - No targets for big bad wolf.
 * [#139](https://github.com/antoinezanardi/werewolves-assistant-web/issues/139) - Broken styles on GameLobby.
+* [#140](https://github.com/antoinezanardi/werewolves-assistant-web/issues/140) - Broken styles on Windows.
 
 ### ♻️ Refactoring
 

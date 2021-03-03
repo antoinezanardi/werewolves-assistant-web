@@ -57,7 +57,7 @@
                         <hr class="bg-dark mt-3 mb-2"/>
                     </div>
                 </div>
-                <div id="game-lobby-players-container" class="d-flex flex-column flex-grow-1">
+                <div id="game-lobby-players-container" class="d-flex flex-column flex-grow-1 visible-scrollbar">
                     <transition mode="out-in" name="fade">
                         <div v-if="!game.players.length" class="d-flex flex-column justify-content-center flex-grow-1">
                             <h3 id="no-player-text"
@@ -349,6 +349,10 @@ export default {
     @import "../../../node_modules/bootstrap/scss/bootstrap";
     @import "../../assets/scss/_variables";
 
+    #game-lobby {
+        overflow-x: hidden;
+    }
+
     #game-lobby-title {
         font-size: 1.25rem;
         @include media-breakpoint-up(sm) {
@@ -362,7 +366,6 @@ export default {
     }
 
     #players {
-        overflow-y: scroll;
         overflow-x: hidden !important;
     }
 
@@ -371,7 +374,7 @@ export default {
     }
 
     #game-lobby-players-container {
-        overflow-y: scroll;
+        overflow-y: auto;
         min-height: 75px;
     }
 </style>

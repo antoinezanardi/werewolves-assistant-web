@@ -63,8 +63,7 @@ export default {
         ...mapGetters("audioManager", { audioManager: "audioManager" }),
     },
     created() {
-        this.audioManager.stopNightMusic();
-        this.audioManager.stopDayMusic();
+        this.audioManager.stopAllMusics();
     },
     methods: {
         confirmRestartGame() {
@@ -97,7 +96,7 @@ export default {
 
 <style scoped>
     #game-winners-content {
-        overflow-y: scroll;
+        overflow-y: auto;
         width: 100%;
         flex-grow: 1;
     }

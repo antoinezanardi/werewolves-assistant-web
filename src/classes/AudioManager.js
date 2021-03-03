@@ -109,6 +109,11 @@ class AudioManager {
         }
     }
 
+    stopAllMusics() {
+        this.stopDayMusic();
+        this.stopNightMusic();
+    }
+
     playSoundEffect(soundEffect) {
         if (this.soundEffects.sounds[soundEffect]) {
             this.soundEffects.sounds[soundEffect].play();

@@ -145,7 +145,7 @@ export default {
 
 <style scoped lang="scss">
     #game-content-play-field {
-        overflow-y: scroll;
+        overflow-y: auto;
         width: 100%;
         flex-grow: 1;
     }

@@ -37,14 +37,22 @@ export default {
     async beforeRouteLeave(to, from, next) {
         if (this.game.status === "playing") {
             const { value: confirmLeaveGame } = await this.confirmLeaveGame();
-            return confirmLeaveGame ? next() : next(false);
+            if (confirmLeaveGame) {
+                this.audioManager.stopAllMusics();
+                return next();
+            }
+            return next(false);
         }
+        this.audioManager.stopAllMusics();
         return next();
     },
     data() {
         return { loading: { getGame: true } };
     },
-    computed: { ...mapGetters("game", { game: "game" }) },
+    computed: {
+        ...mapGetters("game", { game: "game" }),
+        ...mapGetters("audioManager", { audioManager: "audioManager" }),
+    },
     created() {
         this.getGame();
     },

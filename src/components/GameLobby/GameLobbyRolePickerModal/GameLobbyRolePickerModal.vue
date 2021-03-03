@@ -296,7 +296,7 @@ export default {
     }
 
     #selected-role-panel {
-        overflow-y: scroll;
+        overflow-y: auto;
         height: 40%;
         @include media-breakpoint-up(lg) {
             height: 100%;
