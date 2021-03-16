@@ -27,3 +27,4 @@ notifications:
 before_install:
 - openssl aes-256-cbc -K $encrypted_ae4bfc95fd3d_key -iv $encrypted_ae4bfc95fd3d_iv
   -in deploy/deploy-key.enc -out deploy/deploy-key -d
+
