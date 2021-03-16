@@ -26,4 +26,4 @@ notifications:
     secure: IbKD7xpebKKvrSWZaBK2u7p1qLcqhSL0/KFz316+COn9CUpsK8OARjTNi8PFDeaFZD2yjRM8IrWRp1cRtqR42azAjCVUqGbRtaGGricca67JNUAuKIpzYofLOZGgqZjf5htBvrbWypaQlBBg6E0sue9H8lnl8qWNSJzd4jREs6yahuTwkF5WaK4OaH5MLiho3D43Q9PLMi1NPZgEpQ/OxGDbgQMoys8iHHF7irEYTt0qaAVxorEi2EXsepyP9gdhikhls+zTTyMx6P+1rEDm9rtWwIUb9zQzjkJX1kLys/vJmi4BhbUwoEAFpEJ3A+gB+Rz/Qc//iGTSf4H3QYtgajrK2UZeg3BqAH4f/WB4/0AAwhD/cpvRxJk5FvPBGd3USfgjhcIeX2R3cgYcw3flt1t2DzwOS8V58PLqsgy7kvUnhftBln+vv5q0aRWtJoglbX09TVsmY0StiZP+3MyOMWL+61eyTIE+zmGHCfXU4XAd5sTQnntpBkQEv0fEO3BpBIRMnJ3OfL1AvstxXvBydk9CD+wOkUE7mObYTK3BhvEeBCyNTrX/YsHm69ERsYVVsEotJ72/HcxCMgAe5IsbYqY+1nwztzuhRyjb+qMmJ6bjDtLDV1GVp5El0OXozyyrK6K4O7dzBzIvw0hrvznHLSki4wuUNkFJ3vv9Ie9sQPk=
 before_install:
 - openssl aes-256-cbc -K $encrypted_ae4bfc95fd3d_key -iv $encrypted_ae4bfc95fd3d_iv
-  -in deploy-key.enc -out deploy/deploy-key -d
+  -in deploy/deploy-key.enc -out deploy/deploy-key -d
