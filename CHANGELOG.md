@@ -1,5 +1,30 @@
 # 📈 LIST OF CHANGES FOR WEREWOLVES ASSISTANT WEB
 
+## 1.0.0-beta.12 (2021-??-??)
+
+### 📦 Packages
+
+* `vue-facebook-login-component` installed with version `4.0.1`.
+* `@fortawesome/fontawesome-free` updated to version `5.15.3`.
+* `@sentry/browser` updated to version `6.2.3`.
+* `@sentry/integrations` updated to version `6.2.3`.
+* `@vue/cli-plugin-e2e-cypress` updated to version `4.5.12`.
+* `@vue/cli-plugin-eslint` updated to version `4.5.12`.
+* `@vue/cli-plugin-router` updated to version `4.5.12`.
+* `@vue/cli-plugin-unit-mocha` updated to version `4.5.12`.
+* `@vue/cli-plugin-vuex` updated to version `4.5.12`.
+* `@vue/cli-service` updated to version `4.5.12`.
+* `chai` updated to version `4.3.4`.
+* `eslint` updated to version `7.22.0`.
+* `eslint-plugin-vue` updated to version `7.8.0`.
+* `particles.vue` updated to version `2.7.1`.
+* `qs` updated to version `6.10.1`.
+* `sweetalert2` updated to version `10.15.6`.
+* `v-tooltip` updated to version `2.1.3`.
+* `vue-i18n` updated to version `8.24.2`.
+
+---
+
 ## 1.0.0-beta.11 (2021-03-03)
 
 ### 🚀 New features

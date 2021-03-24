@@ -28,7 +28,8 @@
                         <div class="modal-body">
                             <transition mode="out-in" name="switch-panel">
                                 <LoginPanel v-if="panel === 'log-in'" ref="loginPanel" key="log-in-panel"
-                                            :loading="loading" class="account-panel" @open-register-tab="panel = 'register'"/>
+                                            :loading="loading" class="account-panel" @open-register-tab="panel = 'register'"
+                                            @hide-account-modal="hide"/>
                                 <RegisterPanel v-else-if="panel === 'register'" ref="registerPanel" key="register-panel"
                                                :loading="loading" class="account-panel" @open-login-tab="panel = 'log-in'"/>
                             </transition>
@@ -105,7 +106,7 @@ export default {
                 this.loading = true;
                 if (this.panel === "log-in") {
                     await this.login(this.$refs.loginPanel.getCredentials());
-                    $("#account-modal").modal("hide");
+                    this.hide();
                 } else if (this.panel === "register") {
                     await this.register();
                 }
@@ -120,6 +121,9 @@ export default {
                     this.$refs.registerPanel.focusEmailInput();
                 }
             }
+        },
+        hide() {
+            $("#account-modal").modal("hide");
         },
     },
 };

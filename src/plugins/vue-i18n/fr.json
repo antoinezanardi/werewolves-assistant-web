@@ -163,6 +163,7 @@
     },
     "Login": {
         "loggedIn": "Connecté",
+        "loggedInWithFacebook": "Connecté avec Facebook",
         "loggedOut": "Déconnecté"
     },
     "AccountModal": {

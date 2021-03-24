@@ -59,15 +59,23 @@ export default {
             }
             return getters.isLogged;
         },
-        async login({ commit, dispatch }, { email, password }) {
+        async login({ commit }, { email, password }) {
             const { data: loginData } = await Vue.prototype.$werewolvesAssistantAPI.login({ email, password });
             localStorage.setItem("token", loginData.token);
             Vue.prototype.$werewolvesAssistantAPI.setToken(loginData.token);
             const decoded = JWT.decode(loginData.token);
             const { data: userData } = await Vue.prototype.$werewolvesAssistantAPI.getUser(decoded.userId);
-            await dispatch("role/getAndSetRoles", {}, { root: true });
             commit("setUser", new User({ ...userData, logged: true }));
             Vue.prototype.$toasted.success(i18n.t("Login.loggedIn"), { icon: "check" });
+        },
+        async loginWithFacebook({ commit }, accessToken) {
+            const { data: loginData } = await Vue.prototype.$werewolvesAssistantAPI.loginWithFacebook({ accessToken });
+            localStorage.setItem("token", loginData.token);
+            Vue.prototype.$werewolvesAssistantAPI.setToken(loginData.token);
+            const decoded = JWT.decode(loginData.token);
+            const { data: userData } = await Vue.prototype.$werewolvesAssistantAPI.getUser(decoded.userId);
+            commit("setUser", new User({ ...userData, logged: true }));
+            Vue.prototype.$toasted.success(i18n.t("Login.loggedInWithFacebook"), { icon: "check" });
         },
         async logout({ commit }, { toasted = true }) {
             localStorage.removeItem("token");
@@ -84,8 +92,7 @@ export default {
             const token = localStorage.getItem("token");
             if (token) {
                 const decoded = JWT.decode(token);
-                const now = Math.round(new Date().getTime() / 1000);
-                if (decoded && decoded.exp && now < decoded.exp) {
+                if (decoded) {
                     Vue.prototype.$werewolvesAssistantAPI.setToken(token);
                     const { data } = await Vue.prototype.$werewolvesAssistantAPI.getUser(decoded.userId);
                     await dispatch("role/getAndSetRoles", {}, { root: true });
