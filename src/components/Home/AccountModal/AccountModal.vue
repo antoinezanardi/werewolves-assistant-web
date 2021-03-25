@@ -80,7 +80,7 @@ export default {
             Vue.nextTick(() => this.$refs.loginPanel.reset());
             this.$refs.accountModalValidationObserver.reset();
             $("#account-modal").modal("show");
-            setTimeout(() => this.$refs.loginPanel.focusEmailInput(), 500);
+            // setTimeout(() => this.$refs.loginPanel.focusEmailInput(), 500);
         },
         switchPanel(panel) {
             this.$refs.accountModalValidationObserver.reset();

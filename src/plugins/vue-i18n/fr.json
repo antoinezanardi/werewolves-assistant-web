@@ -169,6 +169,9 @@
     "FacebookLoginButton": {
         "logInWithFacebook": "Se connecter avec Facebook"
     },
+    "GoogleLoginButton": {
+        "logInWithGoogle": "Se connecter avec Google"
+    },
     "AccountModal": {
         "logIn": "Se connecter",
         "register": "S'inscrire",

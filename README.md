@@ -117,6 +117,8 @@ Complete list of all enabled rules is available in the **[.eslintrc.js file](htt
         -  _**Not Required - Default value**_: `false`
    * **VUE_APP_FACEBOOK_APP_ID**: Facebook application ID if you want to enable Facebook authentication.
        -  _**Not Required**_
+   * **VUE_APP_GOOGLE_CLIENT_ID**: Google client ID if you want to enable Google authentication.
+       -  _**Not Required**_
 
 ## <a name="lets-go">🔌 Let's go</a>
 To start the web app **on development mode**, simply run `npm start`.
