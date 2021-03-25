@@ -54,7 +54,7 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <FacebookLoginButton class="mt-2" @hide-account-modal="hideAccountModal"/>
+                <FacebookLoginButton class="mt-2 text-center" @hide-account-modal="hideAccountModal"/>
             </div>
         </div>
     </div>

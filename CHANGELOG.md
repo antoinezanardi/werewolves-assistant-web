@@ -2,6 +2,10 @@
 
 ## 1.0.0-beta.12 (2021-??-??)
 
+### 🚀 New features
+
+* [#154](https://github.com/antoinezanardi/werewolves-assistant-web/issues/154) - Facebook auth.
+
 ### 📦 Packages
 
 * `vue-facebook-login-component` installed with version `4.0.1`.
