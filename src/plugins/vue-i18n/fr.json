@@ -164,6 +164,7 @@
     "Login": {
         "loggedIn": "Connecté",
         "loggedInWithFacebook": "Connecté avec Facebook",
+        "loggedInWithGoogle": "Connecté avec Google",
         "loggedOut": "Déconnecté"
     },
     "FacebookLoginButton": {

@@ -25,6 +25,8 @@ const WerewolvesAssistantAPI = {
 
         Vue.prototype.$werewolvesAssistantAPI.loginWithFacebook = data => axios.post(`/users/login/facebook`, data);
 
+        Vue.prototype.$werewolvesAssistantAPI.loginWithGoogle = data => axios.post(`/users/login/google`, data);
+
         Vue.prototype.$werewolvesAssistantAPI.decodeToken = () => {
             let decoded = { userId: 0 };
             const token = localStorage.getItem("token");

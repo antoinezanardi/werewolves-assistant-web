@@ -1,6 +1,6 @@
 <template>
     <VFacebookLogin ref="facebook" :app-id="appId" :login-options="loginOptions" class="btn-block btn-lg"
-                    @login="login" @sdk-init="initSDK">
+                    type="button" @login="login" @sdk-init="initSDK">
         <template #login>
             <span v-html="$t('FacebookLoginButton.logInWithFacebook')"/>
         </template>

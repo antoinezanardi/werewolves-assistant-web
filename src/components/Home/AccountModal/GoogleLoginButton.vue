@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import GoogleLogin from "vue-google-login";
 import Config from "../../../../config";
 
@@ -21,8 +22,17 @@ export default {
         };
     },
     methods: {
-        login(response) {
-            console.log(response);
+        ...mapActions("user", { loginWithGoogle: "loginWithGoogle" }),
+        async login(data) {
+            console.log(data);
+            try {
+                if (data) {
+                    await this.loginWithGoogle(data.tc.id_token);
+                    // this.$emit("hide-account-modal");
+                }
+            } catch (err) {
+                this.$error.display(err);
+            }
         },
     },
 };

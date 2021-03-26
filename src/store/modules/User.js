@@ -59,23 +59,20 @@ export default {
             }
             return getters.isLogged;
         },
-        async login({ commit }, { email, password }) {
+        async login({ dispatch }, { email, password }) {
             const { data: loginData } = await Vue.prototype.$werewolvesAssistantAPI.login({ email, password });
-            localStorage.setItem("token", loginData.token);
-            Vue.prototype.$werewolvesAssistantAPI.setToken(loginData.token);
-            const decoded = JWT.decode(loginData.token);
-            const { data: userData } = await Vue.prototype.$werewolvesAssistantAPI.getUser(decoded.userId);
-            commit("setUser", new User({ ...userData, logged: true }));
+            await dispatch("checkTokenAndLogin", loginData);
             Vue.prototype.$toasted.success(i18n.t("Login.loggedIn"), { icon: "check" });
         },
-        async loginWithFacebook({ commit }, accessToken) {
+        async loginWithFacebook({ dispatch }, accessToken) {
             const { data: loginData } = await Vue.prototype.$werewolvesAssistantAPI.loginWithFacebook({ accessToken });
-            localStorage.setItem("token", loginData.token);
-            Vue.prototype.$werewolvesAssistantAPI.setToken(loginData.token);
-            const decoded = JWT.decode(loginData.token);
-            const { data: userData } = await Vue.prototype.$werewolvesAssistantAPI.getUser(decoded.userId);
-            commit("setUser", new User({ ...userData, logged: true }));
+            await dispatch("checkTokenAndLogin", loginData);
             Vue.prototype.$toasted.success(i18n.t("Login.loggedInWithFacebook"), { icon: "check" });
+        },
+        async loginWithGoogle({ dispatch }, idToken) {
+            const { data: loginData } = await Vue.prototype.$werewolvesAssistantAPI.loginWithGoogle({ idToken });
+            await dispatch("checkTokenAndLogin", loginData);
+            Vue.prototype.$toasted.success(i18n.t("Login.loggedInWithGoogle"), { icon: "check" });
         },
         async logout({ commit }, { toasted = true }) {
             localStorage.removeItem("token");
@@ -88,15 +85,15 @@ export default {
                 await router.push("/");
             }
         },
-        async checkTokenAndLogin({ commit, dispatch }) {
-            const token = localStorage.getItem("token");
+        async checkTokenAndLogin({ commit }, data) {
+            const token = data && data.token ? data.token : localStorage.getItem("token");
             if (token) {
                 const decoded = JWT.decode(token);
                 if (decoded) {
+                    localStorage.setItem("token", token);
                     Vue.prototype.$werewolvesAssistantAPI.setToken(token);
-                    const { data } = await Vue.prototype.$werewolvesAssistantAPI.getUser(decoded.userId);
-                    await dispatch("role/getAndSetRoles", {}, { root: true });
-                    return commit("setUser", { ...data, logged: true });
+                    const { data: user } = await Vue.prototype.$werewolvesAssistantAPI.getUser(decoded.userId);
+                    return commit("setUser", { ...user, logged: true });
                 }
             }
             commit("setLogged", false);
