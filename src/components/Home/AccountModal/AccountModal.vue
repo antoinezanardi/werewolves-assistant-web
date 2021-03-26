@@ -145,6 +145,5 @@ export default {
     }
     .switch-panel-enter, .switch-panel-leave-to {
         opacity: 0;
-        max-height: 240px;
     }
 </style>

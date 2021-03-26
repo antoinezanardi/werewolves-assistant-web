@@ -64,7 +64,7 @@
         </div>
         <div class="row">
             <div class="col-12 text-center">
-                <GoogleLoginButton class="mt-2"/>
+                <GoogleLoginButton class="mt-2" @hide-account-modal="hideAccountModal"/>
             </div>
         </div>
     </div>

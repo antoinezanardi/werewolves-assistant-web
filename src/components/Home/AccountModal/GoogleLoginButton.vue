@@ -24,11 +24,10 @@ export default {
     methods: {
         ...mapActions("user", { loginWithGoogle: "loginWithGoogle" }),
         async login(data) {
-            console.log(data);
             try {
                 if (data) {
                     await this.loginWithGoogle(data.tc.id_token);
-                    // this.$emit("hide-account-modal");
+                    this.$emit("hide-account-modal");
                 }
             } catch (err) {
                 this.$error.display(err);

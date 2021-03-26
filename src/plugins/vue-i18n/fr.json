@@ -1452,6 +1452,7 @@
         "EMAIL_EXISTS_WITH_LOCAL_REGISTRATION": "L'email de ce compte est déjà utilisé par un compte enregistré sur l'Assistant. Veuillez vous connecter directement sur l'Assistant.",
         "EMAIL_EXISTS_WITH_FACEBOOK_REGISTRATION": "L'email de ce compte est déjà utilisé par un compte enregistré avec Facebook. Veuillez vous connecter avec Facebook.",
         "EMAIL_EXISTS_WITH_GOOGLE_REGISTRATION": "L'email de ce compte est déjà utilisé par un compte enregistré avec Google. Veuillez vous connecter avec Google.",
+        "BAD_GOOGLE_ID_TOKEN": "Impossible de se connecter avec Google",
         "yourSessionHasExpired": "Votre session a expirée, veuillez vous reconnecter",
         "unknownError": "Erreur inconnue"
     },
