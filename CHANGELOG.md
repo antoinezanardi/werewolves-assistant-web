@@ -10,6 +10,7 @@
 ### 🌟 Enhancements
 
 * [#180](https://github.com/antoinezanardi/werewolves-assistant-web/issues/180) - Role types.
+* [#182](https://github.com/antoinezanardi/werewolves-assistant-web/issues/182) - Accordions in About page for roles.
 
 ### 📦 Packages
 

@@ -75,19 +75,8 @@
         <div class="row section-content">
             <div class="col-12">
                 <p v-html="$tc('About.thereAreCountAvailableRoles', roles.length, { count: roles.length })"/>
-                <div v-for="(role, index) in roles" :key="role.name" class="row justify-content-center align-items-center">
-                    <div class="col-md-2 col-4 d-flex flex-column align-items-center">
-                        <RoleImage :role="role.name"/>
-                        <RoleTypeBadge :role="role" class="mt-2"/>
-                    </div>
-                    <RoleText :role="role.name" prefix="the" class="col-md-2 col-4 text-center font-weight-bold cursor-text"/>
-                    <div class="col-md-8 mt-md-0 col-12 mt-3">
-                        <p v-for="paragraph of $t(`Role.description.${role.name}`)"
-                           :key="paragraph" v-html="paragraph"/>
-                    </div>
-                    <div v-if="index + 1 !== roles.length" class="col-12">
-                        <hr class="bg-dark"/>
-                    </div>
+                <div id="roles-accordion" class="accordion">
+                    <AboutRole v-for="role in roles" :key="role.name" :role="role"/>
                 </div>
             </div>
         </div>
@@ -174,13 +163,12 @@
 <script>
 import { mapGetters } from "vuex";
 import RoleImage from "@/components/shared/Game/Role/RoleImage";
-import RoleText from "@/components/shared/Game/Role/RoleText";
+import AboutRole from "@/components/About/AboutRole";
 import { i18n } from "@/plugins";
-import RoleTypeBadge from "@/components/shared/Game/Role/RoleTypeBadge";
 
 export default {
     name: "About",
-    components: { RoleTypeBadge, RoleText, RoleImage },
+    components: { AboutRole, RoleImage },
     computed: { ...mapGetters("role", { roles: "roles" }) },
     created() {
         localStorage.setItem("aboutPageVisited", "true");
@@ -231,7 +219,7 @@ export default {
     }
 
     .section-content {
-        @include font-size(1.35rem);
+        @include font-size(1.15rem);
         text-align: justify;
     }
 </style>
