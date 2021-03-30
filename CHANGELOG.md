@@ -7,6 +7,10 @@
 * [#154](https://github.com/antoinezanardi/werewolves-assistant-web/issues/154) - Facebook auth.
 * [#155](https://github.com/antoinezanardi/werewolves-assistant-web/issues/155) - Google auth.
 
+### 🌟 Enhancements
+
+* [#180](https://github.com/antoinezanardi/werewolves-assistant-web/issues/180) - Role types.
+
 ### 📦 Packages
 
 * `vue-facebook-login-component` installed with version `4.0.1`.
@@ -23,11 +27,12 @@
 * `chai` updated to version `4.3.4`.
 * `eslint` updated to version `7.23.0`.
 * `eslint-plugin-vue` updated to version `7.8.0`.
-* `particles.vue` updated to version `2.7.1`.
+* `particles.vue` updated to version `2.7.2`.
 * `qs` updated to version `6.10.1`.
 * `sweetalert2` updated to version `10.15.7`.
 * `v-tooltip` updated to version `2.1.3`.
 * `vue-i18n` updated to version `8.24.2`.
+* `vue-tour` updated to version `2.0.0`.
 
 ---
 

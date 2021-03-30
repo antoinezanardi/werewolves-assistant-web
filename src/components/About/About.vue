@@ -76,8 +76,11 @@
             <div class="col-12">
                 <p v-html="$tc('About.thereAreCountAvailableRoles', roles.length, { count: roles.length })"/>
                 <div v-for="(role, index) in roles" :key="role.name" class="row justify-content-center align-items-center">
-                    <RoleImage :role="role.name" class="col-md-2 col-4"/>
-                    <RoleText :role="role.name" prefix="the" class="col-md-2 col-4 text-center font-weight-bold"/>
+                    <div class="col-md-2 col-4 d-flex flex-column align-items-center">
+                        <RoleImage :role="role.name"/>
+                        <RoleTypeBadge :role="role" class="mt-2"/>
+                    </div>
+                    <RoleText :role="role.name" prefix="the" class="col-md-2 col-4 text-center font-weight-bold cursor-text"/>
                     <div class="col-md-8 mt-md-0 col-12 mt-3">
                         <p v-for="paragraph of $t(`Role.description.${role.name}`)"
                            :key="paragraph" v-html="paragraph"/>
@@ -173,10 +176,11 @@ import { mapGetters } from "vuex";
 import RoleImage from "@/components/shared/Game/Role/RoleImage";
 import RoleText from "@/components/shared/Game/Role/RoleText";
 import { i18n } from "@/plugins";
+import RoleTypeBadge from "@/components/shared/Game/Role/RoleTypeBadge";
 
 export default {
     name: "About",
-    components: { RoleText, RoleImage },
+    components: { RoleTypeBadge, RoleText, RoleImage },
     computed: { ...mapGetters("role", { roles: "roles" }) },
     created() {
         localStorage.setItem("aboutPageVisited", "true");

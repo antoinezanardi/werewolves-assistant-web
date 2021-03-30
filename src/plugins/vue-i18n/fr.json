@@ -1421,6 +1421,26 @@
     "RoleText": {
         "chooseARole": "Choisir un rôle"
     },
+    "RoleTypeBadge": {
+        "type": {
+            "villager": {
+                "title": "Villageois",
+                "description": "Son but est d'éliminer tous les Loups-Garous"
+            },
+            "werewolf": {
+                "title": "Loup-Garou",
+                "description": "Son but est d'éliminer tous les Villageois"
+            },
+            "ambiguous": {
+                "title": "Ambigü",
+                "description": "Son but est de faire gagner le camp auquel il appartient"
+            },
+            "lonely": {
+                "title": "Solitaire",
+                "description": "Son but est de réaliser son propre objectif, indépendamment de son propre camp"
+            }
+        }
+    },
     "InputAvailableCharacters": {
         "maxAvailableCharacters": " / {max} caractères maximum"
     },
