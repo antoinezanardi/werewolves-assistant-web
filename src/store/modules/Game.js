@@ -48,6 +48,12 @@ export default {
                 player.side.current = undefined;
             }
         },
+        setGameOptionIsGameRepartitionHidden(state, isGameRepartitionHidden) {
+            state.game.options.repartition.isHidden = isGameRepartitionHidden;
+        },
+        setGameOptionAreRolesRevealedOnDeath(state, areRolesRevealedOnDeath) {
+            state.game.options.roles.areRevealedOnDeath = areRolesRevealedOnDeath;
+        },
         setGameOptionIsSheriffEnabled(state, isSheriffEnabled) {
             state.game.options.roles.sheriff.isEnabled = isSheriffEnabled;
         },
@@ -56,6 +62,9 @@ export default {
         },
         setGameOptionIsSeerTalkative(state, isSeerTalkative) {
             state.game.options.roles.seer.isTalkative = isSeerTalkative;
+        },
+        setGameOptionCanSeerSeeRoles(state, canSeerSeeRoles) {
+            state.game.options.roles.seer.canSeeRoles = canSeerSeeRoles;
         },
         setGameOptionIsLittleProtectedByGuard(state, isLittleGirlProtectedByGuard) {
             state.game.options.roles.littleGirl.isProtectedByGuard = isLittleGirlProtectedByGuard;
@@ -103,6 +112,12 @@ export default {
         unsetRoleForPlayerWithName({ commit }, name) {
             commit("unsetRoleForPlayerWithName", name);
         },
+        setGameOptionIsGameRepartitionHidden({ commit }, isGameRepartitionHidden) {
+            commit("setGameOptionIsGameRepartitionHidden", isGameRepartitionHidden);
+        },
+        setGameOptionAreRolesRevealedOnDeath({ commit }, areRolesRevealedOnDeath) {
+            commit("setGameOptionAreRolesRevealedOnDeath", areRolesRevealedOnDeath);
+        },
         setGameOptionIsSheriffEnabled({ commit }, isSheriffEnabled) {
             commit("setGameOptionIsSheriffEnabled", isSheriffEnabled);
         },
@@ -111,6 +126,9 @@ export default {
         },
         setGameOptionIsSeerTalkative({ commit }, isSeerTalkative) {
             commit("setGameOptionIsSeerTalkative", isSeerTalkative);
+        },
+        setGameOptionCanSeerSeeRoles({ commit }, canSeerSeeRoles) {
+            commit("setGameOptionCanSeerSeeRoles", canSeerSeeRoles);
         },
         setGameOptionIsLittleProtectedByGuard({ commit }, isLittleGirlProtectedByGuard) {
             commit("setGameOptionIsLittleProtectedByGuard", isLittleGirlProtectedByGuard);

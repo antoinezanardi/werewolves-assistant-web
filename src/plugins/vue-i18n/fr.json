@@ -32,7 +32,22 @@
     },
     "GameRolesOptions": {
         "gameOptionsCantBeUpdated": "Les options de la partie ne peuvent être modifiée en dehors de l'écran de composition de la partie.",
+        "general": "Général",
         "sheriff": "Maire",
+        "isGameRepartitionHidden": {
+            "label": "La composition de la partie est cachée aux joueurs",
+            "description": {
+                "gameRepartitionIsHidden": "Le maître du jeu n'annoncera pas au début de la partie les rôles distribués aux joueurs. Ces derniers ne connaîtront donc pas les rôles composant la partie.",
+                "gameRepartitionIsNotHidden": "Au tout début de la partie, le maître du jeu annoncera à tous les joueurs les rôles distribués."
+            }
+        },
+        "areRolesRevealedOnDeath": {
+            "label": "À leur mort, les joueurs révèlent leur rôle",
+            "description": {
+                "rolesAreRevealedOnDeath": "Quand un joueur meurt, il révèle son rôle aux autres joueurs en retournant sa carte.",
+                "rolesAreNotRevealedOnDeath": "Quand un joueur meurt, il garde sa carte face cachée pour ne pas révéler son rôle aux autres joueurs."
+            }
+        },
         "isSheriffEnabled": {
             "label": "Jouer avec la fonction de maire",
             "description": {
@@ -49,11 +64,16 @@
         },
         "seer": "Voyante",
         "isSeerTalkative": {
-            "label": "La Voyante est bavarde",
-            "description": {
-                "seerIsTalkative": "Lorsque la Voyante verra le rôle d'un joueur, le maître du jeu révèlera ce rôle (et seulement le rôle) à voix haute.",
-                "seerIsNotTalkative": "Lorsque la Voyante verra le rôle d'un joueur, le maître du jeu devra mimer le rôle découvert à la Voyante."
-            }
+            "label": "La Voyante est bavarde"
+        },
+        "canSeerSeeRoles": {
+            "label": "La Voyante voit le rôle exact de sa cible"
+        },
+        "seerOptionsText": {
+            "talkativeAndCanSeeRoles": "Lorsque la Voyante choisit une cible, le maître du jeu révèlera le rôle (et seulement le rôle) de la cible à voix haute.",
+            "notTalkativeAndCanSeeRoles": "Lorsque la Voyante choisit une cible, le maître du jeu devra mimer le rôle de la cible à la Voyante.",
+            "talkativeAndCantSeeRoles": "Lorsque la Voyante choisit une cible, le maître du jeu révèlera le camp (Villageois ou Loup-Garou) de la cible à voix haute.",
+            "notTalkativeAndCantSeeRoles": "Lorsque la Voyante choisit une cible, le maître du jeu devra mimer le camp (Villageois ou Loup-Garou) de la cible."
         },
         "twoSisters": "Deux Sœurs",
         "sistersWakingUpInterval": {

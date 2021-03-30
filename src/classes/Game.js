@@ -40,12 +40,17 @@ class Game {
 
     static _getGameOptions(game) {
         return {
+            repartition: { isHidden: getProp(game, "options.repartition.isHidden", false) },
             roles: {
+                areRevealedOnDeath: getProp(game, "options.roles.areRevealedOnDeath", true),
                 sheriff: {
                     isEnabled: getProp(game, "options.roles.sheriff.isEnabled", true),
                     hasDoubledVote: getProp(game, "options.roles.sheriff.hasDoubledVote", true),
                 },
-                seer: { isTalkative: getProp(game, "options.roles.seer.isTalkative", true) },
+                seer: {
+                    isTalkative: getProp(game, "options.roles.seer.isTalkative", true),
+                    canSeeRoles: getProp(game, "options.roles.seer.canSeeRoles", true),
+                },
                 littleGirl: { isProtectedByGuard: getProp(game, "options.roles.littleGirl.isProtectedByGuard", false) },
                 idiot: { doesDieOnAncientDeath: getProp(game, "options.roles.idiot.doesDieOnAncientDeath", true) },
                 twoSisters: { wakingUpInterval: getProp(game, "options.roles.twoSisters.wakingUpInterval", 2) },

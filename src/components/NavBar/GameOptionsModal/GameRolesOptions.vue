@@ -11,6 +11,37 @@
         </div>
         <div class="row">
             <div class="option-section col-12 d-flex align-items-center">
+                <RoleImage class="mr-2 option-section-image"/>
+                <div v-html="$t('GameRolesOptions.general')"/>
+            </div>
+        </div>
+        <hr class="bg-dark mt-1 mb-2"/>
+        <div class="row align-items-center">
+            <div class="col-8">
+                <label for="is-game-repartition-option" class="option-label"
+                       v-html="$t('GameRolesOptions.isGameRepartitionHidden.label')"/>
+            </div>
+            <div class="col-4 text-center">
+                <toggle-button id="is-game-repartition-option" v-model="isGameRepartitionHidden" :disabled="!game.canUpdateOptions"
+                               :labels="$t('VueToggleButton.yesNo')" :height="25" :width="60" :sync="true"/>
+            </div>
+            <div class="col-12 text-muted font-italic" v-html="isGameRepartitionHiddenText"/>
+        </div>
+        <hr class="bg-dark mt-1 mb-2"/>
+        <div class="row align-items-center">
+            <div class="col-8">
+                <label for="are-roles-revealed-on-death-option" class="option-label"
+                       v-html="$t('GameRolesOptions.isGameRepartitionHidden.label')"/>
+            </div>
+            <div class="col-4 text-center">
+                <toggle-button id="are-roles-revealed-on-death-option" v-model="areRolesRevealedOnDeath" :disabled="!game.canUpdateOptions"
+                               :labels="$t('VueToggleButton.yesNo')" :height="25" :width="60" :sync="true"/>
+            </div>
+            <div class="col-12 text-muted font-italic" v-html="areRolesRevealedOnDeathText"/>
+        </div>
+        <hr class="bg-dark mt-1 mb-2"/>
+        <div class="row">
+            <div class="option-section col-12 d-flex align-items-center">
                 <img :src="SVGs['sheriff']" class="mr-2" alt="Sheriff" width="50"/>
                 <div v-html="$t('GameRolesOptions.sheriff')"/>
             </div>
@@ -56,7 +87,15 @@
                 <toggle-button id="is-seer-talkative-option" v-model="isSeerTalkative" :disabled="!game.canUpdateOptions"
                                :labels="$t('VueToggleButton.yesNo')" :height="25" :width="60" :sync="true"/>
             </div>
-            <div class="col-12 text-muted font-italic" v-html="isSeerTalkativeText"/>
+            <div class="col-8">
+                <label for="can-seer-see-roles-option" class="option-label"
+                       v-html="$t('GameRolesOptions.canSeerSeeRoles.label')"/>
+            </div>
+            <div class="col-4 text-center">
+                <toggle-button id="can-seer-see-roles-option" v-model="canSeerSeeRoles" :disabled="!game.canUpdateOptions"
+                               :labels="$t('VueToggleButton.yesNo')" :height="25" :width="60" :sync="true"/>
+            </div>
+            <div class="col-12 text-muted font-italic" v-html="seerOptionsText"/>
         </div>
         <hr class="bg-dark mt-2 mb-1"/>
         <div class="row">
@@ -221,6 +260,24 @@ export default {
     computed: {
         ...mapGetters("game", { game: "game" }),
         ...mapGetters("role", { roles: "roles" }),
+        isGameRepartitionHidden: {
+            get() {
+                return this.game.options.repartition.isHidden;
+            },
+            set(isGameRepartitionHidden) {
+                this.setGameOptionIsGameRepartitionHidden(isGameRepartitionHidden);
+                this.$emit("options-updated");
+            },
+        },
+        areRolesRevealedOnDeath: {
+            get() {
+                return this.game.options.roles.areRevealedOnDeath;
+            },
+            set(areRolesRevealedOnDeath) {
+                this.setGameOptionAreRolesRevealedOnDeath(areRolesRevealedOnDeath);
+                this.$emit("options-updated");
+            },
+        },
         isSheriffEnabled: {
             get() {
                 return this.game.options.roles.sheriff.isEnabled;
@@ -245,6 +302,15 @@ export default {
             },
             set(isSeerTalkative) {
                 this.setGameOptionIsSeerTalkative(isSeerTalkative);
+                this.$emit("options-updated");
+            },
+        },
+        canSeerSeeRoles: {
+            get() {
+                return this.game.options.roles.seer.canSeeRoles;
+            },
+            set(canSeerSeeRoles) {
+                this.setGameOptionCanSeerSeeRoles(canSeerSeeRoles);
                 this.$emit("options-updated");
             },
         },
@@ -308,6 +374,14 @@ export default {
                 this.$emit("options-updated");
             },
         },
+        isGameRepartitionHiddenText() {
+            const description = this.isGameRepartitionHidden ? "gameRepartitionIsHidden" : "gameRepartitionIsNotHidden";
+            return this.$t(`GameRolesOptions.isGameRepartitionHidden.description.${description}`);
+        },
+        areRolesRevealedOnDeathText() {
+            const description = this.areRolesRevealedOnDeath ? "rolesAreRevealedOnDeath" : "rolesAreNotRevealedOnDeath";
+            return this.$t(`GameRolesOptions.areRolesRevealedOnDeath.description.${description}`);
+        },
         isSheriffEnabledText() {
             const description = this.isSheriffEnabled ? "sheriffIsEnabled" : "sheriffIsNotEnabled";
             return this.$t(`GameRolesOptions.isSheriffEnabled.description.${description}`);
@@ -316,9 +390,12 @@ export default {
             const description = this.isSheriffVoteDoubled ? "sheriffVoteIsDoubled" : "sheriffVoteIsNotDoubled";
             return this.$t(`GameRolesOptions.isSheriffVoteDoubled.description.${description}`);
         },
-        isSeerTalkativeText() {
-            const description = this.isSeerTalkative ? "seerIsTalkative" : "seerIsNotTalkative";
-            return this.$t(`GameRolesOptions.isSeerTalkative.description.${description}`);
+        seerOptionsText() {
+            const text = "GameRolesOptions.seerOptionsText";
+            if (this.isSeerTalkative) {
+                return this.canSeerSeeRoles ? this.$t(`${text}.talkativeAndCanSeeRoles`) : this.$t(`${text}.talkativeAndCantSeeRoles`);
+            }
+            return this.canSeerSeeRoles ? this.$t(`${text}.notTalkativeAndCanSeeRoles`) : this.$t(`${text}.notTalkativeAndCantSeeRoles`);
         },
         isLittleGirlProtectedByGuardText() {
             const description = this.isLittleGirlProtectedByGuard ? "littleGirlIsProtected" : "littleGirlIsNotProtected";
@@ -369,9 +446,12 @@ export default {
     },
     methods: {
         ...mapActions("game", {
+            setGameOptionIsGameRepartitionHidden: "setGameOptionIsGameRepartitionHidden",
+            setGameOptionAreRolesRevealedOnDeath: "setGameOptionAreRolesRevealedOnDeath",
             setGameOptionIsSheriffVoteDoubled: "setGameOptionIsSheriffVoteDoubled",
             setGameOptionIsSheriffEnabled: "setGameOptionIsSheriffEnabled",
             setGameOptionIsSeerTalkative: "setGameOptionIsSeerTalkative",
+            setGameOptionCanSeerSeeRoles: "setGameOptionCanSeerSeeRoles",
             setGameOptionDoesIdiotDieOnAncientDeath: "setGameOptionDoesIdiotDieOnAncientDeath",
             setGameOptionIsLittleProtectedByGuard: "setGameOptionIsLittleProtectedByGuard",
             setGameOptionSistersWakingUpInterval: "setGameOptionSistersWakingUpInterval",
