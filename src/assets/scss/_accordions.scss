@@ -1,11 +1,15 @@
 .accordion {
     .card {
-        background-color: #3a3a3a;
-        border: 1px solid #6e6e6e;
-        transition: all 0.25s ease;
+        background-color: #404040;
+        border: 1px solid #4e4e4e;
 
-        &:hover {
-            background-color: #303030;
+        .card-header {
+            background-color: #343434;
+            transition: all 0.25s ease;
+
+            &:hover {
+                background-color: #2b2b2b;
+            }
         }
     }
 }

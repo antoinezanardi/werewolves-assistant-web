@@ -55,6 +55,17 @@
                 "sheriffIsNotEnabled": "La partie se jouera sans maire. En cas d'égalité des votes du village, il y aura un deuxième vote pour départager les ex æquo."
             }
         },
+        "sheriffElectedAt": {
+            "turn": {
+                "label": "Tour de l'élection du maire"
+            },
+            "phase": {
+                "label": "Phase de l'élection du maire",
+                "day": "le jour",
+                "night": "la nuit"
+            },
+            "description": "Le maire sera élu {phase} du tour {turn}."
+        },
         "isSheriffVoteDoubled": {
             "label": "Le vote du maire compte double",
             "description": {
@@ -75,27 +86,20 @@
             "talkativeAndCantSeeRoles": "Lorsque la Voyante choisit une cible, le maître du jeu révèlera le camp (Villageois ou Loup-Garou) de la cible à voix haute.",
             "notTalkativeAndCantSeeRoles": "Lorsque la Voyante choisit une cible, le maître du jeu devra mimer le camp (Villageois ou Loup-Garou) de la cible."
         },
-        "twoSisters": "Deux Sœurs",
-        "sistersWakingUpInterval": {
-            "label": "Nombre de nuits entre deux réveils des Deux Sœurs",
-            "description": "Les Deux Sœurs ne se réveilleront que la première nuit. | Les Deux Sœurs se réveilleront toutes les nuits. | Les Deux Sœurs se réveilleront toutes les {sistersWakingUpInterval} nuits."
-        },
-        "threeBrothers": "Trois Frères",
-        "brothersWakingUpInterval": {
-            "label": "Nombre de nuits entre deux réveils des Trois Frères",
-            "description": "Les Trois Frères ne se réveilleront que la première nuit. | Les Trois Frères se réveilleront toutes les nuits. | Les Trois Frères se réveilleront toutes les {brothersWakingUpInterval} nuits."
-        },
-        "raven": "Corbeau",
-        "ravenMarkPenalty": {
-            "label": "Nombre de votes contre le joueur avec la marque du Corbeau",
-            "description": "Le joueur ayant reçu la marque du Corbeau aura 1 vote contre lui en plus au prochain vote | Le joueur ayant reçu la marque du Corbeau aura {ravenMarkPenalty} votes contre lui en plus au prochain vote."
-        },
         "littleGirl": "Petite Fille",
         "isLittleGirlProtectedByGuard": {
             "label": "La Petite Fille est protégée par le Salvateur",
             "description": {
                 "littleGirlIsProtected": "La Petite Fille sera protégée des Loups-Garous si le Salvateur la protège.",
                 "littleGirlIsNotProtected": "La Petite Fille mourra de la morsure des Loups-Garous même si le Salvateur la protège."
+            }
+        },
+        "guard": "Salvateur",
+        "canGuardProtectTwice": {
+            "label": "Le Salvateur peut protéger une cible deux nuits de suite",
+            "description": {
+                "guardCanProtectTwice": "Le Salvateur peut protéger deux nuits de suite la même cible. (Recommandé pour les débutants)",
+                "guardCantProtectTwice": "Le Salvateur ne peut pas protéger deux nuits de suite la même cible."
             }
         },
         "idiot": "Idiot",
@@ -106,12 +110,48 @@
                 "idiotDoesntDieOnAncientDeath": "L'Idiot déjà révélé ne mourra pas si l'Ancien meurt à son tour."
             }
         },
+        "twoSisters": "Deux Sœurs",
+        "sistersWakingUpInterval": {
+            "label": "Nombre de nuits entre deux réveils des Deux Sœurs",
+            "description": "Les Deux Sœurs ne se réveilleront que la première nuit. | Les Deux Sœurs se réveilleront toutes les nuits. | Les Deux Sœurs se réveilleront toutes les {sistersWakingUpInterval} nuits."
+        },
+        "threeBrothers": "Trois Frères",
+        "brothersWakingUpInterval": {
+            "label": "Nombre de nuits entre deux réveils des Trois Frères",
+            "description": "Les Trois Frères ne se réveilleront que la première nuit. | Les Trois Frères se réveilleront toutes les nuits. | Les Trois Frères se réveilleront toutes les {brothersWakingUpInterval} nuits."
+        },
+        "fox": "Renard",
+        "isFoxPowerlessIfMissesWerewolf": {
+            "label": "Le Renard perdra son pouvoir s'il ne repère pas de Loups-Garous",
+            "description": {
+                "foxIsPowerlessIfMissesWerewolf": "Si le Renard utilise son pouvoir et qu'il ne repère personne dans le camp des Loups-Garous, il ne pourra plus utiliser son pouvoir pour le reste de la partie.",
+                "foxIsNotPowerlessIfMissesWerewolf": "Le Renard pourra utiliser son pouvoir toutes les nuits, même s'il manque de repérer un joueur dans le camp des Loups-Garous.  "
+            }
+        },
+        "bearTamer": "Montreur d'Ours",
+        "doesBearTamerGrowlIfInfected": {
+            "label": "Le Montreur d'Ours grognera s'il est infecté par l'Infect Père des Loups",
+            "description": {
+                "bearTamerGrowlsIfInfected": "Le Montreur d'Ours grognera tous les matins s'il est infecté par l'Infect Père des Loups.",
+                "bearTamerDoesntGrowlIfInfected": "Le Montreur d'Ours grognera seulement les matins où un de ses voisins directs est un Loup-Garou, même si le Montreur est infecté par l'Infect Père des Loups   ."
+            }
+        },
+        "stutteringJudge": "Juge Bègue",
+        "stutteringJudgeVoteRequestsCount": {
+            "label": "Nombre de requêtes de votes supplémentaires pour le Juge Bègue",
+            "description": "Le Juge Bègue ne pourra demander qu'une pendaison supplémentaire de toute la partie. | Le Juge Bègue pourra demander {count} pendaisons supplémentaires pendant la partie."
+        },
         "thief": "Voleur",
         "additionalCardsForThief": "Cartes additionnelles destinées au Voleur (2 max.)",
         "chooseTwoCards": "Choisir 2 cartes...",
         "thereIsNoThiefInParty": "Il n'y a pas de Voleur dans la partie, impossible de choisir des cartes additionnelles qui lui seront destinées.",
         "thiefAdditionalCardsLeftToPick": "Les cartes du Voleur sont prêtes | Encore une carte à choisir | Encore 2 cartes à choisir",
-        "thiefWillBeAbleToPlay": "La première nuit, le Voleur pourra, s'il le souhaite, devenir {additionalCardsText}."
+        "thiefWillBeAbleToPlay": "La première nuit, le Voleur pourra, s'il le souhaite, devenir {additionalCardsText}.",
+        "raven": "Corbeau",
+        "ravenMarkPenalty": {
+            "label": "Nombre de votes contre le joueur avec la marque du Corbeau",
+            "description": "Le joueur ayant reçu la marque du Corbeau aura 1 vote contre lui en plus au prochain vote | Le joueur ayant reçu la marque du Corbeau aura {ravenMarkPenalty} votes contre lui en plus au prochain vote."
+        }
     },
     "GameRepartitionOptions": {
         "roles": "Tous les rôles",
@@ -1207,7 +1247,10 @@
             "white-werewolf": "un Loup-Garou Blanc",
             "stuttering-judge": "un Juge Bègue",
             "thief": "un Voleur",
-            "angel": "un Ange"
+            "angel": "un Ange",
+            "fox": "un Renard",
+            "bear-tamer": "un Montreur d'Ours",
+            "rusty-sword-knight": "un Chevalier à l'Épée Rouillée"
         },
         "the": {
             "villager": "le Villageois",
@@ -1239,7 +1282,10 @@
             "white-werewolf": "le Loup-Garou Blanc",
             "stuttering-judge": "le Juge Bègue",
             "thief": "le Voleur",
-            "angel": "l'Ange"
+            "angel": "l'Ange",
+            "fox": "le Renard",
+            "bear-tamer": "le Montreur d'Ours",
+            "rusty-sword-knight": "le Chevalier à l'Épée Rouillée"
         },
         "description": {
             "villager": [
@@ -1411,6 +1457,31 @@
                 "Si l'Ange réussit à réussit à attirer le vote discriminatoire des Villageois ou la vindicte dévorante des lycanthropes pour être éliminé au premier tour, il pourra sortir vainqueur du cauchemar et gagner la partie.",
                 "Alors le jeu s'arrête : les joueurs peuvent commencer une nouvelle partie. S'il échoue, il deviendra Simple Villageois pour le reste de la partie.",
                 "Conseil au meneur : n'hésitez pas à rappeler l'éventuelle présence de l'Ange lors de la première journée ! Les débats seront plus animés, les beaux parleurs étant protégés par cette angélique menace !"
+            ],
+            "fox": [
+                "Son but est d'éliminer les Loups-Garous.",
+                "À Thiercelieux, tout le monde apprécie le flair de ce personnage vif et discret, sauf peut-être les poules et surtout les Loups-Garous.",
+                "La nuit, à l'appel du meneur, le Renard peut désigner un groupe de 3 joueurs voisins, dont il montre du doigt le joueur central.",
+                "Si dans ce groupe se trouve au moins un Loup-Garou, alors le meneur fait un signe affirmatif au Renard. Dans ce cas, le Renard pourra utiliser à nouveau son pouvoir une nuit suivante.",
+                "Si aucun Loup-Garou ne fait partie du groupe désigné, le Renard perd définitivement son pouvoir ; par contre, il bénéficie d'une information de taille innocentant trois joueur d'un coup.",
+                "Remarque : le meneur appelle le Renard toutes les nuits, mais celui-ci n'est en aucune mesure tenu d'utiliser son pouvoir chaque nuit.",
+                "Conseil au meneur : le Renard ne voit pas les cartes ; le meneur lui indique simplement s'il y a ou s'il n'y a pas de Loups-Garous parmi ces trois joueurs."
+            ],
+            "bear-tamer": [
+                "Son but est d'éliminer les Loups-Garous.",
+                "Ah ! Qu'il est doux à ma mémoire, ce bruit de chaîne qui ruisselle en glissant sur les pavés de \"la place des Trois Routes\", accompagné par le grognement d'Ursus.",
+                "Ah ! Qu'il est loin ce temps où Titan, le Montreur d'Ours, dirigeait avec maestria son compagnon dans un ballet si gracieux qu'on en pleurait chaque été à Thiercelieux. Ursus avait en outre ce pouvoir si précieux de détecter les lycanthropes cachés près de lui.",
+                "Chaque matin, juste après la révélation des éventuelles victimes nocturnes, si au moins un Loup-Garou est ou devient directement voisin du Montreur d'Ours, alors le meneur grogne pour signifier aux joueurs que l'ours du Montreur a senti le danger.",
+                "Seuls les voisins toujours en jeu sont pris en compte.",
+                "Conseil au meneur : pour faciliter les choses, les joueurs éliminés sortent de la partie, ou s'écartent de la table. Si le Montreur d'Ours est infecté, alors le meneur grognera tous les tours, tant que le Montreur d'Ours n'est pas éliminé."
+            ],
+            "rusty-sword-knight": [
+                "Son but est d'éliminer les Loups-Garous.",
+                "\"Don Quitousse\" est un très vieux chevalier à la retraite. Il est assez épuisé par une vie de quêtes à travers le monde et n'entretient plus très bien son noble outil.",
+                "La rouille s'est peu à peu déposée sur le tranchant émoussé de sa fidèle protectrice mais jamais il ne la quittera pour une autre. Il dort encore tous les soirs avec elle ces temps-ci : gare aux importuns !",
+                "Si le Chevalier est dévoré, il est éliminé, mais un des Loups-Garous est contaminé par l'épée rouillée. Parmi les Loups-Garous coupables de cette élimination, le premier Loup-Garou situé à gauche du Chevalier éliminé la nuit suivante.",
+                "Cette élimination due à la maladie sera révélée par le meneur le matin après la disparition du Loup-Garou. Celui-ci aura donc survécu à sa blessure durant une journée.",
+                "Attention : les joueurs pourront en déduire que tous les habitants situés entre le défunt Chevalier à l'Épée Rouillée et le Loup-Garou malade sont d'innoncents villageois."
             ]
         },
         "villager": "Villageois",
@@ -1436,7 +1507,10 @@
         "white-werewolf": "Loup-Garou Blanc",
         "stuttering-judge": "Juge Bègue",
         "thief": "Voleur",
-        "angel": "Ange"
+        "angel": "Ange",
+        "fox": "Renard",
+        "bear-tamer": "Montreur d'Ours",
+        "rusty-sword-knight": "Chevalier à l'Épée Rouillée"
     },
     "RoleText": {
         "chooseARole": "Choisir un rôle"
@@ -1504,6 +1578,10 @@
         "withWithout": {
             "checked": "Avec",
             "unchecked": "Sans"
+        },
+        "dayNight": {
+            "checked": "Jour",
+            "unchecked": "Nuit"
         }
     },
     "VeeValidate": {

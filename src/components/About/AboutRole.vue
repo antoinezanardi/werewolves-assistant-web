@@ -1,6 +1,6 @@
 <template>
-    <div class="about-role card" @click.prevent="toggleCollapse">
-        <div :id="`role-heading-${role.name}`" class="role-heading card-header">
+    <div class="about-role card">
+        <div :id="`role-heading-${role.name}`" class="role-heading card-header" @click.prevent="toggleCollapse">
             <button class="btn w-100 h-100 text-left text-white d-flex align-items-center" type="button" data-toggle="collapse"
                     :data-target="`#role-collapse-${role.name}`"
                     aria-expanded="true" :aria-controls="`role-collapse-${role.name}`">

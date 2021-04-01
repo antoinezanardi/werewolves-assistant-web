@@ -7,7 +7,7 @@
                     <span v-html="$t('GameRolesOptions.gameOptionsCantBeUpdated')"/>
                 </div>
             </div>
-            <hr class="bg-dark mt-1 mb-2"/>
+            <hr class="bg-dark my-1"/>
         </div>
         <div class="row">
             <div class="option-section col-12 d-flex align-items-center">
@@ -15,7 +15,7 @@
                 <div v-html="$t('GameRolesOptions.general')"/>
             </div>
         </div>
-        <hr class="bg-dark mt-1 mb-2"/>
+        <hr class="bg-dark my-1"/>
         <div class="row align-items-center">
             <div class="col-8">
                 <label for="is-game-repartition-option" class="option-label"
@@ -25,28 +25,32 @@
                 <toggle-button id="is-game-repartition-option" v-model="isGameRepartitionHidden" :disabled="!game.canUpdateOptions"
                                :labels="$t('VueToggleButton.yesNo')" :height="25" :width="60" :sync="true"/>
             </div>
+        </div>
+        <div class="row mt-1">
             <div class="col-12 text-muted font-italic" v-html="isGameRepartitionHiddenText"/>
         </div>
-        <hr class="bg-dark mt-1 mb-2"/>
+        <hr class="bg-dark my-2"/>
         <div class="row align-items-center">
             <div class="col-8">
                 <label for="are-roles-revealed-on-death-option" class="option-label"
-                       v-html="$t('GameRolesOptions.isGameRepartitionHidden.label')"/>
+                       v-html="$t('GameRolesOptions.areRolesRevealedOnDeath.label')"/>
             </div>
             <div class="col-4 text-center">
                 <toggle-button id="are-roles-revealed-on-death-option" v-model="areRolesRevealedOnDeath" :disabled="!game.canUpdateOptions"
                                :labels="$t('VueToggleButton.yesNo')" :height="25" :width="60" :sync="true"/>
             </div>
+        </div>
+        <div class="row mt-1">
             <div class="col-12 text-muted font-italic" v-html="areRolesRevealedOnDeathText"/>
         </div>
-        <hr class="bg-dark mt-1 mb-2"/>
+        <hr class="bg-dark my-1"/>
         <div class="row">
             <div class="option-section col-12 d-flex align-items-center">
                 <img :src="SVGs['sheriff']" class="mr-2" alt="Sheriff" width="50"/>
                 <div v-html="$t('GameRolesOptions.sheriff')"/>
             </div>
         </div>
-        <hr class="bg-dark mt-1 mb-2"/>
+        <hr class="bg-dark my-1"/>
         <div class="row align-items-center">
             <div class="col-8">
                 <label for="is-sheriff-enabled-option" class="option-label"
@@ -56,9 +60,41 @@
                 <toggle-button id="is-sheriff-enabled-option" v-model="isSheriffEnabled" :disabled="!game.canUpdateOptions"
                                :labels="$t('VueToggleButton.withWithout')" :height="25" :width="60" :sync="true"/>
             </div>
+        </div>
+        <div class="row mt-1">
             <div class="col-12 text-muted font-italic" v-html="isSheriffEnabledText"/>
         </div>
-        <div class="row align-items-center mt-4">
+        <hr class="bg-dark mb-2 mt-1"/>
+        <div class="row align-items-center">
+            <div class="col-8">
+                <label for="sheriff-elected-at-turn-option" class="option-label"
+                       v-html="$t('GameRolesOptions.sheriffElectedAt.turn.label')"/>
+            </div>
+            <div class="col-4 d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <input id="sheriff-elected-at-turn-option" v-model.number="sheriffElectedAtTurn" class="form-control"
+                           type="number" min="1" max="5" :disabled="!game.canUpdateOptions"/>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center mt-1">
+            <div class="col-8">
+                <label for="sheriff-elected-at-phase-option" class="option-label"
+                       v-html="$t('GameRolesOptions.sheriffElectedAt.phase.label')"/>
+            </div>
+            <div class="col-4 d-flex justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <toggle-button id="sheriff-elected-at-phase-option" v-model="sheriffElectedAtPhase" :disabled="!game.canUpdateOptions"
+                                   :labels="$t('VueToggleButton.dayNight')" :height="25" :width="60" :sync="true"
+                                   :color="{ checked: '#e2b663', unchecked: '#576bff' }"/>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <div class="col-12 text-muted font-italic" v-html="sheriffElectedAtText"/>
+        </div>
+        <hr class="bg-dark my-1"/>
+        <div class="row align-items-center">
             <div class="col-8">
                 <label for="is-sheriff-vote-doubled-option" class="option-label"
                        v-html="$t('GameRolesOptions.isSheriffVoteDoubled.label')"/>
@@ -77,7 +113,7 @@
                 <div v-html="$t('GameRolesOptions.seer')"/>
             </div>
         </div>
-        <hr class="bg-dark mt-1 mb-2"/>
+        <hr class="bg-dark my-1"/>
         <div class="row align-items-center">
             <div class="col-8">
                 <label for="is-seer-talkative-option" class="option-label"
@@ -87,6 +123,8 @@
                 <toggle-button id="is-seer-talkative-option" v-model="isSeerTalkative" :disabled="!game.canUpdateOptions"
                                :labels="$t('VueToggleButton.yesNo')" :height="25" :width="60" :sync="true"/>
             </div>
+        </div>
+        <div class="row align-items-center mt-1">
             <div class="col-8">
                 <label for="can-seer-see-roles-option" class="option-label"
                        v-html="$t('GameRolesOptions.canSeerSeeRoles.label')"/>
@@ -95,16 +133,18 @@
                 <toggle-button id="can-seer-see-roles-option" v-model="canSeerSeeRoles" :disabled="!game.canUpdateOptions"
                                :labels="$t('VueToggleButton.yesNo')" :height="25" :width="60" :sync="true"/>
             </div>
+        </div>
+        <div class="row mt-1">
             <div class="col-12 text-muted font-italic" v-html="seerOptionsText"/>
         </div>
-        <hr class="bg-dark mt-2 mb-1"/>
+        <hr class="bg-dark my-1"/>
         <div class="row">
             <div class="option-section col-12 d-flex align-items-center">
                 <RoleImage role="little-girl" class="mr-2 option-section-image"/>
                 <div v-html="$t('GameRolesOptions.littleGirl')"/>
             </div>
         </div>
-        <hr class="bg-dark mt-1 mb-2"/>
+        <hr class="bg-dark my-1"/>
         <div class="row align-items-center">
             <div class="col-8">
                 <label for="is-little-girl-protected-by-guard" class="option-label"
@@ -114,16 +154,39 @@
                 <toggle-button id="is-little-girl-protected-by-guard" v-model="isLittleGirlProtectedByGuard" :disabled="!game.canUpdateOptions"
                                :labels="$t('VueToggleButton.yesNo')" :height="25" :width="60" :sync="true"/>
             </div>
+        </div>
+        <div class="row mt-1">
             <div class="col-12 text-muted font-italic" v-html="isLittleGirlProtectedByGuardText"/>
         </div>
-        <hr class="bg-dark mt-2 mb-1"/>
+        <hr class="bg-dark my-1"/>
+        <div class="row">
+            <div class="option-section col-12 d-flex align-items-center">
+                <RoleImage role="guard" class="mr-2 option-section-image"/>
+                <div v-html="$t('GameRolesOptions.guard')"/>
+            </div>
+        </div>
+        <hr class="bg-dark my-1"/>
+        <div class="row align-items-center">
+            <div class="col-8">
+                <label for="can-guard-protect-twice" class="option-label"
+                       v-html="$t('GameRolesOptions.canGuardProtectTwice.label')"/>
+            </div>
+            <div class="col-4 text-center">
+                <toggle-button id="can-guard-protect-twice" v-model="canGuardProtectTwice" :disabled="!game.canUpdateOptions"
+                               :labels="$t('VueToggleButton.yesNo')" :height="25" :width="60" :sync="true"/>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <div class="col-12 text-muted font-italic" v-html="canGuardProtectTwiceText"/>
+        </div>
+        <hr class="bg-dark my-1"/>
         <div class="row">
             <div class="option-section col-12 d-flex align-items-center">
                 <RoleImage role="idiot" class="mr-2 option-section-image"/>
                 <div v-html="$t('GameRolesOptions.idiot')"/>
             </div>
         </div>
-        <hr class="bg-dark mt-1 mb-2"/>
+        <hr class="bg-dark my-1"/>
         <div class="row align-items-center">
             <div class="col-8">
                 <label for="does-idiot-die-on-ancient-death" class="option-label"
@@ -133,16 +196,18 @@
                 <toggle-button id="does-idiot-die-on-ancient-death" v-model="doesIdiotDieOnAncientDeath" :disabled="!game.canUpdateOptions"
                                :labels="$t('VueToggleButton.yesNo')" :height="25" :width="60" :sync="true"/>
             </div>
+        </div>
+        <div class="row mt-1">
             <div class="col-12 text-muted font-italic" v-html="doesIdiotDieOnAncientDeathText"/>
         </div>
-        <hr class="bg-dark mt-2 mb-1"/>
+        <hr class="bg-dark my-1"/>
         <div class="row">
             <div class="option-section col-12 d-flex align-items-center">
                 <RoleImage role="two-sisters" class="mr-2 option-section-image"/>
                 <div v-html="$t('GameRolesOptions.twoSisters')"/>
             </div>
         </div>
-        <hr class="bg-dark mt-1 mb-2"/>
+        <hr class="bg-dark my-1"/>
         <div class="row align-items-center">
             <div class="col-8">
                 <label for="sisters-waking-up-interval-option" class="option-label"
@@ -154,16 +219,18 @@
                            type="number" min="0" max="5" :disabled="!game.canUpdateOptions"/>
                 </div>
             </div>
+        </div>
+        <div class="row mt-1">
             <div class="col-12 text-muted font-italic" v-html="sistersWakingUpIntervalText"/>
         </div>
-        <hr class="bg-dark mt-2 mb-1"/>
-        <div class="row mt-2">
+        <hr class="bg-dark my-1"/>
+        <div class="row">
             <div class="option-section col-12 d-flex align-items-center">
                 <RoleImage role="three-brothers" class="mr-2 option-section-image"/>
                 <div v-html="$t('GameRolesOptions.threeBrothers')"/>
             </div>
         </div>
-        <hr class="bg-dark mt-1 mb-2"/>
+        <hr class="bg-dark my-1"/>
         <div class="row align-items-center">
             <div class="col-8">
                 <label for="brothers-waking-up-interval-option" class="option-label"
@@ -175,16 +242,79 @@
                            type="number" min="0" max="5" :disabled="!game.canUpdateOptions"/>
                 </div>
             </div>
+        </div>
+        <div class="row mt-1">
             <div class="col-12 text-muted font-italic" v-html="brothersWakingUpIntervalText"/>
         </div>
-        <hr class="bg-dark mt-2 mb-1"/>
-        <div id="thief-section" class="row mt-2">
+        <hr class="bg-dark my-1"/>
+        <div class="row">
+            <div class="option-section col-12 d-flex align-items-center">
+                <RoleImage role="fox" class="mr-2 option-section-image"/>
+                <div v-html="$t('GameRolesOptions.fox')"/>
+            </div>
+        </div>
+        <hr class="bg-dark my-1"/>
+        <div class="row align-items-center">
+            <div class="col-8">
+                <label for="is-fox-powerless-if-misses-werewolf" class="option-label"
+                       v-html="$t('GameRolesOptions.isFoxPowerlessIfMissesWerewolf.label')"/>
+            </div>
+            <div class="col-4 text-center">
+                <toggle-button id="is-fox-powerless-if-misses-werewolf" v-model="isFoxPowerlessIfMissesWerewolf" :disabled="!game.canUpdateOptions"
+                               :labels="$t('VueToggleButton.yesNo')" :height="25" :width="60" :sync="true"/>
+            </div>
+            <div class="col-12 text-muted font-italic" v-html="isFoxPowerlessIfMissesWerewolfText"/>
+        </div>
+        <hr class="bg-dark my-1"/>
+        <div class="row">
+            <div class="option-section col-12 d-flex align-items-center">
+                <RoleImage role="bear-tamer" class="mr-2 option-section-image"/>
+                <div v-html="$t('GameRolesOptions.bearTamer')"/>
+            </div>
+        </div>
+        <hr class="bg-dark my-1"/>
+        <div class="row align-items-center">
+            <div class="col-8">
+                <label for="does-bear-tamer-growl-if-infected" class="option-label"
+                       v-html="$t('GameRolesOptions.doesBearTamerGrowlIfInfected.label')"/>
+            </div>
+            <div class="col-4 text-center">
+                <toggle-button id="does-bear-tamer-growl-if-infected" v-model="doesBearTamerGrowlIfInfected" :disabled="!game.canUpdateOptions"
+                               :labels="$t('VueToggleButton.yesNo')" :height="25" :width="60" :sync="true"/>
+            </div>
+            <div class="col-12 text-muted font-italic" v-html="doesBearTamerGrowlIfInfectedText"/>
+        </div>
+        <hr class="bg-dark my-1"/>
+        <div class="row">
+            <div class="option-section col-12 d-flex align-items-center">
+                <RoleImage role="stuttering-judge" class="mr-2 option-section-image"/>
+                <div v-html="$t('GameRolesOptions.stutteringJudge')"/>
+            </div>
+        </div>
+        <hr class="bg-dark my-1"/>
+        <div class="row align-items-center">
+            <div class="col-8">
+                <label for="stuttering-judge-request-count-option" class="option-label"
+                       v-html="$t('GameRolesOptions.stutteringJudgeVoteRequestsCount.label')"/>
+            </div>
+            <div class="col-4 d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <input id="stuttering-judge-request-count-option" v-model.number="stutteringJudgeVoteRequestsCount" class="form-control"
+                           type="number" min="1" max="5" :disabled="!game.canUpdateOptions"/>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <div class="col-12 text-muted font-italic" v-html="stutteringJudgeVoteRequestsCountText"/>
+        </div>
+        <hr class="bg-dark my-1"/>
+        <div id="thief-section" class="row">
             <div class="option-section col-12 d-flex align-items-center">
                 <RoleImage role="thief" class="mr-2 option-section-image"/>
                 <div v-html="$t('GameRolesOptions.thief')"/>
             </div>
         </div>
-        <hr class="bg-dark mt-1 mb-2"/>
+        <hr class="bg-dark my-1"/>
         <div class="row align-items-center">
             <div class="col-md-6 col-12">
                 <label for="thief-additional-cards" class="option-label" v-html="$t('GameRolesOptions.additionalCardsForThief')"/>
@@ -212,16 +342,18 @@
                     </div>
                 </transition>
             </div>
+        </div>
+        <div class="row mt-1">
             <div class="col-12 text-muted font-italic" v-html="thiefAdditionalCardsText"/>
         </div>
-        <hr class="bg-dark mt-2 mb-1"/>
-        <div class="row mt-2">
+        <hr class="bg-dark my-1"/>
+        <div class="row">
             <div class="option-section col-12 d-flex align-items-center">
                 <RoleImage role="raven" class="mr-2 option-section-image"/>
                 <div v-html="$t('GameRolesOptions.raven')"/>
             </div>
         </div>
-        <hr class="bg-dark mt-1 mb-2"/>
+        <hr class="bg-dark my-1"/>
         <div class="row align-items-center">
             <div class="col-8">
                 <label for="raven-mark-penalty-option" class="option-label"
@@ -233,6 +365,8 @@
                            type="number" min="1" max="5" :disabled="!game.canUpdateOptions"/>
                 </div>
             </div>
+        </div>
+        <div class="row mt-1">
             <div class="col-12 text-muted font-italic" v-html="ravenMarkPenaltyText"/>
         </div>
     </div>
@@ -287,6 +421,26 @@ export default {
                 this.$emit("options-updated");
             },
         },
+        sheriffElectedAtTurn: {
+            get() {
+                return this.game.options.roles.sheriff.electedAt.turn;
+            },
+            set(sheriffElectedAtTurn) {
+                sheriffElectedAtTurn = adjustNumber(sheriffElectedAtTurn, { min: 1, max: 5 });
+                this.setGameOptionSheriffElectedAtTurn(sheriffElectedAtTurn);
+                this.$emit("options-updated");
+            },
+        },
+        sheriffElectedAtPhase: {
+            get() {
+                return this.game.options.roles.sheriff.electedAt.phase === "day";
+            },
+            set(sheriffElectedAtPhase) {
+                sheriffElectedAtPhase = sheriffElectedAtPhase ? "day" : "night";
+                this.setGameOptionSheriffElectedAtPhase(sheriffElectedAtPhase);
+                this.$emit("options-updated");
+            },
+        },
         isSheriffVoteDoubled: {
             get() {
                 return this.game.options.roles.sheriff.hasDoubledVote;
@@ -319,7 +473,16 @@ export default {
                 return this.game.options.roles.littleGirl.isProtectedByGuard;
             },
             set(isLittleGirlProtectedByGuard) {
-                this.setGameOptionIsLittleProtectedByGuard(isLittleGirlProtectedByGuard);
+                this.setGameOptionIsLittleGirlProtectedByGuard(isLittleGirlProtectedByGuard);
+                this.$emit("options-updated");
+            },
+        },
+        canGuardProtectTwice: {
+            get() {
+                return this.game.options.roles.guard.canProtectTwice;
+            },
+            set(canGuardProtectTwice) {
+                this.setGameOptionCanGuardProtectTwice(canGuardProtectTwice);
                 this.$emit("options-updated");
             },
         },
@@ -349,6 +512,34 @@ export default {
             set(newBrothersWakingUpInterval) {
                 newBrothersWakingUpInterval = adjustNumber(newBrothersWakingUpInterval, { min: 0, max: 5 });
                 this.setGameOptionBrothersWakingUpInterval(newBrothersWakingUpInterval);
+                this.$emit("options-updated");
+            },
+        },
+        isFoxPowerlessIfMissesWerewolf: {
+            get() {
+                return this.game.options.roles.fox.isPowerlessIfMissesWerewolf;
+            },
+            set(isFoxPowerlessIfMissesWerewolf) {
+                this.setGameOptionIsFoxPowerlessIfMissesWerewolf(isFoxPowerlessIfMissesWerewolf);
+                this.$emit("options-updated");
+            },
+        },
+        doesBearTamerGrowlIfInfected: {
+            get() {
+                return this.game.options.roles.bearTamer.doesGrowlIfInfected;
+            },
+            set(doesBearTamerGrowlIfInfected) {
+                this.setGameOptionDoesBearTamerGrowlIfInfected(doesBearTamerGrowlIfInfected);
+                this.$emit("options-updated");
+            },
+        },
+        stutteringJudgeVoteRequestsCount: {
+            get() {
+                return this.game.options.roles.stutteringJudge.voteRequestsCount;
+            },
+            set(stutteringJudgeVoteRequestsCount) {
+                stutteringJudgeVoteRequestsCount = adjustNumber(stutteringJudgeVoteRequestsCount, { min: 1, max: 5 });
+                this.setGameOptionStutteringJudgeVoteRequestsCount(stutteringJudgeVoteRequestsCount);
                 this.$emit("options-updated");
             },
         },
@@ -386,6 +577,13 @@ export default {
             const description = this.isSheriffEnabled ? "sheriffIsEnabled" : "sheriffIsNotEnabled";
             return this.$t(`GameRolesOptions.isSheriffEnabled.description.${description}`);
         },
+        sheriffElectedAtText() {
+            const { sheriffElectedAtTurn: turn } = this;
+            let { sheriffElectedAtPhase: phase } = this;
+            phase = phase ? "day" : "night";
+            phase = this.$t(`GameRolesOptions.sheriffElectedAt.phase.${phase}`);
+            return this.$t(`GameRolesOptions.sheriffElectedAt.description`, { phase, turn });
+        },
         isSheriffVoteDoubledText() {
             const description = this.isSheriffVoteDoubled ? "sheriffVoteIsDoubled" : "sheriffVoteIsNotDoubled";
             return this.$t(`GameRolesOptions.isSheriffVoteDoubled.description.${description}`);
@@ -401,6 +599,10 @@ export default {
             const description = this.isLittleGirlProtectedByGuard ? "littleGirlIsProtected" : "littleGirlIsNotProtected";
             return this.$t(`GameRolesOptions.isLittleGirlProtectedByGuard.description.${description}`);
         },
+        canGuardProtectTwiceText() {
+            const description = this.canGuardProtectTwice ? "guardCanProtectTwice" : "guardCantProtectTwice";
+            return this.$t(`GameRolesOptions.canGuardProtectTwice.description.${description}`);
+        },
         doesIdiotDieOnAncientDeathText() {
             const description = this.doesIdiotDieOnAncientDeath ? "idiotDiesOnAncientDeath" : "idiotDoesntDieOnAncientDeath";
             return this.$t(`GameRolesOptions.doesIdiotDieOnAncientDeath.description.${description}`);
@@ -412,6 +614,14 @@ export default {
         brothersWakingUpIntervalText() {
             const { brothersWakingUpInterval } = this;
             return this.$tc("GameRolesOptions.brothersWakingUpInterval.description", brothersWakingUpInterval, { brothersWakingUpInterval });
+        },
+        isFoxPowerlessIfMissesWerewolfText() {
+            const description = this.isFoxPowerlessIfMissesWerewolf ? "foxIsPowerlessIfMissesWerewolf" : "foxIsNotPowerlessIfMissesWerewolf";
+            return this.$t(`GameRolesOptions.isFoxPowerlessIfMissesWerewolf.description.${description}`);
+        },
+        doesBearTamerGrowlIfInfectedText() {
+            const description = this.doesBearTamerGrowlIfInfected ? "bearTamerGrowlsIfInfected" : "bearTamerDoesntGrowlIfInfected";
+            return this.$t(`GameRolesOptions.doesBearTamerGrowlIfInfected.description.${description}`);
         },
         thiefAdditionalCardsValidationIcon() {
             const { thiefAdditionalCards } = this.game;
@@ -439,6 +649,10 @@ export default {
             }
             return this.$t("GameRolesOptions.thiefWillBeAbleToPlay", { additionalCardsText });
         },
+        stutteringJudgeVoteRequestsCountText() {
+            const { stutteringJudgeVoteRequestsCount: count } = this;
+            return this.$tc("GameRolesOptions.stutteringJudgeVoteRequestsCount.description", count, { count });
+        },
         ravenMarkPenaltyText() {
             const { ravenMarkPenalty } = this;
             return this.$tc("GameRolesOptions.ravenMarkPenalty.description", ravenMarkPenalty, { ravenMarkPenalty });
@@ -448,14 +662,20 @@ export default {
         ...mapActions("game", {
             setGameOptionIsGameRepartitionHidden: "setGameOptionIsGameRepartitionHidden",
             setGameOptionAreRolesRevealedOnDeath: "setGameOptionAreRolesRevealedOnDeath",
-            setGameOptionIsSheriffVoteDoubled: "setGameOptionIsSheriffVoteDoubled",
             setGameOptionIsSheriffEnabled: "setGameOptionIsSheriffEnabled",
+            setGameOptionSheriffElectedAtTurn: "setGameOptionSheriffElectedAtTurn",
+            setGameOptionSheriffElectedAtPhase: "setGameOptionSheriffElectedAtPhase",
+            setGameOptionIsSheriffVoteDoubled: "setGameOptionIsSheriffVoteDoubled",
             setGameOptionIsSeerTalkative: "setGameOptionIsSeerTalkative",
             setGameOptionCanSeerSeeRoles: "setGameOptionCanSeerSeeRoles",
             setGameOptionDoesIdiotDieOnAncientDeath: "setGameOptionDoesIdiotDieOnAncientDeath",
-            setGameOptionIsLittleProtectedByGuard: "setGameOptionIsLittleProtectedByGuard",
+            setGameOptionIsLittleGirlProtectedByGuard: "setGameOptionIsLittleGirlProtectedByGuard",
+            setGameOptionCanGuardProtectTwice: "setGameOptionCanGuardProtectTwice",
             setGameOptionSistersWakingUpInterval: "setGameOptionSistersWakingUpInterval",
             setGameOptionBrothersWakingUpInterval: "setGameOptionBrothersWakingUpInterval",
+            setGameOptionIsFoxPowerlessIfMissesWerewolf: "setGameOptionIsFoxPowerlessIfMissesWerewolf",
+            setGameOptionDoesBearTamerGrowlIfInfected: "setGameOptionDoesBearTamerGrowlIfInfected",
+            setGameOptionStutteringJudgeVoteRequestsCount: "setGameOptionStutteringJudgeVoteRequestsCount",
             setGameOptionRavenMarkPenalty: "setGameOptionRavenMarkPenalty",
             setGameThiefAdditionalCards: "setGameThiefAdditionalCards",
         }),
@@ -478,6 +698,7 @@ export default {
 
     .option-label {
         font-size: 1rem;
+        margin-bottom: 0;
     }
 
     .option-section-image {

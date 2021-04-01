@@ -57,6 +57,12 @@ export default {
         setGameOptionIsSheriffEnabled(state, isSheriffEnabled) {
             state.game.options.roles.sheriff.isEnabled = isSheriffEnabled;
         },
+        setGameOptionSheriffElectedAtTurn(state, sheriffElectedAtTurn) {
+            state.game.options.roles.sheriff.electedAt.turn = sheriffElectedAtTurn;
+        },
+        setGameOptionSheriffElectedAtPhase(state, sheriffElectedAtPhase) {
+            state.game.options.roles.sheriff.electedAt.phase = sheriffElectedAtPhase;
+        },
         setGameOptionIsSheriffVoteDoubled(state, isSheriffVoteDoubled) {
             state.game.options.roles.sheriff.hasDoubledVote = isSheriffVoteDoubled;
         },
@@ -66,8 +72,11 @@ export default {
         setGameOptionCanSeerSeeRoles(state, canSeerSeeRoles) {
             state.game.options.roles.seer.canSeeRoles = canSeerSeeRoles;
         },
-        setGameOptionIsLittleProtectedByGuard(state, isLittleGirlProtectedByGuard) {
+        setGameOptionIsLittleGirlProtectedByGuard(state, isLittleGirlProtectedByGuard) {
             state.game.options.roles.littleGirl.isProtectedByGuard = isLittleGirlProtectedByGuard;
+        },
+        setGameOptionCanGuardProtectTwice(state, canGuardProtectTwice) {
+            state.game.options.roles.guard.canProtectTwice = canGuardProtectTwice;
         },
         setGameOptionDoesIdiotDieOnAncientDeath(state, doesIdiotDieOnAncientDeath) {
             state.game.options.roles.idiot.doesDieOnAncientDeath = doesIdiotDieOnAncientDeath;
@@ -78,12 +87,21 @@ export default {
         setGameOptionBrothersWakingUpInterval(state, brothersWakingUpInterval) {
             state.game.options.roles.threeBrothers.wakingUpInterval = brothersWakingUpInterval;
         },
-        setGameOptionRavenMarkPenalty(state, markPenalty) {
-            state.game.options.roles.raven.markPenalty = markPenalty;
+        setGameOptionIsFoxPowerlessIfMissesWerewolf(state, isFoxPowerlessIfMissesWerewolf) {
+            state.game.options.roles.fox.isPowerlessIfMissesWerewolf = isFoxPowerlessIfMissesWerewolf;
+        },
+        setGameOptionDoesBearTamerGrowlIfInfected(state, doesBearTamerGrowlIfInfected) {
+            state.game.options.roles.bearTamer.doesGrowlIfInfected = doesBearTamerGrowlIfInfected;
+        },
+        setGameOptionStutteringJudgeVoteRequestsCount(state, stutteringJudgeVoteRequestsCount) {
+            state.game.options.roles.stutteringJudge.voteRequestsCount = stutteringJudgeVoteRequestsCount;
         },
         setGameThiefAdditionalCards(state, thiefAdditionalCards) {
             state.game.additionalCards = state.game.additionalCards.filter(({ for: recipient }) => recipient !== "thief");
             state.game.additionalCards.push(...thiefAdditionalCards);
+        },
+        setGameOptionRavenMarkPenalty(state, markPenalty) {
+            state.game.options.roles.raven.markPenalty = markPenalty;
         },
     },
     actions: {
@@ -121,6 +139,12 @@ export default {
         setGameOptionIsSheriffEnabled({ commit }, isSheriffEnabled) {
             commit("setGameOptionIsSheriffEnabled", isSheriffEnabled);
         },
+        setGameOptionSheriffElectedAtTurn({ commit }, sheriffElectedAtTurn) {
+            commit("setGameOptionSheriffElectedAtTurn", sheriffElectedAtTurn);
+        },
+        setGameOptionSheriffElectedAtPhase({ commit }, sheriffElectedAtPhase) {
+            commit("setGameOptionSheriffElectedAtPhase", sheriffElectedAtPhase);
+        },
         setGameOptionIsSheriffVoteDoubled({ commit }, isSheriffVoteDoubled) {
             commit("setGameOptionIsSheriffVoteDoubled", isSheriffVoteDoubled);
         },
@@ -130,8 +154,11 @@ export default {
         setGameOptionCanSeerSeeRoles({ commit }, canSeerSeeRoles) {
             commit("setGameOptionCanSeerSeeRoles", canSeerSeeRoles);
         },
-        setGameOptionIsLittleProtectedByGuard({ commit }, isLittleGirlProtectedByGuard) {
-            commit("setGameOptionIsLittleProtectedByGuard", isLittleGirlProtectedByGuard);
+        setGameOptionIsLittleGirlProtectedByGuard({ commit }, isLittleGirlProtectedByGuard) {
+            commit("setGameOptionIsLittleGirlProtectedByGuard", isLittleGirlProtectedByGuard);
+        },
+        setGameOptionCanGuardProtectTwice({ commit }, canGuardProtectTwice) {
+            commit("setGameOptionCanGuardProtectTwice", canGuardProtectTwice);
         },
         setGameOptionDoesIdiotDieOnAncientDeath({ commit }, doesIdiotDieOnAncientDeath) {
             commit("setGameOptionDoesIdiotDieOnAncientDeath", doesIdiotDieOnAncientDeath);
@@ -142,11 +169,20 @@ export default {
         setGameOptionBrothersWakingUpInterval({ commit }, brothersWakingUpInterval) {
             commit("setGameOptionBrothersWakingUpInterval", brothersWakingUpInterval);
         },
-        setGameOptionRavenMarkPenalty({ commit }, markPenalty) {
-            commit("setGameOptionRavenMarkPenalty", markPenalty);
+        setGameOptionIsFoxPowerlessIfMissesWerewolf({ commit }, isFoxPowerlessIfMissesWerewolf) {
+            commit("setGameOptionIsFoxPowerlessIfMissesWerewolf", isFoxPowerlessIfMissesWerewolf);
+        },
+        setGameOptionDoesBearTamerGrowlIfInfected({ commit }, doesBearTamerGrowlIfInfected) {
+            commit("setGameOptionDoesBearTamerGrowlIfInfected", doesBearTamerGrowlIfInfected);
+        },
+        setGameOptionStutteringJudgeVoteRequestsCount({ commit }, stutteringJudgeVoteRequestsCount) {
+            commit("setGameOptionStutteringJudgeVoteRequestsCount", stutteringJudgeVoteRequestsCount);
         },
         setGameThiefAdditionalCards({ commit }, thiefAdditionalCards) {
             commit("setGameThiefAdditionalCards", thiefAdditionalCards);
+        },
+        setGameOptionRavenMarkPenalty({ commit }, markPenalty) {
+            commit("setGameOptionRavenMarkPenalty", markPenalty);
         },
     },
 };
