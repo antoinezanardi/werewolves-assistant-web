@@ -228,6 +228,29 @@
         <hr class="bg-dark my-1"/>
         <div class="row">
             <div class="option-section col-12 d-flex align-items-center">
+                <RoleImage role="ancient" class="mr-2 option-section-image"/>
+                <div v-html="$t('GameRolesOptions.ancient')"/>
+            </div>
+        </div>
+        <hr class="bg-dark my-1"/>
+        <div class="row align-items-center">
+            <div class="col-8">
+                <label for="ancient-lives-count-against-werewolves" class="option-label"
+                       v-html="$t('GameRolesOptions.ancientLivesCountAgainstWerewolves.label')"/>
+            </div>
+            <div class="col-4 d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <input id="ancient-lives-count-against-werewolves" v-model.number="ancientLivesCountAgainstWerewolves" class="form-control"
+                           type="number" min="1" max="5" :disabled="!game.canUpdateOptions"/>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <div class="col-12 text-muted font-italic" v-html="ancientLivesCountAgainstWerewolvesText"/>
+        </div>
+        <hr class="bg-dark my-1"/>
+        <div class="row">
+            <div class="option-section col-12 d-flex align-items-center">
                 <RoleImage role="idiot" class="mr-2 option-section-image"/>
                 <div v-html="$t('GameRolesOptions.idiot')"/>
             </div>
@@ -476,6 +499,20 @@
             <div class="col-12 text-muted font-italic" v-html="piedPiperCharmedPeopleCountPerNightText"/>
         </div>
         <hr class="bg-dark my-1"/>
+        <div class="row align-items-center">
+            <div class="col-8">
+                <label for="is-pied-piper-powerless-if-infected" class="option-label"
+                       v-html="$t('GameRolesOptions.isPiedPiperPowerlessIfInfected.label')"/>
+            </div>
+            <div class="col-4 text-center">
+                <toggle-button id="is-pied-piper-powerless-if-infected" v-model="isPiedPiperPowerlessIfInfected" :disabled="!game.canUpdateOptions"
+                               :labels="$t('VueToggleButton.yesNo')" :height="25" :width="60" :sync="true"/>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <div class="col-12 text-muted font-italic" v-html="isPiedPiperPowerlessIfInfectedText"/>
+        </div>
+        <hr class="bg-dark my-1"/>
         <div class="row">
             <div class="option-section col-12 d-flex align-items-center">
                 <RoleImage role="raven" class="mr-2 option-section-image"/>
@@ -634,6 +671,16 @@ export default {
                 this.$emit("options-updated");
             },
         },
+        ancientLivesCountAgainstWerewolves: {
+            get() {
+                return this.game.options.roles.ancient.livesCountAgainstWerewolves;
+            },
+            set(ancientLivesCountAgainstWerewolves) {
+                ancientLivesCountAgainstWerewolves = adjustNumber(ancientLivesCountAgainstWerewolves, { min: 1, max: 5 });
+                this.setGameOptionAncientLivesCountAgainstWerewolves(ancientLivesCountAgainstWerewolves);
+                this.$emit("options-updated");
+            },
+        },
         doesIdiotDieOnAncientDeath: {
             get() {
                 return this.game.options.roles.idiot.doesDieOnAncientDeath;
@@ -740,6 +787,15 @@ export default {
                 this.$emit("options-updated");
             },
         },
+        isPiedPiperPowerlessIfInfected: {
+            get() {
+                return this.game.options.roles.piedPiper.isPowerlessIfInfected;
+            },
+            set(isPiedPiperPowerlessIfInfected) {
+                this.setGameOptionIsPiedPiperPowerlessIfInfected(isPiedPiperPowerlessIfInfected);
+                this.$emit("options-updated");
+            },
+        },
         ravenMarkPenalty: {
             get() {
                 return this.game.options.roles.raven.markPenalty;
@@ -800,6 +856,11 @@ export default {
         canGuardProtectTwiceText() {
             const description = this.canGuardProtectTwice ? "guardCanProtectTwice" : "guardCantProtectTwice";
             return this.$t(`GameRolesOptions.canGuardProtectTwice.description.${description}`);
+        },
+        ancientLivesCountAgainstWerewolvesText() {
+            const { ancientLivesCountAgainstWerewolves: livesCount } = this;
+            const extraLivesCount = livesCount - 1;
+            return this.$tc(`GameRolesOptions.ancientLivesCountAgainstWerewolves.description`, livesCount, { livesCount, extraLivesCount });
         },
         doesIdiotDieOnAncientDeathText() {
             const description = this.doesIdiotDieOnAncientDeath ? "idiotDiesOnAncientDeath" : "idiotDoesntDieOnAncientDeath";
@@ -867,6 +928,10 @@ export default {
             const { piedPiperCharmedPeopleCountPerNight: charmedPeopleCount } = this;
             return this.$tc("GameRolesOptions.piedPiperCharmedPeopleCountPerNight.description", charmedPeopleCount, { charmedPeopleCount });
         },
+        isPiedPiperPowerlessIfInfectedText() {
+            const description = this.isPiedPiperPowerlessIfInfected ? "piedPiperIsPowerlessIfInfected" : "piedPiperIsNotPowerlessIfInfected";
+            return this.$t(`GameRolesOptions.isPiedPiperPowerlessIfInfected.description.${description}`);
+        },
         ravenMarkPenaltyText() {
             const { ravenMarkPenalty } = this;
             return this.$tc("GameRolesOptions.ravenMarkPenalty.description", ravenMarkPenalty, { ravenMarkPenalty });
@@ -887,6 +952,7 @@ export default {
             setGameOptionDoesIdiotDieOnAncientDeath: "setGameOptionDoesIdiotDieOnAncientDeath",
             setGameOptionIsLittleGirlProtectedByGuard: "setGameOptionIsLittleGirlProtectedByGuard",
             setGameOptionCanGuardProtectTwice: "setGameOptionCanGuardProtectTwice",
+            setGameOptionAncientLivesCountAgainstWerewolves: "setGameOptionAncientLivesCountAgainstWerewolves",
             setGameOptionSistersWakingUpInterval: "setGameOptionSistersWakingUpInterval",
             setGameOptionBrothersWakingUpInterval: "setGameOptionBrothersWakingUpInterval",
             setGameOptionIsFoxPowerlessIfMissesWerewolf: "setGameOptionIsFoxPowerlessIfMissesWerewolf",
@@ -897,6 +963,7 @@ export default {
             setGameThiefAdditionalCards: "setGameThiefAdditionalCards",
             setGameOptionMustThiefChooseBetweenWerewolves: "setGameOptionMustThiefChooseBetweenWerewolves",
             setGameOptionPiedPiperCharmedPeopleCountPerNight: "setGameOptionPiedPiperCharmedPeopleCountPerNight",
+            setGameOptionIsPiedPiperPowerlessIfInfected: "setGameOptionIsPiedPiperPowerlessIfInfected",
             setGameOptionRavenMarkPenalty: "setGameOptionRavenMarkPenalty",
         }),
         filterByRoleName(option, search) {

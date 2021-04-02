@@ -84,6 +84,9 @@ export default {
         setGameOptionCanGuardProtectTwice(state, canGuardProtectTwice) {
             state.game.options.roles.guard.canProtectTwice = canGuardProtectTwice;
         },
+        setGameOptionAncientLivesCountAgainstWerewolves(state, ancientLivesCountAgainstWerewolves) {
+            state.game.options.roles.ancient.livesCountAgainstWerewolves = ancientLivesCountAgainstWerewolves;
+        },
         setGameOptionDoesIdiotDieOnAncientDeath(state, doesIdiotDieOnAncientDeath) {
             state.game.options.roles.idiot.doesDieOnAncientDeath = doesIdiotDieOnAncientDeath;
         },
@@ -117,6 +120,9 @@ export default {
         },
         setGameOptionPiedPiperCharmedPeopleCountPerNight(state, piedPiperCharmedPeopleCountPerNight) {
             state.game.options.roles.piedPiper.charmedPeopleCountPerNight = piedPiperCharmedPeopleCountPerNight;
+        },
+        setGameOptionIsPiedPiperPowerlessIfInfected(state, isPiedPiperPowerlessIfInfected) {
+            state.game.options.roles.piedPiper.isPowerlessIfInfected = isPiedPiperPowerlessIfInfected;
         },
         setGameOptionRavenMarkPenalty(state, markPenalty) {
             state.game.options.roles.raven.markPenalty = markPenalty;
@@ -184,6 +190,9 @@ export default {
         setGameOptionCanGuardProtectTwice({ commit }, canGuardProtectTwice) {
             commit("setGameOptionCanGuardProtectTwice", canGuardProtectTwice);
         },
+        setGameOptionAncientLivesCountAgainstWerewolves({ commit }, ancientLivesCountAgainstWerewolves) {
+            commit("setGameOptionAncientLivesCountAgainstWerewolves", ancientLivesCountAgainstWerewolves);
+        },
         setGameOptionDoesIdiotDieOnAncientDeath({ commit }, doesIdiotDieOnAncientDeath) {
             commit("setGameOptionDoesIdiotDieOnAncientDeath", doesIdiotDieOnAncientDeath);
         },
@@ -216,6 +225,9 @@ export default {
         },
         setGameOptionPiedPiperCharmedPeopleCountPerNight({ commit }, piedPiperCharmedPeopleCountPerNight) {
             commit("setGameOptionPiedPiperCharmedPeopleCountPerNight", piedPiperCharmedPeopleCountPerNight);
+        },
+        setGameOptionIsPiedPiperPowerlessIfInfected({ commit }, isPiedPiperPowerlessIfInfected) {
+            commit("setGameOptionIsPiedPiperPowerlessIfInfected", isPiedPiperPowerlessIfInfected);
         },
         setGameOptionRavenMarkPenalty({ commit }, markPenalty) {
             commit("setGameOptionRavenMarkPenalty", markPenalty);

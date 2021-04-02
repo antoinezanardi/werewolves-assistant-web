@@ -115,6 +115,11 @@
                 "guardCantProtectTwice": "Le Salvateur ne peut pas protéger deux nuits de suite la même cible."
             }
         },
+        "ancient": "Ancien",
+        "ancientLivesCountAgainstWerewolves": {
+            "label": "Nombre de vies contre les Loups-Garous de l'Ancien",
+            "description": "L'Ancien n'a qu'une seule vie contre les Loups-Garous, comme n'importe quel villageois. | L'ancien possède {livesCount} vies contre les Loups-Garous, il survivra donc {extraLivesCount} fois contre eux."
+        },
         "idiot": "Idiot",
         "doesIdiotDieOnAncientDeath": {
             "label": "L'Idiot déjà révélé meurt à la mort de l'Ancien",
@@ -187,6 +192,13 @@
         "piedPiperCharmedPeopleCountPerNight": {
             "label": "Nombre de personnes charmées par le Joueur de Flûte chaque nuit",
             "description": "Le Joueur de Flûte ne charmera qu'un seul joueur par nuit. | Le Joueur de Flûte charmera {charmedPeopleCount} joueurs par nuit."
+        },
+        "isPiedPiperPowerlessIfInfected": {
+            "label": "Le Joueur de Flûte perdra son pouvoir s'il est infecté par l'Infect Père des Loups",
+            "description": {
+                "piedPiperIsPowerlessIfInfected": "Le Joueur de Flûte perdra définitvement sa volonté de charmer tous les autres joueurs vivants si l'Infect Père des Loups l'infecte.",
+                "piedPiperIsNotPowerlessIfInfected": "Le Joueur de Flûte continuera à charmer les autres joueurs vivants, même infecté par l'Infect Père des Loups."
+            }
         },
         "raven": "Corbeau",
         "ravenMarkPenalty": {
