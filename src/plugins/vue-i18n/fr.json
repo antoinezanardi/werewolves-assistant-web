@@ -183,10 +183,15 @@
                 "thiefMustNotChooseBetweenWerewolves": "Le Voleur ne sera pas obligé de choisir une carte en début de partie, même si elle sont toutes du camp des Loups-Garous."
             }
         },
+        "piedPiper": "Joueur de Flûte",
+        "piedPiperCharmedPeopleCountPerNight": {
+            "label": "Nombre de personnes charmées par le Joueur de Flûte chaque nuit",
+            "description": "Le Joueur de Flûte ne charmera qu'un seul joueur par nuit. | Le Joueur de Flûte charmera {charmedPeopleCount} joueurs par nuit."
+        },
         "raven": "Corbeau",
         "ravenMarkPenalty": {
             "label": "Nombre de votes contre le joueur avec la marque du Corbeau",
-            "description": "Le joueur ayant reçu la marque du Corbeau aura 1 vote contre lui en plus au prochain vote | Le joueur ayant reçu la marque du Corbeau aura {ravenMarkPenalty} votes contre lui en plus au prochain vote."
+            "description": "Le joueur ayant reçu la marque du Corbeau aura 1 vote contre lui en plus au prochain vote. | Le joueur ayant reçu la marque du Corbeau aura {ravenMarkPenalty} votes contre lui en plus au prochain vote."
         }
     },
     "GameRepartitionOptions": {

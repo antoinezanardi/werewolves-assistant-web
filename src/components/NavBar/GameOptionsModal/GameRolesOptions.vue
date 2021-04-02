@@ -455,6 +455,29 @@
         <hr class="bg-dark my-1"/>
         <div class="row">
             <div class="option-section col-12 d-flex align-items-center">
+                <RoleImage role="pied-piper" class="mr-2 option-section-image"/>
+                <div v-html="$t('GameRolesOptions.piedPiper')"/>
+            </div>
+        </div>
+        <hr class="bg-dark my-1"/>
+        <div class="row align-items-center">
+            <div class="col-8">
+                <label for="pied-piper-charmed-people-count-per-night" class="option-label"
+                       v-html="$t('GameRolesOptions.piedPiperCharmedPeopleCountPerNight.label')"/>
+            </div>
+            <div class="col-4 d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <input id="pied-piper-charmed-people-count-per-night" v-model.number="piedPiperCharmedPeopleCountPerNight" class="form-control"
+                           type="number" min="1" max="5" :disabled="!game.canUpdateOptions"/>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <div class="col-12 text-muted font-italic" v-html="piedPiperCharmedPeopleCountPerNightText"/>
+        </div>
+        <hr class="bg-dark my-1"/>
+        <div class="row">
+            <div class="option-section col-12 d-flex align-items-center">
                 <RoleImage role="raven" class="mr-2 option-section-image"/>
                 <div v-html="$t('GameRolesOptions.raven')"/>
             </div>
@@ -707,6 +730,16 @@ export default {
                 this.$emit("options-updated");
             },
         },
+        piedPiperCharmedPeopleCountPerNight: {
+            get() {
+                return this.game.options.roles.piedPiper.charmedPeopleCountPerNight;
+            },
+            set(piedPiperCharmedPeopleCountPerNight) {
+                piedPiperCharmedPeopleCountPerNight = adjustNumber(piedPiperCharmedPeopleCountPerNight, { min: 1, max: 5 });
+                this.setGameOptionPiedPiperCharmedPeopleCountPerNight(piedPiperCharmedPeopleCountPerNight);
+                this.$emit("options-updated");
+            },
+        },
         ravenMarkPenalty: {
             get() {
                 return this.game.options.roles.raven.markPenalty;
@@ -830,6 +863,10 @@ export default {
             const description = this.mustThiefChooseBetweenWerewolves ? "thiefMustChooseBetweenWerewolves" : "thiefMustNotChooseBetweenWerewolves";
             return this.$t(`GameRolesOptions.mustThiefChooseBetweenWerewolves.description.${description}`);
         },
+        piedPiperCharmedPeopleCountPerNightText() {
+            const { piedPiperCharmedPeopleCountPerNight: charmedPeopleCount } = this;
+            return this.$tc("GameRolesOptions.piedPiperCharmedPeopleCountPerNight.description", charmedPeopleCount, { charmedPeopleCount });
+        },
         ravenMarkPenaltyText() {
             const { ravenMarkPenalty } = this;
             return this.$tc("GameRolesOptions.ravenMarkPenalty.description", ravenMarkPenalty, { ravenMarkPenalty });
@@ -859,6 +896,7 @@ export default {
             setGameOptionStutteringJudgeVoteRequestsCount: "setGameOptionStutteringJudgeVoteRequestsCount",
             setGameThiefAdditionalCards: "setGameThiefAdditionalCards",
             setGameOptionMustThiefChooseBetweenWerewolves: "setGameOptionMustThiefChooseBetweenWerewolves",
+            setGameOptionPiedPiperCharmedPeopleCountPerNight: "setGameOptionPiedPiperCharmedPeopleCountPerNight",
             setGameOptionRavenMarkPenalty: "setGameOptionRavenMarkPenalty",
         }),
         filterByRoleName(option, search) {

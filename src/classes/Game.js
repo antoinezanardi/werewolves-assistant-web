@@ -70,6 +70,7 @@ class Game {
             wildChild: { isTransformationRevealed: getProp(game, "options.roles.wildChild.isTransformationRevealed", false) },
             dogWolf: { isChosenSideRevealed: getProp(game, "options.roles.dogWolf.isChosenSideRevealed", false) },
             thief: { mustChooseBetweenWerewolves: getProp(game, "options.roles.thief.mustChooseBetweenWerewolves", true) },
+            piedPiper: { charmedPeopleCountPerNight: getProp(game, "options.roles.piedPiper.charmedPeopleCountPerNight", 2) },
             raven: { markPenalty: getProp(game, "options.roles.raven.markPenalty", 2) },
         };
     }

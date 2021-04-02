@@ -115,6 +115,9 @@ export default {
         setGameOptionMustThiefChooseBetweenWerewolves(state, mustThiefChooseBetweenWerewolves) {
             state.game.options.roles.thief.mustChooseBetweenWerewolves = mustThiefChooseBetweenWerewolves;
         },
+        setGameOptionPiedPiperCharmedPeopleCountPerNight(state, piedPiperCharmedPeopleCountPerNight) {
+            state.game.options.roles.piedPiper.charmedPeopleCountPerNight = piedPiperCharmedPeopleCountPerNight;
+        },
         setGameOptionRavenMarkPenalty(state, markPenalty) {
             state.game.options.roles.raven.markPenalty = markPenalty;
         },
@@ -210,6 +213,9 @@ export default {
         },
         setGameOptionMustThiefChooseBetweenWerewolves({ commit }, mustThiefChooseBetweenWerewolves) {
             commit("setGameOptionMustThiefChooseBetweenWerewolves", mustThiefChooseBetweenWerewolves);
+        },
+        setGameOptionPiedPiperCharmedPeopleCountPerNight({ commit }, piedPiperCharmedPeopleCountPerNight) {
+            commit("setGameOptionPiedPiperCharmedPeopleCountPerNight", piedPiperCharmedPeopleCountPerNight);
         },
         setGameOptionRavenMarkPenalty({ commit }, markPenalty) {
             commit("setGameOptionRavenMarkPenalty", markPenalty);
