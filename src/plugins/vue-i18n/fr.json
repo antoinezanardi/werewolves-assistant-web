@@ -73,6 +73,19 @@
                 "sheriffVoteIsNotDoubled": "Lors du vote du village pour décider qui sera pendu, la voix du maire n'aura pas plus de valeur qu'un autre habitant."
             }
         },
+        "bigBadWolf": "Grand-Méchant-Loup",
+        "isBigBadWolfPowerlessIfWerewolfDies": {
+            "label": "Le Grand-Méchant-Loup perd son pouvoir si un Loup-Garou meurt",
+            "description": {
+                "bigBadWolfIsPowerlessIfWerewolfDies": "Si un joueur du camp des Loups-Garou meurt, le Grand-Méchant-Loup ne se réveillera plus la nuit pour manger une seconde victime de toute la partie.",
+                "bigBadWolfIsNotPowerlessIfWerewolfDies": "Le Grand-Méchant-Loup se réveillera toutes les nuits pour manger une seconde victime, sans aucune limite."
+            }
+        },
+        "whiteWerewolf": "Loup-Garou Blanc",
+        "whiteWerewolfWakingUpInterval": {
+            "label": "Nombre de nuits entre deux réveils du Loup-Garou Blanc",
+            "description": "Le Loup-Garou Blanc se réveillera toutes les nuits. | Le Loup-Garou Blanc se réveillera toutes les {wakingUpInterval} nuits."
+        },
         "seer": "Voyante",
         "isSeerTalkative": {
             "label": "La Voyante est bavarde"
@@ -141,12 +154,35 @@
             "label": "Nombre de requêtes de votes supplémentaires pour le Juge Bègue",
             "description": "Le Juge Bègue ne pourra demander qu'une pendaison supplémentaire de toute la partie. | Le Juge Bègue pourra demander {count} pendaisons supplémentaires pendant la partie."
         },
+        "wildChild": "Enfant Sauvage",
+        "isWildChildTransformationRevealed": {
+            "label": "La transformation de l'Enfant Sauvage est révélée aux joueurs",
+            "description": {
+                "wildChildTransformationRevealed": "Lorsque le modèle de l'Enfant Sauvage meurt, le maître du jeu annonce à haute voix que l'Enfant Sauvage est donc devenu un Loup-Garou.",
+                "wildChildTransformationNotRevealed": "Lorsque le modèle de l'Enfant Sauvage meurt, sa transformation en Loup-Garou est gardée secrète."
+            }
+        },
+        "dogWolf": "Chien-Loup",
+        "isDogWolfChosenSideRevealed": {
+            "label": "Le choix de camp du Chien-Loup est révélé aux joueurs",
+            "description": {
+                "dogWolfChosenSideRevealed": "Le choix de camp du Chien-Loup au début de partie est révélé à haute voix par le maître du jeu aux autres joueurs.",
+                "dogWolfChosenSideNotRevealed": "Le choix de camp du Chien-Loup au début de partie reste secret."
+            }
+        },
         "thief": "Voleur",
         "additionalCardsForThief": "Cartes additionnelles destinées au Voleur (2 max.)",
         "chooseTwoCards": "Choisir 2 cartes...",
         "thereIsNoThiefInParty": "Il n'y a pas de Voleur dans la partie, impossible de choisir des cartes additionnelles qui lui seront destinées.",
         "thiefAdditionalCardsLeftToPick": "Les cartes du Voleur sont prêtes | Encore une carte à choisir | Encore 2 cartes à choisir",
         "thiefWillBeAbleToPlay": "La première nuit, le Voleur pourra, s'il le souhaite, devenir {additionalCardsText}.",
+        "mustThiefChooseBetweenWerewolves": {
+            "label": "Le Voleur doit obligatoirement choisir une carte si elles sont toutes du camp des Loups-Garous",
+            "description": {
+                "thiefMustChooseBetweenWerewolves": "Dans le cas où toutes les cartes additionnelles pour le Voleur sont du camp des Loups-Garous, il sera obligé d'en choisir une.",
+                "thiefMustNotChooseBetweenWerewolves": "Le Voleur ne sera pas obligé de choisir une carte en début de partie, même si elle sont toutes du camp des Loups-Garous."
+            }
+        },
         "raven": "Corbeau",
         "ravenMarkPenalty": {
             "label": "Nombre de votes contre le joueur avec la marque du Corbeau",

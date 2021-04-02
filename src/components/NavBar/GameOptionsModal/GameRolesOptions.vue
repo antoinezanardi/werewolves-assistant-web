@@ -104,9 +104,55 @@
                                :disabled="!game.canUpdateOptions" :labels="$t('VueToggleButton.yesNo')"
                                :height="25" :width="60" :sync="true"/>
             </div>
+        </div>
+        <div class="row mt-1">
             <div class="col-12 text-muted font-italic" v-html="isSheriffVoteDoubledText"/>
         </div>
-        <hr class="bg-dark mt-2 mb-1"/>
+        <hr class="bg-dark my-1"/>
+        <div class="row">
+            <div class="option-section col-12 d-flex align-items-center">
+                <RoleImage role="big-bad-wolf" class="mr-2 option-section-image"/>
+                <div v-html="$t('GameRolesOptions.bigBadWolf')"/>
+            </div>
+        </div>
+        <hr class="bg-dark my-1"/>
+        <div class="row align-items-center">
+            <div class="col-8">
+                <label for="is-big-bad-wolf-powerless-if-werewolf-dies" class="option-label"
+                       v-html="$t('GameRolesOptions.isBigBadWolfPowerlessIfWerewolfDies.label')"/>
+            </div>
+            <div class="col-4 text-center">
+                <toggle-button id="is-big-bad-wolf-powerless-if-werewolf-dies" v-model="isBigBadWolfPowerlessIfWerewolfDies"
+                               :disabled="!game.canUpdateOptions" :labels="$t('VueToggleButton.yesNo')" :height="25" :width="60" :sync="true"/>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <div class="col-12 text-muted font-italic" v-html="isBigBadWolfPowerlessIfWerewolfDiesText"/>
+        </div>
+        <hr class="bg-dark my-1"/>
+        <div class="row">
+            <div class="option-section col-12 d-flex align-items-center">
+                <RoleImage role="white-werewolf" class="mr-2 option-section-image"/>
+                <div v-html="$t('GameRolesOptions.whiteWerewolf')"/>
+            </div>
+        </div>
+        <hr class="bg-dark my-1"/>
+        <div class="row align-items-center">
+            <div class="col-8">
+                <label for="white-werewolf-waking-up-interval" class="option-label"
+                       v-html="$t('GameRolesOptions.whiteWerewolfWakingUpInterval.label')"/>
+            </div>
+            <div class="col-4 d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <input id="white-werewolf-waking-up-interval" v-model.number="whiteWerewolfWakingUpInterval" class="form-control"
+                           type="number" min="1" max="5" :disabled="!game.canUpdateOptions"/>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <div class="col-12 text-muted font-italic" v-html="whiteWerewolfWakingUpIntervalText"/>
+        </div>
+        <hr class="bg-dark my-1"/>
         <div class="row">
             <div class="option-section col-12 d-flex align-items-center">
                 <RoleImage role="seer" class="mr-2 option-section-image"/>
@@ -263,6 +309,8 @@
                 <toggle-button id="is-fox-powerless-if-misses-werewolf" v-model="isFoxPowerlessIfMissesWerewolf" :disabled="!game.canUpdateOptions"
                                :labels="$t('VueToggleButton.yesNo')" :height="25" :width="60" :sync="true"/>
             </div>
+        </div>
+        <div class="row mt-1">
             <div class="col-12 text-muted font-italic" v-html="isFoxPowerlessIfMissesWerewolfText"/>
         </div>
         <hr class="bg-dark my-1"/>
@@ -282,6 +330,8 @@
                 <toggle-button id="does-bear-tamer-growl-if-infected" v-model="doesBearTamerGrowlIfInfected" :disabled="!game.canUpdateOptions"
                                :labels="$t('VueToggleButton.yesNo')" :height="25" :width="60" :sync="true"/>
             </div>
+        </div>
+        <div class="row mt-1">
             <div class="col-12 text-muted font-italic" v-html="doesBearTamerGrowlIfInfectedText"/>
         </div>
         <hr class="bg-dark my-1"/>
@@ -306,6 +356,48 @@
         </div>
         <div class="row mt-1">
             <div class="col-12 text-muted font-italic" v-html="stutteringJudgeVoteRequestsCountText"/>
+        </div>
+        <hr class="bg-dark my-1"/>
+        <div class="row">
+            <div class="option-section col-12 d-flex align-items-center">
+                <RoleImage role="wild-child" class="mr-2 option-section-image"/>
+                <div v-html="$t('GameRolesOptions.wildChild')"/>
+            </div>
+        </div>
+        <hr class="bg-dark my-1"/>
+        <div class="row align-items-center">
+            <div class="col-8">
+                <label for="is-wild-child-transformation-revealed" class="option-label"
+                       v-html="$t('GameRolesOptions.isWildChildTransformationRevealed.label')"/>
+            </div>
+            <div class="col-4 text-center">
+                <toggle-button id="is-wild-child-transformation-revealed" v-model="isWildChildTransformationRevealed"
+                               :disabled="!game.canUpdateOptions" :labels="$t('VueToggleButton.yesNo')" :height="25" :width="60" :sync="true"/>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <div class="col-12 text-muted font-italic" v-html="isWildChildTransformationRevealedText"/>
+        </div>
+        <hr class="bg-dark my-1"/>
+        <div class="row">
+            <div class="option-section col-12 d-flex align-items-center">
+                <RoleImage role="dog-wolf" class="mr-2 option-section-image"/>
+                <div v-html="$t('GameRolesOptions.dogWolf')"/>
+            </div>
+        </div>
+        <hr class="bg-dark my-1"/>
+        <div class="row align-items-center">
+            <div class="col-8">
+                <label for="is-dog-wolf-chosen-side-revealed" class="option-label"
+                       v-html="$t('GameRolesOptions.isDogWolfChosenSideRevealed.label')"/>
+            </div>
+            <div class="col-4 text-center">
+                <toggle-button id="is-dog-wolf-chosen-side-revealed" v-model="isDogWolfChosenSideRevealed"
+                               :disabled="!game.canUpdateOptions" :labels="$t('VueToggleButton.yesNo')" :height="25" :width="60" :sync="true"/>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <div class="col-12 text-muted font-italic" v-html="isDogWolfChosenSideRevealedText"/>
         </div>
         <hr class="bg-dark my-1"/>
         <div id="thief-section" class="row">
@@ -345,6 +437,20 @@
         </div>
         <div class="row mt-1">
             <div class="col-12 text-muted font-italic" v-html="thiefAdditionalCardsText"/>
+        </div>
+        <hr class="bg-dark my-1"/>
+        <div class="row align-items-center">
+            <div class="col-8">
+                <label for="must-thief-choose-between-werewolves" class="option-label"
+                       v-html="$t('GameRolesOptions.mustThiefChooseBetweenWerewolves.label')"/>
+            </div>
+            <div class="col-4 text-center">
+                <toggle-button id="must-thief-choose-between-werewolves" v-model="mustThiefChooseBetweenWerewolves" :disabled="!game.canUpdateOptions"
+                               :labels="$t('VueToggleButton.yesNo')" :height="25" :width="60" :sync="true"/>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <div class="col-12 text-muted font-italic" v-html="mustThiefChooseBetweenWerewolvesText"/>
         </div>
         <hr class="bg-dark my-1"/>
         <div class="row">
@@ -450,6 +556,25 @@ export default {
                 this.$emit("options-updated");
             },
         },
+        isBigBadWolfPowerlessIfWerewolfDies: {
+            get() {
+                return this.game.options.roles.bigBadWolf.isPowerlessIfWerewolfDies;
+            },
+            set(isBigBadWolfPowerlessIfWerewolfDies) {
+                this.setGameOptionIsBigBadWolfPowerlessIfWerewolfDies(isBigBadWolfPowerlessIfWerewolfDies);
+                this.$emit("options-updated");
+            },
+        },
+        whiteWerewolfWakingUpInterval: {
+            get() {
+                return this.game.options.roles.whiteWerewolf.wakingUpInterval;
+            },
+            set(whiteWerewolfWakingUpInterval) {
+                whiteWerewolfWakingUpInterval = adjustNumber(whiteWerewolfWakingUpInterval, { min: 1, max: 5 });
+                this.setGameOptionWhiteWerewolfWakingUpInterval(whiteWerewolfWakingUpInterval);
+                this.$emit("options-updated");
+            },
+        },
         isSeerTalkative: {
             get() {
                 return this.game.options.roles.seer.isTalkative;
@@ -543,6 +668,24 @@ export default {
                 this.$emit("options-updated");
             },
         },
+        isWildChildTransformationRevealed: {
+            get() {
+                return this.game.options.roles.wildChild.isTransformationRevealed;
+            },
+            set(isWildChildTransformationRevealed) {
+                this.setGameOptionIsWildChildTransformationRevealed(isWildChildTransformationRevealed);
+                this.$emit("options-updated");
+            },
+        },
+        isDogWolfChosenSideRevealed: {
+            get() {
+                return this.game.options.roles.dogWolf.isChosenSideRevealed;
+            },
+            set(isDogWolfChosenSideRevealed) {
+                this.setGameOptionIsDogWolfChosenSideRevealed(isDogWolfChosenSideRevealed);
+                this.$emit("options-updated");
+            },
+        },
         thiefAdditionalCardsOptions() {
             const availableRoles = this.roles.filter(role => {
                 const roleCountInPlayers = this.game.getPlayersWithRole(role.name).length;
@@ -554,6 +697,15 @@ export default {
                 ...new GameAdditionalCard({ _id: uniqId(this.additionalCardPickedAtTs), for: "thief", role: name, isUsed: false }),
                 displayedName: this.$t(`Role.the.${name}`),
             }));
+        },
+        mustThiefChooseBetweenWerewolves: {
+            get() {
+                return this.game.options.roles.thief.mustChooseBetweenWerewolves;
+            },
+            set(mustThiefChooseBetweenWerewolves) {
+                this.setGameOptionMustThiefChooseBetweenWerewolves(mustThiefChooseBetweenWerewolves);
+                this.$emit("options-updated");
+            },
         },
         ravenMarkPenalty: {
             get() {
@@ -587,6 +739,19 @@ export default {
         isSheriffVoteDoubledText() {
             const description = this.isSheriffVoteDoubled ? "sheriffVoteIsDoubled" : "sheriffVoteIsNotDoubled";
             return this.$t(`GameRolesOptions.isSheriffVoteDoubled.description.${description}`);
+        },
+        isBigBadWolfPowerlessIfWerewolfDiesText() {
+            let description;
+            if (this.isBigBadWolfPowerlessIfWerewolfDies) {
+                description = "bigBadWolfIsPowerlessIfWerewolfDies";
+            } else {
+                description = "bigBadWolfIsNotPowerlessIfWerewolfDies";
+            }
+            return this.$t(`GameRolesOptions.isBigBadWolfPowerlessIfWerewolfDies.description.${description}`);
+        },
+        whiteWerewolfWakingUpIntervalText() {
+            const { whiteWerewolfWakingUpInterval: wakingUpInterval } = this;
+            return this.$tc(`GameRolesOptions.whiteWerewolfWakingUpInterval.description`, wakingUpInterval, { wakingUpInterval });
         },
         seerOptionsText() {
             const text = "GameRolesOptions.seerOptionsText";
@@ -623,6 +788,18 @@ export default {
             const description = this.doesBearTamerGrowlIfInfected ? "bearTamerGrowlsIfInfected" : "bearTamerDoesntGrowlIfInfected";
             return this.$t(`GameRolesOptions.doesBearTamerGrowlIfInfected.description.${description}`);
         },
+        stutteringJudgeVoteRequestsCountText() {
+            const { stutteringJudgeVoteRequestsCount: count } = this;
+            return this.$tc("GameRolesOptions.stutteringJudgeVoteRequestsCount.description", count, { count });
+        },
+        isWildChildTransformationRevealedText() {
+            const description = this.isWildChildTransformationRevealed ? "wildChildTransformationRevealed" : "wildChildTransformationNotRevealed";
+            return this.$t(`GameRolesOptions.isWildChildTransformationRevealed.description.${description}`);
+        },
+        isDogWolfChosenSideRevealedText() {
+            const description = this.isDogWolfChosenSideRevealed ? "dogWolfChosenSideRevealed" : "dogWolfChosenSideNotRevealed";
+            return this.$t(`GameRolesOptions.isDogWolfChosenSideRevealed.description.${description}`);
+        },
         thiefAdditionalCardsValidationIcon() {
             const { thiefAdditionalCards } = this.game;
             const leftToPick = 2 - thiefAdditionalCards.length;
@@ -649,9 +826,9 @@ export default {
             }
             return this.$t("GameRolesOptions.thiefWillBeAbleToPlay", { additionalCardsText });
         },
-        stutteringJudgeVoteRequestsCountText() {
-            const { stutteringJudgeVoteRequestsCount: count } = this;
-            return this.$tc("GameRolesOptions.stutteringJudgeVoteRequestsCount.description", count, { count });
+        mustThiefChooseBetweenWerewolvesText() {
+            const description = this.mustThiefChooseBetweenWerewolves ? "thiefMustChooseBetweenWerewolves" : "thiefMustNotChooseBetweenWerewolves";
+            return this.$t(`GameRolesOptions.mustThiefChooseBetweenWerewolves.description.${description}`);
         },
         ravenMarkPenaltyText() {
             const { ravenMarkPenalty } = this;
@@ -666,6 +843,8 @@ export default {
             setGameOptionSheriffElectedAtTurn: "setGameOptionSheriffElectedAtTurn",
             setGameOptionSheriffElectedAtPhase: "setGameOptionSheriffElectedAtPhase",
             setGameOptionIsSheriffVoteDoubled: "setGameOptionIsSheriffVoteDoubled",
+            setGameOptionIsBigBadWolfPowerlessIfWerewolfDies: "setGameOptionIsBigBadWolfPowerlessIfWerewolfDies",
+            setGameOptionWhiteWerewolfWakingUpInterval: "setGameOptionWhiteWerewolfWakingUpInterval",
             setGameOptionIsSeerTalkative: "setGameOptionIsSeerTalkative",
             setGameOptionCanSeerSeeRoles: "setGameOptionCanSeerSeeRoles",
             setGameOptionDoesIdiotDieOnAncientDeath: "setGameOptionDoesIdiotDieOnAncientDeath",
@@ -675,9 +854,12 @@ export default {
             setGameOptionBrothersWakingUpInterval: "setGameOptionBrothersWakingUpInterval",
             setGameOptionIsFoxPowerlessIfMissesWerewolf: "setGameOptionIsFoxPowerlessIfMissesWerewolf",
             setGameOptionDoesBearTamerGrowlIfInfected: "setGameOptionDoesBearTamerGrowlIfInfected",
+            setGameOptionIsWildChildTransformationRevealed: "setGameOptionIsWildChildTransformationRevealed",
+            setGameOptionIsDogWolfChosenSideRevealed: "setGameOptionIsDogWolfChosenSideRevealed",
             setGameOptionStutteringJudgeVoteRequestsCount: "setGameOptionStutteringJudgeVoteRequestsCount",
-            setGameOptionRavenMarkPenalty: "setGameOptionRavenMarkPenalty",
             setGameThiefAdditionalCards: "setGameThiefAdditionalCards",
+            setGameOptionMustThiefChooseBetweenWerewolves: "setGameOptionMustThiefChooseBetweenWerewolves",
+            setGameOptionRavenMarkPenalty: "setGameOptionRavenMarkPenalty",
         }),
         filterByRoleName(option, search) {
             return fuseSearch(option, search, ["displayedName"]);

@@ -66,6 +66,12 @@ export default {
         setGameOptionIsSheriffVoteDoubled(state, isSheriffVoteDoubled) {
             state.game.options.roles.sheriff.hasDoubledVote = isSheriffVoteDoubled;
         },
+        setGameOptionIsBigBadWolfPowerlessIfWerewolfDies(state, isBigBadWolfPowerlessIfWerewolfDies) {
+            state.game.options.roles.bigBadWolf.isPowerlessIfWerewolfDies = isBigBadWolfPowerlessIfWerewolfDies;
+        },
+        setGameOptionWhiteWerewolfWakingUpInterval(state, whiteWerewolfWakingUpInterval) {
+            state.game.options.roles.whiteWerewolf.wakingUpInterval = whiteWerewolfWakingUpInterval;
+        },
         setGameOptionIsSeerTalkative(state, isSeerTalkative) {
             state.game.options.roles.seer.isTalkative = isSeerTalkative;
         },
@@ -93,12 +99,21 @@ export default {
         setGameOptionDoesBearTamerGrowlIfInfected(state, doesBearTamerGrowlIfInfected) {
             state.game.options.roles.bearTamer.doesGrowlIfInfected = doesBearTamerGrowlIfInfected;
         },
+        setGameOptionIsWildChildTransformationRevealed(state, isWildChildTransformationRevealed) {
+            state.game.options.roles.wildChild.isTransformationRevealed = isWildChildTransformationRevealed;
+        },
+        setGameOptionIsDogWolfChosenSideRevealed(state, isDogWolfChosenSideRevealed) {
+            state.game.options.roles.dogWolf.isChosenSideRevealed = isDogWolfChosenSideRevealed;
+        },
         setGameOptionStutteringJudgeVoteRequestsCount(state, stutteringJudgeVoteRequestsCount) {
             state.game.options.roles.stutteringJudge.voteRequestsCount = stutteringJudgeVoteRequestsCount;
         },
         setGameThiefAdditionalCards(state, thiefAdditionalCards) {
             state.game.additionalCards = state.game.additionalCards.filter(({ for: recipient }) => recipient !== "thief");
             state.game.additionalCards.push(...thiefAdditionalCards);
+        },
+        setGameOptionMustThiefChooseBetweenWerewolves(state, mustThiefChooseBetweenWerewolves) {
+            state.game.options.roles.thief.mustChooseBetweenWerewolves = mustThiefChooseBetweenWerewolves;
         },
         setGameOptionRavenMarkPenalty(state, markPenalty) {
             state.game.options.roles.raven.markPenalty = markPenalty;
@@ -148,6 +163,12 @@ export default {
         setGameOptionIsSheriffVoteDoubled({ commit }, isSheriffVoteDoubled) {
             commit("setGameOptionIsSheriffVoteDoubled", isSheriffVoteDoubled);
         },
+        setGameOptionIsBigBadWolfPowerlessIfWerewolfDies({ commit }, isBigBadWolfPowerlessIfWerewolfDies) {
+            commit("setGameOptionIsBigBadWolfPowerlessIfWerewolfDies", isBigBadWolfPowerlessIfWerewolfDies);
+        },
+        setGameOptionWhiteWerewolfWakingUpInterval({ commit }, whiteWerewolfWakingUpInterval) {
+            commit("setGameOptionWhiteWerewolfWakingUpInterval", whiteWerewolfWakingUpInterval);
+        },
         setGameOptionIsSeerTalkative({ commit }, isSeerTalkative) {
             commit("setGameOptionIsSeerTalkative", isSeerTalkative);
         },
@@ -175,11 +196,20 @@ export default {
         setGameOptionDoesBearTamerGrowlIfInfected({ commit }, doesBearTamerGrowlIfInfected) {
             commit("setGameOptionDoesBearTamerGrowlIfInfected", doesBearTamerGrowlIfInfected);
         },
+        setGameOptionIsWildChildTransformationRevealed({ commit }, isWildChildTransformationRevealed) {
+            commit("setGameOptionIsWildChildTransformationRevealed", isWildChildTransformationRevealed);
+        },
+        setGameOptionIsDogWolfChosenSideRevealed({ commit }, isDogWolfChosenSideRevealed) {
+            commit("setGameOptionIsDogWolfChosenSideRevealed", isDogWolfChosenSideRevealed);
+        },
         setGameOptionStutteringJudgeVoteRequestsCount({ commit }, stutteringJudgeVoteRequestsCount) {
             commit("setGameOptionStutteringJudgeVoteRequestsCount", stutteringJudgeVoteRequestsCount);
         },
         setGameThiefAdditionalCards({ commit }, thiefAdditionalCards) {
             commit("setGameThiefAdditionalCards", thiefAdditionalCards);
+        },
+        setGameOptionMustThiefChooseBetweenWerewolves({ commit }, mustThiefChooseBetweenWerewolves) {
+            commit("setGameOptionMustThiefChooseBetweenWerewolves", mustThiefChooseBetweenWerewolves);
         },
         setGameOptionRavenMarkPenalty({ commit }, markPenalty) {
             commit("setGameOptionRavenMarkPenalty", markPenalty);

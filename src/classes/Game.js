@@ -38,33 +38,46 @@ class Game {
         return getProp(game, "additionalCards", [], additionalCards => additionalCards.map(additionalCard => new GameAdditionalCard(additionalCard)));
     }
 
+    static _getSheriffGameOptions(game) {
+        return {
+            isEnabled: getProp(game, "options.roles.sheriff.isEnabled", true),
+            electedAt: {
+                turn: getProp(game, "options.roles.sheriff.electedAt.turn", 1),
+                phase: getProp(game, "options.roles.sheriff.electedAt.phase", "night"),
+            },
+            hasDoubledVote: getProp(game, "options.roles.sheriff.hasDoubledVote", true),
+        };
+    }
+
+    static _getRolesGameOptions(game) {
+        return {
+            areRevealedOnDeath: getProp(game, "options.roles.areRevealedOnDeath", true),
+            sheriff: this._getSheriffGameOptions(game),
+            bigBadWolf: { isPowerlessIfWerewolfDies: getProp(game, "options.roles.bigBadWolf.isPowerlessIfWerewolfDies", true) },
+            whiteWerewolf: { wakingUpInterval: getProp(game, "options.roles.whiteWerewolf.wakingUpInterval", 2) },
+            seer: {
+                isTalkative: getProp(game, "options.roles.seer.isTalkative", true),
+                canSeeRoles: getProp(game, "options.roles.seer.canSeeRoles", true),
+            },
+            littleGirl: { isProtectedByGuard: getProp(game, "options.roles.littleGirl.isProtectedByGuard", false) },
+            guard: { canProtectTwice: getProp(game, "options.roles.guard.canProtectTwice", false) },
+            idiot: { doesDieOnAncientDeath: getProp(game, "options.roles.idiot.doesDieOnAncientDeath", true) },
+            twoSisters: { wakingUpInterval: getProp(game, "options.roles.twoSisters.wakingUpInterval", 2) },
+            threeBrothers: { wakingUpInterval: getProp(game, "options.roles.threeBrothers.wakingUpInterval", 2) },
+            fox: { isPowerlessIfMissesWerewolf: getProp(game, "options.roles.fox.isPowerlessIfMissesWerewolf", true) },
+            bearTamer: { doesGrowlIfInfected: getProp(game, "options.roles.bearTamer.doesGrowlIfInfected", true) },
+            stutteringJudge: { voteRequestsCount: getProp(game, "options.roles.stutteringJudge.voteRequestsCount", 1) },
+            wildChild: { isTransformationRevealed: getProp(game, "options.roles.wildChild.isTransformationRevealed", false) },
+            dogWolf: { isChosenSideRevealed: getProp(game, "options.roles.dogWolf.isChosenSideRevealed", false) },
+            thief: { mustChooseBetweenWerewolves: getProp(game, "options.roles.thief.mustChooseBetweenWerewolves", true) },
+            raven: { markPenalty: getProp(game, "options.roles.raven.markPenalty", 2) },
+        };
+    }
+
     static _getGameOptions(game) {
         return {
             repartition: { isHidden: getProp(game, "options.repartition.isHidden", false) },
-            roles: {
-                areRevealedOnDeath: getProp(game, "options.roles.areRevealedOnDeath", true),
-                sheriff: {
-                    isEnabled: getProp(game, "options.roles.sheriff.isEnabled", true),
-                    electedAt: {
-                        turn: getProp(game, "options.roles.sheriff.electedAt.turn", 1),
-                        phase: getProp(game, "options.roles.sheriff.electedAt.phase", "night"),
-                    },
-                    hasDoubledVote: getProp(game, "options.roles.sheriff.hasDoubledVote", true),
-                },
-                seer: {
-                    isTalkative: getProp(game, "options.roles.seer.isTalkative", true),
-                    canSeeRoles: getProp(game, "options.roles.seer.canSeeRoles", true),
-                },
-                littleGirl: { isProtectedByGuard: getProp(game, "options.roles.littleGirl.isProtectedByGuard", false) },
-                guard: { canProtectTwice: getProp(game, "options.roles.guard.canProtectTwice", false) },
-                idiot: { doesDieOnAncientDeath: getProp(game, "options.roles.idiot.doesDieOnAncientDeath", true) },
-                twoSisters: { wakingUpInterval: getProp(game, "options.roles.twoSisters.wakingUpInterval", 2) },
-                threeBrothers: { wakingUpInterval: getProp(game, "options.roles.threeBrothers.wakingUpInterval", 2) },
-                fox: { isPowerlessIfMissesWerewolf: getProp(game, "options.roles.fox.isPowerlessIfMissesWerewolf", true) },
-                bearTamer: { doesGrowlIfInfected: getProp(game, "options.roles.bearTamer.doesGrowlIfInfected", true) },
-                stutteringJudge: { voteRequestsCount: getProp(game, "options.roles.stutteringJudge.voteRequestsCount", 1) },
-                raven: { markPenalty: getProp(game, "options.roles.raven.markPenalty", 2) },
-            },
+            roles: this._getRolesGameOptions(game),
         };
     }
 
