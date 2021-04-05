@@ -54,6 +54,7 @@
         "vue-star-rating": "^1.7.0",
         "vue-toasted": "^1.1.28",
         "vue-tour": "^2.0.0",
+        "vuedraggable": "^2.24.3",
         "vuex": "^3.6.2",
         "xss": "^1.0.8"
     },

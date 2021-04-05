@@ -21,7 +21,8 @@ export default {
             state.game.players = players.map(player => new Player(player));
         },
         addGamePlayer(state, player) {
-            state.game.players.push(new Player(player));
+            const position = state.game.players.length + 1;
+            state.game.players.push(new Player({ ...player, position }));
         },
         setCurrentRoleForPlayerWithName(state, { name, role }) {
             const player = state.game.getPlayerWithName(name);
@@ -39,6 +40,12 @@ export default {
             const idx = state.game.players.findIndex(({ name }) => name === playerName);
             if (idx !== -1) {
                 state.game.players.splice(idx, 1);
+            }
+        },
+        resetAllPlayersPosition(state) {
+            for (let i = 0; i < state.game.players.length; i++) {
+                const player = state.game.players[i];
+                player.position = i + 1;
             }
         },
         unsetRoleForPlayerWithName(state, playerName) {
@@ -87,6 +94,9 @@ export default {
         setGameOptionAncientLivesCountAgainstWerewolves(state, ancientLivesCountAgainstWerewolves) {
             state.game.options.roles.ancient.livesCountAgainstWerewolves = ancientLivesCountAgainstWerewolves;
         },
+        setGameOptionDoesAncientTakeHisRevenge(state, doesAncientTakeHisRevenge) {
+            state.game.options.roles.ancient.doesTakeHisRevenge = doesAncientTakeHisRevenge;
+        },
         setGameOptionDoesIdiotDieOnAncientDeath(state, doesIdiotDieOnAncientDeath) {
             state.game.options.roles.idiot.doesDieOnAncientDeath = doesIdiotDieOnAncientDeath;
         },
@@ -114,6 +124,9 @@ export default {
         setGameThiefAdditionalCards(state, thiefAdditionalCards) {
             state.game.additionalCards = state.game.additionalCards.filter(({ for: recipient }) => recipient !== "thief");
             state.game.additionalCards.push(...thiefAdditionalCards);
+        },
+        setGameOptionThiefAdditionalCardsCount(state, thiefAdditionalCardsCount) {
+            state.game.options.roles.thief.additionalCardsCount = thiefAdditionalCardsCount;
         },
         setGameOptionMustThiefChooseBetweenWerewolves(state, mustThiefChooseBetweenWerewolves) {
             state.game.options.roles.thief.mustChooseBetweenWerewolves = mustThiefChooseBetweenWerewolves;
@@ -150,6 +163,7 @@ export default {
         },
         unsetPlayerWithName({ commit }, name) {
             commit("unsetPlayerWithName", name);
+            commit("resetAllPlayersPosition");
         },
         unsetRoleForPlayerWithName({ commit }, name) {
             commit("unsetRoleForPlayerWithName", name);
@@ -193,6 +207,9 @@ export default {
         setGameOptionAncientLivesCountAgainstWerewolves({ commit }, ancientLivesCountAgainstWerewolves) {
             commit("setGameOptionAncientLivesCountAgainstWerewolves", ancientLivesCountAgainstWerewolves);
         },
+        setGameOptionDoesAncientTakeHisRevenge({ commit }, doesAncientTakeHisRevenge) {
+            commit("setGameOptionDoesAncientTakeHisRevenge", doesAncientTakeHisRevenge);
+        },
         setGameOptionDoesIdiotDieOnAncientDeath({ commit }, doesIdiotDieOnAncientDeath) {
             commit("setGameOptionDoesIdiotDieOnAncientDeath", doesIdiotDieOnAncientDeath);
         },
@@ -219,6 +236,9 @@ export default {
         },
         setGameThiefAdditionalCards({ commit }, thiefAdditionalCards) {
             commit("setGameThiefAdditionalCards", thiefAdditionalCards);
+        },
+        setGameOptionThiefAdditionalCardsCount({ commit }, thiefAdditionalCardsCount) {
+            commit("setGameOptionThiefAdditionalCardsCount", thiefAdditionalCardsCount);
         },
         setGameOptionMustThiefChooseBetweenWerewolves({ commit }, mustThiefChooseBetweenWerewolves) {
             commit("setGameOptionMustThiefChooseBetweenWerewolves", mustThiefChooseBetweenWerewolves);

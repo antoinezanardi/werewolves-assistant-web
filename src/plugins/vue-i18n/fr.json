@@ -28,7 +28,8 @@
         "close": "Fermer",
         "optionsAreSaved": "Les options de la partie sont enregistrées automatiquement après chaque changement",
         "gameRolesOptions": "Rôles",
-        "gameRepartitionOptions": "Répartition aléatoire"
+        "gameRepartitionOptions": "Répartition aléatoire",
+        "gamePlayersPosition": "Positionnement des joueurs"
     },
     "GameRolesOptions": {
         "gameOptionsCantBeUpdated": "Les options de la partie ne peuvent être modifiée en dehors de l'écran de composition de la partie.",
@@ -120,6 +121,13 @@
             "label": "Nombre de vies contre les Loups-Garous de l'Ancien",
             "description": "L'Ancien n'a qu'une seule vie contre les Loups-Garous, comme n'importe quel villageois. | L'ancien possède {livesCount} vies contre les Loups-Garous, il survivra donc {extraLivesCount} fois contre eux."
         },
+        "doesAncientTakeHisRevenge": {
+            "label": "L'Ancien prend sa revanche s'il est abattu par un des Villageois.",
+            "description": {
+                "ancientTakesHisRevenge": "Si l'Ancien est assassiné par un joueur du camp des Villageois (Chasseur, Sorcière ou le vote du village par exemple), tous les joueurs initialement dans le camp Villageois perdront leurs pouvoirs.",
+                "ancientDoesntTakeHisRevenge": "L'Ancien ne fera perdre de pouvoirs à personne, quelque soit la raison de sa mort."
+            }
+        },
         "idiot": "Idiot",
         "doesIdiotDieOnAncientDeath": {
             "label": "L'Idiot déjà révélé meurt à la mort de l'Ancien",
@@ -176,6 +184,10 @@
             }
         },
         "thief": "Voleur",
+        "thiefAdditionalCardsCount": {
+            "label": "Nombre de cartes destinées au Voleur au début de la partie",
+            "description": "Une seule carte sera proposée à l'échange au Voleur en début de partie. | Le Voleur aura le choix entre {additionalCardsCount} cartes à l'échange au début de la partie."
+        },
         "additionalCardsForThief": "Cartes additionnelles destinées au Voleur (2 max.)",
         "chooseTwoCards": "Choisir 2 cartes...",
         "thereIsNoThiefInParty": "Il n'y a pas de Voleur dans la partie, impossible de choisir des cartes additionnelles qui lui seront destinées.",
@@ -253,6 +265,9 @@
             "close": "Masquer les rôles des Villageois avec un pouvoir spécial"
         },
         "recommendedMinPlayers": "{recommendedMinPlayers} joueurs min."
+    },
+    "GamePlayersPosition": {
+        "addPlayersToPlaceThem": "Veuillez ajouter des joueurs pour pouvoir les placer"
     },
     "GameSidesModal": {
         "gameSides": "Camps de la partie",

@@ -38,6 +38,34 @@ class Game {
         return getProp(game, "additionalCards", [], additionalCards => additionalCards.map(additionalCard => new GameAdditionalCard(additionalCard)));
     }
 
+    static _getPiedPiperOptions(game) {
+        return {
+            charmedPeopleCountPerNight: getProp(game, "options.roles.piedPiper.charmedPeopleCountPerNight", 2),
+            isPowerlessIfInfected: getProp(game, "options.roles.piedPiper.isPowerlessIfInfected", true),
+        };
+    }
+
+    static _getThiefOptions(game) {
+        return {
+            additionalCardsCount: getProp(game, "options.roles.thief.additionalCardsCount", 2),
+            mustChooseBetweenWerewolves: getProp(game, "options.roles.thief.mustChooseBetweenWerewolves", true),
+        };
+    }
+
+    static _getAncientOptions(game) {
+        return {
+            livesCountAgainstWerewolves: getProp(game, "options.roles.ancient.livesCountAgainstWerewolves", 2),
+            doesTakeHisRevenge: getProp(game, "options.roles.ancient.doesTakeHisRevenge", true),
+        };
+    }
+
+    static _getSeerGameOptions(game) {
+        return {
+            isTalkative: getProp(game, "options.roles.seer.isTalkative", true),
+            canSeeRoles: getProp(game, "options.roles.seer.canSeeRoles", true),
+        };
+    }
+
     static _getSheriffGameOptions(game) {
         return {
             isEnabled: getProp(game, "options.roles.sheriff.isEnabled", true),
@@ -55,13 +83,10 @@ class Game {
             sheriff: this._getSheriffGameOptions(game),
             bigBadWolf: { isPowerlessIfWerewolfDies: getProp(game, "options.roles.bigBadWolf.isPowerlessIfWerewolfDies", true) },
             whiteWerewolf: { wakingUpInterval: getProp(game, "options.roles.whiteWerewolf.wakingUpInterval", 2) },
-            seer: {
-                isTalkative: getProp(game, "options.roles.seer.isTalkative", true),
-                canSeeRoles: getProp(game, "options.roles.seer.canSeeRoles", true),
-            },
+            seer: this._getSeerGameOptions(game),
             littleGirl: { isProtectedByGuard: getProp(game, "options.roles.littleGirl.isProtectedByGuard", false) },
             guard: { canProtectTwice: getProp(game, "options.roles.guard.canProtectTwice", false) },
-            ancient: { livesCountAgainstWerewolves: getProp(game, "options.roles.ancient.livesCountAgainstWerewolves", 2) },
+            ancient: this._getAncientOptions(game),
             idiot: { doesDieOnAncientDeath: getProp(game, "options.roles.idiot.doesDieOnAncientDeath", true) },
             twoSisters: { wakingUpInterval: getProp(game, "options.roles.twoSisters.wakingUpInterval", 2) },
             threeBrothers: { wakingUpInterval: getProp(game, "options.roles.threeBrothers.wakingUpInterval", 2) },
@@ -70,11 +95,8 @@ class Game {
             stutteringJudge: { voteRequestsCount: getProp(game, "options.roles.stutteringJudge.voteRequestsCount", 1) },
             wildChild: { isTransformationRevealed: getProp(game, "options.roles.wildChild.isTransformationRevealed", false) },
             dogWolf: { isChosenSideRevealed: getProp(game, "options.roles.dogWolf.isChosenSideRevealed", false) },
-            thief: { mustChooseBetweenWerewolves: getProp(game, "options.roles.thief.mustChooseBetweenWerewolves", true) },
-            piedPiper: {
-                charmedPeopleCountPerNight: getProp(game, "options.roles.piedPiper.charmedPeopleCountPerNight", 2),
-                isPowerlessIfInfected: getProp(game, "options.roles.piedPiper.isPowerlessIfInfected", true),
-            },
+            thief: this._getThiefOptions(game),
+            piedPiper: this._getPiedPiperOptions(game),
             raven: { markPenalty: getProp(game, "options.roles.raven.markPenalty", 2) },
         };
     }

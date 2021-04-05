@@ -249,6 +249,20 @@
             <div class="col-12 text-muted font-italic" v-html="ancientLivesCountAgainstWerewolvesText"/>
         </div>
         <hr class="bg-dark my-1"/>
+        <div class="row align-items-center">
+            <div class="col-8">
+                <label for="does-ancient-take-his-revenge" class="option-label"
+                       v-html="$t('GameRolesOptions.doesAncientTakeHisRevenge.label')"/>
+            </div>
+            <div class="col-4 text-center">
+                <toggle-button id="does-ancient-take-his-revenge" v-model="doesAncientTakeHisRevenge" :disabled="!game.canUpdateOptions"
+                               :labels="$t('VueToggleButton.yesNo')" :height="25" :width="60" :sync="true"/>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <div class="col-12 text-muted font-italic" v-html="doesAncientTakeHisRevengeText"/>
+        </div>
+        <hr class="bg-dark my-1"/>
         <div class="row">
             <div class="option-section col-12 d-flex align-items-center">
                 <RoleImage role="idiot" class="mr-2 option-section-image"/>
@@ -428,6 +442,22 @@
                 <RoleImage role="thief" class="mr-2 option-section-image"/>
                 <div v-html="$t('GameRolesOptions.thief')"/>
             </div>
+        </div>
+        <hr class="bg-dark my-1"/>
+        <div class="row align-items-center">
+            <div class="col-8">
+                <label for="thief-additional-cards-count" class="option-label"
+                       v-html="$t('GameRolesOptions.thiefAdditionalCardsCount.label')"/>
+            </div>
+            <div class="col-4 d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <input id="thief-additional-cards-count" v-model.number="thiefAdditionalCardsCount" class="form-control"
+                           type="number" min="1" max="5" :disabled="!game.canUpdateOptions"/>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <div class="col-12 text-muted font-italic" v-html="thiefAdditionalCardsCountText"/>
         </div>
         <hr class="bg-dark my-1"/>
         <div class="row align-items-center">
@@ -681,6 +711,15 @@ export default {
                 this.$emit("options-updated");
             },
         },
+        doesAncientTakeHisRevenge: {
+            get() {
+                return this.game.options.roles.ancient.doesTakeHisRevenge;
+            },
+            set(doesAncientTakeHisRevenge) {
+                this.setGameOptionDoesAncientTakeHisRevenge(doesAncientTakeHisRevenge);
+                this.$emit("options-updated");
+            },
+        },
         doesIdiotDieOnAncientDeath: {
             get() {
                 return this.game.options.roles.idiot.doesDieOnAncientDeath;
@@ -753,6 +792,16 @@ export default {
             },
             set(isDogWolfChosenSideRevealed) {
                 this.setGameOptionIsDogWolfChosenSideRevealed(isDogWolfChosenSideRevealed);
+                this.$emit("options-updated");
+            },
+        },
+        thiefAdditionalCardsCount: {
+            get() {
+                return this.game.options.roles.thief.additionalCardsCount;
+            },
+            set(thiefAdditionalCardsCount) {
+                thiefAdditionalCardsCount = adjustNumber(thiefAdditionalCardsCount, { min: 1, max: 5 });
+                this.setGameOptionThiefAdditionalCardsCount(thiefAdditionalCardsCount);
                 this.$emit("options-updated");
             },
         },
@@ -862,6 +911,10 @@ export default {
             const extraLivesCount = livesCount - 1;
             return this.$tc(`GameRolesOptions.ancientLivesCountAgainstWerewolves.description`, livesCount, { livesCount, extraLivesCount });
         },
+        doesAncientTakeHisRevengeText() {
+            const description = this.doesAncientTakeHisRevenge ? "ancientTakesHisRevenge" : "ancientDoesntTakeHisRevenge";
+            return this.$t(`GameRolesOptions.doesAncientTakeHisRevenge.description.${description}`);
+        },
         doesIdiotDieOnAncientDeathText() {
             const description = this.doesIdiotDieOnAncientDeath ? "idiotDiesOnAncientDeath" : "idiotDoesntDieOnAncientDeath";
             return this.$t(`GameRolesOptions.doesIdiotDieOnAncientDeath.description.${description}`);
@@ -893,6 +946,10 @@ export default {
         isDogWolfChosenSideRevealedText() {
             const description = this.isDogWolfChosenSideRevealed ? "dogWolfChosenSideRevealed" : "dogWolfChosenSideNotRevealed";
             return this.$t(`GameRolesOptions.isDogWolfChosenSideRevealed.description.${description}`);
+        },
+        thiefAdditionalCardsCountText() {
+            const { thiefAdditionalCardsCount: additionalCardsCount } = this;
+            return this.$tc("GameRolesOptions.thiefAdditionalCardsCount.description", additionalCardsCount, { additionalCardsCount });
         },
         thiefAdditionalCardsValidationIcon() {
             const { thiefAdditionalCards } = this.game;
@@ -953,6 +1010,7 @@ export default {
             setGameOptionIsLittleGirlProtectedByGuard: "setGameOptionIsLittleGirlProtectedByGuard",
             setGameOptionCanGuardProtectTwice: "setGameOptionCanGuardProtectTwice",
             setGameOptionAncientLivesCountAgainstWerewolves: "setGameOptionAncientLivesCountAgainstWerewolves",
+            setGameOptionDoesAncientTakeHisRevenge: "setGameOptionDoesAncientTakeHisRevenge",
             setGameOptionSistersWakingUpInterval: "setGameOptionSistersWakingUpInterval",
             setGameOptionBrothersWakingUpInterval: "setGameOptionBrothersWakingUpInterval",
             setGameOptionIsFoxPowerlessIfMissesWerewolf: "setGameOptionIsFoxPowerlessIfMissesWerewolf",
@@ -961,6 +1019,7 @@ export default {
             setGameOptionIsDogWolfChosenSideRevealed: "setGameOptionIsDogWolfChosenSideRevealed",
             setGameOptionStutteringJudgeVoteRequestsCount: "setGameOptionStutteringJudgeVoteRequestsCount",
             setGameThiefAdditionalCards: "setGameThiefAdditionalCards",
+            setGameOptionThiefAdditionalCardsCount: "setGameOptionThiefAdditionalCardsCount",
             setGameOptionMustThiefChooseBetweenWerewolves: "setGameOptionMustThiefChooseBetweenWerewolves",
             setGameOptionPiedPiperCharmedPeopleCountPerNight: "setGameOptionPiedPiperCharmedPeopleCountPerNight",
             setGameOptionIsPiedPiperPowerlessIfInfected: "setGameOptionIsPiedPiperPowerlessIfInfected",

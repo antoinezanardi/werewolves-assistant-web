@@ -15,6 +15,7 @@ class Player {
             current: getProp(player, "side.current"),
         };
         this.attributes = getProp(player, "attributes", [], attributes => attributes.map(attribute => attribute));
+        this.position = getProp(player, "position");
         this.isAlive = getProp(player, "isAlive");
         this.murdered = {
             by: getProp(player, "murdered.by"),

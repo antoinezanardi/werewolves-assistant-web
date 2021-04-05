@@ -16,6 +16,7 @@
 
 * `vue-facebook-login-component` installed with version `4.0.1`.
 * `vue-google-login` installed with version `2.0.5`.
+* `vuedraggable` installed with version `2.24.3`.
 * `@fortawesome/fontawesome-free` updated to version `5.15.3`.
 * `@sentry/browser` updated to version `6.2.4`.
 * `@sentry/integrations` updated to version `6.2.4`.
