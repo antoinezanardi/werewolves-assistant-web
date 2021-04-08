@@ -188,10 +188,10 @@
             "label": "Nombre de cartes destinées au Voleur au début de la partie",
             "description": "Une seule carte sera proposée à l'échange au Voleur en début de partie. | Le Voleur aura le choix entre {additionalCardsCount} cartes à l'échange au début de la partie."
         },
-        "additionalCardsForThief": "Cartes additionnelles destinées au Voleur (2 max.)",
-        "chooseTwoCards": "Choisir 2 cartes...",
+        "additionalCardsForThief": "Cartes additionnelles destinées au Voleur",
+        "chooseCards": "Choisir 1 carte... | Choisir {leftToPick} cartes...",
         "thereIsNoThiefInParty": "Il n'y a pas de Voleur dans la partie, impossible de choisir des cartes additionnelles qui lui seront destinées.",
-        "thiefAdditionalCardsLeftToPick": "Les cartes du Voleur sont prêtes | Encore une carte à choisir | Encore 2 cartes à choisir",
+        "thiefAdditionalCardsLeftToPick": "Les cartes du Voleur sont prêtes | Encore une carte à choisir | Encore {leftToPick} cartes à choisir",
         "thiefWillBeAbleToPlay": "La première nuit, le Voleur pourra, s'il le souhaite, devenir {additionalCardsText}.",
         "mustThiefChooseBetweenWerewolves": {
             "label": "Le Voleur doit obligatoirement choisir une carte si elles sont toutes du camp des Loups-Garous",

@@ -466,8 +466,8 @@
             </div>
             <div v-if="game.thiefPlayer" class="col-md-6 col-12 text-center">
                 <VSelect v-if="game.thiefPlayer" id="thief-additional-cards" :filter="filterByRoleName" :options="thiefAdditionalCardsOptions"
-                         :placeholder="$t('GameRolesOptions.chooseTwoCards')" label="role" multiple :value="game.thiefAdditionalCards"
-                         :selectable="() => game.thiefAdditionalCards.length < 2" :disabled="!game.canUpdateOptions" @input="selectAdditionalCard">
+                         :placeholder="thiefAdditionalCardsOptionsPlaceholder" label="role" multiple :value="game.thiefAdditionalCards"
+                         :selectable="canSelectThiefCard" :disabled="!game.canUpdateOptions" @input="selectAdditionalCard">
                     <template #selected-option="{ role }">
                         <RoleImage :role="role" class="role-image-option"/>
                     </template>
@@ -802,6 +802,9 @@ export default {
             set(thiefAdditionalCardsCount) {
                 thiefAdditionalCardsCount = adjustNumber(thiefAdditionalCardsCount, { min: 1, max: 5 });
                 this.setGameOptionThiefAdditionalCardsCount(thiefAdditionalCardsCount);
+                if (thiefAdditionalCardsCount < this.game.thiefAdditionalCards.length) {
+                    this.setGameThiefAdditionalCards(this.game.thiefAdditionalCards.slice(0, thiefAdditionalCardsCount));
+                }
                 this.$emit("options-updated");
             },
         },
@@ -953,7 +956,7 @@ export default {
         },
         thiefAdditionalCardsValidationIcon() {
             const { thiefAdditionalCards } = this.game;
-            const leftToPick = 2 - thiefAdditionalCards.length;
+            const leftToPick = this.thiefAdditionalCardsCount - thiefAdditionalCards.length;
             if (leftToPick) {
                 return "fa-exclamation-circle text-danger animate__animated animate__heartBeat animate__infinite";
             }
@@ -961,8 +964,13 @@ export default {
         },
         thiefAdditionalCardsValidationText() {
             const { thiefAdditionalCards } = this.game;
-            const leftToPick = 2 - thiefAdditionalCards.length;
+            const leftToPick = this.thiefAdditionalCardsCount - thiefAdditionalCards.length;
             return this.$tc("GameRolesOptions.thiefAdditionalCardsLeftToPick", leftToPick, { leftToPick });
+        },
+        thiefAdditionalCardsOptionsPlaceholder() {
+            const { thiefAdditionalCards } = this.game;
+            const leftToPick = this.thiefAdditionalCardsCount - thiefAdditionalCards.length;
+            return this.$tc("GameRolesOptions.chooseCards", leftToPick, { leftToPick });
         },
         thiefAdditionalCardsText() {
             if (!this.game.thiefPlayer) {
@@ -1032,6 +1040,9 @@ export default {
             this.additionalCardPickedAtTs = Date.now();
             this.setGameThiefAdditionalCards(thiefAdditionalCards);
             this.$emit("options-updated");
+        },
+        canSelectThiefCard() {
+            return this.game.thiefAdditionalCards.length < this.thiefAdditionalCardsCount;
         },
     },
 };
