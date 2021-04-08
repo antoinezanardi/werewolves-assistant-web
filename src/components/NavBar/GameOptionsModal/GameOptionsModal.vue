@@ -28,12 +28,6 @@
                                 <span v-html="$t('GameOptionsModal.gamePlayersPosition')"/>
                             </a>
                         </li>
-                        <li id="game-repartition-options-tab" class="nav-item" @click="openGameRepartitionOptions">
-                            <a class="nav-link" :class="{ active: panel === 'game-repartition-options' }" href="#">
-                                <i class="fa fa-random mr-2"/>
-                                <span v-html="$t('GameOptionsModal.gameRepartitionOptions')"/>
-                            </a>
-                        </li>
                     </ul>
                     <div>
                         <hr class="bg-dark my-2"/>
@@ -41,8 +35,6 @@
                     <transition mode="out-in" name="translate-down-fade">
                         <GameRolesOptions v-if="panel === 'game-roles-options'" key="game-roles-options" ref="gameRolesOptions"
                                           @options-updated="optionsUpdated = true"/>
-                        <GameRepartitionOptions v-else-if="panel === 'game-repartition-options'" key="game-repartition-options"
-                                                @options-updated="optionsUpdated = true"/>
                         <GamePlayersPosition v-else-if="panel === 'game-players-position'" key="game-repartition-options"
                                              @options-updated="optionsUpdated = true"/>
                     </transition>
@@ -56,17 +48,16 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import VueScrollTo from "vue-scrollto";
 import $ from "jquery";
 import GameRolesOptions from "@/components/NavBar/GameOptionsModal/GameRolesOptions";
-import GameRepartitionOptions from "@/components/NavBar/GameOptionsModal/GameRepartitionOptions/GameRepartitionOptions";
 import RequiredActionIcon from "@/components/shared/RequiredActionIcon";
-import { mapGetters } from "vuex";
 import GamePlayersPosition from "@/components/NavBar/GameOptionsModal/GamePlayersPosition";
 
 export default {
     name: "GameOptionsModal",
-    components: { GamePlayersPosition, RequiredActionIcon, GameRepartitionOptions, GameRolesOptions },
+    components: { GamePlayersPosition, RequiredActionIcon, GameRolesOptions },
     data() {
         return {
             optionsUpdated: false,
@@ -83,8 +74,10 @@ export default {
     },
     methods: {
         show(options = {}) {
-            const { panel = "game-roles-options", scrollTo } = options;
-            this.panel = panel;
+            const { panel, scrollTo } = options;
+            if (panel) {
+                this.panel = panel;
+            }
             $("#game-options-modal").modal("show");
             if (scrollTo) {
                 setTimeout(() => {

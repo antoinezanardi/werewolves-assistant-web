@@ -267,7 +267,12 @@
         "recommendedMinPlayers": "{recommendedMinPlayers} joueurs min."
     },
     "GamePlayersPosition": {
-        "addPlayersToPlaceThem": "Veuillez ajouter des joueurs pour pouvoir les placer"
+        "addAtLeastFourPlayersToPlaceThem": "Veuillez ajouter au moins 4 joueurs pour pouvoir les placer",
+        "howToPlacePlayers": "Comment positionner les joueurs ?",
+        "toPlacePlayers": "De haut en bas, triez les joueurs dans la liste ci-dessous dans le sens des aiguilles d'une montre en les glissant d'une position à une autre. Vérifiez le bon positionnement de chaque joueur grâce à la liste horizontale tout en bas.",
+        "hasOnHisRight": "a à sa droite",
+        "leftNeighbors": "Voisins de gauche",
+        "rightNeighbors": "Voisins de droite"
     },
     "GameSidesModal": {
         "gameSides": "Camps de la partie",
@@ -386,7 +391,8 @@
         "playerNameLengthMax": "Limite de caractères atteinte pour un nom de joueur (30 max.)",
         "youCanChangeGameRepartitionOptions": "La répartition aléatoire ne vous convient pas ?",
         "seeOptions": "Parcourir les options",
-        "dontShowMeAgain": "Ne plus afficher"
+        "dontShowMeAgain": "Ne plus afficher",
+        "showGameRepartitionOptions": "Afficher les options de répartition aléatoire"
     },
     "GameLobbyComposition": {
         "playerCount": "Aucun joueur | {count} joueur | {count} joueurs",
@@ -431,6 +437,11 @@
         "totalInGameInThisRole": "Total dans la partie avec ce rôle",
         "random": "Aléatoire",
         "leftToStartGame": "Ce rôle doit encore être distribué {lack} fois pour commencer la partie"
+    },
+    "GameLobbyRepartitionOptionsModal": {
+        "close": "Fermer",
+        "gameRepartitionOptions": "Options de répartition aléatoire",
+        "optionsAreSaved": "Les options de répartition aléatoire sont enregistrées automatiquement après chaque changement"
     },
     "GameLobbyTutorial": {
         "howToUseGameLobby": "Comment composer une équipe ?",

@@ -1,20 +1,62 @@
 <template>
     <div id="game-players-position">
-        <div v-if="!game.players.length" class="mt-4">
+        <div v-if="game.players.length < 4" class="mt-4">
             <h3 class="text-muted text-center font-italic">
                 <i class="fa fa-user-plus mr-2"/>
-                <span v-html="$t('GamePlayersPosition.addPlayersToPlaceThem')"/>
+                <span v-html="$t('GamePlayersPosition.addAtLeastFourPlayersToPlaceThem')"/>
             </h3>
         </div>
         <div v-else>
-            <Draggable v-model="players" v-bind="dragOptions" @start="isDragging = true" @end="isDragging = false">
-                <transition-group type="transition" :name="!isDragging ? 'flip-list' : null">
-                    <div v-for="player in players" :key="player.name" class="d-flex align-items-center player-handle">
-                        <RoleImage :role="player.role.current" class="player-role-image mr-2"/>
-                        <span v-html="player.name"/>
+            <div class="row">
+                <div class="col-12">
+                    <h5>
+                        <i class="fa fa-question-circle text-info mr-2"/>
+                        <span v-html="$t('GamePlayersPosition.howToPlacePlayers')"/>
+                    </h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-muted font-italic" v-html="$t('GamePlayersPosition.toPlacePlayers')"/>
+            </div>
+            <hr class="bg-dark my-2"/>
+            <div class="row justify-content-center align-items-center">
+                <div class="d-flex flex-column align-items-center col-2 text-center text-muted pr-0">
+                    <i class="fa fa-arrow-up fa-2x"/>
+                    <span v-html="$t('GamePlayersPosition.leftNeighbors')"/>
+                </div>
+                <Draggable v-model="players" v-bind="dragOptions" class="col-8" @start="isDragging = true" @end="isDragging = false">
+                    <transition-group type="transition" :name="!isDragging ? 'flip-list' : null">
+                        <div v-for="player in players" :key="player.name" class="d-flex align-items-center player-handle">
+                            <RoleImage :role="player.role.current" class="player-role-image mr-2"/>
+                            <span class="text-truncate flex-grow-1" v-html="player.name"/>
+                            <i class="fa fa-bars mr-2"/>
+                        </div>
+                    </transition-group>
+                </Draggable>
+                <div class="d-flex flex-column align-items-center col-2 text-center text-muted pl-0">
+                    <i class="fa fa-arrow-down fa-2x"/>
+                    <span v-html="$t('GamePlayersPosition.rightNeighbors')"/>
+                </div>
+            </div>
+            <hr class="bg-dark my-1"/>
+            <div id="players-horizontal-list-position" class="d-flex visible-scrollbar">
+                <div v-for="player in players" :key="player.name" class="d-flex align-items-center">
+                    <div class="d-flex flex-column align-items-center text-center players-horizontal-list-item">
+                        <RoleImage :role="player.role.current" class="players-horizontal-list-item-role-image"/>
+                        <span class="text-truncate w-100" v-html="player.name"/>
                     </div>
-                </transition-group>
-            </Draggable>
+                    <div class="d-flex flex-column justify-content-center text-center align-items-center players-horizontal-list-item mx-2">
+                        <i class="fa fa-arrow-right fa-2x"/>
+                        <span v-html="$t('GamePlayersPosition.hasOnHisRight')"/>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center">
+                    <div class="d-flex flex-column align-items-center text-center players-horizontal-list-item">
+                        <RoleImage :role="players[0].role.current" class="players-horizontal-list-item-role-image"/>
+                        <span class="text-truncate w-100" v-html="players[0].name"/>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -64,5 +106,19 @@ export default {
 
     .flip-list-move {
         transition: transform 0.5s;
+    }
+
+    #players-horizontal-list-position {
+        overflow-x: auto;
+        padding-bottom: 5px;
+
+        .players-horizontal-list-item {
+            width: 100px;
+
+            .players-horizontal-list-item-role-image {
+                height: 50px;
+                width: 50px;
+            }
+        }
     }
 </style>

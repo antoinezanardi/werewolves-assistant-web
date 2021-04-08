@@ -47,7 +47,7 @@ Two versions are available for testing this project:
 Both versions are running on a server with the following configuration:
 - **OS**: `Debian GNU/Linux 10 (buster)`
 - **NodeJS**: `v14.15.4`
-- **NPM**: `v7.5.2`
+- **NPM**: `v6.14.0`
 - **MongoDB shell version**: `v4.4.3`
 
 The MongoDB database is protected under username and password authentication.

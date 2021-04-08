@@ -12,14 +12,18 @@
 * [#180](https://github.com/antoinezanardi/werewolves-assistant-web/issues/180) - Role types.
 * [#182](https://github.com/antoinezanardi/werewolves-assistant-web/issues/182) - Accordions in About page for roles.
 
+### ♻️ Refactoring
+
+* [#187](https://github.com/antoinezanardi/werewolves-assistant-web/issues/187) - Game repartition options in different modal.
+
 ### 📦 Packages
 
 * `vue-facebook-login-component` installed with version `4.0.1`.
 * `vue-google-login` installed with version `2.0.5`.
 * `vuedraggable` installed with version `2.24.3`.
 * `@fortawesome/fontawesome-free` updated to version `5.15.3`.
-* `@sentry/browser` updated to version `6.2.4`.
-* `@sentry/integrations` updated to version `6.2.4`.
+* `@sentry/browser` updated to version `6.2.5`.
+* `@sentry/integrations` updated to version `6.2.5`.
 * `@vue/cli-plugin-e2e-cypress` updated to version `4.5.12`.
 * `@vue/cli-plugin-eslint` updated to version `4.5.12`.
 * `@vue/cli-plugin-router` updated to version `4.5.12`.
@@ -29,9 +33,9 @@
 * `chai` updated to version `4.3.4`.
 * `eslint` updated to version `7.23.0`.
 * `eslint-plugin-vue` updated to version `7.8.0`.
-* `particles.vue` updated to version `2.7.2`.
+* `particles.vue` updated to version `2.8.0`.
 * `qs` updated to version `6.10.1`.
-* `sweetalert2` updated to version `10.15.7`.
+* `sweetalert2` updated to version `10.16.0`.
 * `v-tooltip` updated to version `2.1.3`.
 * `vue-i18n` updated to version `8.24.2`.
 * `vue-tour` updated to version `2.0.0`.
