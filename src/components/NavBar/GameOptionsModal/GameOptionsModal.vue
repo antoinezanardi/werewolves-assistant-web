@@ -53,7 +53,7 @@ import VueScrollTo from "vue-scrollto";
 import $ from "jquery";
 import GameRolesOptions from "@/components/NavBar/GameOptionsModal/GameRolesOptions";
 import RequiredActionIcon from "@/components/shared/RequiredActionIcon";
-import GamePlayersPosition from "@/components/NavBar/GameOptionsModal/GamePlayersPosition";
+import GamePlayersPosition from "@/components/NavBar/GameOptionsModal/GamePlayersPosition/GamePlayersPosition";
 
 export default {
     name: "GameOptionsModal",

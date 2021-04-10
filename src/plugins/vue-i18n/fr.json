@@ -219,8 +219,7 @@
         },
         "resetDefaultGameRolesOptions": "Réinitialiser les options",
         "gameRolesOptionsReset": "Options de la partie réinitialisées",
-        "actualOptionsFollowOfficialGameRules": "Les options de partie ci-dessous respectent les règles officielles du jeu. N'hésitez pas à les changer pour apporter de la variété à vos parties !",
-        "optionsHaveBeenChanged": "Les options ci-dessous ont été changées et ne respectent donc plus les règles officielles du jeu."
+        "actualOptionsFollowOfficialGameRules": "Les options de partie ci-dessous respectent les règles officielles du jeu. N'hésitez pas à les changer pour apporter de la variété à vos parties !"
     },
     "GameRepartitionOptions": {
         "roles": "Tous les rôles",
@@ -273,10 +272,16 @@
     "GamePlayersPosition": {
         "addAtLeastFourPlayersToPlaceThem": "Veuillez ajouter au moins 4 joueurs pour pouvoir les placer",
         "howToPlacePlayers": "Comment positionner les joueurs ?",
-        "toPlacePlayers": "De haut en bas, triez les joueurs dans la liste ci-dessous dans le sens des aiguilles d'une montre en les glissant d'une position à une autre. Vérifiez le bon positionnement de chaque joueur grâce à la liste horizontale tout en bas.",
         "hasOnHisRight": "a à sa droite",
         "leftNeighbors": "Voisins de gauche",
         "rightNeighbors": "Voisins de droite"
+    },
+    "GamePlayersPositionTutorial": {
+        "howToPlacePlayers": "Comment positionner les joueurs ?",
+        "toPlacePlayers": "De haut en bas, triez les joueurs dans le sens des aiguilles d'une montre en les glissant d'une position à une autre.",
+        "leftNeighborsAbove": "Les joueurs situés au dessus d'un autre sont ses voisins de gauche.",
+        "rightNeighborsBelow": "Les joueurs situés en dessous d'un autre sont ses voisins de droite.",
+        "useHorizontalListToCheckPositions": "Utilisez la frise des positions pour vérifier le bon positionnement des joueurs. N'hésitez pas à la lire à voix haute (sans dire les rôles) pour la valider avec les autres joueurs."
     },
     "GameSidesModal": {
         "gameSides": "Camps de la partie",
@@ -396,7 +401,12 @@
         "youCanChangeGameRepartitionOptions": "La répartition aléatoire ne vous convient pas ?",
         "seeOptions": "Parcourir les options",
         "dontShowMeAgain": "Ne plus afficher",
-        "showGameRepartitionOptions": "Afficher les options de répartition aléatoire"
+        "showGameRepartitionOptions": "Afficher les options de répartition aléatoire",
+        "optionsHaveBeenChanged": "Les options ci-dessous ont été changées et ne respectent donc plus les règles officielles du jeu.",
+        "playerPositionsAreImportant": "La position de chaque joueur est importante !",
+        "someRolesDependOnPlayerPositions": "Certains rôles de la partie dépendent de la position des joueurs, êtes-vous sûr que toutes les positions soient bien définies dans l'Assistant ?",
+        "yesStartGame": "Oui, commencer la partie",
+        "checkPlayerPositions": "Vérifier la position des joueurs avant"
     },
     "GameLobbyComposition": {
         "playerCount": "Aucun joueur | {count} joueur | {count} joueurs",

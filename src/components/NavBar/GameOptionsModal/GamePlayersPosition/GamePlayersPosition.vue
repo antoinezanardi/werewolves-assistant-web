@@ -8,23 +8,21 @@
         </div>
         <div v-else>
             <div class="row">
-                <div class="col-12">
-                    <h5>
-                        <i class="fa fa-question-circle text-info mr-2"/>
+                <div class="col-12 text-center">
+                    <button class="btn btn-outline-primary" @click="startTutorial">
+                        <i class="fa fa-question-circle mr-2"/>
                         <span v-html="$t('GamePlayersPosition.howToPlacePlayers')"/>
-                    </h5>
+                    </button>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-12 text-muted font-italic" v-html="$t('GamePlayersPosition.toPlacePlayers')"/>
             </div>
             <hr class="bg-dark my-2"/>
             <div class="row justify-content-center align-items-center">
-                <div class="d-flex flex-column align-items-center col-2 text-center text-muted pr-0">
+                <div id="left-neighbors-flow" class="d-flex flex-column align-items-center col-lg-2 col-3 text-center text-muted">
                     <i class="fa fa-arrow-up fa-2x"/>
                     <span v-html="$t('GamePlayersPosition.leftNeighbors')"/>
                 </div>
-                <Draggable v-model="players" v-bind="dragOptions" class="col-8" @start="isDragging = true" @end="isDragging = false">
+                <Draggable id="player-positions-list" v-model="players" v-bind="dragOptions" class="col-lg-8 col-6 p-2"
+                           @start="isDragging = true" @end="isDragging = false">
                     <transition-group type="transition" :name="!isDragging ? 'flip-list' : null">
                         <div v-for="player in players" :key="player.name" class="d-flex align-items-center player-handle">
                             <RoleImage :role="player.role.current" class="player-role-image mr-2"/>
@@ -33,13 +31,13 @@
                         </div>
                     </transition-group>
                 </Draggable>
-                <div class="d-flex flex-column align-items-center col-2 text-center text-muted pl-0">
+                <div id="right-neighbors-flow" class="d-flex flex-column align-items-center col-lg-2 col-3 text-center text-muted">
                     <i class="fa fa-arrow-down fa-2x"/>
                     <span v-html="$t('GamePlayersPosition.rightNeighbors')"/>
                 </div>
             </div>
             <hr class="bg-dark my-1"/>
-            <div id="players-horizontal-list-position" class="d-flex visible-scrollbar">
+            <div id="players-horizontal-list-position" class="d-flex align-items-center visible-scrollbar">
                 <div v-for="player in players" :key="player.name" class="d-flex align-items-center">
                     <div class="d-flex flex-column align-items-center text-center players-horizontal-list-item">
                         <RoleImage :role="player.role.current" class="players-horizontal-list-item-role-image"/>
@@ -58,6 +56,7 @@
                 </div>
             </div>
         </div>
+        <GamePlayerPositionTutorial ref="gamePlayerPositionTutorial"/>
     </div>
 </template>
 
@@ -65,10 +64,12 @@
 import { mapGetters, mapActions } from "vuex";
 import draggable from "vuedraggable";
 import RoleImage from "@/components/shared/Game/Role/RoleImage";
+import GamePlayerPositionTutorial
+    from "@/components/NavBar/GameOptionsModal/GamePlayersPosition/GamePlayersPositionTutorial";
 
 export default {
     name: "GamePlayersPosition",
-    components: { RoleImage, Draggable: draggable },
+    components: { GamePlayerPositionTutorial, RoleImage, Draggable: draggable },
     data() {
         return { isDragging: false };
     },
@@ -86,7 +87,12 @@ export default {
             return { animation: 200 };
         },
     },
-    methods: { ...mapActions("game", { setGamePlayers: "setGamePlayers" }) },
+    methods: {
+        ...mapActions("game", { setGamePlayers: "setGamePlayers" }),
+        startTutorial() {
+            this.$refs.gamePlayerPositionTutorial.startTour();
+        },
+    },
 };
 </script>
 
@@ -110,6 +116,7 @@ export default {
 
     #players-horizontal-list-position {
         overflow-x: auto;
+        padding-top: 5px;
         padding-bottom: 5px;
 
         .players-horizontal-list-item {

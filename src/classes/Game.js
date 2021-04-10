@@ -463,6 +463,10 @@ class Game {
     get areGameOptionsValid() {
         return this.areGameRolesOptionsValid;
     }
+
+    get hasRoleDependingOnPlayerPosition() {
+        return !!this.getPlayerWithRole("rusty-sword-knight") || !!this.getPlayerWithRole("bear-tamer") || !!this.getPlayerWithRole("fox");
+    }
 }
 
 export default Game;

@@ -142,8 +142,8 @@ import { filterOutHTMLTags } from "@/helpers/functions/String";
 import GameLobbyRolePickerModal from "@/components/GameLobby/GameLobbyRolePickerModal/GameLobbyRolePickerModal";
 import GameLobbyStartConditions from "@/components/GameLobby/GameLobbyStartConditions";
 import RequiredActionIcon from "@/components/shared/RequiredActionIcon";
-import GameLobbyRepartitionOptionsModal
-    from "@/components/GameLobby/GameLobbyRepartitionOptionsModal/GameLobbyRepartitionOptionsModal";
+import GameLobbyRepartitionOptionsModal from "@/components/GameLobby/GameLobbyRepartitionOptionsModal/GameLobbyRepartitionOptionsModal";
+// import Config from "../../../config";
 
 export default {
     name: "GameLobby",
@@ -293,8 +293,26 @@ export default {
         unsetRole(playerName) {
             this.unsetRoleForPlayerWithName(playerName);
         },
+        askIfPlayerPositionsAreSet() {
+            return Swal.fire({
+                title: this.$t("GameLobby.playerPositionsAreImportant"),
+                text: this.$t("GameLobby.someRolesDependOnPlayerPositions"),
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: this.$t("GameLobby.yesStartGame"),
+                cancelButtonText: this.$t("GameLobby.checkPlayerPositions"),
+                heightAuto: false,
+            });
+        },
         async createGame() {
             try {
+                if (this.game.hasRoleDependingOnPlayerPosition) {
+                    const { isConfirmed } = await this.askIfPlayerPositionsAreSet();
+                    if (!isConfirmed) {
+                        this.highlightAndSeePlayersPosition();
+                        return;
+                    }
+                }
                 this.loading.createGame = true;
                 const players = this.game.players.map(({ name, role }) => ({ name, role: role.current }));
                 const { options, additionalCards } = this.game;
@@ -347,6 +365,13 @@ export default {
             setTimeout(() => {
                 this.gameOptionsModalButton.isHighlighted = false;
                 this.$emit("show-game-options-modal", { panel: "game-roles-options", scrollTo: "thief-section" });
+            }, 1000);
+        },
+        highlightAndSeePlayersPosition() {
+            this.gameOptionsModalButton.isHighlighted = true;
+            setTimeout(() => {
+                this.gameOptionsModalButton.isHighlighted = false;
+                this.$emit("show-game-options-modal", { panel: "game-players-position" });
             }, 1000);
         },
         hideGameRepartitionProTipForever(e, toastObject) {
