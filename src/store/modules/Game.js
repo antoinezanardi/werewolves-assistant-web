@@ -17,6 +17,11 @@ export default {
         setGame(state, game) {
             state.game = new Game(game);
         },
+        resetGameOptions(state) {
+            const cleanGame = new Game();
+            state.game.additionalCards = [];
+            state.game.options = JSON.parse(JSON.stringify(cleanGame.options));
+        },
         setGamePlayers(state, players) {
             state.game.players = players.map(player => new Player(player));
         },
@@ -148,6 +153,9 @@ export default {
         },
         setGame({ commit }, game) {
             commit("setGame", game);
+        },
+        resetGameOptions({ commit }) {
+            commit("resetGameOptions");
         },
         setGamePlayers({ commit }, players) {
             commit("setGamePlayers", players);

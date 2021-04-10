@@ -216,7 +216,11 @@
         "ravenMarkPenalty": {
             "label": "Nombre de votes contre le joueur avec la marque du Corbeau",
             "description": "Le joueur ayant reçu la marque du Corbeau aura 1 vote contre lui en plus au prochain vote. | Le joueur ayant reçu la marque du Corbeau aura {ravenMarkPenalty} votes contre lui en plus au prochain vote."
-        }
+        },
+        "resetDefaultGameRolesOptions": "Réinitialiser les options",
+        "gameRolesOptionsReset": "Options de la partie réinitialisées",
+        "actualOptionsFollowOfficialGameRules": "Les options de partie ci-dessous respectent les règles officielles du jeu. N'hésitez pas à les changer pour apporter de la variété à vos parties !",
+        "optionsHaveBeenChanged": "Les options ci-dessous ont été changées et ne respectent donc plus les règles officielles du jeu."
     },
     "GameRepartitionOptions": {
         "roles": "Tous les rôles",

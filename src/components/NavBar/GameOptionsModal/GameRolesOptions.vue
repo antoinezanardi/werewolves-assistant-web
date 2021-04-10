@@ -1,14 +1,37 @@
 <template>
     <div id="game-roles-options">
-        <div v-if="!game.canUpdateOptions">
-            <div class="row">
-                <div class="col-12 text-warning d-flex align-items-center">
-                    <i class="fa fa-exclamation-triangle fa-2x mr-3 mb-1"/>
-                    <span v-html="$t('GameRolesOptions.gameOptionsCantBeUpdated')"/>
+        <transition name="fade" mode="out-in">
+            <div v-if="!game.canUpdateOptions" key="game-options-cant-be-updated">
+                <div class="row">
+                    <div class="col-12 text-warning d-flex align-items-center">
+                        <i class="fa fa-exclamation-triangle fa-2x mr-3 mb-1"/>
+                        <span v-html="$t('GameRolesOptions.gameOptionsCantBeUpdated')"/>
+                    </div>
                 </div>
+                <hr class="bg-dark my-1"/>
             </div>
-            <hr class="bg-dark my-1"/>
-        </div>
+            <div v-else-if="areDefaultGameOptionsChanged" key="default-game-options-are-changed">
+                <div class="row">
+                    <div class="col-12 text-center font-italic">
+                        <div class="mb-1" v-html="$t('GameRolesOptions.optionsHaveBeenChanged')"/>
+                        <button class="btn btn-outline-info" @click="resetGameRolesOptions">
+                            <i class="fa fa-sync mr-2"/>
+                            <span v-html="$t('GameRolesOptions.resetDefaultGameRolesOptions')"/>
+                        </button>
+                    </div>
+                </div>
+                <hr class="bg-dark my-1"/>
+            </div>
+            <div v-else key="default-game-options-are-unchanged">
+                <div class="row">
+                    <div class="col-12 d-flex align-items-center font-italic">
+                        <i class="fa fa-chess fa-2x text-info mr-3"/>
+                        <span v-html="$t('GameRolesOptions.actualOptionsFollowOfficialGameRules')"/>
+                    </div>
+                </div>
+                <hr class="bg-dark my-1"/>
+            </div>
+        </transition>
         <div class="row">
             <div class="option-section col-12 d-flex align-items-center">
                 <RoleImage class="mr-2 option-section-image"/>
@@ -577,6 +600,7 @@ import RoleImage from "@/components/shared/Game/Role/RoleImage";
 import { fuseSearch } from "@/helpers/functions/VSelect";
 import GameAdditionalCard from "@/classes/GameAdditionalCard";
 import { listRoles } from "@/helpers/functions/Role";
+import Game from "@/classes/Game";
 
 export default {
     name: "GameRolesOptions",
@@ -1001,9 +1025,14 @@ export default {
             const { ravenMarkPenalty } = this;
             return this.$tc("GameRolesOptions.ravenMarkPenalty.description", ravenMarkPenalty, { ravenMarkPenalty });
         },
+        areDefaultGameOptionsChanged() {
+            const cleanGame = new Game();
+            return JSON.stringify(cleanGame.options) !== JSON.stringify(this.game.options);
+        },
     },
     methods: {
         ...mapActions("game", {
+            resetGameOptions: "resetGameOptions",
             setGameOptionIsGameRepartitionHidden: "setGameOptionIsGameRepartitionHidden",
             setGameOptionAreRolesRevealedOnDeath: "setGameOptionAreRolesRevealedOnDeath",
             setGameOptionIsSheriffEnabled: "setGameOptionIsSheriffEnabled",
@@ -1043,6 +1072,11 @@ export default {
         },
         canSelectThiefCard() {
             return this.game.thiefAdditionalCards.length < this.thiefAdditionalCardsCount;
+        },
+        resetGameRolesOptions() {
+            this.resetGameOptions();
+            this.$toasted.success(this.$t("GameRolesOptions.gameRolesOptionsReset"), { icon: "sync" });
+            this.$emit("options-updated");
         },
     },
 };
