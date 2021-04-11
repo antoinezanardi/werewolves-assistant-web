@@ -17,7 +17,8 @@
         "confirm": "Confirmer",
         "cancel": "Annuler",
         "gameCanceled": "Partie annulée",
-        "gameOptions": "Options de la partie"
+        "gameOptions": "Options de la partie",
+        "parameters": "Paramètres"
     },
     "MuteButton": {
         "mute": "Désactiver l'audio",
@@ -288,6 +289,20 @@
         "villagersSide": "Camp des Villageois",
         "werewolvesSide": "Camp des Loups-Garous",
         "close": "Fermer"
+    },
+    "ParametersModal": {
+        "parameters": "Paramètres de l'application",
+        "close": "Fermer",
+        "audio": "Audio"
+    },
+    "AudioParameters": {
+        "isAudioEnabled": {
+            "label": "L'audio est activé",
+            "description": {
+                "audioIsEnabled": "L'Assistant jouera des sons d'ambiance et des bruitages tout le long de la partie.",
+                "audioIsNotEnabled": "L'Assistant ne jouera aucun son ou musique lors des parties."
+            }
+        }
     },
     "Home": {
         "werewolvesAssistant": "Assistant Loups-Garous",

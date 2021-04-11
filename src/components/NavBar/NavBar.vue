@@ -22,21 +22,27 @@
                 </a>
                 <div class="dropdown-menu animate__animated animate__zoomIn animate__faster">
                     <a v-if="$route.name === 'Game' || $route.name === 'GameLobby'" href="#" class="dropdown-item"
+                       @click.prevent="showParametersModal">
+                        <i class="option-icon fa fa-cog mr-1"/>
+                        <span v-html="$t('NavBar.parameters')"/>
+                    </a>
+                    <a v-if="$route.name === 'Game' || $route.name === 'GameLobby'" href="#" class="dropdown-item"
                        @click.prevent="showGameOptionsModal">
-                        <i class="fa fa-dice text-primary mr-2"/>
+                        <i class="option-icon fa fa-dice text-primary mr-1"/>
                         <span v-html="$t('NavBar.gameOptions')"/>
                     </a>
                     <a v-if="$route.name === 'Game' && game.status === 'playing'" href="#" class="dropdown-item" @click.prevent="cancelGame">
-                        <i class="fa fa-times-circle text-danger mr-2"/>
+                        <i class="option-icon fa fa-times-circle text-danger mr-1"/>
                         <span v-html="$t('NavBar.cancelGame')"/>
                     </a>
                     <router-link class="dropdown-item" to="/">
-                        <i class="fa fa-sign-out-alt mr-2"/>
+                        <i class="option-icon text-secondary fa fa-sign-out-alt mr-1"/>
                         <span v-html="$t('NavBar.quit')"/>
                     </router-link>
                 </div>
             </div>
         </div>
+        <ParametersModal ref="parametersModal"/>
         <GameOptionsModal ref="gameOptionsModal"/>
         <GameSidesModal v-if="game.isCreated" ref="gameSidesModal"/>
     </nav>
@@ -48,16 +54,16 @@ import { mapActions, mapGetters } from "vuex";
 import GameOptionsModal from "@/components/NavBar/GameOptionsModal/GameOptionsModal";
 import GameSidesModal from "@/components/NavBar/GameSidesModal/GameSidesModal";
 import MuteButton from "@/components/shared/AudioManager/MuteButton";
+import ParametersModal from "@/components/NavBar/ParametersModal/ParametersModal";
 
 export default {
     name: "NavBar",
-    components: { MuteButton, GameSidesModal, GameOptionsModal },
+    components: { ParametersModal, MuteButton, GameSidesModal, GameOptionsModal },
     computed: {
         ...mapGetters("game", { game: "game" }),
         ...mapGetters("audioManager", { audioManager: "audioManager" }),
     },
     methods: {
-        ...mapActions("game", { setGame: "setGame" }),
         ...mapActions("game", { setGame: "setGame" }),
         async backToHomePage() {
             await this.$router.push("/");
@@ -85,6 +91,9 @@ export default {
                 this.$error.display(e);
             }
         },
+        showParametersModal() {
+            this.$refs.parametersModal.show();
+        },
         showGameOptionsModal(options) {
             this.$refs.gameOptionsModal.show(options);
         },
@@ -95,17 +104,22 @@ export default {
 };
 </script>
 
-<style scoped>
-#nav-bar {
-    height: 60px;
-}
+<style lang="scss" scoped>
+    #nav-bar {
+        height: 60px;
+    }
 
-#wolf-emoji {
-    height: 30px;
-}
+    #wolf-emoji {
+        height: 30px;
+    }
 
-.dropdown-menu {
-    right: 0;
-    left: unset !important;
-}
+    .dropdown-menu {
+        right: 0;
+        left: unset !important;
+
+        .option-icon {
+            min-width: 20px;
+            text-align: right;
+        }
+    }
 </style>

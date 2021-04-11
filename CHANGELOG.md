@@ -34,7 +34,7 @@
 * `chai` updated to version `4.3.4`.
 * `eslint` updated to version `7.24.0`.
 * `eslint-plugin-vue` updated to version `7.8.0`.
-* `particles.vue` updated to version `2.9.1`.
+* `particles.vue` updated to version `2.9.2`.
 * `qs` updated to version `6.10.1`.
 * `sweetalert2` updated to version `10.16.0`.
 * `v-tooltip` updated to version `2.1.3`.
