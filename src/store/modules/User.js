@@ -47,6 +47,12 @@ export default {
         setPreferenceAudioIsMuted(state, isMuted) {
             state.preferences.audio.isMuted = isMuted;
         },
+        setPreferenceAmbientVolume(state, volume) {
+            state.preferences.audio.ambient.volume = volume;
+        },
+        setPreferenceSoundEffectsVolume(state, volume) {
+            state.preferences.audio.soundEffects.volume = volume;
+        },
         saveUserPreferences(state) {
             state.preferences.save();
         },
@@ -121,6 +127,14 @@ export default {
         },
         setPreferenceAudioIsMuted({ commit }, isMuted) {
             commit("setPreferenceAudioIsMuted", isMuted);
+            commit("saveUserPreferences");
+        },
+        setPreferenceAmbientVolume({ commit }, volume) {
+            commit("setPreferenceAmbientVolume", volume);
+            commit("saveUserPreferences");
+        },
+        setPreferenceSoundEffectsVolume({ commit }, volume) {
+            commit("setPreferenceSoundEffectsVolume", volume);
             commit("saveUserPreferences");
         },
     },

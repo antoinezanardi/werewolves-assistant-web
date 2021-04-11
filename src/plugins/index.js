@@ -19,6 +19,7 @@ import "./vue-particles";
 import "./vue-roller";
 import "./vue-scrollto";
 import "./vue-select";
+import "./vue-slider-component";
 import "./vue-star-rating";
 import "./vue-toasted";
 import "./vue-tour";

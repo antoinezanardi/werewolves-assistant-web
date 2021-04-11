@@ -7,12 +7,12 @@ class AudioManager {
         const userPreferences = new UserPreferences();
         this.isMuted = userPreferences.audio.isMuted;
         this.ambient = {
-            volume: 1,
+            volume: userPreferences.audio.ambient.volume / 100,
             dayMusics: [],
             nightMusics: [],
         };
         this.soundEffects = {
-            volume: 1,
+            volume: userPreferences.audio.soundEffects.volume / 100,
             sounds: {},
         };
         Howler.mute(this.isMuted);
@@ -118,6 +118,14 @@ class AudioManager {
         if (this.soundEffects.sounds[soundEffect]) {
             this.soundEffects.sounds[soundEffect].play();
         }
+    }
+
+    setAmbientVolume(volume) {
+        this.ambient.volume = volume;
+    }
+
+    setSoundEffectsVolume(volume) {
+        this.soundEffects.volume = volume;
     }
 }
 

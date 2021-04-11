@@ -27,7 +27,7 @@
                     </transition>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" v-html="$t('ParametersModal.close')"/>
+                    <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal" v-html="$t('ParametersModal.close')"/>
                 </div>
             </div>
         </div>

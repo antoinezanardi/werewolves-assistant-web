@@ -299,8 +299,24 @@
         "isAudioEnabled": {
             "label": "L'audio est activé",
             "description": {
-                "audioIsEnabled": "L'Assistant jouera des sons d'ambiance et des bruitages tout le long de la partie.",
-                "audioIsNotEnabled": "L'Assistant ne jouera aucun son ou musique lors des parties."
+                "audioIsEnabled": "L'Assistant jouera des musiques d'ambiance et des bruitages pendant les parties.",
+                "audioIsNotEnabled": "L'Assistant ne jouera aucune musique d'ambiance ou de bruitages pendant les parties."
+            }
+        },
+        "ambientVolume": {
+            "label": "Volume de la musique",
+            "description": {
+                "ambientVolumeIsOff": "L'Assistant ne jouera aucune musique d'ambiance pendant les parties.",
+                "ambientVolumeIsFull": "L'Assistant jouera des musiques d'ambiance au volume maximal.",
+                "ambientVolumeIsAt": "L'Assistant jouera des musiques d'ambiance à {volume}% du volume."
+            }
+        },
+        "soundEffectsVolume": {
+            "label": "Volume de la musique",
+            "description": {
+                "soundEffectsVolumeIsOff": "L'Assistant ne jouera aucun bruitage pendant les parties.",
+                "soundEffectsVolumeIsFull": "L'Assistant jouera des bruitages au volume maximal.",
+                "soundEffectsVolumeIsAt": "L'Assistant jouera des bruitages à {volume}% du volume."
             }
         }
     },

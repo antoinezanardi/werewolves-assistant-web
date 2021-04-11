@@ -21,6 +21,7 @@
 
 * `vue-facebook-login-component` installed with version `4.0.1`.
 * `vue-google-login` installed with version `2.0.5`.
+* `vue-slider-component` installed with version `3.2.11`.
 * `vuedraggable` installed with version `2.24.3`.
 * `@fortawesome/fontawesome-free` updated to version `5.15.3`.
 * `@sentry/browser` updated to version `6.2.5`.
@@ -38,6 +39,7 @@
 * `qs` updated to version `6.10.1`.
 * `sweetalert2` updated to version `10.16.0`.
 * `v-tooltip` updated to version `2.1.3`.
+* `vue-gtag` updated to version `1.12.0`.
 * `vue-i18n` updated to version `8.24.3`.
 * `vue-tour` updated to version `2.0.0`.
 
