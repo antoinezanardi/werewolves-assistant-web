@@ -12,6 +12,7 @@
 * [#180](https://github.com/antoinezanardi/werewolves-assistant-web/issues/180) - Role types.
 * [#182](https://github.com/antoinezanardi/werewolves-assistant-web/issues/182) - Accordions in About page for roles.
 * [#185](https://github.com/antoinezanardi/werewolves-assistant-web/issues/185) - Reset base rules button in game roles options.
+* [#186](https://github.com/antoinezanardi/werewolves-assistant-web/issues/186) - Save game roles options in user preferences.
 
 ### ♻️ Refactoring
 
@@ -32,9 +33,10 @@
 * `@vue/cli-plugin-unit-mocha` updated to version `4.5.12`.
 * `@vue/cli-plugin-vuex` updated to version `4.5.12`.
 * `@vue/cli-service` updated to version `4.5.12`.
+* `@vue/test-utils` updated to version `1.1.4`.
 * `chai` updated to version `4.3.4`.
 * `eslint` updated to version `7.24.0`.
-* `eslint-plugin-vue` updated to version `7.8.0`.
+* `eslint-plugin-vue` updated to version `7.9   .0`.
 * `particles.vue` updated to version `2.9.2`.
 * `qs` updated to version `6.10.1`.
 * `sweetalert2` updated to version `10.16.0`.

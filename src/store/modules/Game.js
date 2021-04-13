@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Game from "@/classes/Game";
 import Player from "@/classes/Player";
+import { getDefaultGameOptions } from "@/helpers/functions/Game";
 
 export default {
     namespaced: true,
@@ -18,9 +19,9 @@ export default {
             state.game = new Game(game);
         },
         resetGameOptions(state) {
-            const cleanGame = new Game();
+            const defaultGameOptions = getDefaultGameOptions();
             state.game.additionalCards = [];
-            state.game.options = JSON.parse(JSON.stringify(cleanGame.options));
+            state.game.options = JSON.parse(JSON.stringify(defaultGameOptions));
         },
         setGamePlayers(state, players) {
             state.game.players = players.map(player => new Player(player));

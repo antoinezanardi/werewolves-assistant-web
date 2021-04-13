@@ -1,3 +1,5 @@
+import defaultGameOptions from "../constants/default-game-options.json";
+
 export function isVoteAction(action) {
     const voteActions = ["elect-sheriff", "vote"];
     return voteActions.includes(action);
@@ -35,4 +37,8 @@ export function isSkippableAction(action, source, game) {
 export function isPreFirstNightPlay(action, turn, phase) {
     const preFirstNightActions = ["elect-sheriff", "vote", "settle-votes", "delegate", "ban-voting", "shoot"];
     return turn === 1 && phase === "night" && preFirstNightActions.includes(action);
+}
+
+export function getDefaultGameOptions() {
+    return JSON.parse(JSON.stringify(defaultGameOptions));
 }

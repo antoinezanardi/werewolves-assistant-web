@@ -600,7 +600,7 @@ import RoleImage from "@/components/shared/Game/Role/RoleImage";
 import { fuseSearch } from "@/helpers/functions/VSelect";
 import GameAdditionalCard from "@/classes/GameAdditionalCard";
 import { listRoles } from "@/helpers/functions/Role";
-import Game from "@/classes/Game";
+import { getDefaultGameOptions } from "@/helpers/functions/Game";
 
 export default {
     name: "GameRolesOptions",
@@ -620,6 +620,7 @@ export default {
             },
             set(isGameRepartitionHidden) {
                 this.setGameOptionIsGameRepartitionHidden(isGameRepartitionHidden);
+                this.setPreferenceGameOptionRepartitionIsHidden(isGameRepartitionHidden);
                 this.$emit("options-updated");
             },
         },
@@ -629,6 +630,7 @@ export default {
             },
             set(areRolesRevealedOnDeath) {
                 this.setGameOptionAreRolesRevealedOnDeath(areRolesRevealedOnDeath);
+                this.setPreferenceGameOptionAreRolesRevealedOnDeath(areRolesRevealedOnDeath);
                 this.$emit("options-updated");
             },
         },
@@ -638,6 +640,7 @@ export default {
             },
             set(isSheriffEnabled) {
                 this.setGameOptionIsSheriffEnabled(isSheriffEnabled);
+                this.setPreferenceGameOptionIsSheriffEnabled(isSheriffEnabled);
                 this.$emit("options-updated");
             },
         },
@@ -648,6 +651,7 @@ export default {
             set(sheriffElectedAtTurn) {
                 sheriffElectedAtTurn = adjustNumber(sheriffElectedAtTurn, { min: 1, max: 5 });
                 this.setGameOptionSheriffElectedAtTurn(sheriffElectedAtTurn);
+                this.setPreferenceGameOptionSheriffElectedAtTurn(sheriffElectedAtTurn);
                 this.$emit("options-updated");
             },
         },
@@ -658,6 +662,7 @@ export default {
             set(sheriffElectedAtPhase) {
                 sheriffElectedAtPhase = sheriffElectedAtPhase ? "day" : "night";
                 this.setGameOptionSheriffElectedAtPhase(sheriffElectedAtPhase);
+                this.setPreferenceGameOptionSheriffElectedAtPhase(sheriffElectedAtPhase);
                 this.$emit("options-updated");
             },
         },
@@ -667,6 +672,7 @@ export default {
             },
             set(isSheriffVoteDoubled) {
                 this.setGameOptionIsSheriffVoteDoubled(isSheriffVoteDoubled);
+                this.setPreferenceGameOptionIsSheriffVoteDoubled(isSheriffVoteDoubled);
                 this.$emit("options-updated");
             },
         },
@@ -676,6 +682,7 @@ export default {
             },
             set(isBigBadWolfPowerlessIfWerewolfDies) {
                 this.setGameOptionIsBigBadWolfPowerlessIfWerewolfDies(isBigBadWolfPowerlessIfWerewolfDies);
+                this.setPreferenceGameOptionIsBigBadWolfPowerlessIfWerewolfDies(isBigBadWolfPowerlessIfWerewolfDies);
                 this.$emit("options-updated");
             },
         },
@@ -686,6 +693,7 @@ export default {
             set(whiteWerewolfWakingUpInterval) {
                 whiteWerewolfWakingUpInterval = adjustNumber(whiteWerewolfWakingUpInterval, { min: 1, max: 5 });
                 this.setGameOptionWhiteWerewolfWakingUpInterval(whiteWerewolfWakingUpInterval);
+                this.setPreferenceGameOptionWhiteWerewolfWakingUpInterval(whiteWerewolfWakingUpInterval);
                 this.$emit("options-updated");
             },
         },
@@ -695,6 +703,7 @@ export default {
             },
             set(isSeerTalkative) {
                 this.setGameOptionIsSeerTalkative(isSeerTalkative);
+                this.setPreferenceGameOptionIsSeerTalkative(isSeerTalkative);
                 this.$emit("options-updated");
             },
         },
@@ -704,6 +713,7 @@ export default {
             },
             set(canSeerSeeRoles) {
                 this.setGameOptionCanSeerSeeRoles(canSeerSeeRoles);
+                this.setPreferenceGameOptionCanSeerSeeRoles(canSeerSeeRoles);
                 this.$emit("options-updated");
             },
         },
@@ -713,6 +723,7 @@ export default {
             },
             set(isLittleGirlProtectedByGuard) {
                 this.setGameOptionIsLittleGirlProtectedByGuard(isLittleGirlProtectedByGuard);
+                this.setPreferenceGameOptionIsLittleGirlProtectedByGuard(isLittleGirlProtectedByGuard);
                 this.$emit("options-updated");
             },
         },
@@ -722,6 +733,7 @@ export default {
             },
             set(canGuardProtectTwice) {
                 this.setGameOptionCanGuardProtectTwice(canGuardProtectTwice);
+                this.setPreferenceGameOptionCanGuardProtectTwice(canGuardProtectTwice);
                 this.$emit("options-updated");
             },
         },
@@ -732,6 +744,7 @@ export default {
             set(ancientLivesCountAgainstWerewolves) {
                 ancientLivesCountAgainstWerewolves = adjustNumber(ancientLivesCountAgainstWerewolves, { min: 1, max: 5 });
                 this.setGameOptionAncientLivesCountAgainstWerewolves(ancientLivesCountAgainstWerewolves);
+                this.setPreferenceGameOptionAncientLivesCountAgainstWerewolves(ancientLivesCountAgainstWerewolves);
                 this.$emit("options-updated");
             },
         },
@@ -741,6 +754,7 @@ export default {
             },
             set(doesAncientTakeHisRevenge) {
                 this.setGameOptionDoesAncientTakeHisRevenge(doesAncientTakeHisRevenge);
+                this.setPreferenceGameOptionDoesAncientTakeHisRevenge(doesAncientTakeHisRevenge);
                 this.$emit("options-updated");
             },
         },
@@ -750,6 +764,7 @@ export default {
             },
             set(doesIdiotDieOnAncientDeath) {
                 this.setGameOptionDoesIdiotDieOnAncientDeath(doesIdiotDieOnAncientDeath);
+                this.setPreferenceGameOptionDoesIdiotDieOnAncientDeath(doesIdiotDieOnAncientDeath);
                 this.$emit("options-updated");
             },
         },
@@ -760,6 +775,7 @@ export default {
             set(newSistersWakingUpInterval) {
                 newSistersWakingUpInterval = adjustNumber(newSistersWakingUpInterval, { min: 0, max: 5 });
                 this.setGameOptionSistersWakingUpInterval(newSistersWakingUpInterval);
+                this.setPreferenceGameOptionSistersWakingUpInterval(newSistersWakingUpInterval);
                 this.$emit("options-updated");
             },
         },
@@ -770,6 +786,7 @@ export default {
             set(newBrothersWakingUpInterval) {
                 newBrothersWakingUpInterval = adjustNumber(newBrothersWakingUpInterval, { min: 0, max: 5 });
                 this.setGameOptionBrothersWakingUpInterval(newBrothersWakingUpInterval);
+                this.setPreferenceGameOptionBrothersWakingUpInterval(newBrothersWakingUpInterval);
                 this.$emit("options-updated");
             },
         },
@@ -779,6 +796,7 @@ export default {
             },
             set(isFoxPowerlessIfMissesWerewolf) {
                 this.setGameOptionIsFoxPowerlessIfMissesWerewolf(isFoxPowerlessIfMissesWerewolf);
+                this.setPreferenceGameOptionIsFoxPowerlessIfMissesWerewolf(isFoxPowerlessIfMissesWerewolf);
                 this.$emit("options-updated");
             },
         },
@@ -788,6 +806,7 @@ export default {
             },
             set(doesBearTamerGrowlIfInfected) {
                 this.setGameOptionDoesBearTamerGrowlIfInfected(doesBearTamerGrowlIfInfected);
+                this.setPreferenceGameOptionDoesBearTamerGrowlIfInfected(doesBearTamerGrowlIfInfected);
                 this.$emit("options-updated");
             },
         },
@@ -798,6 +817,7 @@ export default {
             set(stutteringJudgeVoteRequestsCount) {
                 stutteringJudgeVoteRequestsCount = adjustNumber(stutteringJudgeVoteRequestsCount, { min: 1, max: 5 });
                 this.setGameOptionStutteringJudgeVoteRequestsCount(stutteringJudgeVoteRequestsCount);
+                this.setPreferenceGameOptionStutteringJudgeVoteRequestsCount(stutteringJudgeVoteRequestsCount);
                 this.$emit("options-updated");
             },
         },
@@ -807,6 +827,7 @@ export default {
             },
             set(isWildChildTransformationRevealed) {
                 this.setGameOptionIsWildChildTransformationRevealed(isWildChildTransformationRevealed);
+                this.setPreferenceGameOptionIsWildChildTransformationRevealed(isWildChildTransformationRevealed);
                 this.$emit("options-updated");
             },
         },
@@ -816,6 +837,7 @@ export default {
             },
             set(isDogWolfChosenSideRevealed) {
                 this.setGameOptionIsDogWolfChosenSideRevealed(isDogWolfChosenSideRevealed);
+                this.setPreferenceGameOptionIsDogWolfChosenSideRevealed(isDogWolfChosenSideRevealed);
                 this.$emit("options-updated");
             },
         },
@@ -826,6 +848,7 @@ export default {
             set(thiefAdditionalCardsCount) {
                 thiefAdditionalCardsCount = adjustNumber(thiefAdditionalCardsCount, { min: 1, max: 5 });
                 this.setGameOptionThiefAdditionalCardsCount(thiefAdditionalCardsCount);
+                this.setPreferenceGameOptionThiefAdditionalCardsCount(thiefAdditionalCardsCount);
                 if (thiefAdditionalCardsCount < this.game.thiefAdditionalCards.length) {
                     this.setGameThiefAdditionalCards(this.game.thiefAdditionalCards.slice(0, thiefAdditionalCardsCount));
                 }
@@ -850,6 +873,7 @@ export default {
             },
             set(mustThiefChooseBetweenWerewolves) {
                 this.setGameOptionMustThiefChooseBetweenWerewolves(mustThiefChooseBetweenWerewolves);
+                this.setPreferenceGameOptionMustThiefChooseBetweenWerewolves(mustThiefChooseBetweenWerewolves);
                 this.$emit("options-updated");
             },
         },
@@ -860,6 +884,7 @@ export default {
             set(piedPiperCharmedPeopleCountPerNight) {
                 piedPiperCharmedPeopleCountPerNight = adjustNumber(piedPiperCharmedPeopleCountPerNight, { min: 1, max: 5 });
                 this.setGameOptionPiedPiperCharmedPeopleCountPerNight(piedPiperCharmedPeopleCountPerNight);
+                this.setPreferenceGameOptionPiedPiperCharmedPeopleCountPerNight(piedPiperCharmedPeopleCountPerNight);
                 this.$emit("options-updated");
             },
         },
@@ -869,6 +894,7 @@ export default {
             },
             set(isPiedPiperPowerlessIfInfected) {
                 this.setGameOptionIsPiedPiperPowerlessIfInfected(isPiedPiperPowerlessIfInfected);
+                this.setPreferenceGameOptionIsPiedPiperPowerlessIfInfected(isPiedPiperPowerlessIfInfected);
                 this.$emit("options-updated");
             },
         },
@@ -879,6 +905,7 @@ export default {
             set(newRavenMarkPenalty) {
                 newRavenMarkPenalty = adjustNumber(newRavenMarkPenalty, { min: 1, max: 5 });
                 this.setGameOptionRavenMarkPenalty(newRavenMarkPenalty);
+                this.setPreferenceGameOptionRavenMarkPenalty(newRavenMarkPenalty);
                 this.$emit("options-updated");
             },
         },
@@ -1026,8 +1053,8 @@ export default {
             return this.$tc("GameRolesOptions.ravenMarkPenalty.description", ravenMarkPenalty, { ravenMarkPenalty });
         },
         areDefaultGameOptionsChanged() {
-            const cleanGame = new Game();
-            return JSON.stringify(cleanGame.options) !== JSON.stringify(this.game.options);
+            const defaultGameOptions = getDefaultGameOptions();
+            return JSON.stringify(defaultGameOptions) !== JSON.stringify(this.game.options);
         },
     },
     methods: {
@@ -1062,6 +1089,36 @@ export default {
             setGameOptionIsPiedPiperPowerlessIfInfected: "setGameOptionIsPiedPiperPowerlessIfInfected",
             setGameOptionRavenMarkPenalty: "setGameOptionRavenMarkPenalty",
         }),
+        ...mapActions("user", {
+            setPreferencesGameOptions: "setPreferencesGameOptions",
+            setPreferenceGameOptionRepartitionIsHidden: "setPreferenceGameOptionRepartitionIsHidden",
+            setPreferenceGameOptionAreRolesRevealedOnDeath: "setPreferenceGameOptionAreRolesRevealedOnDeath",
+            setPreferenceGameOptionIsSheriffEnabled: "setPreferenceGameOptionIsSheriffEnabled",
+            setPreferenceGameOptionSheriffElectedAtTurn: "setPreferenceGameOptionSheriffElectedAtTurn",
+            setPreferenceGameOptionSheriffElectedAtPhase: "setPreferenceGameOptionSheriffElectedAtPhase",
+            setPreferenceGameOptionIsSheriffVoteDoubled: "setPreferenceGameOptionIsSheriffVoteDoubled",
+            setPreferenceGameOptionIsBigBadWolfPowerlessIfWerewolfDies: "setPreferenceGameOptionIsBigBadWolfPowerlessIfWerewolfDies",
+            setPreferenceGameOptionWhiteWerewolfWakingUpInterval: "setPreferenceGameOptionWhiteWerewolfWakingUpInterval",
+            setPreferenceGameOptionIsSeerTalkative: "setPreferenceGameOptionIsSeerTalkative",
+            setPreferenceGameOptionCanSeerSeeRoles: "setPreferenceGameOptionCanSeerSeeRoles",
+            setPreferenceGameOptionDoesIdiotDieOnAncientDeath: "setPreferenceGameOptionDoesIdiotDieOnAncientDeath",
+            setPreferenceGameOptionIsLittleGirlProtectedByGuard: "setPreferenceGameOptionIsLittleGirlProtectedByGuard",
+            setPreferenceGameOptionCanGuardProtectTwice: "setPreferenceGameOptionCanGuardProtectTwice",
+            setPreferenceGameOptionAncientLivesCountAgainstWerewolves: "setPreferenceGameOptionAncientLivesCountAgainstWerewolves",
+            setPreferenceGameOptionDoesAncientTakeHisRevenge: "setPreferenceGameOptionDoesAncientTakeHisRevenge",
+            setPreferenceGameOptionSistersWakingUpInterval: "setPreferenceGameOptionSistersWakingUpInterval",
+            setPreferenceGameOptionBrothersWakingUpInterval: "setPreferenceGameOptionBrothersWakingUpInterval",
+            setPreferenceGameOptionIsFoxPowerlessIfMissesWerewolf: "setPreferenceGameOptionIsFoxPowerlessIfMissesWerewolf",
+            setPreferenceGameOptionDoesBearTamerGrowlIfInfected: "setPreferenceGameOptionDoesBearTamerGrowlIfInfected",
+            setPreferenceGameOptionIsWildChildTransformationRevealed: "setPreferenceGameOptionIsWildChildTransformationRevealed",
+            setPreferenceGameOptionIsDogWolfChosenSideRevealed: "setPreferenceGameOptionIsDogWolfChosenSideRevealed",
+            setPreferenceGameOptionStutteringJudgeVoteRequestsCount: "setPreferenceGameOptionStutteringJudgeVoteRequestsCount",
+            setPreferenceGameOptionThiefAdditionalCardsCount: "setPreferenceGameOptionThiefAdditionalCardsCount",
+            setPreferenceGameOptionMustThiefChooseBetweenWerewolves: "setPreferenceGameOptionMustThiefChooseBetweenWerewolves",
+            setPreferenceGameOptionPiedPiperCharmedPeopleCountPerNight: "setPreferenceGameOptionPiedPiperCharmedPeopleCountPerNight",
+            setPreferenceGameOptionIsPiedPiperPowerlessIfInfected: "setPreferenceGameOptionIsPiedPiperPowerlessIfInfected",
+            setPreferenceGameOptionRavenMarkPenalty: "setPreferenceGameOptionRavenMarkPenalty",
+        }),
         filterByRoleName(option, search) {
             return fuseSearch(option, search, ["displayedName"]);
         },
@@ -1075,6 +1132,7 @@ export default {
         },
         resetGameRolesOptions() {
             this.resetGameOptions();
+            this.setPreferencesGameOptions(this.game.options);
             this.$toasted.success(this.$t("GameRolesOptions.gameRolesOptionsReset"), { icon: "sync" });
             this.$emit("options-updated");
         },

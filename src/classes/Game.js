@@ -2,11 +2,12 @@ import { getProp } from "@/helpers/functions/Class";
 import User from "./User";
 import Player from "./Player";
 import GameHistory from "./GameHistory";
+import GameAdditionalCard from "./GameAdditionalCard";
+import UserPreferences from "./UserPreferences";
 import {
     isForbiddenTieVoteAction, isSkippableAction, isTargetAction, isTimedAction, isVoteAction,
     isPreFirstNightPlay,
 } from "@/helpers/functions/Game";
-import GameAdditionalCard from "@/classes/GameAdditionalCard";
 
 class Game {
     constructor(game = null) {
@@ -38,73 +39,145 @@ class Game {
         return getProp(game, "additionalCards", [], additionalCards => additionalCards.map(additionalCard => new GameAdditionalCard(additionalCard)));
     }
 
-    static _getPiedPiperOptions(game) {
+    static _getRavenGameOptions(game, ravenUserPreferences) {
+        const prop = "options.roles.raven";
+        return { markPenalty: getProp(game, `${prop}.raven.markPenalty`, ravenUserPreferences.markPenalty) };
+    }
+
+    static _getPiedPiperGameOptions(game, piedPiperUserPreferences) {
+        const prop = "options.roles.piedPiper";
         return {
-            charmedPeopleCountPerNight: getProp(game, "options.roles.piedPiper.charmedPeopleCountPerNight", 2),
-            isPowerlessIfInfected: getProp(game, "options.roles.piedPiper.isPowerlessIfInfected", true),
+            charmedPeopleCountPerNight: getProp(game, `${prop}.charmedPeopleCountPerNight`, piedPiperUserPreferences.charmedPeopleCountPerNight),
+            isPowerlessIfInfected: getProp(game, `${prop}.isPowerlessIfInfected`, piedPiperUserPreferences.isPowerlessIfInfected),
         };
     }
 
-    static _getThiefOptions(game) {
+    static _getThiefGameOptions(game, thiefUserPreferences) {
+        const prop = "options.roles.thief";
         return {
-            additionalCardsCount: getProp(game, "options.roles.thief.additionalCardsCount", 2),
-            mustChooseBetweenWerewolves: getProp(game, "options.roles.thief.mustChooseBetweenWerewolves", true),
+            additionalCardsCount: getProp(game, `${prop}.additionalCardsCount`, thiefUserPreferences.additionalCardsCount),
+            mustChooseBetweenWerewolves: getProp(game, `${prop}.mustChooseBetweenWerewolves`, thiefUserPreferences.mustChooseBetweenWerewolves),
         };
     }
 
-    static _getAncientOptions(game) {
+    static _getDogWolfGameOptions(game, dogWolfUserPreferences) {
+        const prop = "options.roles.dogWolf";
+        return { isChosenSideRevealed: getProp(game, `${prop}.dogWolf.isChosenSideRevealed`, dogWolfUserPreferences.isChosenSideRevealed) };
+    }
+
+    static _getWildChildGameOptions(game, wildChildUserPreferences) {
+        const prop = "options.roles.wildChild";
+        return { isTransformationRevealed: getProp(game, `${prop}.isTransformationRevealed`, wildChildUserPreferences.isTransformationRevealed) };
+    }
+
+    static _getStutteringJudgeGameOptions(game, stutteringJudgeUserPreferences) {
+        const prop = "options.roles.stutteringJudge";
+        return { voteRequestsCount: getProp(game, `${prop}.voteRequestsCount`, stutteringJudgeUserPreferences.voteRequestsCount) };
+    }
+
+    static _getBearTamerGameOptions(game, bearTamerUserPreferences) {
+        const prop = "options.roles.bearTamer";
+        return { doesGrowlIfInfected: getProp(game, `${prop}.doesGrowlIfInfected`, bearTamerUserPreferences.doesGrowlIfInfected) };
+    }
+
+    static _getFoxGameOptions(game, foxUserPreferences) {
+        const prop = "options.roles.fox";
+        return { isPowerlessIfMissesWerewolf: getProp(game, `${prop}.isPowerlessIfMissesWerewolf`, foxUserPreferences.isPowerlessIfMissesWerewolf) };
+    }
+
+    static _getThreeBrothersGameOptions(game, threeBrothersUserPreferences) {
+        const prop = "options.roles.threeBrothers";
+        return { wakingUpInterval: getProp(game, `${prop}.wakingUpInterval`, threeBrothersUserPreferences.wakingUpInterval) };
+    }
+
+    static _getTwoSistersGameOptions(game, twoSistersUserPreferences) {
+        const prop = "options.roles.twoSisters";
+        return { wakingUpInterval: getProp(game, `${prop}.wakingUpInterval`, twoSistersUserPreferences.wakingUpInterval) };
+    }
+
+    static _getIdiotGameOptions(game, idiotUserPreferences) {
+        const prop = "options.roles.idiot";
+        return { doesDieOnAncientDeath: getProp(game, `${prop}.doesDieOnAncientDeath`, idiotUserPreferences.doesDieOnAncientDeath) };
+    }
+
+    static _getAncientGameOptions(game, ancientUserPreferences) {
+        const prop = "options.roles.ancient";
         return {
-            livesCountAgainstWerewolves: getProp(game, "options.roles.ancient.livesCountAgainstWerewolves", 2),
-            doesTakeHisRevenge: getProp(game, "options.roles.ancient.doesTakeHisRevenge", true),
+            livesCountAgainstWerewolves: getProp(game, `${prop}.livesCountAgainstWerewolves`, ancientUserPreferences.livesCountAgainstWerewolves),
+            doesTakeHisRevenge: getProp(game, `${prop}.doesTakeHisRevenge`, ancientUserPreferences.doesTakeHisRevenge),
         };
     }
 
-    static _getSeerGameOptions(game) {
+    static _getGuardGameOptions(game, guardUserPreferences) {
+        const prop = "options.roles.guard";
+        return { canProtectTwice: getProp(game, `${prop}.canProtectTwice`, guardUserPreferences.canProtectTwice) };
+    }
+
+    static _getLittleGirlGameOptions(game, littleGirlUserPreferences) {
+        const prop = "options.roles.littleGirl";
+        return { isProtectedByGuard: getProp(game, `${prop}.isProtectedByGuard`, littleGirlUserPreferences.isProtectedByGuard) };
+    }
+
+    static _getSeerGameOptions(game, seerUserPreferences) {
+        const prop = "options.roles.seer";
         return {
-            isTalkative: getProp(game, "options.roles.seer.isTalkative", true),
-            canSeeRoles: getProp(game, "options.roles.seer.canSeeRoles", true),
+            isTalkative: getProp(game, `${prop}.isTalkative`, seerUserPreferences.isTalkative),
+            canSeeRoles: getProp(game, `${prop}.canSeeRoles`, seerUserPreferences.canSeeRoles),
         };
     }
 
-    static _getSheriffGameOptions(game) {
+    static _getWhiteWerewolfGameOptions(game, whiteWerewolfUserPreferences) {
+        const prop = "options.roles.whiteWerewolf";
+        return { wakingUpInterval: getProp(game, `${prop}.wakingUpInterval`, whiteWerewolfUserPreferences.wakingUpInterval) };
+    }
+
+    static _getBigBadWolfGameOptions(game, bigBadWolfUserPreferences) {
+        const prop = "options.roles.bigBadWolf";
+        return { isPowerlessIfWerewolfDies: getProp(game, `${prop}.isPowerlessIfWerewolfDies`, bigBadWolfUserPreferences.isPowerlessIfWerewolfDies) };
+    }
+
+    static _getSheriffGameOptions(game, sheriffUserPreferences) {
+        const prop = "options.roles.sheriff";
         return {
-            isEnabled: getProp(game, "options.roles.sheriff.isEnabled", true),
+            isEnabled: getProp(game, `${prop}.isEnabled`, sheriffUserPreferences.isEnabled),
             electedAt: {
-                turn: getProp(game, "options.roles.sheriff.electedAt.turn", 1),
-                phase: getProp(game, "options.roles.sheriff.electedAt.phase", "night"),
+                turn: getProp(game, `${prop}.electedAt.turn`, sheriffUserPreferences.electedAt.turn),
+                phase: getProp(game, `${prop}.electedAt.phase`, sheriffUserPreferences.electedAt.phase),
             },
-            hasDoubledVote: getProp(game, "options.roles.sheriff.hasDoubledVote", true),
+            hasDoubledVote: getProp(game, `${prop}.hasDoubledVote`, sheriffUserPreferences.hasDoubledVote),
         };
     }
 
-    static _getRolesGameOptions(game) {
+    static _getRolesGameOptions(game, userPreferences) {
+        const prop = "options.roles";
         return {
-            areRevealedOnDeath: getProp(game, "options.roles.areRevealedOnDeath", true),
-            sheriff: this._getSheriffGameOptions(game),
-            bigBadWolf: { isPowerlessIfWerewolfDies: getProp(game, "options.roles.bigBadWolf.isPowerlessIfWerewolfDies", true) },
-            whiteWerewolf: { wakingUpInterval: getProp(game, "options.roles.whiteWerewolf.wakingUpInterval", 2) },
-            seer: this._getSeerGameOptions(game),
-            littleGirl: { isProtectedByGuard: getProp(game, "options.roles.littleGirl.isProtectedByGuard", false) },
-            guard: { canProtectTwice: getProp(game, "options.roles.guard.canProtectTwice", false) },
-            ancient: this._getAncientOptions(game),
-            idiot: { doesDieOnAncientDeath: getProp(game, "options.roles.idiot.doesDieOnAncientDeath", true) },
-            twoSisters: { wakingUpInterval: getProp(game, "options.roles.twoSisters.wakingUpInterval", 2) },
-            threeBrothers: { wakingUpInterval: getProp(game, "options.roles.threeBrothers.wakingUpInterval", 2) },
-            fox: { isPowerlessIfMissesWerewolf: getProp(game, "options.roles.fox.isPowerlessIfMissesWerewolf", true) },
-            bearTamer: { doesGrowlIfInfected: getProp(game, "options.roles.bearTamer.doesGrowlIfInfected", true) },
-            stutteringJudge: { voteRequestsCount: getProp(game, "options.roles.stutteringJudge.voteRequestsCount", 1) },
-            wildChild: { isTransformationRevealed: getProp(game, "options.roles.wildChild.isTransformationRevealed", false) },
-            dogWolf: { isChosenSideRevealed: getProp(game, "options.roles.dogWolf.isChosenSideRevealed", false) },
-            thief: this._getThiefOptions(game),
-            piedPiper: this._getPiedPiperOptions(game),
-            raven: { markPenalty: getProp(game, "options.roles.raven.markPenalty", 2) },
+            areRevealedOnDeath: getProp(game, `${prop}.areRevealedOnDeath`, userPreferences.areRevealedOnDeath),
+            sheriff: this._getSheriffGameOptions(game, userPreferences.sheriff),
+            bigBadWolf: this._getBigBadWolfGameOptions(game, userPreferences.bigBadWolf),
+            whiteWerewolf: this._getWhiteWerewolfGameOptions(game, userPreferences.whiteWerewolf),
+            seer: this._getSeerGameOptions(game, userPreferences.seer),
+            littleGirl: this._getLittleGirlGameOptions(game, userPreferences.littleGirl),
+            guard: this._getGuardGameOptions(game, userPreferences.guard),
+            ancient: this._getAncientGameOptions(game, userPreferences.ancient),
+            idiot: this._getIdiotGameOptions(game, userPreferences.idiot),
+            twoSisters: this._getTwoSistersGameOptions(game, userPreferences.twoSisters),
+            threeBrothers: this._getThreeBrothersGameOptions(game, userPreferences.threeBrothers),
+            fox: this._getFoxGameOptions(game, userPreferences.fox),
+            bearTamer: this._getBearTamerGameOptions(game, userPreferences.bearTamer),
+            stutteringJudge: this._getStutteringJudgeGameOptions(game, userPreferences.stutteringJudge),
+            wildChild: this._getWildChildGameOptions(game, userPreferences.wildChild),
+            dogWolf: this._getDogWolfGameOptions(game, userPreferences.dogWolf),
+            thief: this._getThiefGameOptions(game, userPreferences.thief),
+            piedPiper: this._getPiedPiperGameOptions(game, userPreferences.piedPiper),
+            raven: this._getRavenGameOptions(game, userPreferences.raven),
         };
     }
 
     static _getGameOptions(game) {
+        const userPreferences = new UserPreferences();
         return {
-            repartition: { isHidden: getProp(game, "options.repartition.isHidden", false) },
-            roles: this._getRolesGameOptions(game),
+            repartition: { isHidden: getProp(game, "options.repartition.isHidden", userPreferences.game.options.repartition.isHidden) },
+            roles: this._getRolesGameOptions(game, userPreferences.game.options.roles),
         };
     }
 

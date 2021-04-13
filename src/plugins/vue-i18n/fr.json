@@ -220,7 +220,8 @@
         },
         "resetDefaultGameRolesOptions": "Réinitialiser les options",
         "gameRolesOptionsReset": "Options de la partie réinitialisées",
-        "actualOptionsFollowOfficialGameRules": "Les options de partie ci-dessous respectent les règles officielles du jeu. N'hésitez pas à les changer pour apporter de la variété à vos parties !"
+        "actualOptionsFollowOfficialGameRules": "Les options de partie ci-dessous respectent les règles officielles du jeu. N'hésitez pas à les changer pour apporter de la variété à vos parties !",
+        "optionsHaveBeenChanged": "Toutes ou une partie des options de partie ci-dessous ont été précédemment modifiées. Cliquez sur le bouton ci-dessous pour revenir aux règles officielles."
     },
     "GameRepartitionOptions": {
         "roles": "Tous les rôles",
@@ -433,7 +434,6 @@
         "seeOptions": "Parcourir les options",
         "dontShowMeAgain": "Ne plus afficher",
         "showGameRepartitionOptions": "Afficher les options de répartition aléatoire",
-        "optionsHaveBeenChanged": "Les options ci-dessous ont été changées et ne respectent donc plus les règles officielles du jeu.",
         "playerPositionsAreImportant": "La position de chaque joueur est importante !",
         "someRolesDependOnPlayerPositions": "Certains rôles de la partie dépendent de la position des joueurs, êtes-vous sûr que toutes les positions soient bien définies dans l'Assistant ?",
         "yesStartGame": "Oui, commencer la partie",
