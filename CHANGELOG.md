@@ -6,6 +6,7 @@
 
 * [#154](https://github.com/antoinezanardi/werewolves-assistant-web/issues/154) - Facebook auth.
 * [#155](https://github.com/antoinezanardi/werewolves-assistant-web/issues/155) - Google auth.
+* [#188](https://github.com/antoinezanardi/werewolves-assistant-web/issues/188) - Modal for helping players with roles.
 
 ### 🌟 Enhancements
 
@@ -20,6 +21,8 @@
 
 ### 📦 Packages
 
+* `qrcode.vue` installed with version `1.7.0`.
+* `vue-clipboard2` installed with version `0.3.1`.
 * `vue-facebook-login-component` installed with version `4.0.1`.
 * `vue-google-login` installed with version `2.0.5`.
 * `vue-slider-component` installed with version `3.2.11`.
@@ -36,12 +39,12 @@
 * `@vue/test-utils` updated to version `1.1.4`.
 * `chai` updated to version `4.3.4`.
 * `eslint` updated to version `7.24.0`.
-* `eslint-plugin-vue` updated to version `7.9   .0`.
+* `eslint-plugin-vue` updated to version `7.9.0`.
 * `particles.vue` updated to version `2.9.2`.
 * `qs` updated to version `6.10.1`.
-* `sweetalert2` updated to version `10.16.0`.
+* `sweetalert2` updated to version `10.16.3`.
 * `v-tooltip` updated to version `2.1.3`.
-* `vue-gtag` updated to version `1.12.0`.
+* `vue-gtag` updated to version `1.14.0`.
 * `vue-i18n` updated to version `8.24.3`.
 * `vue-tour` updated to version `2.0.0`.
 

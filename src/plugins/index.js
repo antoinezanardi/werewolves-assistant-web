@@ -1,11 +1,13 @@
 import "./APIs";
 import "./bootstrap";
 import "./error";
+import "./qrcode-vue";
 import Router from "./router";
 import "./sentry";
 import "./v-tooltip";
 import "./vee-validate";
 import "./vue-backtotop";
+import "./vue-clipboard";
 import "./vue-countdown";
 import "./vue-flip";
 import "./vue-github-buttons";

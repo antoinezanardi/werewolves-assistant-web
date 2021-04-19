@@ -1,4 +1,7 @@
+import { addTrailingSlash } from "@/helpers/functions/String";
+
 export default {
+    app: { baseURL: addTrailingSlash(process.env.VUE_APP_WEREWOLVES_ASSISTANT_WEB_URL) },
     sentry: {
         enabled: process.env.VUE_APP_SENTRY_ENABLED === "true",
         projectId: process.env.VUE_APP_SENTRY_PROJECT_ID,

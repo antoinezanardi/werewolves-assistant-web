@@ -18,7 +18,8 @@
         "cancel": "Annuler",
         "gameCanceled": "Partie annulée",
         "gameOptions": "Options de la partie",
-        "parameters": "Paramètres"
+        "parameters": "Paramètres",
+        "playersDontKnowRoles": "Les joueurs ne connaissent pas bien leur rôle"
     },
     "MuteButton": {
         "mute": "Désactiver l'audio",
@@ -320,6 +321,18 @@
                 "soundEffectsVolumeIsAt": "L'Assistant jouera des bruitages à {volume}% du volume."
             }
         }
+    },
+    "PlayerHelpForRolesModal": {
+        "playersDontKnowTheirRole": "Les joueurs ne connaissent pas bien les rôles",
+        "teachPlayerHowToUseRole": "Les joueurs ne connaissent pas du tout les rôles ou ont un doute sur leur fonctionnement ? Après avoir distribué les rôles, demandez-leur de flasher le QR code ci-dessous pour connaître tous les détails du rôle qu'ils ont reçu.",
+        "or": "Ou",
+        "sendLinkToPlayers": "Envoyez le lien ci-dessous aux joueurs ne pouvant pas flasher le QR code.",
+        "access": "Acccéder",
+        "copy": "Copier",
+        "linkWasCopied": "Le lien a été copié dans le presse-papier",
+        "linkCantBeCopied": "Impossible de copier le lien dans le presse-papier",
+        "close": "Fermer",
+        "increaseLuminosity": "Augmenter la luminosité de l'écran permet aux appareils de lire plus facilement les QR codes."
     },
     "Home": {
         "werewolvesAssistant": "Assistant Loups-Garous",

@@ -105,6 +105,8 @@ Complete list of all enabled rules is available in the **[.eslintrc.js file](htt
 3. Replace environment values in the fresh new `.env` file if necessary (When **⚠️️ Required** is specified):
     * **VUE_APP_WEREWOLVES_ASSISTANT_API_URL**: Base URL of Werewolves Assistant API.
         -  _**⚠️️ Required**_
+    * **VUE_APP_WEREWOLVES_ASSISTANT_WEB_URL**: Base URL of Werewolves Assistant Web app. Set to `localhost:8080` if in development mode.
+        -  _**⚠️️ Required**_
     * **VUE_APP_SENTRY_KEY**: Private key used by Sentry for authenticating the project.
         -  _**Not Required**_
     * **VUE_APP_SENTRY_PROJECT_ID**: Project ID used by Sentry.

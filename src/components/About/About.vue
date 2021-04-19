@@ -63,7 +63,7 @@
                 <p v-html="$t('About.assistantDoesntReplaceTheOriginalGame')"/>
             </div>
         </div>
-        <div class="row mt-4">
+        <div id="roles-section" class="row mt-4">
             <div class="col-12">
                 <h3 class="section-subtitle">
                     <RoleImage :role="undefined" class="mr-3"/>
@@ -162,6 +162,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { scrollTo } from "vue-scrollto";
 import RoleImage from "@/components/shared/Game/Role/RoleImage";
 import AboutRole from "@/components/About/AboutRole";
 import { i18n } from "@/plugins";
@@ -172,6 +173,11 @@ export default {
     computed: { ...mapGetters("role", { roles: "roles" }) },
     created() {
         localStorage.setItem("aboutPageVisited", "true");
+    },
+    mounted() {
+        if (this.$route.query["scroll-to"]) {
+            scrollTo(`#${this.$route.query["scroll-to"]}`, 1000);
+        }
     },
     metaInfo: { titleTemplate: `%s - ${i18n.t("About.metaInfo.title")}` },
 };

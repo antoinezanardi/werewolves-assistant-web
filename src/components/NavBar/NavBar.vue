@@ -6,19 +6,25 @@
         </a>
         <div class="navbar-nav d-flex w-100 justify-content-end">
             <div class="nav-item">
+                <a v-tooltip="$t('NavBar.playersDontKnowRoles')" class="nav-link" href="#" role="button" aria-haspopup="true"
+                   @click.prevent="showPlayerHelpForRolesModal">
+                    <i class="fa fa-qrcode"/>
+                </a>
+            </div>
+            <div class="nav-item">
                 <MuteButton class="nav-link"/>
             </div>
             <transition mode="out-in" name="fade">
                 <div v-if="game.isCreated" class="nav-item d-md-none d-sm-block">
                     <a class="nav-link" href="#" role="button" aria-haspopup="true" @click.prevent="showGameSidesModal">
-                        <i class="fa fa-chess mr-2"/>
+                        <i class="fa fa-chess"/>
                     </a>
                 </div>
             </transition>
             <div id="nav-bar-options" class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true">
-                    <i class="fa fa-cog mr-2"/>
-                    <span class="d-none d-md-inline-block" v-html="$t('NavBar.options')"/>
+                <a v-tooltip="$t('NavBar.options')" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                   aria-haspopup="true">
+                    <i class="fa fa-cog mr-1"/>
                 </a>
                 <div class="dropdown-menu animate__animated animate__zoomIn animate__faster">
                     <a v-if="$route.name === 'Game' || $route.name === 'GameLobby'" href="#" class="dropdown-item"
@@ -44,6 +50,7 @@
         </div>
         <ParametersModal ref="parametersModal"/>
         <GameOptionsModal ref="gameOptionsModal"/>
+        <PlayerHelpForRolesModal ref="playerHelpForRolesModal"/>
         <GameSidesModal v-if="game.isCreated" ref="gameSidesModal"/>
     </nav>
 </template>
@@ -55,10 +62,11 @@ import GameOptionsModal from "@/components/NavBar/GameOptionsModal/GameOptionsMo
 import GameSidesModal from "@/components/NavBar/GameSidesModal/GameSidesModal";
 import MuteButton from "@/components/shared/AudioManager/MuteButton";
 import ParametersModal from "@/components/NavBar/ParametersModal/ParametersModal";
+import PlayerHelpForRolesModal from "@/components/NavBar/PlayersHelpForRolesModal/PlayerHelpForRolesModal";
 
 export default {
     name: "NavBar",
-    components: { ParametersModal, MuteButton, GameSidesModal, GameOptionsModal },
+    components: { PlayerHelpForRolesModal, ParametersModal, MuteButton, GameSidesModal, GameOptionsModal },
     computed: {
         ...mapGetters("game", { game: "game" }),
         ...mapGetters("audioManager", { audioManager: "audioManager" }),
@@ -99,6 +107,9 @@ export default {
         },
         showGameSidesModal() {
             this.$refs.gameSidesModal.show();
+        },
+        showPlayerHelpForRolesModal() {
+            this.$refs.playerHelpForRolesModal.show();
         },
     },
 };

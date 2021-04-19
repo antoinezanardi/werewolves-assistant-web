@@ -28,7 +28,7 @@
                         <div class="row h-100">
                             <div id="selected-role-panel" class="col-lg-4 col-12 visible-scrollbar">
                                 <div id="selected-role-thumbnail" class="row align-items-center justify-content-center">
-                                    <div class="col-12 d-flex justify-content-center text-center h-100 pt-1">
+                                    <div class="col-12 d-flex justify-content-center text-center h-100 pt-1 mt-1">
                                         <VueFlip v-model="selectedRoleThumbnail.flipped" height="100%" width="100%">
                                             <template #front>
                                                 <RoleImage class="h-100" :role="selectedRoleThumbnail.front"/>
