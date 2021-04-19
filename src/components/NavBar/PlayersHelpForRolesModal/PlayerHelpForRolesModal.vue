@@ -85,9 +85,13 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
     #or-text {
         text-align: center;
         font-size: 2rem;
+    }
+
+    .modal-backdrop.show {
+        opacity: 1;
     }
 </style>

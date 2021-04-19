@@ -122,10 +122,21 @@ class AudioManager {
 
     setAmbientVolume(volume) {
         this.ambient.volume = volume;
+        for (const dayMusic of this.ambient.dayMusics) {
+            dayMusic.volume(volume);
+        }
+        for (const nightMusic of this.ambient.nightMusics) {
+            nightMusic.volume(volume);
+        }
     }
 
     setSoundEffectsVolume(volume) {
         this.soundEffects.volume = volume;
+        for (const key in this.soundEffects.sounds) {
+            if (this.soundEffects.sounds[key]) {
+                this.soundEffects.sounds[key].volume(volume);
+            }
+        }
     }
 }
 

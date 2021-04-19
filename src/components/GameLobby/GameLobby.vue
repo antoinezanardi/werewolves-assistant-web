@@ -93,7 +93,8 @@
                                     <span v-html="$t('GameLobby.getRandomRepartition')"/>
                                 </SubmitButton>
                             </form>
-                            <button v-tooltip="$t('GameLobby.showGameRepartitionOptions')" class="btn btn-dark ml-2"
+                            <button id="random-repartition-options-button"
+                                    v-tooltip="$t('GameLobby.showGameRepartitionOptions')" class="btn btn-dark ml-2"
                                     :class="{ 'animate__animated animate__heartBeat': gameRepartitionOptionsModalButton.isHighlighted }"
                                     @click="showGameRepartitionOptionsModal">
                                 <i class="fa fa-cog"/>

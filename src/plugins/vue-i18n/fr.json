@@ -314,7 +314,7 @@
             }
         },
         "soundEffectsVolume": {
-            "label": "Volume de la musique",
+            "label": "Volume des bruitages",
             "description": {
                 "soundEffectsVolumeIsOff": "L'Assistant ne jouera aucun bruitage pendant les parties.",
                 "soundEffectsVolumeIsFull": "L'Assistant jouera des bruitages au volume maximal.",
@@ -502,12 +502,15 @@
         "optionsAreSaved": "Les options de répartition aléatoire sont enregistrées automatiquement après chaque changement"
     },
     "GameLobbyTutorial": {
-        "howToUseGameLobby": "Comment composer une équipe ?",
+        "howToUseGameLobby": "Comment créer une partie ?",
         "toStartAGame": "Pour lancer une partie, le maître du jeu doit renseigner 4 à 40 joueurs et leur attribuer un rôle.",
         "eachPlayerName": "Il peut renseigner le nom de chaque joueur ici.",
         "randomRepartition": "Une fois tous les joueurs ajoutés, il peut répartir aléatoirement les rôles. Il faut un minimum de 4 joueurs pour faire une répartition aléatoire.",
-        "gameOptionsCanBeChanged": "Les options de la partie ainsi que les paramètres de la répartition aléatoire peuvent être changés ici. Modifier les règles du jeu rend les parties plus originales et parfois même hasardeuses !",
-        "requirementsToStartAGame": "Pour pouvoir lancer une partie, les joueurs doivent être 4 minimum et tous posséder un rôle. La partie doit comporter au moins 1 Loup-Garou et 1 Villageois (avec ou sans pouvoir). Toutes les conditions se trouvent dans la bulle d'aide bleue."
+        "randomRepartitionOptions": "Les paramètres de la répartition aléatoire peuvent être modifiés ici.",
+        "gameOptionsCanBeChanged": "Envie d'ajouter un peu de fun ? Les options de la partie peuvent être changées ici. Modifier les règles du jeu rend les parties plus originales et parfois même hasardeuses !",
+        "additionalCardsAndPlayerPositionsCanBeSet": "C'est aussi à cet endroit que les cartes additionnelles (du Voleur par exemple), ou le positionnement des joueurs peuvent être définis.",
+        "requirementsToStartAGame": "Pour pouvoir lancer une partie, les joueurs doivent être 4 minimum et tous posséder un rôle. La partie doit comporter au moins 1 Loup-Garou et 1 Villageois (avec ou sans pouvoir). Toutes les conditions se trouvent dans la bulle d'aide bleue.",
+        "ifPlayersDontKnowRoles": "Dans le cas où les joueurs ne connaissent pas bien leur rôle ou ont des questions, un QR code est disponible ici pour les aider. Cette aide est disponible aussi pendant la partie."
     },
     "GameLobbyAlreadyHavePlayingGame": {
         "youAlreadyHavePlayingGame": "Vous avez déjà une partie en cours",

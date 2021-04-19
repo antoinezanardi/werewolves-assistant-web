@@ -6,7 +6,8 @@
         </a>
         <div class="navbar-nav d-flex w-100 justify-content-end">
             <div class="nav-item">
-                <a v-tooltip="$t('NavBar.playersDontKnowRoles')" class="nav-link" href="#" role="button" aria-haspopup="true"
+                <a id="player-help-for-roles-button"
+                   v-tooltip="$t('NavBar.playersDontKnowRoles')" class="nav-link" href="#" role="button" aria-haspopup="true"
                    @click.prevent="showPlayerHelpForRolesModal">
                     <i class="fa fa-qrcode"/>
                 </a>
