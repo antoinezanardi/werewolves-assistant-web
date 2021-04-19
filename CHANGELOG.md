@@ -6,6 +6,7 @@
 
 * [#154](https://github.com/antoinezanardi/werewolves-assistant-web/issues/154) - Facebook auth.
 * [#155](https://github.com/antoinezanardi/werewolves-assistant-web/issues/155) - Google auth.
+* [#158](https://github.com/antoinezanardi/werewolves-assistant-web/issues/158) - Game players position panel in game options.
 * [#183](https://github.com/antoinezanardi/werewolves-assistant-web/issues/183) - Audio options in parameters modal.
 * [#188](https://github.com/antoinezanardi/werewolves-assistant-web/issues/188) - Modal for helping players with roles.
 
@@ -47,7 +48,7 @@
 * `eslint-plugin-vue` updated to version `7.9.0`.
 * `particles.vue` updated to version `2.9.2`.
 * `qs` updated to version `6.10.1`.
-* `sweetalert2` updated to version `10.16.3`.
+* `sweetalert2` updated to version `10.16.4`.
 * `v-tooltip` updated to version `2.1.3`.
 * `vue-gtag` updated to version `1.14.0`.
 * `vue-i18n` updated to version `8.24.3`.

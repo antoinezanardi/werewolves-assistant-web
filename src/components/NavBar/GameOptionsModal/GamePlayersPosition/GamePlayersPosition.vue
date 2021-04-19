@@ -7,7 +7,15 @@
             </h3>
         </div>
         <div v-else>
-            <div class="row">
+            <div v-if="!game.canUpdateOptions">
+                <div class="row">
+                    <div class="col-12 text-warning d-flex align-items-center">
+                        <i class="fa fa-exclamation-triangle fa-2x mr-3 mb-1"/>
+                        <span v-html="$t('GamePlayersPosition.playersPositionCantBeUpdated')"/>
+                    </div>
+                </div>
+            </div>
+            <div v-else class="row">
                 <div class="col-12 text-center">
                     <button class="btn btn-outline-primary" @click="startTutorial">
                         <i class="fa fa-question-circle mr-2"/>
@@ -21,13 +29,14 @@
                     <i class="fa fa-arrow-up fa-2x"/>
                     <span v-html="$t('GamePlayersPosition.leftNeighbors')"/>
                 </div>
-                <Draggable id="player-positions-list" v-model="players" v-bind="dragOptions" class="col-lg-8 col-6 p-2"
-                           @start="isDragging = true" @end="isDragging = false">
+                <Draggable id="player-positions-list" v-model="players" v-bind="dragOptions" :move="canMovePlayers"
+                           class="col-lg-8 col-6 p-2" @start="isDragging = true" @end="isDragging = false">
                     <transition-group type="transition" :name="!isDragging ? 'flip-list' : null">
-                        <div v-for="player in players" :key="player.name" class="d-flex align-items-center player-handle">
+                        <div v-for="player in players" :key="player.name" class="d-flex align-items-center player-handle"
+                             :class="{ 'not-draggable': !canMovePlayers() }">
                             <RoleImage :role="player.role.current" class="player-role-image mr-2"/>
                             <span class="text-truncate flex-grow-1" v-html="player.name"/>
-                            <i class="fa fa-bars mr-2"/>
+                            <i v-if="canMovePlayers()" class="fa fa-bars mr-2"/>
                         </div>
                     </transition-group>
                 </Draggable>
@@ -92,6 +101,9 @@ export default {
         startTutorial() {
             this.$refs.gamePlayerPositionTutorial.startTour();
         },
+        canMovePlayers() {
+            return this.game.canUpdateOptions;
+        },
     },
 };
 </script>
@@ -103,6 +115,10 @@ export default {
         margin-bottom: 5px;
         padding: 3px;
         cursor: move;
+
+        &.not-draggable {
+            cursor: not-allowed;
+        }
 
         .player-role-image {
             width: 20px;

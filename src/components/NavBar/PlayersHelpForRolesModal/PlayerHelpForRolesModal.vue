@@ -10,7 +10,7 @@
                         </span>
                     </button>
                 </div>
-                <div class="modal-body text-center">
+                <div class="modal-body">
                     <div class="row">
                         <div class="col-12 d-flex align-items-center font-italic">
                             <i class="fa fa-question fa-2x text-warning mr-3"/>
@@ -24,7 +24,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12 small font-italic text-muted">
+                        <div class="col-12 small font-italic text-muted text-center">
                             <i class="fa fa-lightbulb mr-2"/>
                             <span v-html="$t('PlayerHelpForRolesModal.increaseLuminosity')"/>
                         </div>
@@ -74,6 +74,7 @@ export default {
     methods: {
         show() {
             $("#players-help-for-roles-modal").modal("show");
+            $(".modal-backdrop").addClass("blur");
         },
         onCopySuccess() {
             this.$toasted.success(this.$t("PlayerHelpForRolesModal.linkWasCopied"), { icon: "copy" });
@@ -89,9 +90,5 @@ export default {
     #or-text {
         text-align: center;
         font-size: 2rem;
-    }
-
-    .modal-backdrop.show {
-        opacity: 1;
     }
 </style>

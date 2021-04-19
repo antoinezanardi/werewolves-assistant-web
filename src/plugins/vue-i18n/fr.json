@@ -277,7 +277,8 @@
         "howToPlacePlayers": "Comment positionner les joueurs ?",
         "hasOnHisRight": "a à sa droite",
         "leftNeighbors": "Voisins de gauche",
-        "rightNeighbors": "Voisins de droite"
+        "rightNeighbors": "Voisins de droite",
+        "playersPositionCantBeUpdated": "La position des joueurs ne peut être modifiée en dehors de l'écran de composition de la partie."
     },
     "GamePlayersPositionTutorial": {
         "howToPlacePlayers": "Comment positionner les joueurs ?",
