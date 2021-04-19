@@ -27,11 +27,12 @@
 **🐺 Werewolves Assistant Web** is a Vue web app using the <a href="https://github.com/antoinezanardi/werewolves-assistant-api" target="_blank">Werewolves Assistant API</a>.
 Thanks to this app, being the game master of the Werewolves of Millers Hollow game is so easy ! 
 
-**🐺 Werewolves Assistant Web** provides to game masters:
-- A game lobby for creating a party starting from 4 to 20 players. Roles can be assigned randomly to save time.
-- A cool interface displaying all useful game's data to the game master.
+**🐺 Werewolves Assistant Web** provides some cool features :
+- A game lobby for creating a party starting from 4 to 40 players. Roles can be assigned randomly to save time. Game official rules can be changed to add fun and complexity. 
+- A cool interface displaying all useful game's data, player and their attributes, both sides (villagers and werewolves) and more.
 - For each turn, game master can fill every player's choices. The Assistant will consequently display deaths and events, manage the turns order and save all players choices.
-- At the end of the game, a complete summary with game's winner and what happened during the game.
+- Musics and sound effects are played during the game to set up the appropriate atmosphere depending on the situation. Obviously, you can manage those audio parameters.
+- At the end of the game, a complete summary with game's winner(s) and what happened during the game. You can also review your experience for helping the Assistant to improve.
 
 #### 🤔 Want to know more about this awesome project ? <a href="https://werewolves-assistant.antoinezanardi.fr/about" target="_blank">**Check out the dedicated about page**</a>.
 
@@ -42,13 +43,13 @@ Two versions are available for testing this project:
 
 🔧<a href="https://sandbox.werewolves-assistant.antoinezanardi.fr" target="_blank">**Sandbox version**</a>
 
-**Sandbox version** may contains some bugs and unexpected behaviors as its purpose is to test new features before deploying on **main version**.
+**Sandbox version** may contain some bugs and unexpected behaviors as its purpose is to test new features before deploying on **main version**.
 
 Both versions are running on a server with the following configuration:
 - **OS**: `Debian GNU/Linux 10 (buster)`
-- **NodeJS**: `v14.15.4`
-- **NPM**: `v6.14.0`
-- **MongoDB shell version**: `v4.4.3`
+- **NodeJS**: `v14.16.1`
+- **NPM**: `v6.14.12`
+- **MongoDB shell version**: `v4.4.5`
 
 The MongoDB database is protected under username and password authentication.
 

@@ -19,6 +19,10 @@
 
 * [#187](https://github.com/antoinezanardi/werewolves-assistant-web/issues/187) - Game repartition options in different modal.
 
+### 📚 Documentation
+
+* [#189](https://github.com/antoinezanardi/werewolves-assistant-web/issues/189) - Update README.md.
+
 ### 📦 Packages
 
 * `qrcode.vue` installed with version `1.7.0`.
