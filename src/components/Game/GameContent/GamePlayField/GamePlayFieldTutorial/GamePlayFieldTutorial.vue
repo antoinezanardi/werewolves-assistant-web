@@ -476,6 +476,15 @@ export default {
                         { header, target: "#play-submit-button", content: this.$t("GamePlayFieldTutorial.white-werewolf.eat.toValidateEat") },
                     ],
                 },
+                "fox": {
+                    sniff: [
+                        { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.fox.sniff.foxSniffsWhen`) },
+                        { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.fox.sniff.foxCanSniff`) },
+                        { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.fox.sniff.ifOnePlayerIsWerewolf`) },
+                        { header, target: "#fox-player", content: this.$t(`GamePlayFieldTutorial.fox.sniff.foxCanLoosePower`) },
+                        { header, target: "#play-submit-button", content: this.$t("GamePlayFieldTutorial.fox.sniff.toValidateSniff") },
+                    ],
+                },
             };
             return steps[firstWaiting.for] && steps[firstWaiting.for][firstWaiting.to] ? steps[firstWaiting.for][firstWaiting.to] : [];
         },

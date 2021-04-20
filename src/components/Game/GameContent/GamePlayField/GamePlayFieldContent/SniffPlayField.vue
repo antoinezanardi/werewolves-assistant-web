@@ -6,7 +6,7 @@
             </div>
         </div>
         <PlayFieldActionText :play="play" attribute="sniff" @player-selected="playerSelected"/>
-        <PlayerTargets :targets="targets" :play="play" attribute="sniff" class="flex-grow-1" @player-selected="playerSelected"/>
+        <PlayerTargets :targets="game.alivePlayers" :play="play" attribute="sniff" class="flex-grow-1" @player-selected="playerSelected"/>
     </div>
 </template>
 
@@ -25,12 +25,7 @@ export default {
             required: true,
         },
     },
-    computed: {
-        ...mapGetters("game", { game: "game" }),
-        targets() {
-            return this.game.alivePlayers.filter(({ _id }) => _id !== this.game.foxPlayer._id);
-        },
-    },
+    computed: { ...mapGetters("game", { game: "game" }) },
     methods: {
         playerSelected(payload) {
             this.$emit("player-selected", payload);

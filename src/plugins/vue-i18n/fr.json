@@ -916,6 +916,16 @@
                 "whiteWerewolfCanEat": "Le but du Loup-Garou Blanc est d'être le dernier survivant du Village. Pour cela, il peut, s'il le souhaite, manger l'un de ses congénères.",
                 "toValidateEat": "Pour passer à la suite, le Loup-Garou Blanc peut choisir de manger un autre Loup-Garou ou passer son tour."
             }
+        },
+        "fox": {
+            "sniff": {
+                "howToPlay": "Comment jouer le Renard ?",
+                "foxSniffsWhen": "Toutes les nuits, le Renard se réveille.",
+                "foxCanSniff": "Le Renard peut, s'il le souhaite, flairer un groupe de 3 joueurs en désignant la personne au centre de ce groupe.",
+                "ifOnePlayerIsWerewolf": "Si l'un de ces joueurs est dans le camp des Loups-Garous, le maître du jeu fera un pouce vers le haut ou vers le bas dans le cas contraire.",
+                "foxCanLoosePower": "Attention, le Renard perdra son pouvoir s'il l'utilise sur un groupe de joueurs où aucun d'entre eux n'est dans le camp des Loups-Garous.",
+                "toValidateSniff": "Pour passer à la suite, le Renard peut choisir un groupe de joueurs ou passer son tour."
+            }
         }
     },
     "PlayerAttribute": {
@@ -1246,12 +1256,18 @@
         "white-werewolf": {
             "no-eaten": "ne souhaite pas manger l'un de ses congénères",
             "eaten": "souhaite manger"
+        },
+        "fox": {
+            "no-sniff": "ne souhaite pas flairer un groupe de joueurs",
+            "sniff": "souhaite flairer",
+            "self-targeting-sniff": "lui-même"
         }
     },
     "CancelActionButton": {
         "cancel": "Annuler",
         "cancelTarget": "Annuler cette cible",
-        "cancelSide": "Annuler le choix du camp"
+        "cancelSide": "Annuler le choix du camp",
+        "chooseTargetIfNot": "Choisissez une cible dans le cas contraire"
     },
     "SelectAllTargetsButton": {
         "selectAll": "Tout sélectionner",
@@ -1352,7 +1368,7 @@
             "thiefChoosesCard": "Si le Voleur a choisi une carte, le maître du jeu va procéder à l'échange. Les deux cartes restantes sont replacées faces cachées au centre de la table.",
             "stutteringJudgeStarts": "Le Juge Bègue se réveille et va convenir d'un signe avec le maître du jeu. Ce signe réalisé pendant un vote en déclenchera un second juste après l'annonce de la victime.",
             "whiteWerewolfStarts": "Le Loup-Garou Blanc se réveille et va, s'il le souhaite, dévorer l'un de ses congénères.",
-            "foxStarts": "Le Renard se réveille et va, s'il le souhaite, renifler un groupe pour espérer débusquer un Loup-Garou."
+            "foxStarts": "Le Renard se réveille et va, s'il le souhaite, flaire un groupe de joueurs pour espérer débusquer un Loup-Garou."
         }
     },
     "Statistics": {

@@ -6,10 +6,17 @@
             <span v-html="$t('CancelActionButton.cancel')"/>
             <i class="fa fa-times-circle ml-2"/>
         </span>
+        <span v-else-if="!targetedPlayersForAttribute.length && game.isFirstWaitingSkippableAction"
+              class="text-muted d-flex align-items-center small font-italic font-weight-bold">
+            <i class="fa fa-chevron-down animate__animated animate__slow animate__swing animate__infinite mr-2"/>
+            <span v-html="$t('CancelActionButton.chooseTargetIfNot')"/>
+        </span>
     </transition>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
     name: "CancelActionButton",
     props: {
@@ -23,6 +30,7 @@ export default {
         },
     },
     computed: {
+        ...mapGetters("game", { game: "game" }),
         targetedPlayersForAttribute() {
             return this.play.targets.length ? this.play.targets.filter(target => target.attribute === this.attribute) : [];
         },
@@ -52,4 +60,10 @@ export default {
 </script>
 
 <style scoped>
+    .cancel-action-button {
+        padding: 5px 10px;
+        font-size: 1rem;
+        cursor: pointer;
+        color: #989898;
+    }
 </style>

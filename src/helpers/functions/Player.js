@@ -74,3 +74,26 @@ export function listPlayerNames(players) {
     }
     return playersText;
 }
+
+export function getNearestNeighbor(playerId, players, direction, options = {}) {
+    let checkedNeighborsCount = 0;
+    const player = players.find(({ _id }) => _id.toString() === playerId.toString());
+    if (!player) {
+        return null;
+    }
+    let checkingNeighborPosition = player.position;
+    while (checkedNeighborsCount < players.length) {
+        const checkingNeighbor = players[checkingNeighborPosition];
+        if (checkingNeighbor.position !== player.position && (!options.isAlive || checkingNeighbor.isAlive) &&
+            (!options.side || checkingNeighbor.side.current === options.side)) {
+            return checkingNeighbor;
+        }
+        if (direction === "left") {
+            checkingNeighborPosition = checkingNeighborPosition + 1 === players.length ? 0 : checkingNeighborPosition + 1;
+        } else if (direction === "right") {
+            checkingNeighborPosition = checkingNeighborPosition - 1 === -1 ? players.length - 1 : checkingNeighborPosition - 1;
+        }
+        checkedNeighborsCount++;
+    }
+    return null;
+}
