@@ -55,6 +55,7 @@ import cantVoteSVG from "@/assets/svg/attributes/cant-vote.svg";
 import thiefSVG from "@/assets/svg/roles/thief.svg";
 import stutteringJudgeSVG from "@/assets/svg/roles/stuttering-judge.svg";
 import whiteWerewolfSVG from "@/assets/svg/roles/white-werewolf.svg";
+import foxSVG from "@/assets/svg/roles/fox.svg";
 
 export default {
     name: "GamePlayFieldHeader",
@@ -195,6 +196,12 @@ export default {
                     eat: {
                         icon: whiteWerewolfSVG,
                         role: "white-werewolf",
+                    },
+                },
+                "fox": {
+                    sniff: {
+                        icon: foxSVG,
+                        role: "fox",
                     },
                 },
             },

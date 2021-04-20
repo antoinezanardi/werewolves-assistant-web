@@ -47,6 +47,7 @@ export function maxTargetLengthForPlayerAttribute(attribute) {
         "chosen-for-vote",
         "delegate",
         "shoot",
+        "sniff",
     ];
     const twoTargetsAttributes = ["in-love", "charmed"];
     if (oneTargetAttributes.includes(attribute)) {

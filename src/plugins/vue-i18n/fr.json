@@ -606,6 +606,9 @@
             },
             "white-werewolf": {
                 "eat": "Au tour du Loup-Garou Blanc"
+            },
+            "fox": {
+                "sniff": "Au tour du Renard"
             }
         }
     },
@@ -955,6 +958,10 @@
         "none": "Personne",
         "playerHasVoted": "Ce joueur a voté",
         "cantVote": "n'a pas le droit de voter"
+    },
+    "PlayerVoter": {
+        "voterWantsThisPlayerToBeSheriff": "{name} vote pour que ce joueur soit maire",
+        "voterWantsThisPlayerToBeHanged": "{name} vote pour que ce joueur soit pendu"
     },
     "GameVillagersSide": {
         "villagers": "Villageois",
@@ -1344,7 +1351,8 @@
             "gameMasterWillFlipAdditionalCards": "Le maître du jeu va retourner les cartes additionnelles destinées au Voleur pour qu'il en prenne connaissance et puisse faire son choix.",
             "thiefChoosesCard": "Si le Voleur a choisi une carte, le maître du jeu va procéder à l'échange. Les deux cartes restantes sont replacées faces cachées au centre de la table.",
             "stutteringJudgeStarts": "Le Juge Bègue se réveille et va convenir d'un signe avec le maître du jeu. Ce signe réalisé pendant un vote en déclenchera un second juste après l'annonce de la victime.",
-            "whiteWerewolfStarts": "Le Loup-Garou Blanc se réveille et va, s'il le souhaite, dévorer l'un de ses congénères."
+            "whiteWerewolfStarts": "Le Loup-Garou Blanc se réveille et va, s'il le souhaite, dévorer l'un de ses congénères.",
+            "foxStarts": "Le Renard se réveille et va, s'il le souhaite, renifler un groupe pour espérer débusquer un Loup-Garou."
         }
     },
     "Statistics": {

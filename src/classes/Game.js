@@ -278,7 +278,7 @@ class Game {
 
     get expectedTargetsLength() {
         const { to } = this.firstWaiting;
-        const oneTargetActions = ["look", "eat", "protect", "shoot", "settle-votes", "delegate", "choose-model", "use-potion"];
+        const oneTargetActions = ["look", "eat", "protect", "shoot", "settle-votes", "delegate", "choose-model", "use-potion", "sniff"];
         const twoTargetsActions = ["charm"];
         const noLimitActions = ["ban-voting"];
         if (oneTargetActions.includes(to) || to === "charm" && this.piedPiperTargets.length === 1) {
@@ -462,6 +462,10 @@ class Game {
 
     get piedPiperTargets() {
         return this.alivePlayers.filter(player => player.role.current !== "pied-piper" && !player.hasAttribute("charmed"));
+    }
+
+    get foxPlayer() {
+        return this.getPlayerWithRole("fox");
     }
 
     canStutteringJudgeRequestVote(hasChosenSign, hasRequestedVote) {

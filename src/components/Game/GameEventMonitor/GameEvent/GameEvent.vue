@@ -299,6 +299,10 @@ export default {
                     messages: [i18n.t("GameEvent.messages.whiteWerewolfStarts")],
                     soundEffect: "white-werewolf-plays",
                 },
+                "fox-turn": {
+                    messages: [i18n.t("GameEvent.messages.foxStarts")],
+                    soundEffect: "fox-plays",
+                },
             };
         },
         hasGameEventTargets() {
