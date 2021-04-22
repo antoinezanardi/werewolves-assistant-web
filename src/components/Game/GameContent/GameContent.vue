@@ -141,6 +141,8 @@ export default {
                     this.events.push(new GameEvent({ type: `no-death-after-votes`, targets: this.game.history[0].play.targets }));
                 } else if (lastGameHistoryEntry.play.action === "choose-card") {
                     this.events.push(new GameEvent({ type: `thief-chooses-card`, targets: [{ player: this.game.originalThiefPlayer }] }));
+                } else if (lastGameHistoryEntry.play.action === "sniff") {
+                    this.events.push(new GameEvent({ type: `fox-sniffs`, targets: this.game.history[0].play.targets }));
                 }
             }
         },

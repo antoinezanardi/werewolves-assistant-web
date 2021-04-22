@@ -967,11 +967,13 @@
         "voteFor": "Vote pour",
         "none": "Personne",
         "playerHasVoted": "Ce joueur a voté",
-        "cantVote": "n'a pas le droit de voter"
+        "cantVote": "n'a pas le droit de voter",
+        "playerIsRavenMarked": "Ce joueur a 1 vote contre lui à cause de la marque du Corbeau | Ce joueur a {markPenalty} votes contre lui à cause de la marque du Corbeau"
     },
     "PlayerVoter": {
         "voterWantsThisPlayerToBeSheriff": "{name} vote pour que ce joueur soit maire",
-        "voterWantsThisPlayerToBeHanged": "{name} vote pour que ce joueur soit pendu"
+        "voterWantsThisPlayerToBeHanged": "{name} vote pour que ce joueur soit pendu",
+        "voteIsDoubled": "Étant le maire, son vote compte double"
     },
     "GameVillagersSide": {
         "villagers": "Villageois",
@@ -1267,7 +1269,8 @@
         "cancel": "Annuler",
         "cancelTarget": "Annuler cette cible",
         "cancelSide": "Annuler le choix du camp",
-        "chooseTargetIfNot": "Choisissez une cible dans le cas contraire"
+        "chooseTargetIfNot": "Choisissez une cible dans le cas contraire",
+        "pleaseChooseTarget": "Veuillez choisir une cible"
     },
     "SelectAllTargetsButton": {
         "selectAll": "Tout sélectionner",
@@ -1368,7 +1371,10 @@
             "thiefChoosesCard": "Si le Voleur a choisi une carte, le maître du jeu va procéder à l'échange. Les deux cartes restantes sont replacées faces cachées au centre de la table.",
             "stutteringJudgeStarts": "Le Juge Bègue se réveille et va convenir d'un signe avec le maître du jeu. Ce signe réalisé pendant un vote en déclenchera un second juste après l'annonce de la victime.",
             "whiteWerewolfStarts": "Le Loup-Garou Blanc se réveille et va, s'il le souhaite, dévorer l'un de ses congénères.",
-            "foxStarts": "Le Renard se réveille et va, s'il le souhaite, flaire un groupe de joueurs pour espérer débusquer un Loup-Garou."
+            "foxStarts": "Le Renard se réveille et va, s'il le souhaite, flaire un groupe de joueurs pour espérer débusquer un Loup-Garou.",
+            "foxSniffs": "Le Renard a décidé de flairer un potentiel canidé dans un groupe de joueurs. La maître du jeu va devoir mimer la phrase suivante au Renard.",
+            "foxFoundWerewolf": "Le Renard a flairé un Loup-Garou ! Faites un pouce vers le haut pour l'informer du résultat de son enquête.",
+            "foxDidntFindWerewolf": "Le Renard n'a flairé aucun Loup-Garou ! Faites un pouce vers le bas pour l'informer du résultat de son enquête."
         }
     },
     "Statistics": {

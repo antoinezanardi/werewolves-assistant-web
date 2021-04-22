@@ -12,6 +12,7 @@
 
 ### 🌟 Enhancements
 
+* [#156](https://github.com/antoinezanardi/werewolves-assistant-web/issues/156) - List of voters against one player below him.
 * [#180](https://github.com/antoinezanardi/werewolves-assistant-web/issues/180) - Role types.
 * [#182](https://github.com/antoinezanardi/werewolves-assistant-web/issues/182) - Accordions in About page for roles.
 * [#185](https://github.com/antoinezanardi/werewolves-assistant-web/issues/185) - Reset base rules button in game roles options.
@@ -34,8 +35,8 @@
 * `vue-slider-component` installed with version `3.2.11`.
 * `vuedraggable` installed with version `2.24.3`.
 * `@fortawesome/fontawesome-free` updated to version `5.15.3`.
-* `@sentry/browser` updated to version `6.2.5`.
-* `@sentry/integrations` updated to version `6.2.5`.
+* `@sentry/browser` updated to version `6.3.0`.
+* `@sentry/integrations` updated to version `6.3.0`.
 * `@vue/cli-plugin-e2e-cypress` updated to version `4.5.12`.
 * `@vue/cli-plugin-eslint` updated to version `4.5.12`.
 * `@vue/cli-plugin-router` updated to version `4.5.12`.

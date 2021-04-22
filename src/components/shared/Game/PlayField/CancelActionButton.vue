@@ -6,10 +6,9 @@
             <span v-html="$t('CancelActionButton.cancel')"/>
             <i class="fa fa-times-circle ml-2"/>
         </span>
-        <span v-else-if="!targetedPlayersForAttribute.length && game.isFirstWaitingSkippableAction"
-              class="text-muted d-flex align-items-center small font-italic font-weight-bold">
+        <span v-else class="text-muted d-flex align-items-center small font-italic font-weight-bold">
             <i class="fa fa-chevron-down animate__animated animate__slow animate__swing animate__infinite mr-2"/>
-            <span v-html="$t('CancelActionButton.chooseTargetIfNot')"/>
+            <span v-html="noTargetSelectedText"/>
         </span>
     </transition>
 </template>
@@ -41,6 +40,12 @@ export default {
                 return this.$t("CancelActionButton.cancelSide");
             }
             return "";
+        },
+        noTargetSelectedText() {
+            if (this.game.isFirstWaitingSkippableAction) {
+                return this.$t("CancelActionButton.chooseTargetIfNot");
+            }
+            return this.$t("CancelActionButton.pleaseChooseTarget");
         },
     },
     methods: {

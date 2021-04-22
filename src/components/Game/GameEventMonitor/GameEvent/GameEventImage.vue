@@ -50,6 +50,7 @@ import ravenMarkSVG from "@/assets/svg/attributes/raven-marked.svg";
 import eatenSVG from "@/assets/svg/attributes/eaten.svg";
 import voteSVG from "@/assets/svg/actions/vote.svg";
 import thiefSVG from "@/assets/svg/roles/thief.svg";
+import foxSVG from "@/assets/svg/roles/fox.svg";
 
 export default {
     name: "GameEventImage",
@@ -98,6 +99,7 @@ export default {
                 "player-starts-game-revealed": seenSVG,
                 "no-death-after-votes": voteSVG,
                 "thief-chooses-card": thiefSVG,
+                "fox-sniffs": foxSVG,
             };
             return effectGameEventTypeImageSource[this.event.type];
         },

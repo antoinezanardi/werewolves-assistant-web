@@ -303,10 +303,22 @@ export default {
                     messages: [i18n.t("GameEvent.messages.foxStarts")],
                     soundEffect: "fox-plays",
                 },
+                "fox-sniffs": {
+                    messages: [
+                        ...insertIf(!this.hasGameEventTargets, i18n.t("GameEvent.messages.foxSkipsHisTurn")),
+                        ...insertIf(this.hasGameEventTargets, i18n.t("GameEvent.messages.foxSniffs")),
+                        ...insertIf(this.hasGameEventTargets && this.doTargetsIncludeWerewolf, i18n.t("GameEvent.messages.foxFoundWerewolf")),
+                        ...insertIf(this.hasGameEventTargets && !this.doTargetsIncludeWerewolf, i18n.t("GameEvent.messages.foxDidntFoundWerewolf")),
+                    ],
+                    soundEffect: "fox-plays",
+                },
             };
         },
         hasGameEventTargets() {
             return !!this.event.targets.length;
+        },
+        doTargetsIncludeWerewolf() {
+            return this.event.targets.find(({ player }) => player.side.current === "werewolves");
         },
         gameEventMessages() {
             return this.gameEventMetadata[this.event.type] ? this.gameEventMetadata[this.event.type].messages : [];

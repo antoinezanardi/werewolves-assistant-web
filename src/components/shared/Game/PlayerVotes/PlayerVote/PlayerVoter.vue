@@ -1,5 +1,5 @@
 <template>
-    <i v-tooltip="voterTooltip" class="fa fa-user mx-1"/>
+    <i v-tooltip="voterTooltip" class="fa mx-1" :class="voterClasses"/>
 </template>
 
 <script>
@@ -17,10 +17,22 @@ export default {
     computed: {
         ...mapGetters("game", { game: "game" }),
         voterTooltip() {
+            let content;
             if (this.game.firstWaiting.to === "vote") {
-                return this.$t("PlayerVoter.voterWantsThisPlayerToBeHanged", this.player);
+                content = this.$t("PlayerVoter.voterWantsThisPlayerToBeHanged", this.player);
+                if (this.hasVoterDoubleVote) {
+                    content += `<hr class="bg-dark my-1"/><span class="font-italic">${this.$t("PlayerVoter.voteIsDoubled")}</span>`;
+                }
+            } else {
+                content = this.$t("PlayerVoter.voterWantsThisPlayerToBeSheriff", this.player);
             }
-            return this.$t("PlayerVoter.voterWantsThisPlayerToBeSheriff", this.player);
+            return { content };
+        },
+        voterClasses() {
+            return this.player.hasActiveAttribute("sheriff", this.game) ? "fa-user text-warning" : "fa-user";
+        },
+        hasVoterDoubleVote() {
+            return this.player.hasActiveAttribute("sheriff", this.game) && this.game.options.roles.sheriff.hasDoubledVote;
         },
     },
 };

@@ -25,6 +25,8 @@
         <div class="player-voters mt-1">
             <transition-group tag="div" name="translate-down-fade">
                 <PlayerVoter v-for="voter of votersAgainstPlayer" :key="voter._id" :player="voter"/>
+                <i v-if="player.hasActiveAttribute('raven-marked', game)" key="raven-mark" v-tooltip="ravenMarkTooltip"
+                   class="fa fa-crow mx-1"/>
             </transition-group>
         </div>
     </div>
@@ -74,6 +76,10 @@ export default {
         },
         voteText() {
             return this.player.canVote(this.game) ? this.$t("PlayerVote.voteFor") : this.$t("PlayerVote.cantVote");
+        },
+        ravenMarkTooltip() {
+            const { markPenalty } = this.game.options.roles.raven;
+            return this.$tc("PlayerVote.playerIsRavenMarked", markPenalty, { markPenalty });
         },
     },
     methods: {
