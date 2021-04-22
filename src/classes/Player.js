@@ -50,6 +50,14 @@ class Player {
     canVote(game) {
         return !this.hasActiveAttribute("cant-vote", game);
     }
+
+    get isInWerewolvesSide() {
+        return this.side.current === "werewolves";
+    }
+
+    get isInVillagersSide() {
+        return this.side.current === "villagers";
+    }
 }
 
 export default Player;

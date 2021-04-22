@@ -944,7 +944,8 @@
             "charmed": "Ce joueur a été charmé par le Joueur de Flûte",
             "cantVoteByScapegoat": "Ce joueur est interdit de vote par le Bouc-Émissaire",
             "cantVoteByAll": "Ce joueur est interdit de vote par le village",
-            "powerless": "Ce joueur n'a plus de pouvoir à cause de la vengeance de l'Ancien"
+            "powerlessByAncient": "Ce joueur n'a plus de pouvoir à cause de la vengeance de l'Ancien",
+            "powerlessByFox": "Le Renard a perdu son pouvoir car il a flairé un groupe composé entièrement de Villageois"
         },
         "remainingPhases": "Plus qu'une phase (jour ou nuit) pour que l'effet disparaisse | Il reste {remainingPhases} phases (jour ou nuit) avant que l'effet ne disparaisse",
         "endlessAttribute": "Cet effet restera jusqu'à la fin de la partie ou la mort du joueur",
@@ -1151,6 +1152,9 @@
             },
             "white-werewolf": {
                 "eat": "a décidé de manger"
+            },
+            "fox": {
+                "sniff": "a flairé le groupe"
             }
         },
         "consequences": {
@@ -1160,7 +1164,9 @@
             "stutteringJudgeRequestedVote": "Le Juge Bègue a demandé un nouveau vote après l'annonce des résultats de celui-ci.",
             "votesNoDeath": "Aucun joueur n'est mort de cette pendaison.",
             "ravenMarked": "Le joueur aura {markPenalty} voix d'office contre lui au prochain vote. (Ceci peut être modifié dans les options de la partie)",
-            "votesNeedSettlement": "Dû à l'égalité des votes, les ex æquo doivent être départagés."
+            "votesNeedSettlement": "Dû à l'égalité des votes, les ex æquo doivent être départagés.",
+            "foxFoundWerewolf": "Le Renard a flairé un ou plusieurs Loups-Garous dans ce groupe de joueurs.",
+            "foxDidntFindWerewolfAndBecamePowerless": "Le Renard n'a trouvé aucun Loup-Garou dans ce groupe de joueurs et a donc perdu son pouvoir."
         },
         "skipTurn": "a passé son tour",
         "remarksOnPlay": "Remarques sur cette action"
@@ -1279,7 +1285,8 @@
         "cancelTarget": "Annuler cette cible",
         "cancelSide": "Annuler le choix du camp",
         "chooseTargetIfNot": "Choisissez une cible dans le cas contraire",
-        "pleaseChooseTarget": "Veuillez choisir une cible"
+        "pleaseChooseTarget": "Veuillez choisir une cible",
+        "pleaseChooseSide": "Veuillez choisir un camp"
     },
     "SelectAllTargetsButton": {
         "selectAll": "Tout sélectionner",

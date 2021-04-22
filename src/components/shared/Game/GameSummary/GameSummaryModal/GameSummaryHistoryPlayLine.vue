@@ -72,6 +72,7 @@ import cantVoteSVG from "@/assets/svg/attributes/cant-vote.svg";
 import thiefSVG from "@/assets/svg/roles/thief.svg";
 import stutteringJudgeSVG from "@/assets/svg/roles/stuttering-judge.svg";
 import whiteWerewolfSVG from "@/assets/svg/roles/white-werewolf.svg";
+import foxSVG from "@/assets/svg/roles/fox.svg";
 import RoleImage from "@/components/shared/Game/Role/RoleImage";
 import RoleText from "@/components/shared/Game/Role/RoleText";
 import { insertIf } from "@/helpers/functions/Array";
@@ -119,6 +120,7 @@ export default {
                 "thief": { "choose-card": thiefSVG },
                 "stuttering-judge": { "choose-sign": stutteringJudgeSVG },
                 "white-werewolf": { eat: whiteWerewolfSVG },
+                "fox": { sniff: foxSVG },
             };
             return actionImageSource[play.source.name] ? actionImageSource[play.source.name][play.action] : undefined;
         },
@@ -176,6 +178,10 @@ export default {
                     this.$t(`${consequencesText}.ravenMarked`, { markPenalty: options.roles.raven.markPenalty })),
                 ...insertIf(action === "choose-card" && areAllAdditionalCardsWerewolves(thiefAdditionalCards),
                     this.$t(`${consequencesText}.thiefMustChooseCard`)),
+                ...insertIf(action === "sniff" && targets.length && targets.some(({ player }) => player.isInWerewolvesSide),
+                    this.$t(`${consequencesText}.foxFoundWerewolf`)),
+                ...insertIf(action === "sniff" && targets.length && targets.every(({ player }) => player.isInVillagersSide),
+                    this.$t(`${consequencesText}.foxDidntFindWerewolfAndBecamePowerless`)),
             ];
         },
     },

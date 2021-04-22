@@ -42,7 +42,9 @@ export default {
             return "";
         },
         noTargetSelectedText() {
-            if (this.game.isFirstWaitingSkippableAction) {
+            if (this.game.isFirstWaitingChooseSideAction) {
+                return this.$t("CancelActionButton.pleaseChooseSide");
+            } else if (this.game.isFirstWaitingSkippableAction) {
                 return this.$t("CancelActionButton.chooseTargetIfNot");
             }
             return this.$t("CancelActionButton.pleaseChooseTarget");

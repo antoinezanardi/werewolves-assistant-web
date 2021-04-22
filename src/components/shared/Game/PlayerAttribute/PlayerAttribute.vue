@@ -126,7 +126,11 @@ export default {
                 },
                 "powerless": {
                     ancient: {
-                        tooltip: this.$t("PlayerAttribute.attributes.powerless"),
+                        tooltip: this.$t("PlayerAttribute.attributes.powerlessByAncient"),
+                        SVG: powerlessSVG,
+                    },
+                    fox: {
+                        tooltip: this.$t("PlayerAttribute.attributes.powerlessByFox"),
                         SVG: powerlessSVG,
                     },
                 },

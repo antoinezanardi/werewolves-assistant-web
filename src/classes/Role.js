@@ -15,11 +15,11 @@ class Role {
         return !roleCount || this.minInGame <= roleCount;
     }
 
-    get isInWerewolfSide() {
+    get isInWerewolvesSide() {
         return this.side === "werewolves";
     }
 
-    get isInVillagerSide() {
+    get isInVillagersSide() {
         return this.side === "villagers";
     }
 }

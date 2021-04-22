@@ -34,7 +34,7 @@
                                 <i class="fa fa-trophy text-warning mr-2"/>
                                 <span v-html="$t('GameSummaryModal.gameResults')"/>
                             </h4>
-                            <hr class="bg-dark"/>
+                            <hr class="bg-dark my-1"/>
                             <div class="row">
                                 <div class="col-12 text-center">
                                     <GameResult/>
@@ -88,7 +88,7 @@
                                     <Loading :text="$t('GameSummaryModal.loadingGameHistory')"/>
                                 </div>
                                 <div v-else-if="gameHistory" id="game-summary-history" key="game-summary-history" class="h-100">
-                                    <h4 class="text-center mt-2 mb-3">
+                                    <h4 class="text-center my-2">
                                         <i class="fa fa-clock mr-2"/>
                                         <span v-html="$t('GameSummaryModal.gameHistory')"/>
                                     </h4>

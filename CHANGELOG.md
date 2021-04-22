@@ -6,6 +6,7 @@
 
 * [#154](https://github.com/antoinezanardi/werewolves-assistant-web/issues/154) - Facebook auth.
 * [#155](https://github.com/antoinezanardi/werewolves-assistant-web/issues/155) - Google auth.
+* [#157](https://github.com/antoinezanardi/werewolves-assistant-web/issues/157) - Fox role.
 * [#158](https://github.com/antoinezanardi/werewolves-assistant-web/issues/158) - Game players position panel in game options.
 * [#183](https://github.com/antoinezanardi/werewolves-assistant-web/issues/183) - Audio options in parameters modal.
 * [#188](https://github.com/antoinezanardi/werewolves-assistant-web/issues/188) - Modal for helping players with roles.
