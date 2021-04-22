@@ -1018,6 +1018,15 @@
             "white-werewolf": "Partie gagnée par le Loup-Garou Blanc",
             "angel": "Partie gagnée par l'Ange",
             "nobody": "Match nul ! Aucun survivant dans le village..."
+        },
+        "wonBecause": {
+            "werewolves": "Tous les joueurs dans le camp des Villageois sont morts. Les Loups-Garous sont enfin repus.",
+            "villagers": "Tous les joueurs dans le camp des Loups-Garous sont morts. Le village est de nouveau en paix.",
+            "lovers": "Les joueurs touchés par la flèche de Cupidon sont les deux seuls survivants du village, en dépit de leur camp initial. L'amour a triomphé des camps ennemis.",
+            "pied-piper": "Le Joueur de Flûte a réussi à rester en vie tout en charmant tous les autres joueurs vivants. Une victoire royale pour le musicien.",
+            "white-werewolf": "Le Loup-Garou Blanc est le dernier survivant du village, trahissant ces compères tout en festoyant avec eux. Une victoire aussi difficile à obtenir que satisfaisante pour le dernier des Loups-Garous.",
+            "angel": "L'Ange a été tué pendant le tout premier vote du village ou lors de la première nuit par les Loups-Garous. Il retourne donc au Paradis avec un sentiment de victoire certain.",
+            "nobody": "Tout le monde s'est entretué sans laisser aucun survivant. Un silence macabre plane sur le village et ses alentours..."
         }
     },
     "GameCanceled": {
@@ -1371,7 +1380,8 @@
             "thiefChoosesCard": "Si le Voleur a choisi une carte, le maître du jeu va procéder à l'échange. Les deux cartes restantes sont replacées faces cachées au centre de la table.",
             "stutteringJudgeStarts": "Le Juge Bègue se réveille et va convenir d'un signe avec le maître du jeu. Ce signe réalisé pendant un vote en déclenchera un second juste après l'annonce de la victime.",
             "whiteWerewolfStarts": "Le Loup-Garou Blanc se réveille et va, s'il le souhaite, dévorer l'un de ses congénères.",
-            "foxStarts": "Le Renard se réveille et va, s'il le souhaite, flaire un groupe de joueurs pour espérer débusquer un Loup-Garou.",
+            "foxStarts": "Le Renard se réveille et va, s'il le souhaite, flairer un groupe de joueurs pour espérer débusquer un Loup-Garou.",
+            "foxSkipsHisTurn": "Le Renard a décidé de ne pas utiliser son pouvoir cette nuit.",
             "foxSniffs": "Le Renard a décidé de flairer un potentiel canidé dans un groupe de joueurs. La maître du jeu va devoir mimer la phrase suivante au Renard.",
             "foxFoundWerewolf": "Le Renard a flairé un Loup-Garou ! Faites un pouce vers le haut pour l'informer du résultat de son enquête.",
             "foxDidntFindWerewolf": "Le Renard n'a flairé aucun Loup-Garou ! Faites un pouce vers le bas pour l'informer du résultat de son enquête."

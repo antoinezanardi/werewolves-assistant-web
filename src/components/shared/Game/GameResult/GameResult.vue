@@ -4,6 +4,7 @@
         <img :src="SVGs.trophy" width="100" alt="Trophy"
              :class="{ 'animate__animated animate__tada animate__infinite animate__slower': game.won.by, 'no-winner': !game.won.by }"/>
         <h2 class="mt-4" v-html="winnersText"/>
+        <h6 class="mt-2 font-italic" v-html="winnersExplanationText"/>
     </div>
 </template>
 
@@ -39,6 +40,10 @@ export default {
         winnersText() {
             const winners = this.game.won.by ? this.game.won.by : "nobody";
             return this.$tc(`GameResult.wonBy.${winners}`, this.winners.length);
+        },
+        winnersExplanationText() {
+            const winners = this.game.won.by ? this.game.won.by : "nobody";
+            return this.$tc(`GameResult.wonBecause.${winners}`, this.winners.length);
         },
         winners() {
             const winners = {

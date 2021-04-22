@@ -17,6 +17,7 @@
 * [#182](https://github.com/antoinezanardi/werewolves-assistant-web/issues/182) - Accordions in About page for roles.
 * [#185](https://github.com/antoinezanardi/werewolves-assistant-web/issues/185) - Reset base rules button in game roles options.
 * [#186](https://github.com/antoinezanardi/werewolves-assistant-web/issues/186) - Save game roles options in user preferences.
+* [#190](https://github.com/antoinezanardi/werewolves-assistant-web/issues/190) - Sentence for explaining why this group or player won.
 
 ### ♻️ Refactoring
 
