@@ -628,7 +628,8 @@
             "guard-cant-protect-little-girl": "La Petite Fille est pleine crise de préadolescence, la protection du Salvateur sera sans effet sur elle si elle se fait manger par les Loups-Garous...",
             "pied-piper-will-loose-powers-if-infected": "Si le Joueur de Flûte est infecté, il perdra son pouvoir de charme et abandonnera son but de gagner la partie en charmant tout les joueurs vivants."
         },
-        "shareThisWithPlayers": "Partager cette information avec les joueurs peut rendre la partie un peu plus intéressante."
+        "shareThisWithPlayers": "Partager cette information avec les joueurs peut rendre la partie un peu plus intéressante.",
+        "keepThisForYourself": "Les rôles présents ont été cachés en début de partie. Réfléchissez à deux fois avant de partager une information aux joueurs pour garder du suspens."
     },
     "GamePlayField": {
         "cantLoadGame": "Chargement impossible",
@@ -945,7 +946,10 @@
             "cantVoteByScapegoat": "Ce joueur est interdit de vote par le Bouc-Émissaire",
             "cantVoteByAll": "Ce joueur est interdit de vote par le village",
             "powerlessByAncient": "Ce joueur n'a plus de pouvoir à cause de la vengeance de l'Ancien",
-            "powerlessByFox": "Le Renard a perdu son pouvoir car il a flairé un groupe composé entièrement de Villageois"
+            "powerlessByFox": "Le Renard a perdu son pouvoir car il a flairé un groupe composé entièrement de Villageois",
+            "bearGrowls": "L'Ours du Montreur grogne car l'un de ses voisins est un Loup-Garou.",
+            "bearGrowlsMaybeInfected": "L'Ours du Montreur grogne car l'un de ses voisins est un Loup-Garou ou parce qu'il est lui-même infecté."
+
         },
         "remainingPhases": "Plus qu'une phase (jour ou nuit) pour que l'effet disparaisse | Il reste {remainingPhases} phases (jour ou nuit) avant que l'effet ne disparaisse",
         "endlessAttribute": "Cet effet restera jusqu'à la fin de la partie ou la mort du joueur",
@@ -1286,7 +1290,8 @@
         "cancelSide": "Annuler le choix du camp",
         "chooseTargetIfNot": "Choisissez une cible dans le cas contraire",
         "pleaseChooseTarget": "Veuillez choisir une cible",
-        "pleaseChooseSide": "Veuillez choisir un camp"
+        "pleaseChooseSide": "Veuillez choisir un camp",
+        "pleaseChooseCard": "Veuillez choisir une carte"
     },
     "SelectAllTargetsButton": {
         "selectAll": "Tout sélectionner",
@@ -1325,6 +1330,7 @@
         "messages": {
             "welcomeToTheVillage": "Bienvenue à tous dans le village de Thiercelieux !",
             "compositionIs": "Ce village de {inhabitantCount} habitants se compose de ",
+            "compositionIsHidden": "Ce village de {inhabitantCount} habitants. La composition de la partie étant cachée, les rôles présents seront tus par le maître du jeu. Les joueurs devront les découvrir au fur et à mesure de la partie.",
             "moreRolesBecauseOfThief": "Attention, le Voleur est dans la partie ! Ce joueur pourra échanger son rôle avec un autre qui n'a pas été annoncé dans la composition.",
             "looksLifeSomeWerewolvesIntroducedThemselves": "Il semblerait qu'un ou plusieurs Loups-Garous se soient faufilés dans le village...",
             "villagersMurderWerewolves": "Villageois, prenez les fourches et nettoyez votre village de ces canidés !",
@@ -1334,6 +1340,7 @@
             "gameStartsWithVoteBecauseOfAngel": "La partie commence par un vote du village car l'Ange est présent. S'il meurt de ce vote, il gagnera instantanément la partie !",
             "playerDies": "{player} est mort ! Quelle tragédie...",
             "playerRevealsRole": "Il ou elle révèle son rôle aux survivants.",
+            "playerDoesntRevealRole": "Il ou elle garde sa carte face cachée. Les morts emportent leur rôle dans leur tombe dans cette partie.",
             "noIdiotSheriffAnymore": "Étant donné que le maire était en réalité l'Idiot, il ne délèguera pas sa fonction. Quel idiot !",
             "ancientTakesHisRevenge": "L'Ancien est mort par l'un des Villageois ...! Sa vengeance sera terrible : tous les joueurs dans le camp des Villageois perdent leurs pouvoirs pour le reste de la partie.",
             "playerHasBeenPromotedSheriff": "{player} a été élu maire !",
@@ -1391,7 +1398,10 @@
             "foxSkipsHisTurn": "Le Renard a décidé de ne pas utiliser son pouvoir cette nuit.",
             "foxSniffs": "Le Renard a décidé de flairer un potentiel canidé dans un groupe de joueurs. La maître du jeu va devoir mimer la phrase suivante au Renard.",
             "foxFoundWerewolf": "Le Renard a flairé un Loup-Garou ! Faites un pouce vers le haut pour l'informer du résultat de son enquête.",
-            "foxDidntFindWerewolf": "Le Renard n'a flairé aucun Loup-Garou ! Faites un pouce vers le bas pour l'informer du résultat de son enquête."
+            "foxDidntFindWerewolf": "Le Renard n'a flairé aucun Loup-Garou ! Faites un pouce vers le bas pour l'informer du résultat de son enquête.",
+            "bearGrowls": "L'Ours du Montreur grogne...!",
+            "growlsBecauseWerewolves": "Cela veut dire que son voisin de gauche ou de droite (ou les deux) est un Loup-Garou !",
+            "growBecauseInfected": "Ou alors ... le Montreur d'Ours a été infecté et est lui-même un Loup-Garou !"
         }
     },
     "Statistics": {

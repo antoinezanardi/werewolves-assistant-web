@@ -152,7 +152,11 @@ export default {
             } else if (this.game.history.length &&
                 (this.game.phase !== this.game.history[0].phase || this.game.turn !== this.game.history[0].turn)) {
                 const event = this.game.phase === "day" ? new GameEvent({ type: "day-rises" }) : new GameEvent({ type: "night-falls" });
-                return this.events.push(event);
+                this.events.push(event);
+                const { bearTamerPlayer } = this.game;
+                if (event.type === "day-rises" && bearTamerPlayer && bearTamerPlayer.hasActiveAttribute("growls", this.game)) {
+                    this.events.push({ type: `bear-growls`, targets: [{ player: bearTamerPlayer }] });
+                }
             }
         },
         generatePlayerStartsGameRevealedEvents() {

@@ -468,6 +468,10 @@ class Game {
         return this.getPlayerWithRole("fox");
     }
 
+    get bearTamerPlayer() {
+        return this.getPlayerWithRole("bear-tamer");
+    }
+
     canStutteringJudgeRequestVote(hasChosenSign, hasRequestedVote) {
         return !!this.stutteringJudgePlayer && this.stutteringJudgePlayer.isAliveAndPowerful && hasChosenSign && !hasRequestedVote;
     }

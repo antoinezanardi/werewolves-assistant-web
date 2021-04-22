@@ -11,9 +11,13 @@
                     <span v-html="$t(`GamePlayAlert.description.${type}`)"/>
                 </div>
                 <hr class="bg-light my-2"/>
-                <div class="d-flex align-items-center font-italic game-play-alert-popover-footer">
+                <div v-if="!game.options.repartition.isHidden" class="d-flex align-items-center font-italic game-play-alert-popover-footer">
                     <i class="fa fa-exclamation-circle text-info mr-2"/>
                     <span v-html="$t('GamePlayAlert.shareThisWithPlayers')"/>
+                </div>
+                <div v-else>
+                    <i class="fa fa-exclamation-triangle animate__animated animate__heartBeat animate__infinite text-warning mr-2"/>
+                    <span v-html="$t('GamePlayAlert.keepThisForYourself')"/>
                 </div>
             </template>
         </v-popover>
@@ -21,6 +25,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import RoleImage from "@/components/shared/Game/Role/RoleImage";
 
 export default {
@@ -33,6 +38,7 @@ export default {
         },
     },
     computed: {
+        ...mapGetters("game", { game: "game" }),
         gamePlayAlertRole() {
             const gamePlayAlertRoles = {
                 "idiot-wont-delegate": "idiot",

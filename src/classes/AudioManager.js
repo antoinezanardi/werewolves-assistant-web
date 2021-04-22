@@ -74,6 +74,7 @@ class AudioManager {
             "hunter-plays": new Howl({ src: `${basePath}/hunter-plays.mp3`, ...options }),
             "scapegoat-plays": new Howl({ src: `${basePath}/scapegoat-plays.mp3`, ...options }),
             "fox-plays": new Howl({ src: `${basePath}/fox-plays.mp3`, ...options }),
+            "bear-growls": new Howl({ src: `${basePath}/bear-growls.mp3`, ...options }),
         };
     }
 

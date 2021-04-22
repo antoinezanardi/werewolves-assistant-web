@@ -86,7 +86,7 @@ export default {
         ...mapGetters("audioManager", { audioManager: "audioManager" }),
         // eslint-disable-next-line max-lines-per-function
         gameEventMetadata() {
-            const { ancientPlayer, angelPlayer, didAncientTakeHisRevenge, firstWaiting } = this.game;
+            const { ancientPlayer, angelPlayer, didAncientTakeHisRevenge, vileFatherOfWolvesPlayer, firstWaiting } = this.game;
             const gameEventFirstTarget = this.hasGameEventTargets ? this.event.targets[0] : null;
             const gameEventTargetName = this.hasGameEventTargets ? gameEventFirstTarget.player.name : null;
             const gameEventTargetRole = this.hasGameEventTargets ? gameEventFirstTarget.player.role.current : null;
@@ -96,7 +96,8 @@ export default {
                     messages: [
                         i18n.t("GameEvent.messages.welcomeToTheVillage"),
                         this.gameCompositionText,
-                        ...insertIf(this.game.thiefPlayer, i18n.t("GameEvent.messages.moreRolesBecauseOfThief")),
+                        ...insertIf(this.game.thiefPlayer && !this.game.options.repartition.isHidden,
+                            i18n.t("GameEvent.messages.moreRolesBecauseOfThief")),
                         i18n.t("GameEvent.messages.looksLifeSomeWerewolvesIntroducedThemselves"),
                         i18n.t("GameEvent.messages.villagersMurderWerewolves"),
                         ...insertIf(this.gameOptions.roles.sheriff.isEnabled, i18n.t("GameEvent.messages.beforeStartingLetsElectSheriff")),
@@ -111,7 +112,8 @@ export default {
                 "player-dies": {
                     messages: [
                         i18n.t("GameEvent.messages.playerDies", { player: gameEventTargetName }),
-                        i18n.t("GameEvent.messages.playerRevealsRole"),
+                        ...insertIf(this.game.options.roles.areRevealedOnDeath, i18n.t("GameEvent.messages.playerRevealsRole")),
+                        ...insertIf(!this.game.options.roles.areRevealedOnDeath, i18n.t("GameEvent.messages.playerDoesntRevealRole")),
                         ...insertIf(gameEventTargetRole === "idiot" && gameEventFirstTarget.player.hasAttribute("sheriff"),
                             i18n.t("GameEvent.messages.noIdiotSheriffAnymore")),
                         ...insertIf(gameEventTargetRole === "ancient" && didAncientTakeHisRevenge,
@@ -312,6 +314,14 @@ export default {
                     ],
                     soundEffect: "fox-plays",
                 },
+                "bear-growls": {
+                    messages: [
+                        i18n.t("GameEvent.messages.bearGrowls"),
+                        i18n.t("GameEvent.messages.growlsBecauseWerewolves"),
+                        ...insertIf(vileFatherOfWolvesPlayer, i18n.t("GameEvent.messages.growBecauseInfected")),
+                    ],
+                    soundEffect: "bear-growls",
+                },
             };
         },
         hasGameEventTargets() {
@@ -333,6 +343,9 @@ export default {
             return this.gameEventMessages && this.messageIdx;
         },
         gameCompositionText() {
+            if (this.game.options.repartition.isHidden) {
+                return this.$t("GameEvent.messages.compositionIsHidden", { inhabitantCount: this.game.players.length });
+            }
             let gameCompositionText = this.$t("GameEvent.messages.compositionIs", { inhabitantCount: this.game.players.length });
             const roles = [];
             for (const player of this.game.players) {
