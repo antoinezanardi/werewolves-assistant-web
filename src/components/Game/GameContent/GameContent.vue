@@ -47,6 +47,7 @@ export default {
                 if (newGame.phase === "day") {
                     this.generateGamePhaseEvent();
                     this.generateGameDeathAndRevealEvents();
+                    this.generateBearGrowlEvent();
                 } else {
                     this.generateGameDeathAndRevealEvents();
                     this.generateGamePhaseEvent();
@@ -153,10 +154,6 @@ export default {
                 (this.game.phase !== this.game.history[0].phase || this.game.turn !== this.game.history[0].turn)) {
                 const event = this.game.phase === "day" ? new GameEvent({ type: "day-rises" }) : new GameEvent({ type: "night-falls" });
                 this.events.push(event);
-                const { bearTamerPlayer } = this.game;
-                if (event.type === "day-rises" && bearTamerPlayer && bearTamerPlayer.hasActiveAttribute("growls", this.game)) {
-                    this.events.push({ type: `bear-growls`, targets: [{ player: bearTamerPlayer }] });
-                }
             }
         },
         generatePlayerStartsGameRevealedEvents() {
@@ -184,6 +181,16 @@ export default {
             }
             for (const revealedPlayer of revealedAlivePlayers) {
                 this.events.push(new GameEvent({ type: "player-role-revealed", targets: [{ player: revealedPlayer }] }));
+            }
+        },
+        generateBearGrowlEvent() {
+            const { bearTamerPlayer } = this.game;
+            if (this.events.find(event => event.type === "day-rises") && bearTamerPlayer) {
+                if (bearTamerPlayer.hasActiveAttribute("growls", this.game)) {
+                    this.events.push({ type: `bear-growls`, targets: [{ player: bearTamerPlayer }] });
+                } else {
+                    this.events.push({ type: `bear-stays-calm`, targets: [{ player: bearTamerPlayer }] });
+                }
             }
         },
         generateGameRoleTurnEvents() {

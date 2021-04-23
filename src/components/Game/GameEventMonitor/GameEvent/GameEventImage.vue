@@ -119,7 +119,7 @@ export default {
                 return this.game.alivePlayers;
             } else if (this.event.type === "deaths-during-night") {
                 return this.game.players;
-            } else if (this.isEffectGameEvent || this.event.type === "bear-growls") {
+            } else if (this.isEffectGameEvent || this.event.type === "bear-growls" || this.event.type === "bear-stays-calm") {
                 return this.event.targets.map(({ player }) => player);
             }
             return deadPlayerActions.includes(firstWaiting.to) ? playersExpectedToPlay : alivePlayersExpectedToPlay;

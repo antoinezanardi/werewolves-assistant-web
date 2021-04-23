@@ -23,42 +23,83 @@ export default {
     },
     computed: {
         ...mapGetters("game", { game: "game" }),
-        // eslint-disable-next-line max-lines-per-function
         gamePlayAlerts() {
-            const {
-                firstWaiting, idiotPlayer, villagerVillagerPlayer, ancientPlayer, scapegoatPlayer, angelPlayer, guardPlayer, witchPlayer,
-                isIdiotProtectedFromVotes, doesAngelWinIfHeDiesNow, vileFatherOfWolvesPlayer, stutteringJudgePlayer, littleGirlPlayer,
-                piedPiperPlayer,
-            } = this.game;
-            const { to: action, for: source } = firstWaiting;
-            const { hasStutteringJudgeChosenSign, hasStutteringJudgeRequestedVote } = this.pastEvents;
-            const { isProtectedByGuard: isLittleGirlProtectedByGuard } = this.game.options.roles.littleGirl;
-            const ancientRevengeActions = ["vote", "settle-votes", "shoot", "use-potion"];
-            const voteActions = ["vote", "settle-votes"];
-            const sheriffElectionActions = ["elect-sheriff", "delegate"];
             return [
-                ...insertIf(sheriffElectionActions.includes(action) && !!idiotPlayer && idiotPlayer.isAliveAndPowerful, "idiot-wont-delegate"),
-                ...insertIf(sheriffElectionActions.includes(action) && !!villagerVillagerPlayer && villagerVillagerPlayer.isAlive,
-                    "villager-villager-can-be-trusted"),
-                ...insertIf(ancientRevengeActions.includes(action) && !!ancientPlayer && ancientPlayer.isAlive, "ancient-can-make-all-powerless"),
-                ...insertIf(voteActions.includes(action) && !!idiotPlayer && isIdiotProtectedFromVotes, "idiot-wont-die-from-votes"),
-                ...insertIf(voteActions.includes(action) && !!scapegoatPlayer && scapegoatPlayer.isAliveAndPowerful, "scapegoat-will-die-from-tie"),
-                ...insertIf(!!angelPlayer && angelPlayer.isAliveAndPowerful && doesAngelWinIfHeDiesNow, "angel-will-win-if-he-dies"),
-                ...insertIf(action === "eat" && source !== "white-werewolf" && !!ancientPlayer, "ancient-can-survive-werewolves"),
-                ...insertIf(action === "eat" && source !== "white-werewolf" && !!guardPlayer && guardPlayer.isAliveAndPowerful,
-                    "guard-can-protect-target"),
-                ...insertIf(action === "eat" && source !== "white-werewolf" && !!witchPlayer && witchPlayer.isAliveAndPowerful,
-                    "witch-can-protect-target"),
-                ...insertIf(action === "eat" && source === "werewolves" && !!vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer.isAlive,
-                    "vile-father-of-wolves-can-infect"),
-                ...insertIf(action === "eat" && source === "werewolves" && !!vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer.isAlive &&
-                        !!piedPiperPlayer && piedPiperPlayer.isAliveAndPowerful, "pied-piper-will-loose-powers-if-infected"),
-                ...insertIf(action === "vote" && !!stutteringJudgePlayer &&
-                    this.game.canStutteringJudgeRequestVote(hasStutteringJudgeChosenSign, hasStutteringJudgeRequestedVote),
-                "stuttering-judge-can-request-vote"),
-                ...insertIf(action === "protect" && !!guardPlayer && guardPlayer.isAliveAndPowerful && !!littleGirlPlayer &&
-                    !isLittleGirlProtectedByGuard, "guard-cant-protect-little-girl"),
+                ...this.sheriffElectionAlerts,
+                ...this.ancientRevengeAlerts,
+                ...this.voteAlerts,
+                ...this.angelAlerts,
+                ...this.eatAlerts,
+                ...this.protectAlerts,
             ];
+        },
+        sheriffElectionAlerts() {
+            const { firstWaiting, idiotPlayer, villagerVillagerPlayer } = this.game;
+            const { to: action } = firstWaiting;
+            const sheriffElectionActions = ["elect-sheriff", "delegate"];
+            if (!sheriffElectionActions.includes(action)) {
+                return [];
+            }
+            return [
+                ...insertIf(idiotPlayer.isAliveAndPowerful, "idiot-wont-delegate"),
+                ...insertIf(!!villagerVillagerPlayer && villagerVillagerPlayer.isAlive, "villager-villager-can-be-trusted"),
+            ];
+        },
+        ancientRevengeAlerts() {
+            const { firstWaiting, ancientPlayer } = this.game;
+            const { to: action } = firstWaiting;
+            const ancientRevengeActions = ["vote", "settle-votes", "shoot", "use-potion"];
+            return ancientRevengeActions.includes(action) && !!ancientPlayer && ancientPlayer.isAlive ? ["ancient-can-make-all-powerless"] : [];
+        },
+        voteAlerts() {
+            const {
+                firstWaiting, idiotPlayer, isIdiotProtectedFromVotes, scapegoatPlayer, stutteringJudgePlayer, bearTamerPlayer,
+                vileFatherOfWolvesPlayer,
+            } = this.game;
+            const { to: action } = firstWaiting;
+            const voteActions = ["vote", "settle-votes"];
+            if (!voteActions.includes(action)) {
+                return [];
+            }
+            const { hasStutteringJudgeChosenSign, hasStutteringJudgeRequestedVote } = this.pastEvents;
+            const canJudgeRequestVote = this.game.canStutteringJudgeRequestVote(hasStutteringJudgeChosenSign, hasStutteringJudgeRequestedVote);
+            const bearTamerAlertType = vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer ? "bear-tamer-growls-and-infected" : "bear-tamer-growls";
+            return [
+                ...insertIf(!!idiotPlayer && isIdiotProtectedFromVotes, "idiot-wont-die-from-votes"),
+                ...insertIf(!!scapegoatPlayer && scapegoatPlayer.isAliveAndPowerful, "scapegoat-will-die-from-tie"),
+                ...insertIf(!!stutteringJudgePlayer && canJudgeRequestVote, "stuttering-judge-can-request-vote"),
+                ...insertIf(!!bearTamerPlayer && bearTamerPlayer.isAliveAndPowerful &&
+                    bearTamerPlayer.hasActiveAttribute("growls"), bearTamerAlertType),
+            ];
+        },
+        angelAlerts() {
+            const { angelPlayer, doesAngelWinIfHeDiesNow } = this.game;
+            return !!angelPlayer && angelPlayer.isAliveAndPowerful && doesAngelWinIfHeDiesNow ? ["angel-will-win-if-he-dies"] : [];
+        },
+        eatAlerts() {
+            const { firstWaiting, guardPlayer, ancientPlayer, witchPlayer, vileFatherOfWolvesPlayer, piedPiperPlayer } = this.game;
+            const { to: action, for: source } = firstWaiting;
+            if (action !== "eat") {
+                return [];
+            }
+            return [
+                ...insertIf(source !== "white-werewolf" && !!ancientPlayer, "ancient-can-survive-werewolves"),
+                ...insertIf(source !== "white-werewolf" && !!guardPlayer && guardPlayer.isAliveAndPowerful, "guard-can-protect-target"),
+                ...insertIf(source !== "white-werewolf" && !!witchPlayer && witchPlayer.isAliveAndPowerful, "witch-can-protect-target"),
+                ...insertIf(source === "werewolves" && !!vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer.isAlive,
+                    "vile-father-of-wolves-can-infect"),
+                ...insertIf(source === "werewolves" && !!vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer.isAlive &&
+                    !!piedPiperPlayer && piedPiperPlayer.isAliveAndPowerful, "pied-piper-will-loose-powers-if-infected"),
+            ];
+        },
+        protectAlerts() {
+            const { firstWaiting, guardPlayer, littleGirlPlayer } = this.game;
+            const { to: action } = firstWaiting;
+            const { isProtectedByGuard: isLittleGirlProtectedByGuard } = this.game.options.roles.littleGirl;
+            if (action === "protect" && !!guardPlayer && guardPlayer.isAliveAndPowerful && !!littleGirlPlayer && !isLittleGirlProtectedByGuard) {
+                return ["guard-cant-protect-little-girl"];
+            }
+            return [];
         },
     },
 };

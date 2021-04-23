@@ -1404,7 +1404,8 @@
             "foxDidntFindWerewolf": "Le Renard n'a flairé aucun Loup-Garou ! Faites un pouce vers le bas pour l'informer du résultat de son enquête.",
             "bearGrowls": "L'Ours du Montreur grogne...!",
             "growlsBecauseWerewolves": "Cela veut dire que son voisin de gauche ou de droite (ou les deux) est un Loup-Garou !",
-            "growBecauseInfected": "Ou alors ... le Montreur d'Ours a été infecté et est lui-même un Loup-Garou !"
+            "growBecauseInfected": "Ou alors ... le Montreur d'Ours a été infecté et est lui-même un Loup-Garou !",
+            "bearStaysCalm": "L'Ours du Montreur est d'un calme exemplaire ce matin, il n'a donc pas de canidé comme voisin direct."
         }
     },
     "Statistics": {

@@ -40,8 +40,8 @@
 * `vue-slider-component` installed with version `3.2.11`.
 * `vuedraggable` installed with version `2.24.3`.
 * `@fortawesome/fontawesome-free` updated to version `5.15.3`.
-* `@sentry/browser` updated to version `6.3.0`.
-* `@sentry/integrations` updated to version `6.3.0`.
+* `@sentry/browser` updated to version `6.3.1`.
+* `@sentry/integrations` updated to version `6.3.1`.
 * `@vue/cli-plugin-e2e-cypress` updated to version `4.5.12`.
 * `@vue/cli-plugin-eslint` updated to version `4.5.12`.
 * `@vue/cli-plugin-router` updated to version `4.5.12`.

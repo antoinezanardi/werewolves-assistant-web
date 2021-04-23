@@ -104,6 +104,7 @@ export default {
                 "thief-chooses-card": this.gameEventThiefChoosesCardMetadata,
                 "fox-sniffs": this.gameEventFoxSniffsMetadata,
                 "bear-growls": this.gameEventBearGrowlsMetadata,
+                "bear-stays-calm": this.gameEventBearStaysCalmMetadata,
                 ...this.gameEventTurnMetadata,
             };
         },
@@ -449,6 +450,9 @@ export default {
                 ],
                 soundEffect: "bear-growls",
             };
+        },
+        gameEventBearStaysCalmMetadata() {
+            return { messages: [i18n.t("GameEvent.messages.bearStaysCalm")] };
         },
         hasGameEventTargets() {
             return !!this.event.targets.length;
