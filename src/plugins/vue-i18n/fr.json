@@ -738,7 +738,8 @@
             "protect": {
                 "howToPlay": "Comment jouer le Salvateur ?",
                 "guardProtectsWhen": "Chaque nuit, s'il est vivant, le Salvateur se réveille.",
-                "guardCanProtect": "Le Salvateur protège la personne de son choix et cette dernière ne pourra pas mourir durant cette nuit. Le Salvateur peut se protéger lui-même mais ne peut pas choisir deux nuits de suite la même personne.",
+                "guardCanProtect": "Le Salvateur protège la personne de son choix et cette dernière ne pourra pas mourir durant cette nuit par les Loups-Garous.",
+                "guardCanProtectHimself": "Le Salvateur peut se protéger lui-même mais ne peut pas choisir deux nuits de suite la même personne. Ceci peut être changé dans les options de la partie.",
                 "guardPointsAtTarget": "Le Salvateur doit pointer du doigt sans bruit la personne qu'il souhaite protéger.",
                 "littleGirlIsNotProtected": "La Petite Fille est dans la partie ! Si les Loups-Garous la dévore, même la protection du Salvateur ne pourra pas la protéger.",
                 "toValidateProtect": "Pour passer à la suite, le Salvateur doit obligatoirement choisir une personne à protéger."
@@ -1358,8 +1359,10 @@
             "everybodyFallAsleepAlive": "Par conséquent, il n'y aura aucune mise à mort publique aujourd'hui.",
             "attentionToTheAncient": "Attention, l'Ancien est encore en vie et caché parmi les habitants ! S'il est pendu, tous les Villageois d'origine n'auront plus de pouvoirs spéciaux.",
             "seerStarts": "La Voyante se réveille et va découvrir dans sa boule de cristal le rôle d'un habitant.",
-            "followingMessageMustBeMimed": "La phrase suivante devra être mimée à la Voyante car cette dernière n'est pas très bavarde...",
+            "followingMessageMustToldDiscreetly": "La phrase suivante devra être transmis seulement à la Voyante de façon discrète (mime, message écrit) car cette dernière n'est pas très bavarde...",
             "seerHasSeen": "La Voyante a vu",
+            "playerInVillagersSide": "un joueur dans le camp des Villageois",
+            "playerInWerewolvesSide": "un joueur dans le camp des Loups-Garous",
             "werewolvesStart": "Le Loup-Garou se réveille et va choisir son dîner de ce soir. | Les Loups-Garous se réveillent et vont choisir leur dîner de ce soir.",
             "gameMasterWillTouchInfected": "Le maître du jeu va faire le tour des habitants et toucher la victime des Loups-Garous si l'Infect Père des Loups a décidé de l'infecter. Elle saura alors qu'elle est devenue un Loup-Garou.",
             "witchStarts": "La Sorcière se réveille et va, si elle le souhaite, utiliser ses potions.",
@@ -1504,9 +1507,9 @@
             ],
             "witch": [
                 "Son but est d'éliminer les Loups-Garous.",
-                "Elle sait concocter 2 potions extrêmement puissantes: une potion de guérison pour ressusciter le joueur dévoré par les Loups-Garous et une potion d'empoisonnement utilisée la nuit pour éliminer un joueur.",
-                "La Sorcière peut utiliser chaque potion 1 seule fois dans la partie.",
-                "Elle peut se servir de ses 2 potions la même nuit.",
+                "Elle sait concocter 2 potions extrêmement puissantes : une potion de guérison pour ressusciter le joueur dévoré par les Loups-Garous et une potion d'empoisonnement utilisée la nuit pour éliminer un joueur.",
+                "La Sorcière peut utiliser chaque potion une seule fois dans la partie.",
+                "Elle peut se servir de ses deux potions la même nuit.",
                 "Le matin, suivant la ou les potions utilisées, il pourra y avoir 2 joueurs éliminés ou aucun !",
                 "La Sorcière peut également utiliser la potion de guérison à son profit, et donc se guérir elle-même si elle vient d'être dévorée par les Loups-Garous."
             ],
@@ -1521,7 +1524,7 @@
                 "Ce personnage peut préserver les Villageois de la morsure des Loups-Garous... Chaque nuit, le Salvateur est appelé avant les Loups-Garous.",
                 "Le Salvateur désigne alors un joueur au meneur de jeu. (Il est de tradition que le Salvateur reproduise d'abord avec ses mains la figure dessinée sur la carte).",
                 "Le joueur ainsi désigné sera protégé la nuit durant (et celle-ci seulement) contre les Loups-Garous. Même désigné par eux, il ne sera pas éliminé du jeu.",
-                "Le Salvateur a le droit de s'auto-protégé. Il n'a pas le droit de protéger 2 nuits de suite le même joueur.",
+                "Le Salvateur a le droit de s'auto-protéger. Il n'a pas le droit de protéger 2 nuits de suite le même joueur.",
                 "La protection du Salvateur ne donne aucun résultat sur la Petite Fille. (Elle est en pleine crise de préadolescence et rien ne saurait lui éviter d'avoir des ennuis).",
                 "Le Salvateur ne protège ni du Joueur de Flûte ni de l'infection par l'Infect Père des Loups."
             ],
@@ -1533,7 +1536,7 @@
             ],
             "little-girl": [
                 "Son but est d'éliminer les Loups-Garous.",
-                "La Petite Fille peut, en entrouvrant les yeux, espionner les Loup-Garous pendant leur réveil.",
+                "La Petite Fille peut, en entrouvrant les yeux, espionner les Loups-Garous pendant leur réveil.",
                 "Si elle se fait surprendre par un des Loups-Garous, elle pourra être dévorée immédiatement (en silence), à la place de la victime désignée.",
                 "La Petite Fille ne peut espionner que la nuit, durant le tour d'éveil des Loups-Garous. Elle n'a pas le droit de se faire passer pour un Loup-Garou et d'ouvrir grand les yeux."
             ],
@@ -1541,16 +1544,16 @@
                 "Son but est d'éliminer les Loups-Garous.",
                 "Ce personnage possède une âme claire et transparente comme l'eau d'un ruisseau montagnard. Il méritera l'écoute attentive de ses pairs et rendra sa parole décisive dans les moments cruciaux.",
                 "Quel pouvoir peut être aussi grand que d'inspirer aux honnêtes gens une confiance absolue ?",
-                "Les Loups-Garous se rueront-ils pour éliminer cet être sans pouvoir secret ? Préféreront-ils débusquer des Villageois aux pouvoirs plus menaçant ?",
+                "Les Loups-Garous se rueront-ils pour éliminer cet être sans pouvoir secret ? Préféreront-ils débusquer des Villageois aux pouvoirs plus menaçants ?",
                 "Sur ses 2 faces, cette carte possède l'illustration de Simple Villageois. À la distribution, le village aura donc la certitude absolue que son propriétaire est bel et bien un innocent Simple Villageois.",
-                "Conseil au meneur: ce personnage peut devenir un Capitaine ou un Garde Champêtre de confiance."
+                "Conseil au meneur : ce personnage peut devenir un Capitaine ou un Garde Champêtre de confiance."
             ],
             "cupid": [
                 "Son but est d'éliminer les Loups-Garous.",
                 "En décochant ses célèbres flèches magiques, Cupidon a le pouvoir de rendre 2 personnes amoureuses à jamais.",
-                "La première nuit (tour préliminaire), il désigne les 2 joueurs (ou joueuses) amoureux. Cupidon peut, s'il le veut, se désigner comme l'un des deux Amoureux.",
+                "La première nuit, il désigne les 2 joueurs (ou joueuses) amoureux. Cupidon peut, s'il le veut, se désigner comme l'un des deux Amoureux.",
                 "Si l'un des Amoureux est éliminé, l'autre meurt de chagrin immédiatement. Un Amoureux ne doit jamais éliminer son aimé, ni lui porter aucun préjudice (même pour faire semblant !).",
-                "Attention: si l'un des Amoureux est un Villageois et l'autre un Loup-Garou ou le Joueur de Flûte, le but de la partie change pour les Amoureux: En effet, afin de pouvoir vivre en paix leur amour et gagner la partie, ils doivent éliminer tous les autres joueurs, Loups-Garous et Villageois, en respectant les règles du jeu."
+                "Attention : si l'un des Amoureux est un Villageois et l'autre un Loup-Garou ou le Joueur de Flûte, le but de la partie change pour les Amoureux : En effet, afin de pouvoir vivre en paix leur amour et gagner la partie, ils doivent éliminer tous les autres joueurs, Loups-Garous et Villageois, en respectant les règles du jeu."
             ],
             "two-sisters": [
                 "Leur but est d'éliminer les Loups-Garous.",
@@ -1558,14 +1561,14 @@
                 "Le sourire qui s'affiche sur le visage de la jeune fille après qu'on a tenté sa chance au jeu du prénom est difficile à interpréter : la jeune nubile est-elle heureuse d'avoir été identifiée, ou s'amuse-t-elle de la méprise ?",
                 "En tout cas, les Deux Sœurs s'entendent comme les doigts de la main ou les cheveux d'une même mèche. C'est certes encourageant d'avoir un proche sur qui compter dans ces moments incertains !",
                 "La première nuit, à l'appel du meneur, elles se réveillent ensemble et se reconnaissent. Ensuite, au cours de la partie, une nuit sur deux, elles se réveillent à nouveau et se concertent rapidement et en silence sur les décisions à prendre pour sauver le village.",
-                "Conseil au meneur: particulièrement puissant avec des pratiquants de la langue des signes."
+                "Conseil au meneur : particulièrement puissant avec des pratiquants de la langue des signes."
             ],
             "three-brothers": [
                 "Leur but est d'éliminer les Loups-Garous.",
                 "Tout le village résonne de leurs joyeux éclats verbaux quand ils regagnent la maison après le travail des champs.",
                 "Pendant les débats, un simple coup d'œil entre eux leur permet de prendre une bonne décision quant à l'avenir du village.",
                 "La première nuit, à l'appel du meneur, ils se réveillent ensemble et se reconnaissent. Ensuite, au cours de la partie, une nuit sur deux, ils se réveillent à nouveau et se concertent rapidement et en silence sur les décisions à prendre pour sauver le village.",
-                "Conseil au meneur: particulièrement puissant avec des pratiquants de la langue des signes. À n'utiliser que dans les grands villages. Si le village est très grand, vous pouvez même y associer les Deux Sœurs !"
+                "Conseil au meneur : particulièrement puissant avec des pratiquants de la langue des signes. À n'utiliser que dans les grands villages. Si le village est très grand, vous pouvez même y associer les Deux Sœurs !"
             ],
             "wild-child": [
                 "Son but est d'éliminer les Loups-Garous tant que son modèle est vivant.",
@@ -1574,9 +1577,9 @@
                 "Il décida alors d'intégrer la communauté de Thiercelieux et pénétra, inquiet, dans le village. La communauté fut émue par sa fragilité, l'adopta et l'accueillit en son sein.",
                 "Que deviendra-t-il : honnête Villageois ou terrible Loup-Garou ? Toute son existence, le cœur de l'Enfant Sauvage balancera entre ces deux alternatives. Puisse son modèle le confirmer dans son humanité nouvelle.",
                 "L'Enfant Sauvage est un Villageois. La première nuit, à l'appel du meneur, il désigne un joueur modèle. Si durant la partie le joueur désigné est éliminé, l'Enfant Sauvage devient Loup-Garou et se réveillera la nuit suivante avec ses congénères, dévorera avec eux toutes les nuits jusqu'à la fin de la partie.",
-                "En revanche, tant que son modèle est vivant, l'Enfant Sauvage demeure un Villageois. Que son modèle s'avère ou non être un Loup-Garou ne change rien à l'affaire ! Rien n'empêche l'Enfant Sauvage de participer à l'élimination de son modèle s'il le désire.",
+                "En revanche, tant que son modèle est vivant, l'Enfant Sauvage demeure un Villageois. Que son modèle s'avère être ou non un Loup-Garou ne change rien à l'affaire ! Rien n'empêche l'Enfant Sauvage de participer à l'élimination de son modèle s'il le désire.",
                 "Si son modèle est vivant lorsque tous les Loups-Garous sont éliminés, il a gagné avec les Villageois. Si son modèle est éliminé et que seuls des Loups-Garous survivent avec lui, c'est aussi une victoire pour notre Enfant Sauvage.",
-                "Conseil au meneur: ne pas révéler la véritable nature de l'Enfant Sauvage éliminé par le vote du village peut être amusant. Le doute à propos de sa véritable identité subsiste alors : était-il Villageois ou Loup-Garou avant d'être éliminé ?"
+                "Conseil au meneur : ne pas révéler la véritable nature de l'Enfant Sauvage éliminé par le vote du village peut être amusant. Le doute à propos de sa véritable identité subsiste alors : était-il Villageois ou Loup-Garou avant d'être éliminé ?"
             ],
             "dog-wolf": [
                 "Son but est d'éliminer les Loups-Garous s'il reste chien ou d'éliminer les Villageois s'il décide de devenir un loup.",
@@ -1585,7 +1588,7 @@
                 "La première nuit, il choisit s'il désire être un Simple Villageois ou Loup-Garou.",
                 "S'il désire être Loup-Garou, il se réveillera avec eux toutes les nuits et participera désormais à la désignation de la victime dévorée. Sinon, il garde les yeux clos et gagnera avec les Villageois.",
                 "Ce choix est définitif !",
-                "Conseil au meneur: ne pas révéler la véritable nature du Chien-Loup éliminé par le vote du village peut-être amusant. Le doute à propos de sa véritable identité subsiste alors : était-il Villageois ou Loup-Garou avant d'être éliminé ?"
+                "Conseil au meneur : ne pas révéler la véritable nature du Chien-Loup éliminé par le vote du village peut-être amusant. Le doute à propos de sa véritable identité subsiste alors : était-il Villageois ou Loup-Garou avant d'être éliminé ?"
             ],
             "big-bad-wolf": [
                 "Son but est d'éliminer les Villageois.",
@@ -1603,8 +1606,8 @@
             ],
             "ancient": [
                 "Son but est d'éliminer les Loups-Garous.",
-                "Il a victorieusement traversé toutes les terribles épreuves de la vie, et a acquis une résistance hors du commun ! Les Loups-Garous devront s'y prendre à 2 fois pour le dévorer.",
-                "La première fois que l'Ancien du village est dévoré par les Loups-Garous il survit. Le meneur de jeu ne retourne pas sa carte. L'Ancien est éliminé seulement la deuxième fois qu'il est dévoré.",
+                "Il a victorieusement traversé toutes les terribles épreuves de la vie, et a acquis une résistance hors du commun ! Les Loups-Garous devront s'y prendre à deux fois pour le dévorer.",
+                "La première fois que l'Ancien du village est dévoré par les Loups-Garous, il survit. Le meneur de jeu ne retourne pas sa carte. L'Ancien est éliminé seulement la deuxième fois qu'il est dévoré.",
                 "Le vote du village, la potion d'empoisonnement de la Sorcière, le tir du Chasseur et le rasoir du Barbier éliminent l'Ancien du premier coup.",
                 "Mais désespérés d'avoir éliminé un tel puit de sciences, les Villageois perdent leurs pouvoirs spéciaux jusqu'à la fin de la partie. Il n'est pas affecté par l'Infect Père des Loups si c'est la première fois qu'il est mordu.",
                 "Attention : Si l'Ancien du village se fait soigner par la Sorcière, il récupère une seule vie."
@@ -1614,7 +1617,7 @@
                 "C'est bien triste, mais à Thiercelieux, quand quelque chose ne va pas c'est toujours lui qui en subit injustement les conséquences...",
                 "Si le vote du village amène une égalité, c'est le Bouc émissaire qui est éliminé à la place des ex æquo.",
                 "À lui de bien manœuvrer pour éviter cette triste conclusion. Si le Bouc émissaire est éliminé, il lui reste une prérogative à exercer. Il désigne qui votera ou ne votera pas durant la prochaine journée.",
-                "Attention : désigner 1 seul joueur pour voter, c'est risquer de le faire dévorer par les Loups-Garous la nuit suivante. il n'y aura alors pas de vote du village. (Sauf bien entendu si le joueur désigné est un Loup-Garou, ou que les Loups-Garous fassent exprès de ne pas l'éliminer...)"
+                "Attention : désigner un seul joueur pour voter, c'est risquer de le faire dévorer par les Loups-Garous la nuit suivante. Il n'y aura alors pas de vote du village. (Sauf bien entendu si le joueur désigné est un Loup-Garou, ou que les Loups-Garous fassent exprès de ne pas l'éliminer...)"
             ],
             "idiot": [
                 "Son but est d'éliminer les Loups-Garous.",
@@ -1625,9 +1628,9 @@
             "pied-piper": [
                 "Son but est de charmer tous les joueurs vivants.",
                 "Ignominieusement chassé du village, il est revenu des années plus tard sous le couvert d'une fausse identité pour exercer sa terrible vengeance.",
-                "Chaque nuit, à l'appel du meneur du jeu, le Joueur de flûte charme 2 nouveaux joueurs. Dès l'instant où il ne reste plus que des joueurs charmés, le Joueur de flûte a gagné contre tous les autres. (Même si cela arrive suite à un vote du village ou grâce aux Loups-Garous).",
+                "Chaque nuit, à l'appel du meneur du jeu, le Joueur de Flûte charme deux nouveaux joueurs. Dès l'instant où il ne reste plus que des joueurs charmés, le Joueur de Flûte a gagné contre tous les autres. (Même si cela arrive suite à un vote du village ou grâce aux Loups-Garous).",
                 "S'il est infecté par l'Infect Père des Loups, il devient un simple Loup-Garou. Son objectif initial, qui était vouloir charmer tous les joueurs, est donc abandonné. Il va collaborer avec les Loups-Garous pour leur victoire commune.",
-                "Attention : le Joueur de flûte ne peut s'auto-charmer. Le Salvateur ne protège pas du charme. La Sorcière ne guérit pas du charme. Les Loups-Garous ne sont pas immunisés contre le charme. Les joueurs charmés conservent tous leurs pouvoirs et caractéristiques. Le charme ne se transmet pas entre Amoureux."
+                "Attention : le Joueur de Flûte ne peut s'auto-charmer. Le Salvateur ne protège pas du charme. La Sorcière ne guérit pas du charme. Les Loups-Garous ne sont pas immunisés contre le charme. Les joueurs charmés conservent tous leurs pouvoirs et caractéristiques. Le charme ne se transmet pas entre Amoureux."
             ],
             "white-werewolf": [
                 "Son but est d'être le seul survivant du village. Dans ce cas-là seulement il gagne la partie.",
@@ -1639,7 +1642,7 @@
                 "Son but est d'éliminer les Loups-Garous.",
                 "Le plus jeune fils du meunier était doué pour les études et rêvait d'être avocat. Comme son père avait bien réussi à rouler ses clients dans la farine, il l'envoya faire son droit dans la grande cité voisine.",
                 "Un léger défaut de prononciation interdit au jeune homme le prestige tant convoité d'être défendeur de la veuve et de l'orphelin. Toutefois, il regagna le village de Thiercelieux auréolé du titre guère moins prestigieux de juge itinérant.",
-                "Une fois dans la partie, le Juge Bègue peut décider qu'il y aura 2 votes consécutifs et deux éliminations de suspect.",
+                "Une fois dans la partie, le Juge Bègue peut décider qu'il y aura deux votes consécutifs et deux éliminations de suspect.",
                 "Le Juge Bègue signifie au meneur sa décision par un signe particulier qu'il utilise pour désigner un habitant durant le vote du village. Le deuxième vote est aussitôt déclenché sans débat par le meneur, juste après l'élimination due au premier vote. Le \"Ju-juge-Bè-bègue\" aura montré ce signe particulier durant la première nuit, à l'appel du meneur.",
                 "Conseil au meneur : soyez toujours attentif au comportement du Juge Bègue durant les votes, afin de ne pas manquer son signe particulier."
             ],
@@ -1649,19 +1652,19 @@
                 "La première nuit, le Voleur pourra prendre connaissance de ces deux cartes, et échanger sa carte contre une des deux cartes. Si ces cartes sont deux Loups-Garous, il est obligé d'échanger sa carte contre un des deux Loups-Garous. Il jouera désormais ce personnage jusqu'à la fin de la partie."
             ],
             "angel": [
-                "Son but est de mourir dès le 1er tour, soit au premier vote, soit par les Loups-Garous durant la première nuit. Si une des conditions est remplie, il gagne seule la partie.",
-                "La vie fangeuse d'un village infesté de créatures malfaisantes le dégoûte; il souhaite être victime du pire cauchemar, pour se réveiller enfin paisible dans son lit douillet.",
+                "Son but est de mourir dès le premier tour, soit au premier vote, soit par les Loups-Garous durant la première nuit. Si une des conditions est remplie, il gagne seul la partie.",
+                "La vie fangeuse d'un village infesté de créatures malfaisantes le dégoûte ; il souhaite être victime du pire cauchemar, pour se réveiller enfin paisible dans son lit douillet.",
                 "Quand l'Ange est en jeu, la partie débute toujours par le débat du village suivi d'un vote éliminatoire, puis d'une première nuit.",
-                "Si l'Ange réussit à réussit à attirer le vote discriminatoire des Villageois ou la vindicte dévorante des lycanthropes pour être éliminé au premier tour, il pourra sortir vainqueur du cauchemar et gagner la partie.",
+                "Si l'Ange réussit à attirer le vote discriminatoire des Villageois ou la vindicte dévorante des lycanthropes pour être éliminé au premier tour, il pourra sortir vainqueur du cauchemar et gagner la partie.",
                 "Alors le jeu s'arrête : les joueurs peuvent commencer une nouvelle partie. S'il échoue, il deviendra Simple Villageois pour le reste de la partie.",
                 "Conseil au meneur : n'hésitez pas à rappeler l'éventuelle présence de l'Ange lors de la première journée ! Les débats seront plus animés, les beaux parleurs étant protégés par cette angélique menace !"
             ],
             "fox": [
                 "Son but est d'éliminer les Loups-Garous.",
                 "À Thiercelieux, tout le monde apprécie le flair de ce personnage vif et discret, sauf peut-être les poules et surtout les Loups-Garous.",
-                "La nuit, à l'appel du meneur, le Renard peut désigner un groupe de 3 joueurs voisins, dont il montre du doigt le joueur central.",
+                "La nuit, à l'appel du meneur, le Renard peut désigner un groupe de trois joueurs voisins, dont il montre du doigt le joueur central.",
                 "Si dans ce groupe se trouve au moins un Loup-Garou, alors le meneur fait un signe affirmatif au Renard. Dans ce cas, le Renard pourra utiliser à nouveau son pouvoir une nuit suivante.",
-                "Si aucun Loup-Garou ne fait partie du groupe désigné, le Renard perd définitivement son pouvoir ; par contre, il bénéficie d'une information de taille innocentant trois joueur d'un coup.",
+                "Si aucun Loup-Garou ne fait partie du groupe désigné, le Renard perd définitivement son pouvoir ; par contre, il bénéficie d'une information de taille innocentant trois joueurs d'un coup.",
                 "Remarque : le meneur appelle le Renard toutes les nuits, mais celui-ci n'est en aucune mesure tenu d'utiliser son pouvoir chaque nuit.",
                 "Conseil au meneur : le Renard ne voit pas les cartes ; le meneur lui indique simplement s'il y a ou s'il n'y a pas de Loups-Garous parmi ces trois joueurs."
             ],
@@ -1676,8 +1679,8 @@
             "rusty-sword-knight": [
                 "Son but est d'éliminer les Loups-Garous.",
                 "\"Don Quitousse\" est un très vieux chevalier à la retraite. Il est assez épuisé par une vie de quêtes à travers le monde et n'entretient plus très bien son noble outil.",
-                "La rouille s'est peu à peu déposée sur le tranchant émoussé de sa fidèle protectrice mais jamais il ne la quittera pour une autre. Il dort encore tous les soirs avec elle ces temps-ci : gare aux importuns !",
-                "Si le Chevalier est dévoré, il est éliminé, mais un des Loups-Garous est contaminé par l'épée rouillée. Parmi les Loups-Garous coupables de cette élimination, le premier Loup-Garou situé à gauche du Chevalier éliminé la nuit suivante.",
+                "La rouille s'est peu à peu déposée sur le tranchant émoussé de sa fidèle lame protectrice mais jamais il ne la quittera pour une autre. Il dort encore tous les soirs avec elle ces temps-ci : gare aux importuns !",
+                "Si le Chevalier est dévoré, il est éliminé, mais un des Loups-Garous est contaminé par l'épée rouillée. Parmi les Loups-Garous coupables de cette élimination, le premier Loup-Garou situé à gauche du Chevalier sera éliminé la nuit suivante.",
                 "Cette élimination due à la maladie sera révélée par le meneur le matin après la disparition du Loup-Garou. Celui-ci aura donc survécu à sa blessure durant une journée.",
                 "Attention : les joueurs pourront en déduire que tous les habitants situés entre le défunt Chevalier à l'Épée Rouillée et le Loup-Garou malade sont d'innoncents villageois."
             ]

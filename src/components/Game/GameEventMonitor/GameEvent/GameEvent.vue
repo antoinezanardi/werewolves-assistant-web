@@ -84,248 +84,386 @@ export default {
             gameOptions: "gameOptions",
         }),
         ...mapGetters("audioManager", { audioManager: "audioManager" }),
-        // eslint-disable-next-line max-lines-per-function
         gameEventMetadata() {
-            const { ancientPlayer, angelPlayer, didAncientTakeHisRevenge, vileFatherOfWolvesPlayer, firstWaiting } = this.game;
-            const gameEventFirstTarget = this.hasGameEventTargets ? this.event.targets[0] : null;
-            const gameEventTargetName = this.hasGameEventTargets ? gameEventFirstTarget.player.name : null;
-            const gameEventTargetRole = this.hasGameEventTargets ? gameEventFirstTarget.player.role.current : null;
-            const gameEventTargetRoleText = gameEventTargetRole ? i18n.t(`Role.a.${gameEventFirstTarget.player.role.current}`) : null;
             return {
-                "game-starts": {
-                    messages: [
-                        i18n.t("GameEvent.messages.welcomeToTheVillage"),
-                        this.gameCompositionText,
-                        ...insertIf(this.game.thiefPlayer && !this.game.options.repartition.isHidden,
-                            i18n.t("GameEvent.messages.moreRolesBecauseOfThief")),
-                        i18n.t("GameEvent.messages.looksLifeSomeWerewolvesIntroducedThemselves"),
-                        i18n.t("GameEvent.messages.villagersMurderWerewolves"),
-                        ...insertIf(this.gameOptions.roles.sheriff.isEnabled, i18n.t("GameEvent.messages.beforeStartingLetsElectSheriff")),
-                    ],
-                },
-                "player-starts-game-revealed": {
-                    messages: [
-                        i18n.t("GameEvent.messages.villagerVillagerStartsGameRevealed",
-                            { player: gameEventTargetName }),
-                    ],
-                },
-                "player-dies": {
-                    messages: [
-                        i18n.t("GameEvent.messages.playerDies", { player: gameEventTargetName }),
-                        ...insertIf(this.game.options.roles.areRevealedOnDeath, i18n.t("GameEvent.messages.playerRevealsRole")),
-                        ...insertIf(!this.game.options.roles.areRevealedOnDeath, i18n.t("GameEvent.messages.playerDoesntRevealRole")),
-                        ...insertIf(gameEventTargetRole === "idiot" && gameEventFirstTarget.player.hasAttribute("sheriff"),
-                            i18n.t("GameEvent.messages.noIdiotSheriffAnymore")),
-                        ...insertIf(gameEventTargetRole === "ancient" && didAncientTakeHisRevenge,
-                            i18n.t("GameEvent.messages.ancientTakesHisRevenge")),
-                    ],
-                    soundEffect: "death",
-                },
-                "player-role-revealed": {
-                    messages: [
-                        ...insertIf(gameEventTargetRole === "idiot", i18n.t("GameEvent.messages.idiotIsForgiven")),
-                        i18n.t("GameEvent.messages.playerRoleIsRevealed"),
-                    ],
-                },
-                "sheriff-elected": {
-                    messages: [
-                        i18n.t("GameEvent.messages.playerHasBeenPromotedSheriff", { gameEventTargetName }),
-                        ...insertIf(this.game.turn === 1, i18n.t("GameEvent.messages.sheriffCanMakeASpeech")),
-                    ],
-                    soundEffect: "sheriff-is-elected",
-                },
-                "night-falls": {
-                    messages: [i18n.t("GameEvent.messages.nightFalls"), i18n.t("GameEvent.messages.inhabitantsFallAsleep")],
-                    soundEffect: "night-falls",
-                },
-                "all-turn": {
-                    messages: [
-                        ...insertIf(firstWaiting.to === "vote" && !!angelPlayer && this.game.isFirstWaitingPreFirstNightPlay,
-                            i18n.t("GameEvent.messages.gameStartsWithVoteBecauseOfAngel")),
-                        ...insertIf(firstWaiting.to === "vote" && firstWaiting.cause === "stuttering-judge-request",
-                            i18n.t("GameEvent.messages.allVoteBecauseOfStutteringJudge")),
-                        ...insertIf(firstWaiting.to === "vote" && !this.game.isSecondVoteAfterTie, i18n.t("GameEvent.messages.allVote")),
-                        ...insertIf(firstWaiting.to === "vote" && this.game.isSecondVoteAfterTie,
-                            i18n.t("GameEvent.messages.allVoteAgain", { players: listPlayerNames(this.game.lastActionTargetedPlayers) })),
-                        ...insertIf(firstWaiting.to === "vote" && !!ancientPlayer && ancientPlayer.isAlive,
-                            i18n.t("GameEvent.messages.attentionToTheAncient")),
-                        ...insertIf(firstWaiting.to === "elect-sheriff", i18n.t("GameEvent.messages.allElectSheriff")),
-                    ],
-                    soundEffect: "sheriff-election",
-                },
-                "no-death-after-votes": {
-                    messages: [
-                        i18n.t("GameEvent.messages.noDeathAfterVotes"),
-                        i18n.t("GameEvent.messages.everybodyFallAsleepAlive"),
-                    ],
-                },
-                "sheriff-turn": {
-                    messages: [
-                        ...insertIf(firstWaiting.to === "settle-votes", i18n.t("GameEvent.messages.sheriffSettlesVote")),
-                        ...insertIf(firstWaiting.to === "delegate", i18n.t("GameEvent.messages.sheriffDelegates")),
-                    ],
-                    soundEffect: "sheriff-election",
-                },
-                "day-rises": {
-                    messages: [i18n.t("GameEvent.messages.dayRises")],
-                    soundEffect: "day-rises",
-                },
-                "deaths-during-night": {
-                    messages: [
-                        i18n.tc("GameEvent.messages.deathDuringNight", this.event.targets.length, { numberOfDeaths: this.event.targets.length }),
-                        i18n.t("GameEvent.messages.letsSeeWhoIsDead"),
-                    ],
-                },
-                "no-death-during-night": { messages: [i18n.t("GameEvent.messages.noDeathDuringNight")] },
-                "seer-turn": {
-                    messages: [i18n.t("GameEvent.messages.seerStarts")],
-                    soundEffect: "seer-plays",
-                },
-                "seer-looks": {
-                    messages: [
-                        ...insertIf(!this.gameOptions.roles.seer.isTalkative, i18n.t("GameEvent.messages.followingMessageMustBeMimed")),
-                        `${i18n.t("GameEvent.messages.seerHasSeen")} ${gameEventTargetRoleText} !`,
-                    ],
-                    soundEffect: "seer-plays",
-                },
-                "werewolves-turn": {
-                    messages: [i18n.tc("GameEvent.messages.werewolvesStart", this.game.aliveWerewolfPlayers.length)],
-                    soundEffect: "werewolves-play",
-                },
-                "vile-father-of-wolves-infects": {
-                    messages: [i18n.t("GameEvent.messages.gameMasterWillTouchInfected")],
-                    soundEffect: "vile-father-of-wolves-infects",
-                },
-                "witch-turn": {
-                    messages: [i18n.t("GameEvent.messages.witchStarts")],
-                    soundEffect: "witch-plays",
-                },
-                "guard-turn": {
-                    messages: [i18n.t("GameEvent.messages.guardStarts")],
-                    soundEffect: "guard-plays",
-                },
-                "raven-turn": {
-                    messages: [i18n.t("GameEvent.messages.ravenStarts")],
-                    soundEffect: "raven-plays",
-                },
-                "raven-marks": {
-                    messages: [
-                        i18n.t("GameEvent.messages.ravenHasMarked"),
-                        i18n.t("GameEvent.messages.gameMasterWillDepositMark"),
-                    ],
-                    soundEffect: "raven-plays",
-                },
-                "hunter-turn": {
-                    messages: [i18n.t("GameEvent.messages.hunterStarts")],
-                    soundEffect: "hunter-plays",
-                },
-                "dog-wolf-turn": {
-                    messages: [i18n.t("GameEvent.messages.dogWolfStarts")],
-                    soundEffect: "dog-wolf-plays",
-                },
-                "cupid-turn": {
-                    messages: [i18n.t("GameEvent.messages.cupidStarts")],
-                    soundEffect: "cupid-plays",
-                },
-                "cupid-charms": {
-                    messages: [
-                        i18n.t("GameEvent.messages.cupidCharmedTwoPlayers"),
-                        i18n.t("GameEvent.messages.gameMasterWillTouchLovers"),
-                    ],
-                    soundEffect: "cupid-plays",
-                },
-                "lovers-turn": {
-                    messages: [i18n.t("GameEvent.messages.loversStart")],
-                    soundEffect: "lovers-play",
-                },
-                "two-sisters-turn": {
-                    messages: [
-                        ...insertIf(this.game.turn === 1, i18n.t("GameEvent.messages.twoSistersMeetEachOther")),
-                        ...insertIf(this.game.turn !== 1, i18n.t("GameEvent.messages.twoSistersWakeUpToTalk")),
-                    ],
-                    soundEffect: "two-sisters-play",
-                },
-                "three-brothers-turn": {
-                    messages: [
-                        ...insertIf(this.game.turn === 1, i18n.t("GameEvent.messages.threeBrothersMeetEachOther")),
-                        ...insertIf(this.game.turn !== 1, i18n.t("GameEvent.messages.threeBrothersWakeUpToTalk")),
-                    ],
-                    soundEffect: "three-brothers-play",
-                },
-                "wild-child-turn": {
-                    messages: [i18n.t("GameEvent.messages.wildChildStarts")],
-                    soundEffect: "wild-child-plays",
-                },
-                "big-bad-wolf-turn": {
-                    messages: [i18n.t("GameEvent.messages.bigBadWolfStarts")],
-                    soundEffect: "big-bad-wolf-plays",
-                },
-                "pied-piper-turn": {
-                    messages: [i18n.t("GameEvent.messages.piedPiperStarts")],
-                    soundEffect: "pied-piper-plays",
-                },
-                "pied-piper-charms": {
-                    messages: [
-                        i18n.t("GameEvent.messages.piedPiperCharmedTwoPlayers"),
-                        i18n.t("GameEvent.messages.gameMasterWillTouchCharmed"),
-                    ],
-                    soundEffect: "pied-piper-plays",
-                },
-                "charmed-turn": {
-                    messages: [
-                        ...insertIf(this.game.turn === 1, i18n.t("GameEvent.messages.charmedWakeUp")),
-                        ...insertIf(this.game.turn !== 1, i18n.t("GameEvent.messages.charmedWakeUpWithOldOnes")),
-                    ],
-                    soundEffect: "charmed-play",
-                },
-                "scapegoat-turn": {
-                    messages: [i18n.t("GameEvent.messages.scapegoatStarts")],
-                    soundEffect: "scapegoat-plays",
-                },
-                "thief-turn": {
-                    messages: [
-                        i18n.t("GameEvent.messages.thiefStarts"),
-                        i18n.t("GameEvent.messages.gameMasterWillFlipAdditionalCards"),
-                    ],
-                    soundEffect: "thief-plays",
-                },
-                "thief-chooses-card": {
-                    messages: [i18n.t("GameEvent.messages.thiefChoosesCard")],
-                    soundEffect: "thief-plays",
-                },
-                "stuttering-judge-turn": {
-                    messages: [i18n.t("GameEvent.messages.stutteringJudgeStarts")],
-                    soundEffect: "stuttering-judge-plays",
-                },
-                "white-werewolf-turn": {
-                    messages: [i18n.t("GameEvent.messages.whiteWerewolfStarts")],
-                    soundEffect: "white-werewolf-plays",
-                },
-                "fox-turn": {
-                    messages: [i18n.t("GameEvent.messages.foxStarts")],
-                    soundEffect: "fox-plays",
-                },
-                "fox-sniffs": {
-                    messages: [
-                        ...insertIf(!this.hasGameEventTargets, i18n.t("GameEvent.messages.foxSkipsHisTurn")),
-                        ...insertIf(this.hasGameEventTargets, i18n.t("GameEvent.messages.foxSniffs")),
-                        ...insertIf(this.hasGameEventTargets && this.doTargetsIncludeWerewolf, i18n.t("GameEvent.messages.foxFoundWerewolf")),
-                        ...insertIf(this.hasGameEventTargets && !this.doTargetsIncludeWerewolf, i18n.t("GameEvent.messages.foxDidntFindWerewolf")),
-                    ],
-                    soundEffect: "fox-plays",
-                },
-                "bear-growls": {
-                    messages: [
-                        i18n.t("GameEvent.messages.bearGrowls"),
-                        i18n.t("GameEvent.messages.growlsBecauseWerewolves"),
-                        ...insertIf(vileFatherOfWolvesPlayer, i18n.t("GameEvent.messages.growBecauseInfected")),
-                    ],
-                    soundEffect: "bear-growls",
-                },
+                "game-starts": this.gameEventGameStartsMetadata,
+                "player-starts-game-revealed": this.gameEventPlayerStartsGameRevealedMetadata,
+                "player-dies": this.gameEventPlayerDiesMetadata,
+                "player-role-revealed": this.gameEventPlayerRoleRevealedMetadata,
+                "sheriff-elected": this.gameEventSheriffElectedMetadata,
+                "night-falls": this.gameEventNightFallsMetadata,
+                "no-death-after-votes": this.gameEventNoDeathAfterVotesMetadata,
+                "day-rises": this.gameEventDayRisesMetadata,
+                "deaths-during-night": this.gameEventDeathsDuringNightMetadata,
+                "no-death-during-night": this.gameEventNoDeathDuringNightMetadata,
+                "seer-looks": this.gameEventSeerLooksMetadata,
+                "vile-father-of-wolves-infects": this.gameEventVileFatherOfWolvesInfectsMetadata,
+                "raven-marks": this.gameEventRavenMarksMetadata,
+                "cupid-charms": this.gameEventCupidCharmsMetadata,
+                "pied-piper-charms": this.gameEventPiedPiperCharmsMetadata,
+                "thief-chooses-card": this.gameEventThiefChoosesCardMetadata,
+                "fox-sniffs": this.gameEventFoxSniffsMetadata,
+                "bear-growls": this.gameEventBearGrowlsMetadata,
+                ...this.gameEventTurnMetadata,
+            };
+        },
+        gameEventTurnMetadata() {
+            return {
+                "all-turn": this.gameEventAllTurnMetadata,
+                "sheriff-turn": this.gameEventSheriffTurnMetadata,
+                "seer-turn": this.gameEventSeerTurnMetadata,
+                "werewolves-turn": this.gameEventWerewolvesTurnMetadata,
+                "witch-turn": this.gameEventWitchTurnMetadata,
+                "guard-turn": this.gameEventGuardTurnMetadata,
+                "raven-turn": this.gameEventRavenTurnMetadata,
+                "hunter-turn": this.gameEventHunterTurnMetadata,
+                "dog-wolf-turn": this.gameEventDogWolfTurnMetadata,
+                "cupid-turn": this.gameEventCupidTurnMetadata,
+                "lovers-turn": this.gameEventLoversTurnMetadata,
+                "two-sisters-turn": this.gameEventTwoSistersTurnMetadata,
+                "three-brothers-turn": this.gameEventThreeBrothersTurnMetadata,
+                "wild-child-turn": this.gameEventWildChildTurnMetadata,
+                "big-bad-wolf-turn": this.gameEventBigBadWolfTurnMetadata,
+                "pied-piper-turn": this.gameEventPiedPiperTurnMetadata,
+                "charmed-turn": this.gameEventCharmedTurnMetadata,
+                "scapegoat-turn": this.gameEventScapegoatTurnMetadata,
+                "thief-turn": this.gameEventThiefTurnMetadata,
+                "stuttering-judge-turn": this.gameEventStutteringJudgeTurnMetadata,
+                "white-werewolf-turn": this.gameEventWhiteWerewolfTurnMetadata,
+                "fox-turn": this.gameEventFoxTurnMetadata,
+            };
+        },
+        gameEventGameStartsMetadata() {
+            return {
+                messages: [
+                    i18n.t("GameEvent.messages.welcomeToTheVillage"),
+                    this.gameCompositionText,
+                    ...insertIf(this.game.thiefPlayer && !this.game.options.repartition.isHidden,
+                        i18n.t("GameEvent.messages.moreRolesBecauseOfThief")),
+                    i18n.t("GameEvent.messages.looksLifeSomeWerewolvesIntroducedThemselves"),
+                    i18n.t("GameEvent.messages.villagersMurderWerewolves"),
+                    ...insertIf(this.gameOptions.roles.sheriff.isEnabled, i18n.t("GameEvent.messages.beforeStartingLetsElectSheriff")),
+                ],
+            };
+        },
+        gameEventPlayerStartsGameRevealedMetadata() {
+            return { messages: [i18n.t("GameEvent.messages.villagerVillagerStartsGameRevealed", { player: this.gameEventFirstTargetName })] };
+        },
+        gameEventPlayerDiesMetadata() {
+            const { didAncientTakeHisRevenge } = this.game;
+            return {
+                messages: [
+                    i18n.t("GameEvent.messages.playerDies", { player: this.gameEventFirstTargetName }),
+                    ...insertIf(this.game.options.roles.areRevealedOnDeath, i18n.t("GameEvent.messages.playerRevealsRole")),
+                    ...insertIf(!this.game.options.roles.areRevealedOnDeath, i18n.t("GameEvent.messages.playerDoesntRevealRole")),
+                    ...insertIf(this.gameEventFirstTargetRole === "idiot" && this.gameEventFirstTarget.player.hasAttribute("sheriff"),
+                        i18n.t("GameEvent.messages.noIdiotSheriffAnymore")),
+                    ...insertIf(this.gameEventFirstTargetRole === "ancient" && didAncientTakeHisRevenge,
+                        i18n.t("GameEvent.messages.ancientTakesHisRevenge")),
+                ],
+                soundEffect: "death",
+            };
+        },
+        gameEventPlayerRoleRevealedMetadata() {
+            return {
+                messages: [
+                    ...insertIf(this.gameEventFirstTargetRole === "idiot", i18n.t("GameEvent.messages.idiotIsForgiven")),
+                    i18n.t("GameEvent.messages.playerRoleIsRevealed"),
+                ],
+            };
+        },
+        gameEventSheriffElectedMetadata() {
+            return {
+                messages: [
+                    i18n.t("GameEvent.messages.playerHasBeenPromotedSheriff", { player: this.gameEventFirstTargetName }),
+                    ...insertIf(this.game.turn === 1, i18n.t("GameEvent.messages.sheriffCanMakeASpeech")),
+                ],
+                soundEffect: "sheriff-is-elected",
+            };
+        },
+        gameEventNightFallsMetadata() {
+            return {
+                messages: [i18n.t("GameEvent.messages.nightFalls"), i18n.t("GameEvent.messages.inhabitantsFallAsleep")],
+                soundEffect: "night-falls",
+            };
+        },
+        gameEventAllTurnMetadata() {
+            const { firstWaiting, angelPlayer, ancientPlayer } = this.game;
+            return {
+                messages: [
+                    ...insertIf(firstWaiting.to === "vote" && !!angelPlayer && this.game.isFirstWaitingPreFirstNightPlay,
+                        i18n.t("GameEvent.messages.gameStartsWithVoteBecauseOfAngel")),
+                    ...insertIf(firstWaiting.to === "vote" && firstWaiting.cause === "stuttering-judge-request",
+                        i18n.t("GameEvent.messages.allVoteBecauseOfStutteringJudge")),
+                    ...insertIf(firstWaiting.to === "vote" && !this.game.isSecondVoteAfterTie, i18n.t("GameEvent.messages.allVote")),
+                    ...insertIf(firstWaiting.to === "vote" && this.game.isSecondVoteAfterTie,
+                        i18n.t("GameEvent.messages.allVoteAgain", { players: listPlayerNames(this.game.lastActionTargetedPlayers) })),
+                    ...insertIf(firstWaiting.to === "vote" && !!ancientPlayer && ancientPlayer.isAlive,
+                        i18n.t("GameEvent.messages.attentionToTheAncient")),
+                    ...insertIf(firstWaiting.to === "elect-sheriff", i18n.t("GameEvent.messages.allElectSheriff")),
+                ],
+                soundEffect: "sheriff-election",
+            };
+        },
+        gameEventNoDeathAfterVotesMetadata() {
+            return {
+                messages: [
+                    i18n.t("GameEvent.messages.noDeathAfterVotes"),
+                    i18n.t("GameEvent.messages.everybodyFallAsleepAlive"),
+                ],
+            };
+        },
+        gameEventSheriffTurnMetadata() {
+            const { firstWaiting } = this.game;
+            return {
+                messages: [
+                    ...insertIf(firstWaiting.to === "settle-votes", i18n.t("GameEvent.messages.sheriffSettlesVote")),
+                    ...insertIf(firstWaiting.to === "delegate", i18n.t("GameEvent.messages.sheriffDelegates")),
+                ],
+                soundEffect: "sheriff-election",
+            };
+        },
+        gameEventDayRisesMetadata() {
+            return {
+                messages: [i18n.t("GameEvent.messages.dayRises")],
+                soundEffect: "day-rises",
+            };
+        },
+        gameEventDeathsDuringNightMetadata() {
+            return {
+                messages: [
+                    i18n.tc("GameEvent.messages.deathDuringNight", this.event.targets.length, { numberOfDeaths: this.event.targets.length }),
+                    i18n.t("GameEvent.messages.letsSeeWhoIsDead"),
+                ],
+            };
+        },
+        gameEventNoDeathDuringNightMetadata() {
+            return { messages: [i18n.t("GameEvent.messages.noDeathDuringNight")] };
+        },
+        gameEventSeerTurnMetadata() {
+            return {
+                messages: [i18n.t("GameEvent.messages.seerStarts")],
+                soundEffect: "seer-plays",
+            };
+        },
+        gameEventSeerLooksMetadata() {
+            let seenTargetText;
+            if (this.gameOptions.roles.seer.canSeeRoles) {
+                seenTargetText = i18n.t(`Role.a.${this.gameEventFirstTargetRole}`);
+            } else if (this.gameEventFirstTargetSide === "werewolves") {
+                seenTargetText = i18n.t(`GameEvent.messages.playerInWerewolvesSide`);
+            } else {
+                seenTargetText = i18n.t(`GameEvent.messages.playerInVillagersSide`);
+            }
+            return {
+                messages: [
+                    ...insertIf(!this.gameOptions.roles.seer.isTalkative, i18n.t("GameEvent.messages.followingMessageMustToldDiscreetly")),
+                    `${i18n.t("GameEvent.messages.seerHasSeen")} ${seenTargetText} !`,
+                ],
+                soundEffect: "seer-plays",
+            };
+        },
+        gameEventWerewolvesTurnMetadata() {
+            return {
+                messages: [i18n.tc("GameEvent.messages.werewolvesStart", this.game.aliveWerewolfPlayers.length)],
+                soundEffect: "werewolves-play",
+            };
+        },
+        gameEventVileFatherOfWolvesInfectsMetadata() {
+            return {
+                messages: [i18n.t("GameEvent.messages.gameMasterWillTouchInfected")],
+                soundEffect: "vile-father-of-wolves-infects",
+            };
+        },
+        gameEventWitchTurnMetadata() {
+            return {
+                messages: [i18n.t("GameEvent.messages.witchStarts")],
+                soundEffect: "witch-plays",
+            };
+        },
+        gameEventGuardTurnMetadata() {
+            return {
+                messages: [i18n.t("GameEvent.messages.guardStarts")],
+                soundEffect: "guard-plays",
+            };
+        },
+        gameEventRavenTurnMetadata() {
+            return {
+                messages: [i18n.t("GameEvent.messages.ravenStarts")],
+                soundEffect: "raven-plays",
+            };
+        },
+        gameEventRavenMarksMetadata() {
+            return {
+                messages: [
+                    i18n.t("GameEvent.messages.ravenHasMarked"),
+                    i18n.t("GameEvent.messages.gameMasterWillDepositMark"),
+                ],
+                soundEffect: "raven-plays",
+            };
+        },
+        gameEventHunterTurnMetadata() {
+            return {
+                messages: [i18n.t("GameEvent.messages.hunterStarts")],
+                soundEffect: "hunter-plays",
+            };
+        },
+        gameEventDogWolfTurnMetadata() {
+            return {
+                messages: [i18n.t("GameEvent.messages.dogWolfStarts")],
+                soundEffect: "dog-wolf-plays",
+            };
+        },
+        gameEventCupidTurnMetadata() {
+            return {
+                messages: [i18n.t("GameEvent.messages.cupidStarts")],
+                soundEffect: "cupid-plays",
+            };
+        },
+        gameEventCupidCharmsMetadata() {
+            return {
+                messages: [
+                    i18n.t("GameEvent.messages.cupidCharmedTwoPlayers"),
+                    i18n.t("GameEvent.messages.gameMasterWillTouchLovers"),
+                ],
+                soundEffect: "cupid-plays",
+            };
+        },
+        gameEventLoversTurnMetadata() {
+            return {
+                messages: [i18n.t("GameEvent.messages.loversStart")],
+                soundEffect: "lovers-play",
+            };
+        },
+        gameEventTwoSistersTurnMetadata() {
+            return {
+                messages: [
+                    ...insertIf(this.game.turn === 1, i18n.t("GameEvent.messages.twoSistersMeetEachOther")),
+                    ...insertIf(this.game.turn !== 1, i18n.t("GameEvent.messages.twoSistersWakeUpToTalk")),
+                ],
+                soundEffect: "two-sisters-play",
+            };
+        },
+        gameEventThreeBrothersTurnMetadata() {
+            return {
+                messages: [
+                    ...insertIf(this.game.turn === 1, i18n.t("GameEvent.messages.threeBrothersMeetEachOther")),
+                    ...insertIf(this.game.turn !== 1, i18n.t("GameEvent.messages.threeBrothersWakeUpToTalk")),
+                ],
+                soundEffect: "three-brothers-play",
+            };
+        },
+        gameEventWildChildTurnMetadata() {
+            return {
+                messages: [i18n.t("GameEvent.messages.wildChildStarts")],
+                soundEffect: "wild-child-plays",
+            };
+        },
+        gameEventBigBadWolfTurnMetadata() {
+            return {
+                messages: [i18n.t("GameEvent.messages.bigBadWolfStarts")],
+                soundEffect: "big-bad-wolf-plays",
+            };
+        },
+        gameEventPiedPiperTurnMetadata() {
+            return {
+                messages: [i18n.t("GameEvent.messages.piedPiperStarts")],
+                soundEffect: "pied-piper-plays",
+            };
+        },
+        gameEventPiedPiperCharmsMetadata() {
+            return {
+                messages: [
+                    i18n.t("GameEvent.messages.piedPiperCharmedTwoPlayers"),
+                    i18n.t("GameEvent.messages.gameMasterWillTouchCharmed"),
+                ],
+                soundEffect: "pied-piper-plays",
+            };
+        },
+        gameEventCharmedTurnMetadata() {
+            return {
+                messages: [
+                    ...insertIf(this.game.turn === 1, i18n.t("GameEvent.messages.charmedWakeUp")),
+                    ...insertIf(this.game.turn !== 1, i18n.t("GameEvent.messages.charmedWakeUpWithOldOnes")),
+                ],
+                soundEffect: "charmed-play",
+            };
+        },
+        gameEventScapegoatTurnMetadata() {
+            return {
+                messages: [i18n.t("GameEvent.messages.scapegoatStarts")],
+                soundEffect: "scapegoat-plays",
+            };
+        },
+        gameEventThiefTurnMetadata() {
+            return {
+                messages: [
+                    i18n.t("GameEvent.messages.thiefStarts"),
+                    i18n.t("GameEvent.messages.gameMasterWillFlipAdditionalCards"),
+                ],
+                soundEffect: "thief-plays",
+            };
+        },
+        gameEventThiefChoosesCardMetadata() {
+            return {
+                messages: [i18n.t("GameEvent.messages.thiefChoosesCard")],
+                soundEffect: "thief-plays",
+            };
+        },
+        gameEventStutteringJudgeTurnMetadata() {
+            return {
+                messages: [i18n.t("GameEvent.messages.stutteringJudgeStarts")],
+                soundEffect: "stuttering-judge-plays",
+            };
+        },
+        gameEventWhiteWerewolfTurnMetadata() {
+            return {
+                messages: [i18n.t("GameEvent.messages.whiteWerewolfStarts")],
+                soundEffect: "white-werewolf-plays",
+            };
+        },
+        gameEventFoxTurnMetadata() {
+            return {
+                messages: [i18n.t("GameEvent.messages.foxStarts")],
+                soundEffect: "fox-plays",
+            };
+        },
+        gameEventFoxSniffsMetadata() {
+            return {
+                messages: [
+                    ...insertIf(!this.hasGameEventTargets, i18n.t("GameEvent.messages.foxSkipsHisTurn")),
+                    ...insertIf(this.hasGameEventTargets, i18n.t("GameEvent.messages.foxSniffs")),
+                    ...insertIf(this.hasGameEventTargets && this.doTargetsIncludeWerewolf, i18n.t("GameEvent.messages.foxFoundWerewolf")),
+                    ...insertIf(this.hasGameEventTargets && !this.doTargetsIncludeWerewolf, i18n.t("GameEvent.messages.foxDidntFindWerewolf")),
+                ],
+                soundEffect: "fox-plays",
+            };
+        },
+        gameEventBearGrowlsMetadata() {
+            const { vileFatherOfWolvesPlayer } = this.game;
+            return {
+                messages: [
+                    i18n.t("GameEvent.messages.bearGrowls"),
+                    i18n.t("GameEvent.messages.growlsBecauseWerewolves"),
+                    ...insertIf(vileFatherOfWolvesPlayer, i18n.t("GameEvent.messages.growBecauseInfected")),
+                ],
+                soundEffect: "bear-growls",
             };
         },
         hasGameEventTargets() {
             return !!this.event.targets.length;
+        },
+        gameEventFirstTarget() {
+            return this.hasGameEventTargets ? this.event.targets[0] : null;
+        },
+        gameEventFirstTargetName() {
+            return this.hasGameEventTargets ? this.gameEventFirstTarget.player.name : null;
+        },
+        gameEventFirstTargetRole() {
+            return this.hasGameEventTargets ? this.gameEventFirstTarget.player.role.current : null;
+        },
+        gameEventFirstTargetSide() {
+            return this.hasGameEventTargets ? this.gameEventFirstTarget.player.side.current : null;
         },
         doTargetsIncludeWerewolf() {
             return this.event.targets.find(({ player }) => player.isInWerewolvesSide);

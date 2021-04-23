@@ -114,6 +114,7 @@ export default {
                     protect: [
                         { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.guard.protect.guardProtectsWhen`) },
                         { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.guard.protect.guardCanProtect`) },
+                        { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.guard.protect.guardCanProtectHimself`) },
                         { header, target: "#guard-player-card", content: this.$t(`GamePlayFieldTutorial.guard.protect.guardPointsAtTarget`) },
                         ...insertIf(!!littleGirlPlayer && littleGirlPlayer.isAliveAndPowerful && !isLittleGirlProtectedByGuard, {
                             header,

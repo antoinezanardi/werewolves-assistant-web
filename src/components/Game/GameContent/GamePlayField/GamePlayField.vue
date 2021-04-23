@@ -121,7 +121,7 @@ export default {
         async getPastEvents() {
             const { firstWaiting, stutteringJudgePlayer, vileFatherOfWolvesPlayer } = this.game;
             try {
-                if (firstWaiting.to === "protect") {
+                if (!this.game.options.roles.guard.canProtectTwice && firstWaiting.to === "protect") {
                     await this.fillLastGuardTarget();
                 } else if (firstWaiting.to === "use-potion") {
                     await this.fillWitchPotionsUsage();
