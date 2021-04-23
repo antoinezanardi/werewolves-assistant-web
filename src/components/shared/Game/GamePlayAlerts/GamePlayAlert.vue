@@ -39,41 +39,135 @@ export default {
     },
     computed: {
         ...mapGetters("game", { game: "game" }),
-        gamePlayAlertRole() {
-            const gamePlayAlertRoles = {
-                "idiot-wont-delegate": "idiot",
-                "villager-villager-can-be-trusted": "villager-villager",
-                "ancient-can-make-all-powerless": "ancient",
-                "idiot-wont-die-from-votes": "idiot",
-                "scapegoat-will-die-from-tie": "scapegoat",
-                "angel-will-win-if-he-dies": "angel",
-                "ancient-can-survive-werewolves": "ancient",
-                "guard-can-protect-target": "guard",
-                "witch-can-protect-target": "witch",
-                "vile-father-of-wolves-can-infect": "vile-father-of-wolves",
-                "stuttering-judge-can-request-vote": "stuttering-judge",
-                "guard-cant-protect-little-girl": "little-girl",
-                "pied-piper-will-loose-powers-if-infected": "pied-piper",
+        gamePlayAlertMetadata() {
+            return {
+                ...this.gamePlayAlertIdiotMetadata,
+                ...this.gamePlayAlertVillagerVillagerMetadata,
+                ...this.gamePlayAlertAncientMetadata,
+                ...this.gamePlayAlertScapegoatMetadata,
+                ...this.gamePlayAlertAngelMetadata,
+                ...this.gamePlayAlertGuardMetadata,
+                ...this.gamePlayAlertWitchMetadata,
+                ...this.gamePlayAlertVileFatherOfWolvesMetadata,
+                ...this.gamePlayAlertStutteringJudgeMetadata,
+                ...this.gamePlayAlertPiedPiperMetadata,
+                ...this.gamePlayAlertBearTamerMetadata,
             };
-            return gamePlayAlertRoles[this.type];
+        },
+        gamePlayAlertIdiotMetadata() {
+            const role = "idiot";
+            return {
+                "idiot-wont-delegate": {
+                    role,
+                    icon: "fa-grimace",
+                },
+                "idiot-wont-die-from-votes": {
+                    role,
+                    icon: "fa-shield-alt",
+                },
+            };
+        },
+        gamePlayAlertVillagerVillagerMetadata() {
+            return {
+                "villager-villager-can-be-trusted": {
+                    role: "villager-villager",
+                    icon: "fa-thumbs-up",
+                },
+            };
+        },
+        gamePlayAlertAncientMetadata() {
+            const role = "ancient";
+            return {
+                "ancient-can-make-all-powerless": {
+                    role,
+                    icon: "fa-bolt",
+                },
+                "ancient-can-survive-werewolves": {
+                    role,
+                    icon: "fa-fist-raised",
+                },
+            };
+        },
+        gamePlayAlertScapegoatMetadata() {
+            return {
+                "scapegoat-will-die-from-tie": {
+                    role: "scapegoat",
+                    icon: "fa-comment-slash",
+                },
+            };
+        },
+        gamePlayAlertAngelMetadata() {
+            return {
+                "angel-will-win-if-he-dies": {
+                    role: "angel",
+                    icon: "fa-trophy",
+                },
+            };
+        },
+        gamePlayAlertGuardMetadata() {
+            const role = "guard";
+            return {
+                "guard-can-protect-target": {
+                    role,
+                    icon: "fa-shield-alt",
+                },
+                "guard-cant-protect-little-girl": {
+                    role,
+                    icon: "fa-female",
+                },
+            };
+        },
+        gamePlayAlertWitchMetadata() {
+            return {
+                "witch-can-protect-target": {
+                    role: "witch",
+                    icon: "fa-magic",
+                },
+            };
+        },
+        gamePlayAlertVileFatherOfWolvesMetadata() {
+            return {
+                "vile-father-of-wolves-can-infect": {
+                    role: "vile-father-of-wolves",
+                    icon: "fa-people-arrows",
+                },
+            };
+        },
+        gamePlayAlertStutteringJudgeMetadata() {
+            return {
+                "stuttering-judge-can-request-vote": {
+                    role: "stuttering-judge",
+                    icon: "fa-gavel",
+                },
+            };
+        },
+        gamePlayAlertPiedPiperMetadata() {
+            return {
+                "pied-piper-will-loose-powers-if-infected": {
+                    role: "pied-piper",
+                    icon: "fa-ban",
+                },
+            };
+        },
+        gamePlayAlertBearTamerMetadata() {
+            const role = "bear-tamer";
+            const icon = "fa-users";
+            return {
+                "bear-tamer-growls-and-infected": {
+                    role,
+                    icon,
+                },
+                "bear-tamer-growls": {
+                    role,
+                    icon,
+                },
+            };
+        },
+        gamePlayAlertRole() {
+            return this.gamePlayAlertMetadata[this.type] ? this.gamePlayAlertMetadata[this.type].role : undefined;
         },
         gamePlayAlertIconClasses() {
-            const gamePlayAlertIcons = {
-                "idiot-wont-delegate": "fa-grimace",
-                "villager-villager-can-be-trusted": "fa-thumbs-up",
-                "ancient-can-make-all-powerless": "fa-bolt",
-                "idiot-wont-die-from-votes": "fa-shield-alt",
-                "scapegoat-will-die-from-tie": "fa-comment-slash",
-                "angel-will-win-if-he-dies": "fa-trophy",
-                "ancient-can-survive-werewolves": "fa-fist-raised",
-                "guard-can-protect-target": "fa-shield-alt",
-                "witch-can-protect-target": "fa-magic",
-                "vile-father-of-wolves-can-infect": "fa-people-arrows",
-                "stuttering-judge-can-request-vote": "fa-gavel",
-                "guard-cant-protect-little-girl": "fa-female",
-                "pied-piper-will-loose-powers-if-infected": "fa-ban",
-            };
-            return gamePlayAlertIcons[this.type];
+            return this.gamePlayAlertMetadata[this.type] ? this.gamePlayAlertMetadata[this.type].icon : undefined;
         },
     },
 };

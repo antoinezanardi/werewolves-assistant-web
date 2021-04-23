@@ -83,7 +83,7 @@ export default {
                 return [];
             }
             return [
-                ...insertIf(source !== "white-werewolf" && !!ancientPlayer, "ancient-can-survive-werewolves"),
+                ...insertIf(source !== "white-werewolf" && !!ancientPlayer && ancientPlayer.isAliveAndPowerful, "ancient-can-survive-werewolves"),
                 ...insertIf(source !== "white-werewolf" && !!guardPlayer && guardPlayer.isAliveAndPowerful, "guard-can-protect-target"),
                 ...insertIf(source !== "white-werewolf" && !!witchPlayer && witchPlayer.isAliveAndPowerful, "witch-can-protect-target"),
                 ...insertIf(source === "werewolves" && !!vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer.isAlive,
