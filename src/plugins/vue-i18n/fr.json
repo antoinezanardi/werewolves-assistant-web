@@ -626,7 +626,9 @@
             "vile-father-of-wolves-can-infect": "L'Infect Père des Loups pourra, s'il le souhaite, transformer la victime en Loup-Garou.",
             "stuttering-judge-can-request-vote": "Le Juge Bègue pourra, s'il le souhaite, demander un second vote en réalisant son signe au maître du jeu.",
             "guard-cant-protect-little-girl": "La Petite Fille est pleine crise de préadolescence, la protection du Salvateur sera sans effet sur elle si elle se fait manger par les Loups-Garous...",
-            "pied-piper-will-loose-powers-if-infected": "Si le Joueur de Flûte est infecté, il perdra son pouvoir de charme et abandonnera son but de gagner la partie en charmant tout les joueurs vivants."
+            "pied-piper-will-loose-powers-if-infected": "Si le Joueur de Flûte est infecté, il perdra son pouvoir de charme et abandonnera son but de gagner la partie en charmant tout les joueurs vivants.",
+            "bear-tamer-growls": "L'ours du Montreur a grogné en début de journée. Cela veut dire que son voisin de gauche ou de droite (ou les deux) est un Loup-Garou.",
+            "bear-tamer-growls-and-infected": "L'ours du Montreur a grogné en début de journée. Cela veut dire que son voisin de gauche ou de droite (ou les deux) est un Loup-Garou. Il est aussi possible que l'Infect Père des Loups l'ait infecté, auquel cas l'ours grognera tous les matins."
         },
         "shareThisWithPlayers": "Partager cette information avec les joueurs peut rendre la partie un peu plus intéressante.",
         "keepThisForYourself": "Les rôles présents ont été cachés en début de partie. Réfléchissez à deux fois avant de partager une information aux joueurs pour garder du suspens."
@@ -832,8 +834,7 @@
         "two-sisters": {
             "meet-each-other": {
                 "howToPlay": "Comment jouer les Deux Sœurs ?",
-                "twoSistersMeetEachOtherWhen": "Les Deux Sœurs ne se réveillent que la première nuit. | Tant que les Deux Sœurs sont vivantes, elles se réveillent toutes les nuits. | Tant que les Deux Sœurs sont vivantes, elles se réveillent toutes les {sistersWakingUpInterval} nuits.",
-                "intervalCanBeChanged": "Le nombre de nuits entre deux réveils des Deux Sœurs peut être changé dans les options de la partie.",
+                "twoSistersMeetEachOtherWhen": "Les Deux Sœurs ne se réveillent que la première nuit. | Tant que les Deux Sœurs sont vivantes, elles se réveillent toutes les nuits. | Tant que les Deux Sœurs sont vivantes, elles se réveillent toutes les {sistersWakingUpInterval} nuits. Le nombre de nuits entre deux réveils des Deux Sœurs peut être changé dans les options de la partie.",
                 "twoSistersTalk": "Les Deux Sœurs peuvent se faire confiance : elles connaissent toutes les deux le rôle de l'autre ! Pendant leur tour, elles peuvent se concerter rapidement et en silence sur les décisions à prendre pour sauver le village.",
                 "twoSistersHave20s": "Les Deux Sœurs ont environ 20 secondes pendant leur tour pour discuter grâce à un habile langage des signes.",
                 "noActionRequiredToValidate": "Aucune action n'est requise pour passer à la suite."
