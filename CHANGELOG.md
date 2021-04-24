@@ -11,14 +11,15 @@
 * [#159](https://github.com/antoinezanardi/werewolves-assistant-web/issues/159) - Bear Tamer role.
 * [#160](https://github.com/antoinezanardi/werewolves-assistant-web/issues/160) - Hidden game repartition option.
 * [#161](https://github.com/antoinezanardi/werewolves-assistant-web/issues/161) - Role revealed on death option.
+* [#163](https://github.com/antoinezanardi/werewolves-assistant-web/issues/163) - Guard can protect twice option.
+* [#164](https://github.com/antoinezanardi/werewolves-assistant-web/issues/164) - Fox not powerless if he misses a werewolf option.
+* [#165](https://github.com/antoinezanardi/werewolves-assistant-web/issues/165) - Bear Tamer growls if he is infected option.
 * [#183](https://github.com/antoinezanardi/werewolves-assistant-web/issues/183) - Audio options in parameters modal.
 * [#188](https://github.com/antoinezanardi/werewolves-assistant-web/issues/188) - Modal for helping players with roles.
 
 ### 🌟 Enhancements
 
 * [#156](https://github.com/antoinezanardi/werewolves-assistant-web/issues/156) - List of voters against one player below him.
-* [#163](https://github.com/antoinezanardi/werewolves-assistant-web/issues/163) - Guard can protect twice option.
-* [#165](https://github.com/antoinezanardi/werewolves-assistant-web/issues/165) - Bear Tamer growls if he is infected option.
 * [#180](https://github.com/antoinezanardi/werewolves-assistant-web/issues/180) - Role types.
 * [#182](https://github.com/antoinezanardi/werewolves-assistant-web/issues/182) - Accordions in About page for roles.
 * [#185](https://github.com/antoinezanardi/werewolves-assistant-web/issues/185) - Reset base rules button in game roles options.

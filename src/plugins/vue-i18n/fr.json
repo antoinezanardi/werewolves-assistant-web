@@ -1173,7 +1173,8 @@
             "ravenMarked": "Le joueur aura {markPenalty} voix d'office contre lui au prochain vote. (Ceci peut être modifié dans les options de la partie)",
             "votesNeedSettlement": "Dû à l'égalité des votes, les ex æquo doivent être départagés.",
             "foxFoundWerewolf": "Le Renard a flairé un ou plusieurs Loups-Garous dans ce groupe de joueurs.",
-            "foxDidntFindWerewolfAndBecamePowerless": "Le Renard n'a trouvé aucun Loup-Garou dans ce groupe de joueurs et a donc perdu son pouvoir."
+            "foxDidntFindWerewolfAndBecamePowerless": "Le Renard n'a trouvé aucun Loup-Garou dans ce groupe de joueurs et a donc perdu son pouvoir.",
+            "foxDidntFindWerewolfAndDidntBecomePowerless": "Le Renard n'a trouvé aucun Loup-Garou dans ce groupe de joueurs mais n'a pas perdu son pouvoir grâce à l'option de la partie."
         },
         "skipTurn": "a passé son tour",
         "remarksOnPlay": "Remarques sur cette action"
