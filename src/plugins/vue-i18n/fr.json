@@ -702,8 +702,8 @@
             "look": {
                 "howToPlay": "Comment jouer la Voyante ?",
                 "seerLooksWhen": "Chaque nuit, si elle est vivante, la Voyante se réveille.",
-                "seerCanLook": "Grâce à son don, la Voyante voit le rôle de n'importe quel joueur vivant.",
-                "seerPointsAtTarget": "La Voyante doit pointer du doigt sa cible. Si la Voyante est bavarde, le maître du jeu révelera à haute voix le rôle de la cible, sinon il devra le mimer. Ceci peut être changé dans les options de la partie.",
+                "seerCanLook": "Grâce à son don, la Voyante voit le rôle de n'importe quel joueur vivant. Une option de la partie permet même de limiter sa voyance au camp (et non le rôle) du joueur visé.",
+                "seerPointsAtTarget": "La Voyante doit pointer du doigt sa cible. Si la Voyante est bavarde, le maître du jeu révelera à haute voix le rôle de la cible, sinon il devra faire deviner discrètement à la Voyante ce qu'elle a vu. Ceci peut être défini dans les options de la partie.",
                 "toValidateLook": "Pour passer à la suite, la Voyante doit obligatoirement voir le rôle d'un habitant."
             }
         },
@@ -927,7 +927,7 @@
                 "foxSniffsWhen": "Toutes les nuits, le Renard se réveille.",
                 "foxCanSniff": "Le Renard peut, s'il le souhaite, flairer un groupe de 3 joueurs en désignant la personne au centre de ce groupe.",
                 "ifOnePlayerIsWerewolf": "Si l'un de ces joueurs est dans le camp des Loups-Garous, le maître du jeu fera un pouce vers le haut ou vers le bas dans le cas contraire.",
-                "foxCanLoosePower": "Attention, le Renard perdra son pouvoir s'il l'utilise sur un groupe de joueurs où aucun d'entre eux n'est dans le camp des Loups-Garous.",
+                "foxCanLoosePower": "Attention, le Renard perdra son pouvoir s'il l'utilise sur un groupe de joueurs où aucun d'entre eux n'est dans le camp des Loups-Garous. Ceci peut être changé dans les options de la partie.",
                 "toValidateSniff": "Pour passer à la suite, le Renard peut choisir un groupe de joueurs ou passer son tour."
             }
         }
@@ -1401,7 +1401,7 @@
             "whiteWerewolfStarts": "Le Loup-Garou Blanc se réveille et va, s'il le souhaite, dévorer l'un de ses congénères.",
             "foxStarts": "Le Renard se réveille et va, s'il le souhaite, flairer un groupe de joueurs pour espérer débusquer un Loup-Garou.",
             "foxSkipsHisTurn": "Le Renard a décidé de ne pas utiliser son pouvoir cette nuit.",
-            "foxSniffs": "Le Renard a décidé de flairer un potentiel canidé dans un groupe de joueurs. La maître du jeu va devoir mimer la phrase suivante au Renard.",
+            "foxSniffs": "Le Renard a décidé de flairer un potentiel canidé dans un groupe de joueurs. La maître du jeu devra transmettre discrètement la phrase suivante au Renard.",
             "foxFoundWerewolf": "Le Renard a flairé un Loup-Garou ! Faites un pouce vers le haut pour l'informer du résultat de son enquête.",
             "foxDidntFindWerewolf": "Le Renard n'a flairé aucun Loup-Garou ! Faites un pouce vers le bas pour l'informer du résultat de son enquête.",
             "bearGrowls": "L'Ours du Montreur grogne...!",

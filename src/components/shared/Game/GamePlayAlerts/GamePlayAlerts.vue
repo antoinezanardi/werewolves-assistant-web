@@ -22,7 +22,10 @@ export default {
         },
     },
     computed: {
-        ...mapGetters("game", { game: "game" }),
+        ...mapGetters("game", {
+            game: "game",
+            gameOptions: "gameOptions",
+        }),
         gamePlayAlerts() {
             return [
                 ...this.sheriffElectionAlerts,
@@ -41,7 +44,7 @@ export default {
                 return [];
             }
             return [
-                ...insertIf(idiotPlayer.isAliveAndPowerful, "idiot-wont-delegate"),
+                ...insertIf(!!idiotPlayer && idiotPlayer.isAliveAndPowerful, "idiot-wont-delegate"),
                 ...insertIf(!!villagerVillagerPlayer && villagerVillagerPlayer.isAlive, "villager-villager-can-be-trusted"),
             ];
         },
@@ -56,6 +59,7 @@ export default {
                 firstWaiting, idiotPlayer, isIdiotProtectedFromVotes, scapegoatPlayer, stutteringJudgePlayer, bearTamerPlayer,
                 vileFatherOfWolvesPlayer,
             } = this.game;
+            const { doesGrowlIfInfected } = this.gameOptions.roles.bearTamer;
             const { to: action } = firstWaiting;
             const voteActions = ["vote", "settle-votes"];
             if (!voteActions.includes(action)) {
@@ -63,7 +67,7 @@ export default {
             }
             const { hasStutteringJudgeChosenSign, hasStutteringJudgeRequestedVote } = this.pastEvents;
             const canJudgeRequestVote = this.game.canStutteringJudgeRequestVote(hasStutteringJudgeChosenSign, hasStutteringJudgeRequestedVote);
-            const bearTamerAlertType = vileFatherOfWolvesPlayer ? "bear-tamer-growls-and-infected" : "bear-tamer-growls";
+            const bearTamerAlertType = vileFatherOfWolvesPlayer && doesGrowlIfInfected ? "bear-tamer-growls-and-infected" : "bear-tamer-growls";
             return [
                 ...insertIf(!!idiotPlayer && isIdiotProtectedFromVotes, "idiot-wont-die-from-votes"),
                 ...insertIf(!!scapegoatPlayer && scapegoatPlayer.isAliveAndPowerful, "scapegoat-will-die-from-tie"),

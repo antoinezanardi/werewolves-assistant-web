@@ -442,11 +442,12 @@ export default {
         },
         gameEventBearGrowlsMetadata() {
             const { vileFatherOfWolvesPlayer } = this.game;
+            const { doesGrowlIfInfected } = this.gameOptions.roles.bearTamer;
             return {
                 messages: [
                     i18n.t("GameEvent.messages.bearGrowls"),
                     i18n.t("GameEvent.messages.growlsBecauseWerewolves"),
-                    ...insertIf(vileFatherOfWolvesPlayer, i18n.t("GameEvent.messages.growBecauseInfected")),
+                    ...insertIf(vileFatherOfWolvesPlayer && doesGrowlIfInfected, i18n.t("GameEvent.messages.growBecauseInfected")),
                 ],
                 soundEffect: "bear-growls",
             };

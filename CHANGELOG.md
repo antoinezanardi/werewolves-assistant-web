@@ -18,6 +18,7 @@
 
 * [#156](https://github.com/antoinezanardi/werewolves-assistant-web/issues/156) - List of voters against one player below him.
 * [#163](https://github.com/antoinezanardi/werewolves-assistant-web/issues/163) - Guard can protect twice option.
+* [#165](https://github.com/antoinezanardi/werewolves-assistant-web/issues/165) - Bear Tamer growls if he is infected option.
 * [#180](https://github.com/antoinezanardi/werewolves-assistant-web/issues/180) - Role types.
 * [#182](https://github.com/antoinezanardi/werewolves-assistant-web/issues/182) - Accordions in About page for roles.
 * [#185](https://github.com/antoinezanardi/werewolves-assistant-web/issues/185) - Reset base rules button in game roles options.

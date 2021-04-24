@@ -228,11 +228,12 @@ export default {
             const { stepsHeader: header, game } = this;
             let actionStepsTextPath = "GamePlayFieldTutorial.all.vote";
             const { bearTamerPlayer, vileFatherOfWolvesPlayer } = game;
+            const { doesGrowlIfInfected } = this.gameOptions.roles.bearTamer;
             const isBearTamerAlertShowed = bearTamerPlayer && bearTamerPlayer.isAliveAndPowerful && bearTamerPlayer.hasActiveAttribute("growls");
             if (!isBearTamerAlertShowed) {
                 return [];
             }
-            const bearTamerAlertType = vileFatherOfWolvesPlayer ? "bear-tamer-growls-and-infected" : "bear-tamer-growls";
+            const bearTamerAlertType = vileFatherOfWolvesPlayer && doesGrowlIfInfected ? "bear-tamer-growls-and-infected" : "bear-tamer-growls";
             const target = `#game-play-alert-${bearTamerAlertType}`;
             actionStepsTextPath += bearTamerAlertType === "bear-tamer-growls-and-infected" ? ".bearTamerGrowlsAndInfected" : ".bearTamerGrowls";
             return [{ header, target, content: this.$t(`${actionStepsTextPath}`) }];
