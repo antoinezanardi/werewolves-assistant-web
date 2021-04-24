@@ -52,7 +52,7 @@ export default {
                 hasWitchUsedLifePotion: undefined,
                 hasWitchUsedDeathPotion: undefined,
                 hasStutteringJudgeChosenSign: undefined,
-                hasStutteringJudgeRequestedVote: undefined,
+                stutteringJudgeVoteRequestsCount: undefined,
                 hasVileFatherOfWolvesInfected: undefined,
             },
             cantGetPastEvents: false,
@@ -99,7 +99,7 @@ export default {
             const voteQueryStrings = { "play-source": "all", "play-action": "vote" };
             const { data } = await this.$werewolvesAssistantAPI.getGameHistory(this.game._id, voteQueryStrings);
             const votePlays = data.map(gameHistoryEntry => new GameHistory(gameHistoryEntry));
-            this.pastEvents.hasStutteringJudgeRequestedVote = !!votePlays.find(votePlay => votePlay.hasStutteringJudgeRequestedVote);
+            this.pastEvents.stutteringJudgeVoteRequestsCount = votePlays.filter(votePlay => votePlay.hasStutteringJudgeRequestedVote).length;
         },
         async fillWitchPotionsUsage() {
             this.loadings.pastEvents = true;

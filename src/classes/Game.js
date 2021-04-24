@@ -472,8 +472,9 @@ class Game {
         return this.getPlayerWithRole("bear-tamer");
     }
 
-    canStutteringJudgeRequestVote(hasChosenSign, hasRequestedVote) {
-        return !!this.stutteringJudgePlayer && this.stutteringJudgePlayer.isAliveAndPowerful && hasChosenSign && !hasRequestedVote;
+    canStutteringJudgeRequestVote(hasChosenSign, voteRequestsCount) {
+        return !!this.stutteringJudgePlayer && this.stutteringJudgePlayer.isAliveAndPowerful && hasChosenSign &&
+            voteRequestsCount < this.options.roles.stutteringJudge.voteRequestsCount;
     }
 
     isRoleInGame(roleName) {

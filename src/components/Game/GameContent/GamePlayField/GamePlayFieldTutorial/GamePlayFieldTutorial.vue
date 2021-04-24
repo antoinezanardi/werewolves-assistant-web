@@ -199,7 +199,7 @@ export default {
             const { stepsHeader: header, game } = this;
             const actionStepsTextPath = "GamePlayFieldTutorial.all.vote";
             const { ancientPlayer, isIdiotProtectedFromVotes, scapegoatPlayer, angelPlayer, doesAngelWinIfHeDiesNow } = game;
-            const { hasStutteringJudgeChosenSign, hasStutteringJudgeRequestedVote } = this.pastEvents;
+            const { hasStutteringJudgeChosenSign, stutteringJudgeVoteRequestsCount } = this.pastEvents;
             return [
                 ...insertIf(!!ancientPlayer && ancientPlayer.isAlive, {
                     header, target: `#game-play-alert-ancient-can-make-all-powerless`,
@@ -217,7 +217,7 @@ export default {
                     header, target: `#game-play-alert-angel-will-win-if-he-dies`,
                     content: this.$t(`${actionStepsTextPath}.angelWillWinIfHeDiesNow`),
                 }),
-                ...insertIf(game.canStutteringJudgeRequestVote(hasStutteringJudgeChosenSign, hasStutteringJudgeRequestedVote), {
+                ...insertIf(game.canStutteringJudgeRequestVote(hasStutteringJudgeChosenSign, stutteringJudgeVoteRequestsCount), {
                     header, target: `#game-play-alert-stuttering-judge-can-request-vote`,
                     content: this.$t(`${actionStepsTextPath}.stutteringJudgeCanRequestAnotherVote`),
                 }),

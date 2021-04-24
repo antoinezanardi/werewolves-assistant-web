@@ -65,8 +65,8 @@ export default {
             if (!voteActions.includes(action)) {
                 return [];
             }
-            const { hasStutteringJudgeChosenSign, hasStutteringJudgeRequestedVote } = this.pastEvents;
-            const canJudgeRequestVote = this.game.canStutteringJudgeRequestVote(hasStutteringJudgeChosenSign, hasStutteringJudgeRequestedVote);
+            const { hasStutteringJudgeChosenSign, stutteringJudgeVoteRequestsCount } = this.pastEvents;
+            const canJudgeRequestVote = this.game.canStutteringJudgeRequestVote(hasStutteringJudgeChosenSign, stutteringJudgeVoteRequestsCount);
             const bearTamerAlertType = vileFatherOfWolvesPlayer && doesGrowlIfInfected ? "bear-tamer-growls-and-infected" : "bear-tamer-growls";
             return [
                 ...insertIf(!!idiotPlayer && isIdiotProtectedFromVotes, "idiot-wont-die-from-votes"),

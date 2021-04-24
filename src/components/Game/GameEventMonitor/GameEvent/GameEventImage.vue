@@ -117,7 +117,7 @@ export default {
             const deadPlayerActions = ["delegate", "shoot", "ban-voting"];
             if (this.event.type === "no-death-during-night") {
                 return this.game.alivePlayers;
-            } else if (this.event.type === "deaths-during-night") {
+            } else if (this.event.type === "game-starts" || this.event.type === "deaths-during-night") {
                 return this.game.players;
             } else if (this.isEffectGameEvent || this.event.type === "bear-growls" || this.event.type === "bear-stays-calm") {
                 return this.event.targets.map(({ player }) => player);

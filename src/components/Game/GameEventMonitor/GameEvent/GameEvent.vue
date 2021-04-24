@@ -135,6 +135,8 @@ export default {
             };
         },
         gameEventGameStartsMetadata() {
+            const { isEnabled, electedAt } = this.gameOptions.roles.sheriff;
+            const isSheriffElectedOnFirstNight = electedAt.turn === 1 && electedAt.phase === "night";
             return {
                 messages: [
                     i18n.t("GameEvent.messages.welcomeToTheVillage"),
@@ -143,7 +145,7 @@ export default {
                         i18n.t("GameEvent.messages.moreRolesBecauseOfThief")),
                     i18n.t("GameEvent.messages.looksLifeSomeWerewolvesIntroducedThemselves"),
                     i18n.t("GameEvent.messages.villagersMurderWerewolves"),
-                    ...insertIf(this.gameOptions.roles.sheriff.isEnabled, i18n.t("GameEvent.messages.beforeStartingLetsElectSheriff")),
+                    ...insertIf(isEnabled && isSheriffElectedOnFirstNight, i18n.t("GameEvent.messages.beforeStartingLetsElectSheriff")),
                 ],
             };
         },
@@ -249,7 +251,7 @@ export default {
         },
         gameEventSeerLooksMetadata() {
             let seenTargetText;
-            if (this.gameOptions.roles.seer.canSeeRoles) {
+            if (this.gameEventFirstTargetRole && this.gameOptions.roles.seer.canSeeRoles) {
                 seenTargetText = i18n.t(`Role.a.${this.gameEventFirstTargetRole}`);
             } else if (this.gameEventFirstTargetSide === "werewolves") {
                 seenTargetText = i18n.t(`GameEvent.messages.playerInWerewolvesSide`);

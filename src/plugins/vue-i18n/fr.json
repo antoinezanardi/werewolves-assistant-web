@@ -624,7 +624,7 @@
             "guard-can-protect-target": "Si le Salvateur a protégé la cible des Loups-Garous, elle survivra.",
             "witch-can-protect-target": "La Sorcière pourra, si elle le souhaite, utiliser sa potion de vie pour sauver la victime des Loups-Garous plus tard dans la nuit.",
             "vile-father-of-wolves-can-infect": "L'Infect Père des Loups pourra, s'il le souhaite, transformer la victime en Loup-Garou.",
-            "stuttering-judge-can-request-vote": "Le Juge Bègue pourra, s'il le souhaite, demander un second vote en réalisant son signe au maître du jeu.",
+            "stuttering-judge-can-request-vote": "Le Juge Bègue pourra, s'il le souhaite, demander un autre vote en réalisant son signe au maître du jeu.",
             "guard-cant-protect-little-girl": "La Petite Fille est pleine crise de préadolescence, la protection du Salvateur sera sans effet sur elle si elle se fait manger par les Loups-Garous...",
             "pied-piper-will-loose-powers-if-infected": "Si le Joueur de Flûte est infecté, il perdra son pouvoir de charme et abandonnera son but de gagner la partie en charmant tout les joueurs vivants.",
             "bear-tamer-growls": "L'ours du Montreur a grogné en début de journée. Cela veut dire que son voisin de gauche ou de droite (ou les deux) est un Loup-Garou.",
@@ -768,15 +768,15 @@
                 "idiotWillBeForgiven": "L'Idiot est dans la partie ! Si son rôle n'est pas encore révélé et que le village décide de voter contre lui, alors il sera gracié, le village se rendant compte de leur bêtise de pendre un Idiot. Par contre, son rôle sera révélé et il perdra son droit de vote pour le reste de la partie.",
                 "ancientWillHaveHisRevenge": "L'Ancien est dans la partie ! Si le village décide de le pendre, alors tous les joueurs dans le camp des Villageois perdront leurs pouvoirs. Attention à la pendaison irréfléchie !",
                 "angelWillWinIfHeDiesNow": "L'Ange est dans la partie ! S'il meurt des votes, alors il gagnera la partie.",
-                "stutteringJudgeCanRequestAnotherVote": "Le Juge Bègue est dans la partie ! En réalisant le signe précédemment convenu au maître du jeu, un deuxième vote aura lieu après le résultat de celui en cours.",
+                "stutteringJudgeCanRequestAnotherVote": "Le Juge Bègue est dans la partie ! En réalisant le signe précédemment convenu au maître du jeu, un autre vote aura lieu après le résultat de celui en cours. Le nombre de fois que le Juge Bègue peut demander un autre vote peut être modifié dans les options de la partie.",
                 "bearTamerGrowlsAndInfected": "Le Montreur d'Ours est dans la partie et a grogné ce matin ! Cela veut dire que son voisin de gauche ou de droite (ou les deux) est un Loup-Garou ! Il est même possible que le Montreur soit infecté et donc lui-même un Loup-Garou... Auquel cas, l'ours grognera tous les matins.",
                 "bearTamerGrowls": "Le Montreur d'Ours est dans la partie et a grogné ce matin ! Cela veut dire que son voisin de gauche ou de droite (ou les deux) est un Loup-Garou !",
                 "toValidateAVote": "Pour passer à la suite, au moins un joueur doit avoir voté."
             },
             "elect-sheriff": {
                 "howToPlay": "Comment élire le maire ?",
-                "sheriffIsElectedWhen": "Au début de la partie, un maire doit être élu par tous les joueurs vivants. La présence du maire peut être retirée dans les options de la partie.",
-                "sheriffSettlesVotes": "Être le maire possède deux avantages: départager une éventuelle égalité des votes lors de la pendaison et avoir un vote comptant double durant cette dernière !",
+                "sheriffIsElectedWhen": "Au cours de la partie, un maire peut être élu par tous les joueurs vivants. La présence du maire peut être retirée dans les options de la partie. Généralement, il est élu en tout début de partie mais le moment de l'élection peut être modifié dans les options de la partie.",
+                "sheriffSettlesVotes": "Être le maire possède deux avantages: départager une éventuelle égalité des votes lors de la pendaison et avoir un vote comptant double durant cette dernière ! Le vote comptant double peut être désactivé dans les options de la partie.",
                 "playersHave5Min": "Les joueurs ont 5 minutes pour se mettre d'accord sur qui sera leur prochain maire. À la fin du temps, le maître du jeu doit stopper les discussions et procéder à l'élection.",
                 "eachPlayerVoteForSheriff": "Chaque joueur a donc une voix à donner pour l'élection, mais ne peut voter pour lui-même. Il peut néanmoins voter blanc. Le maître du jeu demande le vote de chacun à tour de rôle.",
                 "idiotWontDelegate": "L'Idiot est dans la partie ! S'il est nommé maire du village et qu'il meurt, il n'y aura plus de maire dans la partie.",
@@ -909,7 +909,7 @@
                 "howToPlay": "Comment jouer le Juge Bègue ?",
                 "stutteringJudgeChoosesSignWhen": "Au début de la partie, seulement la première nuit, le Juge Bègue se réveille.",
                 "stutteringJudgeCanRequestVote": "Une seule fois pendant la partie, le Juge Bègue peut décider arbitrairement qu'il y aura non pas une mais deux pendaisons pendant la journée.",
-                "stutteringJudgeCanChooseSign": "Pour cela, il doit convenir d'un signe avec le maître du jeu dès maintenant. Le Juge Bègue pourra reproduire ce signe discrètement au maître du jeu pendant un vote, enclanchant un second vote dans la foulée.",
+                "stutteringJudgeCanChooseSign": "Pour cela, il doit convenir d'un signe avec le maître du jeu dès maintenant. Le Juge Bègue pourra reproduire ce signe discrètement au maître du jeu pendant un vote, enclanchant un autre vote dans la foulée.",
                 "toValidateChooseSign": "Pour passer à la suite, le maître du jeu et le Juge Bègue doivent avoir convenu du signe à reproduire et tous deux bien le retenir pour le reste de la partie."
             }
         },
@@ -1304,10 +1304,11 @@
     "VotePlayField": {
         "onlyCanBeHanged": "Seuls {players} sont éligibles à la pendaison",
         "everybodyCanBeHanged": "Tout le monde est éligible à la pendaison",
-        "stutteringJudgeHasMadeHisSign": "a fait son signe pour demander un second vote ?",
-        "stutteringJudgeDidntChooseSignYet": "ne peut pas demander un second vote car il n'a pas encore choisi son signe.",
-        "stutteringJudgeAlreadyRequestedVote": "a déjà demandé un second vote.",
-        "stutteringJudgeIsPowerless": "ne peut pas demander un second vote car il n'a plus son pouvoir."
+        "stutteringJudgeHasMadeHisSign": "a fait son signe pour demander un autre vote ?",
+        "stutteringJudgeDidntChooseSignYet": "ne peut pas demander un autre vote car il n'a pas encore choisi son signe.",
+        "stutteringJudgeAlreadyRequestedVote": "ne peut plus demander d'autres votes.",
+        "stutteringJudgeIsPowerless": "ne peut pas demander un autre vote car il n'a plus son pouvoir.",
+        "stutteringJudgeHasRequestsLeft": "Le Juge Bègue peut encore demander {stutteringJudgeVoteRequestsCountLeft} fois un autre vote."
     },
     "MeetEachOtherPlayField": {
         "meetEachOtherTheFirstTime": "se rencontrent pour la première fois",
@@ -1356,7 +1357,7 @@
             "letsSeeWhoIsDead": "Après plusieurs recherches, le village doit se résoudre à annoncer publiquement la triste nouvelle...",
             "noDeathDuringNight": "Le village se réveille, et, à la surprise générale, personne n'est mort pendant la nuit !",
             "allVote": "Les habitants du village vont maintenant voter pour pendre l'un des leurs et espérer débusquer un Loup-Garou.",
-            "allVoteBecauseOfStutteringJudge": "À la demande du Juge Bègue grâce à un habile signe dissimulé, un second vote a immédiatement lieu.  ",
+            "allVoteBecauseOfStutteringJudge": "À la demande du Juge Bègue grâce à un habile signe dissimulé, un autre vote a immédiatement lieu.",
             "allVoteAgain": "Étant donné qu'il n'y a pas de maire pour départager, le village va devoir voter entre les joueurs à égalité: {players}.",
             "noDeathAfterVotes": "Même après 2 votes consécutifs, le village n'a pas réussi à s'entendre sur qui sera pendu.",
             "everybodyFallAsleepAlive": "Par conséquent, il n'y aura aucune mise à mort publique aujourd'hui.",
