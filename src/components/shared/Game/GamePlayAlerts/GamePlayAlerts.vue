@@ -63,7 +63,7 @@ export default {
             }
             const { hasStutteringJudgeChosenSign, hasStutteringJudgeRequestedVote } = this.pastEvents;
             const canJudgeRequestVote = this.game.canStutteringJudgeRequestVote(hasStutteringJudgeChosenSign, hasStutteringJudgeRequestedVote);
-            const bearTamerAlertType = vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer ? "bear-tamer-growls-and-infected" : "bear-tamer-growls";
+            const bearTamerAlertType = vileFatherOfWolvesPlayer ? "bear-tamer-growls-and-infected" : "bear-tamer-growls";
             return [
                 ...insertIf(!!idiotPlayer && isIdiotProtectedFromVotes, "idiot-wont-die-from-votes"),
                 ...insertIf(!!scapegoatPlayer && scapegoatPlayer.isAliveAndPowerful, "scapegoat-will-die-from-tie"),

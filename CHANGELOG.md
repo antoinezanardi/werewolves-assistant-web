@@ -8,6 +8,7 @@
 * [#155](https://github.com/antoinezanardi/werewolves-assistant-web/issues/155) - Google auth.
 * [#157](https://github.com/antoinezanardi/werewolves-assistant-web/issues/157) - Fox role.
 * [#158](https://github.com/antoinezanardi/werewolves-assistant-web/issues/158) - Game players position panel in game options.
+* [#159](https://github.com/antoinezanardi/werewolves-assistant-web/issues/159) - Bear Tamer role.
 * [#160](https://github.com/antoinezanardi/werewolves-assistant-web/issues/160) - Hidden game repartition option.
 * [#161](https://github.com/antoinezanardi/werewolves-assistant-web/issues/161) - Role revealed on death option.
 * [#183](https://github.com/antoinezanardi/werewolves-assistant-web/issues/183) - Audio options in parameters modal.
@@ -50,7 +51,7 @@
 * `@vue/cli-service` updated to version `4.5.12`.
 * `@vue/test-utils` updated to version `1.1.4`.
 * `chai` updated to version `4.3.4`.
-* `eslint` updated to version `7.24.0`.
+* `eslint` updated to version `7.25.0`.
 * `eslint-plugin-vue` updated to version `7.9.0`.
 * `particles.vue` updated to version `2.9.3`.
 * `qs` updated to version `6.10.1`.

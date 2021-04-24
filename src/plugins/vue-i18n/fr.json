@@ -769,6 +769,8 @@
                 "ancientWillHaveHisRevenge": "L'Ancien est dans la partie ! Si le village décide de le pendre, alors tous les joueurs dans le camp des Villageois perdront leurs pouvoirs. Attention à la pendaison irréfléchie !",
                 "angelWillWinIfHeDiesNow": "L'Ange est dans la partie ! S'il meurt des votes, alors il gagnera la partie.",
                 "stutteringJudgeCanRequestAnotherVote": "Le Juge Bègue est dans la partie ! En réalisant le signe précédemment convenu au maître du jeu, un deuxième vote aura lieu après le résultat de celui en cours.",
+                "bearTamerGrowlsAndInfected": "Le Montreur d'Ours est dans la partie et a grogné ce matin ! Cela veut dire que son voisin de gauche ou de droite (ou les deux) est un Loup-Garou ! Il est même possible que le Montreur soit infecté et donc lui-même un Loup-Garou... Auquel cas, l'ours grognera tous les matins.",
+                "bearTamerGrowls": "Le Montreur d'Ours est dans la partie et a grogné ce matin ! Cela veut dire que son voisin de gauche ou de droite (ou les deux) est un Loup-Garou !",
                 "toValidateAVote": "Pour passer à la suite, au moins un joueur doit avoir voté."
             },
             "elect-sheriff": {
@@ -834,7 +836,7 @@
         "two-sisters": {
             "meet-each-other": {
                 "howToPlay": "Comment jouer les Deux Sœurs ?",
-                "twoSistersMeetEachOtherWhen": "Les Deux Sœurs ne se réveillent que la première nuit. | Tant que les Deux Sœurs sont vivantes, elles se réveillent toutes les nuits. | Tant que les Deux Sœurs sont vivantes, elles se réveillent toutes les {sistersWakingUpInterval} nuits. Le nombre de nuits entre deux réveils des Deux Sœurs peut être changé dans les options de la partie.",
+                "twoSistersMeetEachOtherWhen": "Les Deux Sœurs ne se réveillent que la première nuit. Le nombre de nuits entre deux réveils des Deux Sœurs peut être changé dans les options de la partie. | Tant que les Deux Sœurs sont vivantes, elles se réveillent toutes les nuits. Le nombre de nuits entre deux réveils des Deux Sœurs peut être changé dans les options de la partie. | Tant que les Deux Sœurs sont vivantes, elles se réveillent toutes les {sistersWakingUpInterval} nuits. Le nombre de nuits entre deux réveils des Deux Sœurs peut être changé dans les options de la partie.",
                 "twoSistersTalk": "Les Deux Sœurs peuvent se faire confiance : elles connaissent toutes les deux le rôle de l'autre ! Pendant leur tour, elles peuvent se concerter rapidement et en silence sur les décisions à prendre pour sauver le village.",
                 "twoSistersHave20s": "Les Deux Sœurs ont environ 20 secondes pendant leur tour pour discuter grâce à un habile langage des signes.",
                 "noActionRequiredToValidate": "Aucune action n'est requise pour passer à la suite."
@@ -843,8 +845,7 @@
         "three-brothers": {
             "meet-each-other": {
                 "howToPlay": "Comment jouer les Trois Frères ?",
-                "threeBrothersMeetEachOtherWhen": "Les Trois Frères ne se réveillent que la première nuit. | Tant qu'au moins deux des Trois Frères sont vivants, ils se réveillent toutes les nuits. | Tant qu'au moins deux des Trois Frères sont vivants, ils se réveillent toutes les {brothersWakingUpInterval} nuits.",
-                "intervalCanBeChanged": "Le nombre de nuits entre deux réveils des Trois Frères peut être changé dans les options de la partie.",
+                "threeBrothersMeetEachOtherWhen": "Les Trois Frères ne se réveillent que la première nuit. Le nombre de nuits entre deux réveils des Trois Frères peut être changé dans les options de la partie. | Tant qu'au moins deux des Trois Frères sont vivants, ils se réveillent toutes les nuits. Le nombre de nuits entre deux réveils des Trois Frères peut être changé dans les options de la partie. | Tant qu'au moins deux des Trois Frères sont vivants, ils se réveillent toutes les {wakingUpInterval} nuits. Le nombre de nuits entre deux réveils des Trois Frères peut être changé dans les options de la partie.",
                 "threeBrothersTalk": "Les Trois Frères peuvent se faire confiance : ils connaissent tous les trois leur rôle respectif ! Pendant leur tour, ils peuvent se concerter rapidement et en silence sur les décisions à prendre pour sauver le village.",
                 "threeBrothersHave20s": "Les Trois Frères ont environ 20 secondes pendant leur tour pour discuter grâce à un habile langage des signes.",
                 "noActionRequiredToValidate": "Aucune action n'est requise pour passer à la suite."

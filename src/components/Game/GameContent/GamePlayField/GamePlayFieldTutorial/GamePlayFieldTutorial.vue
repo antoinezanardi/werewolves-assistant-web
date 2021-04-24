@@ -31,10 +31,6 @@ export default {
         // eslint-disable-next-line max-lines-per-function
         steps() {
             const { firstWaiting } = this.game;
-            const brothersWakingUpInterval = this.gameOptions.roles.threeBrothers.wakingUpInterval;
-            const { ancientPlayer, witchPlayer, guardPlayer } = this.game;
-            const action = `${firstWaiting.for}.${firstWaiting.to}`;
-            const header = { title: this.$t(`GamePlayFieldTutorial.${action}.howToPlay`) };
             const steps = {
                 "seer": this.seerSteps,
                 "werewolves": this.werewolvesSteps,
@@ -48,177 +44,22 @@ export default {
                 "cupid": this.cupidSteps,
                 "lovers": this.loversSteps,
                 "two-sisters": this.twoSistersSteps,
-                "three-brothers": {
-                    "meet-each-other": [
-                        {
-                            header,
-                            target: "#game-waiting-label",
-                            // eslint-disable-next-line max-len,vue/max-len
-                            content: `${this.$tc(`GamePlayFieldTutorial.three-brothers.meet-each-other.threeBrothersMeetEachOtherWhen`, brothersWakingUpInterval, { brothersWakingUpInterval })} ${this.$t("GamePlayFieldTutorial.three-brothers.meet-each-other.intervalCanBeChanged")}`,
-                        },
-                        {
-                            header,
-                            target: "#meeting-each-other-players",
-                            content: this.$t(`GamePlayFieldTutorial.three-brothers.meet-each-other.threeBrothersTalk`),
-                        },
-                        {
-                            header,
-                            target: ".countdown",
-                            content: this.$t(`GamePlayFieldTutorial.three-brothers.meet-each-other.threeBrothersHave20s`),
-                        },
-                        {
-                            header,
-                            target: "#play-submit-button",
-                            content: this.$t(`GamePlayFieldTutorial.three-brothers.meet-each-other.noActionRequiredToValidate`),
-                        },
-                    ],
-                },
-                "wild-child": {
-                    "choose-model": [
-                        {
-                            header,
-                            target: "#game-waiting-label",
-                            content: this.$t(`GamePlayFieldTutorial.wild-child.choose-model.wildChildChooseModelWhen`),
-                        },
-                        {
-                            header,
-                            target: "#player-targets",
-                            content: this.$t(`GamePlayFieldTutorial.wild-child.choose-model.wildChildCanChooseModel`),
-                        },
-                        {
-                            header,
-                            target: "#target-play-requirements",
-                            content: this.$t(`GamePlayFieldTutorial.wild-child.choose-model.toValidateChooseModel`),
-                        },
-                    ],
-                },
-                "big-bad-wolf": {
-                    eat: [
-                        { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.big-bad-wolf.eat.bigBadWolfEatsWhen`) },
-                        { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.big-bad-wolf.eat.bigBadWolfEatsAVictim`) },
-                        { header, target: "#werewolf-players", content: this.$t(`GamePlayFieldTutorial.big-bad-wolf.eat.bigBadWolfPointsAtVictim`) },
-                        ...insertIf(!!ancientPlayer && ancientPlayer.isAlive, {
-                            header,
-                            target: `#game-play-alert-ancient-can-survive-werewolves`,
-                            content: this.$t("GamePlayFieldTutorial.werewolves.eat.ancientCanSurvive"),
-                        }),
-                        ...insertIf(!!guardPlayer && guardPlayer.isAliveAndPowerful, {
-                            header,
-                            target: `#game-play-alert-guard-can-protect-target`,
-                            content: this.$t("GamePlayFieldTutorial.werewolves.eat.guardCanProtect"),
-                        }),
-                        ...insertIf(!!witchPlayer && witchPlayer.isAliveAndPowerful, {
-                            header,
-                            target: `#game-play-alert-witch-can-protect-target`,
-                            content: this.$t("GamePlayFieldTutorial.werewolves.eat.witchCanSave"),
-                        }),
-                        { header, target: "#target-play-requirements", content: this.$t(`GamePlayFieldTutorial.big-bad-wolf.eat.toValidateEat`) },
-                    ],
-                },
-                "pied-piper": {
-                    charm: [
-                        { header, target: "#game-waiting-label", content: this.$t("GamePlayFieldTutorial.pied-piper.charm.piedPiperCharmsWhen") },
-                        { header, target: "#player-targets", content: this.$t("GamePlayFieldTutorial.pied-piper.charm.piedPiperCanCharm") },
-                        { header, target: "#player-targets", content: this.$t("GamePlayFieldTutorial.pied-piper.charm.ifAllAreCharmed") },
-                        ...insertIf(!!this.game.vileFatherOfWolvesPlayer, {
-                            header,
-                            target: "#pied-piper-player ",
-                            content: this.$t("GamePlayFieldTutorial.pied-piper.charm.ifPiedPiperIsInfected"),
-                        }),
-                        { header, target: "#target-play-requirements", content: this.$t("GamePlayFieldTutorial.pied-piper.charm.toValidateCharm") },
-                    ],
-                },
-                "charmed": {
-                    "meet-each-other": [
-                        {
-                            header,
-                            target: "#game-waiting-label",
-                            content: this.$t(`GamePlayFieldTutorial.charmed.meet-each-other.charmedMeetEachOtherWhen`),
-                        },
-                        {
-                            header,
-                            target: "#meeting-each-other-players",
-                            content: this.$t(`GamePlayFieldTutorial.charmed.meet-each-other.ifAllAreCharmed`),
-                        },
-                        {
-                            header,
-                            target: ".countdown",
-                            content: this.$t(`GamePlayFieldTutorial.charmed.meet-each-other.charmedHave20s`),
-                        },
-                        {
-                            header,
-                            target: "#play-submit-button",
-                            content: this.$t(`GamePlayFieldTutorial.charmed.meet-each-other.noActionRequiredToValidate`),
-                        },
-                    ],
-                },
-                "scapegoat": {
-                    "ban-voting": [
-                        {
-                            header, target: "#game-waiting-label",
-                            content: this.$t(`GamePlayFieldTutorial.scapegoat.ban-voting.scapegoatBansVotingWhen`),
-                        },
-                        { header, target: "#player-targets", content: this.$t("GamePlayFieldTutorial.scapegoat.ban-voting.scapegoatCanBanVoting") },
-                        { header, target: "#player-targets", content: this.$t("GamePlayFieldTutorial.scapegoat.ban-voting.noVoteIfAllCantVote") },
-                        {
-                            header,
-                            target: "#play-submit-button",
-                            content: this.$t("GamePlayFieldTutorial.scapegoat.ban-voting.toValidateBanVoting"),
-                        },
-                    ],
-                },
-                "thief": {
-                    "choose-card": [
-                        { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.thief.choose-card.thiefChoosesCardWhen`) },
-                        { header, target: "#additional-cards", content: this.$t("GamePlayFieldTutorial.thief.choose-card.thiefCanChooseCard") },
-                        { header, target: "#play-submit-button", content: this.$t("GamePlayFieldTutorial.thief.choose-card.toValidateChooseCard") },
-                    ],
-                },
-                "stuttering-judge": {
-                    "choose-sign": [
-                        {
-                            header,
-                            target: "#game-waiting-label",
-                            content: this.$t(`GamePlayFieldTutorial.stuttering-judge.choose-sign.stutteringJudgeChoosesSignWhen`),
-                        },
-                        {
-                            header,
-                            target: "#stuttering-judge-player",
-                            content: this.$t(`GamePlayFieldTutorial.stuttering-judge.choose-sign.stutteringJudgeCanRequestVote`),
-                        },
-                        {
-                            header,
-                            target: "#stuttering-judge-player",
-                            content: this.$t(`GamePlayFieldTutorial.stuttering-judge.choose-sign.stutteringJudgeCanChooseSign`),
-                        },
-                        {
-                            header,
-                            target: "#play-submit-button",
-                            content: this.$t("GamePlayFieldTutorial.stuttering-judge.choose-sign.toValidateChooseSign"),
-                        },
-                    ],
-                },
-                "white-werewolf": {
-                    eat: [
-                        { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.white-werewolf.eat.whiteWerewolfEatsWhen`) },
-                        { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.white-werewolf.eat.whiteWerewolfCanEat`) },
-                        { header, target: "#play-submit-button", content: this.$t("GamePlayFieldTutorial.white-werewolf.eat.toValidateEat") },
-                    ],
-                },
-                "fox": {
-                    sniff: [
-                        { header, target: "#game-waiting-label", content: this.$t(`GamePlayFieldTutorial.fox.sniff.foxSniffsWhen`) },
-                        { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.fox.sniff.foxCanSniff`) },
-                        { header, target: "#player-targets", content: this.$t(`GamePlayFieldTutorial.fox.sniff.ifOnePlayerIsWerewolf`) },
-                        { header, target: "#fox-player", content: this.$t(`GamePlayFieldTutorial.fox.sniff.foxCanLoosePower`) },
-                        { header, target: "#play-submit-button", content: this.$t("GamePlayFieldTutorial.fox.sniff.toValidateSniff") },
-                    ],
-                },
+                "three-brothers": this.threeBrothersSteps,
+                "wild-child": this.wildChildSteps,
+                "big-bad-wolf": this.bigBadWolfSteps,
+                "pied-piper": this.piedPiperSteps,
+                "charmed": this.charmedSteps,
+                "scapegoat": this.scapegoatSteps,
+                "thief": this.thiefSteps,
+                "stuttering-judge": this.stutteringJudgeSteps,
+                "white-werewolf": this.whiteWerewolfSteps,
+                "fox": this.foxSteps,
             };
             return steps[firstWaiting.for] && steps[firstWaiting.for][firstWaiting.to] ? steps[firstWaiting.for][firstWaiting.to] : [];
         },
         seerSteps() {
-            const { stepsHeader: header, actionStepsTextPath } = this;
+            const { stepsHeader: header } = this;
+            const actionStepsTextPath = "GamePlayFieldTutorial.seer.look";
             return {
                 look: [
                     { header, target: "#game-waiting-label", content: this.$t(`${actionStepsTextPath}.seerLooksWhen`) },
@@ -229,7 +70,8 @@ export default {
             };
         },
         werewolvesSteps() {
-            const { stepsHeader: header, actionStepsTextPath } = this;
+            const { stepsHeader: header } = this;
+            const actionStepsTextPath = "GamePlayFieldTutorial.werewolves.eat";
             return {
                 eat: [
                     { header, target: "#game-waiting-label", content: this.$t(`${actionStepsTextPath}.werewolvesEatWhen`) },
@@ -241,7 +83,8 @@ export default {
             };
         },
         werewolvesEatGamePlayAlertsSteps() {
-            const { stepsHeader: header, actionStepsTextPath, game } = this;
+            const { stepsHeader: header, game } = this;
+            const actionStepsTextPath = "GamePlayFieldTutorial.werewolves.eat";
             const { angelPlayer, doesAngelWinIfHeDiesNow, ancientPlayer, guardPlayer, witchPlayer } = game;
             return [
                 ...insertIf(!!angelPlayer && angelPlayer.isAliveAndPowerful && doesAngelWinIfHeDiesNow, {
@@ -264,7 +107,8 @@ export default {
             ];
         },
         werewolvesEatVileFatherOfWolvesAlertsSteps() {
-            const { stepsHeader: header, actionStepsTextPath, game } = this;
+            const { stepsHeader: header, game } = this;
+            const actionStepsTextPath = "GamePlayFieldTutorial.werewolves.eat";
             const { vileFatherOfWolvesPlayer, piedPiperPlayer } = game;
             if (!vileFatherOfWolvesPlayer || !vileFatherOfWolvesPlayer.isAlive) {
                 return [];
@@ -282,7 +126,8 @@ export default {
             ];
         },
         witchSteps() {
-            const { stepsHeader: header, actionStepsTextPath, game } = this;
+            const { stepsHeader: header, game } = this;
+            const actionStepsTextPath = "GamePlayFieldTutorial.witch.use-potion";
             const { ancientPlayer } = game;
             return {
                 "use-potion": [
@@ -301,7 +146,8 @@ export default {
             };
         },
         guardSteps() {
-            const { stepsHeader: header, actionStepsTextPath, game } = this;
+            const { stepsHeader: header, game } = this;
+            const actionStepsTextPath = "GamePlayFieldTutorial.guard.protect";
             const { littleGirlPlayer } = game;
             const { isProtectedByGuard: isLittleGirlProtectedByGuard } = game.options.roles.littleGirl;
             return {
@@ -319,7 +165,8 @@ export default {
             };
         },
         ravenSteps() {
-            const { stepsHeader: header, actionStepsTextPath } = this;
+            const { stepsHeader: header } = this;
+            const actionStepsTextPath = "GamePlayFieldTutorial.raven.mark";
             return {
                 mark: [
                     { header, target: "#game-waiting-label", content: this.$t(`${actionStepsTextPath}.ravenMarksWhen`) },
@@ -337,7 +184,8 @@ export default {
             };
         },
         allVoteSteps() {
-            const { stepsHeader: header, actionStepsTextPath } = this;
+            const { stepsHeader: header } = this;
+            const actionStepsTextPath = "GamePlayFieldTutorial.all.vote";
             return [
                 { header, target: "#game-waiting-label", content: this.$t(`${actionStepsTextPath}.allVoteWhen`) },
                 { header, target: "#targetable-players-text", content: this.$t(`${actionStepsTextPath}.targetablePlayerAreHere`) },
@@ -348,7 +196,8 @@ export default {
             ];
         },
         allVoteGamePlayAlertsSteps() {
-            const { stepsHeader: header, actionStepsTextPath, game } = this;
+            const { stepsHeader: header, game } = this;
+            const actionStepsTextPath = "GamePlayFieldTutorial.all.vote";
             const { ancientPlayer, isIdiotProtectedFromVotes, scapegoatPlayer, angelPlayer, doesAngelWinIfHeDiesNow } = game;
             const { hasStutteringJudgeChosenSign, hasStutteringJudgeRequestedVote } = this.pastEvents;
             return [
@@ -372,10 +221,25 @@ export default {
                     header, target: `#game-play-alert-stuttering-judge-can-request-vote`,
                     content: this.$t(`${actionStepsTextPath}.stutteringJudgeCanRequestAnotherVote`),
                 }),
+                ...this.bearTamerGrowlingAlertStep,
             ];
         },
+        bearTamerGrowlingAlertStep() {
+            const { stepsHeader: header, game } = this;
+            let actionStepsTextPath = "GamePlayFieldTutorial.all.vote";
+            const { bearTamerPlayer, vileFatherOfWolvesPlayer } = game;
+            const isBearTamerAlertShowed = bearTamerPlayer && bearTamerPlayer.isAliveAndPowerful && bearTamerPlayer.hasActiveAttribute("growls");
+            if (!isBearTamerAlertShowed) {
+                return [];
+            }
+            const bearTamerAlertType = vileFatherOfWolvesPlayer ? "bear-tamer-growls-and-infected" : "bear-tamer-growls";
+            const target = `#game-play-alert-${bearTamerAlertType}`;
+            actionStepsTextPath += bearTamerAlertType === "bear-tamer-growls-and-infected" ? ".bearTamerGrowlsAndInfected" : ".bearTamerGrowls";
+            return [{ header, target, content: this.$t(`${actionStepsTextPath}`) }];
+        },
         allElectSheriffSteps() {
-            const { stepsHeader: header, actionStepsTextPath, game } = this;
+            const { stepsHeader: header, game } = this;
+            const actionStepsTextPath = "GamePlayFieldTutorial.all.elect-sheriff";
             const { idiotPlayer, villagerVillagerPlayer } = game;
             return [
                 { header, target: "#game-waiting-label", content: this.$t(`${actionStepsTextPath}.sheriffIsElectedWhen`) },
@@ -394,7 +258,8 @@ export default {
             ];
         },
         hunterSteps() {
-            const { stepsHeader: header, actionStepsTextPath, game } = this;
+            const { stepsHeader: header, game } = this;
+            const actionStepsTextPath = "GamePlayFieldTutorial.hunter.shoot";
             const { ancientPlayer } = game;
             return {
                 shoot: [
@@ -415,7 +280,8 @@ export default {
             };
         },
         sheriffSettlesVotesSteps() {
-            const { stepsHeader: header, actionStepsTextPath, game } = this;
+            const { stepsHeader: header, game } = this;
+            const actionStepsTextPath = "GamePlayFieldTutorial.sheriff.settle-votes";
             const { ancientPlayer, idiotPlayer, isIdiotProtectedFromVotes, angelPlayer, doesAngelWinIfHeDiesNow } = game;
             return [
                 { header, target: "#game-waiting-label", content: this.$t(`${actionStepsTextPath}.sheriffSettleVotesWhen`) },
@@ -431,11 +297,13 @@ export default {
                     header, target: `#game-play-alert-angel-will-win-if-he-dies`,
                     content: this.$t(`GamePlayFieldTutorial.all.vote.angelWillWinIfHeDiesNow`),
                 }),
+                ...this.bearTamerGrowlingAlertStep,
                 { header, target: "#target-play-requirements", content: this.$t(`${actionStepsTextPath}.toValidateSettleVotes`) },
             ];
         },
         sheriffDelegatesSteps() {
-            const { stepsHeader: header, actionStepsTextPath } = this;
+            const { stepsHeader: header } = this;
+            const actionStepsTextPath = "GamePlayFieldTutorial.sheriff.delegate";
             return [
                 { header, target: "#game-waiting-label", content: this.$t(`${actionStepsTextPath}.sheriffDelegatesWhen`) },
                 { header, target: "#player-targets", content: this.$t(`${actionStepsTextPath}.noDemocracyHere`) },
@@ -443,7 +311,8 @@ export default {
             ];
         },
         dogWolfSteps() {
-            const { stepsHeader: header, actionStepsTextPath } = this;
+            const { stepsHeader: header } = this;
+            const actionStepsTextPath = "GamePlayFieldTutorial.dog-wolf.choose-side";
             return {
                 "choose-side": [
                     { header, target: "#game-waiting-label", content: this.$t(`${actionStepsTextPath}.dogWolfChoosesSideWhen`) },
@@ -455,7 +324,8 @@ export default {
             };
         },
         cupidSteps() {
-            const { stepsHeader: header, actionStepsTextPath } = this;
+            const { stepsHeader: header } = this;
+            const actionStepsTextPath = "GamePlayFieldTutorial.cupid.charm";
             return {
                 charm: [
                     { header, target: "#game-waiting-label", content: this.$t(`${actionStepsTextPath}.cupidCharmsWhen`) },
@@ -465,7 +335,8 @@ export default {
             };
         },
         loversSteps() {
-            const { stepsHeader: header, actionStepsTextPath } = this;
+            const { stepsHeader: header } = this;
+            const actionStepsTextPath = "GamePlayFieldTutorial.lovers.meet-each-other";
             return {
                 "meet-each-other": [
                     { header, target: "#game-waiting-label", content: this.$t(`${actionStepsTextPath}.loversMeetEachOtherWhen`) },
@@ -476,7 +347,8 @@ export default {
             };
         },
         twoSistersSteps() {
-            const { stepsHeader: header, actionStepsTextPath } = this;
+            const { stepsHeader: header } = this;
+            const actionStepsTextPath = "GamePlayFieldTutorial.two-sisters.meet-each-other";
             const sistersWakingUpInterval = this.gameOptions.roles.twoSisters.wakingUpInterval;
             return {
                 "meet-each-other": [
@@ -490,12 +362,148 @@ export default {
                 ],
             };
         },
-        stepsHeader() {
-            return { title: this.$t(`${this.actionStepsTextPath}.howToPlay`) };
+        threeBrothersSteps() {
+            const { stepsHeader: header } = this;
+            const actionStepsTextPath = "GamePlayFieldTutorial.three-brothers.meet-each-other";
+            const { wakingUpInterval } = this.gameOptions.roles.threeBrothers;
+            return {
+                "meet-each-other": [
+                    {
+                        header, target: "#game-waiting-label",
+                        content: this.$tc(`${actionStepsTextPath}.threeBrothersMeetEachOtherWhen`, wakingUpInterval, { wakingUpInterval }),
+                    },
+                    { header, target: "#meeting-each-other-players", content: this.$t(`${actionStepsTextPath}.threeBrothersTalk`) },
+                    { header, target: ".countdown", content: this.$t(`${actionStepsTextPath}.threeBrothersHave20s`) },
+                    { header, target: "#play-submit-button", content: this.$t(`${actionStepsTextPath}.noActionRequiredToValidate`) },
+                ],
+            };
         },
-        actionStepsTextPath() {
+        wildChildSteps() {
+            const { stepsHeader: header } = this;
+            const actionStepsTextPath = "GamePlayFieldTutorial.wild-child.choose-model";
+            return {
+                "choose-model": [
+                    { header, target: "#game-waiting-label", content: this.$t(`${actionStepsTextPath}.wildChildChooseModelWhen`) },
+                    { header, target: "#player-targets", content: this.$t(`${actionStepsTextPath}.wildChildCanChooseModel`) },
+                    { header, target: "#target-play-requirements", content: this.$t(`${actionStepsTextPath}.toValidateChooseModel`) },
+                ],
+            };
+        },
+        bigBadWolfSteps() {
+            const { stepsHeader: header, game } = this;
+            const actionStepsTextPath = "GamePlayFieldTutorial.big-bad-wolf.eat";
+            const { ancientPlayer, guardPlayer, witchPlayer } = game;
+            return {
+                eat: [
+                    { header, target: "#game-waiting-label", content: this.$t(`${actionStepsTextPath}.bigBadWolfEatsWhen`) },
+                    { header, target: "#player-targets", content: this.$t(`${actionStepsTextPath}.bigBadWolfEatsAVictim`) },
+                    { header, target: "#werewolf-players", content: this.$t(`${actionStepsTextPath}.bigBadWolfPointsAtVictim`) },
+                    ...insertIf(!!ancientPlayer && ancientPlayer.isAlive, {
+                        header, target: `#game-play-alert-ancient-can-survive-werewolves`,
+                        content: this.$t("GamePlayFieldTutorial.werewolves.eat.ancientCanSurvive"),
+                    }),
+                    ...insertIf(!!guardPlayer && guardPlayer.isAliveAndPowerful, {
+                        header, target: `#game-play-alert-guard-can-protect-target`,
+                        content: this.$t("GamePlayFieldTutorial.werewolves.eat.guardCanProtect"),
+                    }),
+                    ...insertIf(!!witchPlayer && witchPlayer.isAliveAndPowerful, {
+                        header, target: `#game-play-alert-witch-can-protect-target`,
+                        content: this.$t("GamePlayFieldTutorial.werewolves.eat.witchCanSave"),
+                    }),
+                    { header, target: "#target-play-requirements", content: this.$t(`${actionStepsTextPath}.toValidateEat`) },
+                ],
+            };
+        },
+        piedPiperSteps() {
+            const { stepsHeader: header, game } = this;
+            const actionStepsTextPath = "GamePlayFieldTutorial.pied-piper.charm";
+            return {
+                charm: [
+                    { header, target: "#game-waiting-label", content: this.$t(`${actionStepsTextPath}.piedPiperCharmsWhen`) },
+                    { header, target: "#player-targets", content: this.$t(`${actionStepsTextPath}.piedPiperCanCharm`) },
+                    { header, target: "#player-targets", content: this.$t(`${actionStepsTextPath}.ifAllAreCharmed`) },
+                    ...insertIf(!!game.vileFatherOfWolvesPlayer, {
+                        header, target: "#pied-piper-player",
+                        content: this.$t(`${actionStepsTextPath}.ifPiedPiperIsInfected`),
+                    }),
+                    { header, target: "#target-play-requirements", content: this.$t(`${actionStepsTextPath}.toValidateCharm`) },
+                ],
+            };
+        },
+        charmedSteps() {
+            const { stepsHeader: header } = this;
+            const actionStepsTextPath = "GamePlayFieldTutorial.charmed.meet-each-other";
+            return {
+                "meet-each-other": [
+                    { header, target: "#game-waiting-label", content: this.$t(`${actionStepsTextPath}.charmedMeetEachOtherWhen`) },
+                    { header, target: "#meeting-each-other-players", content: this.$t(`${actionStepsTextPath}.ifAllAreCharmed`) },
+                    { header, target: ".countdown", content: this.$t(`${actionStepsTextPath}.charmedHave20s`) },
+                    { header, target: "#play-submit-button", content: this.$t(`${actionStepsTextPath}.noActionRequiredToValidate`) },
+                ],
+            };
+        },
+        scapegoatSteps() {
+            const { stepsHeader: header } = this;
+            const actionStepsTextPath = "GamePlayFieldTutorial.scapegoat.ban-voting";
+            return {
+                "ban-voting": [
+                    { header, target: "#game-waiting-label", content: this.$t(`${actionStepsTextPath}.scapegoatBansVotingWhen`) },
+                    { header, target: "#player-targets", content: this.$t(`${actionStepsTextPath}.scapegoatCanBanVoting`) },
+                    { header, target: "#player-targets", content: this.$t(`${actionStepsTextPath}.noVoteIfAllCantVote`) },
+                    { header, target: "#play-submit-button", content: this.$t(`${actionStepsTextPath}.toValidateBanVoting`) },
+                ],
+            };
+        },
+        thiefSteps() {
+            const { stepsHeader: header } = this;
+            const actionStepsTextPath = "GamePlayFieldTutorial.thief.choose-card";
+            return {
+                "choose-card": [
+                    { header, target: "#game-waiting-label", content: this.$t(`${actionStepsTextPath}.thiefChoosesCardWhen`) },
+                    { header, target: "#additional-cards", content: this.$t(`${actionStepsTextPath}.thiefCanChooseCard`) },
+                    { header, target: "#play-submit-button", content: this.$t(`${actionStepsTextPath}.toValidateChooseCard`) },
+                ],
+            };
+        },
+        stutteringJudgeSteps() {
+            const { stepsHeader: header } = this;
+            const actionStepsTextPath = "GamePlayFieldTutorial.stuttering-judge.choose-sign";
+            return {
+                "choose-sign": [
+                    { header, target: "#game-waiting-label", content: this.$t(`${actionStepsTextPath}.stutteringJudgeChoosesSignWhen`) },
+                    { header, target: "#stuttering-judge-player", content: this.$t(`${actionStepsTextPath}.stutteringJudgeCanRequestVote`) },
+                    { header, target: "#stuttering-judge-player", content: this.$t(`${actionStepsTextPath}.stutteringJudgeCanChooseSign`) },
+                    { header, target: "#play-submit-button", content: this.$t(`${actionStepsTextPath}.toValidateChooseSign`) },
+                ],
+            };
+        },
+        whiteWerewolfSteps() {
+            const { stepsHeader: header } = this;
+            const actionStepsTextPath = "GamePlayFieldTutorial.white-werewolf.eat";
+            return {
+                eat: [
+                    { header, target: "#game-waiting-label", content: this.$t(`${actionStepsTextPath}.whiteWerewolfEatsWhen`) },
+                    { header, target: "#player-targets", content: this.$t(`${actionStepsTextPath}.whiteWerewolfCanEat`) },
+                    { header, target: "#play-submit-button", content: this.$t(`${actionStepsTextPath}.toValidateEat`) },
+                ],
+            };
+        },
+        foxSteps() {
+            const { stepsHeader: header } = this;
+            const actionStepsTextPath = "GamePlayFieldTutorial.fox.sniff";
+            return {
+                sniff: [
+                    { header, target: "#game-waiting-label", content: this.$t(`${actionStepsTextPath}.foxSniffsWhen`) },
+                    { header, target: "#player-targets", content: this.$t(`${actionStepsTextPath}.foxCanSniff`) },
+                    { header, target: "#player-targets", content: this.$t(`${actionStepsTextPath}.ifOnePlayerIsWerewolf`) },
+                    { header, target: "#fox-player", content: this.$t(`${actionStepsTextPath}.foxCanLoosePower`) },
+                    { header, target: "#play-submit-button", content: this.$t(`${actionStepsTextPath}.toValidateSniff`) },
+                ],
+            };
+        },
+        stepsHeader() {
             const { firstWaiting } = this.game;
-            return `GamePlayFieldTutorial.${firstWaiting.for}.${firstWaiting.to}`;
+            return { title: this.$t(`GamePlayFieldTutorial.${firstWaiting.for}.${firstWaiting.to}.howToPlay`) };
         },
         options() {
             return {

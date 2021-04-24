@@ -187,9 +187,9 @@ export default {
             const { bearTamerPlayer } = this.game;
             if (this.events.find(event => event.type === "day-rises") && bearTamerPlayer) {
                 if (bearTamerPlayer.hasActiveAttribute("growls", this.game)) {
-                    this.events.push({ type: `bear-growls`, targets: [{ player: bearTamerPlayer }] });
+                    this.events.push(new GameEvent({ type: `bear-growls`, targets: [{ player: bearTamerPlayer }] }));
                 } else {
-                    this.events.push({ type: `bear-stays-calm`, targets: [{ player: bearTamerPlayer }] });
+                    this.events.push(new GameEvent({ type: `bear-stays-calm`, targets: [{ player: bearTamerPlayer }] }));
                 }
             }
         },
