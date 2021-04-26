@@ -16,6 +16,7 @@
 * [#165](https://github.com/antoinezanardi/werewolves-assistant-web/issues/165) - Bear Tamer growls if he is infected option.
 * [#166](https://github.com/antoinezanardi/werewolves-assistant-web/issues/166) - Number of vote requests for Stuttering Judge option.
 * [#167](https://github.com/antoinezanardi/werewolves-assistant-web/issues/167) - Time for the Sheriff to be elected option.
+* [#168](https://github.com/antoinezanardi/werewolves-assistant-web/issues/168) - Thief not obliged to choose between werewolves cards option.
 * [#183](https://github.com/antoinezanardi/werewolves-assistant-web/issues/183) - Audio options in parameters modal.
 * [#188](https://github.com/antoinezanardi/werewolves-assistant-web/issues/188) - Modal for helping players with roles.
 
