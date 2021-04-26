@@ -19,12 +19,14 @@
 * [#168](https://github.com/antoinezanardi/werewolves-assistant-web/issues/168) - Thief not obliged to choose between werewolves cards option.
 * [#169](https://github.com/antoinezanardi/werewolves-assistant-web/issues/169) - Wild Child transformation is revealed option.
 * [#170](https://github.com/antoinezanardi/werewolves-assistant-web/issues/170) - Dog Wolf chosen side is revealed option.
+* [#171](https://github.com/antoinezanardi/werewolves-assistant-web/issues/171) - Big Bad Wolf not powerless if one werewolf dies option.
 * [#183](https://github.com/antoinezanardi/werewolves-assistant-web/issues/183) - Audio options in parameters modal.
 * [#188](https://github.com/antoinezanardi/werewolves-assistant-web/issues/188) - Modal for helping players with roles.
 
 ### 🌟 Enhancements
 
 * [#156](https://github.com/antoinezanardi/werewolves-assistant-web/issues/156) - List of voters against one player below him.
+* [#172](https://github.com/antoinezanardi/werewolves-assistant-web/issues/172) - Big bad wolf becomes powerless in game history.
 * [#180](https://github.com/antoinezanardi/werewolves-assistant-web/issues/180) - Role types.
 * [#182](https://github.com/antoinezanardi/werewolves-assistant-web/issues/182) - Accordions in About page for roles.
 * [#185](https://github.com/antoinezanardi/werewolves-assistant-web/issues/185) - Reset base rules button in game roles options.

@@ -399,6 +399,7 @@ export default {
                 eat: [
                     { header, target: "#game-waiting-label", content: this.$t(`${actionStepsTextPath}.bigBadWolfEatsWhen`) },
                     { header, target: "#player-targets", content: this.$t(`${actionStepsTextPath}.bigBadWolfEatsAVictim`) },
+                    { header, target: "#game-waiting-label", content: this.$t(`${actionStepsTextPath}.bigBadWolfLoosesHisPowerIfWerewolfDies`) },
                     { header, target: "#werewolf-players", content: this.$t(`${actionStepsTextPath}.bigBadWolfPointsAtVictim`) },
                     ...insertIf(!!ancientPlayer && ancientPlayer.isAlive, {
                         header, target: `#game-play-alert-ancient-can-survive-werewolves`,

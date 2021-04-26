@@ -53,6 +53,14 @@ export default {
             type: Player,
             required: true,
         },
+        firstDeadWerewolfNotBigBadWolfPlayer: {
+            type: Player,
+            required: true,
+        },
+        isBigBadWolfFirstWerewolfToDie: {
+            type: Boolean,
+            required: true,
+        },
     },
     data() {
         return {
@@ -83,7 +91,7 @@ export default {
             return this.murderIcons[murdered.by] ? this.murderIcons[murdered.by][murdered.of] : undefined;
         },
         deathConsequences() {
-            const { wildChildPlayer } = this.game;
+            const { wildChildPlayer, bigBadWolfPlayer, options } = this.game;
             const { action, targets } = this.gameHistoryEntry.play;
             const consequencesText = "GameSummaryHistoryDeadPlayerLine.consequences";
             return [
@@ -91,10 +99,12 @@ export default {
                     this.$t(`${consequencesText}.scapegoatDiesForTie`)),
                 ...insertIf(this.deadPlayer.currentRole === "idiot" && this.deadPlayer.hasAttribute("sheriff"),
                     this.$t(`${consequencesText}.idiotWontDelegate`)),
-                ...insertIf(this.deadPlayer.currentRole === "ancient" && !!this.game.getPlayerWithAttribute("powerless"),
+                ...insertIf(this.deadPlayer.currentRole === "ancient" && !!this.game.getPlayerWithAttributeAndSource("powerless", "ancient"),
                     this.$t(`${consequencesText}.ancientHadHisRevenge`)),
                 ...insertIf(this.deadPlayer.hasAttribute("worshiped") && wildChildPlayer.side.current === "werewolves",
                     this.$t(`${consequencesText}.wildChildBecameWerewolf`)),
+                ...insertIf(options.roles.bigBadWolf.isPowerlessIfWerewolfDies && bigBadWolfPlayer && !this.isBigBadWolfFirstWerewolfToDie &&
+                    this.firstDeadWerewolfNotBigBadWolfPlayer === this.deadPlayer, this.$t(`${consequencesText}.bigBadWolfBecamePowerless`)),
             ];
         },
     },

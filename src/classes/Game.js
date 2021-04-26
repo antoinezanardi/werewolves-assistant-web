@@ -369,6 +369,10 @@ class Game {
         return this.players.find(player => player.hasAttribute(attributeName));
     }
 
+    getPlayerWithAttributeAndSource(attributeName, sourceName) {
+        return this.players.find(player => player.hasAttributeAndSource(attributeName, sourceName));
+    }
+
     getPlayersWithAttribute(attributeName) {
         return this.players.filter(player => player.hasAttribute(attributeName));
     }
@@ -391,6 +395,10 @@ class Game {
 
     get wildChildPlayer() {
         return this.getPlayerWithRole("wild-child");
+    }
+
+    get bigBadWolfPlayer() {
+        return this.getPlayerWithRole("big-bad-wolf");
     }
 
     get sisterPlayers() {

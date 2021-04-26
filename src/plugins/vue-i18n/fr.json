@@ -863,8 +863,9 @@
         "big-bad-wolf": {
             "eat": {
                 "howToPlay": "Comment jouer le Grand-Méchant-Loup ?",
-                "bigBadWolfEatsWhen": "Chaque nuit, tant qu'aucun joueur du camp des Loups-Garous n'est mort, le Grand-Méchant-Loup se réveille.",
+                "bigBadWolfEatsWhen": "Chaque nuit, le Grand-Méchant-Loup se réveille.",
                 "bigBadWolfEatsAVictim": "Comme les Loups-Garous, le Grand-Méchant-Loup choisit sa victime parmis les joueurs vivants qui mourra le matin suivant s'il ne reçoit pas de protection. Son choix ne peut être le même que celui de ses congénères.",
+                "bigBadWolfLoosesHisPowerIfWerewolfDies": "Si un joueur du camp des Loups-Garou meurt, le Grand-Méchant-Loup ne sera plus appelé la nuit pour manger. Cette restriction peut être modifiée dans les options de la partie.",
                 "bigBadWolfPointsAtVictim": "Le Grand-Méchant-Loup doit pointer du doigt sa victime.",
                 "toValidateEat": "Pour passer à la suite, le Grand-Méchant-Loup doit obligatoirement choisir une victime."
             }
@@ -1055,13 +1056,19 @@
         "gameSummary": "Récapitulatif de la partie",
         "gameResults": "Résultats de la partie",
         "gameHistory": "Historique de la partie",
+        "close": "Fermer",
+        "loadingGameHistory": "Chargement de l'historique de la partie"
+    },
+    "GameSummaryResults": {
+        "gameResults": "Résultats de la partie",
         "villagers": "Villageois",
         "werewolves": "Loups-Garous",
-        "close": "Fermer",
-        "loadingGameHistory": "Chargement de l'historique de la partie",
-        "endOfGame": "Fin de la partie",
         "additionalCards": "Cartes additionnelles",
         "thiefAdditionalCards": "Cartes destinées au Voleur"
+    },
+    "GameSummaryHistory": {
+        "gameHistory": "Historique de la partie",
+        "endOfGame": "Fin de la partie"
     },
     "GameReviewButton": {
         "rateThisGame": "Noter votre expérience"
@@ -1217,7 +1224,8 @@
             "scapegoatDiesForTie": "Suite à l'égalité des votes, le Bouc-Émissaire a été pendu arbitrairement.",
             "idiotWontDelegate": "L'Idiot n'a pas délégué son rôle de maire dans son dernier souffle... Quel idiot.",
             "ancientHadHisRevenge": "Dans son dernier souffle, l'Ancien a pris sa revanche sur cette jeunesse éffrontée : Tous les joueurs dans le camp des Villageois ont perdu leurs pouvoirs.",
-            "wildChildBecameWerewolf": "Ce joueur ayant été le modèle de l'Enfant Sauvage, ce dernier se transforma en Loup-Garou à sa mort."
+            "wildChildBecameWerewolf": "Ce joueur ayant été le modèle de l'Enfant Sauvage, ce dernier se transforma en Loup-Garou à sa mort.",
+            "bigBadWolfBecamePowerless": "La mort de ce Loup-Garou a rendu le Grand-Méchant-Loup sans pouvoir pour le reste de la partie."
         }
     },
     "PlayFieldActionText": {

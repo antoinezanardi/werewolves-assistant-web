@@ -29,94 +29,13 @@
                         <hr class="bg-dark my-2"/>
                     </div>
                     <transition mode="out-in" name="translate-down-fade">
-                        <div v-if="panel === 'game-results'" id="game-summary-results" key="game-summary-results">
-                            <h4 class="text-center mt-2">
-                                <i class="fa fa-trophy text-warning mr-2"/>
-                                <span v-html="$t('GameSummaryModal.gameResults')"/>
-                            </h4>
-                            <hr class="bg-dark my-1"/>
-                            <div class="row">
-                                <div class="col-12 text-center">
-                                    <GameResult/>
-                                </div>
-                            </div>
-                            <hr class="bg-dark"/>
-                            <div class="row justify-content-around">
-                                <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center text-center">
-                                    <img :src="game.won.by === 'villagers' ? SVGs.trophy : SVGs.dead" class="pb-3 mr-4"
-                                         width="75" alt="Result"/>
-                                    <div class="flex-grow-1">
-                                        <h3 v-html="$t('GameSummaryModal.villagers')"/>
-                                        <AliveVillagers/>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center text-center">
-                                    <img :src="game.won.by === 'werewolves' ? SVGs.trophy : SVGs.dead" class="pb-3 mr-4"
-                                         width="75" alt="Result"/>
-                                    <div class="flex-grow-1">
-                                        <h3 v-html="$t('GameSummaryModal.werewolves')"/>
-                                        <AliveWerewolves/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div v-if="game.additionalCards.length">
-                                <hr class="bg-dark"/>
-                                <h4 class="text-center">
-                                    <i class="fa fa-chess mr-2 text-info"/>
-                                    <span v-html="$t('GameSummaryModal.additionalCards')"/>
-                                </h4>
-                                <hr class="bg-dark"/>
-                                <div v-if="game.thiefAdditionalCards.length">
-                                    <h5 class="text-center">
-                                        <RoleImage class="additional-card-recipient mr-2" role="thief"/>
-                                        <span v-html="$t('GameSummaryModal.thiefAdditionalCards')"/>
-                                    </h5>
-                                    <hr class="bg-dark"/>
-                                    <div class="row justify-content-center">
-                                        <div v-for="card of game.thiefAdditionalCards" :key="card._id"
-                                             class="col-lg-2 col-6 d-flex flex-column align-items-center text-center">
-                                            <RoleImage :role="card.role" class="additional-card-image mt-2"/>
-                                            <RoleText prefix="a" :role="card.role"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <GameSummaryResults v-if="panel === 'game-results'" key="game-summary-results"/>
                         <div v-else-if="panel === 'game-history'" id="game-summary-history-container" key="game-summary-history-container">
                             <transition mode="out-in" name="fade">
                                 <div v-if="loading.getGameHistory" key="loading-history" class="d-flex align-items-center justify-content-center">
                                     <Loading :text="$t('GameSummaryModal.loadingGameHistory')"/>
                                 </div>
-                                <div v-else-if="gameHistory" id="game-summary-history" key="game-summary-history" class="h-100">
-                                    <h4 class="text-center my-2">
-                                        <i class="fa fa-clock mr-2"/>
-                                        <span v-html="$t('GameSummaryModal.gameHistory')"/>
-                                    </h4>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <table class="table table-hover w-100">
-                                                <tbody>
-                                                    <template v-for="(gameHistoryEntry, index) in gameHistory">
-                                                        <GameSummaryHistoryPhaseLine :key="`new-phase-${gameHistoryEntry._id}`"
-                                                                                     :game-history="gameHistory"
-                                                                                     :index="index"/>
-                                                        <GameSummaryHistoryPlayLine :key="`play-${gameHistoryEntry._id}`"
-                                                                                    :game-history-entry="gameHistoryEntry"/>
-                                                        <GameSummaryHistoryRevealedPlayerLine v-for="revealedPlayer of
-                                                                                                  gameHistoryEntry.revealedAlivePlayers"
-                                                                                              :key="`revealed-${revealedPlayer._id}`"
-                                                                                              :revealed-player="revealedPlayer"/>
-                                                        <GameSummaryHistoryDeadPlayerLine v-for="deadPlayer of gameHistoryEntry.deadPlayers"
-                                                                                          :key="`death-${deadPlayer._id}`"
-                                                                                          :game-history-entry="gameHistoryEntry"
-                                                                                          :dead-player="deadPlayer"/>
-                                                    </template>
-                                                </tbody>
-                                            </table>
-                                            <h4 class="text-center" v-html="`~  ${$t('GameSummaryModal.endOfGame')} ~`"/>
-                                        </div>
-                                    </div>
-                                </div>
+                                <GameSummaryHistory v-else-if="gameHistory" key="game-summary-history" class="h-100" :game-history="gameHistory"/>
                             </transition>
                         </div>
                     </transition>
@@ -133,34 +52,21 @@
 <script>
 import { mapGetters } from "vuex";
 import $ from "jquery";
-import GameSummaryHistoryPlayLine from "@/components/shared/Game/GameSummary/GameSummaryModal/GameSummaryHistoryPlayLine";
-import AliveVillagers from "@/components/shared/Game/Sides/AliveVillagers";
-import AliveWerewolves from "@/components/shared/Game/Sides/AliveWerewolves";
-import trophy from "@/assets/svg/game/trophy.svg";
-import dead from "@/assets/svg/attributes/dead.svg";
-import GameResult from "@/components/shared/Game/GameResult/GameResult";
 import Loading from "@/components/shared/Loading";
-import GameSummaryHistoryPhaseLine from "@/components/shared/Game/GameSummary/GameSummaryModal/GameSummaryHistoryPhaseLine";
 import GameHistory from "@/classes/GameHistory";
-import GameSummaryHistoryDeadPlayerLine
-    from "@/components/shared/Game/GameSummary/GameSummaryModal/GameSummaryHistoryDeadPlayerLine";
-import GameSummaryHistoryRevealedPlayerLine
-    from "@/components/shared/Game/GameSummary/GameSummaryModal/GameSummaryHistoryRevealedPlayerLine";
-import RoleImage from "@/components/shared/Game/Role/RoleImage";
-import RoleText from "@/components/shared/Game/Role/RoleText";
+import GameSummaryResults from "@/components/shared/Game/GameSummary/GameSummaryModal/GameSummaryResults";
+import GameSummaryHistory
+    from "@/components/shared/Game/GameSummary/GameSummaryModal/GameSummaryHistory/GameSummaryHistory";
 
 export default {
     name: "GameSummaryModal",
     components: {
-        RoleText,
-        RoleImage,
-        GameSummaryHistoryRevealedPlayerLine,
-        GameSummaryHistoryDeadPlayerLine, GameSummaryHistoryPhaseLine,
-        Loading, GameResult, AliveWerewolves, AliveVillagers, GameSummaryHistoryPlayLine,
+        GameSummaryHistory,
+        GameSummaryResults,
+        Loading,
     },
     data() {
         return {
-            SVGs: { trophy, dead },
             gameHistory: undefined,
             loading: { getGameHistory: false },
             panel: "game-results",

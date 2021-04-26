@@ -27,6 +27,10 @@ class Player {
         return !!this.attributes.find(({ name }) => name === attributeName);
     }
 
+    hasAttributeAndSource(attributeName, attributeSource) {
+        return !!this.attributes.find(({ name, source }) => name === attributeName && source === attributeSource);
+    }
+
     hasActiveAttribute(attributeName, game) {
         return !!this.attributes.find(attribute => attribute.name === attributeName && isPlayerAttributeActive(attribute, game));
     }
