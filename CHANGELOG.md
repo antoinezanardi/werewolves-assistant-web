@@ -17,6 +17,7 @@
 * [#166](https://github.com/antoinezanardi/werewolves-assistant-web/issues/166) - Number of vote requests for Stuttering Judge option.
 * [#167](https://github.com/antoinezanardi/werewolves-assistant-web/issues/167) - Time for the Sheriff to be elected option.
 * [#168](https://github.com/antoinezanardi/werewolves-assistant-web/issues/168) - Thief not obliged to choose between werewolves cards option.
+* [#169](https://github.com/antoinezanardi/werewolves-assistant-web/issues/169) - Wild Child transformation is revealed option.
 * [#170](https://github.com/antoinezanardi/werewolves-assistant-web/issues/170) - Dog Wolf chosen side is revealed option.
 * [#183](https://github.com/antoinezanardi/werewolves-assistant-web/issues/183) - Audio options in parameters modal.
 * [#188](https://github.com/antoinezanardi/werewolves-assistant-web/issues/188) - Modal for helping players with roles.

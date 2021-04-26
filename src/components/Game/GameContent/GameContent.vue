@@ -170,6 +170,7 @@ export default {
             if (!this.game.history.length) {
                 return;
             }
+            const { wildChildPlayer, options } = this.game;
             const { deadPlayers, revealedAlivePlayers, phase: previousPhase, turn: previousTurn } = this.game.history[0];
             if (this.game.phase === "day" && previousPhase === "night" ||
                 previousPhase === "night" && this.game.phase === "night" && previousTurn !== this.game.turn) {
@@ -181,6 +182,10 @@ export default {
             }
             for (const deadPlayer of deadPlayers) {
                 this.events.push(new GameEvent({ type: "player-dies", targets: [{ player: deadPlayer }] }));
+                if (options.roles.wildChild.isTransformationRevealed && deadPlayer.hasAttribute("worshiped") &&
+                    wildChildPlayer.side.current === "werewolves") {
+                    this.events.push(new GameEvent({ type: "wild-child-joins-werewolves", targets: [{ player: wildChildPlayer }] }));
+                }
             }
             for (const revealedPlayer of revealedAlivePlayers) {
                 this.events.push(new GameEvent({ type: "player-role-revealed", targets: [{ player: revealedPlayer }] }));

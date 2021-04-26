@@ -1414,7 +1414,8 @@
             "growBecauseInfected": "Ou alors ... que le Montreur d'Ours a été infecté et est lui-même un Loup-Garou !",
             "bearStaysCalm": "L'Ours du Montreur est d'un calme exemplaire ce matin, il n'a donc pas de canidé comme voisin direct.",
             "dogWolfHasChosenWerewolves": "Le Chien-Loup a décidé de rejoindre les Loups-Garous. Son instinct animal a pris le dessus sur sa loyauté...",
-            "dogWolfHasChosenVillagers": "Le Chien-Loup a décidé de rester avec les Villageois. Sa loyauté envers ses maîtres est remarquable !"
+            "dogWolfHasChosenVillagers": "Le Chien-Loup a décidé de rester avec les Villageois. Sa loyauté envers ses maîtres est remarquable !",
+            "wildChildJoinsWerewolves": "Ce joueur tout juste décédé était le modèle de l'Enfant Sauvage ! La colère et la rage de ce dernier réveille son instinct animal, il rejoint donc le camp des Loups-Garous, sa véritable nature."
         }
     },
     "Statistics": {

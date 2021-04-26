@@ -106,6 +106,7 @@ export default {
                 "bear-growls": this.gameEventBearGrowlsMetadata,
                 "bear-stays-calm": this.gameEventBearStaysCalmMetadata,
                 "dog-wolf-chooses-side": this.gameEventDogWolfChoosesSideMetadata,
+                "wild-child-joins-werewolves": this.gameEventWildChildJoinsWerewolvesMetadata,
                 ...this.gameEventTurnMetadata,
             };
         },
@@ -455,6 +456,9 @@ export default {
                 soundEffect: "bear-growls",
             };
         },
+        gameEventBearStaysCalmMetadata() {
+            return { messages: [i18n.t("GameEvent.messages.bearStaysCalm")] };
+        },
         gameEventDogWolfChoosesSideMetadata() {
             const chosenSideText = this.event.side === "werewolves" ? "dogWolfHasChosenWerewolves" : "dogWolfHasChosenVillagers";
             return {
@@ -462,8 +466,11 @@ export default {
                 soundEffect: "dog-wolf-plays",
             };
         },
-        gameEventBearStaysCalmMetadata() {
-            return { messages: [i18n.t("GameEvent.messages.bearStaysCalm")] };
+        gameEventWildChildJoinsWerewolvesMetadata() {
+            return {
+                messages: [i18n.t("GameEvent.messages.wildChildJoinsWerewolves")],
+                soundEffect: "big-bad-wolf-plays",
+            };
         },
         hasGameEventTargets() {
             return !!this.event.targets.length;

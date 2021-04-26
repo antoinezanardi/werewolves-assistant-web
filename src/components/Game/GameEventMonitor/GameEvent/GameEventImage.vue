@@ -102,6 +102,7 @@ export default {
                 "thief-chooses-card": thiefSVG,
                 "fox-sniffs": foxSVG,
                 "dog-wolf-chooses-side": this.event.side === "werewolves" ? eatenSVG : villagerSVG,
+                "wild-child-joins-werewolves": eatenSVG,
             };
             return effectGameEventTypeImageSource[this.event.type];
         },
