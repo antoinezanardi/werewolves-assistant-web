@@ -919,7 +919,7 @@
         "white-werewolf": {
             "eat": {
                 "howToPlay": "Comment jouer le Loup-Garou Blanc ?",
-                "whiteWerewolfEatsWhen": "Toutes les deux nuits, le Loup-Garou Blanc se réveille.",
+                "whiteWerewolfEatsWhen": "Toutes les deux nuits, le Loup-Garou Blanc se réveille. Le nombre de nuits entre deux de ses réveils peut être modifié dans les options de la partie.",
                 "whiteWerewolfCanEat": "Le but du Loup-Garou Blanc est d'être le dernier survivant du Village. Pour cela, il peut, s'il le souhaite, manger l'un de ses congénères.",
                 "toValidateEat": "Pour passer à la suite, le Loup-Garou Blanc peut choisir de manger un autre Loup-Garou ou passer son tour."
             }
