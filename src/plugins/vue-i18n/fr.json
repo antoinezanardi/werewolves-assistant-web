@@ -751,7 +751,8 @@
             "mark": {
                 "howToPlay": "Comment joueur le Corbeau ?",
                 "ravenMarksWhen": "Chaque nuit, s'il est vivant, le Corbeau se réveille.",
-                "ravenCanMark": "Le Corbeau peut, s'il le souhaite, marquer de sa plume n'importe quel joueur qui lui semble suspect. La personne visée par sa marque se verra attribuer 2 voix supplémentaires lors du prochain vote du village la journée. Il peut se désigner lui-même.",
+                "ravenCanMark": "Le Corbeau peut, s'il le souhaite, marquer de sa plume n'importe quel joueur qui lui semble suspect. Il peut très bien se désigner lui-même pour brouiller les pistes.",
+                "targetWillHavePenalty": "La personne visée par sa marque se verra attribuer 2 voix supplémentaires lors du prochain vote du village la journée. Cette pénalité peut être modifiée dans les options de la partie.",
                 "ravenPointsAtTarget": "S'il souhaite marquer un joueur, le Corbeau doit pointer du doigt sans bruit sa cible.",
                 "gameMasterWillDropMarkCard": "Le maître du jeu déposera alors la marque du Corbeau devant la personne choisie.",
                 "toValidateMark": "Durant son tour, le Corbeau peut désigner une cible ou passer son tour."
@@ -900,8 +901,9 @@
             "choose-card": {
                 "howToPlay": "Comment jouer le Voleur ?",
                 "thiefChoosesCardWhen": "Au début de la partie, seulement la première nuit, le Voleur se réveille après que le maître du jeu est retourné les cartes qui sont destinées au Voleur.",
-                "thiefCanChooseCard": "Le Voleur peut, s'il le souhaite, échanger une de ses cartes contre la sienne, et ainsir changer de rôle jusque la fin de la partie. Attention, le Voleur sera obligé de prendre une carte si les deux rôles sont du camp des Loups-Garous.",
-                "toValidateChooseCard": "Pour passer à la suite, le Voleur peut passer son tour ou obligatoirement prendre une carte si les deux cartes proposées sont dans le camp des Loups-Garous."
+                "thiefCanChooseCard": "Le Voleur peut, s'il le souhaite, échanger une de ses cartes contre la sienne, et ainsir changer de rôle jusqu'à la fin de la partie.",
+                "thiefMustChooseIfWerewolves": "Attention, le Voleur sera obligé de prendre une carte si toutes les cartes proposées sont du camp des Loups-Garous. Cette obligation peut être modifiée dans les options de la partie.",
+                "toValidateChooseCard": "Pour passer à la suite, le Voleur peut passer son tour ou prendre une carte si les règles l'obligent."
             }
         },
         "stuttering-judge": {
@@ -1089,7 +1091,7 @@
         "night": "Nuit",
         "actions": {
             "werewolves": {
-                "eat": "ont décidé de manger"
+                "eat": "a décidé de manger | ont décidé de manger"
             },
             "big-bad-wolf": {
                 "eat": "a décidé de manger"
@@ -1295,7 +1297,8 @@
         "chooseTargetIfNot": "Choisissez une cible dans le cas contraire",
         "pleaseChooseTarget": "Veuillez choisir une cible",
         "pleaseChooseSide": "Veuillez choisir un camp",
-        "pleaseChooseCard": "Veuillez choisir une carte"
+        "pleaseChooseCard": "Veuillez choisir une carte",
+        "chooseCardIfNot": "Choisissez une carte dans le cas contraire"
     },
     "SelectAllTargetsButton": {
         "selectAll": "Tout sélectionner",

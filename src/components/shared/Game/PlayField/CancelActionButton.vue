@@ -46,7 +46,7 @@ export default {
                 return this.$t("CancelActionButton.pleaseChooseSide");
             } else if (this.game.isFirstWaitingChooseCardAction) {
                 if (this.game.isFirstWaitingSkippableAction) {
-                    return this.$t("CancelActionButton.chooseTCardIfNot");
+                    return this.$t("CancelActionButton.chooseCardIfNot");
                 }
                 return this.$t("CancelActionButton.pleaseChooseCard");
             } else if (this.game.isFirstWaitingSkippableAction) {

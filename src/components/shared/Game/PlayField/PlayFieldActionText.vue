@@ -81,8 +81,10 @@ export default {
         },
         chooseCardActionText() {
             if (!this.card) {
-                const noChosenCardTextKey = this.game.isFirstWaitingSkippableAction ? "no-choose-card" : "choose-card";
-                return `${this.$t(`PlayFieldActionText.thief.${noChosenCardTextKey}`)}...`;
+                if (this.game.isFirstWaitingSkippableAction) {
+                    return `${this.$t(`PlayFieldActionText.thief.no-choose-card`)}`;
+                }
+                return `${this.$t(`PlayFieldActionText.thief.choose-card`)}...`;
             }
             return `${this.$t(`PlayFieldActionText.thief.choose-card`)} ${this.$t(`Role.a.${this.card.role}`)}`;
         },

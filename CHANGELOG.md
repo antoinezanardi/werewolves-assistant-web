@@ -15,6 +15,7 @@
 * [#164](https://github.com/antoinezanardi/werewolves-assistant-web/issues/164) - Fox not powerless if he misses a werewolf option.
 * [#165](https://github.com/antoinezanardi/werewolves-assistant-web/issues/165) - Bear Tamer growls if he is infected option.
 * [#166](https://github.com/antoinezanardi/werewolves-assistant-web/issues/166) - Number of vote requests for Stuttering Judge option.
+* [#167](https://github.com/antoinezanardi/werewolves-assistant-web/issues/167) - Time for the Sheriff to be elected option.
 * [#183](https://github.com/antoinezanardi/werewolves-assistant-web/issues/183) - Audio options in parameters modal.
 * [#188](https://github.com/antoinezanardi/werewolves-assistant-web/issues/188) - Modal for helping players with roles.
 

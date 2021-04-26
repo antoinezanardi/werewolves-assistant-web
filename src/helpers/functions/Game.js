@@ -26,12 +26,13 @@ export function areAllAdditionalCardsWerewolves(additionalCards) {
 }
 
 export function isSkippableAction(action, source, game) {
-    const { additionalCards, aliveVillagerPlayers } = game;
+    const { additionalCards, aliveVillagerPlayers, options } = game;
     const skippableActions = ["use-potion", "mark", "meet-each-other", "ban-voting", "choose-sign", "sniff"];
     const areAllVillagersEaten = aliveVillagerPlayers.every(player => player.hasAttribute("eaten"));
     return skippableActions.includes(action) ||
         action === "eat" && (source === "white-werewolf" || source === "big-bad-wolf" && areAllVillagersEaten) ||
-        action === "choose-card" && additionalCards && !areAllAdditionalCardsWerewolves(additionalCards);
+        action === "choose-card" && additionalCards &&
+        (!options.roles.thief.mustChooseBetweenWerewolves || !areAllAdditionalCardsWerewolves(additionalCards));
 }
 
 export function isPreFirstNightPlay(action, turn, phase) {

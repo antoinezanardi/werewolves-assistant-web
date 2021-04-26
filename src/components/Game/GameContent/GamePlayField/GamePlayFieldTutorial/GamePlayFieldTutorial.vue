@@ -171,6 +171,7 @@ export default {
                 mark: [
                     { header, target: "#game-waiting-label", content: this.$t(`${actionStepsTextPath}.ravenMarksWhen`) },
                     { header, target: "#player-targets", content: this.$t(`${actionStepsTextPath}.ravenCanMark`) },
+                    { header, target: "#player-targets", content: this.$t(`${actionStepsTextPath}.targetWillHavePenalty`) },
                     { header, target: "#raven-player-card", content: this.$t(`${actionStepsTextPath}.ravenPointsAtTarget`) },
                     { header, target: "#player-targets", content: this.$t(`${actionStepsTextPath}.gameMasterWillDropMarkCard`) },
                     { header, target: "#play-submit-button", content: this.$t(`${actionStepsTextPath}.toValidateMark`) },
@@ -462,6 +463,7 @@ export default {
                 "choose-card": [
                     { header, target: "#game-waiting-label", content: this.$t(`${actionStepsTextPath}.thiefChoosesCardWhen`) },
                     { header, target: "#additional-cards", content: this.$t(`${actionStepsTextPath}.thiefCanChooseCard`) },
+                    { header, target: "#additional-cards", content: this.$t(`${actionStepsTextPath}.thiefMustChooseIfWerewolves`) },
                     { header, target: "#play-submit-button", content: this.$t(`${actionStepsTextPath}.toValidateChooseCard`) },
                 ],
             };

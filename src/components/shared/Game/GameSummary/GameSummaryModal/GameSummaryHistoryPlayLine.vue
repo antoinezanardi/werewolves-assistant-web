@@ -153,7 +153,7 @@ export default {
             } else if (action === "eat" && source.name === "werewolves" && targets[0].isInfected) {
                 return this.$t(`GameSummaryHistoryPlayLine.actions.vile-father-of-wolves.infect`);
             }
-            return this.$t(`GameSummaryHistoryPlayLine.actions.${source.name}.${action}`);
+            return this.$tc(`GameSummaryHistoryPlayLine.actions.${source.name}.${action}`, source.players.length);
         },
         actionSource() {
             const { action, source, targets } = this.gameHistoryEntry.play;
@@ -180,8 +180,8 @@ export default {
                     targets[0].isInfected.role.current === "pied-piper", this.$t(`${consequencesText}.piedPiperIsInfected`)),
                 ...insertIf(action === "mark" && targets.length,
                     this.$t(`${consequencesText}.ravenMarked`, { markPenalty: options.roles.raven.markPenalty })),
-                ...insertIf(action === "choose-card" && areAllAdditionalCardsWerewolves(thiefAdditionalCards),
-                    this.$t(`${consequencesText}.thiefMustChooseCard`)),
+                ...insertIf(action === "choose-card" && options.roles.thief.mustChooseBetweenWerewolves &&
+                    areAllAdditionalCardsWerewolves(thiefAdditionalCards), this.$t(`${consequencesText}.thiefMustChooseCard`)),
                 ...insertIf(action === "sniff" && targets.length && targets.some(({ player }) => player.isInWerewolvesSide),
                     this.$t(`${consequencesText}.foxFoundWerewolf`)),
                 ...insertIf(action === "sniff" && targets.length && targets.every(({ player }) => player.isInVillagersSide &&
