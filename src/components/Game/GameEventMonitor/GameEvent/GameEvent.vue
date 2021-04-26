@@ -105,6 +105,7 @@ export default {
                 "fox-sniffs": this.gameEventFoxSniffsMetadata,
                 "bear-growls": this.gameEventBearGrowlsMetadata,
                 "bear-stays-calm": this.gameEventBearStaysCalmMetadata,
+                "dog-wolf-chooses-side": this.gameEventDogWolfChoosesSideMetadata,
                 ...this.gameEventTurnMetadata,
             };
         },
@@ -452,6 +453,13 @@ export default {
                     ...insertIf(vileFatherOfWolvesPlayer && doesGrowlIfInfected, i18n.t("GameEvent.messages.growBecauseInfected")),
                 ],
                 soundEffect: "bear-growls",
+            };
+        },
+        gameEventDogWolfChoosesSideMetadata() {
+            const chosenSideText = this.event.side === "werewolves" ? "dogWolfHasChosenWerewolves" : "dogWolfHasChosenVillagers";
+            return {
+                messages: [i18n.t(`GameEvent.messages.${chosenSideText}`)],
+                soundEffect: "dog-wolf-plays",
             };
         },
         gameEventBearStaysCalmMetadata() {

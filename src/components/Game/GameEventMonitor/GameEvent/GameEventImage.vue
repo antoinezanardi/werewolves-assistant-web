@@ -51,6 +51,7 @@ import eatenSVG from "@/assets/svg/attributes/eaten.svg";
 import voteSVG from "@/assets/svg/actions/vote.svg";
 import thiefSVG from "@/assets/svg/roles/thief.svg";
 import foxSVG from "@/assets/svg/roles/fox.svg";
+import villagerSVG from "@/assets/svg/roles/villager.svg";
 
 export default {
     name: "GameEventImage",
@@ -100,6 +101,7 @@ export default {
                 "no-death-after-votes": voteSVG,
                 "thief-chooses-card": thiefSVG,
                 "fox-sniffs": foxSVG,
+                "dog-wolf-chooses-side": this.event.side === "werewolves" ? eatenSVG : villagerSVG,
             };
             return effectGameEventTypeImageSource[this.event.type];
         },

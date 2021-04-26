@@ -123,28 +123,31 @@ export default {
             this.play.card = undefined;
         },
         generateLastActionEvents() {
-            if (this.game.history.length) {
-                const lastGameHistoryEntry = this.game.history[0];
-                const lastGameHistoryEntrySourceName = lastGameHistoryEntry.play.source.name;
-                const { vileFatherOfWolvesPlayer } = this.game;
-                if (lastGameHistoryEntry.play.action === "look") {
-                    this.events.push(new GameEvent({ type: "seer-looks", targets: lastGameHistoryEntry.play.targets }));
-                } else if (lastGameHistoryEntry.play.action === "elect-sheriff" || lastGameHistoryEntry.play.action === "delegate") {
-                    this.events.push(new GameEvent({ type: "sheriff-elected", targets: lastGameHistoryEntry.play.targets }));
-                } else if (lastGameHistoryEntry.play.action === "charm") {
-                    this.events.push(new GameEvent({ type: `${lastGameHistoryEntrySourceName}-charms`, targets: lastGameHistoryEntry.play.targets }));
-                } else if (lastGameHistoryEntry.play.action === "mark") {
-                    this.events.push(new GameEvent({ type: `raven-marks`, targets: lastGameHistoryEntry.play.targets }));
-                } else if (lastGameHistoryEntry.play.action === "eat" && lastGameHistoryEntrySourceName === "werewolves" &&
-                    !!vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer.isAlive) {
-                    this.events.push(new GameEvent({ type: `vile-father-of-wolves-infects`, targets: lastGameHistoryEntry.play.targets }));
-                } else if (lastGameHistoryEntry.wasVotePlayWithoutDeath && !lastGameHistoryEntry.revealedPlayers.length) {
-                    this.events.push(new GameEvent({ type: `no-death-after-votes`, targets: this.game.history[0].play.targets }));
-                } else if (lastGameHistoryEntry.play.action === "choose-card") {
-                    this.events.push(new GameEvent({ type: `thief-chooses-card`, targets: [{ player: this.game.originalThiefPlayer }] }));
-                } else if (lastGameHistoryEntry.play.action === "sniff") {
-                    this.events.push(new GameEvent({ type: `fox-sniffs`, targets: this.game.history[0].play.targets }));
-                }
+            if (!this.game.lastHistoryEntry) {
+                return;
+            }
+            const { dogWolfPlayer, vileFatherOfWolvesPlayer, lastHistoryEntry } = this.game;
+            const { play: lastPlay } = lastHistoryEntry;
+            const lastHistoryEntrySourceName = lastPlay.source.name;
+            if (lastPlay.action === "look") {
+                this.events.push(new GameEvent({ type: "seer-looks", targets: lastPlay.targets }));
+            } else if (lastPlay.action === "elect-sheriff" || lastPlay.action === "delegate") {
+                this.events.push(new GameEvent({ type: "sheriff-elected", targets: lastPlay.targets }));
+            } else if (lastPlay.action === "charm") {
+                this.events.push(new GameEvent({ type: `${lastHistoryEntrySourceName}-charms`, targets: lastPlay.targets }));
+            } else if (lastPlay.action === "mark") {
+                this.events.push(new GameEvent({ type: `raven-marks`, targets: lastPlay.targets }));
+            } else if (lastPlay.action === "eat" && lastHistoryEntrySourceName === "werewolves" &&
+                !!vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer.isAlive) {
+                this.events.push(new GameEvent({ type: `vile-father-of-wolves-infects`, targets: lastPlay.targets }));
+            } else if (lastHistoryEntry.wasVotePlayWithoutDeath && !lastHistoryEntry.revealedPlayers.length) {
+                this.events.push(new GameEvent({ type: `no-death-after-votes`, targets: lastPlay.targets }));
+            } else if (lastPlay.action === "choose-card") {
+                this.events.push(new GameEvent({ type: `thief-chooses-card`, targets: [{ player: this.game.originalThiefPlayer }] }));
+            } else if (lastPlay.action === "sniff") {
+                this.events.push(new GameEvent({ type: `fox-sniffs`, targets: lastPlay.targets }));
+            } else if (lastPlay.action === "choose-side" && this.game.options.roles.dogWolf.isChosenSideRevealed) {
+                this.events.push(new GameEvent({ type: `dog-wolf-chooses-side`, targets: [{ player: dogWolfPlayer }], side: lastPlay.side }));
             }
         },
         generateGamePhaseEvent() {

@@ -140,8 +140,8 @@ export default {
         },
         actionText() {
             const { targets, votes, side, card, action, source } = this.gameHistoryEntry.play;
-            if (action !== "meet-each-other" && action !== "choose-sign" && (!targets || !targets.length) && (!votes || !votes.length) && !side &&
-                !card) {
+            if (action !== "meet-each-other" && action !== "choose-sign" && (!targets || !targets.length) && (!votes || !votes.length) &&
+                !side && !card) {
                 return this.$t(`GameSummaryHistoryPlayLine.skipTurn`);
             } else if (action === "use-potion") {
                 if (targets.length === 2) {

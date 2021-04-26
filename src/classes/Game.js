@@ -510,11 +510,12 @@ class Game {
         return this.alivePlayers.filter(player => !player.hasAttribute("cant-vote"));
     }
 
+    get lastHistoryEntry() {
+        return this.history.length ? this.history[0] : undefined;
+    }
+
     get lastActionTargets() {
-        if (!this.history.length) {
-            return [];
-        }
-        return this.history[0].play.targets;
+        return !this.lastHistoryEntry ? [] : this.history[0].play.targets;
     }
 
     get lastActionTargetedPlayers() {
