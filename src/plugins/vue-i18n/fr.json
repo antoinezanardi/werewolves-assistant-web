@@ -620,7 +620,7 @@
             "idiot-wont-die-from-votes": "L'Idiot ne peut mourir de cette pendaison. Si les votes sont contre lui, alors son rôle sera révélé, il perdra son droit de vote mais ne mourra pas.",
             "scapegoat-will-die-from-tie": "Si une égalité advient pendant les votes, le Bouc-Émissaire sera la victime de la pendaison. Il devra alors décider qui aura le droit de vote pour le vote du jour d'après.",
             "angel-will-win-if-he-dies": "Si l'Ange meurt de cette action, alors il gagnera instantanément la partie.",
-            "ancient-can-survive-werewolves": "L'Ancien a la force de l'âge : il survivra des Loups-Garous si c'est la première fois qu'il se fait dévorer par ces canidés.",
+            "ancient-can-survive-werewolves": "L'Ancien a la force de l'âge : il survivra des Loups-Garous si c'est la première fois qu'il se fait dévorer par ces canidés. Le nombre de vies qu'il possède contre les Loups-Garous peut être défini dans les options de la partie.",
             "guard-can-protect-target": "Si le Salvateur a protégé la cible des Loups-Garous, elle survivra.",
             "witch-can-protect-target": "La Sorcière pourra, si elle le souhaite, utiliser sa potion de vie pour sauver la victime des Loups-Garous plus tard dans la nuit.",
             "vile-father-of-wolves-can-infect": "L'Infect Père des Loups pourra, s'il le souhaite, transformer la victime en Loup-Garou.",
@@ -716,7 +716,7 @@
                 "angelCanWin": "L'Ange est dans la partie ! S'il meurt maintenant des Loups-Garous, alors il gagnera la partie.",
                 "guardCanProtect": "Le Salvateur est dans la partie ! La personne qu'il a protégé ne pourra pas être mangée par les Loups-Garous.",
                 "witchCanSave": "La Sorcière est dans la partie ! Elle pourra, si elle le décide pendant son tour, utiliser sa potion de vie pour sauver la victime des Loups-Garous.",
-                "ancientCanSurvive": "L'Ancien est dans la partie ! Il pourra survivre à une attaque des Loups-Garous, même sans protection de Salvateur ou de Sorcière.",
+                "ancientCanSurvive": "L'Ancien est dans la partie ! Il pourra survivre à une attaque des Loups-Garous, même sans protection de Salvateur ou de Sorcière. Le nombre de vies qu'il possède contre les Loups-Garous peut être modifié dans les options de la partie.",
                 "vileFatherOfWolvesCanInfect": "L'Infect Père des Loups est dans la partie ! Lorsque les Loups-Garous auront choisi leur victime et se rendorment, l'Infect Père des Loups peut lever la main. Dans ce cas, la victime rejoindra instantanément le camp des Loups-Garous au lieu de mourir dévorée, ceci en gardant son rôle original et ses pouvoirs !",
                 "infectOnlyOnce": "Le choix de l'Infect Père des Loups pourra être renseigné au moment où l'action des Loups-Garous sera validée. Attention, ce pouvoir ne peut être utilisé qu'une seule fois !",
                 "piedPiperWillLoosePowerIfInfected": "Le Joueur de Flûte et l'Infect Père des Loups sont dans la partie ! Si le Joueur de Flûte est infecté, il ne pourra plus charmer jusqu'à la fin de la partie et abandonnera son but de charmer tous les joueurs vivants pour gagner la partie.",
@@ -732,7 +732,7 @@
                 "ifLifePotionHasBeenUsed": "Si la potion de vie a déjà été utilisée, le maître du jeu doit quand même demander le choix de la Sorcière, mais sans pointer du doigt la victime des Loups-Garous. Ceci permet de ne pas révéler que la potion de vie a été utilisée.",
                 "deathPotionKills": "La potion de mort, utilisable qu'une fois pendant la partie, permet d'empoisonner une victime qui mourra le matin suivant. La Sorcière doit sans bruit acquiescer ou refuser d'utiliser sa potion en pointant sa victime le cas échéant.",
                 "ifDeathPotionHasBeenUsed": "Si la potion de mort a déjà été utilisée, le maître du jeu doit quand même demander le choix de la Sorcière. Ceci permet de ne pas révéler que la potion de mort a été utilisée.",
-                "ancientWillHaveHisRevenge": "L'Ancien est dans la partie ! Si la Sorcière utilise sa potion de mort sur lui, alors tous les joueurs dans le camp des Villageois perdront leurs pouvoirs.",
+                "ancientWillHaveHisRevenge": "L'Ancien est dans la partie ! Si la Sorcière utilise sa potion de mort sur lui, alors tous les joueurs dans le camp des Villageois perdront leurs pouvoirs. Cette pénalité peut être retirée dans les options de la partie.",
                 "toValidateUsePotion": "Durant son tour, la Sorcière peut utiliser les deux potions, une seule, ou passer son tour."
             }
         },
@@ -767,7 +767,7 @@
                 "eachPlayerVote": "Chaque joueur a donc une voix à donner pour le vote, mais ne peut voter pour lui-même. Il peut néanmoins voter blanc. Le maître du jeu demande le vote de chacun à tour de rôle.",
                 "scapegoatWillDieIfTie": "Le Bouc-Émissaire est dans la partie ! En cas d'égalité, c'est lui qui sera pendu, même s'il n'est pas inclu dans l'égalité. Il décidera ensuite qui aura le droit de vote pour le jour d'après.",
                 "idiotWillBeForgiven": "L'Idiot est dans la partie ! Si son rôle n'est pas encore révélé et que le village décide de voter contre lui, alors il sera gracié, le village se rendant compte de leur bêtise de pendre un Idiot. Par contre, son rôle sera révélé et il perdra son droit de vote pour le reste de la partie.",
-                "ancientWillHaveHisRevenge": "L'Ancien est dans la partie ! Si le village décide de le pendre, alors tous les joueurs dans le camp des Villageois perdront leurs pouvoirs. Attention à la pendaison irréfléchie !",
+                "ancientWillHaveHisRevenge": "L'Ancien est dans la partie ! Si le village décide de le pendre, alors tous les joueurs dans le camp des Villageois perdront leurs pouvoirs. Attention à la pendaison irréfléchie ! Cette pénalité peut être retirée dans les options de la partie.",
                 "angelWillWinIfHeDiesNow": "L'Ange est dans la partie ! S'il meurt des votes, alors il gagnera la partie.",
                 "stutteringJudgeCanRequestAnotherVote": "Le Juge Bègue est dans la partie ! En réalisant le signe précédemment convenu au maître du jeu, un autre vote aura lieu après le résultat de celui en cours. Le nombre de fois que le Juge Bègue peut demander un autre vote peut être modifié dans les options de la partie.",
                 "bearTamerGrowlsAndInfected": "Le Montreur d'Ours est dans la partie et a grogné ce matin ! Cela veut dire que son voisin de gauche ou de droite (ou les deux) est un Loup-Garou ! Il est même possible que le Montreur soit infecté et donc lui-même un Loup-Garou... Auquel cas, l'ours grognera tous les matins.",
@@ -790,7 +790,7 @@
                 "howToPlay": "Comment jouer le Chasseur ?",
                 "hunterShootsWhen": "Quand le Chasseur meurt, il prend son fusil pour se venger dans son dernier souffle.",
                 "hunterCanShoot": "Le Chasseur mourrant choisi arbitrairement sa victime en la pointant du doigt. Elle mourra instantanément du coup fatal.",
-                "ancientWillHaveHisRevenge": "L'Ancien est dans la partie ! Si le Chasseur décide de le tuer, alors tous les joueurs dans le camp des Villageois perdront leurs pouvoirs.",
+                "ancientWillHaveHisRevenge": "L'Ancien est dans la partie ! Si le Chasseur décide de le tuer, alors tous les joueurs dans le camp des Villageois perdront leurs pouvoirs. Cette pénalité peut être retirée dans les options de la partie.",
                 "toValidateShoot": "Pour passer à la suite, le Chasseur doit obligatoirement choisir une cible."
             }
         },

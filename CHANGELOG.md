@@ -23,6 +23,7 @@
 * [#173](https://github.com/antoinezanardi/werewolves-assistant-web/issues/173) - White Werewolf waking up interval option.
 * [#174](https://github.com/antoinezanardi/werewolves-assistant-web/issues/174) - Number of charmed people per night by Pied Piper option.
 * [#175](https://github.com/antoinezanardi/werewolves-assistant-web/issues/175) - Pied Piper not powerless if infected option.
+* [#176](https://github.com/antoinezanardi/werewolves-assistant-web/issues/176) - Lives count for the Ancient option.
 * [#183](https://github.com/antoinezanardi/werewolves-assistant-web/issues/183) - Audio options in parameters modal.
 * [#188](https://github.com/antoinezanardi/werewolves-assistant-web/issues/188) - Modal for helping players with roles.
 

@@ -193,7 +193,7 @@ export default {
             };
         },
         gameEventAllTurnMetadata() {
-            const { firstWaiting, angelPlayer, ancientPlayer } = this.game;
+            const { firstWaiting, angelPlayer, ancientPlayer, options } = this.game;
             return {
                 messages: [
                     ...insertIf(firstWaiting.to === "vote" && !!angelPlayer && this.game.isFirstWaitingPreFirstNightPlay,
@@ -203,7 +203,7 @@ export default {
                     ...insertIf(firstWaiting.to === "vote" && !this.game.isSecondVoteAfterTie, i18n.t("GameEvent.messages.allVote")),
                     ...insertIf(firstWaiting.to === "vote" && this.game.isSecondVoteAfterTie,
                         i18n.t("GameEvent.messages.allVoteAgain", { players: listPlayerNames(this.game.lastActionTargetedPlayers) })),
-                    ...insertIf(firstWaiting.to === "vote" && !!ancientPlayer && ancientPlayer.isAlive,
+                    ...insertIf(firstWaiting.to === "vote" && !!ancientPlayer && ancientPlayer.isAlive && options.roles.ancient.doesTakeHisRevenge,
                         i18n.t("GameEvent.messages.attentionToTheAncient")),
                     ...insertIf(firstWaiting.to === "elect-sheriff", i18n.t("GameEvent.messages.allElectSheriff")),
                 ],

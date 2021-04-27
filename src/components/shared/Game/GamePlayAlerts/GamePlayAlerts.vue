@@ -49,10 +49,14 @@ export default {
             ];
         },
         ancientRevengeAlerts() {
-            const { firstWaiting, ancientPlayer } = this.game;
+            const { firstWaiting, ancientPlayer, options } = this.game;
+            const { doesTakeHisRevenge } = options.roles.ancient;
             const { to: action } = firstWaiting;
             const ancientRevengeActions = ["vote", "settle-votes", "shoot", "use-potion"];
-            return ancientRevengeActions.includes(action) && !!ancientPlayer && ancientPlayer.isAlive ? ["ancient-can-make-all-powerless"] : [];
+            if (ancientRevengeActions.includes(action) && !!ancientPlayer && ancientPlayer.isAlive && doesTakeHisRevenge) {
+                return ["ancient-can-make-all-powerless"];
+            }
+            return [];
         },
         voteAlerts() {
             const {
@@ -87,7 +91,8 @@ export default {
                 return [];
             }
             return [
-                ...insertIf(source !== "white-werewolf" && !!ancientPlayer && ancientPlayer.isAliveAndPowerful, "ancient-can-survive-werewolves"),
+                ...insertIf(source !== "white-werewolf" && !!ancientPlayer && ancientPlayer.isAliveAndPowerful &&
+                    options.roles.ancient.livesCountAgainstWerewolves > 1, "ancient-can-survive-werewolves"),
                 ...insertIf(source !== "white-werewolf" && !!guardPlayer && guardPlayer.isAliveAndPowerful, "guard-can-protect-target"),
                 ...insertIf(source !== "white-werewolf" && !!witchPlayer && witchPlayer.isAliveAndPowerful, "witch-can-protect-target"),
                 ...insertIf(source === "werewolves" && !!vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer.isAlive,

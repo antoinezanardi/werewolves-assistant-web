@@ -85,13 +85,13 @@ export default {
         werewolvesEatGamePlayAlertsSteps() {
             const { stepsHeader: header, game } = this;
             const actionStepsTextPath = "GamePlayFieldTutorial.werewolves.eat";
-            const { angelPlayer, doesAngelWinIfHeDiesNow, ancientPlayer, guardPlayer, witchPlayer } = game;
+            const { angelPlayer, doesAngelWinIfHeDiesNow, ancientPlayer, guardPlayer, witchPlayer, options } = game;
             return [
                 ...insertIf(!!angelPlayer && angelPlayer.isAliveAndPowerful && doesAngelWinIfHeDiesNow, {
                     header, target: `#game-play-alert-angel-will-win-if-he-dies`,
                     content: this.$t(`${actionStepsTextPath}.angelCanWin`),
                 }),
-                ...insertIf(!!ancientPlayer && ancientPlayer.isAlive, {
+                ...insertIf(!!ancientPlayer && ancientPlayer.isAlive && options.roles.ancient.livesCountAgainstWerewolves > 1, {
                     header, target: `#game-play-alert-ancient-can-survive-werewolves`,
                     content: this.$t(`${actionStepsTextPath}.ancientCanSurvive`),
                 }),
@@ -128,7 +128,8 @@ export default {
         witchSteps() {
             const { stepsHeader: header, game } = this;
             const actionStepsTextPath = "GamePlayFieldTutorial.witch.use-potion";
-            const { ancientPlayer } = game;
+            const { ancientPlayer, options } = game;
+            const { doesTakeHisRevenge } = options.roles.ancient;
             return {
                 "use-potion": [
                     { header, target: "#game-waiting-label", content: this.$t(`${actionStepsTextPath}.witchUsesPotionWhen`) },
@@ -137,7 +138,7 @@ export default {
                     { header, target: "#life-potion-tab", content: this.$t(`${actionStepsTextPath}.ifLifePotionHasBeenUsed`) },
                     { header, target: "#death-potion-tab", content: this.$t(`${actionStepsTextPath}.deathPotionKills`) },
                     { header, target: "#death-potion-tab", content: this.$t(`${actionStepsTextPath}.ifDeathPotionHasBeenUsed`) },
-                    ...insertIf(!!ancientPlayer && ancientPlayer.isAlive, {
+                    ...insertIf(!!ancientPlayer && ancientPlayer.isAlive && doesTakeHisRevenge, {
                         header, target: `#game-play-alert-ancient-can-make-all-powerless`,
                         content: this.$t(`${actionStepsTextPath}.ancientWillHaveHisRevenge`),
                     }),
@@ -199,10 +200,11 @@ export default {
         allVoteGamePlayAlertsSteps() {
             const { stepsHeader: header, game } = this;
             const actionStepsTextPath = "GamePlayFieldTutorial.all.vote";
-            const { ancientPlayer, isIdiotProtectedFromVotes, scapegoatPlayer, angelPlayer, doesAngelWinIfHeDiesNow } = game;
+            const { ancientPlayer, isIdiotProtectedFromVotes, scapegoatPlayer, angelPlayer, doesAngelWinIfHeDiesNow, options } = game;
+            const { doesTakeHisRevenge } = options.roles.ancient;
             const { hasStutteringJudgeChosenSign, stutteringJudgeVoteRequestsCount } = this.pastEvents;
             return [
-                ...insertIf(!!ancientPlayer && ancientPlayer.isAlive, {
+                ...insertIf(!!ancientPlayer && ancientPlayer.isAlive && doesTakeHisRevenge, {
                     header, target: `#game-play-alert-ancient-can-make-all-powerless`,
                     content: this.$t(`${actionStepsTextPath}.ancientWillHaveHisRevenge`),
                 }),
@@ -262,12 +264,13 @@ export default {
         hunterSteps() {
             const { stepsHeader: header, game } = this;
             const actionStepsTextPath = "GamePlayFieldTutorial.hunter.shoot";
-            const { ancientPlayer } = game;
+            const { ancientPlayer, options } = game;
+            const { doesTakeHisRevenge } = options.roles.ancient;
             return {
                 shoot: [
                     { header, target: "#game-waiting-label", content: this.$t(`${actionStepsTextPath}.hunterShootsWhen`) },
                     { header, target: "#player-targets", content: this.$t(`${actionStepsTextPath}.hunterCanShoot`) },
-                    ...insertIf(!!ancientPlayer && ancientPlayer.isAlive, {
+                    ...insertIf(!!ancientPlayer && ancientPlayer.isAlive && doesTakeHisRevenge, {
                         header, target: `#game-play-alert-ancient-can-make-all-powerless`,
                         content: this.$t(`${actionStepsTextPath}.ancientWillHaveHisRevenge`),
                     }),
@@ -284,10 +287,11 @@ export default {
         sheriffSettlesVotesSteps() {
             const { stepsHeader: header, game } = this;
             const actionStepsTextPath = "GamePlayFieldTutorial.sheriff.settle-votes";
-            const { ancientPlayer, idiotPlayer, isIdiotProtectedFromVotes, angelPlayer, doesAngelWinIfHeDiesNow } = game;
+            const { ancientPlayer, idiotPlayer, isIdiotProtectedFromVotes, angelPlayer, doesAngelWinIfHeDiesNow, options } = game;
+            const { doesTakeHisRevenge } = options.roles.ancient;
             return [
                 { header, target: "#game-waiting-label", content: this.$t(`${actionStepsTextPath}.sheriffSettleVotesWhen`) },
-                ...insertIf(!!ancientPlayer && ancientPlayer.isAlive, {
+                ...insertIf(!!ancientPlayer && ancientPlayer.isAlive && doesTakeHisRevenge, {
                     header, target: `#game-play-alert-ancient-can-make-all-powerless`,
                     content: this.$t(`GamePlayFieldTutorial.all.vote.ancientWillHaveHisRevenge`),
                 }),
@@ -394,14 +398,14 @@ export default {
         bigBadWolfSteps() {
             const { stepsHeader: header, game } = this;
             const actionStepsTextPath = "GamePlayFieldTutorial.big-bad-wolf.eat";
-            const { ancientPlayer, guardPlayer, witchPlayer } = game;
+            const { ancientPlayer, guardPlayer, witchPlayer, options } = game;
             return {
                 eat: [
                     { header, target: "#game-waiting-label", content: this.$t(`${actionStepsTextPath}.bigBadWolfEatsWhen`) },
                     { header, target: "#player-targets", content: this.$t(`${actionStepsTextPath}.bigBadWolfEatsAVictim`) },
                     { header, target: "#game-waiting-label", content: this.$t(`${actionStepsTextPath}.bigBadWolfLoosesHisPowerIfWerewolfDies`) },
                     { header, target: "#werewolf-players", content: this.$t(`${actionStepsTextPath}.bigBadWolfPointsAtVictim`) },
-                    ...insertIf(!!ancientPlayer && ancientPlayer.isAlive, {
+                    ...insertIf(!!ancientPlayer && ancientPlayer.isAlive && options.roles.ancient.livesCountAgainstWerewolves > 1, {
                         header, target: `#game-play-alert-ancient-can-survive-werewolves`,
                         content: this.$t("GamePlayFieldTutorial.werewolves.eat.ancientCanSurvive"),
                     }),
