@@ -39,7 +39,7 @@
             <div v-if="game.thiefAdditionalCards.length">
                 <h5 class="text-center">
                     <RoleImage class="additional-card-recipient mr-2" role="thief"/>
-                    <span v-html="$t('GameSummaryResults.thiefAdditionalCards')"/>
+                    <span v-html="$tc('GameSummaryResults.thiefAdditionalCards', game.thiefAdditionalCards.length)"/>
                 </h5>
                 <hr class="bg-dark"/>
                 <div class="row justify-content-center">
@@ -74,6 +74,14 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+    .additional-card-recipient {
+        width: 30px;
+        height: auto;
+    }
 
+    .additional-card-image {
+        width: 100px;
+        height: auto;
+    }
 </style>

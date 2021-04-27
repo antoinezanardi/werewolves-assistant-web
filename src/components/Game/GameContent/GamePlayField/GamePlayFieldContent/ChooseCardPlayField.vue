@@ -7,8 +7,8 @@
         </div>
         <PlayFieldActionText :play="play" attribute="choose-card" class="mb-2" @card-selected="cardSelected"/>
         <div class="flex-grow-1">
-            <div id="additional-cards" class="row">
-                <div v-for="card of game.thiefAdditionalCards" :key="card._id" class="additional-card col text-center"
+            <div id="additional-cards" class="row justify-content-center">
+                <div v-for="card of game.thiefAdditionalCards" :key="card._id" class="additional-card col-lg-2 col-md-4 col-6 text-center"
                      :class="{ selected: play.card === card._id }" @click.prevent="cardSelected(card)">
                     <RoleImage class="additional-card-image" :role="card.role"/>
                     <RoleText class="additional-card-text mt-1" :role="card.role"/>
@@ -18,7 +18,7 @@
                 <div class="col-12">
                     <h5 class="text-muted text-center font-italic">
                         <i class="fa fa-exclamation-triangle mr-2"/>
-                        <span v-html="$t('ChooseCardPlayField.thiefMustChooseCard')"/>
+                        <span v-html="thiefMustChooseCardText"/>
                     </h5>
                 </div>
             </div>
@@ -42,7 +42,13 @@ export default {
             required: true,
         },
     },
-    computed: { ...mapGetters("game", { game: "game" }) },
+    computed: {
+        ...mapGetters("game", { game: "game" }),
+        thiefMustChooseCardText() {
+            const { additionalCardsCount } = this.game.options.roles.thief;
+            return this.$tc("ChooseCardPlayField.thiefMustChooseCard", additionalCardsCount);
+        },
+    },
     methods: {
         cardSelected(card) {
             this.$emit("card-selected", card);

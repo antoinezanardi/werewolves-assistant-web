@@ -403,17 +403,19 @@ export default {
             };
         },
         gameEventThiefTurnMetadata() {
+            const { additionalCardsCount } = this.gameOptions.roles.thief;
             return {
                 messages: [
-                    i18n.t("GameEvent.messages.thiefStarts"),
-                    i18n.t("GameEvent.messages.gameMasterWillFlipAdditionalCards"),
+                    i18n.tc("GameEvent.messages.thiefStarts", additionalCardsCount, { additionalCardsCount }),
+                    i18n.tc("GameEvent.messages.gameMasterWillFlipAdditionalCards", additionalCardsCount, { additionalCardsCount }),
                 ],
                 soundEffect: "thief-plays",
             };
         },
         gameEventThiefChoosesCardMetadata() {
+            const { additionalCardsCount } = this.gameOptions.roles.thief;
             return {
-                messages: [i18n.t("GameEvent.messages.thiefChoosesCard")],
+                messages: [i18n.tc("GameEvent.messages.thiefChoosesCard", additionalCardsCount, { additionalCardsCount })],
                 soundEffect: "thief-plays",
             };
         },

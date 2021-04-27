@@ -13,7 +13,7 @@
                         </span>
                     </button>
                 </div>
-                <div class="modal-body h-100 visible-scrollbar">
+                <div id="game-options-modal-body" class="modal-body h-100 visible-scrollbar">
                     <ul id="game-summary-modal-tabs" class="nav nav-pills nav-fill">
                         <li id="game-roles-options-tab" class="nav-item" @click="openGameRolesOptions">
                             <a class="nav-link" :class="{ active: panel === 'game-roles-options' }" href="#">
@@ -81,7 +81,7 @@ export default {
             $("#game-options-modal").modal("show");
             if (scrollTo) {
                 setTimeout(() => {
-                    VueScrollTo.scrollTo(`#${scrollTo}`, 1000, { container: ".modal-body" });
+                    VueScrollTo.scrollTo(`#${scrollTo}`, 1000, { container: "#game-options-modal-body" });
                 }, 600);
             }
         },

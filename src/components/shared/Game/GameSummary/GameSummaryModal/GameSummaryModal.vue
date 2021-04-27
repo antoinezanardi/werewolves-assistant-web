@@ -116,14 +116,4 @@ export default {
     .nav-link {
         transition: all 0.25s linear;
     }
-
-    .additional-card-recipient {
-        width: 30px;
-        height: auto;
-    }
-
-    .additional-card-image {
-        width: 100px;
-        height: auto;
-    }
 </style>

@@ -469,7 +469,7 @@
         "gameHasMinimumOneWerewolf": "La partie possède au minimum 1 joueur dans le camp des Loups-Garous.",
         "gameMustHaveTwoSisters": "Deux joueurs doivent avoir le rôle des Deux Sœurs s'il y en a une dans la partie.",
         "gameMustHaveThreeBrothers": "Trois joueurs doivent avoir le rôle des Trois Frères s'il y en a un dans la partie.",
-        "thiefAdditionalCardsMustBeSet": "Deux cartes additionnelles doivent être ajoutées si le voleur est dans la partie.",
+        "thiefAdditionalCardsMustBeSet": "Une carte additionnelle doit être ajoutée su le Voleur est dans la partie. | {additionalCardsCount} cartes additionnelles doivent être ajoutées si le Voleur est dans la partie.",
         "chooseCards": "Choisir les cartes"
     },
     "GameLobbyRolePickerModal": {
@@ -903,7 +903,7 @@
             "choose-card": {
                 "howToPlay": "Comment jouer le Voleur ?",
                 "thiefChoosesCardWhen": "Au début de la partie, seulement la première nuit, le Voleur se réveille après que le maître du jeu est retourné les cartes qui sont destinées au Voleur.",
-                "thiefCanChooseCard": "Le Voleur peut, s'il le souhaite, échanger une de ses cartes contre la sienne, et ainsir changer de rôle jusqu'à la fin de la partie.",
+                "thiefCanChooseCard": "Le Voleur peut, s'il le souhaite, échanger une de ses cartes contre la sienne, et ainsir changer de rôle jusqu'à la fin de la partie. Le nombre de cartes proposées au Voleur peut être modifié dans les options de la partie.",
                 "thiefMustChooseIfWerewolves": "Attention, le Voleur sera obligé de prendre une carte si toutes les cartes proposées sont du camp des Loups-Garous. Cette obligation peut être modifiée dans les options de la partie.",
                 "toValidateChooseCard": "Pour passer à la suite, le Voleur peut passer son tour ou prendre une carte si les règles l'obligent."
             }
@@ -1007,7 +1007,7 @@
         "retry": "Réessayer"
     },
     "ChooseCardPlayField": {
-        "thiefMustChooseCard": "Le Voleur est obligé de prendre une carte car elles sont toutes du camp des Loups-Garous"
+        "thiefMustChooseCard": "Le Voleur est obligé de prendre la carte car elle appartient au camp des Loups-Garous | Le Voleur est obligé de prendre une carte car elles appartiennent toutes au camp des Loups-Garous"
     },
     "ChooseSignPlayField": {
         "choosesHisSign": "convient d'un signe avec le maître du jeu"
@@ -1065,7 +1065,7 @@
         "villagers": "Villageois",
         "werewolves": "Loups-Garous",
         "additionalCards": "Cartes additionnelles",
-        "thiefAdditionalCards": "Cartes destinées au Voleur"
+        "thiefAdditionalCards": "Carte destinée au Voleur | Cartes destinées au Voleur"
     },
     "GameSummaryHistory": {
         "gameHistory": "Historique de la partie",
@@ -1175,7 +1175,7 @@
             }
         },
         "consequences": {
-            "thiefMustChooseCard": "Le Voleur était obligé de choisir une carte étant donné que toutes les cartes qui lui été destinées étaient du camp des Loups-Garous.",
+            "thiefMustChooseCard": "Le Voleur était obligé de choisir la carte additionnelle qui lui était destinée étant donné qu'elle était du camp des Loups-Garous. | Le Voleur était obligé de choisir une carte étant donné que toutes les cartes qui lui été destinées étaient du camp des Loups-Garous.",
             "littleGirlNotProtected": "La Petite Fille ne peut être protégée de la morsure des Loups-Garous par le Salvateur. (Ceci peut être modifié dans les options de la partie)",
             "piedPiperIsInfected": "Le Joueur de Flûte a été infecté, il perd donc son but de charmer tous les joueurs.",
             "stutteringJudgeRequestedVote": "Le Juge Bègue a demandé un nouveau vote après l'annonce des résultats de celui-ci.",
@@ -1408,9 +1408,9 @@
             "scapegoatStarts": "Face à l'injustice de sa mort, le Bouc-Émissaire va choisir qui n'aura pas le droit de vote au jour suivant dans son dernier souffle.",
             "idiotIsForgiven": "Le village se rend compte que le joueur pendu était en vérité l'Idiot ! Les Villageois ayant pitié de lui, décident de le gracier mais il ne pourra plus voter jusqu'à la fin de la partie.",
             "playerRoleIsRevealed": "Le joueur retourne sa carte et continue à jouer.",
-            "thiefStarts": "Le Voleur se réveille et va, s'il le souhaite, voler l'une des deux cartes additionnelles et s'approprier le rôle sur celle-ci.",
-            "gameMasterWillFlipAdditionalCards": "Le maître du jeu va retourner les cartes additionnelles destinées au Voleur pour qu'il en prenne connaissance et puisse faire son choix.",
-            "thiefChoosesCard": "Si le Voleur a choisi une carte, le maître du jeu va procéder à l'échange. Les deux cartes restantes sont replacées faces cachées au centre de la table.",
+            "thiefStarts": "Le Voleur se réveille et va, s'il le souhaite, voler la carte additionnelle et s'approprier le rôle apparaissant sur celle-ci. | Le Voleur se réveille et va, s'il le souhaite, voler l'une des {additionalCardsCount} cartes additionnelles et s'approprier le rôle apparaissant sur celle-ci.",
+            "gameMasterWillFlipAdditionalCards": "Le maître du jeu va retourner la carte additionnelle destinée au Voleur pour qu'il en prenne connaissance et puisse faire son choix. | Le maître du jeu va retourner les cartes additionnelles destinées au Voleur pour qu'il en prenne connaissance et puisse faire son choix.",
+            "thiefChoosesCard": "Si le Voleur a choisi une carte, le maître du jeu va procéder à l'échange. La carte restante est replacée face cachée au centre de la table. | Si le Voleur a choisi une carte, le maître du jeu va procéder à l'échange. Les {additionalCardsCount} cartes restantes sont replacées faces cachées au centre de la table.",
             "stutteringJudgeStarts": "Le Juge Bègue se réveille et va convenir d'un signe avec le maître du jeu. Ce signe réalisé pendant un vote en déclenchera un second juste après l'annonce de la victime.",
             "whiteWerewolfStarts": "Le Loup-Garou Blanc se réveille et va, s'il le souhaite, dévorer l'un de ses congénères.",
             "foxStarts": "Le Renard se réveille et va, s'il le souhaite, flairer un groupe de joueurs pour espérer débusquer un Loup-Garou.",

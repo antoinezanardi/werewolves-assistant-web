@@ -234,7 +234,7 @@ class Game {
     }
 
     get areThereEnoughThiefAdditionalCards() {
-        return this.thiefAdditionalCards.length === 2;
+        return this.thiefAdditionalCards.length === this.options.roles.thief.additionalCardsCount;
     }
 
     get allPlayersHaveRole() {
