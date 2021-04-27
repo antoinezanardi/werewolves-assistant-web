@@ -371,16 +371,18 @@ export default {
             };
         },
         gameEventPiedPiperTurnMetadata() {
+            const { charmedPeopleCountPerNight } = this.gameOptions.roles.piedPiper;
             return {
-                messages: [i18n.t("GameEvent.messages.piedPiperStarts")],
+                messages: [i18n.tc("GameEvent.messages.piedPiperStarts", charmedPeopleCountPerNight, { charmedPeopleCountPerNight })],
                 soundEffect: "pied-piper-plays",
             };
         },
         gameEventPiedPiperCharmsMetadata() {
+            const { charmedPeopleCountPerNight } = this.gameOptions.roles.piedPiper;
             return {
                 messages: [
-                    i18n.t("GameEvent.messages.piedPiperCharmedTwoPlayers"),
-                    i18n.t("GameEvent.messages.gameMasterWillTouchCharmed"),
+                    i18n.tc("GameEvent.messages.piedPiperCharmedTwoPlayers", charmedPeopleCountPerNight, { charmedPeopleCountPerNight }),
+                    i18n.tc("GameEvent.messages.gameMasterWillTouchCharmed", charmedPeopleCountPerNight, { charmedPeopleCountPerNight }),
                 ],
                 soundEffect: "pied-piper-plays",
             };

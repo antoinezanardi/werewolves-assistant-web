@@ -424,8 +424,9 @@ export default {
                 charm: [
                     { header, target: "#game-waiting-label", content: this.$t(`${actionStepsTextPath}.piedPiperCharmsWhen`) },
                     { header, target: "#player-targets", content: this.$t(`${actionStepsTextPath}.piedPiperCanCharm`) },
+                    { header, target: "#player-targets", content: this.$t(`${actionStepsTextPath}.gameMasterTouchBackToCharmedPeople`) },
                     { header, target: "#player-targets", content: this.$t(`${actionStepsTextPath}.ifAllAreCharmed`) },
-                    ...insertIf(!!game.vileFatherOfWolvesPlayer, {
+                    ...insertIf(!!game.vileFatherOfWolvesPlayer && game.options.roles.piedPiper.isPowerlessIfInfected, {
                         header, target: "#pied-piper-player",
                         content: this.$t(`${actionStepsTextPath}.ifPiedPiperIsInfected`),
                     }),

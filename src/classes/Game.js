@@ -277,11 +277,14 @@ class Game {
     }
 
     get expectedTargetsLength() {
-        const { to } = this.firstWaiting;
+        const { to, for: source } = this.firstWaiting;
         const oneTargetActions = ["look", "eat", "protect", "shoot", "settle-votes", "delegate", "choose-model", "use-potion", "sniff"];
         const twoTargetsActions = ["charm"];
         const noLimitActions = ["ban-voting"];
-        if (oneTargetActions.includes(to) || to === "charm" && this.piedPiperTargets.length === 1) {
+        if (source === "pied-piper") {
+            const { charmedPeopleCountPerNight } = this.options.roles.piedPiper;
+            return this.piedPiperTargets.length < charmedPeopleCountPerNight ? this.piedPiperTargets.length : charmedPeopleCountPerNight;
+        } else if (oneTargetActions.includes(to)) {
             return 1;
         } else if (twoTargetsActions.includes(to)) {
             return 2;

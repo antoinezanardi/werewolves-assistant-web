@@ -874,7 +874,8 @@
             "charm": {
                 "howToPlay": "Comment jouer le Joueur de Flûte ?",
                 "piedPiperCharmsWhen": "Chaque nuit, s'il est vivant, le Joueur de Flûte se réveille.",
-                "piedPiperCanCharm": "Le Joueur de Flûte peut charmer deux joueurs grâce son talent de musicien hors pair. Le maître du jeu devra, en silence et le plus discrètement possible, tapoter le dos des joueurs charmés une fois le choix du Joueur de Flûte fait.",
+                "piedPiperCanCharm": "Le Joueur de Flûte peut charmer deux joueurs grâce son talent de musicien hors pair. Le nombre de joueurs charmés par nuit peut être modifié dans les options de la partie.",
+                "gameMasterTouchBackToCharmedPeople": "Le maître du jeu devra, en silence et le plus discrètement possible, tapoter le dos des joueurs charmés une fois le choix du Joueur de Flûte fait.",
                 "ifAllAreCharmed": "Si tous les joueurs vivants sont charmés par le Joueur de Flûte, ce dernier gagne la partie seul !",
                 "ifPiedPiperIsInfected": "Si l'Infect Père des Loups choisit d'infecter le Joueur de Flûte, ce dernier perd son pouvoir de charme et ne peut plus gagner seul mais avec les Loups-Garous.",
                 "toValidateCharm": "Pour passer à la suite, le Joueur de Flûte doit obligatoirement choisir deux cibles."
@@ -883,7 +884,7 @@
         "charmed": {
             "meet-each-other": {
                 "howToPlay": "Comment jouer le joueur charmés ?",
-                "charmedMeetEachOtherWhen": "Chaque fois que le Joueur de Flûte utilise son talent de musicien, tous les joueurs charmés se réveillent et se recontrent.",
+                "charmedMeetEachOtherWhen": "Chaque fois que le Joueur de Flûte utilise son talent de musicien, tous les joueurs charmés se réveillent et se rencontrent.",
                 "ifAllAreCharmed": "Les joueurs charmés doivent se dépécher de trouver qui est le Joueur de Flûte, car si tous les joueurs vivants sont charmés, le musicien gagnera la partie à lui tout seul !",
                 "charmedHave20s": "Les joueurs charmés ont environ 20 secondes pendant leur tour, ce qui est suffisant pour se découvrir et déduire qui pourrait être le Joueur de Flûte.",
                 "noActionRequiredToValidate": "Aucune action n'est requise pour passer à la suite."
@@ -1303,7 +1304,7 @@
         "cancelTarget": "Annuler cette cible",
         "cancelSide": "Annuler le choix du camp",
         "chooseTargetIfNot": "Choisissez une cible dans le cas contraire",
-        "pleaseChooseTarget": "Veuillez choisir une cible",
+        "pleaseChooseTarget": "Veuillez choisir une cible | Veuillez choisir {targetsCount} cibles",
         "pleaseChooseSide": "Veuillez choisir un camp",
         "pleaseChooseCard": "Veuillez choisir une carte",
         "chooseCardIfNot": "Choisissez une carte dans le cas contraire"
@@ -1397,11 +1398,11 @@
             "threeBrothersWakeUpToTalk": "Les Trois Frères se réveillent et vont se concerter discrètement.",
             "wildChildStarts": "L'Enfant Sauvage se réveille pour choisir son modèle parmi les habitants.",
             "bigBadWolfStarts": "Le Grand-Méchant-Loup se réveille pour choisir la seconde victime des Loups-Garous.",
-            "piedPiperStarts": "Le Joueur de flûte se réveille pour choisir deux victimes qui seront sous l'emprise de son charme.",
+            "piedPiperStarts": "Le Joueur de flûte se réveille pour choisir une victime qui sera sous l'emprise de son charme. | Le Joueur de flûte se réveille pour choisir {charmedPeopleCountPerNight} victimes qui seront sous l'emprise de son charme.",
             "sheriffSettlesVote": "Le maire va départager pour régler l'égalité des votes sur la pendaison.",
             "sheriffDelegates": "Dans son dernier souffle, le maire va déléguer son rôle à l'un des survivants.",
-            "piedPiperCharmedTwoPlayers": "Le Joueur de Flûte a charmé deux personnes de plus, il se rapproche de son but ultime de vengeance.",
-            "gameMasterWillTouchCharmed": "Le maître du jeu va faire le tour des habitants et toucher dans le dos les deux nouveaux charmés.",
+            "piedPiperCharmedTwoPlayers": "Le Joueur de Flûte a charmé une personne de plus, il se rapproche de son but ultime de vengeance. | Le Joueur de Flûte a charmé {charmedPeopleCountPerNight} personnes de plus, il se rapproche de son but ultime de vengeance.",
+            "gameMasterWillTouchCharmed": "Le maître du jeu va faire le tour des habitants et toucher dans le dos le nouveau charmé. | Le maître du jeu va faire le tour des habitants et toucher dans le dos les {charmedPeopleCountPerNight} nouveaux charmés.",
             "charmedWakeUp": "Les tout juste charmés par le Joueur de Flûte se réveillent pour se reconnaître.",
             "charmedWakeUpWithOldOnes": "Les tout juste charmés par le Joueur de Flûte se réveillent avec les anciens charmés pour se reconnaître.",
             "scapegoatStarts": "Face à l'injustice de sa mort, le Bouc-Émissaire va choisir qui n'aura pas le droit de vote au jour suivant dans son dernier souffle.",

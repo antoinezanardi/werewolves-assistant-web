@@ -21,6 +21,7 @@
 * [#170](https://github.com/antoinezanardi/werewolves-assistant-web/issues/170) - Dog Wolf chosen side is revealed option.
 * [#171](https://github.com/antoinezanardi/werewolves-assistant-web/issues/171) - Big Bad Wolf not powerless if one werewolf dies option.
 * [#173](https://github.com/antoinezanardi/werewolves-assistant-web/issues/173) - White Werewolf waking up interval option.
+* [#174](https://github.com/antoinezanardi/werewolves-assistant-web/issues/174) - Number of charmed people per night by Pied Piper option.
 * [#183](https://github.com/antoinezanardi/werewolves-assistant-web/issues/183) - Audio options in parameters modal.
 * [#188](https://github.com/antoinezanardi/werewolves-assistant-web/issues/188) - Modal for helping players with roles.
 

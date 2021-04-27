@@ -169,6 +169,7 @@ export default {
             const { options, thiefAdditionalCards } = this.game;
             const { action, source, targets, votesResult, doesJudgeRequestAnotherVote } = this.gameHistoryEntry.play;
             const { isPowerlessIfMissesWerewolf } = this.gameOptions.roles.fox;
+            const { isPowerlessIfInfected } = this.gameOptions.roles.piedPiper;
             const consequencesText = "GameSummaryHistoryPlayLine.consequences";
             return [
                 ...insertIf(action === "protect" && targets[0].player.currentRole === "little-girl" && !options.roles.littleGirl.isProtectedByGuard,
@@ -177,7 +178,7 @@ export default {
                 ...insertIf(action === "vote" && votesResult === "no-death", this.$t(`${consequencesText}.votesNoDeath`)),
                 ...insertIf(action === "vote" && doesJudgeRequestAnotherVote, this.$t(`${consequencesText}.stutteringJudgeRequestedVote`)),
                 ...insertIf(action === "eat" && source.name === "werewolves" && targets[0].isInfected &&
-                    targets[0].isInfected.role.current === "pied-piper", this.$t(`${consequencesText}.piedPiperIsInfected`)),
+                    targets[0].player.role.current === "pied-piper" && isPowerlessIfInfected, this.$t(`${consequencesText}.piedPiperIsInfected`)),
                 ...insertIf(action === "mark" && targets.length,
                     this.$t(`${consequencesText}.ravenMarked`, { markPenalty: options.roles.raven.markPenalty })),
                 ...insertIf(action === "choose-card" && options.roles.thief.mustChooseBetweenWerewolves &&

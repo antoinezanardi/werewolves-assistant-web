@@ -35,7 +35,8 @@ export function getNominatedPlayers(votes, game, action) {
     return votedPlayers.filter(player => player.vote === maxVotes);
 }
 
-export function maxTargetLengthForPlayerAttribute(attribute) {
+export function maxTargetLengthForPlayerAttribute(attribute, game) {
+    const { firstWaiting, options, piedPiperTargets } = game;
     const oneTargetAttributes = [
         "seen",
         "eaten",
@@ -50,7 +51,10 @@ export function maxTargetLengthForPlayerAttribute(attribute) {
         "sniff",
     ];
     const twoTargetsAttributes = ["in-love", "charmed"];
-    if (oneTargetAttributes.includes(attribute)) {
+    if (attribute === "charmed" && firstWaiting.for === "pied-piper") {
+        const { charmedPeopleCountPerNight } = options.roles.piedPiper;
+        return piedPiperTargets.length < charmedPeopleCountPerNight ? piedPiperTargets.length : charmedPeopleCountPerNight;
+    } else if (oneTargetAttributes.includes(attribute)) {
         return 1;
     } else if (twoTargetsAttributes.includes(attribute)) {
         return 2;

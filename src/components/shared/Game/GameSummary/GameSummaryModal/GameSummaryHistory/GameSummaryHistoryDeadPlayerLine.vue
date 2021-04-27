@@ -55,7 +55,7 @@ export default {
         },
         firstDeadWerewolfNotBigBadWolfPlayer: {
             type: Player,
-            required: true,
+            default: undefined,
         },
         isBigBadWolfFirstWerewolfToDie: {
             type: Boolean,

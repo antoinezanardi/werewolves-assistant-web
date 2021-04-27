@@ -85,7 +85,7 @@ export default {
             } else if (target.attribute === "drank-death-potion") {
                 target.hasDrankDeathPotion = true;
             }
-            const maxTargetLength = maxTargetLengthForPlayerAttribute(payload.attribute);
+            const maxTargetLength = maxTargetLengthForPlayerAttribute(payload.attribute, this.game);
             const targetIdx = this.play.targets.findIndex(({ player }) => player === target.player);
             if (!payload.selected) {
                 if (targetIdx !== -1) {

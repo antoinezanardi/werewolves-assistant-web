@@ -15,6 +15,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { maxTargetLengthForPlayerAttribute } from "@/helpers/functions/Player";
 
 export default {
     name: "CancelActionButton",
@@ -42,6 +43,7 @@ export default {
             return "";
         },
         noTargetSelectedText() {
+            const targetsCount = maxTargetLengthForPlayerAttribute(this.attribute, this.game);
             if (this.game.isFirstWaitingChooseSideAction) {
                 return this.$t("CancelActionButton.pleaseChooseSide");
             } else if (this.game.isFirstWaitingChooseCardAction) {
@@ -52,7 +54,7 @@ export default {
             } else if (this.game.isFirstWaitingSkippableAction) {
                 return this.$t("CancelActionButton.chooseTargetIfNot");
             }
-            return this.$t("CancelActionButton.pleaseChooseTarget");
+            return this.$tc("CancelActionButton.pleaseChooseTarget", targetsCount, { targetsCount });
         },
     },
     methods: {
