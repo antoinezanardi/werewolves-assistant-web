@@ -29,6 +29,9 @@
 import { mapGetters } from "vuex";
 import RoleImage from "@/components/shared/Game/Role/RoleImage";
 import RoleText from "@/components/shared/Game/Role/RoleText";
+import GameHistory from "@/classes/GameHistory";
+import Player from "@/classes/Player";
+import { insertIf } from "@/helpers/functions/Array";
 import dead from "@/assets/svg/attributes/dead.svg";
 import eaten from "@/assets/svg/attributes/eaten.svg";
 import bigBadWolf from "@/assets/svg/roles/big-bad-wolf.svg";
@@ -37,9 +40,7 @@ import deathPotion from "@/assets/svg/attributes/drank-death-potion.svg";
 import shoot from "@/assets/svg/actions/shoot.svg";
 import inLove from "@/assets/svg/attributes/in-love.svg";
 import whiteWerewolf from "@/assets/svg/roles/white-werewolf.svg";
-import GameHistory from "@/classes/GameHistory";
-import Player from "@/classes/Player";
-import { insertIf } from "@/helpers/functions/Array";
+import disease from "@/assets/svg/attributes/contaminated.svg";
 
 export default {
     name: "GameSummaryHistoryDeadPlayerLine",
@@ -77,6 +78,7 @@ export default {
                 "hunter": { shoot },
                 "cupid": { charm: inLove },
                 "sheriff": { "settle-votes": vote },
+                "rusty-sword-knight": { disease },
             },
         };
     },
@@ -105,6 +107,8 @@ export default {
                     this.$t(`${consequencesText}.wildChildBecameWerewolf`)),
                 ...insertIf(options.roles.bigBadWolf.isPowerlessIfWerewolfDies && bigBadWolfPlayer && !this.isBigBadWolfFirstWerewolfToDie &&
                     this.firstDeadWerewolfNotBigBadWolfPlayer === this.deadPlayer, this.$t(`${consequencesText}.bigBadWolfBecamePowerless`)),
+                ...insertIf(this.deadPlayer.currentRole === "rusty-sword-knight" && this.deadPlayer.murdered.of === "eat" &&
+                    !this.deadPlayer.hasAttribute("powerless"), this.$t(`${consequencesText}.rustySwordKnightContaminatedLeftWerewolf`)),
             ];
         },
     },

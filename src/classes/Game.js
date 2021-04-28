@@ -483,6 +483,10 @@ class Game {
         return this.getPlayerWithRole("bear-tamer");
     }
 
+    get rustySwordKnightPlayer() {
+        return this.getPlayerWithRole("rusty-sword-knight");
+    }
+
     canStutteringJudgeRequestVote(hasChosenSign, voteRequestsCount) {
         return !!this.stutteringJudgePlayer && this.stutteringJudgePlayer.isAliveAndPowerful && hasChosenSign &&
             voteRequestsCount < this.options.roles.stutteringJudge.voteRequestsCount;

@@ -26,6 +26,7 @@
 * [#176](https://github.com/antoinezanardi/werewolves-assistant-web/issues/176) - Lives count for the Ancient option.
 * [#177](https://github.com/antoinezanardi/werewolves-assistant-web/issues/177) - Ancient doesn't make all villagers powerless if murdered from them option.
 * [#178](https://github.com/antoinezanardi/werewolves-assistant-web/issues/178) - Number of additional cards for Thief option.
+* [#179](https://github.com/antoinezanardi/werewolves-assistant-web/issues/179) - Rusty Sword Knight role.
 * [#183](https://github.com/antoinezanardi/werewolves-assistant-web/issues/183) - Audio options in parameters modal.
 * [#188](https://github.com/antoinezanardi/werewolves-assistant-web/issues/188) - Modal for helping players with roles.
 
@@ -38,6 +39,10 @@
 * [#185](https://github.com/antoinezanardi/werewolves-assistant-web/issues/185) - Reset base rules button in game roles options.
 * [#186](https://github.com/antoinezanardi/werewolves-assistant-web/issues/186) - Save game roles options in user preferences.
 * [#190](https://github.com/antoinezanardi/werewolves-assistant-web/issues/190) - Sentence for explaining why this group or player won.
+
+### 🐛 Bug fixes
+
+* [#181](https://github.com/antoinezanardi/werewolves-assistant-web/issues/181) - Long game event message breaks display.
 
 ### ♻️ Refactoring
 
@@ -56,8 +61,8 @@
 * `vue-slider-component` installed with version `3.2.11`.
 * `vuedraggable` installed with version `2.24.3`.
 * `@fortawesome/fontawesome-free` updated to version `5.15.3`.
-* `@sentry/browser` updated to version `6.3.1`.
-* `@sentry/integrations` updated to version `6.3.1`.
+* `@sentry/browser` updated to version `6.3.3`.
+* `@sentry/integrations` updated to version `6.3.3`.
 * `@vue/cli-plugin-e2e-cypress` updated to version `4.5.12`.
 * `@vue/cli-plugin-eslint` updated to version `4.5.12`.
 * `@vue/cli-plugin-router` updated to version `4.5.12`.
@@ -73,7 +78,7 @@
 * `sweetalert2` updated to version `10.16.6`.
 * `v-tooltip` updated to version `2.1.3`.
 * `vue-gtag` updated to version `1.14.0`.
-* `vue-i18n` updated to version `8.24.3`.
+* `vue-i18n` updated to version `8.24.4`.
 * `vue-tour` updated to version `2.0.0`.
 
 ---

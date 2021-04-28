@@ -28,8 +28,7 @@
                 </div>
                 <div class="col-8 col-md-10 d-flex justify-content-center align-items-center h-100 overflow-auto px-0 visible-scrollbar">
                     <transition mode="out-in" name="fade">
-                        <div id="game-event-message" :key="currentGameEventMessage" class="text-center my-2"
-                             v-html="currentGameEventMessage"/>
+                        <div id="game-event-message" :key="currentGameEventMessage" class="text-center" v-html="currentGameEventMessage"/>
                     </transition>
                 </div>
                 <div class="col-2 col-md-1 px-0 text-center">
@@ -156,11 +155,14 @@ export default {
         },
         gameEventPlayerDiesMetadata() {
             const { didAncientTakeHisRevenge } = this.game;
+            const { areRevealedOnDeath } = this.game.options.roles;
             return {
                 messages: [
                     i18n.t("GameEvent.messages.playerDies", { player: this.gameEventFirstTargetName }),
-                    ...insertIf(this.game.options.roles.areRevealedOnDeath, i18n.t("GameEvent.messages.playerRevealsRole")),
-                    ...insertIf(!this.game.options.roles.areRevealedOnDeath, i18n.t("GameEvent.messages.playerDoesntRevealRole")),
+                    ...insertIf(areRevealedOnDeath, i18n.t("GameEvent.messages.playerRevealsRole")),
+                    ...insertIf(!areRevealedOnDeath, i18n.t("GameEvent.messages.playerDoesntRevealRole")),
+                    ...insertIf(areRevealedOnDeath && this.gameEventFirstTargetMurderCause === "disease",
+                        i18n.t("GameEvent.messages.diedFromDisease")),
                     ...insertIf(this.gameEventFirstTargetRole === "idiot" && this.gameEventFirstTarget.player.hasAttribute("sheriff"),
                         i18n.t("GameEvent.messages.noIdiotSheriffAnymore")),
                     ...insertIf(this.gameEventFirstTargetRole === "ancient" && didAncientTakeHisRevenge,
@@ -488,6 +490,9 @@ export default {
         gameEventFirstTargetRole() {
             return this.hasGameEventTargets ? this.gameEventFirstTarget.player.role.current : null;
         },
+        gameEventFirstTargetMurderCause() {
+            return this.hasGameEventTargets ? this.gameEventFirstTarget.player.murdered.of : null;
+        },
         gameEventFirstTargetSide() {
             return this.hasGameEventTargets ? this.gameEventFirstTarget.player.side.current : null;
         },
@@ -572,9 +577,11 @@ export default {
         height: 40%;
 
         #game-event-message {
+            line-height: 1.1;
             max-height: 100%;
             @include media-breakpoint-up(md) {
                 font-size: 1.50rem;
+                line-height: 1.5;
             }
         }
 

@@ -1,5 +1,5 @@
 <template>
-    <i v-tooltip="voterTooltip" class="fa mx-1" :class="voterClasses"/>
+    <i v-tooltip="voterTooltip" class="fa" :class="voterClasses"/>
 </template>
 
 <script>

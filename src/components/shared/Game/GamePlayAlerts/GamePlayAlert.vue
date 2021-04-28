@@ -52,6 +52,7 @@ export default {
                 ...this.gamePlayAlertStutteringJudgeMetadata,
                 ...this.gamePlayAlertPiedPiperMetadata,
                 ...this.gamePlayAlertBearTamerMetadata,
+                ...this.gamePlayAlertRustySwordKnightMetadata,
             };
         },
         gamePlayAlertIdiotMetadata() {
@@ -160,6 +161,14 @@ export default {
                 "bear-tamer-growls": {
                     role,
                     icon,
+                },
+            };
+        },
+        gamePlayAlertRustySwordKnightMetadata() {
+            return {
+                "rusty-sword-knight-can-contaminate": {
+                    role: "rusty-sword-knight",
+                    icon: "fa-virus",
                 },
             };
         },

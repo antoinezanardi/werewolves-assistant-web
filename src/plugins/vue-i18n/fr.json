@@ -628,7 +628,8 @@
             "guard-cant-protect-little-girl": "La Petite Fille est pleine crise de préadolescence, la protection du Salvateur sera sans effet sur elle si elle se fait manger par les Loups-Garous...",
             "pied-piper-will-loose-powers-if-infected": "Si le Joueur de Flûte est infecté, il perdra son pouvoir de charme et abandonnera son but de gagner la partie en charmant tout les joueurs vivants.",
             "bear-tamer-growls": "L'ours du Montreur a grogné en début de journée. Cela veut dire que son voisin de gauche ou de droite (ou les deux) est un Loup-Garou.",
-            "bear-tamer-growls-and-infected": "L'ours du Montreur a grogné en début de journée. Cela veut dire que son voisin de gauche ou de droite (ou les deux) est un Loup-Garou. Il est aussi possible que l'Infect Père des Loups l'ait infecté, auquel cas l'ours grognera tous les matins."
+            "bear-tamer-growls-and-infected": "L'ours du Montreur a grogné en début de journée. Cela veut dire que son voisin de gauche ou de droite (ou les deux) est un Loup-Garou. Il est aussi possible que l'Infect Père des Loups l'ait infecté, auquel cas l'ours grognera tous les matins.",
+            "rusty-sword-knight-can-contaminate": "Si le Chevalier à l'Épée Rouillée est dévoré sur cette action, le premier Loup-Garou vivant à sa gauche mourra d'une maladie inconnue la nuit suivante."
         },
         "shareThisWithPlayers": "Partager cette information avec les joueurs peut rendre la partie un peu plus intéressante.",
         "keepThisForYourself": "Les rôles présents ont été cachés en début de partie. Réfléchissez à deux fois avant de partager une information aux joueurs pour garder du suspens."
@@ -720,6 +721,7 @@
                 "vileFatherOfWolvesCanInfect": "L'Infect Père des Loups est dans la partie ! Lorsque les Loups-Garous auront choisi leur victime et se rendorment, l'Infect Père des Loups peut lever la main. Dans ce cas, la victime rejoindra instantanément le camp des Loups-Garous au lieu de mourir dévorée, ceci en gardant son rôle original et ses pouvoirs !",
                 "infectOnlyOnce": "Le choix de l'Infect Père des Loups pourra être renseigné au moment où l'action des Loups-Garous sera validée. Attention, ce pouvoir ne peut être utilisé qu'une seule fois !",
                 "piedPiperWillLoosePowerIfInfected": "Le Joueur de Flûte et l'Infect Père des Loups sont dans la partie ! Si le Joueur de Flûte est infecté, il ne pourra plus charmer jusqu'à la fin de la partie et abandonnera son but de charmer tous les joueurs vivants pour gagner la partie.",
+                "rustySwordKnightCanContaminate": "Le Chevalier à l'Épée Rouillée est dans la partie ! S'il meurt de cette action, le premier Loup-Garou vivant à sa gauche mourra d'une infection la nuit suivante.",
                 "toValidateEat": "Pour passer à la suite, les Loups-Garous doivent obligatoirement choisir une victime."
             }
         },
@@ -955,7 +957,8 @@
             "powerlessByAncient": "Ce joueur n'a plus de pouvoir à cause de la vengeance de l'Ancien",
             "powerlessByFox": "Le Renard a perdu son pouvoir car il a flairé un groupe composé entièrement de Villageois",
             "bearGrowls": "L'Ours du Montreur grogne car l'un de ses voisins est un Loup-Garou.",
-            "bearGrowlsMaybeInfected": "L'Ours du Montreur grogne car l'un de ses voisins est un Loup-Garou ou parce qu'il est lui-même infecté."
+            "bearGrowlsMaybeInfected": "L'Ours du Montreur grogne car l'un de ses voisins est un Loup-Garou ou parce qu'il est lui-même infecté.",
+            "contaminated": "Ce Loup-Garou est contaminé par la lame du Chevalier à l'Épée Rouillée."
 
         },
         "remainingPhases": "Plus qu'une phase (jour ou nuit) pour que l'effet disparaisse | Il reste {remainingPhases} phases (jour ou nuit) avant que l'effet ne disparaisse",
@@ -1218,6 +1221,9 @@
             },
             "sheriff": {
                 "settle-votes": "a été pendu sur la place publique sur la décision arbitraire du maire."
+            },
+            "rusty-sword-knight": {
+                "disease": "est mort d'une maladie transmise par la lame du Chevalier à l'Épée Rouillée."
             }
         },
         "remarksOnDeath": "Remarques sur cette mort",
@@ -1226,7 +1232,8 @@
             "idiotWontDelegate": "L'Idiot n'a pas délégué son rôle de maire dans son dernier souffle... Quel idiot.",
             "ancientHadHisRevenge": "Dans son dernier souffle, l'Ancien a pris sa revanche sur cette jeunesse éffrontée : Tous les joueurs dans le camp des Villageois ont perdu leurs pouvoirs.",
             "wildChildBecameWerewolf": "Ce joueur ayant été le modèle de l'Enfant Sauvage, ce dernier se transforma en Loup-Garou à sa mort.",
-            "bigBadWolfBecamePowerless": "La mort de ce Loup-Garou a rendu le Grand-Méchant-Loup sans pouvoir pour le reste de la partie."
+            "bigBadWolfBecamePowerless": "La mort de ce Loup-Garou a rendu le Grand-Méchant-Loup sans pouvoir pour le reste de la partie.",
+            "rustySwordKnightContaminatedLeftWerewolf": "Le premier Loup-Garou à gauche du Chevalier à l'Épée Rouillée a été contaminée par sa lame."
         }
     },
     "PlayFieldActionText": {
@@ -1424,7 +1431,8 @@
             "bearStaysCalm": "L'Ours du Montreur est d'un calme exemplaire ce matin, il n'a donc pas de canidé comme voisin direct.",
             "dogWolfHasChosenWerewolves": "Le Chien-Loup a décidé de rejoindre les Loups-Garous. Son instinct animal a pris le dessus sur sa loyauté...",
             "dogWolfHasChosenVillagers": "Le Chien-Loup a décidé de rester avec les Villageois. Sa loyauté envers ses maîtres est remarquable !",
-            "wildChildJoinsWerewolves": "Ce joueur tout juste décédé était le modèle de l'Enfant Sauvage ! La colère et la rage de ce dernier réveille son instinct animal, il rejoint donc le camp des Loups-Garous, sa véritable nature."
+            "wildChildJoinsWerewolves": "Ce joueur tout juste décédé était le modèle de l'Enfant Sauvage ! La colère et la rage de ce dernier réveille son instinct animal, il rejoint donc le camp des Loups-Garous, sa véritable nature.",
+            "diedFromDisease": "Ce Loup-Garou est en réalité mort d'une maladie provenant de la lame émoussée du Chevalier à l'Épée Rouillée ! Tous les joueurs entre la gauche du Chevalier et la droite de ce Loup sont certainement innocents..."
         }
     },
     "Statistics": {

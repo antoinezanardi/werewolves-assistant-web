@@ -85,7 +85,10 @@ export default {
             return !!angelPlayer && angelPlayer.isAliveAndPowerful && doesAngelWinIfHeDiesNow ? ["angel-will-win-if-he-dies"] : [];
         },
         eatAlerts() {
-            const { firstWaiting, guardPlayer, ancientPlayer, witchPlayer, vileFatherOfWolvesPlayer, piedPiperPlayer, options } = this.game;
+            const {
+                firstWaiting, guardPlayer, ancientPlayer, witchPlayer, vileFatherOfWolvesPlayer, piedPiperPlayer, rustySwordKnightPlayer,
+                options,
+            } = this.game;
             const { to: action, for: source } = firstWaiting;
             if (action !== "eat") {
                 return [];
@@ -95,6 +98,8 @@ export default {
                     options.roles.ancient.livesCountAgainstWerewolves > 1, "ancient-can-survive-werewolves"),
                 ...insertIf(source !== "white-werewolf" && !!guardPlayer && guardPlayer.isAliveAndPowerful, "guard-can-protect-target"),
                 ...insertIf(source !== "white-werewolf" && !!witchPlayer && witchPlayer.isAliveAndPowerful, "witch-can-protect-target"),
+                ...insertIf(source !== "white-werewolf" && !!rustySwordKnightPlayer && rustySwordKnightPlayer.isAliveAndPowerful,
+                    "rusty-sword-knight-can-contaminate"),
                 ...insertIf(source === "werewolves" && !!vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer.isAlive,
                     "vile-father-of-wolves-can-infect"),
                 ...insertIf(source === "werewolves" && !!vileFatherOfWolvesPlayer && vileFatherOfWolvesPlayer.isAlive && !!piedPiperPlayer &&

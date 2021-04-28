@@ -23,10 +23,10 @@
             </template>
         </VSelect>
         <div class="player-voters mt-1">
-            <transition-group tag="div" name="translate-down-fade">
-                <PlayerVoter v-for="voter of votersAgainstPlayer" :key="voter._id" :player="voter"/>
+            <transition-group tag="div" name="translate-down-fade" class="d-flex justify-content-center flex-wrap">
+                <PlayerVoter v-for="voter of votersAgainstPlayer" :key="voter._id" :player="voter" class="m-1"/>
                 <i v-if="player.hasActiveAttribute('raven-marked', game)" key="raven-mark" v-tooltip="ravenMarkTooltip"
-                   class="fa fa-crow mx-1"/>
+                   class="fa fa-crow m-1"/>
             </transition-group>
         </div>
     </div>

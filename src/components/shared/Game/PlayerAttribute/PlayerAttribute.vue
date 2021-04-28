@@ -26,6 +26,7 @@ import deadSVG from "@/assets/svg/attributes/dead.svg";
 import powerlessSVG from "@/assets/svg/attributes/powerless.svg";
 import whiteWerewolfSVG from "@/assets/svg/roles/white-werewolf.svg";
 import growlsSVG from "@/assets/svg/attributes/growls.svg";
+import contaminatedSVG from "@/assets/svg/attributes/contaminated.svg";
 
 export default {
     name: "PlayerAttribute",
@@ -142,6 +143,12 @@ export default {
                     "bear-tamer": {
                         tooltip: this.$t(`${attributeText}.${bearTamerGrowlsText}`),
                         SVG: growlsSVG,
+                    },
+                },
+                "contaminated": {
+                    "rusty-sword-knight": {
+                        tooltip: this.$t(`${attributeText}.contaminated`),
+                        SVG: contaminatedSVG,
                     },
                 },
             };

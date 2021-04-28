@@ -85,7 +85,7 @@ export default {
         werewolvesEatGamePlayAlertsSteps() {
             const { stepsHeader: header, game } = this;
             const actionStepsTextPath = "GamePlayFieldTutorial.werewolves.eat";
-            const { angelPlayer, doesAngelWinIfHeDiesNow, ancientPlayer, guardPlayer, witchPlayer, options } = game;
+            const { angelPlayer, doesAngelWinIfHeDiesNow, ancientPlayer, guardPlayer, witchPlayer, rustySwordKnightPlayer, options } = game;
             return [
                 ...insertIf(!!angelPlayer && angelPlayer.isAliveAndPowerful && doesAngelWinIfHeDiesNow, {
                     header, target: `#game-play-alert-angel-will-win-if-he-dies`,
@@ -102,6 +102,10 @@ export default {
                 ...insertIf(!!witchPlayer && witchPlayer.isAliveAndPowerful, {
                     header, target: `#game-play-alert-witch-can-protect-target`,
                     content: this.$t(`${actionStepsTextPath}.witchCanSave`),
+                }),
+                ...insertIf(!!rustySwordKnightPlayer && rustySwordKnightPlayer.isAliveAndPowerful, {
+                    header, target: `#game-play-alert-rusty-sword-knight-can-contaminate`,
+                    content: this.$t(`${actionStepsTextPath}.rustySwordKnightCanContaminate`),
                 }),
                 ...this.werewolvesEatVileFatherOfWolvesAlertsSteps,
             ];
@@ -398,7 +402,7 @@ export default {
         bigBadWolfSteps() {
             const { stepsHeader: header, game } = this;
             const actionStepsTextPath = "GamePlayFieldTutorial.big-bad-wolf.eat";
-            const { ancientPlayer, guardPlayer, witchPlayer, options } = game;
+            const { ancientPlayer, guardPlayer, witchPlayer, rustySwordKnightPlayer, options } = game;
             return {
                 eat: [
                     { header, target: "#game-waiting-label", content: this.$t(`${actionStepsTextPath}.bigBadWolfEatsWhen`) },
@@ -416,6 +420,10 @@ export default {
                     ...insertIf(!!witchPlayer && witchPlayer.isAliveAndPowerful, {
                         header, target: `#game-play-alert-witch-can-protect-target`,
                         content: this.$t("GamePlayFieldTutorial.werewolves.eat.witchCanSave"),
+                    }),
+                    ...insertIf(!!rustySwordKnightPlayer && rustySwordKnightPlayer.isAliveAndPowerful, {
+                        header, target: `#game-play-alert-rusty-sword-knight-can-contaminate`,
+                        content: this.$t(`GamePlayFieldTutorial.werewolves.eat.rustySwordKnightCanContaminate`),
                     }),
                     { header, target: "#target-play-requirements", content: this.$t(`${actionStepsTextPath}.toValidateEat`) },
                 ],
