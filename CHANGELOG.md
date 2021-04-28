@@ -11,6 +11,7 @@
 * [#159](https://github.com/antoinezanardi/werewolves-assistant-web/issues/159) - Bear Tamer role.
 * [#160](https://github.com/antoinezanardi/werewolves-assistant-web/issues/160) - Hidden game repartition option.
 * [#161](https://github.com/antoinezanardi/werewolves-assistant-web/issues/161) - Role revealed on death option.
+* [#162](https://github.com/antoinezanardi/werewolves-assistant-web/issues/162) - Seer see exact role option.
 * [#163](https://github.com/antoinezanardi/werewolves-assistant-web/issues/163) - Guard can protect twice option.
 * [#164](https://github.com/antoinezanardi/werewolves-assistant-web/issues/164) - Fox not powerless if he misses a werewolf option.
 * [#165](https://github.com/antoinezanardi/werewolves-assistant-web/issues/165) - Bear Tamer growls if he is infected option.
