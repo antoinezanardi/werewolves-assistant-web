@@ -25,8 +25,8 @@ export default {
         ...mapActions("user", { loginWithGoogle: "loginWithGoogle" }),
         async login(data) {
             try {
-                if (data) {
-                    await this.loginWithGoogle(data.tc.id_token);
+                if (data && data.getAuthResponse) {
+                    await this.loginWithGoogle(data.getAuthResponse().id_token);
                     this.$emit("hide-account-modal");
                 }
             } catch (err) {
