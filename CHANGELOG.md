@@ -29,6 +29,7 @@
 * [#178](https://github.com/antoinezanardi/werewolves-assistant-web/issues/178) - Number of additional cards for Thief option.
 * [#179](https://github.com/antoinezanardi/werewolves-assistant-web/issues/179) - Rusty Sword Knight role.
 * [#183](https://github.com/antoinezanardi/werewolves-assistant-web/issues/183) - Audio options in parameters modal.
+* [#184](https://github.com/antoinezanardi/werewolves-assistant-web/issues/184) - Intro for Game Winners screen.
 * [#188](https://github.com/antoinezanardi/werewolves-assistant-web/issues/188) - Modal for helping players with roles.
 
 ### 🌟 Enhancements
@@ -62,8 +63,8 @@
 * `vue-slider-component` installed with version `3.2.11`.
 * `vuedraggable` installed with version `2.24.3`.
 * `@fortawesome/fontawesome-free` updated to version `5.15.3`.
-* `@sentry/browser` updated to version `6.3.3`.
-* `@sentry/integrations` updated to version `6.3.3`.
+* `@sentry/browser` updated to version `6.3.4`.
+* `@sentry/integrations` updated to version `6.3.4`.
 * `@vue/cli-plugin-e2e-cypress` updated to version `4.5.12`.
 * `@vue/cli-plugin-eslint` updated to version `4.5.12`.
 * `@vue/cli-plugin-router` updated to version `4.5.12`.

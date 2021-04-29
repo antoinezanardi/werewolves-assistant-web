@@ -1039,7 +1039,7 @@
             "villagers": "Tous les joueurs dans le camp des Loups-Garous sont morts. Le village est de nouveau en paix.",
             "lovers": "Les joueurs touchés par la flèche de Cupidon sont les deux seuls survivants du village, en dépit de leur camp initial. L'amour a triomphé des camps ennemis.",
             "pied-piper": "Le Joueur de Flûte a réussi à rester en vie tout en charmant tous les autres joueurs vivants. Une victoire royale pour le musicien.",
-            "white-werewolf": "Le Loup-Garou Blanc est le dernier survivant du village, trahissant ces compères tout en festoyant avec eux. Une victoire aussi difficile à obtenir que satisfaisante pour le dernier des Loups-Garous.",
+            "white-werewolf": "Le Loup-Garou Blanc est le dernier survivant du village, trahissant ses compères tout en festoyant avec eux. Une victoire aussi difficile à obtenir que satisfaisante pour le dernier des Loups-Garous.",
             "angel": "L'Ange a été tué pendant le tout premier vote du village ou lors de la première nuit par les Loups-Garous. Il retourne donc au Paradis avec un sentiment de victoire certain.",
             "nobody": "Tout le monde s'est entretué sans laisser aucun survivant. Un silence macabre plane sur le village et ses alentours..."
         }
@@ -1365,6 +1365,7 @@
             "playerDies": "{player} est mort ! Quelle tragédie...",
             "playerRevealsRole": "Il ou elle révèle son rôle aux survivants.",
             "playerDoesntRevealRole": "Il ou elle garde sa carte face cachée. Les morts emportent leur rôle dans leur tombe dans cette partie.",
+            "gameIsDoneKeepRoleHidden": "ATTENTION : le joueur ne révèle pas son rôle tout de suite ...",
             "noIdiotSheriffAnymore": "Étant donné que le maire était en réalité l'Idiot, il ne délèguera pas sa fonction. Quel idiot !",
             "ancientTakesHisRevenge": "L'Ancien est mort par l'un des Villageois ...! Sa vengeance sera terrible : tous les joueurs dans le camp des Villageois perdent leurs pouvoirs pour le reste de la partie.",
             "playerHasBeenPromotedSheriff": "{player} a été élu maire !",
@@ -1432,7 +1433,12 @@
             "dogWolfHasChosenWerewolves": "Le Chien-Loup a décidé de rejoindre les Loups-Garous. Son instinct animal a pris le dessus sur sa loyauté...",
             "dogWolfHasChosenVillagers": "Le Chien-Loup a décidé de rester avec les Villageois. Sa loyauté envers ses maîtres est remarquable !",
             "wildChildJoinsWerewolves": "Ce joueur tout juste décédé était le modèle de l'Enfant Sauvage ! La colère et la rage de ce dernier réveille son instinct animal, il rejoint donc le camp des Loups-Garous, sa véritable nature.",
-            "diedFromDisease": "Ce Loup-Garou est en réalité mort d'une maladie provenant de la lame émoussée du Chevalier à l'Épée Rouillée ! Tous les joueurs entre la gauche du Chevalier et la droite de ce Loup sont certainement innocents..."
+            "diedFromDisease": "Ce Loup-Garou est en réalité mort d'une maladie provenant de la lame émoussée du Chevalier à l'Épée Rouillée ! Tous les joueurs entre la gauche du Chevalier et la droite de ce Loup sont certainement innocents...",
+            "gameIsDone": "Habitants du village de Thiercelieux, il est temps de mettre fin aux débats et aux meurtres, un ou plusieurs joueurs ont réalisé leur objectif !",
+            "gameIsDoneAfterDeaths": "La partie se termine alors que personne n'est mort ...! Une victoire pacifiste ? | Après un seul décès, la partie se termine ... Le sang a peu coulé malgré les hostilités ! | Après {deadPlayersCount} décès, la partie se termine ... Quel carnage ...",
+            "whoWon": "Qui a triomphé sur le village de Thiercelieux cette fois-ci ?",
+            "maybeWerewolvesMaybeVillagers": "Les Villageois se sont-ils enfin débarassés des Loups-Garous ? Ou est-ce que ces canidés se sont-ils rassasiés jusqu'au dernier ?",
+            "makeSuspenseLast": "(Faites durer le suspens, les résultats seront affichés juste après ce message)"
         }
     },
     "Statistics": {

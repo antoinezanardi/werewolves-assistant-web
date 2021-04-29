@@ -2,9 +2,10 @@
     <div id="game-content" class="d-flex flex-column">
         <transition mode="out-in" name="fade">
             <GameEventMonitor v-if="events.length" key="game-event-monitor" :events="events" @skip-event="removeEvent"/>
-            <GamePlayField v-else key="game-play-field" :play="play" @player-selected="playerSelected" @player-votes="playerVotes"
-                           @side-selected="sideSelected" @vile-father-of-wolves-infects="vileFatherOfWolvesInfects" @card-selected="cardSelected"
-                           @stuttering-judge-requests-another-vote="stutteringJudgeRequestsAnotherVote"/>
+            <GamePlayField v-else-if="game.isPlaying" key="game-play-field" :play="play" class="h-100" @player-selected="playerSelected"
+                           @player-votes="playerVotes" @side-selected="sideSelected" @vile-father-of-wolves-infects="vileFatherOfWolvesInfects"
+                           @card-selected="cardSelected" @stuttering-judge-requests-another-vote="stutteringJudgeRequestsAnotherVote"/>
+            <GameWinners v-else-if="game.isDone" key="game-play-field" class="h-100"/>
         </transition>
     </div>
 </template>
@@ -15,10 +16,11 @@ import GamePlayField from "./GamePlayField/GamePlayField";
 import GameEvent from "@/classes/GameEvent";
 import GameEventMonitor from "@/components/Game/GameEventMonitor/GameEventMonitor";
 import { maxTargetLengthForPlayerAttribute } from "@/helpers/functions/Player";
+import GameWinners from "@/components/Game/GameWinners/GameWinners";
 
 export default {
     name: "GameContent",
-    components: { GameEventMonitor, GamePlayField },
+    components: { GameWinners, GameEventMonitor, GamePlayField },
     data() {
         return {
             play: {
@@ -40,7 +42,7 @@ export default {
             handler(newGame) {
                 this.resetPlay();
                 this.generateLastActionEvents();
-                if (newGame.tick === 1) {
+                if (newGame.isPlaying && newGame.tick === 1) {
                     this.events.push(new GameEvent({ type: "game-starts" }));
                     this.generatePlayerStartsGameRevealedEvents();
                 }
@@ -52,7 +54,11 @@ export default {
                     this.generateGameDeathAndRevealEvents();
                     this.generateGamePhaseEvent();
                 }
-                this.generateGameRoleTurnEvents();
+                if (newGame.isPlaying) {
+                    this.generateGameRoleTurnEvents();
+                } else if (newGame.isDone) {
+                    this.events.push(new GameEvent({ type: "game-ends" }));
+                }
             },
             deep: true,
             immediate: true,
@@ -61,8 +67,9 @@ export default {
     created() {
         const firstEvent = this.events.length ? this.events[0] : undefined;
         if (!firstEvent || firstEvent.type !== "day-rises" && firstEvent.type !== "night-falls") {
-            if (this.game.isFirstWaitingPreFirstNightPlay || this.game.phase === "day" && !this.events.find(({ type }) => type === "day-rises") ||
-                this.game.phase === "night" && this.events.find(({ type }) => type === "night-falls")) {
+            if (this.game.tick === 1 || this.game.isFirstWaitingPreFirstNightPlay || this.game.phase === "day" &&
+                !this.events.find(({ type }) => type === "day-rises") || this.game.phase === "night" &&
+                this.events.find(({ type }) => type === "night-falls")) {
                 this.audioManager.playDayMusic();
             } else {
                 this.audioManager.playNightMusic();
@@ -151,12 +158,14 @@ export default {
             }
         },
         generateGamePhaseEvent() {
-            if (this.game.history.length && this.game.history[0].isPreFirstNightPlay && !this.game.isFirstWaitingPreFirstNightPlay) {
+            if (this.game.tick === 1 && !this.game.isFirstWaitingPreFirstNightPlay ||
+                this.game.history.length && this.game.history[0].isPreFirstNightPlay && !this.game.isFirstWaitingPreFirstNightPlay) {
                 return this.events.push(new GameEvent({ type: "night-falls" }));
-            } else if (this.game.history.length &&
-                (this.game.phase !== this.game.history[0].phase || this.game.turn !== this.game.history[0].turn)) {
+            } else if (this.game.history.length && (this.game.phase !== this.game.history[0].phase || this.game.turn !== this.game.history[0].turn)) {
                 const event = this.game.phase === "day" ? new GameEvent({ type: "day-rises" }) : new GameEvent({ type: "night-falls" });
-                this.events.push(event);
+                if (this.game.isPlaying || event.type === "day-rises") {
+                    this.events.push(event);
+                }
             }
         },
         generatePlayerStartsGameRevealedEvents() {
@@ -192,8 +201,8 @@ export default {
             }
         },
         generateBearGrowlEvent() {
-            const { bearTamerPlayer } = this.game;
-            if (this.events.find(event => event.type === "day-rises") && bearTamerPlayer) {
+            const { bearTamerPlayer, isPlaying } = this.game;
+            if (isPlaying && this.events.find(event => event.type === "day-rises") && bearTamerPlayer) {
                 if (bearTamerPlayer.hasActiveAttribute("growls", this.game)) {
                     this.events.push(new GameEvent({ type: `bear-growls`, targets: [{ player: bearTamerPlayer }] }));
                 } else {

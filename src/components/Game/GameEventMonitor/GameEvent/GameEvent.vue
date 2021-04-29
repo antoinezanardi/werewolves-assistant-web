@@ -86,6 +86,7 @@ export default {
         gameEventMetadata() {
             return {
                 "game-starts": this.gameEventGameStartsMetadata,
+                "game-ends": this.gameEventGameEndsMetadata,
                 "player-starts-game-revealed": this.gameEventPlayerStartsGameRevealedMetadata,
                 "player-dies": this.gameEventPlayerDiesMetadata,
                 "player-role-revealed": this.gameEventPlayerRoleRevealedMetadata,
@@ -150,23 +151,37 @@ export default {
                 ],
             };
         },
+        gameEventGameEndsMetadata() {
+            const deadPlayersCount = this.game.deadPlayers.length;
+            return {
+                messages: [
+                    i18n.t("GameEvent.messages.gameIsDone"),
+                    i18n.tc("GameEvent.messages.gameIsDoneAfterDeaths", deadPlayersCount, { deadPlayersCount }),
+                    i18n.t("GameEvent.messages.whoWon"),
+                    i18n.t("GameEvent.messages.maybeWerewolvesMaybeVillagers"),
+                    i18n.t("GameEvent.messages.makeSuspenseLast"),
+                ],
+                soundEffect: "game-ends",
+            };
+        },
         gameEventPlayerStartsGameRevealedMetadata() {
             return { messages: [i18n.t("GameEvent.messages.villagerVillagerStartsGameRevealed", { player: this.gameEventFirstTargetName })] };
         },
         gameEventPlayerDiesMetadata() {
-            const { didAncientTakeHisRevenge } = this.game;
+            const { didAncientTakeHisRevenge, isPlaying, isDone } = this.game;
             const { areRevealedOnDeath } = this.game.options.roles;
             return {
                 messages: [
                     i18n.t("GameEvent.messages.playerDies", { player: this.gameEventFirstTargetName }),
-                    ...insertIf(areRevealedOnDeath, i18n.t("GameEvent.messages.playerRevealsRole")),
-                    ...insertIf(!areRevealedOnDeath, i18n.t("GameEvent.messages.playerDoesntRevealRole")),
-                    ...insertIf(areRevealedOnDeath && this.gameEventFirstTargetMurderCause === "disease",
+                    ...insertIf(isPlaying && areRevealedOnDeath, i18n.t("GameEvent.messages.playerRevealsRole")),
+                    ...insertIf(isPlaying && !areRevealedOnDeath, i18n.t("GameEvent.messages.playerDoesntRevealRole")),
+                    ...insertIf(isPlaying && areRevealedOnDeath && this.gameEventFirstTargetMurderCause === "disease",
                         i18n.t("GameEvent.messages.diedFromDisease")),
-                    ...insertIf(this.gameEventFirstTargetRole === "idiot" && this.gameEventFirstTarget.player.hasAttribute("sheriff"),
+                    ...insertIf(isPlaying && this.gameEventFirstTargetRole === "idiot" && this.gameEventFirstTarget.player.hasAttribute("sheriff"),
                         i18n.t("GameEvent.messages.noIdiotSheriffAnymore")),
-                    ...insertIf(this.gameEventFirstTargetRole === "ancient" && didAncientTakeHisRevenge,
+                    ...insertIf(isPlaying && this.gameEventFirstTargetRole === "ancient" && didAncientTakeHisRevenge,
                         i18n.t("GameEvent.messages.ancientTakesHisRevenge")),
+                    ...insertIf(isDone, i18n.t("GameEvent.messages.gameIsDoneKeepRoleHidden")),
                 ],
                 soundEffect: "death",
             };
@@ -545,6 +560,9 @@ export default {
             this.audioManager.playDayMusic();
         } else if (this.event.type === "night-falls") {
             this.audioManager.playNightMusic();
+        } else if (this.event.type === "game-ends") {
+            this.audioManager.playSuspenseMusic();
+            this.audioManager.stopGamePhaseMusics();
         }
     },
     methods: {

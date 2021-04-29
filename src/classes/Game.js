@@ -189,6 +189,10 @@ class Game {
         return this.players.filter(player => player.isAlive);
     }
 
+    get deadPlayers() {
+        return this.players.filter(player => !player.isAlive);
+    }
+
     get canVotePlayers() {
         return this.players.filter(player => player.isAlive && !player.hasActiveAttribute("cant-vote", this));
     }
@@ -564,6 +568,18 @@ class Game {
 
     get hasRoleDependingOnPlayerPosition() {
         return !!this.getPlayerWithRole("rusty-sword-knight") || !!this.getPlayerWithRole("bear-tamer") || !!this.getPlayerWithRole("fox");
+    }
+
+    get isPlaying() {
+        return this.status === "playing";
+    }
+
+    get isDone() {
+        return this.status === "done";
+    }
+
+    get isCanceled() {
+        return this.status === "canceled";
     }
 }
 

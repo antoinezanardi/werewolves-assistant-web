@@ -1,5 +1,5 @@
 <template>
-    <div id="game-play-field" class="h-100">
+    <div id="game-play-field">
         <transition mode="out-in" name="fade">
             <div v-if="loadings.pastEvents" key="loading-past-events" class="d-flex justify-content-center align-items-center h-100">
                 <Loading/>

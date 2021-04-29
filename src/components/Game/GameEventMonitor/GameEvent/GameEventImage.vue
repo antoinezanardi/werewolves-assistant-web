@@ -118,9 +118,10 @@ export default {
             }
             const { firstWaiting, alivePlayersExpectedToPlay, playersExpectedToPlay } = this.game;
             const deadPlayerActions = ["delegate", "shoot", "ban-voting"];
+            const allPlayersEvents = ["game-starts", "deaths-during-night", "game-ends"];
             if (this.event.type === "no-death-during-night") {
                 return this.game.alivePlayers;
-            } else if (this.event.type === "game-starts" || this.event.type === "deaths-during-night") {
+            } else if (allPlayersEvents.includes(this.event.type)) {
                 return this.game.players;
             } else if (this.isEffectGameEvent || this.event.type === "bear-growls" || this.event.type === "bear-stays-calm") {
                 return this.event.targets.map(({ player }) => player);
