@@ -211,6 +211,9 @@ export default {
         },
         gameEventAllTurnMetadata() {
             const { firstWaiting, angelPlayer, ancientPlayer, options } = this.game;
+            if (!firstWaiting) {
+                return [];
+            }
             return {
                 messages: [
                     ...insertIf(firstWaiting.to === "vote" && !!angelPlayer && this.game.isFirstWaitingPreFirstNightPlay,
@@ -237,6 +240,9 @@ export default {
         },
         gameEventSheriffTurnMetadata() {
             const { firstWaiting } = this.game;
+            if (!firstWaiting) {
+                return [];
+            }
             return {
                 messages: [
                     ...insertIf(firstWaiting.to === "settle-votes", i18n.t("GameEvent.messages.sheriffSettlesVote")),

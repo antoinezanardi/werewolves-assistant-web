@@ -262,22 +262,19 @@ class Game {
     }
 
     get firstWaiting() {
-        return this.waiting[0];
+        return this.waiting.length ? this.waiting[0] : undefined;
     }
 
     get isFirstWaitingVoteAction() {
-        const { to } = this.firstWaiting;
-        return isVoteAction(to);
+        return this.firstWaiting && isVoteAction(this.firstWaiting.to);
     }
 
     get isFirstWaitingForbiddenTieVoteAction() {
-        const { to } = this.firstWaiting;
-        return isForbiddenTieVoteAction(to);
+        return this.firstWaiting && isForbiddenTieVoteAction(this.firstWaiting.to);
     }
 
     get isFirstWaitingTargetAction() {
-        const { to } = this.firstWaiting;
-        return isTargetAction(to);
+        return this.firstWaiting && isTargetAction(this.firstWaiting.to);
     }
 
     get expectedTargetsLength() {
@@ -299,8 +296,7 @@ class Game {
     }
 
     get isFirstWaitingTimedAction() {
-        const { to } = this.firstWaiting;
-        return isTimedAction(to);
+        return this.firstWaiting && isTimedAction(this.firstWaiting.to);
     }
 
     get maxTimeToPlay() {
@@ -314,22 +310,19 @@ class Game {
     }
 
     get isFirstWaitingChooseSideAction() {
-        const { to } = this.firstWaiting;
-        return to === "choose-side";
+        return this.firstWaiting && this.firstWaiting.to === "choose-side";
     }
 
     get isFirstWaitingChooseCardAction() {
-        const { to } = this.firstWaiting;
-        return to === "choose-card";
+        return this.firstWaiting && this.firstWaiting.to === "choose-card";
     }
 
     get isFirstWaitingSkippableAction() {
-        const { to: action, for: source } = this.firstWaiting;
-        return isSkippableAction(action, source, this);
+        return this.firstWaiting && isSkippableAction(this.firstWaiting.to, this.firstWaiting.for, this);
     }
 
     get isFirstWaitingPreFirstNightPlay() {
-        return isPreFirstNightPlay(this.firstWaiting.to, this.turn, this.phase);
+        return this.firstWaiting && isPreFirstNightPlay(this.firstWaiting.to, this.turn, this.phase);
     }
 
     get doesSourceGoToBed() {
@@ -509,6 +502,9 @@ class Game {
     }
 
     get playersExpectedToPlay() {
+        if (!this.firstWaiting) {
+            return [];
+        }
         const { for: source } = this.firstWaiting;
         const waitingForGroups = {
             all: this.players,

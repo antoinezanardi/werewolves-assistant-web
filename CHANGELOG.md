@@ -1,6 +1,6 @@
 # 📈 LIST OF CHANGES FOR WEREWOLVES ASSISTANT WEB
 
-## 1.0.0-beta.12 (2021-??-??)
+## 1.0.0-beta.12 (2021-04-30)
 
 ### 🚀 New features
 
@@ -63,8 +63,8 @@
 * `vue-slider-component` installed with version `3.2.11`.
 * `vuedraggable` installed with version `2.24.3`.
 * `@fortawesome/fontawesome-free` updated to version `5.15.3`.
-* `@sentry/browser` updated to version `6.3.4`.
-* `@sentry/integrations` updated to version `6.3.4`.
+* `@sentry/browser` updated to version `6.3.5`.
+* `@sentry/integrations` updated to version `6.3.5`.
 * `@vue/cli-plugin-e2e-cypress` updated to version `4.5.12`.
 * `@vue/cli-plugin-eslint` updated to version `4.5.12`.
 * `@vue/cli-plugin-router` updated to version `4.5.12`.
