@@ -7,12 +7,8 @@
             <div v-else key="game" class="row mx-0 h-100">
                 <GameVillagersSide class="col-lg-2 col-md-3 d-none d-md-block h-100"/>
                 <transition mode="out-in" name="fade">
-                    <GameContent v-if="game.status === 'playing'" key="playing-game"
-                                 class="col-lg-8 col-md-6 col-12 h-100 pb-2"/>
-                    <GameWinners v-else-if="game.status === 'done'" key="done-game"
-                                 class="col-lg-8 col-md-6 col-12 h-100 pb-2"/>
-                    <GameCanceled v-else-if="game.status === 'canceled'" key="canceled-game"
-                                  class="col-lg-8 col-md-6 col-12 h-100 pb-2"/>
+                    <GameCanceled v-if="game.isCanceled" key="canceled-game" class="col-lg-8 col-md-6 col-12 h-100 pb-2"/>
+                    <GameContent v-else key="game" class="col-lg-8 col-md-6 col-12 h-100 pb-2"/>
                 </transition>
                 <GameWerewolvesSide class="col-lg-2 col-md-3 d-none d-md-block h-100"/>
             </div>
@@ -24,16 +20,15 @@
 import { mapActions, mapGetters } from "vuex";
 import Swal from "sweetalert2";
 import Loading from "@/components/shared/Loading";
-import GameVillagersSide from "../shared/Game/Sides/GameVillagersSide/GameVillagersSide";
-import GameWerewolvesSide from "../shared/Game/Sides/GameWerewolvesSide/GameWerewolvesSide";
+import GameVillagersSide from "@/components/shared/Game/Sides/GameVillagersSide/GameVillagersSide";
+import GameWerewolvesSide from "@/components/shared/Game/Sides/GameWerewolvesSide/GameWerewolvesSide";
 import GameContent from "./GameContent/GameContent";
-import GameWinners from "./GameWinners/GameWinners";
-import { isAPIError } from "@/helpers/functions/Error";
 import GameCanceled from "@/components/Game/GameCanceled/GameCanceled";
+import { isAPIError } from "@/helpers/functions/Error";
 
 export default {
     name: "Game",
-    components: { GameCanceled, GameWinners, GameContent, GameWerewolvesSide, GameVillagersSide, Loading },
+    components: { GameCanceled, GameContent, GameWerewolvesSide, GameVillagersSide, Loading },
     async beforeRouteLeave(to, from, next) {
         if (this.game.status === "playing") {
             const { value: confirmLeaveGame } = await this.confirmLeaveGame();

@@ -25,6 +25,7 @@
         <BanVotingPlayField v-else-if="currentAction === 'ban-voting'" :play="play" class="h-100 container-fluid" @player-selected="playerSelected"/>
         <ChooseCardPlayField v-else-if="currentAction === 'choose-card'" :play="play" class="h-100 container-fluid" @card-selected="cardSelected"/>
         <ChooseSignPlayField v-else-if="currentAction === 'choose-sign'" :play="play" class="h-100 container-fluid"/>
+        <SniffPlayField v-else-if="currentAction === 'sniff'" :play="play" class="h-100 container-fluid" @player-selected="playerSelected"/>
         <div v-else key="unknown">
             ?
         </div>
@@ -52,10 +53,12 @@ import ChooseModelPlayField
 import BanVotingPlayField from "@/components/Game/GameContent/GamePlayField/GamePlayFieldContent/BanVotingPlayField";
 import ChooseCardPlayField from "@/components/Game/GameContent/GamePlayField/GamePlayFieldContent/ChooseCardPlayField";
 import ChooseSignPlayField from "@/components/Game/GameContent/GamePlayField/GamePlayFieldContent/ChooseSignPlayField";
+import SniffPlayField from "@/components/Game/GameContent/GamePlayField/GamePlayFieldContent/SniffPlayField";
 
 export default {
     name: "GamePlayFieldContent",
     components: {
+        SniffPlayField,
         ChooseSignPlayField,
         ChooseCardPlayField,
         BanVotingPlayField,

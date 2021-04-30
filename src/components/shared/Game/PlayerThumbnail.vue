@@ -1,7 +1,7 @@
 <template>
     <span v-tooltip="playerThumbnailTooltip" class="player-card-thumbnail" :class="playerThumbnailClasses">
         <i v-if="!game._id" v-tooltip="$t('PlayerThumbnail.unsetPlayer')" class="fa fa-times-circle unset-player-button"
-           @click="unsetPlayer"/>
+           @click="unsetPlayer" @mouseover="isHoveringUnsetPlayerButton = true" @mouseleave="isHoveringUnsetPlayerButton = false"/>
         <transition name="fade" mode="out-in">
             <img v-if="nominatedImageSource" v-tooltip="nominatedTooltipText"
                  class="nominated-player animate__animated animate__infinite animate__heartBeat animate__slow"
@@ -52,6 +52,7 @@ export default {
     },
     data() {
         return {
+            isHoveringUnsetPlayerButton: false,
             flipped: false,
             thumbnail: {
                 front: undefined,
@@ -74,6 +75,9 @@ export default {
             };
         },
         playerThumbnailTooltip() {
+            if (this.isHoveringUnsetPlayerButton) {
+                return;
+            }
             if (this.game._id || this.player.role.current) {
                 let content = `<div>${this.$tc(`Role.${this.player.role.current}`, 1)}</div>`;
                 if (this.game._id && this.player.currentRole !== this.player.originalRole) {
@@ -87,7 +91,7 @@ export default {
                 }
                 return { content, container: false };
             }
-            return this.$t("PlayerThumbnail.chooseRole");
+            return { content: this.$t("PlayerThumbnail.chooseRole"), container: false };
         },
         nominatedImageSource() {
             const nominatedImageSources = {

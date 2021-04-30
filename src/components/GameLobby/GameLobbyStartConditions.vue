@@ -46,6 +46,7 @@ export default {
         },
         conditions() {
             const texts = this.$t("GameLobbyStartConditions");
+            const { additionalCardsCount } = this.game.options.roles.thief;
             const conditions = [
                 { type: "four-players", text: texts.gameHasMinimumFourPlayers, isMet: this.game.areThereEnoughPlayers },
                 { type: "all-have-role", text: texts.allPlayersMustHaveARole, isMet: this.game.allPlayersHaveRole },
@@ -59,7 +60,10 @@ export default {
                 conditions.push({ type: "three-brothers", text: texts.gameMustHaveThreeBrothers, isMet: this.game.areThereEnoughBrothers });
             }
             if (this.game.getPlayerWithRole("thief")) {
-                conditions.push({ type: "thief", text: texts.thiefAdditionalCardsMustBeSet, isMet: this.game.areThereEnoughThiefAdditionalCards });
+                conditions.push({
+                    type: "thief", isMet: this.game.areThereEnoughThiefAdditionalCards,
+                    text: this.$tc("GameLobbyStartConditions.thiefAdditionalCardsMustBeSet", additionalCardsCount, { additionalCardsCount }),
+                });
             }
             return conditions;
         },

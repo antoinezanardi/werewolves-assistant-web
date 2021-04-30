@@ -22,20 +22,28 @@
                 <span v-html="$t('VSelect.noOption')"/>
             </template>
         </VSelect>
+        <div class="player-voters mt-1">
+            <transition-group tag="div" name="translate-down-fade" class="d-flex justify-content-center flex-wrap">
+                <PlayerVoter v-for="voter of votersAgainstPlayer" :key="voter._id" :player="voter" class="m-1"/>
+                <i v-if="player.hasActiveAttribute('raven-marked', game)" key="raven-mark" v-tooltip="ravenMarkTooltip"
+                   class="fa fa-crow m-1"/>
+            </transition-group>
+        </div>
     </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
 import Player from "@/classes/Player";
-import PlayerCard from "../PlayerCard";
-import RoleImage from "../Role/RoleImage";
+import PlayerCard from "../../PlayerCard";
+import RoleImage from "../../Role/RoleImage";
 import { getNominatedPlayers } from "@/helpers/functions/Player";
 import { fuseSearch } from "@/helpers/functions/VSelect";
+import PlayerVoter from "@/components/shared/Game/PlayerVotes/PlayerVote/PlayerVoter";
 
 export default {
     name: "PlayerVote",
-    components: { RoleImage, PlayerCard },
+    components: { PlayerVoter, RoleImage, PlayerCard },
     props: {
         player: {
             type: Player,
@@ -59,11 +67,19 @@ export default {
             const nominatedPlayers = getNominatedPlayers(this.play.votes, this.game, this.game.firstWaiting.to);
             return nominatedPlayers ? !!nominatedPlayers.find(({ _id }) => _id === this.player._id) : undefined;
         },
+        votersAgainstPlayer() {
+            const votesAgainstPlayer = this.play.votes.filter(({ for: target }) => target === this.player._id);
+            return votesAgainstPlayer.map(({ from: source }) => this.game.getPlayerWithId(source));
+        },
         hasVoted() {
             return this.play.votes.find(({ from: source }) => source === this.player._id);
         },
         voteText() {
             return this.player.canVote(this.game) ? this.$t("PlayerVote.voteFor") : this.$t("PlayerVote.cantVote");
+        },
+        ravenMarkTooltip() {
+            const { markPenalty } = this.game.options.roles.raven;
+            return this.$tc("PlayerVote.playerIsRavenMarked", markPenalty, { markPenalty });
         },
     },
     methods: {
@@ -90,5 +106,9 @@ export default {
     .role-image-option {
         width: 22px;
         border: 1px solid grey;
+    }
+
+    .player-voters {
+        min-height: 25px;
     }
 </style>

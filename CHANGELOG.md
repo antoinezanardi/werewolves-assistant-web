@@ -1,5 +1,90 @@
 # 📈 LIST OF CHANGES FOR WEREWOLVES ASSISTANT WEB
 
+## 1.0.0-beta.12 (2021-04-30)
+
+### 🚀 New features
+
+* [#154](https://github.com/antoinezanardi/werewolves-assistant-web/issues/154) - Facebook auth.
+* [#155](https://github.com/antoinezanardi/werewolves-assistant-web/issues/155) - Google auth.
+* [#157](https://github.com/antoinezanardi/werewolves-assistant-web/issues/157) - Fox role.
+* [#158](https://github.com/antoinezanardi/werewolves-assistant-web/issues/158) - Game players position panel in game options.
+* [#159](https://github.com/antoinezanardi/werewolves-assistant-web/issues/159) - Bear Tamer role.
+* [#160](https://github.com/antoinezanardi/werewolves-assistant-web/issues/160) - Hidden game repartition option.
+* [#161](https://github.com/antoinezanardi/werewolves-assistant-web/issues/161) - Role revealed on death option.
+* [#162](https://github.com/antoinezanardi/werewolves-assistant-web/issues/162) - Seer see exact role option.
+* [#163](https://github.com/antoinezanardi/werewolves-assistant-web/issues/163) - Guard can protect twice option.
+* [#164](https://github.com/antoinezanardi/werewolves-assistant-web/issues/164) - Fox not powerless if he misses a werewolf option.
+* [#165](https://github.com/antoinezanardi/werewolves-assistant-web/issues/165) - Bear Tamer growls if he is infected option.
+* [#166](https://github.com/antoinezanardi/werewolves-assistant-web/issues/166) - Number of vote requests for Stuttering Judge option.
+* [#167](https://github.com/antoinezanardi/werewolves-assistant-web/issues/167) - Time for the Sheriff to be elected option.
+* [#168](https://github.com/antoinezanardi/werewolves-assistant-web/issues/168) - Thief not obliged to choose between werewolves cards option.
+* [#169](https://github.com/antoinezanardi/werewolves-assistant-web/issues/169) - Wild Child transformation is revealed option.
+* [#170](https://github.com/antoinezanardi/werewolves-assistant-web/issues/170) - Dog Wolf chosen side is revealed option.
+* [#171](https://github.com/antoinezanardi/werewolves-assistant-web/issues/171) - Big Bad Wolf not powerless if one werewolf dies option.
+* [#173](https://github.com/antoinezanardi/werewolves-assistant-web/issues/173) - White Werewolf waking up interval option.
+* [#174](https://github.com/antoinezanardi/werewolves-assistant-web/issues/174) - Number of charmed people per night by Pied Piper option.
+* [#175](https://github.com/antoinezanardi/werewolves-assistant-web/issues/175) - Pied Piper not powerless if infected option.
+* [#176](https://github.com/antoinezanardi/werewolves-assistant-web/issues/176) - Lives count for the Ancient option.
+* [#177](https://github.com/antoinezanardi/werewolves-assistant-web/issues/177) - Ancient doesn't make all villagers powerless if murdered from them option.
+* [#178](https://github.com/antoinezanardi/werewolves-assistant-web/issues/178) - Number of additional cards for Thief option.
+* [#179](https://github.com/antoinezanardi/werewolves-assistant-web/issues/179) - Rusty Sword Knight role.
+* [#183](https://github.com/antoinezanardi/werewolves-assistant-web/issues/183) - Audio options in parameters modal.
+* [#184](https://github.com/antoinezanardi/werewolves-assistant-web/issues/184) - Intro for Game Winners screen.
+* [#188](https://github.com/antoinezanardi/werewolves-assistant-web/issues/188) - Modal for helping players with roles.
+
+### 🌟 Enhancements
+
+* [#156](https://github.com/antoinezanardi/werewolves-assistant-web/issues/156) - List of voters against one player below him.
+* [#172](https://github.com/antoinezanardi/werewolves-assistant-web/issues/172) - Big bad wolf becomes powerless in game history.
+* [#180](https://github.com/antoinezanardi/werewolves-assistant-web/issues/180) - Role types.
+* [#182](https://github.com/antoinezanardi/werewolves-assistant-web/issues/182) - Accordions in About page for roles.
+* [#185](https://github.com/antoinezanardi/werewolves-assistant-web/issues/185) - Reset base rules button in game roles options.
+* [#186](https://github.com/antoinezanardi/werewolves-assistant-web/issues/186) - Save game roles options in user preferences.
+* [#190](https://github.com/antoinezanardi/werewolves-assistant-web/issues/190) - Sentence for explaining why this group or player won.
+
+### 🐛 Bug fixes
+
+* [#181](https://github.com/antoinezanardi/werewolves-assistant-web/issues/181) - Long game event message breaks display.
+
+### ♻️ Refactoring
+
+* [#187](https://github.com/antoinezanardi/werewolves-assistant-web/issues/187) - Game repartition options in different modal.
+
+### 📚 Documentation
+
+* [#189](https://github.com/antoinezanardi/werewolves-assistant-web/issues/189) - Update README.md.
+
+### 📦 Packages
+
+* `qrcode.vue` installed with version `1.7.0`.
+* `vue-clipboard2` installed with version `0.3.1`.
+* `vue-facebook-login-component` installed with version `4.0.1`.
+* `vue-google-login` installed with version `2.0.5`.
+* `vue-slider-component` installed with version `3.2.11`.
+* `vuedraggable` installed with version `2.24.3`.
+* `@fortawesome/fontawesome-free` updated to version `5.15.3`.
+* `@sentry/browser` updated to version `6.3.5`.
+* `@sentry/integrations` updated to version `6.3.5`.
+* `@vue/cli-plugin-e2e-cypress` updated to version `4.5.12`.
+* `@vue/cli-plugin-eslint` updated to version `4.5.12`.
+* `@vue/cli-plugin-router` updated to version `4.5.12`.
+* `@vue/cli-plugin-unit-mocha` updated to version `4.5.12`.
+* `@vue/cli-plugin-vuex` updated to version `4.5.12`.
+* `@vue/cli-service` updated to version `4.5.12`.
+* `@vue/test-utils` updated to version `1.1.4`.
+* `chai` updated to version `4.3.4`.
+* `eslint` updated to version `7.25.0`.
+* `eslint-plugin-vue` updated to version `7.9.0`.
+* `particles.vue` updated to version `2.9.3`.
+* `qs` updated to version `6.10.1`.
+* `sweetalert2` updated to version `10.16.6`.
+* `v-tooltip` updated to version `2.1.3`.
+* `vue-gtag` updated to version `1.14.0`.
+* `vue-i18n` updated to version `8.24.4`.
+* `vue-tour` updated to version `2.0.0`.
+
+---
+
 ## 1.0.0-beta.11 (2021-03-03)
 
 ### 🚀 New features

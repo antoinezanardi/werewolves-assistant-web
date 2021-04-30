@@ -39,8 +39,8 @@ export default {
         involvedRoles() {
             const involvedRoles = {
                 "recommended-min-players": this.roles.filter(({ recommendedMinPlayers }) => recommendedMinPlayers),
-                "powerful-werewolves": this.roles.filter(({ isInWerewolfSide, name }) => isInWerewolfSide && name !== "werewolf"),
-                "powerful-villagers": this.roles.filter(({ isInVillagerSide, name }) => isInVillagerSide && name !== "villager"),
+                "powerful-werewolves": this.roles.filter(({ isInWerewolvesSide, name }) => isInWerewolvesSide && name !== "werewolf"),
+                "powerful-villagers": this.roles.filter(({ isInVillagersSide, name }) => isInVillagersSide && name !== "villager"),
             };
             return involvedRoles[this.rolesType] ? involvedRoles[this.rolesType] : this.roles;
         },

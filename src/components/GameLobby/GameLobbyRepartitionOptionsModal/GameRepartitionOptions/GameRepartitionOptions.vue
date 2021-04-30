@@ -95,7 +95,7 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import RoleImage from "@/components/shared/Game/Role/RoleImage";
-import ListInvolvedRoles from "@/components/NavBar/GameOptionsModal/GameRepartitionOptions/ListInvolvedRoles";
+import ListInvolvedRoles from "@/components/GameLobby/GameLobbyRepartitionOptionsModal/GameRepartitionOptions/ListInvolvedRoles";
 import { fuseSearch } from "@/helpers/functions/VSelect";
 import { listRoles } from "@/helpers/functions/Role";
 

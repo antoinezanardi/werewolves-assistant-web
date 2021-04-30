@@ -27,11 +27,12 @@
 **🐺 Werewolves Assistant Web** is a Vue web app using the <a href="https://github.com/antoinezanardi/werewolves-assistant-api" target="_blank">Werewolves Assistant API</a>.
 Thanks to this app, being the game master of the Werewolves of Millers Hollow game is so easy ! 
 
-**🐺 Werewolves Assistant Web** provides to game masters:
-- A game lobby for creating a party starting from 4 to 20 players. Roles can be assigned randomly to save time.
-- A cool interface displaying all useful game's data to the game master.
+**🐺 Werewolves Assistant Web** provides some cool features :
+- A game lobby for creating a party starting from 4 to 40 players. Roles can be assigned randomly to save time. Game official rules can be changed to add fun and complexity. 
+- A cool interface displaying all useful game's data, player and their attributes, both sides (villagers and werewolves) and more.
 - For each turn, game master can fill every player's choices. The Assistant will consequently display deaths and events, manage the turns order and save all players choices.
-- At the end of the game, a complete summary with game's winner and what happened during the game.
+- Musics and sound effects are played during the game to set up the appropriate atmosphere depending on the situation. Obviously, you can manage those audio parameters.
+- At the end of the game, a complete summary with game's winner(s) and what happened during the game. You can also review your experience for helping the Assistant to improve.
 
 #### 🤔 Want to know more about this awesome project ? <a href="https://werewolves-assistant.antoinezanardi.fr/about" target="_blank">**Check out the dedicated about page**</a>.
 
@@ -42,13 +43,13 @@ Two versions are available for testing this project:
 
 🔧<a href="https://sandbox.werewolves-assistant.antoinezanardi.fr" target="_blank">**Sandbox version**</a>
 
-**Sandbox version** may contains some bugs and unexpected behaviors as its purpose is to test new features before deploying on **main version**.
+**Sandbox version** may contain some bugs and unexpected behaviors as its purpose is to test new features before deploying on **main version**.
 
 Both versions are running on a server with the following configuration:
 - **OS**: `Debian GNU/Linux 10 (buster)`
-- **NodeJS**: `v14.15.4`
-- **NPM**: `v7.5.2`
-- **MongoDB shell version**: `v4.4.3`
+- **NodeJS**: `v14.16.1`
+- **NPM**: `v6.14.12`
+- **MongoDB shell version**: `v4.4.5`
 
 The MongoDB database is protected under username and password authentication.
 
@@ -105,6 +106,8 @@ Complete list of all enabled rules is available in the **[.eslintrc.js file](htt
 3. Replace environment values in the fresh new `.env` file if necessary (When **⚠️️ Required** is specified):
     * **VUE_APP_WEREWOLVES_ASSISTANT_API_URL**: Base URL of Werewolves Assistant API.
         -  _**⚠️️ Required**_
+    * **VUE_APP_WEREWOLVES_ASSISTANT_WEB_URL**: Base URL of Werewolves Assistant Web app. Set to `localhost:8080` if in development mode.
+        -  _**⚠️️ Required**_
     * **VUE_APP_SENTRY_KEY**: Private key used by Sentry for authenticating the project.
         -  _**Not Required**_
     * **VUE_APP_SENTRY_PROJECT_ID**: Project ID used by Sentry.
@@ -115,6 +118,10 @@ Complete list of all enabled rules is available in the **[.eslintrc.js file](htt
         -  _**Not Required**_
     * **VUE_APP_GOOGLE_ANALYTICS_ENABLED**: If you want to enable traffic data measurement with Google Analytics.
         -  _**Not Required - Default value**_: `false`
+   * **VUE_APP_FACEBOOK_APP_ID**: Facebook application ID if you want to enable Facebook authentication.
+       -  _**Not Required**_
+   * **VUE_APP_GOOGLE_CLIENT_ID**: Google client ID if you want to enable Google authentication.
+       -  _**Not Required**_
 
 ## <a name="lets-go">🔌 Let's go</a>
 To start the web app **on development mode**, simply run `npm start`.

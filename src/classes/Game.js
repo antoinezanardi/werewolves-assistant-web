@@ -2,11 +2,12 @@ import { getProp } from "@/helpers/functions/Class";
 import User from "./User";
 import Player from "./Player";
 import GameHistory from "./GameHistory";
+import GameAdditionalCard from "./GameAdditionalCard";
+import UserPreferences from "./UserPreferences";
 import {
     isForbiddenTieVoteAction, isSkippableAction, isTargetAction, isTimedAction, isVoteAction,
     isPreFirstNightPlay,
 } from "@/helpers/functions/Game";
-import GameAdditionalCard from "@/classes/GameAdditionalCard";
 
 class Game {
     constructor(game = null) {
@@ -38,20 +39,145 @@ class Game {
         return getProp(game, "additionalCards", [], additionalCards => additionalCards.map(additionalCard => new GameAdditionalCard(additionalCard)));
     }
 
-    static _getGameOptions(game) {
+    static _getRavenGameOptions(game, ravenUserPreferences) {
+        const prop = "options.roles.raven";
+        return { markPenalty: getProp(game, `${prop}.raven.markPenalty`, ravenUserPreferences.markPenalty) };
+    }
+
+    static _getPiedPiperGameOptions(game, piedPiperUserPreferences) {
+        const prop = "options.roles.piedPiper";
         return {
-            roles: {
-                sheriff: {
-                    isEnabled: getProp(game, "options.roles.sheriff.isEnabled", true),
-                    hasDoubledVote: getProp(game, "options.roles.sheriff.hasDoubledVote", true),
-                },
-                seer: { isTalkative: getProp(game, "options.roles.seer.isTalkative", true) },
-                littleGirl: { isProtectedByGuard: getProp(game, "options.roles.littleGirl.isProtectedByGuard", false) },
-                idiot: { doesDieOnAncientDeath: getProp(game, "options.roles.idiot.doesDieOnAncientDeath", true) },
-                twoSisters: { wakingUpInterval: getProp(game, "options.roles.twoSisters.wakingUpInterval", 2) },
-                threeBrothers: { wakingUpInterval: getProp(game, "options.roles.threeBrothers.wakingUpInterval", 2) },
-                raven: { markPenalty: getProp(game, "options.roles.raven.markPenalty", 2) },
+            charmedPeopleCountPerNight: getProp(game, `${prop}.charmedPeopleCountPerNight`, piedPiperUserPreferences.charmedPeopleCountPerNight),
+            isPowerlessIfInfected: getProp(game, `${prop}.isPowerlessIfInfected`, piedPiperUserPreferences.isPowerlessIfInfected),
+        };
+    }
+
+    static _getThiefGameOptions(game, thiefUserPreferences) {
+        const prop = "options.roles.thief";
+        return {
+            additionalCardsCount: getProp(game, `${prop}.additionalCardsCount`, thiefUserPreferences.additionalCardsCount),
+            mustChooseBetweenWerewolves: getProp(game, `${prop}.mustChooseBetweenWerewolves`, thiefUserPreferences.mustChooseBetweenWerewolves),
+        };
+    }
+
+    static _getDogWolfGameOptions(game, dogWolfUserPreferences) {
+        const prop = "options.roles.dogWolf";
+        return { isChosenSideRevealed: getProp(game, `${prop}.dogWolf.isChosenSideRevealed`, dogWolfUserPreferences.isChosenSideRevealed) };
+    }
+
+    static _getWildChildGameOptions(game, wildChildUserPreferences) {
+        const prop = "options.roles.wildChild";
+        return { isTransformationRevealed: getProp(game, `${prop}.isTransformationRevealed`, wildChildUserPreferences.isTransformationRevealed) };
+    }
+
+    static _getStutteringJudgeGameOptions(game, stutteringJudgeUserPreferences) {
+        const prop = "options.roles.stutteringJudge";
+        return { voteRequestsCount: getProp(game, `${prop}.voteRequestsCount`, stutteringJudgeUserPreferences.voteRequestsCount) };
+    }
+
+    static _getBearTamerGameOptions(game, bearTamerUserPreferences) {
+        const prop = "options.roles.bearTamer";
+        return { doesGrowlIfInfected: getProp(game, `${prop}.doesGrowlIfInfected`, bearTamerUserPreferences.doesGrowlIfInfected) };
+    }
+
+    static _getFoxGameOptions(game, foxUserPreferences) {
+        const prop = "options.roles.fox";
+        return { isPowerlessIfMissesWerewolf: getProp(game, `${prop}.isPowerlessIfMissesWerewolf`, foxUserPreferences.isPowerlessIfMissesWerewolf) };
+    }
+
+    static _getThreeBrothersGameOptions(game, threeBrothersUserPreferences) {
+        const prop = "options.roles.threeBrothers";
+        return { wakingUpInterval: getProp(game, `${prop}.wakingUpInterval`, threeBrothersUserPreferences.wakingUpInterval) };
+    }
+
+    static _getTwoSistersGameOptions(game, twoSistersUserPreferences) {
+        const prop = "options.roles.twoSisters";
+        return { wakingUpInterval: getProp(game, `${prop}.wakingUpInterval`, twoSistersUserPreferences.wakingUpInterval) };
+    }
+
+    static _getIdiotGameOptions(game, idiotUserPreferences) {
+        const prop = "options.roles.idiot";
+        return { doesDieOnAncientDeath: getProp(game, `${prop}.doesDieOnAncientDeath`, idiotUserPreferences.doesDieOnAncientDeath) };
+    }
+
+    static _getAncientGameOptions(game, ancientUserPreferences) {
+        const prop = "options.roles.ancient";
+        return {
+            livesCountAgainstWerewolves: getProp(game, `${prop}.livesCountAgainstWerewolves`, ancientUserPreferences.livesCountAgainstWerewolves),
+            doesTakeHisRevenge: getProp(game, `${prop}.doesTakeHisRevenge`, ancientUserPreferences.doesTakeHisRevenge),
+        };
+    }
+
+    static _getGuardGameOptions(game, guardUserPreferences) {
+        const prop = "options.roles.guard";
+        return { canProtectTwice: getProp(game, `${prop}.canProtectTwice`, guardUserPreferences.canProtectTwice) };
+    }
+
+    static _getLittleGirlGameOptions(game, littleGirlUserPreferences) {
+        const prop = "options.roles.littleGirl";
+        return { isProtectedByGuard: getProp(game, `${prop}.isProtectedByGuard`, littleGirlUserPreferences.isProtectedByGuard) };
+    }
+
+    static _getSeerGameOptions(game, seerUserPreferences) {
+        const prop = "options.roles.seer";
+        return {
+            isTalkative: getProp(game, `${prop}.isTalkative`, seerUserPreferences.isTalkative),
+            canSeeRoles: getProp(game, `${prop}.canSeeRoles`, seerUserPreferences.canSeeRoles),
+        };
+    }
+
+    static _getWhiteWerewolfGameOptions(game, whiteWerewolfUserPreferences) {
+        const prop = "options.roles.whiteWerewolf";
+        return { wakingUpInterval: getProp(game, `${prop}.wakingUpInterval`, whiteWerewolfUserPreferences.wakingUpInterval) };
+    }
+
+    static _getBigBadWolfGameOptions(game, bigBadWolfUserPreferences) {
+        const prop = "options.roles.bigBadWolf";
+        return { isPowerlessIfWerewolfDies: getProp(game, `${prop}.isPowerlessIfWerewolfDies`, bigBadWolfUserPreferences.isPowerlessIfWerewolfDies) };
+    }
+
+    static _getSheriffGameOptions(game, sheriffUserPreferences) {
+        const prop = "options.roles.sheriff";
+        return {
+            isEnabled: getProp(game, `${prop}.isEnabled`, sheriffUserPreferences.isEnabled),
+            electedAt: {
+                turn: getProp(game, `${prop}.electedAt.turn`, sheriffUserPreferences.electedAt.turn),
+                phase: getProp(game, `${prop}.electedAt.phase`, sheriffUserPreferences.electedAt.phase),
             },
+            hasDoubledVote: getProp(game, `${prop}.hasDoubledVote`, sheriffUserPreferences.hasDoubledVote),
+        };
+    }
+
+    static _getRolesGameOptions(game, userPreferences) {
+        const prop = "options.roles";
+        return {
+            areRevealedOnDeath: getProp(game, `${prop}.areRevealedOnDeath`, userPreferences.areRevealedOnDeath),
+            sheriff: this._getSheriffGameOptions(game, userPreferences.sheriff),
+            bigBadWolf: this._getBigBadWolfGameOptions(game, userPreferences.bigBadWolf),
+            whiteWerewolf: this._getWhiteWerewolfGameOptions(game, userPreferences.whiteWerewolf),
+            seer: this._getSeerGameOptions(game, userPreferences.seer),
+            littleGirl: this._getLittleGirlGameOptions(game, userPreferences.littleGirl),
+            guard: this._getGuardGameOptions(game, userPreferences.guard),
+            ancient: this._getAncientGameOptions(game, userPreferences.ancient),
+            idiot: this._getIdiotGameOptions(game, userPreferences.idiot),
+            twoSisters: this._getTwoSistersGameOptions(game, userPreferences.twoSisters),
+            threeBrothers: this._getThreeBrothersGameOptions(game, userPreferences.threeBrothers),
+            fox: this._getFoxGameOptions(game, userPreferences.fox),
+            bearTamer: this._getBearTamerGameOptions(game, userPreferences.bearTamer),
+            stutteringJudge: this._getStutteringJudgeGameOptions(game, userPreferences.stutteringJudge),
+            wildChild: this._getWildChildGameOptions(game, userPreferences.wildChild),
+            dogWolf: this._getDogWolfGameOptions(game, userPreferences.dogWolf),
+            thief: this._getThiefGameOptions(game, userPreferences.thief),
+            piedPiper: this._getPiedPiperGameOptions(game, userPreferences.piedPiper),
+            raven: this._getRavenGameOptions(game, userPreferences.raven),
+        };
+    }
+
+    static _getGameOptions(game) {
+        const userPreferences = new UserPreferences();
+        return {
+            repartition: { isHidden: getProp(game, "options.repartition.isHidden", userPreferences.game.options.repartition.isHidden) },
+            roles: this._getRolesGameOptions(game, userPreferences.game.options.roles),
         };
     }
 
@@ -61,6 +187,10 @@ class Game {
 
     get alivePlayers() {
         return this.players.filter(player => player.isAlive);
+    }
+
+    get deadPlayers() {
+        return this.players.filter(player => !player.isAlive);
     }
 
     get canVotePlayers() {
@@ -108,7 +238,7 @@ class Game {
     }
 
     get areThereEnoughThiefAdditionalCards() {
-        return this.thiefAdditionalCards.length === 2;
+        return this.thiefAdditionalCards.length === this.options.roles.thief.additionalCardsCount;
     }
 
     get allPlayersHaveRole() {
@@ -132,30 +262,30 @@ class Game {
     }
 
     get firstWaiting() {
-        return this.waiting[0];
+        return this.waiting.length ? this.waiting[0] : undefined;
     }
 
     get isFirstWaitingVoteAction() {
-        const { to } = this.firstWaiting;
-        return isVoteAction(to);
+        return this.firstWaiting && isVoteAction(this.firstWaiting.to);
     }
 
     get isFirstWaitingForbiddenTieVoteAction() {
-        const { to } = this.firstWaiting;
-        return isForbiddenTieVoteAction(to);
+        return this.firstWaiting && isForbiddenTieVoteAction(this.firstWaiting.to);
     }
 
     get isFirstWaitingTargetAction() {
-        const { to } = this.firstWaiting;
-        return isTargetAction(to);
+        return this.firstWaiting && isTargetAction(this.firstWaiting.to);
     }
 
     get expectedTargetsLength() {
-        const { to } = this.firstWaiting;
-        const oneTargetActions = ["look", "eat", "protect", "shoot", "settle-votes", "delegate", "choose-model", "use-potion"];
+        const { to, for: source } = this.firstWaiting;
+        const oneTargetActions = ["look", "eat", "protect", "shoot", "settle-votes", "delegate", "choose-model", "use-potion", "sniff"];
         const twoTargetsActions = ["charm"];
         const noLimitActions = ["ban-voting"];
-        if (oneTargetActions.includes(to) || to === "charm" && this.piedPiperTargets.length === 1) {
+        if (source === "pied-piper") {
+            const { charmedPeopleCountPerNight } = this.options.roles.piedPiper;
+            return this.piedPiperTargets.length < charmedPeopleCountPerNight ? this.piedPiperTargets.length : charmedPeopleCountPerNight;
+        } else if (oneTargetActions.includes(to)) {
             return 1;
         } else if (twoTargetsActions.includes(to)) {
             return 2;
@@ -166,8 +296,7 @@ class Game {
     }
 
     get isFirstWaitingTimedAction() {
-        const { to } = this.firstWaiting;
-        return isTimedAction(to);
+        return this.firstWaiting && isTimedAction(this.firstWaiting.to);
     }
 
     get maxTimeToPlay() {
@@ -181,22 +310,19 @@ class Game {
     }
 
     get isFirstWaitingChooseSideAction() {
-        const { to } = this.firstWaiting;
-        return to === "choose-side";
+        return this.firstWaiting && this.firstWaiting.to === "choose-side";
     }
 
     get isFirstWaitingChooseCardAction() {
-        const { to } = this.firstWaiting;
-        return to === "choose-card";
+        return this.firstWaiting && this.firstWaiting.to === "choose-card";
     }
 
     get isFirstWaitingSkippableAction() {
-        const { to: action, for: source } = this.firstWaiting;
-        return isSkippableAction(action, source, this);
+        return this.firstWaiting && isSkippableAction(this.firstWaiting.to, this.firstWaiting.for, this);
     }
 
     get isFirstWaitingPreFirstNightPlay() {
-        return isPreFirstNightPlay(this.firstWaiting.to, this.turn, this.phase);
+        return this.firstWaiting && isPreFirstNightPlay(this.firstWaiting.to, this.turn, this.phase);
     }
 
     get doesSourceGoToBed() {
@@ -243,6 +369,10 @@ class Game {
         return this.players.find(player => player.hasAttribute(attributeName));
     }
 
+    getPlayerWithAttributeAndSource(attributeName, sourceName) {
+        return this.players.find(player => player.hasAttributeAndSource(attributeName, sourceName));
+    }
+
     getPlayersWithAttribute(attributeName) {
         return this.players.filter(player => player.hasAttribute(attributeName));
     }
@@ -265,6 +395,10 @@ class Game {
 
     get wildChildPlayer() {
         return this.getPlayerWithRole("wild-child");
+    }
+
+    get bigBadWolfPlayer() {
+        return this.getPlayerWithRole("big-bad-wolf");
     }
 
     get sisterPlayers() {
@@ -338,8 +472,21 @@ class Game {
         return this.alivePlayers.filter(player => player.role.current !== "pied-piper" && !player.hasAttribute("charmed"));
     }
 
-    canStutteringJudgeRequestVote(hasChosenSign, hasRequestedVote) {
-        return !!this.stutteringJudgePlayer && this.stutteringJudgePlayer.isAliveAndPowerful && hasChosenSign && !hasRequestedVote;
+    get foxPlayer() {
+        return this.getPlayerWithRole("fox");
+    }
+
+    get bearTamerPlayer() {
+        return this.getPlayerWithRole("bear-tamer");
+    }
+
+    get rustySwordKnightPlayer() {
+        return this.getPlayerWithRole("rusty-sword-knight");
+    }
+
+    canStutteringJudgeRequestVote(hasChosenSign, voteRequestsCount) {
+        return !!this.stutteringJudgePlayer && this.stutteringJudgePlayer.isAliveAndPowerful && hasChosenSign &&
+            voteRequestsCount < this.options.roles.stutteringJudge.voteRequestsCount;
     }
 
     isRoleInGame(roleName) {
@@ -355,6 +502,9 @@ class Game {
     }
 
     get playersExpectedToPlay() {
+        if (!this.firstWaiting) {
+            return [];
+        }
         const { for: source } = this.firstWaiting;
         const waitingForGroups = {
             all: this.players,
@@ -375,11 +525,12 @@ class Game {
         return this.alivePlayers.filter(player => !player.hasAttribute("cant-vote"));
     }
 
+    get lastHistoryEntry() {
+        return this.history.length ? this.history[0] : undefined;
+    }
+
     get lastActionTargets() {
-        if (!this.history.length) {
-            return [];
-        }
-        return this.history[0].play.targets;
+        return !this.lastHistoryEntry ? [] : this.history[0].play.targets;
     }
 
     get lastActionTargetedPlayers() {
@@ -409,6 +560,22 @@ class Game {
 
     get areGameOptionsValid() {
         return this.areGameRolesOptionsValid;
+    }
+
+    get hasRoleDependingOnPlayerPosition() {
+        return !!this.getPlayerWithRole("rusty-sword-knight") || !!this.getPlayerWithRole("bear-tamer") || !!this.getPlayerWithRole("fox");
+    }
+
+    get isPlaying() {
+        return this.status === "playing";
+    }
+
+    get isDone() {
+        return this.status === "done";
+    }
+
+    get isCanceled() {
+        return this.status === "canceled";
     }
 }
 

@@ -72,6 +72,7 @@ import cantVoteSVG from "@/assets/svg/attributes/cant-vote.svg";
 import thiefSVG from "@/assets/svg/roles/thief.svg";
 import stutteringJudgeSVG from "@/assets/svg/roles/stuttering-judge.svg";
 import whiteWerewolfSVG from "@/assets/svg/roles/white-werewolf.svg";
+import foxSVG from "@/assets/svg/roles/fox.svg";
 import RoleImage from "@/components/shared/Game/Role/RoleImage";
 import RoleText from "@/components/shared/Game/Role/RoleText";
 import { insertIf } from "@/helpers/functions/Array";
@@ -87,7 +88,10 @@ export default {
         },
     },
     computed: {
-        ...mapGetters("game", { game: "game" }),
+        ...mapGetters("game", {
+            game: "game",
+            gameOptions: "gameOptions",
+        }),
         // eslint-disable-next-line max-lines-per-function
         actionImageSource() {
             const { play } = this.gameHistoryEntry;
@@ -119,6 +123,7 @@ export default {
                 "thief": { "choose-card": thiefSVG },
                 "stuttering-judge": { "choose-sign": stutteringJudgeSVG },
                 "white-werewolf": { eat: whiteWerewolfSVG },
+                "fox": { sniff: foxSVG },
             };
             return actionImageSource[play.source.name] ? actionImageSource[play.source.name][play.action] : undefined;
         },
@@ -135,8 +140,8 @@ export default {
         },
         actionText() {
             const { targets, votes, side, card, action, source } = this.gameHistoryEntry.play;
-            if (action !== "meet-each-other" && action !== "choose-sign" && (!targets || !targets.length) && (!votes || !votes.length) && !side &&
-                !card) {
+            if (action !== "meet-each-other" && action !== "choose-sign" && (!targets || !targets.length) && (!votes || !votes.length) &&
+                !side && !card) {
                 return this.$t(`GameSummaryHistoryPlayLine.skipTurn`);
             } else if (action === "use-potion") {
                 if (targets.length === 2) {
@@ -148,7 +153,7 @@ export default {
             } else if (action === "eat" && source.name === "werewolves" && targets[0].isInfected) {
                 return this.$t(`GameSummaryHistoryPlayLine.actions.vile-father-of-wolves.infect`);
             }
-            return this.$t(`GameSummaryHistoryPlayLine.actions.${source.name}.${action}`);
+            return this.$tc(`GameSummaryHistoryPlayLine.actions.${source.name}.${action}`, source.players.length);
         },
         actionSource() {
             const { action, source, targets } = this.gameHistoryEntry.play;
@@ -163,6 +168,9 @@ export default {
         actionConsequences() {
             const { options, thiefAdditionalCards } = this.game;
             const { action, source, targets, votesResult, doesJudgeRequestAnotherVote } = this.gameHistoryEntry.play;
+            const { isPowerlessIfMissesWerewolf } = this.gameOptions.roles.fox;
+            const { isPowerlessIfInfected } = this.gameOptions.roles.piedPiper;
+            const { additionalCardsCount } = this.gameOptions.roles.thief;
             const consequencesText = "GameSummaryHistoryPlayLine.consequences";
             return [
                 ...insertIf(action === "protect" && targets[0].player.currentRole === "little-girl" && !options.roles.littleGirl.isProtectedByGuard,
@@ -170,12 +178,18 @@ export default {
                 ...insertIf(action === "vote" && votesResult === "need-settlement", this.$t(`${consequencesText}.votesNeedSettlement`)),
                 ...insertIf(action === "vote" && votesResult === "no-death", this.$t(`${consequencesText}.votesNoDeath`)),
                 ...insertIf(action === "vote" && doesJudgeRequestAnotherVote, this.$t(`${consequencesText}.stutteringJudgeRequestedVote`)),
-                ...insertIf(action === "eat" && source.name === "werewolves" && targets[0].isInfected,
-                    this.$t(`${consequencesText}.piedPiperIsInfected`)),
+                ...insertIf(action === "eat" && source.name === "werewolves" && targets[0].isInfected &&
+                    targets[0].player.role.current === "pied-piper" && isPowerlessIfInfected, this.$t(`${consequencesText}.piedPiperIsInfected`)),
                 ...insertIf(action === "mark" && targets.length,
                     this.$t(`${consequencesText}.ravenMarked`, { markPenalty: options.roles.raven.markPenalty })),
-                ...insertIf(action === "choose-card" && areAllAdditionalCardsWerewolves(thiefAdditionalCards),
-                    this.$t(`${consequencesText}.thiefMustChooseCard`)),
+                ...insertIf(action === "choose-card" && options.roles.thief.mustChooseBetweenWerewolves &&
+                    areAllAdditionalCardsWerewolves(thiefAdditionalCards), this.$tc(`${consequencesText}.thiefMustChooseCard`, additionalCardsCount)),
+                ...insertIf(action === "sniff" && targets.length && targets.some(({ player }) => player.isInWerewolvesSide),
+                    this.$t(`${consequencesText}.foxFoundWerewolf`)),
+                ...insertIf(action === "sniff" && targets.length && targets.every(({ player }) => player.isInVillagersSide &&
+                    isPowerlessIfMissesWerewolf), this.$t(`${consequencesText}.foxDidntFindWerewolfAndBecamePowerless`)),
+                ...insertIf(action === "sniff" && targets.length && targets.every(({ player }) => player.isInVillagersSide &&
+                    !isPowerlessIfMissesWerewolf), this.$t(`${consequencesText}.foxDidntFindWerewolfAndDidntBecomePowerless`)),
             ];
         },
     },

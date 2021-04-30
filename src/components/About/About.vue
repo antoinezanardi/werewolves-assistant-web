@@ -63,7 +63,7 @@
                 <p v-html="$t('About.assistantDoesntReplaceTheOriginalGame')"/>
             </div>
         </div>
-        <div class="row mt-4">
+        <div id="roles-section" class="row mt-4">
             <div class="col-12">
                 <h3 class="section-subtitle">
                     <RoleImage :role="undefined" class="mr-3"/>
@@ -75,16 +75,8 @@
         <div class="row section-content">
             <div class="col-12">
                 <p v-html="$tc('About.thereAreCountAvailableRoles', roles.length, { count: roles.length })"/>
-                <div v-for="(role, index) in roles" :key="role.name" class="row justify-content-center align-items-center">
-                    <RoleImage :role="role.name" class="col-md-2 col-4"/>
-                    <RoleText :role="role.name" prefix="the" class="col-md-2 col-4 text-center font-weight-bold"/>
-                    <div class="col-md-8 mt-md-0 col-12 mt-3">
-                        <p v-for="paragraph of $t(`Role.description.${role.name}`)"
-                           :key="paragraph" v-html="paragraph"/>
-                    </div>
-                    <div v-if="index + 1 !== roles.length" class="col-12">
-                        <hr class="bg-dark"/>
-                    </div>
+                <div id="roles-accordion" class="accordion">
+                    <AboutRole v-for="role in roles" :key="role.name" :role="role"/>
                 </div>
             </div>
         </div>
@@ -170,16 +162,22 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { scrollTo } from "vue-scrollto";
 import RoleImage from "@/components/shared/Game/Role/RoleImage";
-import RoleText from "@/components/shared/Game/Role/RoleText";
+import AboutRole from "@/components/About/AboutRole";
 import { i18n } from "@/plugins";
 
 export default {
     name: "About",
-    components: { RoleText, RoleImage },
+    components: { AboutRole, RoleImage },
     computed: { ...mapGetters("role", { roles: "roles" }) },
     created() {
         localStorage.setItem("aboutPageVisited", "true");
+    },
+    mounted() {
+        if (this.$route.query["scroll-to"]) {
+            scrollTo(`#${this.$route.query["scroll-to"]}`, 1000);
+        }
     },
     metaInfo: { titleTemplate: `%s - ${i18n.t("About.metaInfo.title")}` },
 };
@@ -227,7 +225,7 @@ export default {
     }
 
     .section-content {
-        @include font-size(1.35rem);
+        @include font-size(1.15rem);
         text-align: justify;
     }
 </style>

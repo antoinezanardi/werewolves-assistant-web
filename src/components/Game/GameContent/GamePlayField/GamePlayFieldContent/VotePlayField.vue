@@ -10,6 +10,8 @@
                     <div v-html="stutteringJudgeText"/>
                     <toggle-button v-if="canStutteringJudgeRequestVote" class="mt-1" :labels="$t('VueToggleButton.yesNo')" :height="25" :width="60"
                                    @change="stutteringJudgeRequestsAnotherVote"/>
+                    <div v-if="canStutteringJudgeRequestVote" class="font-italic small text-muted mt-1"
+                         v-html="stutteringJudgeRequestsCountLeftText"/>
                 </div>
             </div>
             <hr class="my-2 bg-dark"/>
@@ -56,17 +58,22 @@ export default {
             return this.$t("VotePlayField.everybodyCanBeHanged");
         },
         canStutteringJudgeRequestVote() {
-            const { hasStutteringJudgeChosenSign, hasStutteringJudgeRequestedVote } = this.pastEvents;
-            return this.game.canStutteringJudgeRequestVote(hasStutteringJudgeChosenSign, hasStutteringJudgeRequestedVote);
+            const { hasStutteringJudgeChosenSign, stutteringJudgeVoteRequestsCount } = this.pastEvents;
+            return this.game.canStutteringJudgeRequestVote(hasStutteringJudgeChosenSign, stutteringJudgeVoteRequestsCount);
         },
         stutteringJudgeText() {
-            const { hasStutteringJudgeChosenSign, hasStutteringJudgeRequestedVote } = this.pastEvents;
+            const { hasStutteringJudgeChosenSign, stutteringJudgeVoteRequestsCount } = this.pastEvents;
             if (!hasStutteringJudgeChosenSign) {
                 return this.$t("VotePlayField.stutteringJudgeDidntChooseSignYet");
-            } else if (hasStutteringJudgeRequestedVote) {
+            } else if (!this.game.canStutteringJudgeRequestVote(hasStutteringJudgeChosenSign, stutteringJudgeVoteRequestsCount)) {
                 return this.$t("VotePlayField.stutteringJudgeAlreadyRequestedVote");
             }
             return this.$t("VotePlayField.stutteringJudgeHasMadeHisSign");
+        },
+        stutteringJudgeRequestsCountLeftText() {
+            const { stutteringJudgeVoteRequestsCount } = this.pastEvents;
+            const stutteringJudgeVoteRequestsCountLeft = this.game.options.roles.stutteringJudge.voteRequestsCount - stutteringJudgeVoteRequestsCount;
+            return this.$t("VotePlayField.stutteringJudgeHasRequestsLeft", { stutteringJudgeVoteRequestsCountLeft });
         },
     },
     methods: {

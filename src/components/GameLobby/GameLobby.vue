@@ -82,8 +82,8 @@
                         </div>
                     </div>
                     <div id="game-lobby-footer" class="row justify-content-between align-items-center">
-                        <div class="col-lg-4 col-sm-6">
-                            <form @submit.prevent="getGameRepartition">
+                        <div class="col-lg-4 col-sm-6 d-flex">
+                            <form class="flex-grow-1" @submit.prevent="getGameRepartition">
                                 <SubmitButton id="random-repartition-button"
                                               classes="btn btn-dark btn-block text-uppercase font-weight-bold"
                                               :disabled-tooltip-text="$t('GameLobby.fourPlayerRequiredToGetRandomRepartition')"
@@ -93,6 +93,12 @@
                                     <span v-html="$t('GameLobby.getRandomRepartition')"/>
                                 </SubmitButton>
                             </form>
+                            <button id="random-repartition-options-button"
+                                    v-tooltip="$t('GameLobby.showGameRepartitionOptions')" class="btn btn-dark ml-2"
+                                    :class="{ 'animate__animated animate__heartBeat': gameRepartitionOptionsModalButton.isHighlighted }"
+                                    @click="showGameRepartitionOptionsModal">
+                                <i class="fa fa-cog"/>
+                            </button>
                         </div>
                         <div class="col-lg-4 col-sm-6 mt-lg-0 mt-2 mt-sm-0">
                             <form @submit.prevent="createGame">
@@ -114,6 +120,7 @@
                 </div>
                 <GameLobbyTutorial ref="gameLobbyTutorial"/>
                 <GameLobbyRolePickerModal ref="gameLobbyRolePickerModal"/>
+                <GameLobbyRepartitionOptionsModal ref="gameLobbyRepartitionOptionsModal"/>
             </div>
         </transition>
     </div>
@@ -136,10 +143,13 @@ import { filterOutHTMLTags } from "@/helpers/functions/String";
 import GameLobbyRolePickerModal from "@/components/GameLobby/GameLobbyRolePickerModal/GameLobbyRolePickerModal";
 import GameLobbyStartConditions from "@/components/GameLobby/GameLobbyStartConditions";
 import RequiredActionIcon from "@/components/shared/RequiredActionIcon";
+import GameLobbyRepartitionOptionsModal from "@/components/GameLobby/GameLobbyRepartitionOptionsModal/GameLobbyRepartitionOptionsModal";
+// import Config from "../../../config";
 
 export default {
     name: "GameLobby",
     components: {
+        GameLobbyRepartitionOptionsModal,
         RequiredActionIcon,
         GameLobbyStartConditions,
         GameLobbyRolePickerModal,
@@ -168,6 +178,7 @@ export default {
             },
             gameRepartitionRequestCount: 0,
             gameOptionsModalButton: { isHighlighted: false },
+            gameRepartitionOptionsModalButton: { isHighlighted: false },
             playerName: "",
         };
     },
@@ -283,8 +294,26 @@ export default {
         unsetRole(playerName) {
             this.unsetRoleForPlayerWithName(playerName);
         },
+        askIfPlayerPositionsAreSet() {
+            return Swal.fire({
+                title: this.$t("GameLobby.playerPositionsAreImportant"),
+                text: this.$t("GameLobby.someRolesDependOnPlayerPositions"),
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: this.$t("GameLobby.yesStartGame"),
+                cancelButtonText: this.$t("GameLobby.checkPlayerPositions"),
+                heightAuto: false,
+            });
+        },
         async createGame() {
             try {
+                if (this.game.hasRoleDependingOnPlayerPosition) {
+                    const { isConfirmed } = await this.askIfPlayerPositionsAreSet();
+                    if (!isConfirmed) {
+                        this.highlightAndSeePlayersPosition();
+                        return;
+                    }
+                }
                 this.loading.createGame = true;
                 const players = this.game.players.map(({ name, role }) => ({ name, role: role.current }));
                 const { options, additionalCards } = this.game;
@@ -321,12 +350,15 @@ export default {
         showRolePickerModal(player) {
             this.$refs.gameLobbyRolePickerModal.show(player);
         },
+        showGameRepartitionOptionsModal() {
+            this.$refs.gameLobbyRepartitionOptionsModal.show();
+        },
         highlightAndSeeGameRepartitionOptions(e, toastObject) {
             toastObject.goAway(0);
-            this.gameOptionsModalButton.isHighlighted = true;
+            this.gameRepartitionOptionsModalButton.isHighlighted = true;
             setTimeout(() => {
-                this.gameOptionsModalButton.isHighlighted = false;
-                this.$emit("show-game-options-modal", { panel: "game-repartition-options" });
+                this.gameRepartitionOptionsModalButton.isHighlighted = false;
+                this.showGameRepartitionOptionsModal();
             }, 1000);
         },
         highlightAndSeeThiefAdditionalCards() {
@@ -334,6 +366,13 @@ export default {
             setTimeout(() => {
                 this.gameOptionsModalButton.isHighlighted = false;
                 this.$emit("show-game-options-modal", { panel: "game-roles-options", scrollTo: "thief-section" });
+            }, 1000);
+        },
+        highlightAndSeePlayersPosition() {
+            this.gameOptionsModalButton.isHighlighted = true;
+            setTimeout(() => {
+                this.gameOptionsModalButton.isHighlighted = false;
+                this.$emit("show-game-options-modal", { panel: "game-players-position" });
             }, 1000);
         },
         hideGameRepartitionProTipForever(e, toastObject) {

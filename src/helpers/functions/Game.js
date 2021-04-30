@@ -1,3 +1,5 @@
+import defaultGameOptions from "../constants/default-game-options.json";
+
 export function isVoteAction(action) {
     const voteActions = ["elect-sheriff", "vote"];
     return voteActions.includes(action);
@@ -24,15 +26,20 @@ export function areAllAdditionalCardsWerewolves(additionalCards) {
 }
 
 export function isSkippableAction(action, source, game) {
-    const { additionalCards, aliveVillagerPlayers } = game;
-    const skippableActions = ["use-potion", "mark", "meet-each-other", "ban-voting", "choose-sign"];
+    const { additionalCards, aliveVillagerPlayers, options } = game;
+    const skippableActions = ["use-potion", "mark", "meet-each-other", "ban-voting", "choose-sign", "sniff"];
     const areAllVillagersEaten = aliveVillagerPlayers.every(player => player.hasAttribute("eaten"));
     return skippableActions.includes(action) ||
         action === "eat" && (source === "white-werewolf" || source === "big-bad-wolf" && areAllVillagersEaten) ||
-        action === "choose-card" && additionalCards && !areAllAdditionalCardsWerewolves(additionalCards);
+        action === "choose-card" && additionalCards &&
+        (!options.roles.thief.mustChooseBetweenWerewolves || !areAllAdditionalCardsWerewolves(additionalCards));
 }
 
 export function isPreFirstNightPlay(action, turn, phase) {
     const preFirstNightActions = ["elect-sheriff", "vote", "settle-votes", "delegate", "ban-voting", "shoot"];
     return turn === 1 && phase === "night" && preFirstNightActions.includes(action);
+}
+
+export function getDefaultGameOptions() {
+    return JSON.parse(JSON.stringify(defaultGameOptions));
 }

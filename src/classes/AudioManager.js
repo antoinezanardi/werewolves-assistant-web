@@ -7,12 +7,13 @@ class AudioManager {
         const userPreferences = new UserPreferences();
         this.isMuted = userPreferences.audio.isMuted;
         this.ambient = {
-            volume: 1,
+            volume: userPreferences.audio.ambient.volume / 100,
             dayMusics: [],
             nightMusics: [],
+            suspenseMusic: undefined,
         };
         this.soundEffects = {
-            volume: 1,
+            volume: userPreferences.audio.soundEffects.volume / 100,
             sounds: {},
         };
         Howler.mute(this.isMuted);
@@ -40,6 +41,7 @@ class AudioManager {
         for (const ambientDayFile of ambientDayFiles) {
             this.ambient.dayMusics.push(new Howl({ src: ambientDayFile, ...options }));
         }
+        this.ambient.suspenseMusic = new Howl({ src: "/audio/ambient/other/suspense.mp3", ...options, loop: false });
     }
 
     // eslint-disable-next-line max-lines-per-function
@@ -73,6 +75,11 @@ class AudioManager {
             "day-rises": new Howl({ src: `${basePath}/day-rises.mp3`, ...options }),
             "hunter-plays": new Howl({ src: `${basePath}/hunter-plays.mp3`, ...options }),
             "scapegoat-plays": new Howl({ src: `${basePath}/scapegoat-plays.mp3`, ...options }),
+            "fox-plays": new Howl({ src: `${basePath}/fox-plays.mp3`, ...options }),
+            "bear-growls": new Howl({ src: `${basePath}/bear-growls.mp3`, ...options }),
+            "game-ends": new Howl({ src: `${basePath}/game-ends.mp3`, ...options }),
+            "crowd-cheering": new Howl({ src: `${basePath}/crowd-cheering.mp3`, ...options }),
+            "angel-wins": new Howl({ src: `${basePath}/angel-wins.mp3`, ...options }),
         };
     }
 
@@ -109,14 +116,48 @@ class AudioManager {
         }
     }
 
-    stopAllMusics() {
+    playSuspenseMusic() {
+        this.ambient.suspenseMusic.fade(0, this.ambient.volume, 5000);
+        this.ambient.suspenseMusic.play();
+    }
+
+    stopSuspenseMusic() {
+        this.ambient.suspenseMusic.fade(this.ambient.volume, 0, 5000);
+        setTimeout(() => this.ambient.suspenseMusic.stop(), 5000);
+    }
+
+    stopGamePhaseMusics() {
         this.stopDayMusic();
         this.stopNightMusic();
+    }
+
+    stopAllMusics() {
+        this.stopGamePhaseMusics();
+        this.stopSuspenseMusic();
     }
 
     playSoundEffect(soundEffect) {
         if (this.soundEffects.sounds[soundEffect]) {
             this.soundEffects.sounds[soundEffect].play();
+        }
+    }
+
+    setAmbientVolume(volume) {
+        this.ambient.volume = volume;
+        for (const dayMusic of this.ambient.dayMusics) {
+            dayMusic.volume(volume);
+        }
+        for (const nightMusic of this.ambient.nightMusics) {
+            nightMusic.volume(volume);
+        }
+    }
+
+    setSoundEffectsVolume(volume) {
+        this.soundEffects.volume = volume;
+        for (const key in this.soundEffects.sounds) {
+            if (this.soundEffects.sounds[key]) {
+                this.soundEffects.sounds[key].volume(volume);
+            }
         }
     }
 }
