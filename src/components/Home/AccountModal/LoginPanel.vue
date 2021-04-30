@@ -62,11 +62,11 @@
                 <FacebookLoginButton class="mt-2 text-center" @hide-account-modal="hideAccountModal"/>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 text-center">
-                <GoogleLoginButton class="mt-2" @hide-account-modal="hideAccountModal"/>
-            </div>
-        </div>
+        <!--        <div class="row">-->
+        <!--            <div class="col-12 text-center">-->
+        <!--                <GoogleLoginButton class="mt-2" @hide-account-modal="hideAccountModal"/>-->
+        <!--            </div>-->
+        <!--        </div>-->
     </div>
 </template>
 
@@ -74,11 +74,10 @@
 import Vue from "vue";
 import RedAsterisk from "../../shared/Forms/RedAsterisk";
 import FacebookLoginButton from "@/components/Home/AccountModal/FacebookLoginButton";
-import GoogleLoginButton from "@/components/Home/AccountModal/GoogleLoginButton";
 
 export default {
     name: "LoginPanel",
-    components: { GoogleLoginButton, FacebookLoginButton, RedAsterisk },
+    components: { FacebookLoginButton, RedAsterisk },
     props: {
         loading: {
             type: Boolean,
