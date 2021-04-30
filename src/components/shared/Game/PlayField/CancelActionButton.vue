@@ -6,10 +6,17 @@
             <span v-html="$t('CancelActionButton.cancel')"/>
             <i class="fa fa-times-circle ml-2"/>
         </span>
+        <span v-else class="text-muted d-flex align-items-center small font-italic font-weight-bold">
+            <i class="fa fa-chevron-down animate__animated animate__slow animate__swing animate__infinite mr-2"/>
+            <span v-html="noTargetSelectedText"/>
+        </span>
     </transition>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+import { maxTargetLengthForPlayerAttribute } from "@/helpers/functions/Player";
+
 export default {
     name: "CancelActionButton",
     props: {
@@ -23,6 +30,7 @@ export default {
         },
     },
     computed: {
+        ...mapGetters("game", { game: "game" }),
         targetedPlayersForAttribute() {
             return this.play.targets.length ? this.play.targets.filter(target => target.attribute === this.attribute) : [];
         },
@@ -33,6 +41,20 @@ export default {
                 return this.$t("CancelActionButton.cancelSide");
             }
             return "";
+        },
+        noTargetSelectedText() {
+            const targetsCount = maxTargetLengthForPlayerAttribute(this.attribute, this.game);
+            if (this.game.isFirstWaitingChooseSideAction) {
+                return this.$t("CancelActionButton.pleaseChooseSide");
+            } else if (this.game.isFirstWaitingChooseCardAction) {
+                if (this.game.isFirstWaitingSkippableAction) {
+                    return this.$t("CancelActionButton.chooseCardIfNot");
+                }
+                return this.$t("CancelActionButton.pleaseChooseCard");
+            } else if (this.game.isFirstWaitingSkippableAction) {
+                return this.$t("CancelActionButton.chooseTargetIfNot");
+            }
+            return this.$tc("CancelActionButton.pleaseChooseTarget", targetsCount, { targetsCount });
         },
     },
     methods: {
@@ -52,4 +74,10 @@ export default {
 </script>
 
 <style scoped>
+    .cancel-action-button {
+        padding: 5px 10px;
+        font-size: 1rem;
+        cursor: pointer;
+        color: #989898;
+    }
 </style>

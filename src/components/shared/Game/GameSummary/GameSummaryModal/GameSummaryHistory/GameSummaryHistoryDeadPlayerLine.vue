@@ -29,6 +29,9 @@
 import { mapGetters } from "vuex";
 import RoleImage from "@/components/shared/Game/Role/RoleImage";
 import RoleText from "@/components/shared/Game/Role/RoleText";
+import GameHistory from "@/classes/GameHistory";
+import Player from "@/classes/Player";
+import { insertIf } from "@/helpers/functions/Array";
 import dead from "@/assets/svg/attributes/dead.svg";
 import eaten from "@/assets/svg/attributes/eaten.svg";
 import bigBadWolf from "@/assets/svg/roles/big-bad-wolf.svg";
@@ -37,9 +40,7 @@ import deathPotion from "@/assets/svg/attributes/drank-death-potion.svg";
 import shoot from "@/assets/svg/actions/shoot.svg";
 import inLove from "@/assets/svg/attributes/in-love.svg";
 import whiteWerewolf from "@/assets/svg/roles/white-werewolf.svg";
-import GameHistory from "@/classes/GameHistory";
-import Player from "@/classes/Player";
-import { insertIf } from "@/helpers/functions/Array";
+import disease from "@/assets/svg/attributes/contaminated.svg";
 
 export default {
     name: "GameSummaryHistoryDeadPlayerLine",
@@ -51,6 +52,14 @@ export default {
         },
         deadPlayer: {
             type: Player,
+            required: true,
+        },
+        firstDeadWerewolfNotBigBadWolfPlayer: {
+            type: Player,
+            default: undefined,
+        },
+        isBigBadWolfFirstWerewolfToDie: {
+            type: Boolean,
             required: true,
         },
     },
@@ -69,6 +78,7 @@ export default {
                 "hunter": { shoot },
                 "cupid": { charm: inLove },
                 "sheriff": { "settle-votes": vote },
+                "rusty-sword-knight": { disease },
             },
         };
     },
@@ -83,7 +93,7 @@ export default {
             return this.murderIcons[murdered.by] ? this.murderIcons[murdered.by][murdered.of] : undefined;
         },
         deathConsequences() {
-            const { wildChildPlayer } = this.game;
+            const { wildChildPlayer, bigBadWolfPlayer, options } = this.game;
             const { action, targets } = this.gameHistoryEntry.play;
             const consequencesText = "GameSummaryHistoryDeadPlayerLine.consequences";
             return [
@@ -91,10 +101,14 @@ export default {
                     this.$t(`${consequencesText}.scapegoatDiesForTie`)),
                 ...insertIf(this.deadPlayer.currentRole === "idiot" && this.deadPlayer.hasAttribute("sheriff"),
                     this.$t(`${consequencesText}.idiotWontDelegate`)),
-                ...insertIf(this.deadPlayer.currentRole === "ancient" && !!this.game.getPlayerWithAttribute("powerless"),
+                ...insertIf(this.deadPlayer.currentRole === "ancient" && !!this.game.getPlayerWithAttributeAndSource("powerless", "ancient"),
                     this.$t(`${consequencesText}.ancientHadHisRevenge`)),
                 ...insertIf(this.deadPlayer.hasAttribute("worshiped") && wildChildPlayer.side.current === "werewolves",
                     this.$t(`${consequencesText}.wildChildBecameWerewolf`)),
+                ...insertIf(options.roles.bigBadWolf.isPowerlessIfWerewolfDies && bigBadWolfPlayer && !this.isBigBadWolfFirstWerewolfToDie &&
+                    this.firstDeadWerewolfNotBigBadWolfPlayer === this.deadPlayer, this.$t(`${consequencesText}.bigBadWolfBecamePowerless`)),
+                ...insertIf(this.deadPlayer.currentRole === "rusty-sword-knight" && this.deadPlayer.murdered.of === "eat" &&
+                    !this.deadPlayer.hasAttribute("powerless"), this.$t(`${consequencesText}.rustySwordKnightContaminatedLeftWerewolf`)),
             ];
         },
     },

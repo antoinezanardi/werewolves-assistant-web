@@ -17,6 +17,7 @@
 import { mapGetters } from "vuex";
 import CancelActionButton from "./CancelActionButton";
 import SelectAllTargetsButton from "@/components/shared/Game/PlayField/SelectAllTargetsButton";
+import { getNearestNeighbor } from "@/helpers/functions/Player";
 
 export default {
     name: "PlayFieldActionText",
@@ -34,7 +35,23 @@ export default {
     computed: {
         ...mapGetters("game", { game: "game" }),
         targetedPlayersForAttribute() {
-            return this.play.targets.length ? this.play.targets.filter(target => target.attribute === this.attribute) : [];
+            const { firstWaiting } = this.game;
+            if (this.play.targets.length) {
+                const targets = this.play.targets.filter(target => target.attribute === this.attribute);
+                if (firstWaiting.to === "sniff") {
+                    const originalTarget = targets[0];
+                    const leftNeighbor = getNearestNeighbor(originalTarget.player, this.game.players, "left", { isAlive: true });
+                    if (leftNeighbor) {
+                        targets.push({ player: leftNeighbor._id, attribute: "sniff" });
+                    }
+                    const rightNeighbor = getNearestNeighbor(originalTarget.player, this.game.players, "right", { isAlive: true });
+                    if (rightNeighbor && (!leftNeighbor || leftNeighbor._id !== rightNeighbor._id)) {
+                        targets.unshift({ player: rightNeighbor._id, attribute: "sniff" });
+                    }
+                }
+                return targets;
+            }
+            return [];
         },
         actionText() {
             const { firstWaiting } = this.game;
@@ -64,8 +81,10 @@ export default {
         },
         chooseCardActionText() {
             if (!this.card) {
-                const noChosenCardTextKey = this.game.isFirstWaitingSkippableAction ? "no-choose-card" : "choose-card";
-                return `${this.$t(`PlayFieldActionText.thief.${noChosenCardTextKey}`)}...`;
+                if (this.game.isFirstWaitingSkippableAction) {
+                    return `${this.$t(`PlayFieldActionText.thief.no-choose-card`)}`;
+                }
+                return `${this.$t(`PlayFieldActionText.thief.choose-card`)}...`;
             }
             return `${this.$t(`PlayFieldActionText.thief.choose-card`)} ${this.$t(`Role.a.${this.card.role}`)}`;
         },
@@ -82,7 +101,8 @@ export default {
             const role = player.role.current;
             return (this.attribute === "drank-life-potion" || this.attribute === "drank-death-potion") && role === "witch" ||
                 this.attribute === "protected" && role === "guard" || this.attribute === "raven-marked" && role === "raven" ||
-                this.attribute === "in-love" && role === "cupid" || this.attribute === "chosen-for-vote" && player.hasAttribute("sheriff");
+                this.attribute === "in-love" && role === "cupid" || this.attribute === "chosen-for-vote" && player.hasAttribute("sheriff") ||
+                this.attribute === "sniff" && role === "fox";
         },
         getActionTextDependingOnTargets() {
             let actionText = "";
@@ -127,12 +147,5 @@ export default {
 
     #play-field-action-buttons-container {
         height: 40px;
-    }
-
-    .play-field-action-button {
-        padding: 5px 10px;
-        font-size: 1rem;
-        cursor: pointer;
-        color: #989898;
     }
 </style>

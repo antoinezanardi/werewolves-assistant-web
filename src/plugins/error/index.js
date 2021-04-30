@@ -8,7 +8,7 @@ const Error = {
         Vue.prototype.$error.display = error => {
             if (isAPIError(error)) {
                 const { response } = error;
-                Vue.prototype.$toasted.error(i18n.t(`Error.${response.data.type}`), { icon: "times" });
+                Vue.prototype.$toasted.error(i18n.t(`Error.${response.data.type}`), { icon: "times", duration: 5000 });
             } else if (Router.currentRoute.name !== "Home" && error.response.status === 401) {
                 Router.push("/");
                 Vue.prototype.$toasted.error(i18n.t(`Error.yourSessionHasExpired`), { icon: "times" });

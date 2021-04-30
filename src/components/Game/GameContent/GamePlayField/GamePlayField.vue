@@ -1,5 +1,5 @@
 <template>
-    <div id="game-play-field" class="h-100">
+    <div id="game-play-field">
         <transition mode="out-in" name="fade">
             <div v-if="loadings.pastEvents" key="loading-past-events" class="d-flex justify-content-center align-items-center h-100">
                 <Loading/>
@@ -52,7 +52,7 @@ export default {
                 hasWitchUsedLifePotion: undefined,
                 hasWitchUsedDeathPotion: undefined,
                 hasStutteringJudgeChosenSign: undefined,
-                hasStutteringJudgeRequestedVote: undefined,
+                stutteringJudgeVoteRequestsCount: undefined,
                 hasVileFatherOfWolvesInfected: undefined,
             },
             cantGetPastEvents: false,
@@ -99,7 +99,7 @@ export default {
             const voteQueryStrings = { "play-source": "all", "play-action": "vote" };
             const { data } = await this.$werewolvesAssistantAPI.getGameHistory(this.game._id, voteQueryStrings);
             const votePlays = data.map(gameHistoryEntry => new GameHistory(gameHistoryEntry));
-            this.pastEvents.hasStutteringJudgeRequestedVote = !!votePlays.find(votePlay => votePlay.hasStutteringJudgeRequestedVote);
+            this.pastEvents.stutteringJudgeVoteRequestsCount = votePlays.filter(votePlay => votePlay.hasStutteringJudgeRequestedVote).length;
         },
         async fillWitchPotionsUsage() {
             this.loadings.pastEvents = true;
@@ -121,7 +121,7 @@ export default {
         async getPastEvents() {
             const { firstWaiting, stutteringJudgePlayer, vileFatherOfWolvesPlayer } = this.game;
             try {
-                if (firstWaiting.to === "protect") {
+                if (!this.game.options.roles.guard.canProtectTwice && firstWaiting.to === "protect") {
                     await this.fillLastGuardTarget();
                 } else if (firstWaiting.to === "use-potion") {
                     await this.fillWitchPotionsUsage();

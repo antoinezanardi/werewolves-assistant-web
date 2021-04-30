@@ -25,6 +25,8 @@ import chronometerSVG from "@/assets/svg/misc/chronometer.svg";
 import deadSVG from "@/assets/svg/attributes/dead.svg";
 import powerlessSVG from "@/assets/svg/attributes/powerless.svg";
 import whiteWerewolfSVG from "@/assets/svg/roles/white-werewolf.svg";
+import growlsSVG from "@/assets/svg/attributes/growls.svg";
+import contaminatedSVG from "@/assets/svg/attributes/contaminated.svg";
 
 export default {
     name: "PlayerAttribute",
@@ -38,103 +40,119 @@ export default {
             required: true,
         },
     },
-    // eslint-disable-next-line max-lines-per-function
-    data() {
-        return {
-            attributesMetadata: {
+    computed: {
+        ...mapGetters("game", { game: "game" }),
+        // eslint-disable-next-line max-lines-per-function
+        attributesMetadata() {
+            const attributeText = "PlayerAttribute.attributes";
+            const bearTamerGrowlsText = this.game.vileFatherOfWolvesPlayer ? "bearGrowlsMaybeInfected" : "bearGrowls";
+            return {
                 "sheriff": {
                     all: {
-                        tooltip: this.$t("PlayerAttribute.attributes.sheriff"),
+                        tooltip: this.$t(`${attributeText}.sheriff`),
                         SVG: sheriffSVG,
                     },
                     sheriff: {
-                        tooltip: this.$t("PlayerAttribute.attributes.sheriff"),
+                        tooltip: this.$t(`${attributeText}.sheriff`),
                         SVG: sheriffSVG,
                     },
                 },
                 "seen": {
                     seer: {
-                        tooltip: this.$t("PlayerAttribute.attributes.seen"),
+                        tooltip: this.$t(`${attributeText}.seen`),
                         SVG: seenSVG,
                     },
                 },
                 "eaten": {
                     "werewolves": {
-                        tooltip: this.$t("PlayerAttribute.attributes.eatenByWerewolves"),
+                        tooltip: this.$t(`${attributeText}.eatenByWerewolves`),
                         SVG: eatenSVG,
                     },
                     "big-bad-wolf": {
-                        tooltip: this.$t("PlayerAttribute.attributes.eatenByBigBadWolf"),
+                        tooltip: this.$t(`${attributeText}.eatenByBigBadWolf`),
                         SVG: bigBadWolfSVG,
                     },
                     "white-werewolf": {
-                        tooltip: this.$t("PlayerAttribute.attributes.eatenByWhiteWerewolf"),
+                        tooltip: this.$t(`${attributeText}.eatenByWhiteWerewolf`),
                         SVG: whiteWerewolfSVG,
                     },
                 },
                 "drank-life-potion": {
                     witch: {
-                        tooltip: this.$t("PlayerAttribute.attributes.drankLifePotion"),
+                        tooltip: this.$t(`${attributeText}.drankLifePotion`),
                         SVG: drankLifePotionSVG,
                     },
                 },
                 "drank-death-potion": {
                     witch: {
-                        tooltip: this.$t("PlayerAttribute.attributes.drankDeathPotion"),
+                        tooltip: this.$t(`${attributeText}.drankDeathPotion`),
                         SVG: drankDeathPotionSVG,
                     },
                 },
                 "protected": {
                     guard: {
-                        tooltip: this.$t("PlayerAttribute.attributes.protected"),
+                        tooltip: this.$t(`${attributeText}.protected`),
                         SVG: protectedSVG,
                     },
                 },
                 "raven-marked": {
                     raven: {
-                        tooltip: this.$t("PlayerAttribute.attributes.ravenMarked"),
+                        tooltip: this.$t(`${attributeText}.ravenMarked`),
                         SVG: ravenMarkedSVG,
                     },
                 },
                 "in-love": {
                     cupid: {
-                        tooltip: this.$t("PlayerAttribute.attributes.inLove"),
+                        tooltip: this.$t(`${attributeText}.inLove`),
                         SVG: inLoveSVG,
                     },
                 },
                 "worshiped": {
                     "wild-child": {
-                        tooltip: this.$t("PlayerAttribute.attributes.worshiped"),
+                        tooltip: this.$t(`${attributeText}.worshiped`),
                         SVG: worshipedSVG,
                     },
                 },
                 "charmed": {
                     "pied-piper": {
-                        tooltip: this.$t("PlayerAttribute.attributes.charmed"),
+                        tooltip: this.$t(`${attributeText}.charmed`),
                         SVG: charmedSVG,
                     },
                 },
                 "cant-vote": {
                     scapegoat: {
-                        tooltip: this.$t("PlayerAttribute.attributes.cantVoteByScapegoat"),
+                        tooltip: this.$t(`${attributeText}.cantVoteByScapegoat`),
                         SVG: cantVoteSVG,
                     },
                     all: {
-                        tooltip: this.$t("PlayerAttribute.attributes.cantVoteByAll"),
+                        tooltip: this.$t(`${attributeText}.cantVoteByAll`),
                         SVG: cantVoteSVG,
                     },
                 },
                 "powerless": {
                     ancient: {
-                        tooltip: this.$t("PlayerAttribute.attributes.powerless"),
+                        tooltip: this.$t(`${attributeText}.powerlessByAncient`),
+                        SVG: powerlessSVG,
+                    },
+                    fox: {
+                        tooltip: this.$t(`${attributeText}.powerlessByFox`),
                         SVG: powerlessSVG,
                     },
                 },
-            },
-        };
-    },
-    computed: {
-        ...mapGetters("game", { game: "game" }),
+                "growls": {
+                    "bear-tamer": {
+                        tooltip: this.$t(`${attributeText}.${bearTamerGrowlsText}`),
+                        SVG: growlsSVG,
+                    },
+                },
+                "contaminated": {
+                    "rusty-sword-knight": {
+                        tooltip: this.$t(`${attributeText}.contaminated`),
+                        SVG: contaminatedSVG,
+                    },
+                },
+            };
+        },
         playerAttribute() {
             const { name, source } = this.attribute;
             if (this.attributesMetadata[name] && this.attributesMetadata[name][source]) {

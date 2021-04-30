@@ -35,7 +35,8 @@ export function getNominatedPlayers(votes, game, action) {
     return votedPlayers.filter(player => player.vote === maxVotes);
 }
 
-export function maxTargetLengthForPlayerAttribute(attribute) {
+export function maxTargetLengthForPlayerAttribute(attribute, game) {
+    const { firstWaiting, options, piedPiperTargets } = game;
     const oneTargetAttributes = [
         "seen",
         "eaten",
@@ -47,9 +48,13 @@ export function maxTargetLengthForPlayerAttribute(attribute) {
         "chosen-for-vote",
         "delegate",
         "shoot",
+        "sniff",
     ];
     const twoTargetsAttributes = ["in-love", "charmed"];
-    if (oneTargetAttributes.includes(attribute)) {
+    if (attribute === "charmed" && firstWaiting.for === "pied-piper") {
+        const { charmedPeopleCountPerNight } = options.roles.piedPiper;
+        return piedPiperTargets.length < charmedPeopleCountPerNight ? piedPiperTargets.length : charmedPeopleCountPerNight;
+    } else if (oneTargetAttributes.includes(attribute)) {
         return 1;
     } else if (twoTargetsAttributes.includes(attribute)) {
         return 2;
@@ -72,4 +77,27 @@ export function listPlayerNames(players) {
         }
     }
     return playersText;
+}
+
+export function getNearestNeighbor(playerId, players, direction, options = {}) {
+    let checkedNeighborsCount = 0;
+    const player = players.find(({ _id }) => _id.toString() === playerId.toString());
+    if (!player) {
+        return null;
+    }
+    let checkingNeighborPosition = player.position;
+    while (checkedNeighborsCount < players.length) {
+        const checkingNeighbor = players[checkingNeighborPosition];
+        if (checkingNeighbor.position !== player.position && (!options.isAlive || checkingNeighbor.isAlive) &&
+            (!options.side || checkingNeighbor.side.current === options.side)) {
+            return checkingNeighbor;
+        }
+        if (direction === "left") {
+            checkingNeighborPosition = checkingNeighborPosition + 1 === players.length ? 0 : checkingNeighborPosition + 1;
+        } else if (direction === "right") {
+            checkingNeighborPosition = checkingNeighborPosition - 1 === -1 ? players.length - 1 : checkingNeighborPosition - 1;
+        }
+        checkedNeighborsCount++;
+    }
+    return null;
 }

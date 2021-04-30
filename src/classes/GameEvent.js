@@ -13,6 +13,7 @@ class GameEvent {
                 death: getProp(target, "potion.death"),
             },
         })));
+        this.side = getProp(gameEvent, "side");
     }
 }
 

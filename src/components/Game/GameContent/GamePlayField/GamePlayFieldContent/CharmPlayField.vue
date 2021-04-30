@@ -1,6 +1,6 @@
 <template>
     <div id="charm-play-field" class="d-flex flex-column">
-        <div id="pied-piper-player" class="row justify-content-center align-items-center">
+        <div id="charming-player" class="row justify-content-center align-items-center">
             <div class="col-12">
                 <PlayerCard :player="charmingPlayer" size="lg"/>
             </div>

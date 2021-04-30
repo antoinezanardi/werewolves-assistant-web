@@ -15,6 +15,7 @@ class Player {
             current: getProp(player, "side.current"),
         };
         this.attributes = getProp(player, "attributes", [], attributes => attributes.map(attribute => attribute));
+        this.position = getProp(player, "position");
         this.isAlive = getProp(player, "isAlive");
         this.murdered = {
             by: getProp(player, "murdered.by"),
@@ -24,6 +25,10 @@ class Player {
 
     hasAttribute(attributeName) {
         return !!this.attributes.find(({ name }) => name === attributeName);
+    }
+
+    hasAttributeAndSource(attributeName, attributeSource) {
+        return !!this.attributes.find(({ name, source }) => name === attributeName && source === attributeSource);
     }
 
     hasActiveAttribute(attributeName, game) {
@@ -48,6 +53,14 @@ class Player {
 
     canVote(game) {
         return !this.hasActiveAttribute("cant-vote", game);
+    }
+
+    get isInWerewolvesSide() {
+        return this.side.current === "werewolves";
+    }
+
+    get isInVillagersSide() {
+        return this.side.current === "villagers";
     }
 }
 

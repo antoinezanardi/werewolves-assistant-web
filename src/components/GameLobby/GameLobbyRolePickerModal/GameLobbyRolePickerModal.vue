@@ -28,7 +28,7 @@
                         <div class="row h-100">
                             <div id="selected-role-panel" class="col-lg-4 col-12 visible-scrollbar">
                                 <div id="selected-role-thumbnail" class="row align-items-center justify-content-center">
-                                    <div class="col-12 d-flex justify-content-center text-center h-100 pt-1">
+                                    <div class="col-12 d-flex justify-content-center text-center h-100 pt-1 mt-1">
                                         <VueFlip v-model="selectedRoleThumbnail.flipped" height="100%" width="100%">
                                             <template #front>
                                                 <RoleImage class="h-100" :role="selectedRoleThumbnail.front"/>
@@ -59,9 +59,12 @@
                                                     <RoleText v-if="isRolePicked" id="selected-role-text" :key="selected.role.name"
                                                               :role="selected.role.name" prefix="the" class="font-weight-bold"/>
                                                 </div>
-                                                <div class="col-6 d-flex justify-content-center align-items-center">
-                                                    <span class="font-weight-bold mr-2" v-html="`${$t('GameLobbyRolePickerModal.side')}: `"/>
-                                                    <RoleImage id="selected-role-side-image" :role="selected.role.side"/>
+                                                <div class="col-6 d-flex justify-content-center align-items-center flex-column">
+                                                    <div class="d-flex justify-content-center align-items-center">
+                                                        <span class="font-weight-bold mr-2" v-html="`${$t('GameLobbyRolePickerModal.side')}: `"/>
+                                                        <RoleImage id="selected-role-side-image" :role="selected.role.side"/>
+                                                    </div>
+                                                    <RoleTypeBadge v-if="selected.role" :role="selected.role" class="mt-2"/>
                                                 </div>
                                             </div>
                                             <div class="row mt-2">
@@ -140,10 +143,11 @@ import Role from "@/classes/Role";
 import RoleImage from "@/components/shared/Game/Role/RoleImage";
 import RoleText from "@/components/shared/Game/Role/RoleText";
 import RolePickerRole from "@/components/GameLobby/GameLobbyRolePickerModal/RolePickerRole";
+import RoleTypeBadge from "@/components/shared/Game/Role/RoleTypeBadge";
 
 export default {
     name: "GameLobbyRolePickerModal",
-    components: { RolePickerRole, RoleText, RoleImage },
+    components: { RoleTypeBadge, RolePickerRole, RoleText, RoleImage },
     data() {
         return {
             selected: {

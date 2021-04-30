@@ -61,9 +61,23 @@ export default {
     computed: {
         ...mapGetters("game", { game: "game" }),
         ...mapGetters("audioManager", { audioManager: "audioManager" }),
+        winnersSound() {
+            const winnersSounds = {
+                "villagers": "crowd-cheering",
+                "werewolves": "werewolves-play",
+                "lovers": "lovers-play",
+                "pied-piper": "pied-piper-plays",
+                "white-werewolf": "white-werewolf-plays",
+                "angel": "angel-wins",
+                "nobody": "death",
+            };
+            const winners = this.game.won.by ? this.game.won.by : "nobody";
+            return winnersSounds[winners] ? winnersSounds[winners] : undefined;
+        },
     },
     created() {
         this.audioManager.stopAllMusics();
+        this.audioManager.playSoundEffect(this.winnersSound);
     },
     methods: {
         confirmRestartGame() {

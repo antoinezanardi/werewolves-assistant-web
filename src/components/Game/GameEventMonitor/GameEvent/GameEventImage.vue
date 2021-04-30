@@ -50,6 +50,8 @@ import ravenMarkSVG from "@/assets/svg/attributes/raven-marked.svg";
 import eatenSVG from "@/assets/svg/attributes/eaten.svg";
 import voteSVG from "@/assets/svg/actions/vote.svg";
 import thiefSVG from "@/assets/svg/roles/thief.svg";
+import foxSVG from "@/assets/svg/roles/fox.svg";
+import villagerSVG from "@/assets/svg/roles/villager.svg";
 
 export default {
     name: "GameEventImage",
@@ -98,6 +100,9 @@ export default {
                 "player-starts-game-revealed": seenSVG,
                 "no-death-after-votes": voteSVG,
                 "thief-chooses-card": thiefSVG,
+                "fox-sniffs": foxSVG,
+                "dog-wolf-chooses-side": this.event.side === "werewolves" ? eatenSVG : villagerSVG,
+                "wild-child-joins-werewolves": eatenSVG,
             };
             return effectGameEventTypeImageSource[this.event.type];
         },
@@ -113,11 +118,12 @@ export default {
             }
             const { firstWaiting, alivePlayersExpectedToPlay, playersExpectedToPlay } = this.game;
             const deadPlayerActions = ["delegate", "shoot", "ban-voting"];
+            const allPlayersEvents = ["game-starts", "deaths-during-night", "game-ends"];
             if (this.event.type === "no-death-during-night") {
                 return this.game.alivePlayers;
-            } else if (this.event.type === "deaths-during-night") {
+            } else if (allPlayersEvents.includes(this.event.type)) {
                 return this.game.players;
-            } else if (this.isEffectGameEvent) {
+            } else if (this.isEffectGameEvent || this.event.type === "bear-growls" || this.event.type === "bear-stays-calm") {
                 return this.event.targets.map(({ player }) => player);
             }
             return deadPlayerActions.includes(firstWaiting.to) ? playersExpectedToPlay : alivePlayersExpectedToPlay;

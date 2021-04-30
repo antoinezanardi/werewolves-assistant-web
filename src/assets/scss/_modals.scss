@@ -8,3 +8,7 @@
         border-top-color: $dark-color;
     }
 }
+
+.modal-backdrop.blur.show {
+    opacity: 1;
+}

@@ -7,7 +7,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import PlayerVote from "./PlayerVote";
+import PlayerVote from "./PlayerVote/PlayerVote";
 
 export default {
     name: "PlayerVotes",

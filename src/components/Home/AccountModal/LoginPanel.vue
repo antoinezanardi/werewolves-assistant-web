@@ -52,16 +52,32 @@
                 <a href="#" @click.prevent="$emit('open-register-tab')" v-html="$t('LoginPanel.IDontHaveAnAccountYet')"/>
             </div>
         </div>
+        <div class="row">
+            <div class="col-12">
+                <hr class="bg-dark my-1"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <FacebookLoginButton class="mt-2 text-center" @hide-account-modal="hideAccountModal"/>
+            </div>
+        </div>
+        <!--        <div class="row">-->
+        <!--            <div class="col-12 text-center">-->
+        <!--                <GoogleLoginButton class="mt-2" @hide-account-modal="hideAccountModal"/>-->
+        <!--            </div>-->
+        <!--        </div>-->
     </div>
 </template>
 
 <script>
 import Vue from "vue";
 import RedAsterisk from "../../shared/Forms/RedAsterisk";
+import FacebookLoginButton from "@/components/Home/AccountModal/FacebookLoginButton";
 
 export default {
     name: "LoginPanel",
-    components: { RedAsterisk },
+    components: { FacebookLoginButton, RedAsterisk },
     props: {
         loading: {
             type: Boolean,
@@ -75,9 +91,6 @@ export default {
                 password: undefined,
             },
         };
-    },
-    mounted() {
-        this.focusEmailInput();
     },
     methods: {
         getCredentials() {
@@ -105,6 +118,9 @@ export default {
         reset() {
             this.credentials.email = undefined;
             this.credentials.password = undefined;
+        },
+        hideAccountModal() {
+            this.$emit("hide-account-modal");
         },
     },
 };

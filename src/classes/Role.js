@@ -4,6 +4,7 @@ class Role {
     constructor(role = null) {
         this.name = getProp(role, "name");
         this.side = getProp(role, "side");
+        this.type = getProp(role, "type");
         this.minInGame = getProp(role, "minInGame");
         this.maxInGame = getProp(role, "maxInGame");
         this.recommendedMinPlayers = getProp(role, "recommendedMinPlayers");
@@ -14,11 +15,11 @@ class Role {
         return !roleCount || this.minInGame <= roleCount;
     }
 
-    get isInWerewolfSide() {
+    get isInWerewolvesSide() {
         return this.side === "werewolves";
     }
 
-    get isInVillagerSide() {
+    get isInVillagersSide() {
         return this.side === "villagers";
     }
 }
