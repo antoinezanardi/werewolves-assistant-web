@@ -25,7 +25,7 @@
         "howler": "^2.2.1",
         "jquery": "^3.5.1",
         "jsonwebtoken": "^8.5.1",
-        "node-sass": "^5.0.0",
+        "node-sass": "^7.0.0",
         "particles.vue": "^2.9.3",
         "popper.js": "^1.16.1",
         "prerender-spa-plugin": "^3.4.0",
