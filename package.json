@@ -30,7 +30,7 @@
         "popper.js": "^1.16.1",
         "prerender-spa-plugin": "^3.4.0",
         "qrcode.vue": "^1.7.0",
-        "qs": "^6.10.1",
+        "qs": "^6.10.3",
         "sass-loader": "^10.1.1",
         "sweetalert2": "^10.16.6",
         "uniqid": "^5.2.0",
